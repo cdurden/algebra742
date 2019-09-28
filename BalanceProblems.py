@@ -1,6 +1,5 @@
 import os
 from flask import Flask
-from flask import render_template
 from flask.ext.wtf import Form
 from wtforms import IntegerField, BooleanField
 from random import randint
@@ -8,10 +7,30 @@ import markdown
 from markdown_include.include import MarkdownInclude
 
 from pylti.flask import lti
+from functools import wraps
+from flask import request, render_template
 
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
+
+
+def templated(template=None):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            template_name = template
+            if template_name is None:
+                template_name = request.endpoint \
+                    .replace('.', '/') + '.html'
+            ctx = f(*args, **kwargs)
+            if ctx is None:
+                ctx = {}
+            elif not isinstance(ctx, dict):
+                return ctx
+            return render_template(template_name, **ctx)
+        return decorated_function
+    return decorator
 
 class AddForm(Form):
     """ Add data from Form
