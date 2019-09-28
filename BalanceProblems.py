@@ -57,7 +57,7 @@ def error(exception=None):
 @templated('markdown.html')
 def markdown_view(lti=lti, source=None):
     markdown_include = MarkdownInclude(
-                           configs={'base_path':request.registry.settings['includepath']}
+                           configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
                            )
     md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta','pymdownx.emoji',markdown_include])
     result = md.convert(os.path.join(app.config['RESOURCES_DIR'],source))

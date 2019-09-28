@@ -3,8 +3,6 @@ Configuration file for flask sample application
 """
 import os
 
-RESOURCES_DIR = os.path.join(os.path.dirname(__file__), 'resources')
-
 # enable CSRF
 WTF_CSRF_ENABLED = True
 
@@ -45,3 +43,7 @@ PYLTI_URL_FIX = {
         "https://localhost/": "http://192.168.33.10/"
     }
 }
+
+RESOURCES_DIR = os.path.join(os.path.dirname(__file__), 'resources')
+
+MARKDOWN_INCLUDE_PATH = os.path.join(os.path.dirname(__file__), 'resources', 'include')
