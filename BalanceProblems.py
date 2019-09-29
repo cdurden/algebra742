@@ -61,6 +61,10 @@ def markdown_view(lti=lti, source=None):
                            )
     md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
     result = md.convert(os.path.join(app.config['RESOURCES_DIR'],source))
+    try:
+        title = md.Meta['title'][0]
+    except:
+        title = 'untitled'
     return dict(title=title, content=result)
 
 @app.route('/is_up', methods=['GET'])
