@@ -53,14 +53,16 @@ def error(exception=None):
     return render_template('error.html')
 
 
-@app.route('/markdown/<source>')
+@app.route('/markdown/<filename>')
 @templated('markdown.html')
-def markdown_view(lti=lti, source=None):
+def markdown_view(lti=lti, filename=None):
     markdown_include = MarkdownInclude(
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
                            )
     md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
-    result = md.convert(os.path.join(app.config['RESOURCES_DIR'],source))
+    with open(filename, 'rb') as f:
+        source = f.read()
+    result = md.convert(os.path.join(app.config['RESOURCES_DIR'],source.decode('utf-8')))
     try:
         title = md.Meta['title'][0]
     except:
