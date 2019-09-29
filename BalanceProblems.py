@@ -9,7 +9,7 @@ from markdown_include.include import MarkdownInclude
 from pylti.flask import lti
 from functools import wraps
 from flask import request, render_template
-from flask import Response, make_response
+from flask import Response, make_response, after_this_request
 from functools import wraps
 
 VERSION = '0.0.1'
