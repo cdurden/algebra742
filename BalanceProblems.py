@@ -9,7 +9,7 @@ from markdown_include.include import MarkdownInclude
 from pylti.flask import lti
 from functools import wraps
 from flask import request, render_template
-from flask import Response
+from flask import Response, make_response
 from functools import wraps
 
 VERSION = '0.0.1'
@@ -20,6 +20,7 @@ def returns_html(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         r = f(*args, **kwargs)
+        r = make_response(r)
         r.headers['Content-type'] = 'text/html; charset=utf-8'
         return r
     return decorated_function
