@@ -59,7 +59,7 @@ def markdown_view(lti=lti, source=None):
     markdown_include = MarkdownInclude(
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
                            )
-    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta','pymdownx.emoji',markdown_include])
+    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
     result = md.convert(os.path.join(app.config['RESOURCES_DIR'],source))
     return dict(title=title, content=result)
 
