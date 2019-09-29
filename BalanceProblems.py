@@ -20,7 +20,8 @@ def returns_html(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         r = f(*args, **kwargs)
-        return Response(r, content_type='text/html; charset=utf-8')
+        r.headers['Content-type'] = 'text/html; charset=utf-8'
+        return r
     return decorated_function
 
 def templated(template=None):
@@ -62,8 +63,8 @@ def error(exception=None):
 
 
 @app.route('/markdown/<filename>')
-@templated('markdown.html')
 @returns_html
+@templated('markdown.html')
 def markdown_view(lti=lti, filename=None):
     markdown_include = MarkdownInclude(
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
