@@ -9,10 +9,19 @@ from markdown_include.include import MarkdownInclude
 from pylti.flask import lti
 from functools import wraps
 from flask import request, render_template
+from flask import Response
+from functools import wraps
 
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
+
+def returns_html(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        r = f(*args, **kwargs)
+        return Response(*r, content_type='text/html; charset=utf-8')
+    return decorated_function
 
 
 def templated(template=None):
@@ -54,6 +63,7 @@ def error(exception=None):
 
 
 @app.route('/markdown/<filename>')
+@returns_html
 @templated('markdown.html')
 def markdown_view(lti=lti, filename=None):
     markdown_include = MarkdownInclude(
