@@ -64,9 +64,12 @@ def error(exception=None):
 
 
 @app.route('/markdown/<filename>')
-@returns_html
 @templated('markdown.html')
 def markdown_view(lti=lti, filename=None):
+    @after_this_request
+    def add_header(response):
+        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        return response
     markdown_include = MarkdownInclude(
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
                            )
