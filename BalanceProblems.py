@@ -21,7 +21,7 @@ def returns_html(f):
     def decorated_function(*args, **kwargs):
         r = f(*args, **kwargs)
         r = make_response(r)
-        r.headers['Content-type'] = 'text/html; charset=utf-8'
+        r.headers['Content-type'] = 'text/xml; charset=utf-8'
         return r
     return decorated_function
 
@@ -68,7 +68,7 @@ def error(exception=None):
 def markdown_view(lti=lti, filename=None):
     @after_this_request
     def add_header(response):
-        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        response.headers['Content-Type'] = 'text/xml; charset=utf-8'
         return response
     markdown_include = MarkdownInclude(
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
