@@ -93,8 +93,8 @@ def RepresentBalances(lti=lti, q=1):
     except:
         title = 'untitled'
     form = EquationForm()
-    lhs = parse_expr(form.lhs)
-    rhs = parse_expr(form.rhs)
+    lhs = parse_expr(form.lhs.data)
+    rhs = parse_expr(form.rhs.data)
     correct = simplify(2*a-lhs) == 0 and simplify(5*b-rhs) == 0
     return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct)
 
