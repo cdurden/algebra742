@@ -96,7 +96,7 @@ def RepresentBalances(lti=lti, q=1):
     lhs = parse_expr(form.lhs)
     rhs = parse_expr(form.rhs)
     correct = simplify(2*a-lhs) == 0 and simplify(5*b-rhs) == 0
-    return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct)
+    return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct)
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
