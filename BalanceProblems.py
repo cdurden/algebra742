@@ -90,7 +90,9 @@ def RepresentBalances(lti=lti, q=1):
     except:
         title = 'untitled'
     form = EquationForm()
-    return dict(title=title, content=result, form=form)
+    lhs = form.lhs
+    rhs = form.rhs
+    return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs)
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
