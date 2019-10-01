@@ -100,6 +100,8 @@ def RepresentBalances(lti=lti, q=1):
         rhs = parse_expr(form.rhs.data, transformations=transformations)
         correct = simplify(2*a-lhs) == 0 and simplify(5*b-rhs) == 0
     except SyntaxError:
+        lhs = form.lhs.data
+        rhs = form.rhs.data
         correct = False
     return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct)
 
