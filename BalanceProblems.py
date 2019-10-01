@@ -80,6 +80,8 @@ def RepresentBalances(lti=lti, q=1):
         return response
     from sympy import simplify, symbols
     from sympy.parsing.sympy_parser import parse_expr
+    from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application
+    transformations = (standard_transformations + (implicit_multiplication_application,))
     a,b = symbols("a b")
     markdown_include = MarkdownInclude(
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
@@ -93,8 +95,8 @@ def RepresentBalances(lti=lti, q=1):
     except:
         title = 'untitled'
     form = EquationForm()
-    lhs = parse_expr(form.lhs.data)
-    rhs = parse_expr(form.rhs.data)
+    lhs = parse_expr(form.lhs.data, transformations=transformations)
+    rhs = parse_expr(form.rhs.data, transformations=transformations)
     correct = simplify(2*a-lhs) == 0 and simplify(5*b-rhs) == 0
     return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct)
 
