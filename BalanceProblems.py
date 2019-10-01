@@ -82,7 +82,7 @@ def RepresentBalances(lti=lti, q=1):
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
                            )
     md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
-    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
+    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(int(q))), 'rb') as f:
         source = f.read()
     result = md.convert(source.decode('utf-8'))
     try:
