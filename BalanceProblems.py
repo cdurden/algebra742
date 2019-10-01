@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from flask.ext.wtf import Form
-from wtforms import IntegerField, BooleanField
+from wtforms import TextField, IntegerField, BooleanField
 from random import randint
 import markdown
 from markdown_include.include import MarkdownInclude
@@ -53,6 +53,15 @@ class AddForm(Form):
     result = IntegerField('result')
     correct = BooleanField('correct')
 
+class EquationForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+
+    lhs = TextField('lhs')
+    rhs = TextField('rhs')
+
 
 def error(exception=None):
     """ render error page
@@ -62,6 +71,26 @@ def error(exception=None):
     """
     return render_template('error.html')
 
+@app.route('/RepresentBalances/<q>')
+@templated('markdown.html')
+def RepresentBalances(lti=lti, q=1):
+    @after_this_request
+    def add_header(response):
+        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        return response
+    markdown_include = MarkdownInclude(
+                           configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
+                           )
+    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
+    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
+        source = f.read()
+    result = md.convert(source.decode('utf-8'))
+    try:
+        title = md.Meta['title'][0]
+    except:
+        title = 'untitled'
+    form = EquationForm()
+    return dict(title=title, content=result, form=form)
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
