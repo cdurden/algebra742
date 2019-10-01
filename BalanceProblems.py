@@ -78,6 +78,9 @@ def RepresentBalances(lti=lti, q=1):
     def add_header(response):
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
         return response
+    from sympy import simplify, symbols
+    from sympy.parsing.sympy_parser import parse_expr
+    a,b = symbols("a b")
     markdown_include = MarkdownInclude(
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
                            )
@@ -90,9 +93,10 @@ def RepresentBalances(lti=lti, q=1):
     except:
         title = 'untitled'
     form = EquationForm()
-    lhs = form.lhs
-    rhs = form.rhs
-    return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs)
+    lhs = parse_expr(form.lhs)
+    rhs = parse_expr(form.rhs)
+    correct = simplify(2a-lhs) == 0 && simplify(5b-rhs) == 0
+    return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct)
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
