@@ -99,7 +99,7 @@ def RepresentBalances(lti=lti, q=1):
         lhs = parse_expr(form.lhs.data, transformations=transformations)
         rhs = parse_expr(form.rhs.data, transformations=transformations)
         correct = simplify(2*a-lhs) == 0 and simplify(5*b-rhs) == 0
-    except SyntaxError, AttributeError:
+    except:
         lhs = form.lhs.data
         rhs = form.rhs.data
         correct = False
