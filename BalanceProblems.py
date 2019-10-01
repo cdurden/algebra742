@@ -72,7 +72,7 @@ def error(exception=None):
     return render_template('error.html')
 
 @app.route('/RepresentBalances/<q>')
-@templated('markdown.html')
+@templated('MarkdownQuestion.html')
 def RepresentBalances(lti=lti, q=1):
     @after_this_request
     def add_header(response):
