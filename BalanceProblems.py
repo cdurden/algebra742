@@ -18,7 +18,6 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
-db.create_all()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -114,6 +113,7 @@ def error(exception=None):
     return render_template('error.html')
 
 def get_or_create(session, model, defaults=None, **kwargs):
+    from sqlalchemy.sql.expression import ClauseElement
     instance = session.query(model).filter_by(**kwargs).first()
     if instance:
         return instance, False
