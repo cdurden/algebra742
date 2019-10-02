@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from flask.ext.wtf import Form
 from wtforms import TextField, IntegerField, BooleanField
 from random import randint
@@ -15,6 +16,46 @@ from functools import wraps
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+from datetime import datetime
+
+class Question(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    assignment = db.Column(db.String(255))
+    number = db.Column(db.Integer)
+
+question_scores = db.Table('question_scores',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('question_id', db.Integer, db.ForeignKey('question.id'), primary_key=True)
+    db.Score('score', db.Float)
+)
+
+class Assignment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(80), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    pub_date = db.Column(db.DateTime, nullable=False,
+        default=datetime.utcnow)
+
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'),
+        nullable=False)
+    category = db.relationship('Category',
+        backref=db.backref('posts', lazy=True))
+
+    def __repr__(self):
+        return '<Post %r>' % self.title
+
+
 
 def returns_html(f):
     @wraps(f)
@@ -71,6 +112,17 @@ def error(exception=None):
     """
     return render_template('error.html')
 
+def get_or_create(session, model, defaults=None, **kwargs):
+    instance = session.query(model).filter_by(**kwargs).first()
+    if instance:
+        return instance, False
+    else:
+        params = dict((k, v) for k, v in kwargs.iteritems() if not isinstance(v, ClauseElement))
+        params.update(defaults or {})
+        instance = model(**params)
+        session.add(instance)
+        return instance, True
+
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
 @templated('MarkdownQuestion.html')
 def RepresentBalances(lti=lti, q=1):
@@ -82,6 +134,7 @@ def RepresentBalances(lti=lti, q=1):
     from sympy.parsing.sympy_parser import parse_expr
     from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application
     transformations = (standard_transformations + (implicit_multiplication_application,))
+    assignment = 'RepresentBalances'
     a,b = symbols("a b")
     markdown_include = MarkdownInclude(
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
@@ -103,6 +156,12 @@ def RepresentBalances(lti=lti, q=1):
         lhs = form.lhs.data
         rhs = form.rhs.data
         correct = False
+    if request.method == 'POST':
+        user = get_or_create(db.session, User, username='test', email='test@algebra742.org')
+        question = get_or_create(db.session, Question, assignment=assignment, number=q)
+        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct)
+        db.session.execute(statement)
+        db.session.commit()
     return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct)
 
 @app.route('/markdown/<filename>')
