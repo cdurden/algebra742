@@ -116,13 +116,13 @@ def get_or_create(session, model, defaults=None, **kwargs):
     from sqlalchemy.sql.expression import ClauseElement
     instance = session.query(model).filter_by(**kwargs).first()
     if instance:
-        return instance, False
+        return instance
     else:
         params = dict((k, v) for k, v in kwargs.iteritems() if not isinstance(v, ClauseElement))
         params.update(defaults or {})
         instance = model(**params)
         session.add(instance)
-        return instance, True
+        return instance
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
 @templated('MarkdownQuestion.html')
