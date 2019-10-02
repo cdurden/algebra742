@@ -37,8 +37,11 @@ class Question(db.Model):
 question_scores = db.Table('question_scores',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('question_id', db.Integer, db.ForeignKey('question.id'), primary_key=True),
-    db.Column('score', db.Float)
+    db.Column('score', db.Float),
+    db.Column('datetime', db.DateTime, nullable=False,
+        default=datetime.utcnow)
 )
+# FIXME: Unique constraint?
 
 #class Assignment(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)
