@@ -159,7 +159,7 @@ def RepresentBalances(lti=lti, q=1):
     if request.method == 'POST':
         user = get_or_create(db.session, User, username='test', email='test@algebra742.org')
         question = get_or_create(db.session, Question, assignment=assignment, number=q)
-        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct)
+        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
     return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct)
