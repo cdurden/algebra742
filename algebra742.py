@@ -347,7 +347,7 @@ def SetUserInfo(lti=lti):
         user = User(lti_user_id=lti.name, username=form.username.data)
         db.session.add(user)
     db.session.commit()
-    return redirect(url_for('index'))
+    return render_template('index.html', user=user)
 
 
 @app.route('/index_staff', methods=['GET', 'POST'])
