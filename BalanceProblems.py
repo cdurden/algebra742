@@ -81,16 +81,16 @@ BalanceQuestionData = [
         {
             'LHSImage': 'BalanceImages/IMG_1621.jpg',
             'RHSImage': 'BalanceImages/IMG_1622.jpg',
-            'LHS': '1*a',
-            'RHS': '2*b',
+            'LHS': '3*a',
+            'RHS': '6*b',
             'Variables': ['a', 'b'],
             'Quantities': ['the weight of a nickel', 'the weight of a penny'] 
             },
         {
             'LHSImage': 'BalanceImages/IMG_1619.jpg',
             'RHSImage': 'BalanceImages/IMG_1620.jpg',
-            'LHS': '1*a',
-            'RHS': '2*b',
+            'LHS': '3*a+b',
+            'RHS': '7*b',
             'Variables': ['a', 'b'],
             'Quantities': ['the weight of a nickel', 'the weight of a penny'] 
             },
