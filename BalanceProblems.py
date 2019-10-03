@@ -227,17 +227,17 @@ def RepresentBalances(lti=lti, q=1):
     transformations = (standard_transformations + (implicit_multiplication_application,))
     assignment = 'RepresentBalances'
     a,b = symbols("a b")
-    markdown_include = MarkdownInclude(
-                           configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
-                           )
-    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
-    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
-        source = f.read()
-    result = md.convert(source.decode('utf-8'))
-    try:
-        title = md.Meta['title'][0]
-    except:
-        title = 'untitled'
+#    markdown_include = MarkdownInclude(
+#                           configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
+#                           )
+#    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
+#    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
+#        source = f.read()
+#    result = md.convert(source.decode('utf-8'))
+#    try:
+#        title = md.Meta['title'][0]
+#    except:
+#        title = 'untitled'
     form = EquationForm()
     n = len(BalanceQuestionData[q-1]['Variables'])
     for i in range(n):
@@ -270,7 +270,7 @@ def RepresentBalances(lti=lti, q=1):
         NextQuestion = q+1
     else:
         NextQuestion = None
-    return dict(title=title, content=result, form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[q-1])
+    return dict(title='Representing balance scales', content='', form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[q-1])
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
