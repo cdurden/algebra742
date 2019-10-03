@@ -331,7 +331,7 @@ def index(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
-    user = session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user:
         return render_template('index.html', user=user)
     else:
