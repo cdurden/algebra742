@@ -215,7 +215,11 @@ def get_or_create(session, model, defaults=None, **kwargs):
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
 @templated('MarkdownQuestion.html')
+@lti(request='session', error=error, app=app)
 def RepresentBalances(lti=lti, q=1):
+    if q == 'submit':
+        lti.post_grade(1)
+        return render_template('grade.html', form=form)
     q = int(q)
     @after_this_request
     def add_header(response):
@@ -314,6 +318,7 @@ def index(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
+    if 
     return render_template('index.html', lti=lti)
 
 
