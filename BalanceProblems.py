@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask.ext.wtf import Form
-from wtforms import TextField, IntegerField, BooleanField, FieldList
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField
 from random import randint
 import markdown
 from markdown_include.include import MarkdownInclude
