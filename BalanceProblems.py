@@ -42,6 +42,8 @@ question_scores = db.Table('question_scores',
         default=datetime.utcnow)
 )
 # FIXME: Unique constraint?
+BalanceQuestionData = [{'LHSImage': 'BalanceImages/IMG_1634.jpg',
+    'RHSImage': 'BalanceImages/IMG_1635.jpg'}]
 
 #class Assignment(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)
@@ -152,10 +154,15 @@ def RepresentBalances(lti=lti, q=1):
     except:
         title = 'untitled'
     form = EquationForm()
+    # Check answers
+    # Answers array
+    answers = [{ 'lhs': ,
+                 'rhs': ,
+        ]
     try:
         lhs = parse_expr(form.lhs.data, transformations=transformations)
         rhs = parse_expr(form.rhs.data, transformations=transformations)
-        correct = simplify(2*a-lhs) == 0 and simplify(5*b-rhs) == 0
+        correct = simplify(answers[q-1]['lhs']-lhs) == 0 and simplify(answers[q-1]['rhs']-rhs) == 0
     except:
         lhs = form.lhs.data
         rhs = form.rhs.data
@@ -167,7 +174,7 @@ def RepresentBalances(lti=lti, q=1):
         statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
-    return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct)
+    return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[q])
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
