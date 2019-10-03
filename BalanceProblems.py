@@ -158,7 +158,8 @@ def RepresentBalances(lti=lti, q=1):
         title = 'untitled'
     form = EquationForm()
     n = len(BalanceQuestionData[int(q)-1]['Quantities'])
-    form.variables = FieldList(StringField('variable'), min_entries=n, max_entries=n)
+    for i in range(n):
+        form.variables.append_entry()
     # Check answers
     # Answers array
     answers = [{ 'lhs': '',
