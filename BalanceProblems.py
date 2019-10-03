@@ -45,7 +45,7 @@ question_scores = db.Table('question_scores',
 
 #def AnswerChecker():
 
-BalanceQuestionData = [{'LHSImage': 'BalanceImages/IMG_1634.jpg', 'RHSImage': 'BalanceImages/IMG_1635.jpg', 'LHS': 'a', 'RHS': '2b', 'Quantities': {'a': 'weight of an orange cube', 'b': 'weight of a small paper clip'} }]
+BalanceQuestionData = [{'LHSImage': 'BalanceImages/IMG_1634.jpg', 'RHSImage': 'BalanceImages/IMG_1635.jpg', 'LHS': 'a', 'RHS': '2b', 'Variables': ['a', 'b'], 'Quantities': ['weight of an orange cube', 'weight of a small paper clip'] }]
 
 #class Assignment(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)
@@ -157,17 +157,22 @@ def RepresentBalances(lti=lti, q=1):
     except:
         title = 'untitled'
     form = EquationForm()
-    n = len(BalanceQuestionData[int(q)-1]['Quantities'])
+    n = len(BalanceQuestionData[int(q)-1]['Variables'])
     for i in range(n):
         form.variables.append_entry()
     # Check answers
     # Answers array
-    answers = [{ 'lhs': '',
-                 'rhs': ''}]
     try:
-        lhs = parse_expr(form.lhs.data, transformations=transformations)
-        rhs = parse_expr(form.rhs.data, transformations=transformations)
-        correct = simplify(answers[q-1]['lhs']-lhs) == 0 and simplify(answers[q-1]['rhs']-rhs) == 0
+        lhs_input = parse_expr(form.lhs.data, transformations=transformations)
+        rhs_input = parse_expr(form.rhs.data, transformations=transformations)
+        lhs = QuestionData[int(q)-1]['LHS']
+        rhs = QuestionData[int(q)-1]['RHS']
+        for i,variable in enumerate(QuestionData[int(q)-1]['Variables']):
+            lhs = lhs.replace(variable, form.variables[i].data)
+            rhs = rhs.replace(variable, form.variables[i].data)
+        lhs = parse_expr(lhs, transformations=transformations)
+        rhs = parse_expr(rhs, transformations=transformations)
+        correct = simplify(lhs-lhs_input) == 0 and simplify(rhs-rhs_input) == 0
     except:
         lhs = form.lhs.data
         rhs = form.rhs.data
