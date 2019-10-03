@@ -228,7 +228,8 @@ def get_or_create(session, model, defaults=None, **kwargs):
 def RepresentBalances(lti=lti, q=1):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if not user:
-
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
     if q == 'submit':
         lti.post_grade(1)
         return render_template('grade.html', form=form)
