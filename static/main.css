@@ -1,0 +1,8 @@
+.lhs img {
+    width: 40%
+    float: left;
+}
+.rhs img {
+    width: 40%
+    float: right;
+}

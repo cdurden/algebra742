@@ -32,6 +32,8 @@
     </div>
 </section>
 
+<section>
+<div>
 <form action="{{ url_for('RepresentBalances', q=q) }}" method="post" name="answer_form">
     {{ form.hidden_tag() }}
     {% for quantity in QuestionData['Quantities'] %}
@@ -46,7 +48,10 @@
 
     <p><input type="submit" value="Check"></p>
 </form>
+</div>
+</section>
 
+<div>
 <p>
 LHS: {{ lhs }}
 </p>
@@ -56,6 +61,7 @@ RHS: {{ rhs }}
 <p>
 Correct: {{ correct }}
 </p>
+</div>
 </main>
 <footer>
 </footer>
