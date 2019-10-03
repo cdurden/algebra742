@@ -50,31 +50,39 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     {{ form.hidden_tag() }}
     {% for quantity in QuestionData['Quantities'] %}
     <p>
+    <b>Fill in the blanks to define your variables</b>
+    </p>
+    <p>
     Let {{ form.variables[loop.index0] }} represent {{ quantity }}.
     </p>
     {% endfor %}
+    <p>
+    <b>Using the variables you defined, write an equation to represent the balance scale.</b>
+    </p>
     <p>
         {{ form.lhs }} =
         {{ form.rhs }}
     </p>
 
     <p><input type="submit" value="Check"></p>
-    {% if correct and NextQuestion %}
-    <a href="{{ url_for('RepresentBalances', q=NextQuestion) }}" class="button">Next question</a>
-    {% endif %}
 </form>
 </div>
 
 <div>
-<p>
-LHS: {{ lhs }}
-</p>
-<p>
-RHS: {{ rhs }}
-</p>
-<p>
-Correct: {{ correct }}
-</p>
+    {% if correct %}
+    <p>
+    <b>Your answer {{ lhs }} = {{ rhs }} is correct!</b>
+    </p>
+    {% if NextQuestion %}
+    <a href="{{ url_for('RepresentBalances', q=NextQuestion) }}" class="button">Next question</a>
+    {% else %}
+    <a href="{{ url_for('RepresentBalances', q=NextQuestion) }}" class="button">Submit assignment</a>
+    {% endif %}
+    {% else %}
+    <p>
+    <b>Your answer {{ lhs }} = {{ rhs }} is incorrect! Try again!</b>
+    </p>
+    {% endif %}
 </div>
 </div>
 </main>
