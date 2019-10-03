@@ -1,6 +1,7 @@
 import os
 from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import select
 from flask.ext.wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField
 from random import randint
@@ -227,7 +228,7 @@ def RepresentBalances(lti=lti, q=None):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if q is None:
         for i in range(len(BalanceQuestionData)):
-            statement = question_scores.select().where(question_scores.c.user_id==user.id, question_scores.c.number==i+1, question_scores.c.score==1)
+            statement = select([question_scores,question.__table__]).where(question_scores.c.user_id==user.id, question_scores.c.question_id==question.__table__.id, question.__table__.number==i+1, question_scores.c.score==1)
             results = db.session.execute(statement)
             if not len(results):
                 q = i+1
