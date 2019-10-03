@@ -184,7 +184,11 @@ def RepresentBalances(lti=lti, q=1):
         statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
-    return dict(title=title, content=result, form=form, q=q, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[int(q)-1])
+    if len(BalanceQuestionData) > q+1:
+        NextQuestion = q+1
+    else:
+        NextQuestion = None
+    return dict(title=title, content=result, form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[int(q)-1])
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
