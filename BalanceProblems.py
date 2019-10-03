@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask.ext.wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField
@@ -21,8 +21,10 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(80), nullable=False)
+    lastname = db.Column(db.String(80), nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    lti_user_id = db.Column(db.String(80), unique=True, nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -191,6 +193,13 @@ class EquationForm(Form):
     lhs = TextField('lhs')
     rhs = TextField('rhs')
     
+class UserInfoForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    username = StringField('username')
+    password = StringField('password')
 
 
 def error(exception=None):
@@ -217,6 +226,9 @@ def get_or_create(session, model, defaults=None, **kwargs):
 @templated('MarkdownQuestion.html')
 @lti(request='session', error=error, app=app)
 def RepresentBalances(lti=lti, q=1):
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if not user:
+
     if q == 'submit':
         lti.post_grade(1)
         return render_template('grade.html', form=form)
@@ -318,8 +330,27 @@ def index(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
-    if 
-    return render_template('index.html', lti=lti)
+    user = session.query(User).filter_by(lti_user_id=lti.name).first()
+    if user:
+        return render_template('index.html', user=user)
+    else:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
+
+
+@app.route('/userinfo', methods=['GET','POST'])
+@lti(request='session', error=error, app=app)
+def SetUserInfo(lti=lti):
+    from sqlalchemy.sql.expression import ClauseElement
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if user:
+        user.username = form.username.data
+    else:
+        form = UserInfoForm()
+        user = User(lti_user_id=lti.name, username=form.username.data)
+        db.session.add(user)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 
 @app.route('/index_staff', methods=['GET', 'POST'])

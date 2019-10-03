@@ -1,13 +1,11 @@
 <html>
 <head>
-    <title>MIT LTI Flask Sample</title>
+    <title>Algebra742 - Representing Balance Scales with Equations</title>
 </head>
 <body>
-<h1>Hello {{ lti.name }}.</h1>
+<h1>Hello {{ user.username }}.</h1>
 
-<a href="{{ url_for('add_form') }}">Start problem</a>
-<br>
-<a href="{{ url_for('index_staff') }}">Start staff page</a>
+<a href="{{ url_for('RepresentBalances', q=1) }}">Start assignment</a>
 
 </body>
 </html>
