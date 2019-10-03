@@ -1,8 +1,12 @@
 div.lhs {
-    width: 40%;
+    width: "40%";
     float: left;
 }
 div.rhs {
-    width: 40%;
+    width: "40%";
     float: right;
+}
+img.lhs {
+}
+img.rhs {
 }
