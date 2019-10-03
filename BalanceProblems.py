@@ -45,7 +45,88 @@ question_scores = db.Table('question_scores',
 
 #def AnswerChecker():
 
-BalanceQuestionData = [{'LHSImage': 'BalanceImages/IMG_1634.jpg', 'RHSImage': 'BalanceImages/IMG_1635.jpg', 'LHS': 'a', 'RHS': '2b', 'Variables': ['a', 'b'], 'Quantities': ['weight of an orange cube', 'weight of a small paper clip'] }]
+BalanceQuestionData = [
+        {
+            'LHSImage': 'BalanceImages/IMG_1634.jpg',
+            'RHSImage': 'BalanceImages/IMG_1635.jpg',
+            'LHS': 'a',
+            'RHS': '2*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of an orange cube', 'the weight of a small paper clip'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1632.jpg',
+            'RHSImage': 'BalanceImages/IMG_1633.jpg',
+            'LHS': '2*a',
+            'RHS': '4*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of an orange cube', 'the weight of a small paper clip'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1630.jpg',
+            'RHSImage': 'BalanceImages/IMG_1631.jpg',
+            'LHS': '3*a',
+            'RHS': '6*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of an orange cube', 'the weight of a small paper clip'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1627.jpg',
+            'RHSImage': 'BalanceImages/IMG_1628.jpg',
+            'LHS': '4*a+b',
+            'RHS': '9*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of an orange cube', 'the weight of a small paper clip'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1621.jpg',
+            'RHSImage': 'BalanceImages/IMG_1622.jpg',
+            'LHS': '1*a',
+            'RHS': '2*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of a nickel', 'the weight of a penny'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1619.jpg',
+            'RHSImage': 'BalanceImages/IMG_1620.jpg',
+            'LHS': '1*a',
+            'RHS': '2*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of a nickel', 'the weight of a penny'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1612.jpg',
+            'RHSImage': 'BalanceImages/IMG_1613.jpg',
+            'LHS': '2*a+3*b',
+            'RHS': '2*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of an S-hook', 'the weight of a pencil tip eraser'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1604.jpg',
+            'RHSImage': 'BalanceImages/IMG_1605.jpg',
+            'LHS': '2*a+b',
+            'RHS': '15*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of an eraser', 'the weight of a yellow block'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1594.jpg',
+            'RHSImage': 'BalanceImages/IMG_1595.jpg',
+            'LHS': '3*a+2*b',
+            'RHS': '5*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of a clip', 'the weight of a hex nut'] 
+            },
+        {
+            'LHSImage': 'BalanceImages/IMG_1576.jpg',
+            'RHSImage': 'BalanceImages/IMG_1577.jpg',
+            'LHS': '2*a+b',
+            'RHS': '5*b',
+            'Variables': ['a', 'b'],
+            'Quantities': ['the weight of a hex nut', 'the weight of a dime'] 
+            },
+        ]
 
 #class Assignment(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)
