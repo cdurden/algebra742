@@ -220,10 +220,18 @@ def get_or_create(session, model, defaults=None, **kwargs):
         return instance
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
+@app.route('/RepresentBalances/', methods=['GET', 'POST'])
 @templated('MarkdownQuestion.html')
 @lti(request='session', error=error, app=app)
-def RepresentBalances(lti=lti, q=1):
+def RepresentBalances(lti=lti, q=None):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if q is None:
+        for i in range(len(BalanceQuestionData)):
+            statement = question_scores.select().where(user_id=user.id, number=i+1, score=1)
+            results = db.session.execute(statement)
+            if not len(results):
+                q = i+1
+                break
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
