@@ -45,7 +45,7 @@ question_scores = db.Table('question_scores',
 
 #def AnswerChecker():
 
-BalanceQuestionData = [{'LHSImage': 'BalanceImages/IMG_1634.jpg', 'RHSImage': 'BalanceImages/IMG_1635.jpg' }]
+BalanceQuestionData = [{'LHSImage': 'BalanceImages/IMG_1634.jpg', 'RHSImage': 'BalanceImages/IMG_1635.jpg', 'LHS': 'a', 'RHS': '2b', 'Quantities': {'a': 'weight of an orange cube', 'b': 'weight of a small paper clip'} }]
 
 #class Assignment(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)
@@ -106,7 +106,7 @@ class EquationForm(Form):
 
     :param Form:
     """
-
+    variables = FieldList(StringField('variable', [validators.DataRequired()]))
     lhs = TextField('lhs')
     rhs = TextField('rhs')
 
