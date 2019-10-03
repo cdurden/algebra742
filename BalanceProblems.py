@@ -106,7 +106,7 @@ class EquationForm(Form):
 
     :param Form:
     """
-    variables = FieldList(StringField('variable', [validators.DataRequired()]))
+    variables = FieldList(StringField('variable'))
     lhs = TextField('lhs')
     rhs = TextField('rhs')
 
