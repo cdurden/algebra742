@@ -21,10 +21,8 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(80), nullable=False)
-    lastname = db.Column(db.String(80), nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    lti_user_id = db.Column(db.String(80), unique=True, nullable=False)
+    lti_user_id = db.Column(db.String(255), unique=True, nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.username
