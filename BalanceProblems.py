@@ -111,7 +111,7 @@ class EquationForm(Form):
     rhs = TextField('rhs')
     
     def __init__(self, n):
-        self.variables = FieldList(StringField('variable'), min_entries=n, max_entries)
+        self.variables = FieldList(StringField('variable'), min_entries=n, max_entries=n)
 
 
 def error(exception=None):
