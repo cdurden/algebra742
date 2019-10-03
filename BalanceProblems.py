@@ -159,8 +159,7 @@ def RepresentBalances(lti=lti, q=1):
     # Check answers
     # Answers array
     answers = [{ 'lhs': '',
-                 'rhs': '',
-        ]
+                 'rhs': ''}]
     try:
         lhs = parse_expr(form.lhs.data, transformations=transformations)
         rhs = parse_expr(form.rhs.data, transformations=transformations)
