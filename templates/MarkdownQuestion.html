@@ -54,7 +54,7 @@
     </p>
 
     <p><input type="submit" value="Check"></p>
-    {% if correct and NextQuestion is not None%}
+    {% if correct and NextQuestion %}
     <a href="{{ url_for('RepresentBalances', q=NextQuestion) }}" class="button">Next question</a>
     {% endif %}
 </form>
