@@ -227,7 +227,7 @@ def RepresentBalances(lti=lti, q=None):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if q is None:
         for i in range(len(BalanceQuestionData)):
-            statement = question_scores.select().where(question_scores.c.user_id=user.id, question_scores.c.number=i+1, question_scores.c.score=1)
+            statement = question_scores.select().where(question_scores.c.user_id==user.id, question_scores.c.number==i+1, question_scores.c.score==1)
             results = db.session.execute(statement)
             if not len(results):
                 q = i+1
