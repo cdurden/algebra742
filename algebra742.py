@@ -16,7 +16,6 @@ from functools import wraps
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{:s}/algebra742.db'.format(os.path.dirname(__file__))
 db = SQLAlchemy(app)
 
 class User(db.Model):
