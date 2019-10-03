@@ -98,7 +98,7 @@ BalanceQuestionData = [
             'LHSImage': 'BalanceImages/IMG_1612.jpg',
             'RHSImage': 'BalanceImages/IMG_1613.jpg',
             'LHS': '2*a+3*b',
-            'RHS': '2*b',
+            'RHS': '13*b',
             'Variables': ['a', 'b'],
             'Quantities': ['the weight of an S-hook', 'the weight of a pencil tip eraser'] 
             },
