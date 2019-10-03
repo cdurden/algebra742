@@ -135,6 +135,7 @@ def get_or_create(session, model, defaults=None, **kwargs):
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
 @templated('MarkdownQuestion.html')
 def RepresentBalances(lti=lti, q=1):
+    q = int(q)
     @after_this_request
     def add_header(response):
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
@@ -149,7 +150,7 @@ def RepresentBalances(lti=lti, q=1):
                            configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
                            )
     md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
-    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(int(q))), 'rb') as f:
+    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
         source = f.read()
     result = md.convert(source.decode('utf-8'))
     try:
@@ -157,7 +158,7 @@ def RepresentBalances(lti=lti, q=1):
     except:
         title = 'untitled'
     form = EquationForm()
-    n = len(BalanceQuestionData[int(q)-1]['Variables'])
+    n = len(BalanceQuestionData[q-1]['Variables'])
     for i in range(n):
         form.variables.append_entry()
     # Check answers
@@ -165,9 +166,9 @@ def RepresentBalances(lti=lti, q=1):
     try:
         lhs_input = parse_expr(form.lhs.data, transformations=transformations)
         rhs_input = parse_expr(form.rhs.data, transformations=transformations)
-        lhs = BalanceQuestionData[int(q)-1]['LHS']
-        rhs = BalanceQuestionData[int(q)-1]['RHS']
-        for i,variable in enumerate(BalanceQuestionData[int(q)-1]['Variables']):
+        lhs = BalanceQuestionData[q-1]['LHS']
+        rhs = BalanceQuestionData[q-1]['RHS']
+        for i,variable in enumerate(BalanceQuestionData[q-1]['Variables']):
             lhs = lhs.replace(variable, form.variables[i].data)
             rhs = rhs.replace(variable, form.variables[i].data)
         lhs = parse_expr(lhs, transformations=transformations)
@@ -188,7 +189,7 @@ def RepresentBalances(lti=lti, q=1):
         NextQuestion = q+1
     else:
         NextQuestion = None
-    return dict(title=title, content=result, form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[int(q)-1])
+    return dict(title=title, content=result, form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[q-1])
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
