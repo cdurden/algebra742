@@ -42,8 +42,11 @@ question_scores = db.Table('question_scores',
         default=datetime.utcnow)
 )
 # FIXME: Unique constraint?
+
+def AnswerChecker():
+
 BalanceQuestionData = [{'LHSImage': 'BalanceImages/IMG_1634.jpg',
-    'RHSImage': 'BalanceImages/IMG_1635.jpg'}]
+    'RHSImage': 'BalanceImages/IMG_1635.jpg', }]
 
 #class Assignment(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)
@@ -156,8 +159,8 @@ def RepresentBalances(lti=lti, q=1):
     form = EquationForm()
     # Check answers
     # Answers array
-    answers = [{ 'lhs': ,
-                 'rhs': ,
+    answers = [{ 'lhs': '',
+                 'rhs': '',
         ]
     try:
         lhs = parse_expr(form.lhs.data, transformations=transformations)
