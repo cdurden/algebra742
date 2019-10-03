@@ -274,7 +274,6 @@ def RepresentBalances(lti=lti, q=1):
         rhs = form.rhs.data
         correct = False
     if request.method == 'POST':
-        user = get_or_create(db.session, User, username='test', email='test@algebra742.org')
         question = get_or_create(db.session, Question, assignment=assignment, number=q)
         db.session.commit()
         statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
