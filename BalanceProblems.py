@@ -110,8 +110,6 @@ class EquationForm(Form):
     lhs = TextField('lhs')
     rhs = TextField('rhs')
     
-    def __init__(self, n):
-        self.variables = FieldList(StringField('variable'), min_entries=n, max_entries=n)
 
 
 def error(exception=None):
@@ -158,7 +156,9 @@ def RepresentBalances(lti=lti, q=1):
         title = md.Meta['title'][0]
     except:
         title = 'untitled'
-    form = EquationForm(len(BalanceQuestionData[int(q)-1]['Quantities']))
+    form = EquationForm()
+    n = len(BalanceQuestionData[int(q)-1]['Quantities'])
+    form.variables = FieldList(StringField('variable'), min_entries=n, max_entries=n)
     # Check answers
     # Answers array
     answers = [{ 'lhs': '',
