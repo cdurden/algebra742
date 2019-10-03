@@ -12,3 +12,6 @@ img.lhs {
 img.rhs {
     width: 100%;
 }
+div.input {
+    clear: both;
+}
