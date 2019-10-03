@@ -34,7 +34,7 @@
 
 <form action="{{ url_for('RepresentBalances', q=q) }}" method="post" name="answer_form">
     {{ form.hidden_tag() }}
-    {% for variable,quantity in QuestionData['Quantities'].items() %}
+    {% for variable,quantity in zip(QuestionData['Variables'],QuestionData['Quantities']) %}
     <p>
     Let {{ form.variables[loop.index0] }} represent {{ quantity }}.
     </p>
