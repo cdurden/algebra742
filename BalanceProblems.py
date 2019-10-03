@@ -173,7 +173,7 @@ def RepresentBalances(lti=lti, q=1):
         lhs = parse_expr(lhs, transformations=transformations)
         rhs = parse_expr(rhs, transformations=transformations)
         correct = simplify(lhs-lhs_input) == 0 and simplify(rhs-rhs_input) == 0
-    except SyntaxError:
+    except:
         lhs = form.lhs.data
         rhs = form.rhs.data
         correct = False
