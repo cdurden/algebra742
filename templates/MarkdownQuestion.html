@@ -26,8 +26,8 @@
 <main>
 <section>
     <div id="content">
-        <img src="{{ url_for('static', QuestionData['LHSImage']) }}"/><br/>
-        <img src="{{ url_for('static', QuestionData['RHSImage']) }}"/><br/>
+        <img src="{{ url_for('static', filename=QuestionData['LHSImage']) }}"/><br/>
+        <img src="{{ url_for('static', filename=QuestionData['RHSImage']) }}"/><br/>
         {{ content | safe }}
     </div>
 </section>
