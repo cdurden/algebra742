@@ -165,9 +165,9 @@ def RepresentBalances(lti=lti, q=1):
     try:
         lhs_input = parse_expr(form.lhs.data, transformations=transformations)
         rhs_input = parse_expr(form.rhs.data, transformations=transformations)
-        lhs = QuestionData[int(q)-1]['LHS']
-        rhs = QuestionData[int(q)-1]['RHS']
-        for i,variable in enumerate(QuestionData[int(q)-1]['Variables']):
+        lhs = BalanceQuestionData[int(q)-1]['LHS']
+        rhs = BalanceQuestionData[int(q)-1]['RHS']
+        for i,variable in enumerate(BalanceQuestionData[int(q)-1]['Variables']):
             lhs = lhs.replace(variable, form.variables[i].data)
             rhs = rhs.replace(variable, form.variables[i].data)
         lhs = parse_expr(lhs, transformations=transformations)
