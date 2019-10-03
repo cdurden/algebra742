@@ -34,9 +34,9 @@
 
 <form action="{{ url_for('RepresentBalances', q=q) }}" method="post" name="answer_form">
     {{ form.hidden_tag() }}
-    {% for i in range(len(QuestionData['Quantities'])) %}
+    {% for variable, quantity in QuestionData['Quantities'].items() %}
     <p>
-    Let {{ form.variables[i] }} represent {{ QuestionData['Quantities'][i]['quantity'] }}.
+    Let {{ form.variables[loop.index0] }} represent {{ quantity }}.
     </p>
     {% endfor %}
     <p>
