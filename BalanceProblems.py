@@ -43,7 +43,7 @@ question_scores = db.Table('question_scores',
 )
 # FIXME: Unique constraint?
 
-def AnswerChecker():
+#def AnswerChecker():
 
 BalanceQuestionData = [{'LHSImage': 'BalanceImages/IMG_1634.jpg', 'RHSImage': 'BalanceImages/IMG_1635.jpg' }]
 
