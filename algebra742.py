@@ -298,7 +298,7 @@ def EPAssessment(q=None):
 #        title = md.Meta['title'][0]
 #    except:
 #        title = 'untitled'
-    if Question['Type'] == 'MC'
+    if Question['Type'] == 'MC':
         form = MCForm(Question['Choices'])
         # Check answers
         # Answers array
