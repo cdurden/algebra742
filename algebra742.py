@@ -64,7 +64,7 @@ APEMPEWholeNumbersData = [
         {
             'Type': 'Numerical',
             'Question': 'Use the algebraic properties to solve the equation: $b+16=30$',
-            'CorrectAnswer': '12'
+            'CorrectAnswer': '14'
             },
         {
             'Type': 'Numerical',
