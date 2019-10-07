@@ -49,10 +49,7 @@ EPQuestionData = [
         {
             'Type': 'MC',
             'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
-            'Choices': {
-                'a': 'Sum',
-                'b': 'Product',
-                }
+            'Choices': [('a', 'Sum'),('b', 'Product')]
             },
         {
             'Type': 'MC',
@@ -298,7 +295,7 @@ def EPAssessment(q=None):
 #        title = 'untitled'
     if EPQuestionData[q-1]['Type'] == 'MC':
         form = MCForm()
-        form.choices = EPQuestionData[q-1]['Choices'].items()
+        form.choices = EPQuestionData[q-1]['Choices']
         # Check answers
         # Answers array
         correct = False
