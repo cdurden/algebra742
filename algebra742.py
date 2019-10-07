@@ -53,8 +53,8 @@ APEMPEWholeNumbersData = [
             },
         {
             'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $a+2=7$',
-            'CorrectAnswer': '12'
+            'Question': 'Use the algebraic properties to solve the equation: $a+12=17$',
+            'CorrectAnswer': '5'
             },
         {
             'Type': 'Numerical',
@@ -63,7 +63,7 @@ APEMPEWholeNumbersData = [
             },
         {
             'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $b+6=10$',
+            'Question': 'Use the algebraic properties to solve the equation: $b+16=30$',
             'CorrectAnswer': '12'
             },
         {
