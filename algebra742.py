@@ -47,17 +47,20 @@ question_scores = db.Table('question_scores',
 
 EPQuestionData = [
         {
-            'Type': 'MC',
-            'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
-            'Choices': [('a', 'Sum'),('b', 'Product')]
+            'Type': 'Numerical',
+            'Question': 'Use the properties of equality to solve the equation: $3x+2=8$',
+            'Answer': '2'
             },
         {
             'Type': 'MC',
-            'Question': 'Which property is represented in the following solution?',
-            'a': '',
-            'b': '',
-            'c': '',
-            'd': '',
+            'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
+            'Choices': [('a', 'Sum'),('b', 'Product')]
+            'CorrectChoice': 'a'
+            },
+        {
+            'Type': 'MC',
+            'Question': 'Which of the following shows the addition property of equality?',
+            'Choices': [('a', '$a+b=b+c \Rightarrow a=c$'),('b', '$c\cdot a = c\cdot b \Rightarrow a=c$')]
             },
         {
             'Type': 'Numerical',
@@ -293,22 +296,38 @@ def EPAssessment(q=None):
 #        title = md.Meta['title'][0]
 #    except:
 #        title = 'untitled'
+    correct = False
     if EPQuestionData[q-1]['Type'] == 'MC':
         form = MCForm()
         form.options.choices = EPQuestionData[q-1]['Choices']
+        try:
+            choice = form.options.data
+            if choice == EPQuestionData[q-1]['CorrectChoice']:
+                correct = True
+            else:
+                correct = False
+        except:
+            pass
+    if EPQuestionData[q-1]['Type'] == 'Numerical':
+        form = NumericalForm()
+        try:
+            answer = parse_expr(form.answer.data)
+            CorrectAnswer = parse_expr(EPQuestionData[q-1]['CorrectAnswer', transformations=transformations)
+            correct = simplify(answer-CorrectAnswer) == 0
+        except:
+            pass
         # Check answers
         # Answers array
-        correct = False
-        if request.method == 'POST':
-            question = get_or_create(db.session, Question, assignment=assignment, number=q)
-            db.session.commit()
-            statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
-            db.session.execute(statement)
-            db.session.commit()
-        if len(EPQuestionData) > q+1:
-            NextQuestion = q+1
-        else:
-            NextQuestion = None
+    if request.method == 'POST':
+        question = get_or_create(db.session, Question, assignment=assignment, number=q)
+        db.session.commit()
+        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
+        db.session.execute(statement)
+        db.session.commit()
+    if len(EPQuestionData) > q+1:
+        NextQuestion = q+1
+    else:
+        NextQuestion = None
     return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=EPQuestionData[q-1])
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
