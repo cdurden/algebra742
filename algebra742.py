@@ -60,7 +60,7 @@ EPQuestionData = [
         {
             'Type': 'MC',
             'Question': 'Which of the following shows the addition property of equality?',
-            'Choices': [('a', '$a+b=b+c \\ \Rightarrow \\\ a=c$'),('b', '$c\cdot a = c\cdot b \\\ \Rightarrow\\\ a=c$')],
+            'Choices': [('a', '$a+b=b+c \\\ \Rightarrow \\\ a=c$'),('b', '$c\cdot a = c\cdot b \\\ \Rightarrow\\\ a=c$')],
             'CorrectChoice': 'a'
             },
         {
@@ -263,6 +263,8 @@ def get_or_create(session, model, defaults=None, **kwargs):
 #@lti(request='session', error=error, app=app)
 #def EPAssessment(lti=lti, q=None):
 def EPAssessment(q=None):
+    if q == 'submit':
+        return render_template('thankyou.html', user=user)
     #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     user = User(username="test user", lti_user_id="asdf")
     if q is None:
