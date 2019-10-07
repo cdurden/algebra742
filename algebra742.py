@@ -211,7 +211,7 @@ class MCForm(Form):
     """
     options = RadioField(u'Choices')
 
-class NumericAnswerForm(Form):
+class NumericalForm(Form):
     """ Add data from Form
 
     :param Form:
