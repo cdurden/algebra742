@@ -74,12 +74,12 @@ EPQuestionData = [
             },
         {
             'Type': 'Numerical',
-            'Question': 'Evaluate $-\frac{3}{4}+\frac{1}{2}$',
+            'Question': 'Evaluate $-\\frac{3}{4}+\\frac{1}{2}$',
             'CorrectAnswer': '-1/4',
             },
         {
             'Type': 'Numerical',
-            'Question': 'Evaluate $-\frac{5}{6}-\frac{1}{2}$',
+            'Question': 'Evaluate $-\\frac{5}{6}-\\frac{1}{2}$',
             'CorrectAnswer': '-4/3',
             },
         {
@@ -99,12 +99,12 @@ EPQuestionData = [
             },
         {
             'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $\frac{1}{3}x=9$',
+            'Question': 'Use the algebraic properties to solve the equation: $\\frac{1}{3}x=9$',
             'CorrectAnswer': '27'
             },
         {
             'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $-\frac{1}{5}x=5$',
+            'Question': 'Use the algebraic properties to solve the equation: $-\\frac{1}{5}x=5$',
             'CorrectAnswer': '-25'
             },
         {
@@ -120,7 +120,7 @@ EPQuestionData = [
             },
         {
             'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $\frac{1}{2}x+(-3)=13$',
+            'Question': 'Use the algebraic properties to solve the equation: $\\frac{1}{2}x+(-3)=13$',
             'CorrectAnswer': '10'
             },
         ]
