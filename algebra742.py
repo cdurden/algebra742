@@ -365,8 +365,9 @@ def EPAssessment(q=None):
                 correct = True
             else:
                 correct = False
+            answer = choice
         except:
-            pass
+            answer = None
     if EPQuestionData[q-1]['Type'] == 'Numerical':
         form = NumericalForm()
         try:
@@ -387,7 +388,7 @@ def EPAssessment(q=None):
         NextQuestion = q+1
     else:
         NextQuestion = None
-    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=EPQuestionData[q-1])
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=EPQuestionData[q-1])
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
 @app.route('/RepresentBalances/', methods=['GET', 'POST'])
