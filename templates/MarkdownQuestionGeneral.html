@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:define-macro="layout">
+<head>
+    <meta charset="UTF-8" name=viewport content='width=500'>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.js", "AMSsymbols.js"] } });
+    </script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+</head>
+<body>
+{% block nav %}
+{% endblock %}
+<main>
+<section>
+    <div id="content">
+        {{ content | safe }}
+    </div>
+</section>
+
+<div class="input">
+<div>
+<form action="{{ url_for('RepresentBalances', q=q) }}" method="post" name="answer_form">
+    {{ form.hidden_tag() }}
+{% if QuestionData['Type'] == 'MC' %}
+{% for subfield in form.choices %}
+    <tr>
+        <td>{{ subfield }}</td>
+        <td>{{ subfield.label }}</td>
+    </tr>
+{% endfor %}
+{% endif %}
+
+    <p><input type="submit" value="Check"></p>
+</form>
+</div>
+
+<div>
+    {% if correct %}
+    <p>
+    <b>Your answer {{ lhs }} = {{ rhs }} is correct!</b>
+    </p>
+    {% if NextQuestion %}
+    <a href="{{ url_for('RepresentBalances', q=NextQuestion) }}" class="button">Next question</a>
+    {% else %}
+    <a href="{{ url_for('RepresentBalances', q='submit') }}" class="button">Submit assignment</a>
+    {% endif %}
+    {% else %}
+    {% if lhs and rhs %}
+    <p>
+    <b>Your answer {{ form.lhs.data }} = {{ form.rhs.data }} is incorrect! Try again!</b>
+    </p>
+    {% endif %}
+    {% endif %}
+</div>
+</div>
+</main>
+<footer>
+</footer>
+</body>
+</html>

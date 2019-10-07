@@ -258,7 +258,7 @@ def get_or_create(session, model, defaults=None, **kwargs):
 
 @app.route('/EPAssessment/<q>', methods=['GET', 'POST'])
 @app.route('/EPAssessment/', methods=['GET', 'POST'])
-@templated('MarkdownQuestion.html')
+@templated('MarkdownQuestionGeneral.html')
 #@lti(request='session', error=error, app=app)
 #def EPAssessment(lti=lti, q=None):
 def EPAssessment(q=None):
