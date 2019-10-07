@@ -48,22 +48,6 @@ question_scores = db.Table('question_scores',
 EPQuestionData = [
         {
             'Type': 'Numerical',
-            'Question': 'Use the properties of equality to solve the equation: $x+2=8$',
-            'CorrectAnswer': '6'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the properties of equality to solve the equation: $3x=21$',
-            'CorrectAnswer': '7'
-            },
-        {
-            'Type': 'MC',
-            'Question': 'Which of the following shows the addition property of equality?',
-            'Choices': [('a', '$a+b=b+c \\\ \Rightarrow \\\ a=c$'),('b', '$c\cdot a = c\cdot b \\\ \Rightarrow\\\ a=c$'),('c', '$(a+b)+c = a+(b+c)$'),('d', '$a + 0 = a$') ],
-            'CorrectChoice': 'a'
-            },
-        {
-            'Type': 'Numerical',
             'Question': 'Evaluate $5-(-2)$',
             'CorrectAnswer': '7',
             },
@@ -81,6 +65,22 @@ EPQuestionData = [
             'Type': 'Numerical',
             'Question': 'Evaluate $-\\frac{5}{6}-\\frac{1}{2}$',
             'CorrectAnswer': '-4/3',
+            },
+        {
+            'Type': 'MC',
+            'Question': 'Which of the following shows the addition property of equality?',
+            'Choices': [('a', '$a+b=b+c \\\ \Rightarrow \\\ a=c$'),('b', '$c\cdot a = c\cdot b \\\ \Rightarrow\\\ a=c$'),('c', '$(a+b)+c = a+(b+c)$'),('d', '$a + 0 = a$') ],
+            'CorrectChoice': 'a'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the properties of equality to solve the equation: $x+2=8$',
+            'CorrectAnswer': '6'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the properties of equality to solve the equation: $3x=21$',
+            'CorrectAnswer': '7'
             },
         {
             'Type': 'Numerical',
@@ -385,7 +385,7 @@ def EPAssessment(q=None):
         statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
-    if len(EPQuestionData) > q+1:
+    if len(EPQuestionData) > q:
         NextQuestion = q+1
     else:
         NextQuestion = None
