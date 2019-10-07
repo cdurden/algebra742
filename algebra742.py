@@ -296,26 +296,12 @@ def EPAssessment(q=None):
 #        title = md.Meta['title'][0]
 #    except:
 #        title = 'untitled'
-    if Question['Type'] == 'MC':
+    if EPQuestionData[q-1]['Type'] == 'MC':
         form = MCForm()
-        form.choices = Question['Choices'].items()
+        form.choices = EPQuestionData[q-1]['Choices'].items()
         # Check answers
         # Answers array
-        try:
-            lhs_input = parse_expr(form.lhs.data, transformations=transformations)
-            rhs_input = parse_expr(form.rhs.data, transformations=transformations)
-            lhs = BalanceQuestionData[q-1]['LHS']
-            rhs = BalanceQuestionData[q-1]['RHS']
-            for i,variable in enumerate(BalanceQuestionData[q-1]['Variables']):
-                lhs = lhs.replace(variable, form.variables[i].data)
-                rhs = rhs.replace(variable, form.variables[i].data)
-            lhs = parse_expr(lhs, transformations=transformations)
-            rhs = parse_expr(rhs, transformations=transformations)
-            correct = simplify(lhs-lhs_input) == 0 and simplify(rhs-rhs_input) == 0
-        except:
-            lhs = form.lhs.data
-            rhs = form.rhs.data
-            correct = False
+        correct = False
         if request.method == 'POST':
             question = get_or_create(db.session, Question, assignment=assignment, number=q)
             db.session.commit()
