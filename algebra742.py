@@ -260,7 +260,8 @@ def get_or_create(session, model, defaults=None, **kwargs):
 @app.route('/EPAssessment/', methods=['GET', 'POST'])
 @templated('MarkdownQuestion.html')
 #@lti(request='session', error=error, app=app)
-def EPAssessment(lti=lti, q=None):
+#def EPAssessment(lti=lti, q=None):
+def EPAssessment(q=None):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if q is None:
         for i in range(len(EPQuestionData)):
