@@ -60,7 +60,8 @@ EPQuestionData = [
         {
             'Type': 'MC',
             'Question': 'Which of the following shows the addition property of equality?',
-            'Choices': [('a', '$a+b=b+c \Rightarrow a=c$'),('b', '$c\cdot a = c\cdot b \Rightarrow a=c$')]
+            'Choices': [('a', '$a+b=b+c \\\Rightarrow\\ a=c$'),('b', '$c\cdot a = c\cdot b\\ \Rightarrow\\ a=c$')]
+            'CorrectChoice': 'a'
             },
         {
             'Type': 'Numerical',
