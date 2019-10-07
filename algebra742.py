@@ -49,12 +49,12 @@ EPQuestionData = [
         {
             'Type': 'Numerical',
             'Question': 'Use the properties of equality to solve the equation: $3x+2=8$',
-            'Answer': '2'
+            'CorrectAnswer': '2'
             },
         {
             'Type': 'MC',
             'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
-            'Choices': [('a', 'Sum'),('b', 'Product')]
+            'Choices': [('a', 'Sum'),('b', 'Product')],
             'CorrectChoice': 'a'
             },
         {
