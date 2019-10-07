@@ -204,12 +204,12 @@ class AddForm(Form):
     result = IntegerField('result')
     correct = BooleanField('correct')
 
-class MCForm(Form, choices):
+class MCForm(Form):
     """ Add data from Form
 
     :param Form:
     """
-    options = RadioField(u'Choices', choices=choices.items())
+    options = RadioField(u'Choices')
 
 class NumericAnswerForm(Form):
     """ Add data from Form
@@ -299,7 +299,8 @@ def EPAssessment(q=None):
 #    except:
 #        title = 'untitled'
     if Question['Type'] == 'MC':
-        form = MCForm(Question['Choices'])
+        form = MCForm()
+        form.choices = Question['Choices'].items()
         # Check answers
         # Answers array
         try:
