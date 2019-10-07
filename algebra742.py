@@ -45,6 +45,28 @@ question_scores = db.Table('question_scores',
 
 #def AnswerChecker():
 
+EPQuestionData = [
+        {
+            'Type': 'MC',
+            'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
+            'Choices': {
+                'a': 'Sum',
+                'b': 'Product',
+                }
+            },
+        {
+            'Type': 'MC',
+            'Question': 'Which property is represented in the following solution?',
+            'a': '',
+            'b': '',
+            'c': '',
+            'd': '',
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Evaluate $-5-(-2)$',
+            },
+        ]
 BalanceQuestionData = [
         {
             'LHSImage': 'BalanceImages/IMG_1634.jpg',
@@ -182,6 +204,20 @@ class AddForm(Form):
     result = IntegerField('result')
     correct = BooleanField('correct')
 
+class MCForm(Form, choices):
+    """ Add data from Form
+
+    :param Form:
+    """
+    options = RadioField(u'Choices', choices=choices.items())
+
+class NumericAnswerForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    answer = FieldList(StringField('answer'))
+    
 class EquationForm(Form):
     """ Add data from Form
 
@@ -219,6 +255,78 @@ def get_or_create(session, model, defaults=None, **kwargs):
         instance = model(**params)
         session.add(instance)
         return instance
+
+@app.route('/EPAssessment/<q>', methods=['GET', 'POST'])
+@app.route('/EPAssessment/', methods=['GET', 'POST'])
+@templated('MarkdownQuestion.html')
+#@lti(request='session', error=error, app=app)
+def EPAssessment(lti=lti, q=None):
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if q is None:
+        for i in range(len(EPQuestionData)):
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==i+1, question_scores.c.score==1))
+            results = db.session.execute(statement).first()
+            if not results:
+                q = i+1
+                break
+    if not user:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
+#    if q == 'submit':
+#        lti.post_grade(1)
+#        return render_template('grade.html', form=form)
+    q = int(q)
+    @after_this_request
+    def add_header(response):
+        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        return response
+    from sympy import simplify, symbols
+    from sympy.parsing.sympy_parser import parse_expr
+    from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application
+    transformations = (standard_transformations + (implicit_multiplication_application,))
+    assignment = 'EPAssessment'
+    a,b = symbols("a b")
+#    markdown_include = MarkdownInclude(
+#                           configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
+#                           )
+#    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
+#    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
+#        source = f.read()
+#    result = md.convert(source.decode('utf-8'))
+#    try:
+#        title = md.Meta['title'][0]
+#    except:
+#        title = 'untitled'
+    if Question['Type'] == 'MC'
+        form = MCForm(Question['Choices'])
+        # Check answers
+        # Answers array
+        try:
+            lhs_input = parse_expr(form.lhs.data, transformations=transformations)
+            rhs_input = parse_expr(form.rhs.data, transformations=transformations)
+            lhs = BalanceQuestionData[q-1]['LHS']
+            rhs = BalanceQuestionData[q-1]['RHS']
+            for i,variable in enumerate(BalanceQuestionData[q-1]['Variables']):
+                lhs = lhs.replace(variable, form.variables[i].data)
+                rhs = rhs.replace(variable, form.variables[i].data)
+            lhs = parse_expr(lhs, transformations=transformations)
+            rhs = parse_expr(rhs, transformations=transformations)
+            correct = simplify(lhs-lhs_input) == 0 and simplify(rhs-rhs_input) == 0
+        except:
+            lhs = form.lhs.data
+            rhs = form.rhs.data
+            correct = False
+        if request.method == 'POST':
+            question = get_or_create(db.session, Question, assignment=assignment, number=q)
+            db.session.commit()
+            statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
+            db.session.execute(statement)
+            db.session.commit()
+        if len(EPQuestionData) > q+1:
+            NextQuestion = q+1
+        else:
+            NextQuestion = None
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=EPQuestionData[q-1])
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
 @app.route('/RepresentBalances/', methods=['GET', 'POST'])
