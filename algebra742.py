@@ -418,7 +418,7 @@ def APEMPEWholeNumbers(lti=lti, q=None):
         NextQuestion = q+1
     else:
         NextQuestion = None
-    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=APEMPEWholeNumbersData[q-1])
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=APEMPEWholeNumbersData[q-1])
 
 @app.route('/EPAssessment/<q>', methods=['GET', 'POST'])
 @app.route('/EPAssessment/', methods=['GET', 'POST'])
@@ -498,7 +498,7 @@ def EPAssessment(lti=lti, q=None):
         NextQuestion = q+1
     else:
         NextQuestion = None
-    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=EPQuestionData[q-1])
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=EPQuestionData[q-1])
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
 @app.route('/RepresentBalances/', methods=['GET', 'POST'])
