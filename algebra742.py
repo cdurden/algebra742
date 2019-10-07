@@ -316,9 +316,8 @@ def get_or_create(session, model, defaults=None, **kwargs):
 @app.route('/EPAssessment/<q>', methods=['GET', 'POST'])
 @app.route('/EPAssessment/', methods=['GET', 'POST'])
 @templated('MarkdownQuestionGeneral.html')
-#@lti(request='session', error=error, app=app)
-#def EPAssessment(lti=lti, q=None):
-def EPAssessment(q=None):
+@lti(request='session', error=error, app=app)
+def EPAssessment(lti=lti, q=None):
     if q == 'submit':
         return render_template('thankyou.html')
     #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
