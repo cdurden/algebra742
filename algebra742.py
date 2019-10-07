@@ -263,6 +263,7 @@ def get_or_create(session, model, defaults=None, **kwargs):
 #def EPAssessment(lti=lti, q=None):
 def EPAssessment(q=None):
     #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = User(username="test user", lti_user_id="asdf")
     if q is None:
         for i in range(len(EPQuestionData)):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==i+1, question_scores.c.score==1))
@@ -270,9 +271,9 @@ def EPAssessment(q=None):
             if not results:
                 q = i+1
                 break
-    #if not user:
-    #    form = UserInfoForm()
-    #    return render_template('GetUserInfo.html', lti=lti, form=form)
+    if not user:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
     q = int(q)
     @after_this_request
     def add_header(response):
