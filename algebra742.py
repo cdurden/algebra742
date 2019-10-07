@@ -312,7 +312,7 @@ def EPAssessment(q=None):
         form = NumericalForm()
         try:
             answer = parse_expr(form.answer.data)
-            CorrectAnswer = parse_expr(EPQuestionData[q-1]['CorrectAnswer', transformations=transformations)
+            CorrectAnswer = parse_expr(EPQuestionData[q-1]['CorrectAnswer'], transformations=transformations)
             correct = simplify(answer-CorrectAnswer) == 0
         except:
             pass
