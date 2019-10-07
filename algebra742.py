@@ -356,6 +356,7 @@ def EPAssessment(q=None):
 #    except:
 #        title = 'untitled'
     correct = False
+    answer = None
     if EPQuestionData[q-1]['Type'] == 'MC':
         form = MCForm()
         form.options.choices = EPQuestionData[q-1]['Choices']
