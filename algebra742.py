@@ -121,7 +121,7 @@ EPQuestionData = [
         {
             'Type': 'Numerical',
             'Question': 'Use the algebraic properties to solve the equation: $\\frac{1}{2}x+(-3)=13$',
-            'CorrectAnswer': '10'
+            'CorrectAnswer': '32'
             },
         ]
 BalanceQuestionData = [
