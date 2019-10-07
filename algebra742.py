@@ -359,7 +359,10 @@ def APEMPEWholeNumbers(lti=lti, q=None):
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
-    q = int(q)
+    if q is None:
+        q = 1
+    else:
+        q = int(q)
     @after_this_request
     def add_header(response):
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
@@ -436,7 +439,10 @@ def EPAssessment(lti=lti, q=None):
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
-    q = int(q)
+    if q is None:
+        q = 1
+    else:
+        q = int(q)
     @after_this_request
     def add_header(response):
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
