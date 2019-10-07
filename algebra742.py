@@ -66,6 +66,7 @@ EPQuestionData = [
         {
             'Type': 'Numerical',
             'Question': 'Evaluate $-5-(-2)$',
+            'CorrectAnswer': '-3',
             },
         ]
 BalanceQuestionData = [
