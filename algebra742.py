@@ -295,7 +295,7 @@ def EPAssessment(q=None):
 #        title = 'untitled'
     if EPQuestionData[q-1]['Type'] == 'MC':
         form = MCForm()
-        form.choices.choices = EPQuestionData[q-1]['Choices']
+        form.options.choices = EPQuestionData[q-1]['Choices']
         # Check answers
         # Answers array
         correct = False

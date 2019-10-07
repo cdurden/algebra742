@@ -37,10 +37,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 <form action="{{ url_for('RepresentBalances', q=q) }}" method="post" name="answer_form">
     {{ form.hidden_tag() }}
 {% if QuestionData['Type'] == 'MC' %}
-<div>
-    {{ form.choices }}
-</div>
-{% for subfield in form.choices %}
+{% for subfield in form.options %}
     <tr>
         <td>{{ subfield }}</td>
         <td>{{ subfield.label }}</td>
