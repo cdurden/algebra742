@@ -216,7 +216,7 @@ class NumericalForm(Form):
 
     :param Form:
     """
-    answer = FieldList(StringField('answer'))
+    answer = StringField('answer')
     
 class EquationForm(Form):
     """ Add data from Form
