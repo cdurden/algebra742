@@ -38,7 +38,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     {{ form.hidden_tag() }}
 {% if QuestionData['Type'] == 'MC' %}
 <div>
-    {{ form.choices }}
+    {{ form.choices() }}
 </div>
 {% for subfield in form.choices %}
     <tr>
