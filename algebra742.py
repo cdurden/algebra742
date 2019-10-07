@@ -52,12 +52,6 @@ EPQuestionData = [
             'CorrectAnswer': '6'
             },
         {
-            'Type': 'MC',
-            'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
-            'Choices': [('a', 'Sum'),('b', 'Product')],
-            'CorrectChoice': 'a'
-            },
-        {
             'Type': 'Numerical',
             'Question': 'Use the properties of equality to solve the equation: $3x=21$',
             'CorrectAnswer': '7'
@@ -65,7 +59,7 @@ EPQuestionData = [
         {
             'Type': 'MC',
             'Question': 'Which of the following shows the addition property of equality?',
-            'Choices': [('a', '$a+b=b+c \\\ \Rightarrow \\\ a=c$'),('b', '$c\cdot a = c\cdot b \\\ \Rightarrow\\\ a=c$')],
+            'Choices': [('a', '$a+b=b+c \\\ \Rightarrow \\\ a=c$'),('b', '$c\cdot a = c\cdot b \\\ \Rightarrow\\\ a=c$'),('c', '$(a+b)+c = a+(b+c)$'),('d', '$a + 0 = a$') ],
             'CorrectChoice': 'a'
             },
         {
@@ -90,8 +84,18 @@ EPQuestionData = [
             },
         {
             'Type': 'Numerical',
-            'Question': 'Use the properties of equality to solve the equation: $3x+2=8$',
-            'CorrectAnswer': '2'
+            'Question': 'Use the algebraic properties to solve the equation: $x+(-3)=9$',
+            'CorrectAnswer': '12'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $x+(-5)=-15$',
+            'CorrectAnswer': '-10'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $-5x=-15$',
+            'CorrectAnswer': '3'
             },
         {
             'Type': 'Numerical',
@@ -100,7 +104,23 @@ EPQuestionData = [
             },
         {
             'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $\frac{1}{2}x+3=8$',
+            'Question': 'Use the algebraic properties to solve the equation: $-\frac{1}{5}x=5$',
+            'CorrectAnswer': '-25'
+            },
+        {
+            'Type': 'MC',
+            'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
+            'Choices': [('a', 'Sum'),('b', 'Product')],
+            'CorrectChoice': 'a'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the properties of equality to solve the equation: $3x+2=8$',
+            'CorrectAnswer': '2'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $\frac{1}{2}x+(-3)=13$',
             'CorrectAnswer': '10'
             },
         ]
