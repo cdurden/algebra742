@@ -60,9 +60,9 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <b>Your answer {{ lhs }} = {{ rhs }} is correct!</b>
     </p>
     {% if NextQuestion %}
-    <a href="{{ url_for('RepresentBalances', q=NextQuestion) }}" class="button">Next question</a>
+    <a href="{{ url_for('EPAssessment', q=NextQuestion) }}" class="button">Next question</a>
     {% else %}
-    <a href="{{ url_for('RepresentBalances', q='submit') }}" class="button">Submit assignment</a>
+    <a href="{{ url_for('EPAssessment', q='submit') }}" class="button">Submit assignment</a>
     {% endif %}
     {% else %}
     {% if lhs and rhs %}
