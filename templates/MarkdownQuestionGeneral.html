@@ -44,6 +44,11 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     </tr>
 {% endfor %}
 {% endif %}
+{% if QuestionData['Type'] == 'MC' %}
+<p>
+{{ form.answer }}
+</p>
+{% endif %}
 
     <p><input type="submit" value="Check"></p>
 </form>
