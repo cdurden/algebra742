@@ -3,7 +3,7 @@ from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_
 from flask.ext.wtf import Form
-from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField
 from random import randint
 import markdown
 from markdown_include.include import MarkdownInclude
