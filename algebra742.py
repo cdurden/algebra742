@@ -45,6 +45,33 @@ question_scores = db.Table('question_scores',
 
 #def AnswerChecker():
 
+APEMPEWholeNumbersData = [
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $x+3=9$',
+            'CorrectAnswer': '6'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $a+2=7$',
+            'CorrectAnswer': '12'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $5b=20$',
+            'CorrectAnswer': '4'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $b+6=10$',
+            'CorrectAnswer': '12'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $7b=42$',
+            'CorrectAnswer': '6'
+            }
+        ]
 EPQuestionData = [
         {
             'Type': 'Numerical',
@@ -312,6 +339,83 @@ def get_or_create(session, model, defaults=None, **kwargs):
         instance = model(**params)
         session.add(instance)
         return instance
+
+@app.route('/APEMPEWholeNumbers/<q>', methods=['GET', 'POST'])
+@app.route('/APEMPEWholeNumbers/', methods=['GET', 'POST'])
+@templated('MarkdownQuestionGeneral.html')
+@lti(request='session', error=error, app=app)
+def APEMPEWholeNumbers(lti=lti, q=None):
+    if q == 'submit':
+        return render_template('thankyou.html')
+    #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = User(username="test user", lti_user_id="asdf")
+    if q is None:
+        for i in range(len(APEMPEWholeNumbersData)):
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==i+1, question_scores.c.score==1))
+            results = db.session.execute(statement).first()
+            if not results:
+                q = i+1
+                break
+    if not user:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
+    q = int(q)
+    @after_this_request
+    def add_header(response):
+        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        return response
+    from sympy import simplify, symbols
+    from sympy.parsing.sympy_parser import parse_expr
+    from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application
+    transformations = (standard_transformations + (implicit_multiplication_application,))
+    assignment = 'APEMPEWholeNumbers'
+    a,b = symbols("a b")
+#    markdown_include = MarkdownInclude(
+#                           configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
+#                           )
+#    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
+#    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
+#        source = f.read()
+#    result = md.convert(source.decode('utf-8'))
+#    try:
+#        title = md.Meta['title'][0]
+#    except:
+#        title = 'untitled'
+    correct = False
+    answer = None
+    if APEMPEWholeNumbersData[q-1]['Type'] == 'MC':
+        form = MCForm()
+        form.options.choices = APEMPEWholeNumbersData[q-1]['Choices']
+        try:
+            choice = form.options.data
+            if choice == APEMPEWholeNumbersData[q-1]['CorrectChoice']:
+                correct = True
+            else:
+                correct = False
+            answer = choice
+        except:
+            answer = None
+    if APEMPEWholeNumbersData[q-1]['Type'] == 'Numerical':
+        form = NumericalForm()
+        try:
+            answer = parse_expr(form.answer.data)
+            CorrectAnswer = parse_expr(APEMPEWholeNumbersData[q-1]['CorrectAnswer'], transformations=transformations)
+            correct = simplify(answer-CorrectAnswer) == 0
+        except:
+            pass
+        # Check answers
+        # Answers array
+    if request.method == 'POST':
+        question = get_or_create(db.session, Question, assignment=assignment, number=q)
+        db.session.commit()
+        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
+        db.session.execute(statement)
+        db.session.commit()
+    if len(APEMPEWholeNumbersData) > q:
+        NextQuestion = q+1
+    else:
+        NextQuestion = None
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=APEMPEWholeNumbersData[q-1])
 
 @app.route('/EPAssessment/<q>', methods=['GET', 'POST'])
 @app.route('/EPAssessment/', methods=['GET', 'POST'])
