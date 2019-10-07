@@ -48,14 +48,19 @@ question_scores = db.Table('question_scores',
 EPQuestionData = [
         {
             'Type': 'Numerical',
-            'Question': 'Use the properties of equality to solve the equation: $3x+2=8$',
-            'CorrectAnswer': '2'
+            'Question': 'Use the properties of equality to solve the equation: $x+2=8$',
+            'CorrectAnswer': '6'
             },
         {
             'Type': 'MC',
             'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
             'Choices': [('a', 'Sum'),('b', 'Product')],
             'CorrectChoice': 'a'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the properties of equality to solve the equation: $3x=21$',
+            'CorrectAnswer': '7'
             },
         {
             'Type': 'MC',
@@ -65,8 +70,38 @@ EPQuestionData = [
             },
         {
             'Type': 'Numerical',
-            'Question': 'Evaluate $-5-(-2)$',
-            'CorrectAnswer': '-3',
+            'Question': 'Evaluate $5-(-2)$',
+            'CorrectAnswer': '7',
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Evaluate $-4+(-2)$',
+            'CorrectAnswer': '-6',
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Evaluate $-\frac{3}{4}+\frac{1}{2}$',
+            'CorrectAnswer': '-1/4',
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Evaluate $-\frac{5}{6}-\frac{1}{2}$',
+            'CorrectAnswer': '-4/3',
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the properties of equality to solve the equation: $3x+2=8$',
+            'CorrectAnswer': '2'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $\frac{1}{3}x=9$',
+            'CorrectAnswer': '27'
+            },
+        {
+            'Type': 'Numerical',
+            'Question': 'Use the algebraic properties to solve the equation: $\frac{1}{2}x+3=8$',
+            'CorrectAnswer': '10'
             },
         ]
 BalanceQuestionData = [
