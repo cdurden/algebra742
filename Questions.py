@@ -1,7 +1,8 @@
 QuestionSets = {
     'PracticeTest': [
         {
-            'Type': 'AddSubtractIntegerDirections',
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
             'Template': 'AddSubtractIntegerDirections.html',
             'ParameterSetVariants': [{'operation': 'subtracting a negative', 'answer': 'b'},{'operation': 'subtracting a positive', 'answer': 'a'}],
                 #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
@@ -22,19 +23,22 @@ QuestionSets = {
 #            'CorrectAnswer': '7',
 #            },
         {
-            'Type': 'AddSubtractIntegers',
+            #'Type': 'AddSubtractIntegers',
+            'Type': 'Numerical',
             'Template': 'AddSubtractIntegers.html',
             'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89'},{'expression_type': 'sum', 'expression': '-32-(-108)'},],
             'SpaceAfter': '4cm',
             },
         {
-            'Type': 'IdentifyPropertyUsed',
+            #'Type': 'IdentifyPropertyUsed',
+            'Type': 'MC',
             'Template': 'IdentifyPropertyUsed.html',
             'ParameterSetVariants': [{'argument': '$(x+5)+(-5) = x+(5+-5)$'},{'argument': '$x+0 = x$'}, {'argument': r'\begin{align*}x+(-39) &= -101 \\ \Rightarrow x+(-39)+39 &= -101+39\end{align*}'}, {'argument': r'\begin{align*}12x = 12\cdot 14 \\ \Rightarrow x = 14\end{align*}'}],
             'SpaceAfter': '2cm',
             },
         {
-            'Type': 'SolveEquation',
+            #'Type': 'SolveEquation',
+            'Type': 'MC',
             'Template': 'SolveEquation.html',
             'ParameterSetVariants': [{'equation': 'x+12=96'}, {'equation': 'x+25=-250+25'},{'equation': 'x+(-22)=-108'},{'equation': 'x+53=-271'},{'equation': 'x+(-125)=-600'},{'equation': '-15x=-230'},{'equation': '-15x+(-45)=-75'},],
             'SpaceAfter': '5cm',
