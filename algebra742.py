@@ -242,8 +242,8 @@ def APEMPEWholeNumbers(lti=lti, q=None):
 def Assignment(assignment=None,q=None,i=None):
     if q == 'submit':
         return render_template('thankyou.html')
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    #user = User(username="test user", lti_user_id="asdf")
+    #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = User(username="test user", lti_user_id="asdf")
     if q is None:
         for j,QuestionData in enumerate(QuestionSets[assignment]):
             for k in range(len(QuestionData['ParameterSetVariants'])):
