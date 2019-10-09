@@ -308,11 +308,13 @@ def Assignment(assignment=None,q=None,i=None):
 #        title = 'untitled'
     correct = False
     answer = None
-    import jinja2
-    loader = jinja2.FileSystemLoader(searchpath="./templates")
-    jenv = jinja2.Environment(loader=loader)
-    template = jenv.get_template(Question['Template'])
-    content = template.render(**Parameters)
+    #import jinja2
+    #loader = jinja2.FileSystemLoader(searchpath="./templates")
+    #jenv = jinja2.Environment(loader=loader)
+    Parameters = Question['ParameterSetVariants'][i]
+    content = render_template(Question['Template'], **Parameters)
+    #template = jenv.get_template(Question['Template'])
+    #content = template.render(**Parameters)
     if QuestionData['Type'] == 'MC':
         form = MCForm()
         form.options.choices = QuestionData['Choices']
