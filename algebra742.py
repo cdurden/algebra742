@@ -308,6 +308,11 @@ def Assignment(assignment=None,q=None,i=None):
 #        title = 'untitled'
     correct = False
     answer = None
+    import jinja2
+    loader = jinja2.FileSystemLoader(searchpath="./templates")
+    jenv = jinja2.Environment(loader=loader)
+    template = jenv.get_template(Question['Template'])
+    content = template.render(**Parameters)
     if QuestionData['Type'] == 'MC':
         form = MCForm()
         form.options.choices = QuestionData['Choices']
@@ -343,7 +348,7 @@ def Assignment(assignment=None,q=None,i=None):
             NextQuestion = {'q': q+1, 'i': 1}
     else:
         NextQuestion = None
-    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData)
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData)
 
 
 @app.route('/EPAssessment/<q>', methods=['GET', 'POST'])
