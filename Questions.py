@@ -10,12 +10,12 @@ QuestionSets = {
             'Question': 'Suppose you are using a vertical number line, with the positive numbers in the up direction. Which direction do you move along the number line when?',
             'SpaceAfter': '2cm',
             },
-        {
-            'Type': 'ArrowDiagram',
-            'Template': 'ArrowDiagram.html',
-            'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89'},{'expression_type': 'sum', 'expression': '-32-(-108)'},],
-            'SpaceAfter': '5cm',
-            },
+#        {
+#            'Type': 'ArrowDiagram',
+#            'Template': 'ArrowDiagram.html',
+#            'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89'},{'expression_type': 'sum', 'expression': '-32-(-108)'},],
+#            'SpaceAfter': '5cm',
+#            },
 #        {
 #            'Type': 'AddSubtractIntegersArrowDiagram',
 #            'Template': 'AddSubtractIntegersArrowDiagram.html',
@@ -27,7 +27,7 @@ QuestionSets = {
             #'Type': 'AddSubtractIntegers',
             'Type': 'Numerical',
             'Template': 'AddSubtractIntegers.html',
-            'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89', 'CorrectAnswer': -32+108},{'expression_type': 'sum', 'expression': '-32-(-108)', 'CorrectAnswer': -32+108},],
+            'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89', 'CorrectAnswer': '-32+108'},{'expression_type': 'sum', 'expression': '-32-(-108)', 'CorrectAnswer': '-32+108'},],
             'SpaceAfter': '4cm',
             },
         {
@@ -35,6 +35,7 @@ QuestionSets = {
             'Type': 'MC',
             'Template': 'IdentifyPropertyUsed.html',
             'ParameterSetVariants': [{'argument': '$(x+5)+(-5) = x+(5+-5)$'},{'argument': '$x+0 = x$'}, {'argument': r'\begin{align*}x+(-39) &= -101 \\ \Rightarrow x+(-39)+39 &= -101+39\end{align*}'}, {'argument': r'\begin{align*}12x = 12\cdot 14 \\ \Rightarrow x = 14\end{align*}'}],
+            'Choices': [('a', 'Addition Property of Equality'), ('b','Multiplication Property of Equality'), ('c', 'Associative Property'), ('d', 'Additive Identity Property')],
             'SpaceAfter': '2cm',
             },
         {
