@@ -337,7 +337,7 @@ def Assignment(assignment=None,q=None,i=None):
         db.session.execute(statement)
         db.session.commit()
     if len(QuestionData) > q:
-        if len(QuestionData['ParameterSetVariants'] > i+1):
+        if len(QuestionData['ParameterSetVariants']) > i+1:
             NextQuestion = {'q': q, 'i': i+1}
         else:
             NextQuestion = {'q': q+1, 'i': 1}
