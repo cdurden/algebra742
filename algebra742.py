@@ -350,7 +350,7 @@ def Assignment(assignment=None,q=None,i=None):
             NextQuestion = {'q': q+1, 'i': 0}
     else:
         NextQuestion = None
-    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData)
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData)
 
 
 @app.route('/EPAssessment/<q>', methods=['GET', 'POST'])
