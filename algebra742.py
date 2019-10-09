@@ -255,6 +255,16 @@ def Assignment(assignment=None,q=None,i=None):
                     q = j+1
                     i = k
                     break
+    try:
+        i = int(i)
+    except:
+        QuestionData = QuestionSets[assignment][q-1]:
+        for k in range(len(QuestionData['ParameterSetVariants'])):
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
+            results = db.session.execute(statement).first()
+            if not results:
+                i = k
+                break
 #            correct = db.session.execute(statement).all()
 #            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, question_scores.c.score==0))
 #            incorrect = db.session.execute(statement).all()
@@ -264,14 +274,18 @@ def Assignment(assignment=None,q=None,i=None):
 #                    next_level_incorrect = db.session.execute(statement).all()
 #                    if length(next_level_incorrect) < QuestionSets[assignment][j]['IncorrectLimit']:
 #                
-    QuestionData = QuestionSets[assignment][q-1]
-    if not user:
-        form = UserInfoForm()
-        return render_template('GetUserInfo.html', lti=lti, form=form)
     if q is None:
         q = 1
     else:
         q = int(q)
+    if i is None:
+        i = 0
+    else:
+        i = int(0)
+    QuestionData = QuestionSets[assignment][q-1]
+    if not user:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
     @after_this_request
     def add_header(response):
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
