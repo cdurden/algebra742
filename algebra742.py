@@ -19,7 +19,7 @@ from Questions import *
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
-logging.basicConfig(filename='info.log', level=logging.DEBUG)
+logging.basicConfig(filename=os.path.join(os.path.dirname(__file__),'info.log'), level=logging.DEBUG)
 db = SQLAlchemy(app)
 
 class User(db.Model):
