@@ -281,7 +281,7 @@ def Assignment(assignment=None,q=None,i=None):
     if i is None:
         i = 0
     else:
-        i = int(0)
+        i = int(i)
     QuestionData = QuestionSets[assignment][q-1]
     if not user:
         form = UserInfoForm()
