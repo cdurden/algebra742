@@ -41,7 +41,7 @@ QuestionSets = {
             #'Type': 'SolveEquation',
             'Type': 'Numerical',
             'Template': 'SolveEquation.html',
-            'ParameterSetVariants': [{'equation': 'x+12=96', 'CorrectAnswer': 84}, {'equation': 'x+25=-250+25'},{'equation': 'x+(-22)=-108'},{'equation': 'x+53=-271'},{'equation': 'x+(-125)=-600'},{'equation': '-15x=-230'},{'equation': '-15x+(-45)=-75'},],
+            'ParameterSetVariants': [{'equation': 'x+12=96', 'CorrectAnswer': '84'}, {'equation': 'x+25=-250+25'},{'equation': 'x+(-22)=-108'},{'equation': 'x+53=-271'},{'equation': 'x+(-125)=-600'},{'equation': '-15x=-230'},{'equation': '-15x+(-45)=-75'},],
             'SpaceAfter': '5cm',
             },
         ]
