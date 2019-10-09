@@ -246,6 +246,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         return render_template('thankyou.html')
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     #user = User(username="test user", lti_user_id="asdf")
+    done = False
     try:
         q = int(q)
     except:
@@ -254,11 +255,14 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
                 results = db.session.execute(statement).first()
                 #app.logger.debug("j={:d}, len(results)={:s}".format(k,results))
-                QuestionData[str(j)]
+                QuestionData[results]
                 if not results:
                     q = j+1
                     i = k
+                    done = True
                     break
+            if done:
+                break
     try:
         i = int(i)
     except:
