@@ -4,7 +4,7 @@ QuestionSets = {
             #'Type': 'AddSubtractIntegerDirections',
             'Type': 'MC',
             'Template': 'AddSubtractIntegerDirections.html',
-            'ParameterSetVariants': [{'operation': 'subtracting a negative', 'answer': 'b'},{'operation': 'subtracting a positive', 'answer': 'a'}],
+            'ParameterSetVariants': [{'operation': 'subtracting a negative', 'CorrectAnswer': 'b'},{'operation': 'subtracting a positive', 'CorrectAnswer': 'a'}],
                 #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
             'Question': 'Suppose you are using a vertical number line, with the positive numbers in the up direction. Which direction do you move along the number line when?',
             'SpaceAfter': '2cm',
@@ -26,7 +26,7 @@ QuestionSets = {
             #'Type': 'AddSubtractIntegers',
             'Type': 'Numerical',
             'Template': 'AddSubtractIntegers.html',
-            'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89'},{'expression_type': 'sum', 'expression': '-32-(-108)'},],
+            'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89', 'CorrectAnswer': -32+108},{'expression_type': 'sum', 'expression': '-32-(-108)', 'CorrectAnswer': -32+108},],
             'SpaceAfter': '4cm',
             },
         {
@@ -38,9 +38,9 @@ QuestionSets = {
             },
         {
             #'Type': 'SolveEquation',
-            'Type': 'MC',
+            'Type': 'Numerical',
             'Template': 'SolveEquation.html',
-            'ParameterSetVariants': [{'equation': 'x+12=96'}, {'equation': 'x+25=-250+25'},{'equation': 'x+(-22)=-108'},{'equation': 'x+53=-271'},{'equation': 'x+(-125)=-600'},{'equation': '-15x=-230'},{'equation': '-15x+(-45)=-75'},],
+            'ParameterSetVariants': [{'equation': 'x+12=96', 'CorrectAnswer': 84}, {'equation': 'x+25=-250+25'},{'equation': 'x+(-22)=-108'},{'equation': 'x+53=-271'},{'equation': 'x+(-125)=-600'},{'equation': '-15x=-230'},{'equation': '-15x+(-45)=-75'},],
             'SpaceAfter': '5cm',
             },
         ]

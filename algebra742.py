@@ -299,7 +299,7 @@ def Assignment(assignment=None,q=None,i=None):
         form.options.choices = QuestionData['Choices']
         try:
             choice = form.options.data
-            if choice == QuestionData['CorrectChoice']:
+            if choice == QuestionData['ParameterVariants'][i]['CorrectChoice']:
                 correct = True
             else:
                 correct = False
@@ -310,7 +310,7 @@ def Assignment(assignment=None,q=None,i=None):
         form = NumericalForm()
         try:
             answer = parse_expr(form.answer.data)
-            CorrectAnswer = parse_expr(QuestionData['CorrectAnswer'], transformations=transformations)
+            CorrectAnswer = parse_expr(QuestionData['ParameterVariants'][i]['CorrectAnswer'], transformations=transformations)
             correct = simplify(answer-CorrectAnswer) == 0
         except:
             pass
@@ -322,7 +322,7 @@ def Assignment(assignment=None,q=None,i=None):
         statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
-    if len(EPQuestionData) > q:
+    if len(QuestionData) > q:
         NextQuestion = q+1
     else:
         NextQuestion = None
