@@ -6,6 +6,7 @@ QuestionSets = {
             'Template': 'AddSubtractIntegerDirections.html',
             'ParameterSetVariants': [{'operation': 'subtracting a negative', 'CorrectAnswer': 'b'},{'operation': 'subtracting a positive', 'CorrectAnswer': 'a'}],
                 #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
+            'Choices': [('a', 'up'), ('b','down')],
             'Question': 'Suppose you are using a vertical number line, with the positive numbers in the up direction. Which direction do you move along the number line when?',
             'SpaceAfter': '2cm',
             },

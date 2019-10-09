@@ -264,7 +264,7 @@ def Assignment(assignment=None,q=None,i=None):
 #                    next_level_incorrect = db.session.execute(statement).all()
 #                    if length(next_level_incorrect) < QuestionSets[assignment][j]['IncorrectLimit']:
 #                
-    QuestionData = QuestionSets[assignment][q]
+    QuestionData = QuestionSets[assignment][q-1]
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
