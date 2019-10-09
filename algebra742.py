@@ -260,7 +260,7 @@ def Assignment(assignment=None,q=None,i=None):
     except:
         QuestionData = QuestionSets[assignment][q-1]
         for k in range(len(QuestionData['ParameterSetVariants'])):
-            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==q, Question.__table__.c.variant_index==k, question_scores.c.score==1))
             results = db.session.execute(statement).first()
             if not results:
                 i = k
