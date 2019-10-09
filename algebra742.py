@@ -320,7 +320,7 @@ def Assignment(assignment=None,q=None,i=None):
         form.options.choices = QuestionData['Choices']
         try:
             choice = form.options.data
-            if choice == QuestionData['ParameterVariants'][i]['CorrectChoice']:
+            if choice == QuestionData['ParameterSetVariants'][i]['CorrectChoice']:
                 correct = True
             else:
                 correct = False
@@ -331,7 +331,7 @@ def Assignment(assignment=None,q=None,i=None):
         form = NumericalForm()
         try:
             answer = parse_expr(form.answer.data)
-            CorrectAnswer = parse_expr(QuestionData['ParameterVariants'][i]['CorrectAnswer'], transformations=transformations)
+            CorrectAnswer = parse_expr(QuestionData['ParameterSetVariants'][i]['CorrectAnswer'], transformations=transformations)
             correct = simplify(answer-CorrectAnswer) == 0
         except:
             pass
