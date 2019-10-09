@@ -244,7 +244,9 @@ def Assignment(assignment=None,q=None,i=None):
         return render_template('thankyou.html')
     #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     user = User(username="test user", lti_user_id="asdf")
-    if q is None:
+    try:
+        q = int(q)
+    except:
         for j,QuestionData in enumerate(QuestionSets[assignment]):
             for k in range(len(QuestionData['ParameterSetVariants'])):
                 statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
