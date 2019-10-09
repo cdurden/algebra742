@@ -6,6 +6,7 @@ from flask.ext.wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField
 from random import randint
 import markdown
+import logging
 from markdown_include.include import MarkdownInclude
 
 from pylti.flask import lti
@@ -18,6 +19,7 @@ from Questions import *
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
+logging.basicConfig(filename='info.log', level=logging.DEBUG)
 db = SQLAlchemy(app)
 
 class User(db.Model):
