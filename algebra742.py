@@ -323,7 +323,10 @@ def Assignment(assignment=None,q=None,i=None):
         db.session.execute(statement)
         db.session.commit()
     if len(QuestionData) > q:
-        NextQuestion = q+1
+        if len(QuestionData['ParameterSetVariants'] > i+1):
+            NextQuestion = {'q': q, 'i': i+1}
+        else:
+            NextQuestion = {'q': q+1, 'i': 1}
     else:
         NextQuestion = None
     return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData)
