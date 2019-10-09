@@ -320,7 +320,7 @@ def Assignment(assignment=None,q=None,i=None):
         form.options.choices = QuestionData['Choices']
         try:
             choice = form.options.data
-            if choice == QuestionData['ParameterSetVariants'][i]['CorrectChoice']:
+            if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
                 correct = True
             else:
                 correct = False
