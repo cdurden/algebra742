@@ -255,7 +255,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
                 results = db.session.execute(statement).first()
                 #app.logger.debug("j={:d}, len(results)={:s}".format(k,results))
-                QuestionData[results]
                 if not results:
                     q = j+1
                     i = k
