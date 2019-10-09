@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Have you met your match?</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/keypress-2.1.5.min.js"></script>
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" >
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+<div id="feedbackPlayer1" class="overlay" onclick="feedbackPlayer1Off()"><div id="feedbackPlayer1Text"></div></div>
+<div id="feedbackPlayer2" class="overlay" onclick="feedbackPlayer2Off()"><div id="feedbackPlayer2Text"></div></div>
+
+    <div class="container">
+        <header>
+            <center>
+            <h1>Have you met your match?</h1>
+            <div class="timer"></div>
+            </center>
+        </header>
+
+
+        <div id="dashboardPlayer1" class="activePlayer1 dashboard">
+            <div id="scoreboardPlayer1" class="scoreboard">
+        Player 1<span id="turnPlayer1"></span> 
+        <p>
+        Correct: <span id="correctPlayer1">0</span><br/>
+        Matches: <span id="matchesPlayer1">0</span><br/>
+        Incorrect: <span id="incorrectPlayer1">0</span><br/>
+        </p>
+            </div>
+            <div id="confirmBoxPlayer1" class="confirmBox">
+                <div class="message"></div>
+                <button class="yes">=</button>
+                <button class="no">≠</button>
+            </div>
+        </div>
+        <div id="deck" class='gameboard'>
+            <center>
+        <ul class="deck" id="card-deck">
+            <li class="card" type="plane">
+                <div><img src="build/expr1a.png"></div>
+            </li>
+            <li class="card" type="anchor">
+                <div><img src="build/expr2a.png"></div>
+            </li>
+            <li class="card" type="bolt" >
+                <div><img src="build/expr3a.png"></div>
+            </li>
+            <li class="card" type="cube">
+                <div><img src="build/expr4a.png"></div>
+            </li>
+            <li class="card" type="anchor">
+                <div><img src="build/expr2b.png"></div>
+            </li>
+            <li class="card" type="leaf">
+                <div><img src="build/expr5a.png"></div>
+            </li>
+            <li class="card" type="bicycle">
+                <div><img src="build/expr6a.png"></div>
+            </li>
+            <li class="card" type="diamond">
+                <div><img src="build/expr7a.png"></div>
+            </li>
+            <li class="card" type="bomb">
+                <div><img src="build/expr8a.png"></div>
+            </li>
+            <li class="card" type="leaf">
+                <div><img src="build/expr5b.png"></div>
+            </li>
+            <li class="card" type="bomb">
+                <div><img src="build/expr8b.png"></div>
+            </li>
+            <li class="card open show" type="bolt">
+                <div><img src="build/expr3b.png"></div>
+            </li>
+            <li class="card" type="plane">
+                <div><img src="build/expr1b.png"></div>
+            </li>
+            <li class="card" type="bicycle">
+                <div><img src="build/expr6b.png"></div>
+            </li>
+            <li class="card" type="cube">
+                <div><img src="build/expr4b.png"></div>
+            </li>
+            <li class="card" type="diamond">
+                <div><img src="build/expr7b.png"></div>
+            </li>
+        </ul>
+            </center>
+        </div>
+        <div id="dashboardPlayer2" class="inactivePlayer dashboard">
+            <div id="scoreboardPlayer2" class="scoreboard">
+        Player 2<span id="turnPlayer2"></span> 
+        <p>
+        Correct: <span id="correctPlayer2">0</span><br/>
+        Matches: <span id="matchesPlayer2">0</span><br/>
+        Incorrect: <span id="incorrectPlayer2">0</span><br/>
+        </p>
+            </div>
+            <div id="confirmBoxPlayer2" class="confirmBox">
+                <div class="message"></div>
+                <button class="yes">=</button>
+                <button class="no">≠</button>
+            </div>
+
+<!--
+            <div class="restart" onclick=startGame()>
+        		<i class="fa fa-repeat"></i>
+        	</div>
+-->
+        </div>
+
+
+        <div id="nextlevel" class="overlay">
+            <div class="popup">
+                <h2>Level complete</h2>
+                <a class="close" href=# >×</a>
+                <div class="content-1">
+                    That was pretty good. Are you ready to take it to another level?
+                </div>
+                <button id="next-level" onclick="window.location.href='../level2/1029384756.html';">
+                    Level 2 😄</a>
+                </button>
+            </div>
+        </div>
+        <div id="gameover" class="overlay">
+            <div class="popup">
+                <div class="overlayRight">
+                <h2>Game Over</h2>
+                <a class="close" href=# >×</a>
+                <button id="play-again" onclick="playAgain()">
+                    Play again 😄</a>
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/app.js"></script>
+</body>
+</html>

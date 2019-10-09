@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Have you met your match?</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/keypress-2.1.5.min.js"></script>
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" >
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+<div id="overlay" onclick="off()"><div id="overlayText"></div></div>
+
+    <div class="container">
+        <header>
+            <h1>Have you met your match?</h1>
+        </header>
+
+        <div id="dashboard">
+
+        <div id="dashboardPlayer1" class="column activePlayer1">
+            <div id="scoreboardPlayer1" class="scoreboard">
+        Player 1<span id="turnPlayer1">'s turn<br/><span id="choose">Choose a pair of cards</span></span> 
+        <p>Score: <span id="scorePlayer1">0</span></p>
+            </div>
+            <div id="confirmBoxPlayer1" class="confirmBox">
+                <div class="message"></div>
+                <button class="yes">Yes</button>
+                <button class="no">No</button>
+            </div>
+        </div>
+        <div id="dashboardPlayer2" class="column inactivePlayer">
+            <div id="scoreboardPlayer2" class="scoreboard">
+        Player 2<span id="turnPlayer2">'s turn</span> 
+        <p>Score: <span id="scorePlayer2">0</span></p>
+            </div>
+            <div id="confirmBoxPlayer2" class="confirmBox">
+                <div class="message"></div>
+                <button class="yes">Yes</button>
+                <button class="no">No</button>
+            </div>
+        </div>
+            <div class="timer">
+            </div>
+
+<!--
+            <div class="restart" onclick=startGame()>
+        		<i class="fa fa-repeat"></i>
+        	</div>
+-->
+        </div>
+
+        <ul class="deck" id="card-deck">
+            <li class="card" type="plane">
+                <div><img src="level1/build/expr1a.png"></div>
+            </li>
+            <li class="card" type="anchor">
+                <div><img src="level1/build/expr2a.png"></div>
+            </li>
+            <li class="card" type="bolt" >
+                <div><img src="level1/build/expr3a.png"></div>
+            </li>
+            <li class="card" type="cube">
+                <div><img src="level1/build/expr4a.png"></div>
+            </li>
+            <li class="card" type="anchor">
+                <div><img src="level1/build/expr2b.png"></div>
+            </li>
+            <li class="card" type="leaf">
+                <div><img src="level1/build/expr5a.png"></div>
+            </li>
+            <li class="card" type="bicycle">
+                <div><img src="level1/build/expr6a.png"></div>
+            </li>
+            <li class="card" type="diamond">
+                <div><img src="level1/build/expr7a.png"></div>
+            </li>
+            <li class="card" type="bomb">
+                <div><img src="level1/build/expr8a.png"></div>
+            </li>
+            <li class="card" type="leaf">
+                <div><img src="level1/build/expr5b.png"></div>
+            </li>
+            <li class="card" type="bomb">
+                <div><img src="level1/build/expr8b.png"></div>
+            </li>
+            <li class="card open show" type="bolt">
+                <div><img src="level1/build/expr3b.png"></div>
+            </li>
+            <li class="card" type="plane">
+                <div><img src="level1/build/expr1b.png"></div>
+            </li>
+            <li class="card" type="bicycle">
+                <div><img src="level1/build/expr6b.png"></div>
+            </li>
+            <li class="card" type="cube">
+                <div><img src="level1/build/expr4b.png"></div>
+            </li>
+            <li class="card" type="diamond">
+                <div><img src="level1/build/expr7b.png"></div>
+            </li>
+        </ul>
+
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>Congratulations 🎉</h2>
+                <a class="close" href=# >×</a>
+                <div class="content-1">
+                    Congratulations you're a winner 🎉🎉
+                </div>
+                <div class="content-2">
+                    <p>You made <span id=finalMove> </span> moves </p>
+                    <p>in <span id=totalTime> </span> </p>
+                    <p>Rating:  <span id=starRating></span></p>
+                </div>
+                <button id="play-again"onclick="playAgain()">
+                    Play again 😄</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/app.js"></script>
+</body>
+</html>

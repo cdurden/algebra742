@@ -13,6 +13,7 @@ from functools import wraps
 from flask import request, render_template
 from flask import Response, make_response, after_this_request
 from functools import wraps
+from Questions import *
 
 VERSION = '0.0.1'
 app = Flask(__name__)
@@ -33,6 +34,7 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     assignment = db.Column(db.String(255))
     number = db.Column(db.Integer)
+    variant_index = db.Column(db.Integer)
 
 question_scores = db.Table('question_scores',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
@@ -44,195 +46,6 @@ question_scores = db.Table('question_scores',
 # FIXME: Unique constraint?
 
 #def AnswerChecker():
-
-APEMPEWholeNumbersData = [
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $x+3=9$',
-            'CorrectAnswer': '6'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $a+12=17$',
-            'CorrectAnswer': '5'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $5b=20$',
-            'CorrectAnswer': '4'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $b+16=30$',
-            'CorrectAnswer': '14'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $7b=42$',
-            'CorrectAnswer': '6'
-            }
-        ]
-EPQuestionData = [
-        {
-            'Type': 'Numerical',
-            'Question': 'Evaluate $5-(-2)$',
-            'CorrectAnswer': '7',
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Evaluate $-4+(-2)$',
-            'CorrectAnswer': '-6',
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Evaluate $-\\frac{3}{4}+\\frac{1}{2}$',
-            'CorrectAnswer': '-1/4',
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Evaluate $-\\frac{5}{6}-\\frac{1}{2}$',
-            'CorrectAnswer': '-4/3',
-            },
-        {
-            'Type': 'MC',
-            'Question': 'Which of the following shows the addition property of equality?',
-            'Choices': [('a', '$a+b=b+c \\\ \Rightarrow \\\ a=c$'),('b', '$c\cdot a = c\cdot b \\\ \Rightarrow\\\ a=c$'),('c', '$(a+b)+c = a+(b+c)$'),('d', '$a + 0 = a$') ],
-            'CorrectChoice': 'a'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the properties of equality to solve the equation: $x+2=8$',
-            'CorrectAnswer': '6'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the properties of equality to solve the equation: $3x=21$',
-            'CorrectAnswer': '7'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $x+(-3)=9$',
-            'CorrectAnswer': '12'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $x+(-5)=-15$',
-            'CorrectAnswer': '-10'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $-5x=-15$',
-            'CorrectAnswer': '3'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $\\frac{1}{3}x=9$',
-            'CorrectAnswer': '27'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $-\\frac{1}{5}x=5$',
-            'CorrectAnswer': '-25'
-            },
-        {
-            'Type': 'MC',
-            'Question': 'Is the left hand side of the following expression a sum or a product? $3x+2=8$',
-            'Choices': [('a', 'Sum'),('b', 'Product')],
-            'CorrectChoice': 'a'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the properties of equality to solve the equation: $3x+2=8$',
-            'CorrectAnswer': '2'
-            },
-        {
-            'Type': 'Numerical',
-            'Question': 'Use the algebraic properties to solve the equation: $\\frac{1}{2}x+(-3)=13$',
-            'CorrectAnswer': '32'
-            },
-        ]
-BalanceQuestionData = [
-        {
-            'LHSImage': 'BalanceImages/IMG_1634.jpg',
-            'RHSImage': 'BalanceImages/IMG_1635.jpg',
-            'LHS': 'a',
-            'RHS': '2*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of an orange cube', 'the weight of a small paper clip'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1632.jpg',
-            'RHSImage': 'BalanceImages/IMG_1633.jpg',
-            'LHS': '2*a',
-            'RHS': '4*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of an orange cube', 'the weight of a small paper clip'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1630.jpg',
-            'RHSImage': 'BalanceImages/IMG_1631.jpg',
-            'LHS': '3*a',
-            'RHS': '6*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of an orange cube', 'the weight of a small paper clip'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1627.jpg',
-            'RHSImage': 'BalanceImages/IMG_1628.jpg',
-            'LHS': '4*a+b',
-            'RHS': '9*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of an orange cube', 'the weight of a small paper clip'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1621.jpg',
-            'RHSImage': 'BalanceImages/IMG_1622.jpg',
-            'LHS': '3*a',
-            'RHS': '6*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of a nickel', 'the weight of a penny'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1619.jpg',
-            'RHSImage': 'BalanceImages/IMG_1620.jpg',
-            'LHS': '3*a+b',
-            'RHS': '7*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of a nickel', 'the weight of a penny'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1612.jpg',
-            'RHSImage': 'BalanceImages/IMG_1613.jpg',
-            'LHS': '2*a+3*b',
-            'RHS': '13*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of an S-hook', 'the weight of a pencil tip eraser'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1604.jpg',
-            'RHSImage': 'BalanceImages/IMG_1605.jpg',
-            'LHS': '2*a+b',
-            'RHS': '15*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of an eraser', 'the weight of a yellow block'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1594.jpg',
-            'RHSImage': 'BalanceImages/IMG_1595.jpg',
-            'LHS': '3*a+2*b',
-            'RHS': '5*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of a clip', 'the weight of a hex nut'] 
-            },
-        {
-            'LHSImage': 'BalanceImages/IMG_1576.jpg',
-            'RHSImage': 'BalanceImages/IMG_1577.jpg',
-            'LHS': '2*a+b',
-            'RHS': '5*b',
-            'Variables': ['a', 'b'],
-            'Quantities': ['the weight of a hex nut', 'the weight of a dime'] 
-            },
-        ]
 
 #class Assignment(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)
@@ -347,8 +160,8 @@ def get_or_create(session, model, defaults=None, **kwargs):
 def APEMPEWholeNumbers(lti=lti, q=None):
     if q == 'submit':
         return render_template('thankyou.html')
-    #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    user = User(username="test user", lti_user_id="asdf")
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    #user = User(username="test user", lti_user_id="asdf")
     if q is None:
         for i in range(len(APEMPEWholeNumbersData)):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==i+1, question_scores.c.score==1))
@@ -420,6 +233,99 @@ def APEMPEWholeNumbers(lti=lti, q=None):
         NextQuestion = None
     return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=APEMPEWholeNumbersData[q-1])
 
+@app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
+@app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
+@app.route('/Assignment/<assignment>', methods=['GET', 'POST'])
+@templated('MarkdownQuestionGeneral.html')
+@lti(request='session', error=error, app=app)
+def EPAssessment(lti=lti, q=None):
+    if q == 'submit':
+        return render_template('thankyou.html')
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    #user = User(username="test user", lti_user_id="asdf")
+    if q is None:
+        for j,QuestionData in enumerate(QuestionSets[assignment]):
+            for k in range(len(QuestionData['ParameterSetVariants'])):
+                statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
+                results = db.session.execute(statement).first()
+                if not results:
+                    q = j+1
+                    i = k
+                    break
+#            correct = db.session.execute(statement).all()
+#            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, question_scores.c.score==0))
+#            incorrect = db.session.execute(statement).all()
+#            if length(incorrect) < QuestionSets[assignment][j]['IncorrectLimit']:
+#                if length(correct)/(length(correct)+length(incorrect))>.8:
+#                    statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+2, question_scores.c.score==0))
+#                    next_level_incorrect = db.session.execute(statement).all()
+#                    if length(next_level_incorrect) < QuestionSets[assignment][j]['IncorrectLimit']:
+#                
+    QuestionData = QuestionSets[assignment][q]
+    if not user:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
+    if q is None:
+        q = 1
+    else:
+        q = int(q)
+    @after_this_request
+    def add_header(response):
+        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        return response
+    from sympy import simplify, symbols
+    from sympy.parsing.sympy_parser import parse_expr
+    from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application
+    transformations = (standard_transformations + (implicit_multiplication_application,))
+    a,b = symbols("a b")
+#    markdown_include = MarkdownInclude(
+#                           configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
+#                           )
+#    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
+#    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
+#        source = f.read()
+#    result = md.convert(source.decode('utf-8'))
+#    try:
+#        title = md.Meta['title'][0]
+#    except:
+#        title = 'untitled'
+    correct = False
+    answer = None
+    if QuestionData['Type'] == 'MC':
+        form = MCForm()
+        form.options.choices = QuestionData['Choices']
+        try:
+            choice = form.options.data
+            if choice == QuestionData['CorrectChoice']:
+                correct = True
+            else:
+                correct = False
+            answer = choice
+        except:
+            answer = None
+    if QuestionData['Type'] == 'Numerical':
+        form = NumericalForm()
+        try:
+            answer = parse_expr(form.answer.data)
+            CorrectAnswer = parse_expr(QuestionData['CorrectAnswer'], transformations=transformations)
+            correct = simplify(answer-CorrectAnswer) == 0
+        except:
+            pass
+        # Check answers
+        # Answers array
+    if request.method == 'POST':
+        question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
+        db.session.commit()
+        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
+        db.session.execute(statement)
+        db.session.commit()
+    if len(EPQuestionData) > q:
+        NextQuestion = q+1
+    else:
+        NextQuestion = None
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData)
+
+
 @app.route('/EPAssessment/<q>', methods=['GET', 'POST'])
 @app.route('/EPAssessment/', methods=['GET', 'POST'])
 @templated('MarkdownQuestionGeneral.html')
@@ -427,8 +333,8 @@ def APEMPEWholeNumbers(lti=lti, q=None):
 def EPAssessment(lti=lti, q=None):
     if q == 'submit':
         return render_template('thankyou.html')
-    #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    user = User(username="test user", lti_user_id="asdf")
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    #user = User(username="test user", lti_user_id="asdf")
     if q is None:
         for i in range(len(EPQuestionData)):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==i+1, question_scores.c.score==1))
