@@ -239,7 +239,7 @@ def APEMPEWholeNumbers(lti=lti, q=None):
 @templated('MarkdownQuestionGeneral.html')
 #@lti(request='session', error=error, app=app)
 #def Assignment(lti=lti, q=None):
-def Assignment(q=None,i=None):
+def Assignment(assignment=None,q=None,i=None):
     if q == 'submit':
         return render_template('thankyou.html')
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
