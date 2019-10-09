@@ -13,7 +13,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     doc.packages.append(Package('amsmath'))
     doc.append(NoEscape(r'\begin{multicols}{2}'))
     QuestionData = QuestionSets[assignment] 
-    with doc.create(Section('Equations and Integers Practice')):
+    with doc.create(Section('Practice Using Zero Pairs and Reciprocal Pairs')):
         with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 1})) as enum:
             for Question in QuestionData:
                 for Parameters in Question['ParameterSetVariants']:
