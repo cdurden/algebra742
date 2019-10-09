@@ -325,7 +325,7 @@ def Assignment(assignment=None,q=None,i=None):
             else:
                 correct = False
             answer = choice
-        except:
+        except IOError:
             answer = None
     if QuestionData['Type'] == 'Numerical':
         form = NumericalForm()
