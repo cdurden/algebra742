@@ -311,8 +311,8 @@ def Assignment(assignment=None,q=None,i=None):
     #import jinja2
     #loader = jinja2.FileSystemLoader(searchpath="./templates")
     #jenv = jinja2.Environment(loader=loader)
-    Parameters = Question['ParameterSetVariants'][i]
-    content = render_template(Question['Template'], **Parameters)
+    Parameters = QuestionData['ParameterSetVariants'][i]
+    content = render_template(QuestionData['Template'], **Parameters)
     #template = jenv.get_template(Question['Template'])
     #content = template.render(**Parameters)
     if QuestionData['Type'] == 'MC':
