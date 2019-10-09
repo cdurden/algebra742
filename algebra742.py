@@ -343,7 +343,7 @@ def Assignment(assignment=None,q=None,i=None):
         statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
-    if len(QuestionData) > q and len(QuestionData['ParameterSetVariants']) > i+1:
+    if len(QuestionSets[assignment]) > q and len(QuestionData['ParameterSetVariants']) > i+1:
         if len(QuestionData['ParameterSetVariants']) > i+1:
             NextQuestion = {'q': q, 'i': i+1}
         else:
