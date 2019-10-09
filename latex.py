@@ -34,9 +34,10 @@ def GenerateArrowDiagram(filepath, Parameters):
     doc.append(NoEscape(out))
     doc.generate_tex(filepath=filepath)
 
-assignment = 'PracticeTest'
-GenerateAssignmentPdf('PracticeTest')
-for q,Question in enumerate(QuestionSets[assignment]):
-    if Question['Type']=='ArrowDiagram':
-        for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
-            GenerateArrowDiagram("ArrowDiagram-{:d}-{:d}".format(q,i), Parameters)
+#assignment = 'PracticeTest'
+#GenerateAssignmentPdf('PracticeTest')
+GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')
+#for q,Question in enumerate(QuestionSets[assignment]):
+#    if Question['Type']=='ArrowDiagram':
+#        for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
+#            GenerateArrowDiagram("ArrowDiagram-{:d}-{:d}".format(q,i), Parameters)
