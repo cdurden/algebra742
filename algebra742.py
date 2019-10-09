@@ -160,8 +160,8 @@ def get_or_create(session, model, defaults=None, **kwargs):
 def APEMPEWholeNumbers(lti=lti, q=None):
     if q == 'submit':
         return render_template('thankyou.html')
-    #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    user = User(username="test user", lti_user_id="asdf")
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    #user = User(username="test user", lti_user_id="asdf")
     if q is None:
         for i in range(len(APEMPEWholeNumbersData)):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==i+1, question_scores.c.score==1))
@@ -237,13 +237,13 @@ def APEMPEWholeNumbers(lti=lti, q=None):
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>', methods=['GET', 'POST'])
 @templated('MarkdownQuestionGeneral.html')
-#@lti(request='session', error=error, app=app)
-#def Assignment(lti=lti, q=None):
-def Assignment(assignment=None,q=None,i=None):
+@lti(request='session', error=error, app=app)
+def Assignment(lti=lti, assignment=None,q=None,i=None):
+#def Assignment(assignment=None,q=None,i=None):
     if q == 'submit':
         return render_template('thankyou.html')
-    #user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    user = User(username="test user", lti_user_id="asdf")
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    #user = User(username="test user", lti_user_id="asdf")
     try:
         q = int(q)
     except:
