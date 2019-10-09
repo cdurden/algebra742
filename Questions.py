@@ -1,4 +1,51 @@
 QuestionSets = {
+    'PracticeZeroPairsAndReciprocalPairs': [
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
+            'Template': 'AddSubtractIntegerDirections.html',
+            'ParameterSetVariants': [{'operation': 'subtracting a negative', 'CorrectAnswer': 'a'},{'operation': 'subtracting a positive', 'CorrectAnswer': 'b'}],
+                #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
+            'Choices': [('a', 'up'), ('b','down')],
+            'Question': 'Suppose you are using a vertical number line, with the positive numbers in the up direction. Which direction do you move along the number line when?',
+            'SpaceAfter': '2cm',
+            },
+#        {
+#            'Type': 'ArrowDiagram',
+#            'Template': 'ArrowDiagram.html',
+#            'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89'},{'expression_type': 'sum', 'expression': '-32-(-108)'},],
+#            'SpaceAfter': '5cm',
+#            },
+#        {
+#            'Type': 'AddSubtractIntegersArrowDiagram',
+#            'Template': 'AddSubtractIntegersArrowDiagram.html',
+#            'ParameterSetVariants': [{'a': 3, 'op': '-', 'b': -5},{'a': 3, 'op': '-', 'b': -4}],
+#            'Question': 'Which diagram represents the expression $3-(-5)$?',
+#            'CorrectAnswer': '7',
+#            },
+        {
+            #'Type': 'AddSubtractIntegers',
+            'Type': 'Numerical',
+            'Template': 'AddSubtractIntegers.html',
+            'ParameterSetVariants': [{'expression_type': 'sum', 'expression': '-25+89', 'CorrectAnswer': '64'},{'expression_type': 'sum', 'expression': '-32-(-108)', 'CorrectAnswer': '76'},],
+            'SpaceAfter': '4cm',
+            },
+        {
+            #'Type': 'IdentifyPropertyUsed',
+            'Type': 'MC',
+            'Template': 'IdentifyPropertyUsed.html',
+            'ParameterSetVariants': [{'argument': '$(x+5)+(-5) = x+(5+-5)$', 'CorrectAnswer':'c'},{'argument': '$x+0 = x$', 'CorrectAnswer':'d'}, {'argument': r'\begin{align*}x+(-39) &= -101 \\ \Rightarrow x+(-39)+39 &= -101+39\end{align*}', 'CorrectAnswer': 'a'}, {'argument': r'\begin{align*}12x = 12\cdot 14 \\ \Rightarrow x = 14\end{align*}', 'CorrectAnswer': 'b'}],
+            'Choices': [('a', 'Addition Property of Equality'), ('b','Multiplication Property of Equality'), ('c', 'Associative Property'), ('d', 'Additive Identity Property')],
+            'SpaceAfter': '2cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'SolveEquation.html',
+            'ParameterSetVariants': [{'equation': 'x+12=96', 'CorrectAnswer': '84'}, {'equation': 'x+25=-250+25','CorrectAnswer': '-250'},{'equation': 'x+(-22)=-108','CorrectAnswer': '-86'},{'equation': 'x+53=-271','CorrectAnswer': '-324'},{'equation': 'x+(-125)=-600','CorrectAnswer': '-475'},{'equation': '-15x=-240','CorrectAnswer': '16'},{'equation': '-15x+(-45)=-75','CorrectAnswer': '2'},],
+            'SpaceAfter': '5cm',
+            },
+        ]
     'PracticeTest': [
         {
             #'Type': 'AddSubtractIntegerDirections',
@@ -42,7 +89,7 @@ QuestionSets = {
             #'Type': 'SolveEquation',
             'Type': 'Numerical',
             'Template': 'SolveEquation.html',
-            'ParameterSetVariants': [{'equation': 'x+12=96', 'CorrectAnswer': '84'}, {'equation': 'x+25=-250+25'},{'equation': 'x+(-22)=-108'},{'equation': 'x+53=-271'},{'equation': 'x+(-125)=-600'},{'equation': '-15x=-230'},{'equation': '-15x+(-45)=-75'},],
+            'ParameterSetVariants': [{'equation': 'x+12=96', 'CorrectAnswer': '84'}, {'equation': 'x+25=-250+25','CorrectAnswer': '-250'},{'equation': 'x+(-22)=-108','CorrectAnswer': '-86'},{'equation': 'x+53=-271','CorrectAnswer': '-324'},{'equation': 'x+(-125)=-600','CorrectAnswer': '-475'},{'equation': '-15x=-240','CorrectAnswer': '16'},{'equation': '-15x+(-45)=-75','CorrectAnswer': '2'},],
             'SpaceAfter': '5cm',
             },
         ]
