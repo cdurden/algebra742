@@ -27,7 +27,6 @@ QuestionSets = {
                         {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-1c.png'},
                         {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-1d.png'},],
                     'CorrectAnswer': 'a'},
-                    },
                  ],
             'SpaceAfter': '0.2cm',
             },
