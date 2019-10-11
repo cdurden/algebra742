@@ -235,7 +235,7 @@ def APEMPEWholeNumbers(lti=lti, q=None):
         NextQuestion = None
     return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=APEMPEWholeNumbersData[q-1])
 
-def GetNextQuestionVarient(db, user, q, i):
+def GetNextQuestionVariant(db, user, q, i):
     done = False
     try:
         q = int(q)
