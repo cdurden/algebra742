@@ -235,7 +235,7 @@ def APEMPEWholeNumbers(lti=lti, q=None):
         NextQuestion = None
     return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=APEMPEWholeNumbersData[q-1])
 
-def GetNextQuestionVariant(db, user, q, i):
+def GetNextQuestionVariant(db, user, assignment, q, i):
     done = False
     try:
         q = int(q)
@@ -290,7 +290,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if q == 'submit':
         return render_template('thankyou.html')
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    q,i = GetNextQuestionVariant(db, user, q, i)
+    q,i = GetNextQuestionVariant(db, user, assignment, q, i)
     #user = User(username="test user", lti_user_id="asdf")
     QuestionData = QuestionSets[assignment][q-1]
     if not user:
