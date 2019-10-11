@@ -1,4 +1,66 @@
 QuestionSets = {
+    'AddEmUpIntegersAndEquations': [
+        {
+            #'Type': 'AddSubtractIntegers',
+            'Type': 'Numerical',
+            'Template': 'Expression.html',
+            'ParameterSetVariants': [
+                {'expression_type': 'sum', 'expression': '-5+8', 'CorrectAnswer': '3'},
+                {'expression_type': 'sum', 'expression': '-3-(-2)', 'CorrectAnswer': '-1'},
+                {'expression_type': 'sum', 'expression': '-2-9', 'CorrectAnswer': '-11'},
+                {'expression_type': 'sum', 'expression': '-7-(-8)', 'CorrectAnswer': '1'}
+                ],
+            'SpaceAfter': '4cm',
+            },
+        {
+            #'Type': 'AddSubtractIntegers',
+            'Type': 'Numerical',
+            'Template': 'Expression.html',
+            'ParameterSetVariants': [
+                {'expression_type': 'sum', 'expression': '-115+81', 'CorrectAnswer': '3'},
+                {'expression_type': 'sum', 'expression': '-131-(-27)', 'CorrectAnswer': '-1'},
+                {'expression_type': 'sum', 'expression': '-12-192', 'CorrectAnswer': '-11'},
+                {'expression_type': 'sum', 'expression': '-74-(-83)', 'CorrectAnswer': '1'}
+                ],
+            'SpaceAfter': '4cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'Equation.html',
+            'ParameterSetVariants': [
+                {'equation': 'x+112=96', 'CorrectAnswer': '84'},
+                {'equation': 'x+25=-111','CorrectAnswer': '-250'},
+                {'equation': 'x+(-22)=-108','CorrectAnswer': '-86'},
+                {'equation': 'x+(53)=-271','CorrectAnswer': '-324'},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'Equation.html',
+            'ParameterSetVariants': [
+                {'equation': r'5x=-175', 'CorrectAnswer': '84'},
+                {'equation': r'\frac{1}{3}x=-123','CorrectAnswer': '-250'},
+                {'equation': r'-\frac{1}{6}x=-108','CorrectAnswer': '-86'},
+                {'equation': r'-8x=256','CorrectAnswer': '-324'},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'Equation.html',
+            'ParameterSetVariants': [
+                {'equation': r'5x+(-40)=-120', 'CorrectAnswer': '84'},
+                {'equation': r'\frac{1}{3}x+51=-123','CorrectAnswer': '-250'},
+                {'equation': r'-\frac{1}{6}x+18=-108','CorrectAnswer': '-86'},
+                {'equation': r'-8x+72=56','CorrectAnswer': '-324'},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        ],
     'PracticeZeroPairsAndReciprocalPairs': [
         {
             #'Type': 'SolveEquation',

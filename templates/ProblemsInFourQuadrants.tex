@@ -1,0 +1,16 @@
+\begin{center}
+%\begin{scaletikzpicturetowidth}{\textwidth}
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[%scale=\tikzscale,%
+node distance=1.5cm,
+    filled/.style={fill=white,text=black,minimum size=1cm}
+    ]
+    \coordinate (O) at (0,0);
+    \node [above left=of O,filled,label=below:{}] (1) {\VAR{ex1}};
+    \node [above right=of O,filled,label=below:{}] (2) {\VAR{ex2}};
+    \node [below left=of O,filled,label=below:{}] (3) {\VAR{ex3}};
+    \node [below right=of O,filled,label=below:{}] (4) {\VAR{ex4}};
+\end{tikzpicture}
+%\end{scaletikzpicturetowidth}
+}
+\end{center}

@@ -235,17 +235,7 @@ def APEMPEWholeNumbers(lti=lti, q=None):
         NextQuestion = None
     return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=APEMPEWholeNumbersData[q-1])
 
-@app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
-@app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
-@app.route('/Assignment/<assignment>', methods=['GET', 'POST'])
-@templated('MarkdownQuestionGeneral.html')
-@lti(request='session', error=error, app=app)
-def Assignment(lti=lti, assignment=None,q=None,i=None):
-#def Assignment(assignment=None,q=None,i=None):
-    if q == 'submit':
-        return render_template('thankyou.html')
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    #user = User(username="test user", lti_user_id="asdf")
+def GetNextQuestionVarient(db, user, q, i):
     done = False
     try:
         q = int(q)
@@ -254,7 +244,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             for k in range(len(QuestionData['ParameterSetVariants'])):
                 statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
                 results = db.session.execute(statement).first()
-                #app.logger.debug("j={:d}, len(results)={:s}".format(k,results))
                 if not results:
                     q = j+1
                     i = k
@@ -289,6 +278,20 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         i = 0
     else:
         i = int(i)
+    return((q,i))
+
+@app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
+@app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
+@app.route('/Assignment/<assignment>', methods=['GET', 'POST'])
+@templated('MarkdownQuestionGeneral.html')
+@lti(request='session', error=error, app=app)
+def Assignment(lti=lti, assignment=None,q=None,i=None):
+#def Assignment(assignment=None,q=None,i=None):
+    if q == 'submit':
+        return render_template('thankyou.html')
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    q,i = GetNextQuestionVariant(db, user, q, i)
+    #user = User(username="test user", lti_user_id="asdf")
     QuestionData = QuestionSets[assignment][q-1]
     if not user:
         form = UserInfoForm()
@@ -302,26 +305,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application
     transformations = (standard_transformations + (implicit_multiplication_application,))
     a,b = symbols("a b")
-#    markdown_include = MarkdownInclude(
-#                           configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
-#                           )
-#    md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
-#    with open(os.path.join(app.config['RESOURCES_DIR'],'RepresentBalances', 'Question{:d}.md'.format(q)), 'rb') as f:
-#        source = f.read()
-#    result = md.convert(source.decode('utf-8'))
-#    try:
-#        title = md.Meta['title'][0]
-#    except:
-#        title = 'untitled'
     correct = False
     answer = None
-    #import jinja2
-    #loader = jinja2.FileSystemLoader(searchpath="./templates")
-    #jenv = jinja2.Environment(loader=loader)
     Parameters = QuestionData['ParameterSetVariants'][i]
     content = render_template(QuestionData['Template'], **Parameters)
-    #template = jenv.get_template(Question['Template'])
-    #content = template.render(**Parameters)
     if QuestionData['Type'] == 'MC':
         form = MCForm()
         form.options.choices = QuestionData['Choices']
