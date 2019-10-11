@@ -53,7 +53,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                                 doc.append(NoEscape(r'\includegraphics[width=0.2\columnwidth]{'+Choice['path']+'}'))
                     doc.append(NoEscape(r'\vspace{'+Question['SpaceAfter']+r'}'))
     doc.append(NoEscape(r'\end{multicols}'))
-    doc.generate_pdf(filepath=filepath)
+    doc.generate_tex(filepath=filepath)
 
 def GenerateProblemsInFourQuadrants(assignment, filepath=None):
     doc = Document()
@@ -90,7 +90,7 @@ def GenerateProblemsInFourQuadrants(assignment, filepath=None):
         template = latex_jinja_env.get_template('ProblemsInFourQuadrants.tex')
         out = template.render(ex1 = ex[0], ex2 = ex[1], ex3 = ex[2], ex4 = ex[3])
         doc.append(NoEscape(out))
-    doc.generate_pdf(filepath=filepath)
+    doc.generate_tex(filepath=filepath)
 
 
 def GenerateArrowDiagram(filepath, Parameters):

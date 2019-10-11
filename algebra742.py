@@ -332,6 +332,18 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             answer = choice
         except IOError:
             answer = None
+    if QuestionData['Type'] == 'ArrowDiagram':
+        form = MCForm()
+        form.options.choices = QuestionData['Choices']
+        try:
+            choice = form.options.data
+            if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
+                correct = True
+            else:
+                correct = False
+            answer = choice
+        except IOError:
+            answer = None
     if QuestionData['Type'] == 'Numerical':
         form = NumericalForm()
         try:
