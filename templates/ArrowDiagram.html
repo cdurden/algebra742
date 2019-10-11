@@ -1,1 +1,9 @@
 Draw an arrow diagram to represent the {{ expression_type}} ${{ expression }}$.
+
+{% for subfield in form.choices %}
+    <tr>
+        <td>{{ subfield.letter }}</td>
+        <td>{{ subfield.path }}</td>
+    </tr>
+{% endfor %}
+

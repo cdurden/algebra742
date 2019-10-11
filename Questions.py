@@ -15,10 +15,10 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'expression_type': 'sum', 'expression': '-8-5', 'signa': '-', 'a': '8', 'signb': '-', 'b': '5',
                     'Choices': [
-                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-0a.png'},
-                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-0b.png'},
-                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-0c.png'},
-                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-0d.png'},],
+                        {'type': 'image', 'letter': 'a', 'path': 'ArrowDiagrams/ArrowDiagram-1-0a.png'},
+                        {'type': 'image', 'letter': 'b', 'path': 'ArrowDiagrams/ArrowDiagram-1-0b.png'},
+                        {'type': 'image', 'letter': 'c', 'path': 'ArrowDiagrams/ArrowDiagram-1-0c.png'},
+                        {'type': 'image', 'letter': 'd', 'path': 'ArrowDiagrams/ArrowDiagram-1-0d.png'},],
                     'CorrectAnswer': 'd'},
                 {'expression_type': 'sum', 'expression': '3-(-1)', 'signa': '', 'a': '3', 'signb': '', 'b': '1',
                     'Choices': [
