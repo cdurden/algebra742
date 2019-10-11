@@ -1,4 +1,74 @@
 QuestionSets = {
+    'IntegerEquationsTest': [
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
+            'Template': 'AddSubtractIntegerDirections.html',
+            'ParameterSetVariants': [{'operation': 'subtracting a negative', 'CorrectAnswer': 'a'},{'operation': 'subtracting a positive', 'CorrectAnswer': 'b'}],
+                #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
+            'Choices': [('a', 'up'), ('b','down')],
+            'SpaceAfter': '2cm',
+            },
+        {
+            'Type': 'ArrowDiagram',
+            'Template': 'ArrowDiagram.html',
+            'ParameterSetVariants': [
+                {'expression_type': 'sum', 'expression': '-8-5', 'signa': '-', 'a': '8', 'signb': '-', 'b': '5',
+                    'Choices': [
+                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-0a.png'},
+                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-0b.png'},
+                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-0c.png'},
+                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-0d.png'},],},
+                {'expression_type': 'sum', 'expression': '3-(-1)', 'signa': '', 'a': '3', 'signb': '', 'b': '1',
+                    'Choices': [
+                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-1a.png'},
+                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-1b.png'},
+                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-1c.png'},
+                        {'type': 'image', 'path': 'ArrowDiagrams/ArrowDiagram-1-1d.png'},],},
+                 ],
+            'SpaceAfter': '0.2cm',
+            },
+#        {
+#            'Type': 'AddSubtractIntegersArrowDiagram',
+#            'Template': 'AddSubtractIntegersArrowDiagram.html',
+#            'ParameterSetVariants': [{'a': 3, 'op': '-', 'b': -5},{'a': 3, 'op': '-', 'b': -4}],
+#            'Question': 'Which diagram represents the expression $3-(-5)$?',
+#            'CorrectAnswer': '7',
+#            },
+        {
+            #'Type': 'AddSubtractIntegers',
+            'Type': 'Numerical',
+            'Template': 'AddSubtractIntegers.html',
+            'ParameterSetVariants': [
+                {'expression_type': 'sum', 'expression': '-8-5', 'CorrectAnswer': '-13'},
+                {'expression_type': 'sum', 'expression': '3-(-1)', 'CorrectAnswer': '4'},
+                {'expression_type': 'sum', 'expression': '-34+93', 'CorrectAnswer': '59'},
+                {'expression_type': 'sum', 'expression': '-27-(-157)', 'CorrectAnswer': '130'},],
+            'SpaceAfter': '4cm',
+            },
+        {
+            #'Type': 'IdentifyPropertyUsed',
+            'Type': 'MC',
+            'Template': 'IdentifyPropertyUsed.html',
+            'ParameterSetVariants': [{'argument': r'\begin{align*}x+(-5) &= -10 \\ \Rightarrow x+(-5)+5 &= -10+5\end{align*}', 'CorrectAnswer': 'a'}, {'argument': r'\begin{align*}\frac{1}{2}x &= 12 \\ \Rightarrow 2\cdot\frac{1}{2}x &= 2 \cdot 12\end{align*}', 'CorrectAnswer': 'b'}],
+            'Choices': [('a', 'Addition Property of Equality'), ('b','Multiplication Property of Equality'), ('c', 'Associative Property'), ('d', 'Additive Identity Property')],
+            'SpaceAfter': '2cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'SolveEquation.html',
+            'ParameterSetVariants': [
+                {'equation': 'x+15=83', 'CorrectAnswer': '68'}, 
+                {'equation': 'x+301=-405+301','CorrectAnswer': '-405'},
+                {'equation': 'x+(-136)=-158','CorrectAnswer': '-22'},
+                {'equation': 'x+93=-211','CorrectAnswer': '-304'},
+                #{'equation': 'x+(-225)=-300','CorrectAnswer': '-75'},
+                {'equation': r'\frac{1}{5}x=-25','CorrectAnswer': '-125'},],
+                #{'equation': r'\frac{1}{3}x+(-45)=-75','CorrectAnswer': '-90'},],
+            'SpaceAfter': '5cm',
+            },
+        ],
     'AddEmUpIntegersAndEquations': [
         {
             #'Type': 'AddSubtractIntegers',

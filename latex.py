@@ -23,10 +23,20 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     doc.packages.append(Package('geometry', options=['tmargin=1cm',
                                                      'lmargin=1cm']))
     doc.packages.append(Package('multicol'))
+    doc.packages.append(Package('graphicx'))
     doc.packages.append(Package('amsmath'))
-    doc.append(NoEscape(r'\begin{multicols}{2}'))
     QuestionData = QuestionSets[assignment] 
-    with doc.create(Section('Practice Using Zero Pairs and Reciprocal Pairs')):
+    with doc.create(Section('Integer Equations Quiz')):
+        doc.append(NoEscape(r'''
+    \begin{center}
+    \fbox{\fbox{\parbox{5.5in}{\centering
+    Answer the questions in the spaces provided on the
+    question sheets. Then enter your answer into the Integer Equations Quiz on Schoology. If you run out of room for an answer,
+    raise your hand to ask for an extra piece of paper.}}}
+    \end{center}
+    \vspace{0.1in}
+    \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
+        doc.append(NoEscape(r'\begin{multicols}{2}'))
         with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 1})) as enum:
             for Question in QuestionData:
                 for Parameters in Question['ParameterSetVariants']:
@@ -34,6 +44,13 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                     out = template.render(**Parameters)
                     enum.add_item(NoEscape(out))
                     #enum.add_item(NoEscape(Question['Question']))
+                    doc.append("\n\n")
+                    letters = ['a','b','c','d']
+                    if 'Choices' in Parameters:
+                        for i,Choice in enumerate(Parameters['Choices']):
+                            if Choice['type'] == 'image':
+                                doc.append(letters[i]+')')
+                                doc.append(NoEscape(r'\includegraphics[width=0.2\columnwidth]{'+Choice['path']+'}'))
                     doc.append(NoEscape(r'\vspace{'+Question['SpaceAfter']+r'}'))
     doc.append(NoEscape(r'\end{multicols}'))
     doc.generate_pdf(filepath=filepath)
@@ -77,7 +94,7 @@ def GenerateProblemsInFourQuadrants(assignment, filepath=None):
 
 
 def GenerateArrowDiagram(filepath, Parameters):
-    doc = Document(documentclass="standalone", document_options=NoEscape("convert={density=300,size=1080x800,outext=.png}"))
+    doc = Document(documentclass="standalone", document_options=NoEscape("varwidth,convert={density=300,size=1080x800,outext=.png}"))
     doc.packages.append(Package('amsmath'))
     doc.packages.append(Package('tikz'))
     template = jenv.get_template('ArrowDiagram.tex')
@@ -85,11 +102,22 @@ def GenerateArrowDiagram(filepath, Parameters):
     doc.append(NoEscape(out))
     doc.generate_tex(filepath=filepath)
 
+GenerateAssignmentPdf('IntegerEquationsTest')
+assignment = 'IntegerEquationsTest'
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
 #GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')
-GenerateProblemsInFourQuadrants('AddEmUpIntegersAndEquations')
-#for q,Question in enumerate(QuestionSets[assignment]):
-#    if Question['Type']=='ArrowDiagram':
-#        for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
-#            GenerateArrowDiagram("ArrowDiagram-{:d}-{:d}".format(q,i), Parameters)
+#GenerateProblemsInFourQuadrants('AddEmUpIntegersAndEquations')
+letters = ['a','b','c','d']
+signs = [('',''),('','-'),('-',''),('-','-')]
+for q,Question in enumerate(QuestionSets[assignment]):
+    if Question['Type']=='ArrowDiagram':
+        for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
+            for j,(signa, signb) in enumerate(signs):
+                a = Parameters['a']
+                b = Parameters['b']
+                Parameters0 = Parameters
+                Parameters0['signa'] = signa
+                Parameters0['signb'] = signb
+                Parameters0['c'] = int('{:s}{:s}'.format(signa,a))+int('{:s}{:s}'.format(signb,b))
+                GenerateArrowDiagram("ArrowDiagrams/ArrowDiagram-{:d}-{:d}{:s}".format(q,i,letters[j]), Parameters0)

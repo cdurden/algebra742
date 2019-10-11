@@ -3,7 +3,8 @@ from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_
 from flask.ext.wtf import Form
-from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField
+from wtforms.validators import NumberRange
 from random import randint
 import markdown
 import logging
@@ -115,7 +116,7 @@ class NumericalForm(Form):
 
     :param Form:
     """
-    answer = StringField('answer')
+    answer = IntegerField('answer')
     
 class EquationForm(Form):
     """ Add data from Form
@@ -235,6 +236,25 @@ def APEMPEWholeNumbers(lti=lti, q=None):
         NextQuestion = None
     return dict(title='Assessment on Rational Numbers, Properties of Equality', content='', assignment=assignment, answer=answer, form=form, q=q, NextQuestion=NextQuestion, correct=correct, QuestionData=APEMPEWholeNumbersData[q-1])
 
+def GetNextExamQuestionVariant(db, user, assignment, q, i):
+        for j,QuestionData in enumerate(QuestionSets[assignment]):
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==q, question_scores.c.score==1))
+            correct = db.session.execute(statement).all()
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, question_scores.c.score==0))
+            incorrect = db.session.execute(statement).all()
+            if len(incorrect) < QuestionSets[assignment][j]['IncorrectLimit']:
+                if len(correct)/(len(correct)+len(incorrect))> QuestionSets[assignment][j]['AdvanceLevel']:
+                    statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+2, question_scores.c.score==0))
+                    next_level_incorrect = db.session.execute(statement).all()
+                    if length(next_level_incorrect) < QuestionSets[assignment][j+1]['IncorrectLimit']:
+                        q0 = j+2
+                    else:
+                        q0 = j+1
+                else:
+                    q0 = j+1
+            else:
+                q0 = None
+
 def GetNextQuestionVariant(db, user, assignment, q, i):
     done = False
     try:
@@ -261,15 +281,6 @@ def GetNextQuestionVariant(db, user, assignment, q, i):
             if not results:
                 i = k
                 break
-#            correct = db.session.execute(statement).all()
-#            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, question_scores.c.score==0))
-#            incorrect = db.session.execute(statement).all()
-#            if length(incorrect) < QuestionSets[assignment][j]['IncorrectLimit']:
-#                if length(correct)/(length(correct)+length(incorrect))>.8:
-#                    statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+2, question_scores.c.score==0))
-#                    next_level_incorrect = db.session.execute(statement).all()
-#                    if length(next_level_incorrect) < QuestionSets[assignment][j]['IncorrectLimit']:
-#                
     if q is None:
         q = 1
     else:
