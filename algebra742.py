@@ -334,7 +334,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             answer = None
     if QuestionData['Type'] == 'ArrowDiagram':
         form = MCForm()
-        form.options.choices = QuestionData['Choices']
+        letters = ['a','b','c','d']
+        form.options.choices = letters
         try:
             choice = form.options.data
             if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
