@@ -14,7 +14,6 @@ urwid==1.2.1
 Sphinx==1.2.3
 gunicorn>=19.5.0
 pylti>=0.1.3
-wsgiref
 markdown
 markdown_include
 python-markdown-math
