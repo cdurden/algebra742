@@ -235,22 +235,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                                configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
                                )
         md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
-        for k,choice in QuestionData['Choices']:
-            choices.append((k,md.convert(choice)))
+        if 'Choices' in QuestionData['ParameterSetVariants'][i]:
+            for k,choice in QuestionData['ParameterSetVariants'][i]['Choices']:
+                choices.append((k,md.convert(choice)))
+        else:
+            for k,choice in QuestionData['Choices']:
+                choices.append((k,md.convert(choice)))
         form.options.choices = choices
-        try:
-            choice = form.options.data
-            if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
-                correct = True
-            else:
-                correct = False
-            answer = choice
-        except IOError:
-            answer = None
-    if QuestionData['Type'] == 'ArrowDiagram':
-        form = MCForm()
-        letters = [('a',1),('b',2),('c',3),('d',4)]
-        form.options.choices = letters
         try:
             choice = form.options.data
             if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
