@@ -318,8 +318,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     a,b = symbols("a b")
     correct = False
     answer = None
-    Parameters = QuestionData['ParameterSetVariants'][i]
-    content = render_template(QuestionData['Template'], **Parameters)
     if QuestionData['Type'] == 'MC':
         form = MCForm()
         form.options.choices = QuestionData['Choices']
@@ -355,6 +353,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             pass
         # Check answers
         # Answers array
+    Parameters = QuestionData['ParameterSetVariants'][i]
+    content = render_template(QuestionData['Template'], **Parameters, form=form)
     if request.method == 'POST':
         question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
         db.session.commit()
