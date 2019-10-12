@@ -354,7 +354,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         # Check answers
         # Answers array
     Parameters = QuestionData['ParameterSetVariants'][i]
-    content = render_template(QuestionData['Template'], **Parameters, form=form)
+    content = render_template(QuestionData['Template'], form=form, **Parameters)
     if request.method == 'POST':
         question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
         db.session.commit()
