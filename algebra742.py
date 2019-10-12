@@ -253,6 +253,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             answer = None
     if QuestionData['Type'] == 'Numerical':
         form = NumericalForm()
+        answer = form.answer.data
+        CorrectAnswer = QuestionData['ParameterSetVariants'][i]['CorrectAnswer']
+        correct = answer-CorrectAnswer == 0
+        # Check answers
+        # Answers array
+    if QuestionData['Type'] == 'Expression':
+        form = NumericalForm()
         try:
             answer = parse_expr(form.answer.data)
             CorrectAnswer = parse_expr(QuestionData['ParameterSetVariants'][i]['CorrectAnswer'], transformations=transformations)
