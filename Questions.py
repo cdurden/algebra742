@@ -14,10 +14,10 @@ QuestionSets = {
             'Template': 'ArrowDiagram.html',
             'ParameterSetVariants': [
                 {'expression_type': 'sum', 'expression': '-8-5', 'signa': '-', 'a': '8', 'signb': '-', 'b': '5',
-                    'Choices': [('a', 'ArrowDiagrams/ArrowDiagram-1-0a.png'),('b', 'ArrowDiagrams/ArrowDiagram-1-0b.png'), ('c', 'ArrowDiagrams/ArrowDiagram-1-0c.png'), ('d', 'ArrowDiagrams/ArrowDiagram-1-0d.png')],
+                    'Choices': [('a', '![UpUp](resources/ArrowDiagrams/ArrowDiagram-1-0a.png)'),('b', '![UpDown](resources/ArrowDiagrams/ArrowDiagram-1-0b.png)'), ('c', '![DownUp](resources/ArrowDiagrams/ArrowDiagram-1-0c.png)'), ('d', '![DownDown](resources/ArrowDiagrams/ArrowDiagram-1-0d.png)')],
                     'CorrectAnswer': 'd'},
                 {'expression_type': 'sum', 'expression': '3-(-1)', 'signa': '', 'a': '3', 'signb': '', 'b': '1',
-                    'Choices': [('a', 'ArrowDiagrams/ArrowDiagram-1-1a.png'),('b', 'ArrowDiagrams/ArrowDiagram-1-1b.png'), ('c', 'ArrowDiagrams/ArrowDiagram-1-1c.png'), ('d', 'ArrowDiagrams/ArrowDiagram-1-1d.png')],
+                    'Choices': [('a', '![UpUp](resources/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](resources/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](resources/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](resources/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
                     'CorrectAnswer': 'a'},
                  ],
             'Choices': [('a', 'ArrowDiagrams/ArrowDiagram-1-0a.png'),('b', 'ArrowDiagrams/ArrowDiagram-1-0b.png'), ('c', 'ArrowDiagrams/ArrowDiagram-1-0c.png'), ('d', 'ArrowDiagrams/ArrowDiagram-1-0d.png')],

@@ -230,6 +230,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     answer = None
     if QuestionData['Type'] == 'MC':
         form = MCForm()
+        choices = []
+        markdown_include = MarkdownInclude(
+                               configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
+                               )
+        md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
+        for k,choice in QuestionData['Choices']:
+            choices.append((k,md.convert(choice))
         form.options.choices = QuestionData['Choices']
         try:
             choice = form.options.data
