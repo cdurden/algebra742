@@ -299,7 +299,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         db.session.commit()
         if not QuestionSets[assignment]['ProvideImmediateFeedback']:
             print("test")
-            redirect(url_for('Assignment', assignment=assignment))
+            return(redirect(url_for('Assignment', assignment=assignment)))
             
     if len(QuestionSets[assignment]['Questions']) > q or len(QuestionData['ParameterSetVariants']) > i+1:
         if len(QuestionData['ParameterSetVariants']) > i+1:
