@@ -297,7 +297,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
-        if not QuestionSets['assignment']['ProvideImmediateFeedback']:
+        if not QuestionSets[assignment]['ProvideImmediateFeedback']:
             redirect(url_for('Assignment', assignment=assignment))
             
     if len(QuestionSets[assignment]['Questions']) > q or len(QuestionData['ParameterSetVariants']) > i+1:
