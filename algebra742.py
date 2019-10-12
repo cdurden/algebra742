@@ -43,6 +43,7 @@ question_scores = db.Table('question_scores',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('question_id', db.Integer, db.ForeignKey('question.id')),
     db.Column('score', db.Float),
+    db.Column('answer', db.Text),
     db.Column('datetime', db.DateTime, nullable=False,
         default=datetime.utcnow)
 )
