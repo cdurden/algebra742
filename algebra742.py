@@ -184,7 +184,7 @@ def GetNextQuestionVariant(db, user, assignment, q, i):
     try:
         QuestionData = QuestionSets[assignment]['Questions'][q-1]
     except:
-        return None
+        return (None,None)
     try:
         i = int(i)
     except:
@@ -215,7 +215,7 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
     try:
         QuestionData = QuestionSets[assignment]['Questions'][q-1]
     except:
-        return None
+        return (None,None)
     try:
         i = int(i)
     except:
