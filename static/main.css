@@ -30,3 +30,6 @@ div.answer_choices {
 div.answer_choice {
     width: 20%;
 }
+div.answer_choice img {
+    width: 100%;
+}
