@@ -23,7 +23,10 @@ a.button {
     text-decoration: none;
     color: initial;
 }
+div.answer_choices {
+    display: grid;
+    grid-column-gap: 50px;
+}
 div.answer_choice {
-    float: left;
     width: 20%;
 }
