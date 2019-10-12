@@ -1,5 +1,14 @@
 Sample LTI Provider for Flask
 =============================
+
+Create MySQL db
+---------------
+sudo mysql
+USE mysql;
+CREATE USER 'www-data'@'localhost' IDENTIFIED VIA unix_socket;
+CREATE USER 'remote-user'@'%' IDENTIFIED BY 'mypass';
+exit;
+
 |Deploy|
 
 .. |Deploy| image:: https://www.herokucdn.com/deploy/button.png
