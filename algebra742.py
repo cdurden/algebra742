@@ -302,7 +302,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if request.method == 'POST':
         question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
         db.session.commit()
-        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
+        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, answer=answer, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
         if not QuestionSets[assignment]['ProvideImmediateFeedback']:
