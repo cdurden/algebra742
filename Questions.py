@@ -10,7 +10,7 @@ QuestionSets = {
             'SpaceAfter': '2cm',
             },
         {
-            'Type': 'ArrowDiagram',
+            'Type': 'MC',
             'Template': 'ArrowDiagram.html',
             'ParameterSetVariants': [
                 {'expression_type': 'sum', 'expression': '-8-5', 'signa': '-', 'a': '8', 'signb': '-', 'b': '5',
@@ -20,6 +20,7 @@ QuestionSets = {
                     'Choices': [('a', 'ArrowDiagrams/ArrowDiagram-1-1a.png'),('b', 'ArrowDiagrams/ArrowDiagram-1-1b.png'), ('c', 'ArrowDiagrams/ArrowDiagram-1-1c.png'), ('d', 'ArrowDiagrams/ArrowDiagram-1-1d.png')],
                     'CorrectAnswer': 'a'},
                  ],
+            'Choices': [('a', 'ArrowDiagrams/ArrowDiagram-1-0a.png'),('b', 'ArrowDiagrams/ArrowDiagram-1-0b.png'), ('c', 'ArrowDiagrams/ArrowDiagram-1-0c.png'), ('d', 'ArrowDiagrams/ArrowDiagram-1-0d.png')],
             'SpaceAfter': '0.2cm',
             },
 #        {
