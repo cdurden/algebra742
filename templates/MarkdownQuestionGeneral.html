@@ -48,7 +48,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% endif %}
 {% if QuestionData['Type'] == 'Numerical' %}
 <p>
-{{ form.answer }}
+{{ form.answer(autofocus=true) }}
 </p>
 {% endif %}
 
