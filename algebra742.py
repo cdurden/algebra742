@@ -184,7 +184,7 @@ def GetNextQuestionVariant(db, user, assignment, q, i):
     try:
         i = int(i)
     except:
-        QuestionData = QuestionSets[assignment][q-1]['Questions']
+        QuestionData = QuestionSets[assignment]['Questions'][q-1]
         for k in range(len(QuestionData['ParameterSetVariants'])):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==q, Question.__table__.c.variant_index==k))
             results = db.session.execute(statement).first()
@@ -212,7 +212,7 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
     try:
         i = int(i)
     except:
-        QuestionData = QuestionSets[assignment][q-1]['Questions']
+        QuestionData = QuestionSets[assignment]['Questions'][q-1]
         for k in range(len(QuestionData['ParameterSetVariants'])):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==q, Question.__table__.c.variant_index==k, question_scores.c.score==1))
             results = db.session.execute(statement).first()
@@ -233,7 +233,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     q,i = GetNextQuestionVariant(db, user, assignment, q, i)
     #user = User(username="test user", lti_user_id="asdf")
-    QuestionData = QuestionSets[assignment][q-1]['Questions']
+    QuestionData = QuestionSets[assignment]['Questions'][q-1]
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
