@@ -19,7 +19,9 @@ SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "you-will-never-guess")
 # )
 # ```
 
-CONSUMER_KEY_PEM_FILE = os.path.abspath('consumer_key.pem')
+SQLALCHEMY_DATABASE_URI = 'sqlite:///{:s}'.format(os.path.abspath(os.path.join(os.path.dirname(__file__),'algebra742.db')))
+
+CONSUMER_KEY_PEM_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__),'consumer_key.pem'))
 with open(CONSUMER_KEY_PEM_FILE, 'w') as wfile:
     wfile.write(os.environ.get('CONSUMER_KEY_CERT', ''))
 
