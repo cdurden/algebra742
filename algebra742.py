@@ -172,6 +172,34 @@ def GetNextQuestionVariant(db, user, assignment, q, i):
     except:
         for j,QuestionData in enumerate(QuestionSets[assignment]):
             for k in range(len(QuestionData['ParameterSetVariants'])):
+                statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k))
+                results = db.session.execute(statement).first()
+                if not results:
+                    q = j+1
+                    i = k
+                    done = True
+                    break
+            if done:
+                break
+    try:
+        i = int(i)
+    except:
+        QuestionData = QuestionSets[assignment][q-1]
+        for k in range(len(QuestionData['ParameterSetVariants'])):
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==q, Question.__table__.c.variant_index==k))
+            results = db.session.execute(statement).first()
+            if not results:
+                i = k
+                break
+    return((q,i))
+
+def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
+    done = False
+    try:
+        q = int(q)
+    except:
+        for j,QuestionData in enumerate(QuestionSets[assignment]):
+            for k in range(len(QuestionData['ParameterSetVariants'])):
                 statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
                 results = db.session.execute(statement).first()
                 if not results:
@@ -191,14 +219,6 @@ def GetNextQuestionVariant(db, user, assignment, q, i):
             if not results:
                 i = k
                 break
-    if q is None:
-        q = 1
-    else:
-        q = int(q)
-    if i is None:
-        i = 0
-    else:
-        i = int(i)
     return((q,i))
 
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
@@ -277,6 +297,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         statement = question_scores.insert().values(user_id=user.id, question_id=question.id, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
+        if not QuestionSets['assignment']['ProvideImmediateFeedback']:
+            redirect(url_for('Assignment', assignment=assignment))
+            
     if len(QuestionSets[assignment]) > q or len(QuestionData['ParameterSetVariants']) > i+1:
         if len(QuestionData['ParameterSetVariants']) > i+1:
             NextQuestion = {'q': q, 'i': i+1}

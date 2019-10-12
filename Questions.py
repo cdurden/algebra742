@@ -1,5 +1,7 @@
 QuestionSets = {
-    'IntegerEquationsTest': [
+    'IntegerEquationsTest': {
+        'ProvideImmediateFeedback': False,
+        'Questions': [
         {
             #'Type': 'AddSubtractIntegerDirections',
             'Type': 'MC',
@@ -64,6 +66,7 @@ QuestionSets = {
             'SpaceAfter': '5cm',
             },
         ],
+        },
     'AddEmUpIntegersAndEquations': [
         {
             #'Type': 'AddSubtractIntegers',
