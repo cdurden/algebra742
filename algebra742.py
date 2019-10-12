@@ -236,7 +236,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                                )
         md = markdown.Markdown(extensions=['mdx_math','attr_list','markdown.extensions.extra','markdown.extensions.meta',markdown_include])
         for k,choice in QuestionData['Choices']:
-            choices.append((k,md.convert(choice))
+            choices.append((k,md.convert(choice)))
         form.options.choices = QuestionData['Choices']
         try:
             choice = form.options.data
