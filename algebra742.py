@@ -255,7 +255,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         form = NumericalForm()
         answer = form.answer.data
         CorrectAnswer = QuestionData['ParameterSetVariants'][i]['CorrectAnswer']
-        correct = answer-CorrectAnswer == 0
+        if answer is not None:
+            correct = answer-CorrectAnswer == 0
         # Check answers
         # Answers array
     if QuestionData['Type'] == 'Expression':
