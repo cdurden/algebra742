@@ -19,4 +19,4 @@ markdown_include
 python-markdown-math
 sympy
 flask_sqlalchemy
-MySQL-python
+mysqlclient
