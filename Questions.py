@@ -35,10 +35,10 @@ QuestionSets = {
             'Type': 'Numerical',
             'Template': 'AddSubtractIntegers.html',
             'ParameterSetVariants': [
-                {'expression_type': 'sum', 'expression': '-8-5', 'CorrectAnswer': '-13'},
-                {'expression_type': 'sum', 'expression': '3-(-1)', 'CorrectAnswer': '4'},
-                {'expression_type': 'sum', 'expression': '-34+93', 'CorrectAnswer': '59'},
-                {'expression_type': 'sum', 'expression': '-27-(-157)', 'CorrectAnswer': '130'},],
+                {'expression_type': 'sum', 'expression': '-8-5', 'CorrectAnswer': -13},
+                {'expression_type': 'sum', 'expression': '3-(-1)', 'CorrectAnswer': 4},
+                {'expression_type': 'sum', 'expression': '-34+93', 'CorrectAnswer': 59},
+                {'expression_type': 'sum', 'expression': '-27-(-157)', 'CorrectAnswer': 130},],
             'SpaceAfter': '4cm',
             },
         {
