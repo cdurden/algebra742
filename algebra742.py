@@ -109,7 +109,7 @@ class MCForm(Form):
 
     :param Form:
     """
-    options = RadioField(u'Choices')
+    options = RadioField('options')
 
 class NumericalForm(Form):
     """ Add data from Form
@@ -332,7 +332,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             answer = None
     if QuestionData['Type'] == 'ArrowDiagram':
         form = MCForm()
-        letters = ['a','b','c','d']
+        letters = [('a',1),('b',2),('c',3),('d',4)]
         form.options.choices = letters
         try:
             choice = form.options.data
