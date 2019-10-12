@@ -6,6 +6,10 @@ Create MySQL db
 sudo mysql
 USE mysql;
 CREATE USER 'www-data'@'localhost' IDENTIFIED VIA unix_socket;
+GRANT ALL PRIVILEGES 
+ ON *.* TO 'www-data'@'localhost' 
+  IDENTIFIED BY 'safe_password' 
+   WITH GRANT OPTION;`
 CREATE USER 'remote-user'@'%' IDENTIFIED BY 'mypass';
 exit;
 
