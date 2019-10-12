@@ -23,7 +23,7 @@ a.button {
     text-decoration: none;
     color: initial;
 }
-div.equals_container {
-    width: 15%;
+div.answer_choice {
+    float: left;
+    width: 20%;
 }
-
