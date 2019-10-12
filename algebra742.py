@@ -26,6 +26,8 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    firstname = db.Column(db.String(80), nullable=False)
+    lastname = db.Column(db.String(80), nullable=False)
     lti_user_id = db.Column(db.String(255), unique=True, nullable=False)
 
     def __repr__(self):
@@ -35,6 +37,8 @@ from datetime import datetime
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    source = db.Column(db.Text)
+    params_json = db.Column(db.Text)
     assignment = db.Column(db.String(255))
     number = db.Column(db.Integer)
     variant_index = db.Column(db.Integer)
