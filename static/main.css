@@ -24,7 +24,6 @@ a.button {
     color: initial;
 }
 div.answer_choices {
-    display: grid;
     grid-column-gap: 50px;
 }
 div.answer_choice {
