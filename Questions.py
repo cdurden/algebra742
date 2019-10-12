@@ -14,13 +14,13 @@ QuestionSets = {
             'Template': 'ArrowDiagram.html',
             'ParameterSetVariants': [
                 {'expression_type': 'sum', 'expression': '-8-5', 'signa': '-', 'a': '8', 'signb': '-', 'b': '5',
-                    'Choices': [('a', '![UpUp](static/ArrowDiagrams/ArrowDiagram-1-0a.png)'),('b', '![UpDown](static/ArrowDiagrams/ArrowDiagram-1-0b.png)'), ('c', '![DownUp](static/ArrowDiagrams/ArrowDiagram-1-0c.png)'), ('d', '![DownDown](static/ArrowDiagrams/ArrowDiagram-1-0d.png)')],
+                    'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-0a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-0b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-0c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-0d.png)')],
                     'CorrectAnswer': 'd'},
                 {'expression_type': 'sum', 'expression': '3-(-1)', 'signa': '', 'a': '3', 'signb': '', 'b': '1',
-                    'Choices': [('a', '![UpUp](static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
+                    'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
                     'CorrectAnswer': 'a'},
                  ],
-            'Choices': [('a', '![UpUp](static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
+            'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
             'SpaceAfter': '0.2cm',
             },
 #        {
