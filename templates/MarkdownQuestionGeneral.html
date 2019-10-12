@@ -33,15 +33,19 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 </section>
 
 <div class="input">
-<div>
+<div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" name="answer_form">
     {{ form.hidden_tag() }}
 {% if QuestionData['Type'] in ['MC','ArrowDiagram'] %}
 {% for subfield in form.options %}
+<div class="answer_choice">
+    <!--
     <tr>
         <td>{{ subfield }}</td>
         <td>{{ subfield.label }}</td>
     </tr>
+    -->
+</div>
 {% endfor %}
 {% endif %}
 {% if QuestionData['Type'] == 'Numerical' %}
