@@ -39,12 +39,8 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% if QuestionData['Type'] in ['MC','ArrowDiagram'] %}
 {% for subfield in form.options %}
 <div class="answer_choice">
-    <!--
-    <tr>
-        <td>{{ subfield }}</td>
-        <td>{{ subfield.label }}</td>
-    </tr>
-    -->
+        {{ subfield }}
+        {{ subfield.label }}
 </div>
 {% endfor %}
 {% endif %}
