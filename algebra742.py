@@ -147,16 +147,16 @@ def get_or_create(session, model, defaults=None, **kwargs):
         return instance
 
 def GetNextExamQuestionVariant(db, user, assignment, q, i):
-        for j,QuestionData in enumerate(QuestionSets[assignment]):
+        for j,QuestionData in enumerate(QuestionSets[assignment]['Questions']):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==q, question_scores.c.score==1))
             correct = db.session.execute(statement).all()
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+1, question_scores.c.score==0))
             incorrect = db.session.execute(statement).all()
-            if len(incorrect) < QuestionSets[assignment][j]['IncorrectLimit']:
-                if len(correct)/(len(correct)+len(incorrect))> QuestionSets[assignment][j]['AdvanceLevel']:
+            if len(incorrect) < QuestionSets[assignment]['Questions'][j]['IncorrectLimit']:
+                if len(correct)/(len(correct)+len(incorrect))> QuestionSets[assignment]['Questions'][j]['AdvanceLevel']:
                     statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==j+2, question_scores.c.score==0))
                     next_level_incorrect = db.session.execute(statement).all()
-                    if length(next_level_incorrect) < QuestionSets[assignment][j+1]['IncorrectLimit']:
+                    if length(next_level_incorrect) < QuestionSets[assignment]['Questions'][j+1]['IncorrectLimit']:
                         q0 = j+2
                     else:
                         q0 = j+1
@@ -170,7 +170,7 @@ def GetNextQuestionVariant(db, user, assignment, q, i):
     try:
         q = int(q)
     except:
-        for j,QuestionData in enumerate(QuestionSets[assignment]):
+        for j,QuestionData in enumerate(QuestionSets[assignment]['Questions']):
             for k in range(len(QuestionData['ParameterSetVariants'])):
                 statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k))
                 results = db.session.execute(statement).first()
@@ -184,7 +184,7 @@ def GetNextQuestionVariant(db, user, assignment, q, i):
     try:
         i = int(i)
     except:
-        QuestionData = QuestionSets[assignment][q-1]
+        QuestionData = QuestionSets[assignment][q-1]['Questions']
         for k in range(len(QuestionData['ParameterSetVariants'])):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==q, Question.__table__.c.variant_index==k))
             results = db.session.execute(statement).first()
@@ -198,7 +198,7 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
     try:
         q = int(q)
     except:
-        for j,QuestionData in enumerate(QuestionSets[assignment]):
+        for j,QuestionData in enumerate(QuestionSets[assignment]['Questions']):
             for k in range(len(QuestionData['ParameterSetVariants'])):
                 statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k, question_scores.c.score==1))
                 results = db.session.execute(statement).first()
@@ -212,7 +212,7 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
     try:
         i = int(i)
     except:
-        QuestionData = QuestionSets[assignment][q-1]
+        QuestionData = QuestionSets[assignment][q-1]['Questions']
         for k in range(len(QuestionData['ParameterSetVariants'])):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==q, Question.__table__.c.variant_index==k, question_scores.c.score==1))
             results = db.session.execute(statement).first()
@@ -233,7 +233,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     q,i = GetNextQuestionVariant(db, user, assignment, q, i)
     #user = User(username="test user", lti_user_id="asdf")
-    QuestionData = QuestionSets[assignment][q-1]
+    QuestionData = QuestionSets[assignment][q-1]['Questions']
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
@@ -300,7 +300,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         if not QuestionSets['assignment']['ProvideImmediateFeedback']:
             redirect(url_for('Assignment', assignment=assignment))
             
-    if len(QuestionSets[assignment]) > q or len(QuestionData['ParameterSetVariants']) > i+1:
+    if len(QuestionSets[assignment]['Questions']) > q or len(QuestionData['ParameterSetVariants']) > i+1:
         if len(QuestionData['ParameterSetVariants']) > i+1:
             NextQuestion = {'q': q, 'i': i+1}
         else:
