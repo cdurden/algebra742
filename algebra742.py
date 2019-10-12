@@ -106,7 +106,7 @@ class NumericalForm(Form):
 
     :param Form:
     """
-    answer = IntegerField('answer')
+    answer = IntegerField('answer',render_kw={'autofocus': True})
     
 class EquationForm(Form):
     """ Add data from Form

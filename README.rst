@@ -10,8 +10,19 @@ GRANT ALL PRIVILEGES
  ON *.* TO 'www-data'@'localhost' 
   IDENTIFIED BY 'safe_password' 
    WITH GRANT OPTION;`
-CREATE USER 'remote-user'@'%' IDENTIFIED BY 'mypass';
+CREATE USER 'remote-user'@'%';
+GRANT ALL PRIVILEGES 
+ ON algebra742.* TO 'remote-user'@'%' 
+  IDENTIFIED BY 'safe_password' 
+   WITH GRANT OPTION;`
 exit;
+
+sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf
+change bind-address to 0.0.0.0
+
+Test remote MySQL connection
+----------------------------
+mysql -h linode-cdurden -u cld -p algebra742
 
 |Deploy|
 
