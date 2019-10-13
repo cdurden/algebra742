@@ -111,7 +111,8 @@ class NumericalForm(Form):
 
     :param Form:
     """
-    answer = IntegerField('answer')
+    #answer = IntegerField('answer')
+    answer = StringField('answer')
     
 class EquationForm(Form):
     """ Add data from Form
