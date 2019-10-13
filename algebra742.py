@@ -299,7 +299,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         answer = form.answer.data
         CorrectAnswer = QuestionData['ParameterSetVariants'][i]['CorrectAnswer']
         if answer is not None:
-            correct = answer-CorrectAnswer == 0
+            try:
+                correct = int(answer)-CorrectAnswer == 0
+            except:
+                correct = False
         # Check answers
         # Answers array
     if QuestionData['Type'] == 'Expression':
