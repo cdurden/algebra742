@@ -104,6 +104,7 @@ class MCForm(Form):
     :param Form:
     """
     options = RadioField('options')
+    other = TextField('other')
 
 class NumericalForm(Form):
     """ Add data from Form
@@ -281,9 +282,12 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 correct = True
             else:
                 correct = False
-            answer = choice
-        except IOError:
-            answer = None
+            if form.other.data:
+                answer = form.other.data
+            else:
+                answer = choice
+        except:
+            pass
     if QuestionData['Type'] == 'Numerical':
         form = NumericalForm()
         answer = form.answer.data
