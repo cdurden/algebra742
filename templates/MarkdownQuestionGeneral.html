@@ -26,6 +26,15 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% endblock %}
 <main>
 <section>
+    <div id="nav">
+        <ul>
+            {% for j,q,i in enumerate(question_indices) %}
+            <li>
+                <a href="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}">{{ j }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
     <div id="content">
         {{ QuestionData['Question'] }}
         {{ content | safe }}

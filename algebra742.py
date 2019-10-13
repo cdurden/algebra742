@@ -248,6 +248,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         return render_template('thankyou.html')
     #user = User(username="test user", lti_user_id="asdf")
     QuestionData = QuestionSets[assignment]['Questions'][q-1]
+    question_indices = []
+    for j,question in enumerate(QuestionSets[assignment]['Questions']):
+        for k in range(len(question['ParameterSetVariants'])):
+            question_indices.append((j,k))
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
@@ -325,7 +329,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             NextQuestion = {'q': q+1, 'i': 0}
     else:
         NextQuestion = None
-    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData)
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices)
 
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
