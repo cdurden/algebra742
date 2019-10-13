@@ -251,7 +251,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     question_indices = []
     for j,question in enumerate(QuestionSets[assignment]['Questions']):
         for k in range(len(question['ParameterSetVariants'])):
-            question_indices.append((j,k))
+            question_indices.append((j+1,k))
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
