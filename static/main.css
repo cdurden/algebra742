@@ -32,6 +32,6 @@ div.answer_choice {
 div.answer_choice img {
     width: 100%;
 }
-div#nav ul {
+div#nav li {
     display: inline;
 }
