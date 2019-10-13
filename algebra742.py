@@ -127,7 +127,8 @@ class UserInfoForm(Form):
     :param Form:
     """
     username = StringField('username')
-    password = StringField('password')
+    firstname = StringField('firstname')
+    lastname = StringField('lastname')
 
 
 def error(exception=None):
@@ -456,7 +457,7 @@ def SetUserInfo(lti=lti):
         user.username = form.username.data
     else:
         form = UserInfoForm()
-        user = User(lti_user_id=lti.name, username=form.username.data)
+        user = User(lti_user_id=lti.name, username=form.username.data, firstname=form.firstname.data, lastname=form.lastname.data)
         db.session.add(user)
     db.session.commit()
     return render_template('index.html', user=user)
