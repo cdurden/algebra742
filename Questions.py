@@ -30,18 +30,6 @@ QuestionSets = {
             'Choices': [('a', 'up'), ('b','down')],
             'SpaceAfter': '2cm',
             },
-    'IntegerEquationsTest': {
-        'ProvideImmediateFeedback': False,
-        'Questions': [
-        {
-            #'Type': 'AddSubtractIntegerDirections',
-            'Type': 'MC',
-            'Template': 'AddSubtractIntegerDirections.html',
-            'ParameterSetVariants': [{'operation': 'subtracting a negative', 'CorrectAnswer': 'a'},{'operation': 'subtracting a positive', 'CorrectAnswer': 'b'}],
-                #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
-            'Choices': [('a', 'up'), ('b','down')],
-            'SpaceAfter': '2cm',
-            },
         {
             'Type': 'MC',
             'Template': 'ArrowDiagram.html',
