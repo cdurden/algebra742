@@ -1,4 +1,35 @@
 QuestionSets = {
+    'AlgebraicAndVerbalExpressions': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'VerbalToAlgebraicExpression',
+            'Template': 'AddSubtractIntegerDirections.html',
+            'ParameterSetVariants': [
+                {'verbal_expression': '3 decreased by the product of 5 and x', 'CorrectAnswer': '3-5x'},
+                {'verbal_expression': 'the sum of x to the 5th power and 3 times y', 'CorrectAnswer': 'x^5+3y'},
+                {'verbal_expression': 'the sum of x and 5', 'CorrectAnswer': 'x+5'},
+                {'verbal_expression': '4 times the sum of x and 5', 'CorrectAnswer': '4(x+5)'},
+                {'verbal_expression': 'the product of 5 and x', 'CorrectAnswer': '5x'},
+                {'verbal_expression': 'The difference of 3 times x squared and y', 'CorrectAnswer': '3x^2-y'},
+                ],
+                #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
+            'SpaceAfter': '2cm',
+            },
+        ]}
+    'IntegerEquationsTest': {
+        'ProvideImmediateFeedback': False,
+        'Questions': [
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
+            'Template': 'AddSubtractIntegerDirections.html',
+            'ParameterSetVariants': [{'operation': 'subtracting a negative', 'CorrectAnswer': 'a'},{'operation': 'subtracting a positive', 'CorrectAnswer': 'b'}],
+                #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
+            'Choices': [('a', 'up'), ('b','down')],
+            'SpaceAfter': '2cm',
+            },
     'IntegerEquationsTest': {
         'ProvideImmediateFeedback': False,
         'Questions': [
