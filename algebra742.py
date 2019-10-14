@@ -106,6 +106,15 @@ class MCForm(Form):
     options = RadioField('options')
     other = TextField('other')
 
+class SumTermsProductFactorsForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    options = RadioField('options')
+    terms = TextField('terms')
+    factors = TextField('factors')
+
 class NumericalForm(Form):
     """ Add data from Form
 

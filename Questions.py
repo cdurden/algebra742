@@ -1,4 +1,29 @@
 QuestionSets = {
+    'TwoStepEquations': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'SolveEquation.html',
+            'ParameterSetVariants': [
+                {'equation': r'3x+10=70', 'CorrectAnswer': 20}, 
+                {'equation': r'\frac{1}{3}(x+3)=9','CorrectAnswer': 24},],
+                {'equation': r'-\frac{1}{4}(x+2)=10','CorrectAnswer': -42},],
+                {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
+                {'equation': r'\frac{1}{4}(x+2)=10','CorrectAnswer': 38},],
+                {'equation': r'5x+301=-405+301','CorrectAnswer': -81},
+                {'equation': r'7(x-1)=70','CorrectAnswer': 71},],
+                {'equation': r'\frac{1}{3}x+(-136)=-158','CorrectAnswer': -66},
+                {'equation': r'\frac{1}{2}x+93=-211','CorrectAnswer': -608},
+                #{'equation': 'x+(-225)=-300','CorrectAnswer': -75},
+                {'equation': r'\frac{1}{5}(x+25)=-25','CorrectAnswer': -150},
+                {'equation': r'\frac{1}{2}(2x+4)=-8','CorrectAnswer': -10},
+                ],
+                #{'equation': r'\frac{1}{3}x+(-45)=-75','CorrectAnswer': -90},],
+            'SpaceAfter': '5cm',
+            },
+        },
     'AlgebraicAndVerbalExpressions': {
         'ProvideImmediateFeedback': True,
         'Questions': [
@@ -13,6 +38,33 @@ QuestionSets = {
                 {'verbal_expression': '4 times the sum of x and 5', 'CorrectAnswer': '4(x+5)'},
                 {'verbal_expression': 'the product of 5 and x', 'CorrectAnswer': '5x'},
                 {'verbal_expression': 'The difference of 3 times x squared and y', 'CorrectAnswer': '3x^2-y'},
+                ],
+                #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
+            'SpaceAfter': '2cm',
+            },
+        ]}
+    'TermsAndFactors': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
+            'Template': 'IdentifySumTermsProductFactors.html',
+            'ParameterSetVariants': [
+                {'expression': '5+2x', 'CorrectAnswer': 'a'
+                    'Choices': [('a', 'sum'), ('b', 'product')],
+                    },
+                {'expression': '5(x+3)', 'CorrectAnswer': 'b'
+                    'Choices': [('a', 'sum'), ('b', 'product')],
+                {'expression': '3x+5y+4', 'CorrectAnswer': 'a'
+                    'Choices': [('a', 'sum'), ('b', 'product')],
+                    },
+                {'expression': '3(x+y+2)', 'CorrectAnswer': 'a'
+                    'Choices': [('a', 'sum'), ('b', 'product')],
+                    },
+                {'expression': '3(x+1)+4', 'CorrectAnswer': 'a'
+                    'Choices': [('a', 'sum'), ('b', 'product')],
+                    },
                 ],
                 #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
             'SpaceAfter': '2cm',
