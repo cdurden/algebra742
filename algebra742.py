@@ -113,6 +113,14 @@ class NumericalForm(Form):
     """
     #answer = IntegerField('answer')
     answer = StringField('answer')
+
+class ExpressionForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    #answer = IntegerField('answer')
+    answer = StringField('answer')
     
 class EquationForm(Form):
     """ Add data from Form
@@ -307,7 +315,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         # Check answers
         # Answers array
     if QuestionData['Type'] == 'Expression':
-        form = NumericalForm()
+        form = ExpressionForm()
         try:
             answer = parse_expr(form.answer.data)
             CorrectAnswer = parse_expr(QuestionData['ParameterSetVariants'][i]['CorrectAnswer'], transformations=transformations)

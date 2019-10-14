@@ -4,8 +4,8 @@ QuestionSets = {
         'Questions': [
         {
             #'Type': 'AddSubtractIntegerDirections',
-            'Type': 'VerbalToAlgebraicExpression',
-            'Template': 'AddSubtractIntegerDirections.html',
+            'Type': 'Expression',
+            'Template': 'VerbalToAlgebraicExpression.html',
             'ParameterSetVariants': [
                 {'verbal_expression': '3 decreased by the product of 5 and x', 'CorrectAnswer': '3-5x'},
                 {'verbal_expression': 'the sum of x to the 5th power and 3 times y', 'CorrectAnswer': 'x^5+3y'},
