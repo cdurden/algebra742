@@ -317,7 +317,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] == 'Expression':
         form = ExpressionForm()
         #try:
-        answer = parse_expr(form.answer.data)
+        answer = parse_expr(form.answer.data, transformations=transformations)
         CorrectAnswer = parse_expr(QuestionData['ParameterSetVariants'][i]['CorrectAnswer'], transformations=transformations)
         correct = simplify(answer-CorrectAnswer) == 0
         #except:
