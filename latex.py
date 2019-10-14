@@ -25,8 +25,8 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     doc.packages.append(Package('multicol'))
     doc.packages.append(Package('graphicx'))
     doc.packages.append(Package('amsmath'))
-    QuestionData = QuestionSets[assignment] 
-    with doc.create(Section('Integer Equations Quiz')):
+    QuestionData = QuestionSets[assignment]['Questions'] 
+    with doc.create(Section('')):
         doc.append(NoEscape(r'''
     \begin{center}
     \fbox{\fbox{\parbox{5.5in}{\centering
@@ -46,17 +46,17 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                     #enum.add_item(NoEscape(Question['Question']))
                     doc.append("\n\n")
                     letters = ['a','b','c','d']
-                    if 'Choices' in Parameters:
-                        for i,Choice in enumerate(Parameters['Choices']):
-                            if Choice['type'] == 'image':
-                                doc.append(letters[i]+')')
-                                doc.append(NoEscape(r'\includegraphics[width=0.2\columnwidth]{'+Choice['path']+'}'))
+#                    if 'Choices' in Parameters:
+#                        for i,Choice in enumerate(Parameters['Choices']):
+#                            if Choice['type'] == 'image':
+#                                doc.append(letters[i]+')')
+#                                doc.append(NoEscape(r'\includegraphics[width=0.2\columnwidth]{'+Choice['path']+'}'))
                     doc.append(NoEscape(r'\vspace{'+Question['SpaceAfter']+r'}'))
     doc.append(NoEscape(r'\end{multicols}'))
     if filepath is None:
-        doc.generate_tex(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
+        doc.generate_pdf(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
     else:
-        doc.generate_tex(filepath=filepath)
+        doc.generate_pdf(filepath=filepath)
 
 def GenerateProblemsInFourQuadrants(assignment, filepath=None):
     doc = Document()
@@ -108,15 +108,22 @@ def GenerateArrowDiagram(filepath, Parameters):
     doc.append(NoEscape(out))
     doc.generate_tex(filepath=filepath)
 
-GenerateAssignmentPdf('IntegerEquationsTest')
-assignment = 'IntegerEquationsTest'
+#GenerateAssignmentPdf('IntegerEquationsTest')
+#assignment = 'IntegerEquationsTest'
+#GenerateAssignmentPdf(assignment)
+assignment = 'TwoStepEquations'
+GenerateAssignmentPdf(assignment)
+assignment = 'AlgebraicAndVerbalExpressions'
+GenerateAssignmentPdf(assignment)
+assignment = 'TermsAndFactors'
+GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
 #GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')
 #GenerateProblemsInFourQuadrants('AddEmUpIntegersAndEquations')
 letters = ['a','b','c','d']
 signs = [('',''),('','-'),('-',''),('-','-')]
-for q,Question in enumerate(QuestionSets[assignment]):
+for q,Question in enumerate(QuestionSets[assignment]['Questions']):
     if Question['Type']=='ArrowDiagram':
         for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
             for j,(signa, signb) in enumerate(signs):

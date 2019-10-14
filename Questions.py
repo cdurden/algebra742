@@ -8,12 +8,12 @@ QuestionSets = {
             'Template': 'SolveEquation.html',
             'ParameterSetVariants': [
                 {'equation': r'3x+10=70', 'CorrectAnswer': 20}, 
-                {'equation': r'\frac{1}{3}(x+3)=9','CorrectAnswer': 24},],
-                {'equation': r'-\frac{1}{4}(x+2)=10','CorrectAnswer': -42},],
+                {'equation': r'\frac{1}{3}(x+3)=9','CorrectAnswer': 24},
+                {'equation': r'-\frac{1}{4}(x+2)=10','CorrectAnswer': -42},
                 {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
-                {'equation': r'\frac{1}{4}(x+2)=10','CorrectAnswer': 38},],
+                {'equation': r'\frac{1}{4}(x+2)=10','CorrectAnswer': 38},
                 {'equation': r'5x+301=-405+301','CorrectAnswer': -81},
-                {'equation': r'7(x-1)=70','CorrectAnswer': 71},],
+                {'equation': r'7(x-1)=70','CorrectAnswer': 71},
                 {'equation': r'\frac{1}{3}x+(-136)=-158','CorrectAnswer': -66},
                 {'equation': r'\frac{1}{2}x+93=-211','CorrectAnswer': -608},
                 #{'equation': 'x+(-225)=-300','CorrectAnswer': -75},
@@ -23,6 +23,7 @@ QuestionSets = {
                 #{'equation': r'\frac{1}{3}x+(-45)=-75','CorrectAnswer': -90},],
             'SpaceAfter': '5cm',
             },
+        ]
         },
     'AlgebraicAndVerbalExpressions': {
         'ProvideImmediateFeedback': True,
@@ -42,7 +43,7 @@ QuestionSets = {
                 #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
             'SpaceAfter': '2cm',
             },
-        ]}
+        ]},
     'TermsAndFactors': {
         'ProvideImmediateFeedback': True,
         'Questions': [
@@ -51,23 +52,24 @@ QuestionSets = {
             'Type': 'MC',
             'Template': 'IdentifySumTermsProductFactors.html',
             'ParameterSetVariants': [
-                {'expression': '5+2x', 'CorrectAnswer': 'a'
+                {'expression': '5+2x', 'CorrectAnswer': 'a',
                     'Choices': [('a', 'sum'), ('b', 'product')],
                     },
-                {'expression': '5(x+3)', 'CorrectAnswer': 'b'
-                    'Choices': [('a', 'sum'), ('b', 'product')],
-                {'expression': '3x+5y+4', 'CorrectAnswer': 'a'
+                {'expression': '5(x+3)', 'CorrectAnswer': 'b',
                     'Choices': [('a', 'sum'), ('b', 'product')],
                     },
-                {'expression': '3(x+y+2)', 'CorrectAnswer': 'a'
+                {'expression': '3x+5y+4', 'CorrectAnswer': 'a',
                     'Choices': [('a', 'sum'), ('b', 'product')],
                     },
-                {'expression': '3(x+1)+4', 'CorrectAnswer': 'a'
+                {'expression': '3(x+y+2)', 'CorrectAnswer': 'b',
+                    'Choices': [('a', 'sum'), ('b', 'product')],
+                    },
+                {'expression': '3(x+1)+4', 'CorrectAnswer': 'a',
                     'Choices': [('a', 'sum'), ('b', 'product')],
                     },
                 ],
                 #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
-            'SpaceAfter': '2cm',
+            'SpaceAfter': '4cm',
             },
         ]},
     'IntegerEquationsTest': {
