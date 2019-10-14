@@ -17,7 +17,7 @@ QuestionSets = {
                 #,{'operation': 'adding a negative', 'answer': 'a'},{'operation': 'adding a positive', 'answer': 'b'}],
             'SpaceAfter': '2cm',
             },
-        ]}
+        ]},
     'IntegerEquationsTest': {
         'ProvideImmediateFeedback': False,
         'Questions': [
