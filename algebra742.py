@@ -272,8 +272,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         return response
     from sympy import simplify, symbols
     from sympy.parsing.sympy_parser import parse_expr
-    from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application
-    transformations = (standard_transformations + (implicit_multiplication_application,))
+    from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
+    transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
     a,b = symbols("a b")
     correct = False
     answer = None
