@@ -47,6 +47,7 @@ QuestionSets = {
                 {'expression': r'3x', 'CorrectAnswer': '3'}, 
                 {'expression': r'\frac{1}{3}(x+3)=9','CorrectAnswer': '1/3'},
                 {'expression': r'-\frac{1}{4}(x+2)=10','CorrectAnswer': '-1/4'},
+                ],
             'SpaceAfter': '5cm',
             },
         ]
