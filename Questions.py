@@ -12,12 +12,10 @@ QuestionSets = {
                 {'expression': r'3', 'CorrectAnswer': '1/3'}, 
                 {'expression': r'-\frac{2}{3}','CorrectAnswer': '-3/2'},
                 {'expression': r'-\frac{1}{3}','CorrectAnswer': '-3'},
-                {'expression': r'2', 'CorrectAnswer': '1/2'}, 
-                {'expression': r'-\frac{1}{4}','CorrectAnswer': '-4'},
                 {'expression': r'-5','CorrectAnswer': '-1/5'},
                 {'expression': r'-\frac{2}{3}','CorrectAnswer': '-3/2'},
                 ],
-            'SpaceAfter': '5cm',
+            'SpaceAfter': '2cm',
             },
         {
             'Type': 'Expression',
@@ -25,11 +23,10 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'expression': r'10', 'CorrectAnswer': '-10'}, 
                 {'expression': r'-3','CorrectAnswer': '3'},
-                {'expression': r'15', 'CorrectAnswer': '-15'}, 
                 {'expression': r'-136','CorrectAnswer': '136'},
                 {'expression': r'-\frac{1}{4}','CorrectAnswer': '1/4'},
                 ],
-            'SpaceAfter': '5cm',
+            'SpaceAfter': '2cm',
             },
         {
             'Type': 'Expression',
@@ -39,7 +36,7 @@ QuestionSets = {
                 {'expression': r'2x+15=83', 'CorrectAnswer': '15'}, 
                 {'expression': r'\frac{1}{3}x+(-136)','CorrectAnswer': '-136'},
                 ],
-            'SpaceAfter': '5cm',
+            'SpaceAfter': '2cm',
             },
         {
             'Type': 'Expression',
@@ -49,7 +46,7 @@ QuestionSets = {
                 {'expression': r'\frac{1}{3}(x+3)=9','CorrectAnswer': '1/3'},
                 {'expression': r'-\frac{1}{4}(x+2)=10','CorrectAnswer': '-1/4'},
                 ],
-            'SpaceAfter': '5cm',
+            'SpaceAfter': '2cm',
             },
         ]
         },

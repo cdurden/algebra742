@@ -31,7 +31,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     \begin{center}
     \fbox{\fbox{\parbox{5.5in}{\centering
     Answer the questions in the spaces provided on the
-    question sheets. Then enter your answer into the Integer Equations Quiz on Schoology. If you run out of room for an answer,
+    question sheets. If you run out of room for an answer,
     raise your hand to ask for an extra piece of paper.}}}
     \end{center}
     \vspace{0.1in}
@@ -108,14 +108,13 @@ def GenerateArrowDiagram(filepath, Parameters):
     doc.append(NoEscape(out))
     doc.generate_tex(filepath=filepath)
 
-#GenerateAssignmentPdf('IntegerEquationsTest')
-#assignment = 'IntegerEquationsTest'
+#assignment = 'TwoStepEquations'
 #GenerateAssignmentPdf(assignment)
-assignment = 'TwoStepEquations'
-GenerateAssignmentPdf(assignment)
-assignment = 'AlgebraicAndVerbalExpressions'
-GenerateAssignmentPdf(assignment)
-assignment = 'TermsAndFactors'
+#assignment = 'AlgebraicAndVerbalExpressions'
+#GenerateAssignmentPdf(assignment)
+#assignment = 'TermsAndFactors'
+#GenerateAssignmentPdf(assignment)
+assignment = 'ReciprocalPairsAndZeroPairs'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
