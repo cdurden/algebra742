@@ -40,6 +40,8 @@ QuestionSets = {
                 {'expression': r'2x+15=83', 'CorrectAnswer': '15'}, 
                 {'expression': r'\frac{1}{3}x+(-136)','CorrectAnswer': '-136'},
                 ],
+            'SpaceAfter': '5cm',
+            },
         {
             'Type': 'Expression',
             'Template': 'IdentifyCoefficient.html',
