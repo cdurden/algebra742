@@ -1,4 +1,38 @@
 QuestionSets = {
+    'Reciprocals and Zero Pairs': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Expression',
+            'Template': 'ReciprocalPair.html',
+            'ParameterSetVariants': [
+                {'expression': r'\frac{4}{3}','CorrectAnswer': '3/4'},
+                {'expression': r'3', 'CorrectAnswer': '1/3'}, 
+                {'expression': r'\frac{1}{3}','CorrectAnswer': '3'},
+                {'expression': r'2', 'CorrectAnswer': '1/2'}, 
+                {'expression': r'-\frac{1}{4}','CorrectAnswer': '-4'},
+                {'expression': r'-5','CorrectAnswer': '-1/5'},
+                {'expression': r'7','CorrectAnswer': '1/7'},
+                {'expression': r'-\frac{2}{3}','CorrectAnswer': '-3/2'},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        {
+            'Type': 'Expression',
+            'Template': 'ZeroPair.html',
+            'ParameterSetVariants': [
+                {'expression': r'10', 'CorrectAnswer': '-10'}, 
+                {'expression': r'-3','CorrectAnswer': '3'},
+                {'expression': r'-\frac{1}{4}','CorrectAnswer': '1/4'},
+                {'expression': r'15', 'CorrectAnswer': '-15'}, 
+                {'expression': r'2','CorrectAnswer': '-2'},
+                {'expression': r'-136','CorrectAnswer': '136'},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        ]
+        },
     'TwoStepEquations': {
         'ProvideImmediateFeedback': True,
         'Questions': [
@@ -13,7 +47,7 @@ QuestionSets = {
                 {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
                 {'equation': r'\frac{1}{4}(x+2)=10','CorrectAnswer': 38},
                 {'equation': r'5x+301=-405+301','CorrectAnswer': -81},
-                {'equation': r'7(x-1)=70','CorrectAnswer': 71},
+                {'equation': r'7(x-1)=70','CorrectAnswer': 11},
                 {'equation': r'\frac{1}{3}x+(-136)=-158','CorrectAnswer': -66},
                 {'equation': r'\frac{1}{2}x+93=-211','CorrectAnswer': -608},
                 #{'equation': 'x+(-225)=-300','CorrectAnswer': -75},
