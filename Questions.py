@@ -1,5 +1,5 @@
 QuestionSets = {
-    'ReciprocalsPairsAndZeroPairs': {
+    'ReciprocalPairsAndZeroPairs': {
         'ProvideImmediateFeedback': True,
         'Questions': [
         {
