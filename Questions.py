@@ -32,6 +32,23 @@ QuestionSets = {
                 ],
             'SpaceAfter': '5cm',
             },
+        {
+            'Type': 'Expression',
+            'Template': 'IdentifyConstant.html',
+            'ParameterSetVariants': [
+                {'expression': r'3x+10', 'CorrectAnswer': '10'}, 
+                {'expression': r'2x+15=83', 'CorrectAnswer': '15'}, 
+                {'expression': r'\frac{1}{3}x+(-136)','CorrectAnswer': '-136'},
+                ],
+        {
+            'Type': 'Expression',
+            'Template': 'IdentifyCoefficient.html',
+            'ParameterSetVariants': [
+                {'expression': r'3x', 'CorrectAnswer': '3'}, 
+                {'expression': r'\frac{1}{3}(x+3)=9','CorrectAnswer': '1/3'},
+                {'expression': r'-\frac{1}{4}(x+2)=10','CorrectAnswer': '-1/4'},
+            'SpaceAfter': '5cm',
+            },
         ]
         },
     'TwoStepEquations': {
