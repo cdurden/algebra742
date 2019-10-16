@@ -339,7 +339,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error("form.steps.entries has length {:d}".format(len(form.steps.entries)))
         form.steps.append_entry()
         stepform = form.steps.entries[0]
-        app.logger.error(form.steps.test)
+        app.logger.error(form.test)
         correct = True
         i = 0
         while correct:
