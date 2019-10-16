@@ -153,6 +153,7 @@ class SolveEquationGuidedForm(Form):
 
     :param Form:
     """
+    test = StringField('test')
     steps = FieldList(FormField(SolveEquationStepForm))
 
 class NumericalForm(Form):
@@ -338,6 +339,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error("form.steps.entries has length {:d}".format(len(form.steps.entries)))
         form.steps.append_entry()
         stepform = form.steps.entries[0]
+        app.logger.error(form.steps.test)
         correct = True
         i = 0
         while correct:
