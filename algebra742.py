@@ -384,9 +384,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 message = "Your equation in step {:d} is incorrect".format(it+1)
                 correct = False
                 break
-        if simplify(parse_expr(new_lhs)-parse_expr("x"))!=0:
+        if corrent and simplify(parse_expr(new_lhs)-parse_expr("x"))!=0:
             form.steps.append_entry()
-            message = "Keep going until you find the value of the variable!"
+            message = "Nice work! Keep going until you find the value of the variable!"
 
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
         #    form.steps.append_entry()
