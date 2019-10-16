@@ -315,9 +315,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] == 'SolveEquationGuided':
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         form = SolveEquationGuidedForm()
-        operations = []
-        operands = []
-        equations = []
+#        operations = []
+#        operands = []
+#        equations = []
         for i,stepform in enumerate(form.steps.entries):
             try:
                 operation = stepform.operation.data
@@ -336,7 +336,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     previous_lhs,previous_rhs = new_lhs,new_rhs
             except IOError:
                 break
-        if len(form.steps.entries)==i:
+        if len(form.steps.entries)==i+1:
             form.steps.append_entry()
     if QuestionData['Type'] == 'MC':
         form = MCForm()
