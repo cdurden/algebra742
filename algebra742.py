@@ -328,6 +328,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     a,b = symbols("a b")
     correct = False
     answer = None
+    app.logger.error("test")
     if QuestionData['Type'] == 'SolveEquationGuided':
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         form = SolveEquationGuidedForm()
