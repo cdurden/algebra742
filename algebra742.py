@@ -313,7 +313,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     correct = False
     answer = None
     if QuestionData['Type'] == 'SolveEquationGuided':
-        equation = parse_expr(QuestionData['ParameterSetVariants'][i]['equation'])
+        equation_lhs = parse_expr(QuestionData['ParameterSetVariants'][i]['equation'], transformations=transformations)
         form = SolveEquationGuidedForm()
         operations = []
         operands = []
@@ -322,7 +322,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             try:
                 operation = stepform.operation.data
                 operand = stepform.operand.data
-                new_equation = parse_expr(stepform.new_equation.data)
+                new_equation = parse_expr(stepform.new_equation.data, transformations=transformations)
                 if i==0:
                     correct = simplify(op(equation.lhs,operation,operand)-new_equation.lhs)==0 and simplify(op(equation.rhs,operation,operand)-new_equation.rhs)==0
                 else:
