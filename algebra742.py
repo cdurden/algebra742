@@ -3,7 +3,7 @@ import sys
 from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_
-from flask.ext.wtf import Form
+from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField
 from wtforms.validators import NumberRange
 from random import randint
@@ -325,13 +325,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 operation = stepform.operation.data
                 operand = stepform.operand.data
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
-                app.logger.info(new_lhs)
-                app.logger.info(new_rhs)
+                app.logger.debug(new_lhs)
+                app.logger.debug(new_rhs)
                 if i==0:
-                    app.logger.info(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
-                    app.logger.info(parse_expr(new_lhs))
-                    app.logger.info(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand)))
-                    app.logger.info(parse_expr(new_rhs))
+                    app.logger.debug(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
+                    app.logger.debug(parse_expr(new_lhs))
+                    app.logger.debug(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand)))
+                    app.logger.debug(parse_expr(new_rhs))
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand))-parse_expr(new_rhs))==0
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand))-parse_expr(new_rhs))==0
