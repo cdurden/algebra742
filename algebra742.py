@@ -9,6 +9,7 @@ from wtforms.validators import NumberRange
 from random import randint
 import markdown
 import logging
+from logging import RotatingFileHandler
 from markdown_include.include import MarkdownInclude
 
 from pylti.flask import lti
