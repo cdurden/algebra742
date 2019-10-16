@@ -303,7 +303,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     q,i = GetNextQuestionVariant(db, user, assignment, q, i)
     if q is None:
-        return render_template('thankyou.html')
+        q,i = len(QuestionSets[assignment]['Questions']),len(QuestionSets[assignment]['Questions'][q]['ParameterSetVariants'])-1
+        #return render_template('thankyou.html')
     #user = User(username="test user", lti_user_id="asdf")
     QuestionData = QuestionSets[assignment]['Questions'][q-1]
     question_indices = []
