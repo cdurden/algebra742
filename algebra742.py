@@ -22,7 +22,9 @@ VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
+root = logging.getLogger()
+logger = root
 #logging.basicConfig(stream=sys.stderr)
 #logging.basicConfig(filename=os.path.join(os.path.dirname(__file__),'info.log'), level=logging.DEBUG)
 db = SQLAlchemy(app)
@@ -573,7 +575,6 @@ def set_debugging():
     import logging
     import sys
 
-    root = logging.getLogger()
     root.setLevel(logging.DEBUG)
 
     ch = logging.StreamHandler(sys.stdout)
@@ -582,7 +583,7 @@ def set_debugging():
     ch.setFormatter(formatter)
     root.addHandler(ch)
 
-#set_debugging()
+set_debugging()
 
 if __name__ == '__main__':
     """
