@@ -28,6 +28,9 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 <section>
     <div id="nav">
         <ul>
+            <li>
+                <a href="{{ url_for('index') }}">Back to assignments list</a>
+            </li>
             {% for item in question_indices %}
             <li>
                 <a href="{{ url_for('Assignment', assignment=assignment, q=item[0], i=item[1]) }}">{{ loop.index }}</a>
