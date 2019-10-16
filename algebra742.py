@@ -331,6 +331,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     else:
         QuestionData = QuestionSets[assignment]['Questions'][q-1]
         Parameters = QuestionData['ParameterSetVariants'][i]
+        if len(QuestionSets[assignment]['Questions']) > q or len(QuestionData['ParameterSetVariants']) > i+1:
+            if len(QuestionData['ParameterSetVariants']) > i+1:
+                NextQuestion = {'q': q, 'i': i+1}
+            else:
+                NextQuestion = {'q': q+1, 'i': 0}
+        else:
+            NextQuestion = None
     question_indices = []
     for j,question in enumerate(QuestionSets[assignment]['Questions']):
         for k in range(len(question['ParameterSetVariants'])):
@@ -477,13 +484,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             print("test")
             return(redirect(url_for('Assignment', assignment=assignment)))
             
-    if len(QuestionSets[assignment]['Questions']) > q or len(QuestionData['ParameterSetVariants']) > i+1:
-        if len(QuestionData['ParameterSetVariants']) > i+1:
-            NextQuestion = {'q': q, 'i': i+1}
-        else:
-            NextQuestion = {'q': q+1, 'i': 0}
-    else:
-        NextQuestion = None
     return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message)
 
 
