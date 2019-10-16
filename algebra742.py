@@ -313,7 +313,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     correct = False
     answer = None
     if QuestionData['Type'] == 'SolveEquationGuided':
-        equation_lhs = parse_expr(QuestionData['ParameterSetVariants'][i]['equation'], transformations=transformations)
+        lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         form = SolveEquationGuidedForm()
         operations = []
         operands = []
@@ -322,18 +322,18 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             try:
                 operation = stepform.operation.data
                 operand = stepform.operand.data
-                new_equation = parse_expr(stepform.new_equation.data, transformations=transformations)
+                new_lhs, new_rhs = stepform.new_equation.data.split("=")
                 if i==0:
-                    correct = simplify(op(equation.lhs,operation,operand)-new_equation.lhs)==0 and simplify(op(equation.rhs,operation,operand)-new_equation.rhs)==0
+                    correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand))-parse_expr(new_rhs))==0
                 else:
-                    correct = simplify(op(previous_equation.lhs,operation,operand)-new_equation.lhs)==0 and simplify(op(equation.rhs,operation,operand)-new_equation.rhs)==0
+                    correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand))-parse_expr(new_rhs))==0
                 if not correct:
                     break
                 else:
-                    operations.append(operation)
-                    operands.append(operand)
-                    equations.append(stepform.new_equation.data)
-                    previous_equation = new_equation
+                    #operations.append(operation)
+                    #operands.append(operand)
+                    #equations.append(stepform.new_equation.data)
+                    previous_lhs,previous_rhs = new_lhs,new_rhs
             except:
                 break
         if len(form.steps.entries)==i:
