@@ -387,6 +387,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         if correct and simplify(parse_expr(new_lhs, transformations=transformations)-parse_expr("x", transformations=transformations))!=0:
             form.steps.append_entry()
             message = "Nice work! Keep going until you find the value of the variable!"
+            correct = False
 
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
         #    form.steps.append_entry()
