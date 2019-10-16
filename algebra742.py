@@ -369,8 +369,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     stepform = form.steps.entries[i]
             except:
                 break
-        if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
-            form.steps.append_entry()
+        #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
+        #    form.steps.append_entry()
     if QuestionData['Type'] == 'MC':
         form = MCForm()
         choices = []

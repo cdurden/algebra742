@@ -48,8 +48,12 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {{ form.test }}<br/>
 {% for stepform in form.steps %}
 <div class="step">
+    <h3>Step {{ loop.index }}</h3>
+    Choose an operation to perform to both sides of the equation:
     {{ stepform.operation }}<br/>
+    What are you adding, subtracting, multiplying, or dividing?
     {{ stepform.operand }}<br/>
+    What will your new equation be after performing this step?
     {{ stepform.new_equation }}<br/>
 </div>
 <br/>
