@@ -1,6 +1,10 @@
 Fill in the steps to solve the equation<br/>
 ${{ equation }}$
 <br/>
+<div class="input">
+<div class="answer_form">
+    <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" name="answer_form">
+
 {{ form.test }}<br/>
 {% for stepform in form.steps %}
 <div class="step">
@@ -11,3 +15,8 @@ ${{ equation }}$
 <br/>
 {% endfor %}
 
+    {{ form.hidden_tag() }}
+
+    <p><input type="submit" value="Submit"></p>
+</form>
+</div>
