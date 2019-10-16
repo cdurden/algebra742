@@ -360,13 +360,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 app.logger.error(lhs)
                 app.logger.error(rhs)
                 if it==0:
-                    app.logger.error(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
+                    app.logger.error(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand), transformations=transformations))
                     app.logger.error(parse_expr(new_lhs))
-                    app.logger.error(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand)))
+                    app.logger.error(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand), transformations=transformations))
                     app.logger.error(parse_expr(new_rhs))
-                    correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand))-parse_expr(new_rhs))==0
+                    correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
                 else:
-                    correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand))-parse_expr(new_rhs))==0
+                    correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
                 if not correct:
                     message = "Your equation in step {:d} is incorrect".format(it+1)
                     break
