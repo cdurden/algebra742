@@ -332,7 +332,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     message = ''
     if QuestionData['Type'] == 'SolveEquationGuided':
         app.logger.error("test")
-        lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         form = SolveEquationGuidedForm()
 #        operations = []
 #        operands = []
@@ -343,6 +342,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(form.test.data)
         correct = True
         i = 0
+        lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         while correct:
             try:
                 operation = stepform.operation.data
@@ -350,6 +350,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
                 app.logger.error(new_lhs)
                 app.logger.error(new_rhs)
+                app.logger.error(operation)
+                app.logger.error(operand)
+                app.logger.error(lhs)
+                app.logger.error(rhs)
                 if i==0:
                     app.logger.error(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
                     app.logger.error(parse_expr(new_lhs))
