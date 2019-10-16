@@ -336,7 +336,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 #        operands = []
 #        equations = []
         app.logger.error("form.steps.entries has length {:d}".format(len(form.steps.entries)))
-        for i,stepform in enumerate(form.steps.entries):
+        form.steps.append_entry()
+        stepform = form.steps.entries[0]
+        correct = True
+        i = 0
+        while correct:
             try:
                 operation = stepform.operation.data
                 operand = stepform.operand.data
@@ -358,6 +362,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     #operands.append(operand)
                     #equations.append(stepform.new_equation.data)
                     previous_lhs,previous_rhs = new_lhs,new_rhs
+                    i = i+1
+                    form.steps.append_entry()
+                    stepform = form.steps.entries[i]
             except IOError:
                 break
         if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
