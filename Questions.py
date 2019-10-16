@@ -12,6 +12,11 @@ QuestionSets = {
                 {'equation': r'1/5(x+5)=10'},
                 {'equation': r'3x+-3=30'},
                 {'equation': r'1/3(x+-3)=10'},
+                {'equation': r'2/3(x+12)=10'},
+                {'equation': r'5/6x+10=20'},
+                {'equation': r'-3/4x+6=9'},
+                {'equation': r'2/5(x-10)=20'},
+                {'equation': r'-3/8x-5=9'},
                 ]
             }
         ]
