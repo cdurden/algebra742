@@ -328,6 +328,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                          'Template': 'SubmitAssignment.html',
                          'ParameterSetVariants': [{}]}
         Parameters = {}
+        NextQuestion = None
     else:
         QuestionData = QuestionSets[assignment]['Questions'][q-1]
         Parameters = QuestionData['ParameterSetVariants'][i]
