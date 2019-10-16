@@ -41,7 +41,26 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     </div>
 </section>
 
-{% if QuestionData['Type'] not in ['SolveEquationGuided'] %}
+{% if QuestionData['Type'] in ['SolveEquationGuided'] %}
+
+<div class="answer_form">
+<form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" name="answer_form">
+{{ form.test }}<br/>
+{% for stepform in form.steps %}
+<div class="step">
+    {{ stepform.operation }}<br/>
+    {{ stepform.operand }}<br/>
+    {{ stepform.new_equation }}<br/>
+</div>
+<br/>
+{% endfor %}
+
+    {{ form.hidden_tag() }}
+
+    <p><input type="submit" value="Submit"></p>
+</form>
+</div>
+{% else %}
 <div class="input">
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" name="answer_form">
@@ -92,3 +111,5 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 </footer>
 </body>
 </html>
+<div class="answer_form">
+    <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" name="answer_form">
