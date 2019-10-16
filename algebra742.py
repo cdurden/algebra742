@@ -4,7 +4,7 @@ from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_
 from flask_wtf import Form
-from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 from wtforms.validators import NumberRange
 from random import randint
 import markdown
@@ -118,7 +118,7 @@ class OpenResponseForm(Form):
 
     :param Form:
     """
-    answer = TextField('answer')
+    answer = TextAreaField('answer')
 
 class MCForm(Form):
     """ Add data from Form
