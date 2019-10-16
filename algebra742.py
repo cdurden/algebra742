@@ -583,6 +583,7 @@ def set_debugging():
     import logging
     import sys
 
+    root = logging.getLogger()
     root.setLevel(logging.DEBUG)
 
     ch = logging.StreamHandler(sys.stdout)
@@ -591,7 +592,7 @@ def set_debugging():
     ch.setFormatter(formatter)
     root.addHandler(ch)
 
-set_debugging()
+#set_debugging()
 
 if __name__ == '__main__':
     """
