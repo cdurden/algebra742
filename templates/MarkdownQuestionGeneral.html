@@ -52,11 +52,17 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     Choose an operation to perform to both sides of the equation:
     <table>
         <tr>
+
+            <th>
+                Operation
+            </th>
+            <th>
+    What are you adding, subtracting, multiplying, or dividing?
+            </th>
             <td>
     {{ stepform.operation }}<br/>
             </td>
             <td>
-    What are you adding, subtracting, multiplying, or dividing?
     {{ stepform.operand }}<br/>
             </td>
         </tr>
