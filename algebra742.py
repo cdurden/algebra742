@@ -337,13 +337,15 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 #        operands = []
 #        equations = []
         app.logger.error("form.steps.entries has length {:d}".format(len(form.steps.entries)))
-        form.steps.append_entry()
+        if len(form.steps.entries)==0:
+            form.steps.append_entry()
         stepform = form.steps.entries[0]
         app.logger.error(form.test.data)
         correct = True
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         it = 0
-        while correct:
+        for it,stepform in enumerate(form.steps.entries):
+        #while correct:
             try:
                 operation = stepform.operation.data
                 operand = stepform.operand.data
@@ -367,17 +369,17 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
-                if not correct:
+                if correct:
+                    previous_lhs,previous_rhs = new_lhs,new_rhs
+#                    it = it+1
+#                    form.steps.append_entry()
+                    stepform = form.steps.entries[it]
+                else:
                     message = "Your equation in step {:d} is incorrect".format(it+1)
                     break
-                else:
                     #operations.append(operation)
                     #operands.append(operand)
                     #equations.append(stepform.new_equation.data)
-                    previous_lhs,previous_rhs = new_lhs,new_rhs
-                    it = it+1
-                    form.steps.append_entry()
-                    stepform = form.steps.entries[it]
             except IOError:
                 message = "Your equation in step {:d} is incorrect".format(it+1)
                 correct = False
