@@ -112,6 +112,14 @@ def templated(template=None):
         return decorated_function
     return decorator
 
+class SubmitForm(Form):
+
+    """ Add data from Form
+
+    :param Form:
+    """
+    feedback = TextAreaField('feedback')
+
 class OpenResponseForm(Form):
 
     """ Add data from Form
@@ -343,6 +351,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     correct = False
     answer = None
     message = ''
+    if QuestionData['Type'] == 'SubmitAssignment':
+        form = SubmitForm()
     if QuestionData['Type'] == 'SolveEquationGuided':
         app.logger.error("test")
         form = SolveEquationGuidedForm()
