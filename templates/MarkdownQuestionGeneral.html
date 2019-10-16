@@ -46,7 +46,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <p>Are you ready to submit this assignment?</p>
     <p><input type="submit" value="Submit"></p>
 </form>
-{% endif %}
+{% else %}
 {% if QuestionData['Type'] in ['SolveEquationGuided'] %}
 
 <div class="answer_form">
@@ -111,6 +111,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <p><input type="submit" value="Submit"></p>
 </form>
 </div>
+{% endif %}
 {% endif %}
 
 <div>
