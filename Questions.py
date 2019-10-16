@@ -4,7 +4,7 @@ QuestionSets = {
         'Questions':
         [
             {
-            'Type': 'DifferenceBetweenTermAndFactor',
+            'Type': 'OpenResponse',
             'Template': 'DifferenceBetweenTermAndFactor.html',
             'ParameterSetVariants': [{}],
             }
