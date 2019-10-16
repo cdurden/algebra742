@@ -351,7 +351,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 operand = stepform.operand.data
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
             except:
-                message = ""
+                message = "Choose an operation, choose what you want to add, subtract, multiply, or divide, and write an equation."
                 correct = False
                 break
             try:
