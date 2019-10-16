@@ -388,6 +388,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             form.steps.append_entry()
             message = "Nice work! Keep going until you find the value of the variable!"
             correct = False
+        elif correct:
+            answer = stepform.new_equation.data
 
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
         #    form.steps.append_entry()
