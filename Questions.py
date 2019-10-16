@@ -1,4 +1,14 @@
 QuestionSets = {
+    'DifferenceBetweenTermAndFactor': {
+        'ProvideImmediateFeedback': False,
+        'Questions':
+        [
+            {
+            'Type': 'DifferenceBetweenTermAndFactor',
+            'Template': 'DifferenceBetweenTermAndFactor.html',
+            }
+        ]
+    },
     'SolveEquationsGuided': {
         'ProvideImmediateFeedback': True,
         'Questions':
@@ -9,6 +19,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'equation': r'2x+15=83'}, 
                 {'equation': r'1/4(x+2)=10'},
+                {'equation': r'2/3x+10=31'},
                 {'equation': r'1/5(x+5)=10'},
                 {'equation': r'3x+-3=30'},
                 {'equation': r'1/3(x+-3)=10'},
@@ -17,6 +28,7 @@ QuestionSets = {
                 {'equation': r'-3/4x+6=9'},
                 {'equation': r'2/5(x-10)=20'},
                 {'equation': r'-3/8x-5=9'},
+                {'equation': r'(x-5)/3=9'},
                 ]
             }
         ]
