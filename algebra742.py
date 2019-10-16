@@ -341,8 +341,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         stepform = form.steps.entries[0]
         app.logger.error(form.test.data)
         correct = True
-        i = 0
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
+        it = 0
         while correct:
             try:
                 operation = stepform.operation.data
@@ -354,7 +354,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 app.logger.error(operand)
                 app.logger.error(lhs)
                 app.logger.error(rhs)
-                if i==0:
+                if it==0:
                     app.logger.error(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
                     app.logger.error(parse_expr(new_lhs))
                     app.logger.error(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand)))
@@ -363,18 +363,18 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand))-parse_expr(new_rhs))==0
                 if not correct:
-                    message = "Your equation in step {:d} is incorrect".format(i+1)
+                    message = "Your equation in step {:d} is incorrect".format(it+1)
                     break
                 else:
                     #operations.append(operation)
                     #operands.append(operand)
                     #equations.append(stepform.new_equation.data)
                     previous_lhs,previous_rhs = new_lhs,new_rhs
-                    i = i+1
+                    it = it+1
                     form.steps.append_entry()
-                    stepform = form.steps.entries[i]
-            except:
-                message = "Your equation in step {:d} is incorrect".format(i+1)
+                    stepform = form.steps.entries[it]
+            except IOError:
+                message = "Your equation in step {:d} is incorrect".format(it+1)
                 correct = False
                 break
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
