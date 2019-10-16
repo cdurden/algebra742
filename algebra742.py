@@ -21,10 +21,16 @@ from Questions import *
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
-logging.basicConfig(level=logging.INFO)
-#logger = logging.getLogger(__name__)
-root = logging.getLogger()
-logger = root
+#logging.basicConfig(level=logging.INFO)
+#root = logging.getLogger()
+#logger = root
+
+handler = RotatingFileHandler(os.path.join(os.path.dirname(__file__),'info.log'), maxBytes=10000, backupCount=1)
+handler.setLevel(logging.INFO)
+handler.setFormatter(Formatter('[%(levelname)s][%(asctime)s] %(message)s'))
+app.logger.setLevel(logging.INFO)
+app.logger.addHandler(handler)
+
 #logging.basicConfig(stream=sys.stderr)
 #logging.basicConfig(filename=os.path.join(os.path.dirname(__file__),'info.log'), level=logging.DEBUG)
 db = SQLAlchemy(app)
@@ -329,13 +335,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 operation = stepform.operation.data
                 operand = stepform.operand.data
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
-                logger.debug(new_lhs)
-                logger.debug(new_rhs)
+                app.logger.debug(new_lhs)
+                app.logger.debug(new_rhs)
                 if i==0:
-                    logger.debug(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
-                    logger.debug(parse_expr(new_lhs))
-                    logger.debug(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand)))
-                    logger.debug(parse_expr(new_rhs))
+                    app.logger.debug(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
+                    app.logger.debug(parse_expr(new_lhs))
+                    app.logger.debug(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand)))
+                    app.logger.debug(parse_expr(new_rhs))
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand))-parse_expr(new_rhs))==0
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand))-parse_expr(new_rhs))==0
