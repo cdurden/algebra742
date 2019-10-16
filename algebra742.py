@@ -10,6 +10,7 @@ from random import randint
 import markdown
 import logging
 from logging.handlers import RotatingFileHandler
+from logging import Formatter
 from markdown_include.include import MarkdownInclude
 
 from pylti.flask import lti
