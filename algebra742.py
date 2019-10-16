@@ -339,13 +339,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 operation = stepform.operation.data
                 operand = stepform.operand.data
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
-                app.logger.debug(new_lhs)
-                app.logger.debug(new_rhs)
+                app.logger.info(new_lhs)
+                app.logger.info(new_rhs)
                 if i==0:
-                    app.logger.debug(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
-                    app.logger.debug(parse_expr(new_lhs))
-                    app.logger.debug(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand)))
-                    app.logger.debug(parse_expr(new_rhs))
+                    app.logger.info(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand)))
+                    app.logger.info(parse_expr(new_lhs))
+                    app.logger.info(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand)))
+                    app.logger.info(parse_expr(new_rhs))
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand))-parse_expr(new_rhs))==0
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand))-parse_expr(new_rhs))==0
