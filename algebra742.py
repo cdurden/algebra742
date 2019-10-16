@@ -329,6 +329,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     a,b = symbols("a b")
     correct = False
     answer = None
+    message = ''
     if QuestionData['Type'] == 'SolveEquationGuided':
         app.logger.error("test")
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
@@ -358,6 +359,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand))-parse_expr(new_lhs))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand))-parse_expr(new_rhs))==0
                 if not correct:
+                    message = "Your equation in step {:d} is incorrect".format(i+1)
                     break
                 else:
                     #operations.append(operation)
@@ -438,7 +440,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             NextQuestion = {'q': q+1, 'i': 0}
     else:
         NextQuestion = None
-    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number)
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message)
 
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
