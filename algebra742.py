@@ -153,7 +153,6 @@ class SolveEquationGuidedForm(Form):
 
     :param Form:
     """
-    test = StringField('test')
     steps = FieldList(FormField(SolveEquationStepForm))
 
 class NumericalForm(Form):
