@@ -336,7 +336,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     previous_lhs,previous_rhs = new_lhs,new_rhs
             except IOError:
                 break
-        if len(form.steps.entries)==i+1:
+        if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
             form.steps.append_entry()
     if QuestionData['Type'] == 'MC':
         form = MCForm()
