@@ -315,7 +315,12 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     #    q = len(QuestionSets[assignment]['Questions'])
     #    i = len(QuestionSets[assignment]['Questions'][q-1]['ParameterSetVariants'])-1
     #user = User(username="test user", lti_user_id="asdf")
-    QuestionData = QuestionSets[assignment]['Questions'][q-1]
+    if q is None:
+        QuestionData = { 'Type': 'SubmitAssignment',
+                         'Template': 'SubmitAssignment.html',
+                         'ParameterSetVariants': [{}]}
+    else:
+        QuestionData = QuestionSets[assignment]['Questions'][q-1]
     question_indices = []
     for j,question in enumerate(QuestionSets[assignment]['Questions']):
         for k in range(len(question['ParameterSetVariants'])):
