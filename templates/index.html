@@ -5,6 +5,7 @@
 <body>
 <h1>Hello {{ user.username }}.</h1>
 
+<a href="{{ url_for('Assignment', assignment='SolveEquationsGuided') }}">Solving Equations Guided</a><br/>
 <a href="{{ url_for('Assignment', assignment='AlgebraicAndVerbalExpressions') }}">Algebraic and Verbal Expressions</a><br/>
 <a href="{{ url_for('Assignment', assignment='TermsAndFactors') }}">Identifying Sums, Terms, Products, and Factors</a><br/>
 <a href="{{ url_for('Assignment', assignment='ReciprocalPairsAndZeroPairs') }}">Reciprocal Pairs and Zero Pairs</a><br/>

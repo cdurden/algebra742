@@ -1,5 +1,5 @@
 QuestionSets = {
-    'ReciprocalPairsAndZeroPairs': {
+    'SolveEquationsGuided': {
         'ProvideImmediateFeedback': True,
         'Questions':
         [
