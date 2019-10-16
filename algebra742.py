@@ -334,7 +334,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     #operands.append(operand)
                     #equations.append(stepform.new_equation.data)
                     previous_lhs,previous_rhs = new_lhs,new_rhs
-            except:
+            except IOError:
                 break
         if len(form.steps.entries)==i:
             form.steps.append_entry()
