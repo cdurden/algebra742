@@ -6,6 +6,7 @@ QuestionSets = {
             {
             'Type': 'DifferenceBetweenTermAndFactor',
             'Template': 'DifferenceBetweenTermAndFactor.html',
+            'ParameterSetVariants': [{}],
             }
         ]
     },
