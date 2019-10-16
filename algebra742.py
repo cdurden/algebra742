@@ -335,6 +335,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 #        operations = []
 #        operands = []
 #        equations = []
+        app.logger.error("form.steps.entries has length {:d}".format(len(form.steps.entries)))
         for i,stepform in enumerate(form.steps.entries):
             try:
                 operation = stepform.operation.data
