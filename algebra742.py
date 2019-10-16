@@ -321,6 +321,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                          'ParameterSetVariants': [{}]}
     else:
         QuestionData = QuestionSets[assignment]['Questions'][q-1]
+        Parameters = QuestionData['ParameterSetVariants'][i]
     question_indices = []
     for j,question in enumerate(QuestionSets[assignment]['Questions']):
         for k in range(len(question['ParameterSetVariants'])):
@@ -454,7 +455,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             pass
         # Check answers
         # Answers array
-    Parameters = QuestionData['ParameterSetVariants'][i]
     content = render_template(QuestionData['Template'], form=form, **Parameters)
     if request.method == 'POST':
         question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
