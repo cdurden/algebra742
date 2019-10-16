@@ -7,9 +7,11 @@ QuestionSets = {
             'Type': 'SolveEquationGuided',
             'Template': 'SolveEquationGuided.html',
             'ParameterSetVariants': [
-                {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
-                {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
-                {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
+                {'equation': r'2x+15=83'}, 
+                {'equation': r'1/4(x+2)=10'},
+                {'equation': r'1/5(x+5)=10'},
+                {'equation': r'3x+-3=30'},
+                {'equation': r'1/3(x+-3)=10'},
                 ]
             }
         ]

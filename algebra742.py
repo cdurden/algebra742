@@ -321,7 +321,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     def add_header(response):
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
         return response
-    from sympy import simplify, symbols
+    from sympy import simplify, symbols, latex
     from sympy.parsing.sympy_parser import parse_expr
     from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
     transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
@@ -341,6 +341,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         stepform = form.steps.entries[0]
         correct = True
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
+        QuestionData['ParameterSetVariants'][i]['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs, transformations=transformations)),latex(parse_expr(rhs, transformations=transformations)))
         it = 0
         for it,stepform in enumerate(form.steps.entries):
         #while correct:
