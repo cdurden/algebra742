@@ -1,0 +1,12 @@
+Fill in the steps to solve the equation<br/>
+${{ equation }}$
+<br/>
+{% for stepform in form.steps %}
+<div class="step">
+    {{ stepform.operation }}<br/>
+    {{ stepform.operand }}<br/>
+    {{ stepform.new_equation }}<br/>
+</div>
+<br/>
+{% endfor %}
+

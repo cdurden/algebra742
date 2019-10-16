@@ -1,6 +1,19 @@
 QuestionSets = {
     'ReciprocalPairsAndZeroPairs': {
         'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
+                ]
+            }
+        ]
+    },
+    'ReciprocalPairsAndZeroPairs': {
+        'ProvideImmediateFeedback': True,
         'Questions': [
         {
             #'Type': 'SolveEquation',

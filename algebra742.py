@@ -3,7 +3,7 @@ from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_
 from flask.ext.wtf import Form
-from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField
 from wtforms.validators import NumberRange
 from random import randint
 import markdown
@@ -114,6 +114,32 @@ class SumTermsProductFactorsForm(Form):
     options = RadioField('options')
     terms = TextField('terms')
     factors = TextField('factors')
+
+def op(expr, operation, operand):
+    if operation == '+':
+        return(expr+operand)
+    if operation == '-':
+        return(expr-operand)
+    if operation == '*':
+        return(expr*operand)
+    if operation == '/':
+        return(expr/operand)
+
+class SolveEquationStepForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    operation = RadioField('operation', choices=[('+','add'),('-','subtract'),('*','multiply'),('/','divide')])
+    operand = StringField('operand')
+    new_equation = StringField('new_equation')
+
+class SolveEquationGuidedForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    steps = FieldList(FormField(SolveEquationStepForm))
 
 class NumericalForm(Form):
     """ Add data from Form
@@ -286,6 +312,32 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     a,b = symbols("a b")
     correct = False
     answer = None
+    if QuestionData['Type'] == 'SolveEquationGuided':
+        equation = parse_expr(QuestionData['ParameterSetVariants'][i]['equation'])
+        form = SolveEquationGuidedForm()
+        operations = []
+        operands = []
+        equations = []
+        for i,stepform in enumerate(form.steps.entries):
+            try:
+                operation = stepform.operation.data
+                operand = stepform.operand.data
+                new_equation = parse_expr(stepform.new_equation.data)
+                if i==0:
+                    correct = simplify(op(equation.lhs,operation,operand)-new_equation.lhs)==0 and simplify(op(equation.rhs,operation,operand)-new_equation.rhs)==0
+                else:
+                    correct = simplify(op(previous_equation.lhs,operation,operand)-new_equation.lhs)==0 and simplify(op(equation.rhs,operation,operand)-new_equation.rhs)==0
+                if not correct:
+                    break
+                else:
+                    operations.append(operation)
+                    operands.append(operand)
+                    equations.append(stepform.new_equation.data)
+                    previous_equation = new_equation
+            except:
+                break
+        if len(form.steps.entries)==i:
+            form.steps.append_entry()
     if QuestionData['Type'] == 'MC':
         form = MCForm()
         choices = []
