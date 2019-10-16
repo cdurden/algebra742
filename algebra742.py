@@ -369,7 +369,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     i = i+1
                     form.steps.append_entry()
                     stepform = form.steps.entries[i]
-            except IOError:
+            except:
+                message = "Your equation in step {:d} is incorrect".format(i+1)
                 correct = False
                 break
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
