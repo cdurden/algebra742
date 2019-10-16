@@ -339,7 +339,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         if len(form.steps.entries)==0:
             form.steps.append_entry()
         stepform = form.steps.entries[0]
-        app.logger.error(form.test.data)
         correct = True
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         it = 0
