@@ -32,7 +32,10 @@ div.answer_choice {
 div.answer_choice img {
     width: 100%;
 }
-div#nav li {
+div#nav {
     display: inline;
     font-size: 18pt;
+}
+div#nav li {
+    display: inline;
 }
