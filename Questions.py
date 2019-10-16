@@ -8,6 +8,7 @@ QuestionSets = {
             'Template': 'SolveEquationGuided.html',
             'ParameterSetVariants': [
                 {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
+                {'equation': r'2x+15=83', 'CorrectAnswer': 34}, 
                 ]
             }
         ]
