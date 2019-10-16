@@ -112,6 +112,14 @@ def templated(template=None):
         return decorated_function
     return decorator
 
+class OpenResponseForm(Form):
+
+    """ Add data from Form
+
+    :param Form:
+    """
+    answer = TextField('answer')
+
 class MCForm(Form):
     """ Add data from Form
 
@@ -392,6 +400,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
         #    form.steps.append_entry()
+    if QuestionData['Type'] == 'OpenResponse':
+        form = OpenResponseForm()
     if QuestionData['Type'] == 'MC':
         form = MCForm()
         choices = []
