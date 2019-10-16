@@ -348,6 +348,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 operation = stepform.operation.data
                 operand = stepform.operand.data
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
+            except:
+                message = ""
+                correct = False
+                break
+            try:
                 app.logger.error(new_lhs)
                 app.logger.error(new_rhs)
                 app.logger.error(operation)
