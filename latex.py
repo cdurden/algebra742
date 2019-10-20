@@ -3,6 +3,12 @@ from pylatex.utils import escape_latex
 from Questions import QuestionSets
 import jinja2
 import os
+from sympy import latex
+from sympy import simplify, symbols, latex
+from sympy.parsing.sympy_parser import parse_expr
+from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
+transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
+
 loader = jinja2.FileSystemLoader(searchpath="./templates")
 jenv = jinja2.Environment(loader=loader)
 latex_jinja_env = jinja2.Environment(
@@ -40,6 +46,10 @@ def GenerateAssignmentPdf(assignment, filepath=None):
         with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 1})) as enum:
             for Question in QuestionData:
                 for Parameters in Question['ParameterSetVariants']:
+                    if Parameters['equation'] is not None:
+                        equation = Parameters['equation']
+                        lhs, rhs = equation.split("=")
+                        Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs,transformations=transformations)),latex(parse_expr(rhs,transformations=transformations)))
                     template = jenv.get_template(Question['Template'])
                     out = template.render(**Parameters)
                     enum.add_item(NoEscape(out))
@@ -114,7 +124,9 @@ def GenerateArrowDiagram(filepath, Parameters):
 #GenerateAssignmentPdf(assignment)
 #assignment = 'TermsAndFactors'
 #GenerateAssignmentPdf(assignment)
-assignment = 'ReciprocalPairsAndZeroPairs'
+#assignment = 'ReciprocalPairsAndZeroPairs'
+#GenerateAssignmentPdf(assignment)
+assignment = 'SolveEquationsGuided'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')

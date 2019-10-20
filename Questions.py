@@ -1,4 +1,15 @@
 QuestionSets = {
+    'CommunicatingReasoning': {
+        'ProvideImmediateFeedback': False,
+        'Questions': [
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
+            'Choices': [('0', 'I did not communicate my reasoning'), ('1','I presented my reasoning for some problems'), ('2','I presented my reasoning for every problem'), ('3','I presented a detailed argument, including all steps needed to reach all of my conclusions')],
+            'Question': 'How well did you communicate your reasoning on this assignment?',
+            }
+        ]
+    },
     'DifferenceBetweenTermAndFactor': {
         'ProvideImmediateFeedback': False,
         'Questions':
@@ -30,7 +41,10 @@ QuestionSets = {
                 {'equation': r'2/5(x-10)=20'},
                 {'equation': r'-3/8x-5=9'},
                 {'equation': r'(x-5)/3=9'},
-                ]
+                {'equation': r'-2x-5=9-x'},
+                {'equation': r'(x-5)/3=2x+1'},
+                ],
+            'SpaceAfter': '4cm',
             }
         ]
     },
