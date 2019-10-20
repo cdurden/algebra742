@@ -445,14 +445,14 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         try:
             choice = form.options.data
             app.logger.error(choice)
-            if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
-                correct = True
-            else:
-                correct = False
             if form.other.data:
                 answer = form.other.data
             else:
                 answer = choice
+            if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
+                correct = True
+            else:
+                correct = False
         except:
             pass
     if QuestionData['Type'] == 'Numerical':
