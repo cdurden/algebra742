@@ -444,6 +444,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         form.options.choices = choices
         try:
             choice = form.options.data
+            app.logger.error(choice)
             if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
                 correct = True
             else:
