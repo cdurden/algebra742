@@ -395,6 +395,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 lhs = parse_expr(lhs, transformations=transformations)
                 rhs = parse_expr(rhs, transformations=transformations)
                 correct = simplify(lhs-lhs_input) == 0 and simplify(rhs-rhs_input) == 0
+                if not correct:
+                    message = "Your equation does not represent this problem in one of the two forms listed above."
             except:
                 lhs = form.equation_form.lhs.data
                 rhs = form.equation_form.rhs.data
