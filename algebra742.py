@@ -406,6 +406,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 rhs = form.equation_form.rhs.data
                 correct = False
             if correct and (simplify(lhs-parse_expr(form.equation_form.variables[0].data, transformations=transformations))==0 or simplify(rhs-parse_expr(form.equation_form.variables[0].data, transformations=transformations))==0):
+                message = "Your answer is correct"
                 pass 
             else:
                 if correct:
@@ -504,8 +505,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     message = "Nice work! Keep going until you find the value of the variable!"
                     correct = False
                 elif correct:
+                    try:
                     #answer = stepform.new_equation.data
-                    message = "Your answer {:s} is correct".format(stepform.new_equation.data)
+                        message = "Your answer {:s} is correct".format(stepform.new_equation.data)
+                    except:
+                        message = "Your answer is correct"
         except:
             correct = False
         answer = json.dumps(form.data)
