@@ -326,12 +326,12 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if q == 'submit':
         return render_template('thankyou.html')
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    q,i = GetNextQuestionVariant(db, user, assignment, q, i)
     #if q is None:
     #    q = len(QuestionSets[assignment]['Questions'])
     #    i = len(QuestionSets[assignment]['Questions'][q-1]['ParameterSetVariants'])-1
     #user = User(username="test user", lti_user_id="asdf")
     if q is None:
+        q,i = GetNextQuestionVariant(db, user, assignment, q, i)
         QuestionData = { 'Type': 'SubmitAssignment',
                          'Template': 'SubmitAssignment.html',
                          'ParameterSetVariants': [{}]}
