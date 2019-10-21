@@ -172,6 +172,14 @@ class SolveEquationGuidedForm(Form):
     """
     steps = FieldList(FormField(SolveEquationStepForm))
 
+class SetUpAndSolveEquationGuidedForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    equation_form = FormField(EquationForm)
+    steps = FieldList(FormField(SolveEquationStepForm))
+
 class NumericalForm(Form):
     """ Add data from Form
 

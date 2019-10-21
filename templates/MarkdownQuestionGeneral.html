@@ -60,15 +60,15 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     </p>
     {% for quantity in Parameters['quantities'] %}
     <p>
-    Let {{ form.variables[loop.index0] }} represent {{ quantity }}.
+    Let {{ form.equatio_form.variables[loop.index0] }} represent {{ quantity }}.
     </p>
     {% endfor %}
     <p>
     <b>Using the variables you defined, write an equation to represent the balance scale.</b>
     </p>
     <p>
-        {{ form.lhs }} =
-        {{ form.rhs }}
+        {{ form.equation_form.lhs }} =
+        {{ form.equation_form.rhs }}
     </p>
     {% endif %}
 {% for stepform in form.steps %}
