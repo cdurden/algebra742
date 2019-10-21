@@ -195,6 +195,7 @@ class EquationForm(Form):
     :param Form:
     """
     variables = FieldList(StringField('variable'))
+    quantities = FieldList(StringField('quantities'))
     lhs = TextField('lhs')
     rhs = TextField('rhs')
     
@@ -382,6 +383,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             n = len(Parameters['variables'])
             for it in range(n):
                 form.equation_form.variables.append_entry()
+                form.equation_form.quantities.append_entry()
             # Check answers
             # Answers array
             try:
