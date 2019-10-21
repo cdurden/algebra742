@@ -443,8 +443,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
             except:
                 message = "Choose an operation, choose what you want to add, subtract, multiply, or divide, and write an equation."
-                if len(form.steps.entries)==it+1:
-                    form.steps.pop_entry()
+#                if len(form.steps.entries)==it+1:
+#                    form.steps.pop_entry()
                 correct = False
                 break
             try:
@@ -473,6 +473,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     #operations.append(operation)
                     #operands.append(operand)
                     #equations.append(stepform.new_equation.data)
+            for it0 in range(it+1,len(form.steps.entries)):
+                form.steps.pop_entry()
             except IOError:
                 message = "Your equation in step {:d} is incorrect".format(it+1)
                 correct = False
