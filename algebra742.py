@@ -328,6 +328,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     app.logger.error(i)
     q,i = GetNextQuestionVariant(db, user, assignment, q, i)
+    app.logger.error(i)
     #if q is None:
     #    q = len(QuestionSets[assignment]['Questions'])
     #    i = len(QuestionSets[assignment]['Questions'][q-1]['ParameterSetVariants'])-1
