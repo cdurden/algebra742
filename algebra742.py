@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_
@@ -488,6 +489,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     answer = stepform.new_equation.data
         except:
             correct = False
+        answer = json.dumps(form.data)
 
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
         #    form.steps.append_entry()
