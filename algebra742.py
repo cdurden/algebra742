@@ -379,7 +379,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             form = SetUpAndSolveEquationGuidedForm()
             #form = EquationForm()
             n = len(Parameters['variables'])
-            for i in range(n):
+            for it in range(n):
                 form.equation_form.variables.append_entry()
             # Check answers
             # Answers array
@@ -389,9 +389,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
                 #lhs = BalanceQuestionData[q-1]['LHS']
                 #rhs = BalanceQuestionData[q-1]['RHS']
-                for i,variable in enumerate(BalanceQuestionData[q-1]['Variables']):
-                    lhs = lhs.replace(variable, form.equation_form.variables[i].data)
-                    rhs = rhs.replace(variable, form.equation_form.variables[i].data)
+                for it,variable in enumerate(Parameters['variables']):
+                    lhs = lhs.replace(variable, form.equation_form.variables[it].data)
+                    rhs = rhs.replace(variable, form.equation_form.variables[it].data)
                 lhs = parse_expr(lhs, transformations=transformations)
                 rhs = parse_expr(rhs, transformations=transformations)
                 correct = simplify(lhs-lhs_input) == 0 and simplify(rhs-rhs_input) == 0
