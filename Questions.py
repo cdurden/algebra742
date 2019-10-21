@@ -5,7 +5,8 @@ QuestionSets = {
             'Type': 'SetUpAndSolveEquationGuided',
             'Template': 'SetUpAndSolveEquationGuided.html',
             'ParameterSetVariants': [
-                {'Quantities': ['how much more money Christa needs to save'], 'Variables': ['a'], 'equation': r'70=35+a'}, 
+                {'Quantities': ['how much more money Christa needs to save'], 'Variables': ['a'], 'equation': r'70=35+a'},
+                ]
             },
         ]
     },
