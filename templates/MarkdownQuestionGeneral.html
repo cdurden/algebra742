@@ -140,7 +140,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 <div>
     {% if correct %}
     <p>
-    <b>Your answer {{ answer }} is correct!</b>
+    <!--<b>Your answer {{ answer }} is correct!</b>-->
     </p>
     {% if NextQuestion %}
     <a href="{{ url_for('Assignment', assignment=assignment, q=NextQuestion['q'], i=NextQuestion['i']) }}" class="button">Next question</a>
