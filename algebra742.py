@@ -473,12 +473,12 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     #operations.append(operation)
                     #operands.append(operand)
                     #equations.append(stepform.new_equation.data)
-            for it0 in range(it+1,len(form.steps.entries)):
-                form.steps.pop_entry()
             except IOError:
                 message = "Your equation in step {:d} is incorrect".format(it+1)
                 correct = False
                 break
+        for it0 in range(it+1,len(form.steps.entries)):
+            form.steps.pop_entry()
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             if correct:
                 if len(form.steps.entries)==0:
