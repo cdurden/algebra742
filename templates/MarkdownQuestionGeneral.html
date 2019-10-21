@@ -64,8 +64,12 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     </p>
     {% endfor %}
     <p>
-    <b>Using the variables you defined, write an equation to represent the balance scale.</b>
+    <b>Using the variables you defined, write an equation the has one of the two forms:</b>
     </p>
+    <ul>
+        </li>The total = the sum of the parts.</li>
+        </li>Final amount = Starting amount + how much is gained - how much is lost</li>
+    </ul>
     <p>
         {{ form.equation_form.lhs }} =
         {{ form.equation_form.rhs }}
