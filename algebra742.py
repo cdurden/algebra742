@@ -371,18 +371,44 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     message = ''
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
+
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
-        app.logger.error("test")
-        if QuestionData['Type'] == 'SolveEquationGuided':
-            form = SolveEquationGuidedForm()
-        else:
+        if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             form = SetUpAndSolveEquationGuidedForm()
+            #form = EquationForm()
+            n = len(Parameters['variables'])
+            for i in range(n):
+                form.equation_form.variables.append_entry()
+            # Check answers
+            # Answers array
+            try:
+                lhs_input = parse_expr(form.equation_form.lhs.data, transformations=transformations)
+                rhs_input = parse_expr(form.equation_form.rhs.data, transformations=transformations)
+                lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
+                #lhs = BalanceQuestionData[q-1]['LHS']
+                #rhs = BalanceQuestionData[q-1]['RHS']
+                for i,variable in enumerate(BalanceQuestionData[q-1]['Variables']):
+                    lhs = lhs.replace(variable, form.equation_form.variables[i].data)
+                    rhs = rhs.replace(variable, form.equation_form.variables[i].data)
+                lhs = parse_expr(lhs, transformations=transformations)
+                rhs = parse_expr(rhs, transformations=transformations)
+                correct = simplify(lhs-lhs_input) == 0 and simplify(rhs-rhs_input) == 0
+            except:
+                lhs = form.equation_form.lhs.data
+                rhs = form.equation_form.rhs.data
+                correct = False
+            if correct and len(form.steps.entries)==0:
+                form.steps.append_entry()
+            correct = False
+        else:
+            form = SolveEquationGuidedForm()
+            if len(form.steps.entries)==0:
+                form.steps.append_entry()
+        app.logger.error("test")
 #        operations = []
 #        operands = []
 #        equations = []
         app.logger.error("form.steps.entries has length {:d}".format(len(form.steps.entries)))
-        if len(form.steps.entries)==0:
-            form.steps.append_entry()
         stepform = form.steps.entries[0]
         correct = True
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
