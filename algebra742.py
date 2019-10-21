@@ -363,7 +363,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     message = ''
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
-    if QuestionData['Type'] == 'SolveEquationGuided':
+    if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         app.logger.error("test")
         form = SolveEquationGuidedForm()
 #        operations = []
