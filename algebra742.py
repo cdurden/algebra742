@@ -375,7 +375,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error("test")
         if QuestionData['Type'] == 'SolveEquationGuided':
             form = SolveEquationGuidedForm()
-         else:
+        else:
             form = SetUpAndSolveEquationGuidedForm()
 #        operations = []
 #        operands = []
