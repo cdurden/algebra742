@@ -408,23 +408,21 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 pass
             else:
                 if correct:
-                    if len(form.steps.entries)==0:
-                        form.steps.append_entry()
+                    pass
                 else:
                     for entry in range(len(form.steps.entries)):
                         form.steps.pop_entry()
-                correct = False
         else:
             form = SolveEquationGuidedForm()
             if len(form.steps.entries)==0:
                 form.steps.append_entry()
+            correct = True
         app.logger.error("test")
 #        operations = []
 #        operands = []
 #        equations = []
         app.logger.error("form.steps.entries has length {:d}".format(len(form.steps.entries)))
         #stepform = form.steps.entries[0]
-        correct = True
         #lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         lhs,rhs = Parameters['equation'].split("=")
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
@@ -479,6 +477,14 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 message = "Your equation in step {:d} is incorrect".format(it+1)
                 correct = False
                 break
+        if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
+            if correct:
+                if len(form.steps.entries)==0:
+                    form.steps.append_entry()
+                    correct = False
+        if QuestionData['Type'] == 'SolveEquationGuided':
+            if len(form.steps.entries)==0:
+                form.steps.append_entry()
         try:
             #if correct and simplify(parse_expr(new_lhs, transformations=transformations)-parse_expr("x", transformations=transformations))!=0:
             if QuestionData['Type'] == 'SolveEquationGuided':
