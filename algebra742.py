@@ -409,7 +409,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 #        operands = []
 #        equations = []
         app.logger.error("form.steps.entries has length {:d}".format(len(form.steps.entries)))
-        stepform = form.steps.entries[0]
+        #stepform = form.steps.entries[0]
         correct = True
         lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
         QuestionData['ParameterSetVariants'][i]['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs, transformations=transformations)),latex(parse_expr(rhs, transformations=transformations)))
