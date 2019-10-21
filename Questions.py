@@ -1,5 +1,6 @@
 QuestionSets = {
     'WritingAndSolvingOneStepEquations': {
+        'ProvideImmediateFeedback': True,
         'Questions': [
         {
             'Type': 'SetUpAndSolveEquationGuided',
