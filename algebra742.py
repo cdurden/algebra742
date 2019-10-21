@@ -401,9 +401,12 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 lhs = form.equation_form.lhs.data
                 rhs = form.equation_form.rhs.data
                 correct = False
-            if correct and len(form.steps.entries)==0:
-                form.steps.append_entry()
-            correct = False
+            if correct and (simplify(parse_expr(new_lhs, transformations=transformations)-parse_expr(form.equation_form.variables[0].data, transformations=transformations))==0 or simplify(parse_expr(new_rhs, transformations=transformations)-parse_expr(form.equation_form.variables[0].data, transformations=transformations))==0):
+                pass
+            else:
+                if correct and len(form.steps.entries)==0:
+                    form.steps.append_entry()
+                correct = False
         else:
             form = SolveEquationGuidedForm()
             if len(form.steps.entries)==0:
