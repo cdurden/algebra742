@@ -18,7 +18,7 @@ QuestionSets = {
             'Template': 'SetUpAndSolveEquationGuided.html',
             'ParameterSetVariants': [
                 {'question': 'Lisa is cooking muffins. The recipe calls for 7 cups of sugar. She has already put in 2 cups. How many more cups does she need to put in?', 'quantities': ['how many more cups of sugar Lisa needs to put in'], 'variables': ['a'], 'equation': r'7=2+a'},
-                {'question': 'After paying $5.12 for a salad, Norachai has $27.10. How much money did he have before buying the salad?', 'quantities': ['how much money Norachai had before buying the salad'], 'variables': ['a'], 'equation': r'27.10=5.12+a'},
+                {'question': 'After paying \$5.12 for a salad, Norachai has \$27.10. How much money did he have before buying the salad?', 'quantities': ['how much money Norachai had before buying the salad'], 'variables': ['a'], 'equation': r'27.10=5.12+a'},
                 {'question': 'How many packages of diapers can you buy with $40 if one package costs $8?','quantities': ['how many packages of diapers you can buy'], 'variables': ['a'], 'equation': r'40=8a'},
                 {'question': 'Christa is saving for a new tablet. It costs 70 dollars, including tax. She has already saved 35 dollars. How much more does she need to save?', 'quantities': ['how much more money Christa needs to save'], 'variables': ['a'], 'equation': r'70=35+a'},
                 {'question': 'Bella bought packs of stickers to give to her friends. Each pack cost 4 dollars. She spent a total of 12 dollars on stickers. How many packs did she buy?', 'quantities': ['how many packs of stickers Bella bought'], 'variables': ['x'], 'equation': r'12=4x'},
