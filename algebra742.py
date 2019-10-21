@@ -467,13 +467,20 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 break
         try:
             #if correct and simplify(parse_expr(new_lhs, transformations=transformations)-parse_expr("x", transformations=transformations))!=0:
-            #if correct and (simplify(parse_expr(new_lhs, transformations=transformations)-parse_expr(Parameters['variables'][0], transformations=transformations))!=0 and simplify(parse_expr(new_rhs, transformations=transformations)-parse_expr(Parameters['variables'][0], transformations=transformations))!=0):
-            if correct and (simplify(parse_expr(new_lhs, transformations=transformations)-parse_expr(form.equation_form.variables[0].data, transformations=transformations))!=0 and simplify(parse_expr(new_rhs, transformations=transformations)-parse_expr(form.equation_form.variables[0].data, transformations=transformations))!=0):
-                form.steps.append_entry()
-                message = "Nice work! Keep going until you find the value of the variable!"
-                correct = False
-            elif correct:
-                answer = stepform.new_equation.data
+            if QuestionData['Type'] == 'SolveEquationGuided'
+                if correct and (simplify(parse_expr(new_lhs, transformations=transformations)-parse_expr(Parameters['variables'][0], transformations=transformations))!=0 and simplify(parse_expr(new_rhs, transformations=transformations)-parse_expr(Parameters['variables'][0], transformations=transformations))!=0):
+                    form.steps.append_entry()
+                    message = "Nice work! Keep going until you find the value of the variable!"
+                    correct = False
+                elif correct:
+                    answer = stepform.new_equation.data
+            if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
+                if correct and (simplify(parse_expr(new_lhs, transformations=transformations)-parse_expr(form.equation_form.variables[0].data, transformations=transformations))!=0 and simplify(parse_expr(new_rhs, transformations=transformations)-parse_expr(form.equation_form.variables[0].data, transformations=transformations))!=0):
+                    form.steps.append_entry()
+                    message = "Nice work! Keep going until you find the value of the variable!"
+                    correct = False
+                elif correct:
+                    answer = stepform.new_equation.data
         except:
             correct = False
 
