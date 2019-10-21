@@ -480,10 +480,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for it0 in range(it+1,len(form.steps.entries)):
             form.steps.pop_entry()
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
-            if correct:
+            if not correct:
                 if len(form.steps.entries)==0:
                     form.steps.append_entry()
-                    correct = False
         if QuestionData['Type'] == 'SolveEquationGuided':
             if len(form.steps.entries)==0:
                 form.steps.append_entry()
