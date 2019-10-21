@@ -378,6 +378,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
+            written = False
             form = SetUpAndSolveEquationGuidedForm()
             #form = EquationForm()
             n = len(Parameters['variables'])
@@ -405,10 +406,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 rhs = form.equation_form.rhs.data
                 correct = False
             if correct and (simplify(lhs-parse_expr(form.equation_form.variables[0].data, transformations=transformations))==0 or simplify(rhs-parse_expr(form.equation_form.variables[0].data, transformations=transformations))==0):
-                pass
+                pass 
             else:
                 if correct:
-                    correct = False
+                    written = True
+                    correct = False 
                 else:
                     for entry in range(len(form.steps.entries)):
                         form.steps.pop_entry()
@@ -480,7 +482,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for it0 in range(it+1,len(form.steps.entries)):
             form.steps.pop_entry()
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
-            if not correct:
+            if written:
                 if len(form.steps.entries)==0:
                     form.steps.append_entry()
         if QuestionData['Type'] == 'SolveEquationGuided':
