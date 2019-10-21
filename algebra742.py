@@ -445,6 +445,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
             except:
                 message = "Choose an operation, choose what you want to add, subtract, multiply, or divide, and write an equation."
+                if len(form.steps.entries)==it+1:
+                    form.steps.pop_entry()
                 correct = False
                 break
             try:
