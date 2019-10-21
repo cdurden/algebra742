@@ -58,7 +58,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <p>
     <b>Fill in the blanks below to define your variables:</b>
     </p>
-    {% for quantity in Parameters['Quantities'] %}
+    {% for quantity in Parameters['quantities'] %}
     <p>
     Let {{ form.variables[loop.index0] }} represent {{ quantity }}.
     </p>
