@@ -408,7 +408,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 pass
             else:
                 if correct:
-                    pass
+                    correct = False
                 else:
                     for entry in range(len(form.steps.entries)):
                         form.steps.pop_entry()
