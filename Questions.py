@@ -6,7 +6,7 @@ QuestionSets = {
             'Type': 'SetUpAndSolveEquationGuided',
             'Template': 'SetUpAndSolveEquationGuided.html',
             'ParameterSetVariants': [
-                {'question': 'Christa is saving for a new tablet. It costs \$70, including tax. She has already saved \$35. How much more does she need to save?', 'quantities': ['how much more money Christa needs to save'], 'variables': ['a'], 'equation': r'70=35+a'},
+                {'question': 'Christa is saving for a new tablet. It costs $70, including tax. She has already saved $35. How much more does she need to save?', 'quantities': ['how much more money Christa needs to save'], 'variables': ['a'], 'equation': r'70=35+a'},
                 ]
             },
         ]
