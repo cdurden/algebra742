@@ -457,8 +457,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 operation = stepform.operation.data
                 operand = stepform.operand.data
                 if operation == 'None':
-                    operation = '';
-                    operand = '';
+                    operation = '+';
+                    operand = '0';
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
             except:
                 message = "Choose an operation, choose what you want to add, subtract, multiply, or divide, and write an equation."
