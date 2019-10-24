@@ -46,7 +46,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
         with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 1})) as enum:
             for Question in QuestionData:
                 for Parameters in Question['ParameterSetVariants']:
-                    if Parameters['equation'] is not None:
+                    if 'equation' in Parameters.keys():
                         equation = Parameters['equation']
                         lhs, rhs = equation.split("=")
                         Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs,transformations=transformations)),latex(parse_expr(rhs,transformations=transformations)))
@@ -126,7 +126,8 @@ def GenerateArrowDiagram(filepath, Parameters):
 #GenerateAssignmentPdf(assignment)
 #assignment = 'ReciprocalPairsAndZeroPairs'
 #GenerateAssignmentPdf(assignment)
-assignment = 'SolveEquationsGuided'
+#assignment = 'SolveEquationsGuided'
+assignment = 'SimplifyUsingDistributiveProperty'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
