@@ -11,7 +11,7 @@ QuestionSets = {
                 {'expression': '3(x-2)-12+x'},
                 {'expression': '3(x-5)-2(12+x)'},
                 ],
-            }
+            },
             {
             'Type': 'SolveEquationGuided',
             'Template': 'SolveEquationGuided.html',
