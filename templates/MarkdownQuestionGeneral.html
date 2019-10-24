@@ -138,10 +138,12 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% endif %}
 
 <div>
-    {% if correct and QuestionData['Type'] not in ['SetUpAndSolveEquationGuided', 'SolveEquationGuided']%}
+    {% if correct %}
+    {% if QuestionData['Type'] not in ['SetUpAndSolveEquationGuided', 'SolveEquationGuided'] %}
     <p>
     <b>Your answer {{ answer }} is correct!</b>
     </p>
+    {% endif %}
     {% if NextQuestion %}
     <a href="{{ url_for('Assignment', assignment=assignment, q=NextQuestion['q'], i=NextQuestion['i']) }}" class="button">Next question</a>
     {% else %}
