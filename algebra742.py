@@ -480,11 +480,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     app.logger.error(parse_expr(new_rhs, transformations=transformations))
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
                     if operation == '':
-                        correct = correct and len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args <= len(simplify(parse_expr(lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args <= len(simplify(parse_expr(rhs,transformations=transformations)).args)
+                        correct = correct and len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(rhs,transformations=transformations)).args)
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
                     if operation == '':
-                        correct = correct and len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args <= len(simplify(parse_expr(previous_lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args <= len(simplify(parse_expr(previous_rhs,transformations=transformations)).args)
+                        correct = correct and len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(previous_lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(previous_rhs,transformations=transformations)).args)
                 if correct:
                     previous_lhs,previous_rhs = new_lhs,new_rhs
 #                    it = it+1
