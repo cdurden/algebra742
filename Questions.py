@@ -1,4 +1,21 @@
 QuestionSets = {
+    'CLT': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'Simplify',
+            'Template': 'Simplify.html',
+            'ParameterSetVariants': [
+                {'expression': '10x+5x+2'},
+                {'expression': '4a-4-7a+1'},
+                {'expression': '4z^4-4z^3+2z^4-4z^3'},
+                {'expression': '-20w^3-101+40w^3-53'},
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'SimplifyUsingDistributiveProperty': {
         'ProvideImmediateFeedback': True,
         'Questions':
