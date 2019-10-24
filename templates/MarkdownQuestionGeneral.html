@@ -138,7 +138,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% endif %}
 
 <div>
-    {% if correct %}
+    {% if correct and QuestionData['Type'] not in ['SetUpAndSolveEquationGuided', 'SolveEquationGuided']%}
     <p>
     <b>Your answer {{ answer }} is correct!</b>
     </p>
@@ -148,7 +148,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <a href="{{ url_for('Assignment', assignment=assignment, q='submit') }}" class="button">Submit assignment</a>
     {% endif %}
     {% else %}
-    {% if answer %}
+    {% if answer and QuestionData['Type'] not in ['SetUpAndSolveEquationGuided', 'SolveEquationGuided']%}
     <p>
     <!--
     -->
