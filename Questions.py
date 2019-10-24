@@ -12,6 +12,14 @@ QuestionSets = {
                 {'expression': '3(x-5)-2(12+x)'},
                 ],
             }
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': '3(x+4)-12+x=12', 'variables': ['x']},
+                {'equation': '3(x-1)-2(12+x)=2', 'variables': ['x']},
+                ],
+            }
         ]
     },
     'DifferenceBetweenConstantAndCoefficient': {
