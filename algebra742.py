@@ -20,6 +20,7 @@ from flask import request, render_template
 from flask import Response, make_response, after_this_request
 from functools import wraps
 from Questions import *
+from werkzeug.datastructures import MultiDict
 
 VERSION = '0.0.1'
 app = Flask(__name__)
