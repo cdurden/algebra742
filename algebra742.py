@@ -395,9 +395,18 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         #try:
             expression = sympify(parse_expr(QuestionData['ParameterSetVariants'][i]['expression'], transformations=transformations, evaluate=False), evaluate=False)
             terms = expression.args
-            correct = simplify(answer-expression) == 0 and len(answer.args)<=len(simplify(expression).args)
+            correct = simplify(answer-expression) == 0 
+            simplified = len(answer.args)<=len(simplify(expression).args)
+            if correct and simplified:
+                message = "Your answer {:s} is correct!".format(answer)
+            else:
+                if not correct:
+                    message = "Your answer {:s} is not correct. Try again!".format(answer)
+                if not simplified:
+                    message = "Your answer {:s} is not simplified. Try again!".format(answer)
         except:
             pass
+        answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             written = False
