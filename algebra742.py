@@ -374,20 +374,21 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     correct = False
     answer = None
     message = ''
+    if request.method != 'POST':
+        try:
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment,Question.__table__.c.number==q, Question.__table__.c.variant_index==i)).order_by(desc('datetime'))
+            results = db.session.execute(statement).first()
+            formdata = json.loads(results.answer)
+            app.logger.error(results.answer)
+        except:
+            pass
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
 
     if QuestionData['Type'] == 'Simplify':
         #app.logger.error(form.data)
         #if form.data == None:
-        if request.method != 'POST':
-            try:
-                statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment,Question.__table__.c.number==q, Question.__table__.c.variant_index==i)).order_by(desc('datetime'))
-                results = db.session.execute(statement).first()
-                app.logger.error(results.answer)
-            except IOError:
-                pass
-        form = ExpressionForm(MultiDict(json.loads(results.answer)))
+        form = ExpressionForm(MultiDict(formdata))
         try:
             answer = sympify(parse_expr(form.answer.data, transformations=transformations, evaluate=False),evaluate=False)
             #expression = parse_expr(QuestionData['ParameterSetVariants'][i]['expression'], transformations=transformations)
@@ -411,6 +412,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             written = False
+            #form = SetUpAndSolveEquationGuidedForm(MultiDict(formdata))
             form = SetUpAndSolveEquationGuidedForm()
             #form = EquationForm()
             n = len(Parameters['variables'])
@@ -448,7 +450,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     for entry in range(len(form.steps.entries)):
                         form.steps.pop_entry()
         else:
-            form = SolveEquationGuidedForm()
+            #form = SolveEquationGuidedForm()
+            form = SolveEquationGuidedForm(MultiDict(formdata))
             if len(form.steps.entries)==0:
                 form.steps.append_entry()
             correct = True
