@@ -144,6 +144,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <b>Your answer {{ answer }} is correct!</b>
     </p>
     {% endif %}
+    <b>{{ message }}</b>
     {% if NextQuestion %}
     <a href="{{ url_for('Assignment', assignment=assignment, q=NextQuestion['q'], i=NextQuestion['i']) }}" class="button">Next question</a>
     {% else %}
@@ -158,7 +159,6 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     </p>
     {% endif %}
     {% endif %}
-    <b>{{ message }}</b>
 </div>
 </div>
 </main>
