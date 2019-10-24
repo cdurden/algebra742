@@ -379,9 +379,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] == 'Simplify':
         form = ExpressionForm()
         try:
-            answer = sympify(form.answer.data, transformations=transformations, evaluate=False)
+            answer = sympify(parse_expr(form.answer.data, transformations=transformations, evaluate=False),evaluate=False)
             #expression = parse_expr(QuestionData['ParameterSetVariants'][i]['expression'], transformations=transformations)
-            expression = sympify(QuestionData['ParameterSetVariants'][i]['expression'], transformations=transformations, evaluate=False)
+            expression = sympify(parse_expr(QuestionData['ParameterSetVariants'][i]['expression'], transformations=transformations, evaluate=False), evaluate=False)
             terms = expression.args
             correct = simplify(answer-CorrectAnswer) == 0 and len(answer.args)==len(simplify(expression).args)
         except IOError:
