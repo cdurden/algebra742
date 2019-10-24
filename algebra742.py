@@ -381,6 +381,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             formdata = json.loads(results.answer)
             app.logger.error(results.answer)
         except:
+            formdata = {}
             pass
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
