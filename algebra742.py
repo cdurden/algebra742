@@ -365,7 +365,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     def add_header(response):
         response.headers['Content-Type'] = 'text/html; charset=utf-8'
         return response
-    from sympy import simplify, symbols, latex
+    from sympy import sympify, simplify, symbols, latex
     from sympy.parsing.sympy_parser import parse_expr
     from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
     transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
