@@ -386,7 +386,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         try:
             expression = sympify(parse_expr(QuestionData['ParameterSetVariants'][i]['expression'], transformations=transformations, evaluate=False), evaluate=False)
             terms = expression.args
-            correct = simplify(answer-CorrectAnswer) == 0 and len(answer.args)==len(simplify(expression).args)
+            correct = simplify(answer-expression) == 0 and len(answer.args)==len(simplify(expression).args)
         except IOError:
             pass
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
