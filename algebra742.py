@@ -387,7 +387,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 app.logger.error(results.answer)
             except IOError:
                 pass
-        form = ExpressionForm(data=MultiDict(results.answer))
+        form = ExpressionForm(MultiDict(results))
         try:
             answer = sympify(parse_expr(form.answer.data, transformations=transformations, evaluate=False),evaluate=False)
             #expression = parse_expr(QuestionData['ParameterSetVariants'][i]['expression'], transformations=transformations)
