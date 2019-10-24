@@ -16,6 +16,45 @@ QuestionSets = {
             },
         ]
     },
+    'SimplifyUsingDistributivePropertySpice': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'Simplify',
+            'Template': 'Simplify.html',
+            'ParameterSetVariants': [
+                {'expression': '3q+4r+5q+r+1'},
+                {'expression': '3(w-5)-2(12+w)'},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': '3(x-1)-2(12+x)=2', 'variables': ['x']},
+                ],
+            'SpaceAfter': '4cm',
+            }
+        ]
+    },
+    'SimplifyUsingDistributivePropertyMild': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'Simplify',
+            'Template': 'Simplify.html',
+            'ParameterSetVariants': [
+                {'expression': '3q+4r+5q+r+1'},
+                {'expression': '-3s+4b-7s-b-1'},
+                {'expression': '3(w-5)-2(12+w)'},
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'SimplifyUsingDistributiveProperty': {
         'ProvideImmediateFeedback': True,
         'Questions':
