@@ -125,7 +125,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {{ form.other }}
 </div>
 {% endif %}
-{% if QuestionData['Type'] in ['Numerical','Expression','OpenResponse'] %}
+{% if QuestionData['Type'] in ['Numerical','Simplify', 'Expression','OpenResponse'] %}
 <p>
 {{ form.answer(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
 </p>

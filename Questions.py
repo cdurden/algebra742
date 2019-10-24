@@ -1,4 +1,19 @@
 QuestionSets = {
+    'SimplifyUsingDistributiveProperty': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'Simplify',
+            'Template': 'Simplify.html',
+            'ParameterSetVariants': [
+                {'expression': '3(x+4)-12+x'},
+                {'expression': '3(x-2)-12+x'},
+                {'expression': '3(x-5)-2(12+x)'},
+                ],
+            }
+        ]
+    },
     'DifferenceBetweenConstantAndCoefficient': {
         'ProvideImmediateFeedback': False,
         'Questions':
