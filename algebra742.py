@@ -482,19 +482,28 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     app.logger.error(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand), transformations=transformations))
                     app.logger.error(parse_expr(new_rhs, transformations=transformations))
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
+                    if not correct:
+                        message = "Your equation in step {:d} is incorrect.".format(it+1)
                     if noop:
-                        correct = correct and len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(rhs,transformations=transformations)).args)
+                        simplified = len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(rhs,transformations=transformations)).args)
+                        correct = correct and simplified
+                        if not simplified:
+                            message = message+" Your equation in step {:d} is not simplified".format(it+1)
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
+                    if not correct:
+                        message = "Your equation in step {:d} is incorrect.".format(it+1)
                     if noop:
-                        correct = correct and len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(previous_lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(previous_rhs,transformations=transformations)).args)
+                        simplified = len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(previous_lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(previous_rhs,transformations=transformations)).args)
+                        correct = correct and simplified
+                        if not simplified:
+                            message = message+" Your equation in step {:d} is not simplified".format(it+1)
                 if correct:
                     previous_lhs,previous_rhs = new_lhs,new_rhs
 #                    it = it+1
 #                    form.steps.append_entry()
                     stepform = form.steps.entries[it]
                 else:
-                    message = "Your equation in step {:d} is incorrect".format(it+1)
                     break
                     #operations.append(operation)
                     #operands.append(operand)
