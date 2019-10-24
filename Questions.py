@@ -8,10 +8,7 @@ QuestionSets = {
             'Template': 'Simplify.html',
             'ParameterSetVariants': [
                 {'expression': '3q+4r+5q+r+1'},
-                {'expression': 'y^2+5y+2y^2+y'},
                 {'expression': '-3s+4b-7s-b-1'},
-                {'expression': '3(x+4)-12+x'},
-                {'expression': '3(a-2)-12+a'},
                 {'expression': '3(w-5)-2(12+w)'},
                 ],
             'SpaceAfter': '4cm',
@@ -22,7 +19,6 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'equation': '3m+m-10=2', 'variables': ['m']},
                 {'equation': '3m-1+m-2=5', 'variables': ['m']},
-                {'equation': '3(x+4)-12+x=12', 'variables': ['x']},
                 {'equation': '3(x-1)-2(12+x)=2', 'variables': ['x']},
                 ],
             'SpaceAfter': '4cm',

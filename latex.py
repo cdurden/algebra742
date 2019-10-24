@@ -49,7 +49,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                     if 'equation' in Parameters.keys():
                         equation = Parameters['equation']
                         lhs, rhs = equation.split("=")
-                        Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs,transformations=transformations)),latex(parse_expr(rhs,transformations=transformations)))
+                        Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs,transformations=transformations, evaluate=False)),latex(parse_expr(rhs,transformations=transformations, evaluate=False)))
                     template = jenv.get_template(Question['Template'])
                     out = template.render(**Parameters)
                     enum.add_item(NoEscape(out))
