@@ -385,7 +385,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.number==q, Question.__table__.c.variant_index==i))
                 results = db.session.execute(statement).first()
                 form.data = json.loads(results.answer)
-            except:
+            except IOError:
                 pass
         try:
             answer = sympify(parse_expr(form.answer.data, transformations=transformations, evaluate=False),evaluate=False)
