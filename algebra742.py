@@ -374,6 +374,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     correct = False
     answer = None
     message = ''
+    formdata = {}
     if request.method != 'POST':
         try:
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment,Question.__table__.c.number==q, Question.__table__.c.variant_index==i)).order_by(desc('datetime'))
@@ -389,7 +390,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] == 'Simplify':
         #app.logger.error(form.data)
         #if form.data == None:
-        form = ExpressionForm(MultiDict(formdata))
+        #form = ExpressionForm(MultiDict(formdata))
+        form = ExpressionForm(data=formdata)
         try:
             answer = sympify(parse_expr(form.answer.data, transformations=transformations, evaluate=False),evaluate=False)
             #expression = parse_expr(QuestionData['ParameterSetVariants'][i]['expression'], transformations=transformations)
@@ -414,7 +416,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             written = False
             #form = SetUpAndSolveEquationGuidedForm(MultiDict(formdata))
-            form = SetUpAndSolveEquationGuidedForm()
+            #form = SetUpAndSolveEquationGuidedForm()
+            form = SetUpAndSolveEquationGuidedForm(data=formdata)
             #form = EquationForm()
             n = len(Parameters['variables'])
             for it in range(n):
@@ -452,7 +455,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                         form.steps.pop_entry()
         else:
             #form = SolveEquationGuidedForm()
-            form = SolveEquationGuidedForm(MultiDict(formdata))
+            #form = SolveEquationGuidedForm(MultiDict(formdata))
+            form = SolveEquationGuidedForm(data=formdata)
             if len(form.steps.entries)==0:
                 form.steps.append_entry()
             correct = True
