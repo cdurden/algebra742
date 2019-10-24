@@ -3,7 +3,7 @@ import sys
 import json
 from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import select, and_
+from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 from wtforms.validators import NumberRange
