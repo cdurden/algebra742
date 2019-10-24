@@ -457,8 +457,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 operation = stepform.operation.data
                 operand = stepform.operand.data
                 if operation == 'None':
+                    noop = True
                     operation = '+';
                     operand = '0';
+                else:
+                    noop = False
                 new_lhs, new_rhs = stepform.new_equation.data.split("=")
             except:
                 message = "Choose an operation, choose what you want to add, subtract, multiply, or divide, and write an equation."
@@ -479,11 +482,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     app.logger.error(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand), transformations=transformations))
                     app.logger.error(parse_expr(new_rhs, transformations=transformations))
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
-                    if operation == '':
+                    if noop:
                         correct = correct and len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(rhs,transformations=transformations)).args)
                 else:
                     correct = simplify(parse_expr("({:s}){:s}({:s})".format(previous_lhs,operation,operand), transformations=transformations)-parse_expr(new_lhs, transformations=transformations))==0 and simplify(parse_expr("({:s}){:s}({:s})".format(previous_rhs,operation,operand), transformations=transformations)-parse_expr(new_rhs, transformations=transformations))==0
-                    if operation == '':
+                    if noop:
                         correct = correct and len(sympify(parse_expr(new_lhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(previous_lhs,transformations=transformations)).args) and len(sympify(parse_expr(new_rhs,evaluate=False, transformations=transformations),evaluate=False).args) <= len(simplify(parse_expr(previous_rhs,transformations=transformations)).args)
                 if correct:
                     previous_lhs,previous_rhs = new_lhs,new_rhs
@@ -533,6 +536,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             correct = False
         answer = json.dumps(form.data)
+        app.logger.error(message)
 
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
         #    form.steps.append_entry()
