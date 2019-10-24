@@ -449,7 +449,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             except:
                 pass
         #QuestionData['ParameterSetVariants'][i]['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs, transformations=transformations)),latex(parse_expr(rhs, transformations=transformations)))
-        Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs, transformations=transformations)),latex(parse_expr(rhs, transformations=transformations)))
+        Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs, transformations=transformations, evaluate=False)),latex(parse_expr(rhs, transformations=transformations, evaluate=False)))
         it = 0
         for it,stepform in enumerate(form.steps.entries):
         #while correct:
