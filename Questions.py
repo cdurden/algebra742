@@ -1,4 +1,42 @@
 QuestionSets = {
+    'ClassworkOct25': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': '3(m+9)-2m=30', 'variables': ['m']},
+                {'equation': '3a+a-10=2', 'variables': ['a']},
+                {'equation': '3m-1+m-2=5', 'variables': ['m']},
+                {'equation': '3(x-1)-x=5', 'variables': ['x']},
+                {'equation': '3(2s-1)+5-s=12', 'variables': ['s']},
+                {'equation': '3(x-3)-2(12+x)=-1', 'variables': ['x']},
+                {'equation': '-3(2t-2)+(2-t)=29', 'variables': ['t']},
+                ],
+            'SpaceAfter': '4cm',
+            }
+        ]
+    },
+    'HWp93': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': '3m+4=-11', 'variables': ['m']},
+                {'equation': '12=-7f-9', 'variables': ['f']},
+                {'equation': '-3=2+a/11', 'variables': ['a']},
+                {'equation': '3/2a-8=11', 'variables': ['a']},
+                {'equation': '8=(x-5)/7', 'variables': ['x']},
+                ],
+            'SpaceAfter': '4cm',
+            }
+        ]
+    },
     'CLT': {
         'ProvideImmediateFeedback': True,
         'Questions':
