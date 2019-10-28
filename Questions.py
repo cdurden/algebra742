@@ -6,7 +6,9 @@ QuestionSets = {
             'Type': 'SetUpAndSolveEquationGuided',
             'Template': 'SetUpAndSolveEquationGuided.html',
             'ParameterSetVariants': [
+                {'question': 'How much does one starburst weigh?', 'quantities': ['how much one starburst weighs'], 'variables': ['s'], 'equation': r'3s+2=47', 'youtube_video_id': 'hKbVTk22-kY'},
                 {'question': 'How many skittles are in one bag?', 'quantities': ['how many skittles are in each bag'], 'variables': ['s'], 'equation': r'3s+2=47', 'youtube_video_id': 'tAaSMnc7ovc'},
+                {'question': 'How many skittles are in each of the silver bottles?', 'quantities': ['how many skittles are in each silver bottle'], 'variables': ['s'], 'equation': r'2s+2=47', 'youtube_video_id': 'ySPeCgh31qc'},
                 ]
             }
         ]
