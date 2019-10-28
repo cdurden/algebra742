@@ -127,7 +127,8 @@ def GenerateArrowDiagram(filepath, Parameters):
 #assignment = 'ReciprocalPairsAndZeroPairs'
 #GenerateAssignmentPdf(assignment)
 #assignment = 'SolveEquationsGuided'
-assignment = 'SimplifyUsingDistributiveProperty'
+#assignment = 'SimplifyUsingDistributiveProperty'
+assignment = 'ClassworkOct25'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')

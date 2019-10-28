@@ -1,4 +1,16 @@
 QuestionSets = {
+    'BalancingCandy': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+        {
+            'Type': 'SetUpAndSolveEquationGuided',
+            'Template': 'SetUpAndSolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'question': 'How many skittles are in one bag?', 'quantities': ['how many skittles are in each bag'], 'variables': ['s'], 'equation': r'3s+2=47', 'youtube_video_id': 'tAaSMnc7ovc'},
+                ]
+            }
+        ]
+    },
     'ClassworkOct25': {
         'ProvideImmediateFeedback': True,
         'Questions':
