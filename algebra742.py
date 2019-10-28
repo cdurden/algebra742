@@ -480,8 +480,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             try:
                 for it,variable in enumerate(Parameters['variables']):
-                    lhs = lhs.replace(variable, form.equation_form.variables[it].data)
-                    rhs = rhs.replace(variable, form.equation_form.variables[it].data)
+                    lhs = lhs.replace(variable, "({:s})".format(form.equation_form.variables[it].data))
+                    rhs = rhs.replace(variable, "({:s})".format(form.equation_form.variables[it].data))
+                    #lhs = lhs.replace(variable, form.equation_form.variables[it].data)
+                    #rhs = rhs.replace(variable, form.equation_form.variables[it].data)
             except:
                 pass
         #QuestionData['ParameterSetVariants'][i]['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs, transformations=transformations)),latex(parse_expr(rhs, transformations=transformations)))
