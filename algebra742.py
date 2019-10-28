@@ -431,9 +431,18 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 lhs,rhs = QuestionData['ParameterSetVariants'][i]['equation'].split("=")
                 #lhs = BalanceQuestionData[q-1]['LHS']
                 #rhs = BalanceQuestionData[q-1]['RHS']
+                variables = []
                 for it,variable in enumerate(Parameters['variables']):
-                    lhs = lhs.replace(variable, form.equation_form.variables[it].data)
-                    rhs = rhs.replace(variable, form.equation_form.variables[it].data)
+                    if form.equation_form.variables[it].data > 1:
+                        message = "Variables and units must be a single letter or the number 1"
+                        raise Exception
+                    variables.append(form.equation_form.variables[it].data)
+                    lhs = lhs.replace(variable, "({:s})".format(form.equation_form.variables[it].data))
+                    rhs = rhs.replace(variable, "({:s})".format(form.equation_form.variables[it].data))
+                if len(variables) != len(set(variables)):
+                    message = "Each variable or unit can be used only once."
+                    raise Exception
+                    
                 lhs = parse_expr(lhs, transformations=transformations)
                 rhs = parse_expr(rhs, transformations=transformations)
                 correct = simplify(lhs-lhs_input) == 0 and simplify(rhs-rhs_input) == 0
