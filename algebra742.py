@@ -433,7 +433,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 #rhs = BalanceQuestionData[q-1]['RHS']
                 variables = []
                 for it,variable in enumerate(Parameters['variables']):
-                    if form.equation_form.variables[it].data > 1:
+                    if len(str(form.equation_form.variables[it].data)) > 1:
                         message = "Variables and units must be a single letter or the number 1"
                         raise Exception
                     variables.append(form.equation_form.variables[it].data)
