@@ -6,9 +6,9 @@ QuestionSets = {
             'Type': 'SetUpAndSolveEquationGuided',
             'Template': 'SetUpAndSolveEquationGuided.html',
             'ParameterSetVariants': [
-                {'question': 'How much does one starburst weigh?', 'quantities': ['how much one starburst weighs'], 'variables': ['s'], 'equation': r'3s+2=47', 'youtube_video_id': 'hKbVTk2Z-kY'},
-                {'question': 'How many skittles are in one bag?', 'quantities': ['how many skittles are in each bag'], 'variables': ['s'], 'equation': r'3s+2=47', 'youtube_video_id': 'tAaSMnc7ovc'},
-                {'question': 'How many skittles are in each of the silver bottles?', 'quantities': ['how many skittles are in each silver bottle'], 'variables': ['s'], 'equation': r'2s+2=47', 'youtube_video_id': 'ySPeCgh31qc'},
+                {'question': 'How much does one starburst weigh?', 'quantities': ['weight of a starburst', 'weight of a skittle'], 'variables': ['s','t'], 'equation': r'3s+2t=47t', 'act1_youtube_video_id': 'hKbVTk2Z-kY'},
+                {'question': 'How many skittles are in one bag?', 'quantities': ['weight of a bag of skittles', 'weight of one skittle'], 'variables': ['s','t'], 'equation': r'3s+2t=47t', 'act1_youtube_video_id': 'tAaSMnc7ovc'},
+                {'question': 'How many skittles are in each of the silver bottles?', 'quantities': ['weight of an empty bottle', 'weight of a skittle', 'weight of a starburst', 'number of skittles in the silver bottle'], 'variables': ['b', 'k', 't', 'g'], 'equation': r'2b+x*k+3t=2b+21k', 'act1_youtube_video_id': 'ySPeCgh31qc'},
                 ]
             }
         ]
