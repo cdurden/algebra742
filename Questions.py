@@ -13,6 +13,29 @@ QuestionSets = {
             }
         ]
     },
+
+    'HomeworkOct29Advanced': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                # Homework
+                # Page 100 #15-21
+                #{'equation': '(5v-4)/10 = 4/5', 'variables': ['v']}, #15
+                {'equation': '8=4(r+4)', 'variables': ['r']}, #16
+                {'equation': '6(n+5)=66', 'variables': ['n']}, #17
+                {'equation': '5(g+8)-7=103', 'variables': ['g']},
+                {'equation': '12-4/5(x+15)=4', 'variables': ['g']},
+                {'equation': '3(3m-2)=2(3m+3)', 'variables': ['m']},
+                {'equation': '6(3a+1)-30=3(2a-4)', 'variables': ['a']},
+                ],
+            'SpaceAfter': '4cm',
+            }
+        ]
+    },
     'ClassworkOct29Advanced': {
         'ProvideImmediateFeedback': True,
         'Questions':
@@ -45,15 +68,6 @@ QuestionSets = {
                 {'equation': '8s-10=3(6-2s)', 'variables': ['s']},
                 # We (2 min)
                 {'equation': '7(n-1)=-2(3+n)', 'variables': ['n']},
-                # Homework
-                # Page 100 #15-21
-                #{'equation': '(5v-4)/10 = 4/5', 'variables': ['v']}, #15
-                {'equation': '8=4(r+4)', 'variables': ['r']}, #16
-                {'equation': '6(n+5)=66', 'variables': ['n']}, #17
-                {'equation': '5(g+8)-7=103', 'variables': ['g']},
-                {'equation': '12-4/5(x+15)=4', 'variables': ['g']},
-                {'equation': '3(3m-2)=2(3m+3)', 'variables': ['m']},
-                {'equation': '6(3a+1)-30=3(2a-4)', 'variables': ['a']},
                 ],
             'SpaceAfter': '4cm',
             }
