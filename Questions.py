@@ -6,10 +6,83 @@ QuestionSets = {
             'Type': 'SetUpAndSolveEquationGuided',
             'Template': 'SetUpAndSolveEquationGuided.html',
             'ParameterSetVariants': [
-                {'question': 'How much does one starburst weigh?', 'quantities': ['weight of a starburst', 'weight of a skittle'], 'variables': ['t','k'], 'equation': r'6(t+2k)=40k', 'act1_youtube_video_id': 'hKbVTk2Z-kY'},
+                {'question': 'How many skittles weight the same as one starburst?', 'quantities': ['weight of a starburst', 'weight of a skittle'], 'variables': ['t','k'], 'equation': r'6(t+2k)=40k', 'act1_youtube_video_id': 'hKbVTk2Z-kY'},
                 {'question': 'How many skittles are in one bag?', 'quantities': ['weight of a bag of skittles', 'weight of one skittle'], 'variables': ['s','t'], 'equation': r'3s+2t=47t', 'act1_youtube_video_id': 'tAaSMnc7ovc'},
                 {'question': 'How many skittles are in each of the silver bottles?', 'quantities': ['weight of an empty bottle', 'weight of a skittle', 'weight of a starburst', 'number of skittles in the silver bottle'], 'variables': ['b', 'k', 't', 'g'], 'equation': r'2b+x*k+3t=2b+21k', 'act1_youtube_video_id': 'ySPeCgh31qc'},
                 ]
+            }
+        ]
+    },
+    'ClassworkOct29Advanced': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                # Review
+                # You and Review (2 min + 2 min)
+                {'equation': '2(s+9)-s=30', 'variables': ['s']},
+                # We (2 min)
+                {'equation': '3b-(b+18)=2', 'variables': ['b']},
+                # Me (2 min) Follow along and enter into Schoology
+                {'equation': '3m-1+2(m-2)=5', 'variables': ['m']},
+                #{'equation': '-3(2t-2)+2(2-t)=26', 'variables': ['t']},
+                #{'equation': '4(2x-1)-4x=6', 'variables': ['x']},
+                # Lesson (2 min)
+                # Example on page 97 (2 min)
+                {'equation': '2+5k=3k-6', 'variables': ['k']},
+                # You and Review (2 min + 2 min)
+                {'equation': '3w+2=7w', 'variables': ['w']},
+                # We (2 min)
+                {'equation': '5a+2=6-7a', 'variables': ['a']},
+                {'equation': 'x/2+1=1/4x-6', 'variables': ['x']},
+                #{'equation': '1.3c=3.3c+2.8', 'variables': ['c']},
+                # Example on page 98 (Solve an equation with grouping symbols)
+                {'equation': '6(5m-3)=1/3(24m+12)', 'variables': ['m']},
+                # You and Review (2 min + 2 min)
+                {'equation': '8s-10=3(6-2s)', 'variables': ['s']},
+                # We (2 min)
+                {'equation': '7(n-1)=-2(3+n)', 'variables': ['n']},
+                # Homework
+                # Page 100 #15-20
+                {'equation': '(5v-4)/10 = 4/5', 'variables': ['v']}, #15
+                {'equation': '8=4(r+4)', 'variables': ['r']}, #16
+                {'equation': '6(n+5)=66', 'variables': ['n']}, #17
+                {'equation': '5(g+8)-7=103', 'variables': ['g']},
+                {'equation': '12-4/5(x+15)=4', 'variables': ['g']},
+                {'equation': '3(3m-2)=2(3m+3)', 'variables': ['m']},
+                #{'equation': '6(3a+1)-30=3(2a-4)', 'variables': ['a']},
+                ],
+            'SpaceAfter': '4cm',
+            }
+        ]
+    },
+    'ClassworkOct29': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': '2(s+9)-s=30', 'variables': ['s']},
+                # We (2 min)
+                {'equation': '3b-(b+18)=2', 'variables': ['b']},
+                # Me (2 min) Follow along and enter into Schoology
+                {'equation': '3m-1+2(m-2)=5', 'variables': ['m']},
+                {'equation': '-3(2t-2)+2(2-t)=26', 'variables': ['t']},
+                {'equation': '4(2x-1)-4x=6', 'variables': ['x']},
+                # Homework
+                # Page 100 #15-19
+                {'equation': '(5v-4)/10 = 4/5', 'variables': ['v']},
+                {'equation': '8=4(r+4)', 'variables': ['r']}, #16
+                {'equation': '6(n+5)=66', 'variables': ['n']}, #17
+                {'equation': '5(g+8)-7=103', 'variables': ['g']},
+                {'equation': '12-4/5(x+15)=4', 'variables': ['g']},
+                ],
+            'SpaceAfter': '4cm',
             }
         ]
     },
