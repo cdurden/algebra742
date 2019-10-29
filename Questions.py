@@ -40,7 +40,7 @@ QuestionSets = {
                 {'equation': 'x/2+1=1/4x-6', 'variables': ['x']},
                 #{'equation': '1.3c=3.3c+2.8', 'variables': ['c']},
                 # Example on page 98 (Solve an equation with grouping symbols)
-                {'equation': '6(5m-3)=(1/3)*(24m+12)', 'variables': ['m']},
+                {'equation': '6(5m-3)=(1/3)*(24m+12)', 'equation_latex': r'6(5m-3)=\frac{1}{3}(24m+12)', 'variables': ['m']},
                 # You and Review (2 min + 2 min)
                 {'equation': '8s-10=3(6-2s)', 'variables': ['s']},
                 # We (2 min)
