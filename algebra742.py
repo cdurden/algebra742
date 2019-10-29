@@ -384,6 +384,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             formdata = {}
             pass
+    if user.id == 86:
+        formdata = {}
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
 
