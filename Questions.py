@@ -13,8 +13,7 @@ QuestionSets = {
             }
         ]
     },
-
-    'HomeworkOct29Advanced': {
+    'HomeworkOct29': {
         'ProvideImmediateFeedback': True,
         'Questions':
         [
