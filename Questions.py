@@ -23,9 +23,9 @@ QuestionSets = {
             'ParameterSetVariants': [
                 # Review
                 # You and Review (2 min + 2 min)
-                {'equation': '2(s+9)-s=30', 'variables': ['s']},
+                #{'equation': '2(s+9)-s=30', 'variables': ['s']},
                 # We (2 min)
-                {'equation': '3b-(b+18)=2', 'variables': ['b']},
+                #{'equation': '3b-(b+18)=2', 'variables': ['b']},
                 # Me (2 min) Follow along and enter into Schoology
                 {'equation': '3m-1+2(m-2)=5', 'variables': ['m']},
                 #{'equation': '-3(2t-2)+2(2-t)=26', 'variables': ['t']},
@@ -46,14 +46,14 @@ QuestionSets = {
                 # We (2 min)
                 {'equation': '7(n-1)=-2(3+n)', 'variables': ['n']},
                 # Homework
-                # Page 100 #15-20
-                {'equation': '(5v-4)/10 = 4/5', 'variables': ['v']}, #15
+                # Page 100 #15-21
+                #{'equation': '(5v-4)/10 = 4/5', 'variables': ['v']}, #15
                 {'equation': '8=4(r+4)', 'variables': ['r']}, #16
                 {'equation': '6(n+5)=66', 'variables': ['n']}, #17
                 {'equation': '5(g+8)-7=103', 'variables': ['g']},
                 {'equation': '12-4/5(x+15)=4', 'variables': ['g']},
                 {'equation': '3(3m-2)=2(3m+3)', 'variables': ['m']},
-                #{'equation': '6(3a+1)-30=3(2a-4)', 'variables': ['a']},
+                {'equation': '6(3a+1)-30=3(2a-4)', 'variables': ['a']},
                 ],
             'SpaceAfter': '4cm',
             }
