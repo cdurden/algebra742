@@ -100,11 +100,11 @@ QuestionSets = {
                 {'equation': '4(2x-1)-4x=6', 'variables': ['x']},
                 # Homework
                 # Page 100 #15-19
-                {'equation': '(5v-4)/10 = 4/5', 'variables': ['v']},
-                {'equation': '8=4(r+4)', 'variables': ['r']}, #16
-                {'equation': '6(n+5)=66', 'variables': ['n']}, #17
-                {'equation': '5(g+8)-7=103', 'variables': ['g']},
-                {'equation': '12-4/5(x+15)=4', 'equation': r'12-\frac{4}{5}(x+15)=4', 'variables': ['x']},
+#                {'equation': '(5v-4)/10 = 4/5', 'variables': ['v']},
+#                {'equation': '8=4(r+4)', 'variables': ['r']}, #16
+#                {'equation': '6(n+5)=66', 'variables': ['n']}, #17
+#                {'equation': '5(g+8)-7=103', 'variables': ['g']},
+#                {'equation': '12-4/5(x+15)=4', 'equation': r'12-\frac{4}{5}(x+15)=4', 'variables': ['x']},
                 ],
             'SpaceAfter': '4cm',
             }
