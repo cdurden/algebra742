@@ -91,7 +91,7 @@ QuestionSets = {
             'Type': 'SolveEquationGuided',
             'Template': 'SolveEquationGuided.html',
             'ParameterSetVariants': [
-                {'equation': '5(2a+2)-3(3a+5)=10', 'equation_latex': r'5(2a+2)-3(3a+5)=10', 'variables': ['a']},
+                #{'equation': '5(2a+2)-3(3a+5)=10', 'equation_latex': r'5(2a+2)-3(3a+5)=10', 'variables': ['a']},
                 {'equation': '2(s+9)-s=30', 'variables': ['s']},
                 # We (2 min)
                 {'equation': '3b-(b+18)=2', 'variables': ['b']},
