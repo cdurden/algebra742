@@ -1,4 +1,15 @@
 QuestionSets = {
+    'DifferenceBetweenZeroPairAndReciprocalPair': {
+        'ProvideImmediateFeedback': False,
+        'Questions':
+        [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'DifferenceBetweenZeroPairAndReciprocalPair.html',
+            'ParameterSetVariants': [{}],
+            }
+        ]
+    },
     'BalancingCandy': {
         'ProvideImmediateFeedback': True,
         'Questions': [
