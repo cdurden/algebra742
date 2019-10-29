@@ -96,7 +96,7 @@ QuestionSets = {
                 {'equation': '3b-(b+18)=2', 'variables': ['b']},
                 # Me (2 min) Follow along and enter into Schoology
                 {'equation': '3m-1+2(m-2)=5', 'variables': ['m']},
-                {'equation': '-3(2t-2)+2(2-t)=26', 'variables': ['t']},
+                {'equation': '-3(2t-2)+2(2-t)=26', 'equation_latex': r'-3(2t-2)+2(2-t)=26', 'variables': ['t']},
                 {'equation': '4(2x-1)-4x=6', 'variables': ['x']},
                 # Homework
                 # Page 100 #15-19
@@ -104,7 +104,7 @@ QuestionSets = {
                 {'equation': '8=4(r+4)', 'variables': ['r']}, #16
                 {'equation': '6(n+5)=66', 'variables': ['n']}, #17
                 {'equation': '5(g+8)-7=103', 'variables': ['g']},
-                {'equation': '12-4/5(x+15)=4', 'variables': ['g']},
+                {'equation': '12-4/5(x+15)=4', 'equation': r'12-\frac{4}{5}(x+15)=4', 'variables': ['x']},
                 ],
             'SpaceAfter': '4cm',
             }
