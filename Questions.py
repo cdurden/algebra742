@@ -15,7 +15,7 @@ QuestionSets = {
                 {'equation': '-2y-4=2(6-2y)', 'equation_latex': r'-2y-4=2(6-2y)', 'variables': ['y']},
                 {'equation': '3(2t-2)-26=2(2-t)', 'variables': ['t']},
                 # We (2 min)
-                {'equation': '7(n-1)=-2(3+n)', 'variables': ['n']},
+                {'equation': '7(n-1)=-2(3+n)', 'equation_latex': '7(n-1)=-2(3+n)', 'variables': ['n']},
                 ],
             'SpaceAfter': '4cm',
             }
