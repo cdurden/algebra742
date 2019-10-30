@@ -38,9 +38,31 @@ QuestionSets = {
                 {'equation': '8=4(r+4)', 'variables': ['r']}, #16
                 {'equation': '6(n+5)=66', 'variables': ['n']}, #17
                 {'equation': '5(g+8)-7=103', 'variables': ['g']},
-                {'equation': '12-4/5(x+15)=4', 'variables': ['g']},
+                {'equation': '12-4/5(x+15)=4', 'equation_latex': r'12-\frac{4}{5}(x+15)=4', 'variables': ['g']},
                 {'equation': '3(3m-2)=2(3m+3)', 'variables': ['m']},
                 {'equation': '6(3a+1)-30=3(2a-4)', 'variables': ['a']},
+                ],
+            'SpaceAfter': '4cm',
+            }
+        ]
+    },
+    'ClassworkOct30': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': '4(2x-1)=4x+6', 'variables': ['x']},
+                # You and Review (2 min + 2 min)
+                {'equation': '8s-10=3(6-2s)', 'variables': ['s']},
+                {'equation': '1/2(4a-8)=-2(2+a)', 'variables': ['a']},
+                {'equation': '6(5m-3)=(1/3)*(24m+12)', 'equation_latex': r'6(5m-3)=\frac{1}{3}(24m+12)', 'variables': ['m']},
+                {'equation': '8y-10=3(6-2y)', 'variables': ['y']},
+                {'equation': '3(2t-2)-26=2(2-t)', 'variables': ['t']},
+                # We (2 min)
+                {'equation': '7(n-1)=-2(3+n)', 'variables': ['n']},
                 ],
             'SpaceAfter': '4cm',
             }
@@ -61,8 +83,6 @@ QuestionSets = {
                 #{'equation': '3b-(b+18)=2', 'variables': ['b']},
                 # Me (2 min) Follow along and enter into Schoology
                 {'equation': '3m-1+2(m-2)=5', 'variables': ['m']},
-                #{'equation': '-3(2t-2)+2(2-t)=26', 'variables': ['t']},
-                #{'equation': '4(2x-1)-4x=6', 'variables': ['x']},
                 # Lesson (2 min)
                 # Example on page 97 (2 min)
                 {'equation': '2+5k=3k-6', 'variables': ['k']},
@@ -74,6 +94,8 @@ QuestionSets = {
                 #{'equation': '1.3c=3.3c+2.8', 'variables': ['c']},
                 # Example on page 98 (Solve an equation with grouping symbols)
                 {'equation': '6(5m-3)=(1/3)*(24m+12)', 'equation_latex': r'6(5m-3)=\frac{1}{3}(24m+12)', 'variables': ['m']},
+                #{'equation': '3(2t-2)-26=2(2-t)', 'variables': ['t']},
+                #{'equation': '4(2x-1)=4x+6', 'variables': ['x']},
                 # You and Review (2 min + 2 min)
                 {'equation': '8s-10=3(6-2s)', 'variables': ['s']},
                 # We (2 min)
