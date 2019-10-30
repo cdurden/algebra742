@@ -10,7 +10,7 @@ QuestionSets = {
                 {'equation': '4(2x-1)=4x+6', 'variables': ['x']},
                 # You and Review (2 min + 2 min)
                 {'equation': '8s-10=3(6-2s)', 'variables': ['s']},
-                {'equation': '1/2(4a-8)=-2(2+a)', 'variables': ['a']},
+                {'equation': '1/2(4a-8)=-2(2+a)', 'equation_latex': r'\frac{1}{2}(4a-8)=-2(2+a)', 'variables': ['a']},
                 {'equation': '6(5m-3)=(1/3)*(24m+12)', 'equation_latex': r'6(5m-3)=\frac{1}{3}(24m+12)', 'variables': ['m']},
                 {'equation': '-2y-4=2(6-2y)', 'variables': ['y']},
                 {'equation': '3(2t-2)-26=2(2-t)', 'variables': ['t']},
