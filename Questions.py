@@ -1,4 +1,71 @@
 QuestionSets = {
+    'AddEmUpSolvingEquations': [
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'Equation.html',
+            'ParameterSetVariants': [
+                {'equation': 'x+112=96', 'CorrectAnswer': '84'},
+                {'equation': 'x+25=-111','CorrectAnswer': '-250'},
+                {'equation': 'x+(-22)=-108','CorrectAnswer': '-86'},
+                {'equation': 'x+(53)=-271','CorrectAnswer': '-324'},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'Equation.html',
+            'ParameterSetVariants': [
+                {'equation': r'5x=-175', 'CorrectAnswer': '84'},
+                {'equation': r'\frac{1}{3}x=-123','CorrectAnswer': '-250'},
+                {'equation': r'-\frac{1}{6}x=-108','CorrectAnswer': '-86'},
+                {'equation': r'-8x=256','CorrectAnswer': '-324'},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'Equation.html',
+            'ParameterSetVariants': [
+                {'equation': r'5x+(-40)=-120', 'CorrectAnswer': '84'},
+                {'equation': r'\frac{1}{3}x+51=-123','CorrectAnswer': '-250'},
+                {'equation': r'-\frac{1}{6}x+18=-108','CorrectAnswer': '-86'},
+                {'equation': r'-8x+72=56','CorrectAnswer': '-324'},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        ],
+    'BalancingCandies': {
+        'ProvideImmediateFeedback': False,
+        'Questions': [
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
+            'Template': 'Empty.html',
+            'ParameterSetVariants': [{}],
+            'Choices': [('0', 'I did not achieve any of the criteria'), ('1','Some steps used to solve the equation are valid'), ('2','The equation represents a balance, and all steps of the solution are shown in a logical order.'), ('3','The equation represents a balance, and all steps of the solution are shown in a logical order, and the properties of algebra used are included.')],
+            'Question': 'Communicating mathematical reasoning',
+            }
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
+            'Template': 'Empty.html',
+            'ParameterSetVariants': [{}],
+            'Choices': [('0', 'I did not achieve any of the criteria'), ('1','Examples are provided for some key concepts'), ('2','Examples are provided for 10 key concepts. All examples are accurately labeled.'), ('3','Examples are provided for 10 key concepts. All examples are accurately labeled. A description of each concept is written in your own words.')],
+            'Question': 'Explaining concepts',
+            }
+        {
+            #'Type': 'AddSubtractIntegerDirections',
+            'Type': 'MC',
+            'Template': 'Empty.html',
+            'ParameterSetVariants': [{}],
+            'Choices': [('0', 'I did not achieve any of the criteria'), ('1','Writing is partially organized, or markings and color leave uncertainty about examples and characteristics of key concepts.'), ('2','Writing is organized and easy to read. Markings and color clearly indicate examples and characteristics of key concepts.'), ('3','Writing is organized and easy to read. Markings and color clearly indicate examples and characteristics of key concepts. You produced an original video showing balanced weights.')],
+            'Question': 'Presentation',
+            }
+        ]
+    },
     'ClassworkOct30B': {
         'ProvideImmediateFeedback': True,
         'Questions':
