@@ -9,7 +9,7 @@ from algebra742 import app, db, User, error
 socketio = SocketIO(app)
 ROOMS = {} # dict to track active rooms
 
-@app.route('/memory_init', methods=['GET', 'POST'])
+@app.route('/memory_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
 def memory_init(lti=lti):
     """ initial access page to the lti provider.  This page provides
