@@ -31,7 +31,7 @@ def index(lti=lti):
 @app.route('/memory')
 def index():
     """Serve the index HTML"""
-    return render_template('game.html')
+    return render_template('memory.html')
 
 @socketio.on('create')
 def on_create(data):

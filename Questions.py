@@ -3,38 +3,62 @@ QuestionSets = {
         {
             #'Type': 'SolveEquation',
             'Type': 'Numerical',
-            'Template': 'Equation.html',
+            'Template': 'Equation.tex',
             'ParameterSetVariants': [
-                {'equation': 'x+112=96', 'CorrectAnswer': '84'},
-                {'equation': 'x+25=-111','CorrectAnswer': '-250'},
-                {'equation': 'x+(-22)=-108','CorrectAnswer': '-86'},
-                {'equation': 'x+(53)=-271','CorrectAnswer': '-324'},
+                {'equation': 'x+11=222','CorrectAnswer': '-250'},
+                {'equation': '-21+x=107','CorrectAnswer': '-86'},
+                {'equation': r'-\frac{1}{5}x=-45','CorrectAnswer': '-86'},
+                {'equation': r'-4x=256','CorrectAnswer': '-324'},
                 ],
             'SpaceAfter': '5cm',
             },
         {
             #'Type': 'SolveEquation',
             'Type': 'Numerical',
-            'Template': 'Equation.html',
+            'Template': 'Equation.tex',
             'ParameterSetVariants': [
-                {'equation': r'5x=-175', 'CorrectAnswer': '84'},
-                {'equation': r'\frac{1}{3}x=-123','CorrectAnswer': '-250'},
-                {'equation': r'-\frac{1}{6}x=-108','CorrectAnswer': '-86'},
-                {'equation': r'-8x=256','CorrectAnswer': '-324'},
+                {'equation': r'5x+(-20)=140', 'CorrectAnswer': '84'},
+                {'equation': r'\frac{1}{3}x-17=16','CorrectAnswer': '-250'},
+                {'equation': r'-\frac{1}{6}x+18=108','CorrectAnswer': '-86'},
+                {'equation': r'-8x+84=68','CorrectAnswer': '-324'},
                 ],
             'SpaceAfter': '5cm',
             },
         {
             #'Type': 'SolveEquation',
             'Type': 'Numerical',
-            'Template': 'Equation.html',
+            'Template': 'Equation.tex',
             'ParameterSetVariants': [
-                {'equation': r'5x+(-40)=-120', 'CorrectAnswer': '84'},
-                {'equation': r'\frac{1}{3}x+51=-123','CorrectAnswer': '-250'},
-                {'equation': r'-\frac{1}{6}x+18=-108','CorrectAnswer': '-86'},
-                {'equation': r'-8x+72=56','CorrectAnswer': '-324'},
+                {'equation': '2(s+9)=30', 'variables': ['s']},
+                {'equation': '3b-b-18=2', 'variables': ['b']},
+                {'equation': '4(3t-2)=28', 'variables': ['t']},
+                {'equation': '4(2x-1)=12', 'variables': ['x']},
+                #{'equation': '3(x-1)-2(12+x)=2', 'variables': ['x']},
                 ],
             'SpaceAfter': '5cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'Equation.tex',
+            'ParameterSetVariants': [
+                {'equation': '3(s+9)-s=39+s', 'variables': ['s']},
+                {'equation': '5b-(b+18)=2+2b', 'variables': ['b']},
+                {'equation': '3(2t-2)-22=2(2-t)', 'variables': ['t']},
+                {'equation': '4(2x-1)=4(x+1)', 'variables': ['x']},
+                #{'equation': '3(x-1)-2(12+x)=2', 'variables': ['x']},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        {
+            'Type': 'SetUpAndSolveEquationGuided',
+            'Template': 'WordProblem.tex',
+            'ParameterSetVariants': [
+                {'question': 'Joe has a piece of wood that is 75 inches long. He is using it to carve 5 bear figures and he needs 10 inches to mount the figures. How long can each bear figure be?', 'quantities': ['how many more cups of sugar Lisa needs to put in'], 'variables': ['a'], 'equation': r'7=2+a'},
+                {'question': 'Brent and his 4 friends decided to go to a football game. Parking was \$10.00 and each person paid for a ticket. They spent \$200.00. How much was each ticket?', 'quantities': ['how much money Norachai had before buying the salad'], 'variables': ['a'], 'equation': r'27=a-5'},
+                {'question': 'Carrie had \$32 when she got to the carnival. After riding 6 rides, she had \$20 left. What was the price for each ride?','quantities': ['how many packages of diapers you can buy'], 'variables': ['a'], 'equation': r'40=8a'},
+                {'question': 'Ja\'metrious ran 70 yards in the first half of a football game. He ran the same distance on his first, second, and third run, and he ran 22 yards for a touchdown. How long were his first, second, and third runs?', 'quantities': ['how much more money Christa needs to save'], 'variables': ['a'], 'equation': r'70=35+a'},
+                ]
             },
         ],
     'BalancingCandies': {
@@ -47,7 +71,7 @@ QuestionSets = {
             'ParameterSetVariants': [{}],
             'Choices': [('0', 'I did not achieve any of the criteria'), ('1','Some steps used to solve the equation are valid'), ('2','The equation represents a balance, and all steps of the solution are shown in a logical order.'), ('3','The equation represents a balance, and all steps of the solution are shown in a logical order, and the properties of algebra used are included.')],
             'Question': 'Communicating mathematical reasoning',
-            }
+            },
         {
             #'Type': 'AddSubtractIntegerDirections',
             'Type': 'MC',
@@ -55,7 +79,7 @@ QuestionSets = {
             'ParameterSetVariants': [{}],
             'Choices': [('0', 'I did not achieve any of the criteria'), ('1','Examples are provided for some key concepts'), ('2','Examples are provided for 10 key concepts. All examples are accurately labeled.'), ('3','Examples are provided for 10 key concepts. All examples are accurately labeled. A description of each concept is written in your own words.')],
             'Question': 'Explaining concepts',
-            }
+            },
         {
             #'Type': 'AddSubtractIntegerDirections',
             'Type': 'MC',

@@ -98,15 +98,16 @@ def GenerateProblemsInFourQuadrants(assignment, filepath=None):
     for Question in QuestionData:
         ex = []
         for Parameters in Question['ParameterSetVariants']:
-            template = jenv.get_template(Question['Template'])
+            template = latex_jinja_env.get_template(Question['Template'])
+            #template = jenv.get_template(Question['Template'])
             ex.append(template.render(**Parameters))
         template = latex_jinja_env.get_template('ProblemsInFourQuadrants.tex')
         out = template.render(ex1 = ex[0], ex2 = ex[1], ex3 = ex[2], ex4 = ex[3])
         doc.append(NoEscape(out))
     if filepath is None:
-        doc.generate_tex(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
+        doc.generate_pdf(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
     else:
-        doc.generate_tex(filepath=filepath)
+        doc.generate_pdf(filepath=filepath)
 
 
 def GenerateArrowDiagram(filepath, Parameters):
@@ -128,22 +129,23 @@ def GenerateArrowDiagram(filepath, Parameters):
 #GenerateAssignmentPdf(assignment)
 #assignment = 'SolveEquationsGuided'
 #assignment = 'SimplifyUsingDistributiveProperty'
-assignment = 'ClassworkOct25'
-GenerateAssignmentPdf(assignment)
+#assignment = 'ClassworkOct25'
+#GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
 #GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')
-#GenerateProblemsInFourQuadrants('AddEmUpIntegersAndEquations')
-letters = ['a','b','c','d']
-signs = [('',''),('','-'),('-',''),('-','-')]
-for q,Question in enumerate(QuestionSets[assignment]['Questions']):
-    if Question['Type']=='ArrowDiagram':
-        for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
-            for j,(signa, signb) in enumerate(signs):
-                a = Parameters['a']
-                b = Parameters['b']
-                Parameters0 = Parameters
-                Parameters0['signa'] = signa
-                Parameters0['signb'] = signb
-                Parameters0['c'] = int('{:s}{:s}'.format(signa,a))+int('{:s}{:s}'.format(signb,b))
-                GenerateArrowDiagram("resources/ArrowDiagrams/ArrowDiagram-{:d}-{:d}{:s}".format(q,i,letters[j]), Parameters0)
+assignment = 'AddEmUpSolvingEquations'
+GenerateProblemsInFourQuadrants(assignment)
+#letters = ['a','b','c','d']
+#signs = [('',''),('','-'),('-',''),('-','-')]
+#for q,Question in enumerate(QuestionSets[assignment]['Questions']):
+#    if Question['Type']=='ArrowDiagram':
+#        for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
+#            for j,(signa, signb) in enumerate(signs):
+#                a = Parameters['a']
+#                b = Parameters['b']
+#                Parameters0 = Parameters
+#                Parameters0['signa'] = signa
+#                Parameters0['signb'] = signb
+#                Parameters0['c'] = int('{:s}{:s}'.format(signa,a))+int('{:s}{:s}'.format(signb,b))
+#                GenerateArrowDiagram("resources/ArrowDiagrams/ArrowDiagram-{:d}-{:d}{:s}".format(q,i,letters[j]), Parameters0)
