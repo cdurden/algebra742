@@ -1,3 +1,5 @@
+import gevent.monkey
+gevent.monkey.patch_all()
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, join_room, emit
 import game
