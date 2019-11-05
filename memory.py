@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, join_room, emit
 import game
-from game import RequestDenied
+from .game import RequestDenied
 
 # initialize Flask
 from pylti.flask import lti
