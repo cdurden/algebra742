@@ -5,7 +5,7 @@ from game import RequestDenied
 
 # initialize Flask
 from pylti.flask import lti
-from algebra742 import app, db, User
+from algebra742 import app, db, User, error
 socketio = SocketIO(app)
 ROOMS = {} # dict to track active rooms
 
