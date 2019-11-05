@@ -9,6 +9,25 @@ from algebra742 import app, db, User, error
 socketio = SocketIO(app)
 ROOMS = {} # dict to track active rooms
 
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET'])
+@app.route('/lti/', methods=['GET', 'POST'])
+@lti(request='initial', error=error, app=app)
+def memory_init(lti=lti):
+    """ initial access page to the lti provider.  This page provides
+    authorization for the user.
+
+    :param lti: the `lti` object from `pylti`
+    :return: index page for lti provider
+    """
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if user:
+        return render_template('memory.html')
+        #return render_template('index.html', user=user)
+    else:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
+
 @lti(request='session', error=error, app=app)
 @app.route('/memory')
 def memory():
