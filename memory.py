@@ -1,5 +1,5 @@
-import gevent.monkey
-gevent.monkey.patch_all()
+#import gevent.monkey
+#gevent.monkey.patch_all()
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, join_room, emit
 import game
@@ -7,7 +7,10 @@ from game import RequestDenied
 
 # initialize Flask
 from pylti.flask import lti
-from algebra742 import app, db, User, error
+from algebra742 import db, User, error
+VERSION = '0.0.1'
+app = Flask(__name__)
+app.config.from_object('config')
 socketio = SocketIO(app)
 ROOMS = {} # dict to track active rooms
 
