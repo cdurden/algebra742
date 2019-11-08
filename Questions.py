@@ -9,8 +9,8 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'equation': '4-2x=16', 'variables': ['x']},
                 # You and Review (2 min + 2 min)
-                {'equation': '2s-10=18', 'variables': ['s']},
-                {'equation': '7(n-1)=14', 'variables': ['n']},
+                {'equation': '2(s-10)+s=13', 'variables': ['s']},
+                {'equation': '7(n-1)=5-(n+8)', 'variables': ['n']},
                 # We (2 min)
                 ],
             'SpaceAfter': '4cm',
