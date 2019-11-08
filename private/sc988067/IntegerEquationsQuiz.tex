@@ -1,0 +1,118 @@
+\documentclass[11pt,article,landscape]{memoir}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+% Copyright (C) 2013 Andrew Gainer-Dewar <andrew.gainer.dewar@gmail.com>
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.2 of this license or (at your option) any later
+% version. The latest version of this license is in:
+% http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of[
+% LaTeX version 1999/12/01 or later.
+
+\usepackage{agd-rubric}
+\usepackage{tikz}
+
+\rubriccourse{Algebra 1.1\\
+Questions correct: 6, 8, 11, 12}
+\rubricterm{Trimester 1}
+\rubricthing{Integer Equations Quiz}
+\rubrictopprompt{Student}
+\rubrictoppromptfill{Mohamed Farah\hrulefill}
+
+\def\checkmark{\tikz\fill[scale=0.8](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\maketitle
+
+% The argument determines the number of score buckets
+\begin{rubrictable}{4}
+  % Add your \rubricdesc items in increasing order!
+  \rubriccat{Adding and subtracting integers}{
+    \rubricdesc{I did not demonstrate achievement of learning goals related to adding and subtracting integers.}{
+    \checkmark
+    }
+    \rubricdesc{I know which directions to move when adding and subtracting positive and negative numbers.}{
+        Questions 1 \& 2 both correct 
+    }
+    \rubricdesc{I can match a sum or difference of integers with an arrow diagram.}{
+        Questions 3 \& 4 both correct  
+    }
+    \rubricdesc{I can consistently add and subtract integers accurately.}{ 
+        Questions 5-8 100\% correct, \textbf{or} 75\% correct and mastery of understanding and applying algebraic properties 
+    }
+  }
+  \rubriccat{Understanding and applying algebraic properties}{
+    \rubricdesc{I did not demonstrate achievement of learning goals related to understanding algebraic properties.}{
+    
+    }
+    \rubricdesc{I can identify algebraic properties.}{
+        Questions 8 \& 9 both correct 
+    }
+    \rubricdesc{I can sometimes find correct solutions to an equation.}{
+        2 out of 5 on questions 12-15 \checkmark
+    }
+    \rubricdesc{I can consistently solve equations accurately using zero pairs and reciprocal pairs.}{
+        4 out of 5 on questions 12-15 
+    }
+  }
+  \rubriccat{Communicating my reasoning}{
+    \rubricdesc{I did not demonstrate achievement of learning goals related to communicating my reasoning.\checkmark}{
+    }
+    \rubricdesc{I present my reasoning for some problems. }{
+    }
+    \rubricdesc{I present my reasoning for every problem. }{
+    }
+    \rubricdesc{I can present a detailed argument, including all necessary steps needed to reach all of my conclusions.}{
+    }
+}
+\end{rubrictable}
+\end{document}
