@@ -2,6 +2,7 @@ import os
 import sys
 import json
 from flask import Flask, url_for, redirect
+from flask import send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
@@ -757,6 +758,25 @@ def hello_world(lti=lti):
         provider
     """
     return render_template('up.html', lti=lti)
+
+@app.route('/rubric/<assignment>', methods=['GET', 'POST'])
+@lti(request='session', error=error, app=app)
+def rubric(lti=lti, assignment=None):
+    """ initial access page to the lti provider.  This page provides
+    authorization for the user.
+
+    :param lti: the `lti` object from `pylti`
+    :return: index page for lti provider
+    """
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if user:
+        return send_from_directory(
+            os.path.join(app.config['PRIVATE_DATA_PATH'], user.username),
+            "{:s}.pdf".format(assignment)
+        )
+    else:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
 
 
 @app.route('/', methods=['GET', 'POST'])

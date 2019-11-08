@@ -5,6 +5,11 @@
 <body>
 <h1>Hello {{ user.username }}.</h1>
 
+<h3>Rubrics</h3>
+<p style="font-size: 16pt; line-height: 1.5;">
+<a href="{{ url_for('rubric', assignment='IntegerEquationsTest') }}">Integer Equations Test</a><br/>
+</p>
+
 <h3>Current assignments</h3>
 <p style="font-size: 16pt; line-height: 1.5;">
 October 30: <a href="{{ url_for('Assignment', assignment='ClassworkOct30B') }}">Solving Equations with Variables on Both Sides</a><br/>
