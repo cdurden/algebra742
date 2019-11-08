@@ -80,7 +80,8 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% for stepform in form.steps %}
 <div class="step">
     <h3>Step {{ loop.index }}</h3>
-    Choose an operation to perform to both sides of the equation (or choose to simplify both sides):
+    What operation are you doing to both sides?<br/>
+    (Choose an operation below or choose to simplify both sides):
     <table>
         <tr>
 
@@ -100,7 +101,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
             </td>
         </tr>
     </table>
-    What will your new equation be after performing this step?
+    What will your new equation be after this step?
     {{ stepform.new_equation }}<br/>
 </div>
 <br/>
