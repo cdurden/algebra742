@@ -1,4 +1,100 @@
 QuestionSets = {
+    'ClassworkNov7': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'WordProblem',
+            #'Template': 'SetUpAndSolveEquationGuided.tex',
+            'Template': 'WordProblem.html',
+            'ParameterSetVariants': [
+                # Bellringer: Have students find the difference between several pairs of numbers.
+                # What do you notice about your answers?
+                {'question': '$|x|=$'},
+                {'question': '$|x-6|=2$'},
+                {'question': '$|x-7|=3$'},
+                {'question': '$|x-4|=4$'},
+                {'question': '$|x-3|=6$'},
+                {'question': '$|x+3|=3$'},
+                {'question': '$|x-2|=5$'},
+                {'question': '$|x+6|=4$'},
+                {'question': '$|x+1|=-5$'},
+                {'question': '$|x+9|=15$'},
+
+                {'question': 'Find the difference $6-2$'},
+                {'question': 'Find the difference $3-6$'},
+                {'question': 'Find the difference $9-(-6)$'},
+                {'question': '$6-0$'},
+                {'question': '$a=1$'},
+                {'question': '$b=7$'},
+                {'question': '$c=-2$'},
+                {'question': '$d=-10$'},
+                {'question': '$3-6$'},
+                {'question': '$9+6$'},
+                {'question': '$-10-(-5)$'},
+                {'question': '$|6-0|$'},
+                {'question': '$|3-6|$'},
+                {'question': '$|9+6|$'},
+                {'question': '$|-10-(-5)|$'},
+                {'question': 'What is the difference between $5$ and $2$?'},
+                {'question': 'What is the difference between $2$ and $5$?'},
+                {'question': 'How could you write a sum that has the same answer as the difference $5-3$?'},
+                {'question': 'How could you write a difference that has the same answer as the sum $5+3$?'},
+                # Use the school context to frame thinking about the following questions
+                {'question': 'Object A is at 5 on the number line. Object B is 10 units away from object A. Where could object B be?'},
+                {'question': 'For each answer to the last question, write the difference between your answer and 5.'},
+                {'question': 'What happens if you write the difference in the opposite order?'},
+                {'question': 'Evaluate the expression $|10|$'},
+                {'question': 'Evaluate the expression $|-3|$'},
+                {'question': 'Evaluate the expression $|-17|$'},
+                {'question': 'Evaluate the expression $|-1|$'},
+                {'question': 'Evaluate the expression $|-1+5|$'},
+                {'question': 'Evaluate the expression $|10-15|$'},
+                {'question': 'Evaluate the expression $|100-25|$'},
+                {'question': 'Evaluate the expression $|2(-100)|$'},
+                {'question': 'Evaluate the expression $|150|$'},
+                {'question': 'Evaluate the expression $|-500|$'},
+                {'question': 'Evaluate the expression $|-a|$ if $a=5$'},
+                {'question': 'Evaluate the expression $|-5+(-3)|$'},
+                {'question': 'Evaluate the expression $|3-5|+13$'},
+                {'question': 'Evaluate the expression $|3+-4|-5$'},
+                {'question': 'Evaluate the expression $|3-h|+13$ if $h=5$'},
+                {'question': 'Write an expression for the distance between $5$ and $2$'},
+
+                # https://tasks.illustrativemathematics.org/content-standards/7/NS/A/1/tasks/317
+                # https://tasks.illustrativemathematics.org/content-standards/7/NS/A/1/tasks/591
+            ],
+            'SpaceAfter': '5cm',
+            },
+        ],
+    },
+    'ClassworkNov6': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SetUpAndSolveEquationGuided',
+            #'Template': 'SetUpAndSolveEquationGuided.tex',
+            'Template': 'WordProblem.tex',
+            'ParameterSetVariants': [
+                {'question': '1. Heather practices soccer and piano. Each day she practices piano for 2 hours. After 5 days, she practiced both piano and soccer for a total of 20 hours. Assuming that she practiced soccer the same amount of time each day, how many hours per day, $h$ did Heather practice soccer?'},
+                {'question': '2. The ages of three sisters are consecutive integers. The sum of their ages is 45. Calculate their ages.'},
+        {'question': '3. Michael is 17 years older than John. In 4 years, the sum of their ages will be 49. Find Michael\'s present age.'},
+        # Medium
+        {'question': r'4. The sum of a number, $\frac{1}{6}$ of that number, $2 \frac{1}{2}$ of that number, and 7 is $12 \frac{1}{2}$. Find the number.'},
+        {'question': r'5. Aiden refills three token machines in an arcade. He puts twice the number of tokens in machine A as in machine B, and in machine C, he puts $\frac{3}{4}$ what he put in machine A. The three machines took a total of 18,324 tokens. How many did each machine take?'},
+        #{'question': "Paulie ordered 250 pens and 250 pencils to sell for a theatre club fundraiser. The pens cost 11 cents more than the pencils. If Paulie's total order costs $42.50, find the cost of each pen and pencil."},
+        {'question': "6. Jenny is on the local swim team for the summer and has swim practice four days per week.  The schedule is the same each day.  The team swims in the morning and then again for $2$ hours in the evening.  If she swims $12$ hours per week, how long does she swim each morning?"},
+        {'question': "7. Claire's mom found a very good price on a large computer monitor.  She paid \$325 for a monitor that was only \$65 more than half the original price.  What was the original price?"},
+        # Challenging
+        ## Questions involving rates
+        {'question': '8. Brady rode his bike 70 miles in 4 hours. He rode at an average speed of 17 mph for $t$ hours and at an average rate of speed of 22 mph for the rest of the time. How long did Brady ride at the slower speed? Use the variable $t$ to represent the time, in hours, Brady rode at 17 mph.'},
+        {'question': '9. A young boy is growing at a rate of 3.5 cm per month. He is currently 90 cm tall. At that rate, in how many months will the boy grow to a height of 132 cm?'},
+        ],
+            },
+                ],
+            'SpaceAfter': '5cm',
+            },
     'AddEmUpSolvingEquations': [
         {
             #'Type': 'SolveEquation',

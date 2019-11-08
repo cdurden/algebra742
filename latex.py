@@ -68,6 +68,47 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     else:
         doc.generate_pdf(filepath=filepath)
 
+def GenerateProblemsOnePerPage(assignment, filepath=None):
+    doc = Document()
+    doc.packages.append(Package('geometry', options=['landscape','tmargin=2cm',
+                                                     'lmargin=2cm', 'rmargin=2cm', 'bmargin=2cm']))
+    doc.packages.append(Package('amsmath'))
+    doc.packages.append(Package('environ'))
+    doc.packages.append(Package('tikz'))
+    doc.packages.append(Package('graphicx'))
+    doc.append(NoEscape(r'\usetikzlibrary{positioning}'))
+    newenv = r"""
+    \makeatletter
+    \newsavebox{\measure@tikzpicture}
+    \NewEnviron{scaletikzpicturetowidth}[1]{%
+      \def\tikz@width{#1}%
+      \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+      \BODY
+      \end{lrbox}%
+      \pgfmathparse{#1/\wd\measure@tikzpicture}%
+      \edef\tikzscale{\pgfmathresult}%
+      \BODY
+    }
+    \makeatother
+    """
+    doc.append(NoEscape(newenv))
+    #doc.packages.append(Package('multicol'))
+    #doc.append(NoEscape(r'\begin{multicols}{2}'))
+    #QuestionData = QuestionSets[assignment] 
+    QuestionData = QuestionSets[assignment]['Questions'] 
+    for Question in QuestionData:
+        for Parameters in Question['ParameterSetVariants']:
+            template = latex_jinja_env.get_template(Question['Template'])
+            #template = jenv.get_template(Question['Template'])
+            ex = template.render(**Parameters)
+            template = latex_jinja_env.get_template('ProblemsOnePerPage.tex')
+            out = template.render(ex = ex)
+            doc.append(NoEscape(out))
+    if filepath is None:
+        doc.generate_pdf(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
+    else:
+        doc.generate_pdf(filepath=filepath)
+
 def GenerateProblemsInFourQuadrants(assignment, filepath=None):
     doc = Document()
     doc.packages.append(Package('geometry', options=['landscape','tmargin=2cm',
@@ -134,8 +175,11 @@ def GenerateArrowDiagram(filepath, Parameters):
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
 #GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')
-assignment = 'AddEmUpSolvingEquations'
-GenerateProblemsInFourQuadrants(assignment)
+#assignment = 'AddEmUpSolvingEquations'
+#GenerateProblemsInFourQuadrants(assignment)
+assignment = 'ClassworkNov7'
+GenerateAssignmentPdf(assignment)
+#GenerateProblemsOnePerPage(assignment)
 #letters = ['a','b','c','d']
 #signs = [('',''),('','-'),('-',''),('-','-')]
 #for q,Question in enumerate(QuestionSets[assignment]['Questions']):
