@@ -1,4 +1,22 @@
 QuestionSets = {
+    'Nov8Examples': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': '4-2x=16', 'variables': ['x']},
+                # You and Review (2 min + 2 min)
+                {'equation': '2s-10=18', 'variables': ['s']},
+                {'equation': '7(n-1)=14', 'variables': ['n']},
+                # We (2 min)
+                ],
+            'SpaceAfter': '4cm',
+            }
+        ]
+    },
     'ClassworkNov8A': {
         'ProvideImmediateFeedback': True,
         'Questions':
@@ -9,9 +27,9 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'equation': '2x-4=6', 'variables': ['x']},
                 # You and Review (2 min + 2 min)
-                {'equation': '2s-10=18', 'variables': ['s']},
+                {'equation': '10-2s=18', 'variables': ['s']},
                 {'equation': '7(n-1)=14', 'variables': ['n']},
-                {'equation': '4t-6=30', 'variables': ['t']},
+                {'equation': '6-4t=30', 'variables': ['t']},
                 {'equation': '6(5m-3)=42', 'variables': ['m']},
                 {'equation': '2(6-2y)=-4', 'variables': ['y']},
                 # We (2 min)
@@ -30,7 +48,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'equation': '2(x-4)+5x=6', 'variables': ['x']},
                 # You and Review (2 min + 2 min)
-                {'equation': '2s-10+5s=18', 'variables': ['s']},
+                {'equation': '10-2s+5s=38', 'variables': ['s']},
                 {'equation': '7(n-1)-n=12', 'variables': ['n']},
                 {'equation': '6(5m-3)-8m=4', 'variables': ['m']},
                 {'equation': '6t-6+2t=30', 'variables': ['t']},

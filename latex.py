@@ -128,22 +128,27 @@ def GenerateArrowDiagram(filepath, Parameters):
 #GenerateAssignmentPdf(assignment)
 #assignment = 'SolveEquationsGuided'
 #assignment = 'SimplifyUsingDistributiveProperty'
-assignment = 'ClassworkOct25'
+#assignment = 'ClassworkOct25'
+assignment = 'ClassworkOct30B'
+GenerateAssignmentPdf(assignment)
+assignment = 'ClassworkNov8A'
+GenerateAssignmentPdf(assignment)
+assignment = 'ClassworkNov8B'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
 #GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')
 #GenerateProblemsInFourQuadrants('AddEmUpIntegersAndEquations')
-letters = ['a','b','c','d']
-signs = [('',''),('','-'),('-',''),('-','-')]
-for q,Question in enumerate(QuestionSets[assignment]['Questions']):
-    if Question['Type']=='ArrowDiagram':
-        for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
-            for j,(signa, signb) in enumerate(signs):
-                a = Parameters['a']
-                b = Parameters['b']
-                Parameters0 = Parameters
-                Parameters0['signa'] = signa
-                Parameters0['signb'] = signb
-                Parameters0['c'] = int('{:s}{:s}'.format(signa,a))+int('{:s}{:s}'.format(signb,b))
-                GenerateArrowDiagram("resources/ArrowDiagrams/ArrowDiagram-{:d}-{:d}{:s}".format(q,i,letters[j]), Parameters0)
+#letters = ['a','b','c','d']
+#signs = [('',''),('','-'),('-',''),('-','-')]
+#for q,Question in enumerate(QuestionSets[assignment]['Questions']):
+#    if Question['Type']=='ArrowDiagram':
+#        for (i, Parameters) in enumerate(Question['ParameterSetVariants']):
+#            for j,(signa, signb) in enumerate(signs):
+#                a = Parameters['a']
+#                b = Parameters['b']
+#                Parameters0 = Parameters
+#                Parameters0['signa'] = signa
+#                Parameters0['signb'] = signb
+#                Parameters0['c'] = int('{:s}{:s}'.format(signa,a))+int('{:s}{:s}'.format(signb,b))
+#                GenerateArrowDiagram("resources/ArrowDiagrams/ArrowDiagram-{:d}-{:d}{:s}".format(q,i,letters[j]), Parameters0)
