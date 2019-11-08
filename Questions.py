@@ -1,5 +1,5 @@
 QuestionSets = {
-    'ClassworkNov8B': {
+    'ClassworkNov8A': {
         'ProvideImmediateFeedback': True,
         'Questions':
         [
@@ -20,7 +20,7 @@ QuestionSets = {
             }
         ]
     },
-    'ClassworkNov8A': {
+    'ClassworkNov8B': {
         'ProvideImmediateFeedback': True,
         'Questions':
         [
