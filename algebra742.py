@@ -163,7 +163,7 @@ class SolveEquationStepForm(Form):
 
     :param Form:
     """
-    operation = RadioField('operation', choices=[('+','Add'),('-','Subtract'),('*','Multiply by'),('/','Divide by'),('None','Simplify both sides')])
+    operation = RadioField('operation', choices=[('+','Add'),('-','Subtract'),('*','Multiply by'),('/','Divide by'),('None','Simplify by distributing and combining like terms')])
     #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
     operand = StringField('operand')
     new_equation = StringField('new_equation')
