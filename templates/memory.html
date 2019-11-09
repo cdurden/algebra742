@@ -106,34 +106,6 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
                 }
                 socket.emit('join', data);
             }, false);
-            var ws;
-            var scheme = (location.protocol == "https:") ? "wss" : "ws";
-            // pubsub specific stuff below
-            /*
-            document.getElementById('target').value = scheme + "://" + location.host + "/websocket/chatchannel";
-            document.getElementById('connect').addEventListener('click', function(event) {
-                ws = new WebSocket(document.getElementById('target').value);
-                ws.onopen = function(evt) {
-                    showMessage('Connected to chat.')
-                    document.getElementById('connect').disabled = true;
-                    document.getElementById('disconnect').disabled = false;
-                    document.getElementById('send').disabled = false;
-                }
-                ws.onmessage = function(evt) {
-                    showMessage(evt.data)
-                }
-                ws.onclose = function(evt) {
-                    showMessage('WebSocket connection closed.')
-                    document.getElementById('connect').disabled = false;
-                    document.getElementById('disconnect').disabled = true;
-                    document.getElementById('send').disabled = true;
-                }
-            }, false);
-            document.getElementById('disconnect').disabled = true;
-            document.getElementById('disconnect').addEventListener('click', function(event) {
-                ws.close();
-            }, false);
-            */
         }
     }
 
