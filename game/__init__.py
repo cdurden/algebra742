@@ -167,7 +167,7 @@ class Game(object):
             if len(self.flipped_cards) == 2:
                 input_callback()
         else:
-            raise RequestDenied("Player {:s} tried to flip a{:s} card when player {:s} was active and {:d} cards were already flipped".format(player.session_id, ' matched' if card in self.matched_cards() else (' flipped' if card in self.flipped_cards else ''), self.players[self.active_player].id, len(self.flipped_cards)))
+            raise RequestDenied("Player {:s} tried to flip a{:s} card when player {:s} was active and {:d} cards were already flipped".format(player.session_id, ' matched' if card in self.matched_cards() else (' flipped' if card in self.flipped_cards else ''), self.players[self.active_player].session_id, len(self.flipped_cards)))
 
     def add_player(self, session_id, user):
         """Add playername to player array"""
