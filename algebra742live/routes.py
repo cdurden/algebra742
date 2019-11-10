@@ -3,7 +3,7 @@ from flask import render_template, request
 from flask_socketio import emit
 from pylti.flask import lti
 from .models import db, User, Player, Game, RequestDenied
-from . import socketio
+from . import socketio, ROOM
 
 def error(exception=None):
     """ render error page
