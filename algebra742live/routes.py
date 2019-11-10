@@ -3,7 +3,7 @@ from flask import render_template, request
 from flask_socketio import emit
 from pylti.flask import lti
 from .models import db, User, Player, Game, RequestDenied
-from . import socketio, ROOM
+from . import socketio, ROOMS
 
 def error(exception=None):
     """ render error page
@@ -40,15 +40,15 @@ def algebra742live():
 @lti(request='session', error=error)
 def on_connect(lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    ROOM.add_player(request.sid, user)
+    ROOMS[0].add_player(request.sid, user)
     emit('reset_screen', DATA, room=request.sid)
 
 @socketio.on('disconnect')
 @lti(request='session', error=error)
 def disconnect(lti=lti):
-    player = ROOM.get_player(request.sid)
+    player = ROOMS[0].get_player(request.sid)
     if player:
-        ROOM.remove_player(player)
+        ROOMS[0].remove_player(player)
         reset_game(room)
 
 @socketio.on('input')
@@ -57,24 +57,17 @@ def input(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
     response = data['response']
-    player = ROOM.get_player(request.sid)
+    player = ROOMS[0].get_player(request.sid)
     try:
-        ROOM.input(player, response, update_game)
+        ROOMS[0].input(player, response, update_game)
     except RequestDenied as err:
         print(err.message) 
 
 def update_game(room):
     print("updating game")
-    emit('update_game', ROOM.to_dict(), room=room)
+    emit('update_game', ROOMS[0].to_dict(), room=room)
 
 def reset_game(room):
     print("reseting game")
-    emit('reset_game', ROOM.to_dict(), room=room)
+    emit('reset_game', ROOMS[0].to_dict(), room=room)
 
-#@socketio.on('submit_answer')
-#def on_submit_answer(data):
-#    """flip card and rebroadcast game object"""
-#    room = data['room']
-#    answer = data['answer']
-#    ROOMS[room].flip_card(card)
-#    send(ROOMS[room].to_json(), room=room)
