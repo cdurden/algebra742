@@ -1,4 +1,5 @@
 from . import db
+import random
 
 class Player(object):
     def __init__(self, session_id, user):
