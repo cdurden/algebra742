@@ -33,14 +33,14 @@ def memory_init(lti=lti):
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
 
-@lti(request='session', error=error, app=app)
 @app.route('/memory')
+@lti(request='session', error=error, app=app)
 def memory():
     """Serve the index HTML"""
     return render_template('memory.html')
 
-@lti(request='session', error=error, app=app)
 @socketio.on('create')
+@lti(request='session', error=error, app=app)
 def on_create(data, lti=lti):
     """Create a game lobby"""
     #username = data['username']
@@ -52,8 +52,8 @@ def on_create(data, lti=lti):
     #join_room(room)
     #emit('join_room', {'room': room})
 
-@lti(request='session', error=error, app=app)
 @socketio.on('disconnect')
+@lti(request='session', error=error, app=app)
 def disconnect(lti=lti):
     for room in ROOMS:
         player = ROOMS[room].get_player(request.sid)
@@ -61,8 +61,8 @@ def disconnect(lti=lti):
             ROOMS[room].remove_player(player)
             reset_game(room)
 
-@lti(request='session', error=error, app=app)
 @socketio.on('join')
+@lti(request='session', error=error, app=app)
 def on_join(data, lti=lti):
     print("joining room")
     """Join a game lobby"""
@@ -83,8 +83,8 @@ def on_join(data, lti=lti):
     else:
         emit('error', {'error': 'Unable to join room. Room does not exist.'})
 
-@lti(request='session', error=error, app=app)
 @socketio.on('input')
+@lti(request='session', error=error, app=app)
 def input(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
@@ -105,8 +105,8 @@ def reset_game(room):
     emit('reset_game', {'flipped_cards': map(lambda card: card.to_dict(), ROOMS[room].flipped_cards), 'players': map(lambda player: player.to_dict(), ROOMS[room].players), 'active_player': ROOMS[room].active_player}, room=room)
 
 
-@lti(request='session', error=error, app=app)
 @socketio.on('flip_card')
+@lti(request='session', error=error, app=app)
 def on_flip_card(data, lti=lti):
     """flip card and rebroadcast game object"""
     print("flipping card")
