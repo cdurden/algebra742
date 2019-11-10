@@ -1,4 +1,5 @@
 algebra742.db
+env
 config.py
 algebra742live/config.py
 .*.sw*
