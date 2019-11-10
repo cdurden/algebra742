@@ -10,7 +10,7 @@ from flask_redis import FlaskRedis
 #VERSION = '0.0.1'
 #app = Flask(__name__)
 #app.config.from_object('config')
-#ROOMS = {} # dict to track active rooms
+ROOMS = [] # dict to track active rooms
 #DATA = {}
 #ROOM = None
 socketio = SocketIO()
@@ -32,8 +32,8 @@ def create_app():
         # Include our Routes
         from . import routes
         from .models import Game
-        global ROOM
-        ROOM = Game()
+        global ROOMS
+        ROOMS[0] = Game()
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
