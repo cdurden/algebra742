@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 import random
 import string
 from datetime import datetime
