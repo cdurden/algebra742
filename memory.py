@@ -68,6 +68,7 @@ def on_join(data, lti=lti):
     """Join a game lobby"""
     #username = data['username']
     room = data['room']
+    print(lti)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if room in ROOMS:
         # add player and rebroadcast game object
