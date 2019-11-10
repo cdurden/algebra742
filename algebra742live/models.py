@@ -38,21 +38,9 @@ class Game(object):
         self.date_created = datetime.now()
         self.date_modified = self.date_created
         #self.__load_deck()
-        random.shuffle(self.deck)
-        for position,card in enumerate(self.deck):
-            card.position = position
-#
-#        self.wordbank = wordbank
-#        self.starting_color = RED
-#        self.size = size
-#        self.teams = teams
-#        self.dictionary = dictionary
-#        self.mix = mix
-#        self.dictionaries = DICTIONARIES.keys()
-#        self.minWords = BOARD_SIZE[self.size]
-
-        # gererate board
-        #self.generate_board()
+        #random.shuffle(self.deck)
+        #for position,card in enumerate(self.deck):
+        #    card.position = position
     def matched_cards(self):
         matched_cards = []
         for player in self.players:
