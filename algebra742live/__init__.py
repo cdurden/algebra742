@@ -32,7 +32,8 @@ def create_app():
         # Include our Routes
         from . import routes
         from .models import Game
-        global ROOM = Game()
+        global ROOM
+        ROOM = Game()
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
