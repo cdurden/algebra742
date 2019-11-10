@@ -41,7 +41,7 @@ def memory():
 
 @lti(request='session', error=error, app=app)
 @socketio.on('create')
-def on_create(data):
+def on_create(data, lti=lti):
     """Create a game lobby"""
     #username = data['username']
     gm = game.Game()
@@ -54,7 +54,7 @@ def on_create(data):
 
 @lti(request='session', error=error, app=app)
 @socketio.on('disconnect')
-def disconnect():
+def disconnect(lti=lti):
     for room in ROOMS:
         player = ROOMS[room].get_player(request.sid)
         if player:
@@ -63,7 +63,7 @@ def disconnect():
 
 @lti(request='session', error=error, app=app)
 @socketio.on('join')
-def on_join(data):
+def on_join(data, lti=lti):
     print("joining room")
     """Join a game lobby"""
     #username = data['username']
@@ -84,7 +84,7 @@ def on_join(data):
 
 @lti(request='session', error=error, app=app)
 @socketio.on('input')
-def input(data):
+def input(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
     room = data['room']
@@ -106,7 +106,7 @@ def reset_game(room):
 
 @lti(request='session', error=error, app=app)
 @socketio.on('flip_card')
-def on_flip_card(data):
+def on_flip_card(data, lti=lti):
     """flip card and rebroadcast game object"""
     print("flipping card")
     room = data['room']
