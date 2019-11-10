@@ -3,6 +3,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask_socketio import SocketIO
+from models import Game
 
 # initialize Flask
 #VERSION = '0.0.1'
