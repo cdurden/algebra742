@@ -1,5 +1,6 @@
 algebra742.db
 config.py
+algebra742live/config.py
 .*.sw*
 *.pkl
 *~

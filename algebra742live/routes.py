@@ -15,7 +15,7 @@ def error(exception=None):
 
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
-def algebra742live_init(lti=lti):
+def algebra742live_lti(lti=lti):
     """ initial access page to the lti provider.  This page provides
     authorization for the user.
 
@@ -41,7 +41,7 @@ def algebra742live():
 def on_connect(lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     ROOMS[0].add_player(request.sid, user)
-    emit('reset_screen', ROOMS[0].to_json(), room=request.sid)
+    emit('reset_game', ROOMS[0].to_json(), room=request.sid)
 
 @socketio.on('disconnect')
 @lti(request='session', error=error)

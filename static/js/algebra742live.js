@@ -81,13 +81,15 @@ function loadGame(flip_card_callback) {
   startGame();
 }
 
-function reset_screen(data) {
-    update_screen(data);
+function reset_game(data) {
+    update_game(data);
 }
-function update_screen(data) {
+function update_game(data) {
     //enable();
     players = data.players;
     active_player = data.active_player;
+    screen = document.getElementById("screen");
+    screen.innerHTML = data.screen_html;
     players_dashboard = document.getElementById("players-dashboard");
     //players_dashboard.innerHTML = '';
     //for(var player = 0; player < players.length; player++) {
