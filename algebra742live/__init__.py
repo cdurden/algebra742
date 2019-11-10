@@ -1,14 +1,11 @@
 #import gevent.monkey
 #gevent.monkey.patch_all()
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request
-from flask_socketio import SocketIO, join_room, emit
-from models import Player, Game, RequestDenied
+from flask import Flask
+from flask_socketio import SocketIO
 
 # initialize Flask
-from pylti.flask import lti
-from models import db, User, error
-VERSION = '0.0.1'
+#VERSION = '0.0.1'
 #app = Flask(__name__)
 #app.config.from_object('config')
 #ROOMS = {} # dict to track active rooms
