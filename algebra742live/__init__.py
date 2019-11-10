@@ -3,7 +3,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask_socketio import SocketIO
-from models import Game
+#from models import Game
 
 # initialize Flask
 #VERSION = '0.0.1'
@@ -11,7 +11,7 @@ from models import Game
 #app.config.from_object('config')
 #ROOMS = {} # dict to track active rooms
 #DATA = {}
-ROOM = Game()
+ROOM = None
 socketio = SocketIO()
 db = SQLAlchemy()
 r = FlaskRedis()
@@ -30,6 +30,8 @@ def create_app():
     with app.app_context():
         # Include our Routes
         from . import routes
+        from .models import Game
+        ROOM = Game()
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
