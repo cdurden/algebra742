@@ -24,7 +24,7 @@ def algebra742live_init(lti=lti):
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user:
-        return render_template('memory.html')
+        return render_template('algebra742live.html')
         #return render_template('index.html', user=user)
     else:
         form = UserInfoForm()
