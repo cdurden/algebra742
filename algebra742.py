@@ -792,7 +792,7 @@ def index(lti=lti):
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user:
-        return render_template('index.html', user=user)
+        return render_template('index.html', user=user, lti=lti)
     else:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)

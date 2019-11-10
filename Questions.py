@@ -1,4 +1,30 @@
 QuestionSets = {
+    'BalancingCandiesRubric': {
+        'ProvideImmediateFeedback': False,
+        'Questions': [
+        {
+            'Type': 'MC',
+            'Template': 'Empty.html',
+            'ParameterSetVariants': [{}],
+            'Choices': [('0', 'None of the following criteria are demonstrated.'), ('1','Some steps used to solve the equation are valid.'), ('2','The equation represents a balance. All steps of solution are shown in a logical order.'), ('3','The equation represents a balance. All steps needed to solve the equation are shown in a logical order, and the properties of algebra used are indicated.')],
+            'Question': 'Communicating mathematical reasoning',
+            },
+        {
+            'Type': 'MC',
+            'Template': 'Empty.html',
+            'ParameterSetVariants': [{}],
+            'Choices': [('0', 'None of the following criteria are demonstrated.'), ('1','Examples are provided for some key concepts, or some of the key concepts are not accurately labeled.'), ('2','Examples are provided for 10 key concepts. All examples are accurately labeled.'), ('3','Examples are provided for all 13 key concepts. All examples of the key concepts are accurately labeled. A description of each concept is written in your own words.')],
+            'Question': 'Explaining concepts',
+            },
+        {
+            'Type': 'MC',
+            'Template': 'Empty.html',
+            'ParameterSetVariants': [{}],
+            'Choices': [('0', 'None of the following criteria are demonstrated.'), ('1','Writing is partially organize, or markings and color leave uncertainty about examples and characteristics of key concepts.'), ('2','Writing is organized and easy to read. Markings and color clearly indicate examples and characteristics of key concepts.'), ('3','Writing is organized and easy to read. Markings and color clearly indicate examples and characteristics of key concepts. You produced an original video showing balanced weights.')],
+            'Question': 'Presentation',
+            },
+        ]
+    },
     'Nov8Examples': {
         'ProvideImmediateFeedback': True,
         'Questions':
