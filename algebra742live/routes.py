@@ -2,8 +2,7 @@ from flask import current_app as app
 from flask import render_template, request
 from flask_socketio import emit
 from pylti.flask import lti
-from .models import User, Player, Game, RequestDenied
-from . import db
+from .models import db, User, Player, Game, RequestDenied
 
 def error(exception=None):
     """ render error page
@@ -12,6 +11,7 @@ def error(exception=None):
     :return: the error.html template rendered
     """
     return render_template('error.html')
+
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
 def algebra742live_init(lti=lti):
