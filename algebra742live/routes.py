@@ -38,7 +38,7 @@ def algebra742live():
 
 @socketio.on('connect')
 @lti(request='session', error=error)
-def on_connect():
+def on_connect(lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     ROOM.add_player(request.sid, user)
     emit('reset_screen', DATA, room=request.sid)
