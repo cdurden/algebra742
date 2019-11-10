@@ -72,7 +72,7 @@ def on_join(data, lti=lti):
     if room in ROOMS:
         # add player and rebroadcast game object
         try:
-            ROOMS[room].add_player(request.sid)
+            ROOMS[room].add_player(request.sid, user)
         except RequestDenied as err:
             emit('error', {'error': 'Unable to join room. {:s}'.format(err.message)})
         join_room(room)

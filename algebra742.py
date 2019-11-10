@@ -48,6 +48,12 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+    def to_dict(self):
+        return({ 'id': self.id,
+                 'username': self.username,
+                 'firstname': self.firstname,
+                 'lastname': self.lastname,
+                 'lti_user_id': self.lti_user_id })
 
 from datetime import datetime
 

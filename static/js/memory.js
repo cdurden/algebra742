@@ -99,7 +99,7 @@ function update_game(flipped_cards, players, active_player) {
     for(var i = 0; i < players.length; i++) {
         player = players[i]
         // update the players dashboard
-        player_dashboard_id = "player-"+player.id+"-dashboard";
+        player_dashboard_id = "player-"+player.session_id+"-dashboard";
         player_dashboard = document.getElementById(player_dashboard_id);
         if (typeof(player_dashboard) == 'undefined' || player_dashboard == null) {
             player_dashboard = document.getElementById("player-dashboard-template").cloneNode(true);
@@ -107,16 +107,16 @@ function update_game(flipped_cards, players, active_player) {
             player_dashboard.id = player_dashboard_id;
             player_dashboard.classList.remove("template");
             //player_dashboard.getElementsByClassName("player-identifiers")[0].getElementsByClassName("player-nick")[0].innerHTML = "Player "+player.toString();
-            player_dashboard.getElementsByClassName("player-nick")[0].innerHTML = "Player "+player.id;
+            player_dashboard.getElementsByClassName("player-nick")[0].innerHTML = "Player "+player.user.firstname;
             stats = player_dashboard.getElementsByClassName("player-stats")[0];
-            stats.getElementsByClassName("correct")[0].getElementsByTagName("span")[0].id = "player-"+player.id+"-stats-correct";
+            stats.getElementsByClassName("correct")[0].getElementsByTagName("span")[0].id = "player-"+player.session_id+"-stats-correct";
             //stats.getElementsByClassName("correct")[0].id = "player-"+player.toString()+"-stats-correct";
-            stats.getElementsByClassName("incorrect")[0].id = "player-"+player.id+"-stats-incorrect";
-            stats.getElementsByClassName("matches")[0].id = "player-"+player.id+"-stats-matches";
+            stats.getElementsByClassName("incorrect")[0].id = "player-"+player.session_id+"-stats-incorrect";
+            stats.getElementsByClassName("matches")[0].id = "player-"+player.session_id+"-stats-matches";
             player_input_div = player_dashboard.getElementsByClassName("player-input")[0];
-            player_input_div.id = "player-"+player.id+"-input";
-            player_input_div.getElementsByClassName("yes-button")[0].id = "player-"+player.id+"-yes-button";
-            player_input_div.getElementsByClassName("no-button")[0].id = "player-"+player.id+"-no-button";
+            player_input_div.id = "player-"+player.session_id+"-input";
+            player_input_div.getElementsByClassName("yes-button")[0].id = "player-"+player.session_id+"-yes-button";
+            player_input_div.getElementsByClassName("no-button")[0].id = "player-"+player.session_id+"-no-button";
             player_input_div.style.display = "none";
             players_dashboard.appendChild(player_dashboard);
         }
@@ -613,9 +613,9 @@ function playAgain(){
 
 
 function prompt_for_input(player, msg, yesFn, noFn) {
-    var player_input_div = document.getElementById("player-"+player.id+"-input");
-    var yes_button = document.getElementById("player-"+player.id+"-yes-button");
-    var no_button = document.getElementById("player-"+player.id+"-no-button");
+    var player_input_div = document.getElementById("player-"+player.session_id+"-input");
+    var yes_button = document.getElementById("player-"+player.session_id+"-yes-button");
+    var no_button = document.getElementById("player-"+player.session_id+"-no-button");
     yes_button.addEventListener("click", function() {
         //player_input_div.classList.remove("show");
         yesFn();

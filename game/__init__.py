@@ -51,17 +51,19 @@ class Card(object):
                 })
 
 class Player(object):
-    def __init__(self, player_id):
-        self.id = player_id
+    def __init__(self, session_id, user):
+        self.session_id = session_id
+        self.user = user
         self.correct = 0
         self.incorrect = 0
         self.matched_cards = []
         self.color = "yellow"
     def __eq__(self, other):
-        return self.id == other.id
+        return self.session_id == other.session_id
     def to_dict(self):
         return({ 
-                'id': self.id,
+                'session_id': self.session_id,
+                'user': self.user.to_dict(),
                 'correct': self.correct,
                 'incorrect': self.incorrect,
                 'matched_cards': map(lambda card: card.to_dict(), self.matched_cards),
@@ -104,9 +106,9 @@ class Game(object):
             matched_cards += player.matched_cards
         return(matched_cards)
 
-    def get_player(self, player_id):
+    def get_player(self, session_id):
         for player in self.players:
-            if player.id == player_id:
+            if player.session_id == session_id:
                 return(player)
         return(None)
 
@@ -165,14 +167,14 @@ class Game(object):
             if len(self.flipped_cards) == 2:
                 input_callback()
         else:
-            raise RequestDenied("Player {:s} tried to flip a{:s} card when player {:s} was active and {:d} cards were already flipped".format(player.id, ' matched' if card in self.matched_cards() else (' flipped' if card in self.flipped_cards else ''), self.players[self.active_player].id, len(self.flipped_cards)))
+            raise RequestDenied("Player {:s} tried to flip a{:s} card when player {:s} was active and {:d} cards were already flipped".format(player.session_id, ' matched' if card in self.matched_cards() else (' flipped' if card in self.flipped_cards else ''), self.players[self.active_player].id, len(self.flipped_cards)))
 
-    def add_player(self, player_id):
+    def add_player(self, session_id, user):
         """Add playername to player array"""
-        player = Player(player_id)
+        player = Player(session_id, user)
         for _player in self.players:
-            if _player.id == player_id:
-                raise RequestDenied("player with id {:s} already exists in this game".format(player_id))
+            if _player.session_id == session_id:
+                raise RequestDenied("player with id {:s} already exists in this game".format(session_id))
         self.players.append(player)
 
     def remove_player(self, player):
