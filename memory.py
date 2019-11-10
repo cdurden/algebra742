@@ -37,6 +37,7 @@ def memory():
     """Serve the index HTML"""
     return render_template('memory.html')
 
+@lti(request='session', error=error, app=app)
 @socketio.on('create')
 def on_create(data):
     """Create a game lobby"""
@@ -49,6 +50,7 @@ def on_create(data):
     #join_room(room)
     #emit('join_room', {'room': room})
 
+@lti(request='session', error=error, app=app)
 @socketio.on('disconnect')
 def disconnect():
     for room in ROOMS:
@@ -57,6 +59,7 @@ def disconnect():
             ROOMS[room].remove_player(player)
             reset_game(room)
 
+@lti(request='session', error=error, app=app)
 @socketio.on('join')
 def on_join(data):
     print("joining room")
@@ -76,6 +79,7 @@ def on_join(data):
     else:
         emit('error', {'error': 'Unable to join room. Room does not exist.'})
 
+@lti(request='session', error=error, app=app)
 @socketio.on('input')
 def input(data):
     print("receiving input")
@@ -97,6 +101,7 @@ def reset_game(room):
     emit('reset_game', {'flipped_cards': map(lambda card: card.to_dict(), ROOMS[room].flipped_cards), 'players': map(lambda player: player.to_dict(), ROOMS[room].players), 'active_player': ROOMS[room].active_player}, room=room)
 
 
+@lti(request='session', error=error, app=app)
 @socketio.on('flip_card')
 def on_flip_card(data):
     """flip card and rebroadcast game object"""
