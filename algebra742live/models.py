@@ -13,6 +13,8 @@ class Player(object):
         self.color = "yellow"
     def __eq__(self, other):
         return self.session_id == other.session_id
+    def __repr__(self):
+        return self.to_json()
     def to_json(self):
         return({ 
                 'session_id': self.session_id,
