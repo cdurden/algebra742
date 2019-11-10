@@ -144,6 +144,7 @@ class Game(object):
         return {
             #"game_id": self.game_id,
             #"starting_color": self.starting_color,
+            "active_player": self.active_player,
             "players": [player.to_json() for player in self.players],
             #"date_created": str(self.date_created),
             #"date_modified": str(self.date_modified),
