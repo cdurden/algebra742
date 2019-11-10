@@ -13,13 +13,13 @@ class Player(object):
         self.color = "yellow"
     def __eq__(self, other):
         return self.session_id == other.session_id
-    def to_dict(self):
+    def to_json(self):
         return({ 
                 'session_id': self.session_id,
-                'user': self.user.to_dict(),
+                'user': self.user.to_json(),
                 'correct': self.correct,
                 'incorrect': self.incorrect,
-                'matched_cards': map(lambda card: card.to_dict(), self.matched_cards),
+                'matched_cards': map(lambda card: card.to_json(), self.matched_cards),
                 'color': self.color,
                 })
 
@@ -136,7 +136,7 @@ class Game(object):
 #            self.deck = [Card(i,info=elem) for i,elem in enumerate(deck_file.read().split('\n')) if len(elem.strip()) > 0]
 
     # Not sure if anything below is necessary
-    def to_dict(self):
+    def to_json(self):
         """Serialize object to JSON"""
         return {
             #"game_id": self.game_id,
@@ -169,7 +169,7 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
-    def to_dict(self):
+    def to_json(self):
         return({ 'id': self.id,
                  'username': self.username,
                  'firstname': self.firstname,

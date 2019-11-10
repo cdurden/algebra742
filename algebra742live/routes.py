@@ -41,7 +41,7 @@ def algebra742live():
 def on_connect(lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     ROOMS[0].add_player(request.sid, user)
-    emit('reset_screen', ROOMS[0].to_dict(), room=request.sid)
+    emit('reset_screen', ROOMS[0].to_json(), room=request.sid)
 
 @socketio.on('disconnect')
 @lti(request='session', error=error)
@@ -65,9 +65,9 @@ def input(data, lti=lti):
 
 def update_game(room):
     print("updating game")
-    emit('update_game', ROOMS[0].to_dict(), room=room)
+    emit('update_game', ROOMS[0].to_json(), room=room)
 
 def reset_game(room):
     print("reseting game")
-    emit('reset_game', ROOMS[0].to_dict(), room=room)
+    emit('reset_game', ROOMS[0].to_json(), room=room)
 
