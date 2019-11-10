@@ -139,7 +139,7 @@ class Game(object):
     def to_dict(self):
         """Serialize object to JSON"""
         return {
-            "game_id": self.game_id,
+            #"game_id": self.game_id,
             "starting_color": self.starting_color,
             "players": self.players,
             "date_created": str(self.date_created),
