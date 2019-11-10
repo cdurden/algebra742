@@ -13,7 +13,7 @@ def error(exception=None):
     return render_template('error.html')
 
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
-@lti(request='initial', error=error, app=app)
+@lti(request='initial', error=error)
 def algebra742live_init(lti=lti):
     """ initial access page to the lti provider.  This page provides
     authorization for the user.
@@ -30,20 +30,20 @@ def algebra742live_init(lti=lti):
         return render_template('GetUserInfo.html', lti=lti, form=form)
 
 @app.route('/')
-@lti(request='session', error=error, app=app)
+@lti(request='session', error=error)
 def algebra742live():
     """Serve the index HTML"""
     return render_template('algebra742live.html')
 
 @socketio.on('connect')
-@lti(request='session', error=error, app=app)
+@lti(request='session', error=error)
 def on_connect():
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     ROOM.add_player(request.sid, user)
     emit('reset_screen', DATA, room=request.sid)
 
 @socketio.on('disconnect')
-@lti(request='session', error=error, app=app)
+@lti(request='session', error=error)
 def disconnect(lti=lti):
     player = ROOM.get_player(request.sid)
     if player:
@@ -51,7 +51,7 @@ def disconnect(lti=lti):
         reset_game(room)
 
 @socketio.on('input')
-@lti(request='session', error=error, app=app)
+@lti(request='session', error=error)
 def input(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
