@@ -5,13 +5,6 @@
 <body>
 <h1>Hello {{ user.firstname }}!</h1>
 
-{% if lti.role == 'staff' %}
-<h3>Assessment</h3>
-<p style="font-size: 16pt; line-height: 1.5;">
-<a href="{{ url_for('Assignment', assignment='BalancingCandiesRubric') }}">Balancing Candies</a><br/>
-</p>
-{% endif %}
-
 <h3>Rubrics</h3>
 <p style="font-size: 16pt; line-height: 1.5;">
 <a href="{{ url_for('static', filename='SolvingEquationsTest.pdf') }}">Chapter 2 Test: Solving Equations</a><br/>
@@ -61,6 +54,11 @@ October 16: <a href="{{ url_for('Assignment', assignment='SolveEquationsGuided')
 <a href="{{ url_for('Assignment', assignment='PracticeTest') }}">Practice for Integers and Equations Quiz</a>
 -->
 
+
+<h3>Assessment</h3>
+<p style="font-size: 16pt; line-height: 1.5;">
+<a href="{{ url_for('Assignment', assignment='BalancingCandiesRubric') }}">Balancing Candies</a><br/>
+</p>
 
 </body>
 </html>
