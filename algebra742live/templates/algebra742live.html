@@ -50,7 +50,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     });
     socket.on('reset_screen', function(data) {
         console.log(data);
-        reset_screen(data.question)
+        reset_screen(data)
     });
     document.onreadystatechange = function() {
         if (document.readyState == "complete") {
