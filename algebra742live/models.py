@@ -1,7 +1,3 @@
-from . import app
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-DECKS_ROOT = os.path.join(APP_ROOT, 'decks')
-
 class Player(object):
     def __init__(self, session_id, user):
         self.session_id = session_id
