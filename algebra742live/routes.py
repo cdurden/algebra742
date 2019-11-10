@@ -49,7 +49,7 @@ def disconnect(lti=lti):
     player = ROOMS[0].get_player(request.sid)
     if player:
         ROOMS[0].remove_player(player)
-        reset_game(room)
+        reset_game()
 
 @socketio.on('input')
 @lti(request='session', error=error)
@@ -63,11 +63,11 @@ def input(data, lti=lti):
     except RequestDenied as err:
         print(err.message) 
 
-def update_game(room):
+def update_game():
     print("updating game")
-    emit('update_game', ROOMS[0].to_json(), room=room)
+    emit('update_game', ROOMS[0].to_json(), broadcast=True)
 
-def reset_game(room):
+def reset_game():
     print("reseting game")
-    emit('reset_game', ROOMS[0].to_json(), room=room)
+    emit('reset_game', ROOMS[0].to_json(), broadcast=True)
 

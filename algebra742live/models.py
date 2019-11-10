@@ -87,7 +87,7 @@ class Game(object):
                         player.incorrect += 1
                     self.activate_next_player()
                 self.flipped_cards = []
-                update_game_callback(self.room)
+                update_game_callback()
             else: # player is not active
                 if self.match_is_flipped() == data_to_bool[data]:
                     player.correct += 1
