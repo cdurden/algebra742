@@ -1,5 +1,6 @@
 #import gevent.monkey
 #gevent.monkey.patch_all()
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, join_room, emit
 import game
@@ -7,12 +8,13 @@ from game import RequestDenied
 
 # initialize Flask
 from pylti.flask import lti
-from algebra742 import db, User, error
+from algebra742 import User, error
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
 socketio = SocketIO(app)
 ROOMS = {} # dict to track active rooms
+db = SQLAlchemy(app)
 
 @app.route('/memory_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
@@ -66,6 +68,7 @@ def on_join(data):
     """Join a game lobby"""
     #username = data['username']
     room = data['room']
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if room in ROOMS:
         # add player and rebroadcast game object
         try:
