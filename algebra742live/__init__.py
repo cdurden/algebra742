@@ -27,12 +27,12 @@ def create_app():
     db.init_app(app)
     r.init_app(app)
     socketio.init_app(app)
+    ROOM = Game()
 
     with app.app_context():
         # Include our Routes
         from . import routes
         from .models import Game
-        ROOM = Game()
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
