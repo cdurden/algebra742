@@ -5,6 +5,13 @@ from pylti.flask import lti
 from .models import User, Player, Game, RequestDenied
 from . import db
 
+def error(exception=None):
+    """ render error page
+
+    :param exception: optional exception
+    :return: the error.html template rendered
+    """
+    return render_template('error.html')
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
 def algebra742live_init(lti=lti):
@@ -70,10 +77,3 @@ def reset_game(room):
 #    answer = data['answer']
 #    ROOMS[room].flip_card(card)
 #    send(ROOMS[room].to_json(), room=room)
-def error(exception=None):
-    """ render error page
-
-    :param exception: optional exception
-    :return: the error.html template rendered
-    """
-    return render_template('error.html')
