@@ -33,7 +33,7 @@ def create_app():
         from . import routes
         from .models import Game
         global ROOMS
-        ROOMS[0] = Game()
+        ROOMS += [Game()]
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
