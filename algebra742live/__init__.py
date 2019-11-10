@@ -12,7 +12,7 @@ from flask_redis import FlaskRedis
 #app.config.from_object('config')
 #ROOMS = {} # dict to track active rooms
 #DATA = {}
-ROOM = None
+#ROOM = None
 socketio = SocketIO()
 db = SQLAlchemy()
 r = FlaskRedis()
