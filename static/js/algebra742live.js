@@ -87,6 +87,7 @@ function reset_screen(data) {
 function update_screen(data) {
     //enable();
     players = data.players;
+    active_player = data.active_player;
     players_dashboard = document.getElementById("players-dashboard");
     //players_dashboard.innerHTML = '';
     //for(var player = 0; player < players.length; player++) {
