@@ -140,20 +140,20 @@ class Game(object):
         """Serialize object to JSON"""
         return {
             #"game_id": self.game_id,
-            "starting_color": self.starting_color,
+            #"starting_color": self.starting_color,
             "players": self.players,
-            "date_created": str(self.date_created),
-            "date_modified": str(self.date_modified),
-            "playtime": self.__playtime(),
-            "board": self.board,
-            "solution": self.solution,
-            "options": {
-                "dictionary": self.dictionary,
-                "size": self.size,
-                "teams": self.teams,
-                "mix": self.mix,
-                "custom": self.wordbank
-            },
+            #"date_created": str(self.date_created),
+            #"date_modified": str(self.date_modified),
+            #"playtime": self.__playtime(),
+            #"board": self.board,
+            #"solution": self.solution,
+            #"options": {
+            #    "dictionary": self.dictionary,
+            #    "size": self.size,
+            #    "teams": self.teams,
+            #    "mix": self.mix,
+            #    "custom": self.wordbank
+            #},
 
         }
 class RequestDenied(Exception):
