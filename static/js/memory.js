@@ -81,18 +81,12 @@ function loadGame(flip_card_callback) {
   startGame();
 }
 
-function reset_game(flipped_cards, players, active_player) {
-    players_dashboard = document.getElementById("players-dashboard");
-    players_dashboard.innerHTML = '';
-    for(var i = 0; i < cards.length; i++){
-        cards[i].classList.remove("disabled");
-        cards[i].removeAttribute("style");
-    }
-    update_game(flipped_cards, players);
+function reset_screen(data) {
+    update_screen(data);
 }
-function update_game(flipped_cards, players, active_player) {
-    enable();
-
+function update_screen(data) {
+    //enable();
+    players = data.players;
     players_dashboard = document.getElementById("players-dashboard");
     //players_dashboard.innerHTML = '';
     //for(var player = 0; player < players.length; player++) {
@@ -131,6 +125,7 @@ function update_game(flipped_cards, players, active_player) {
             cards[player.matched_cards[j].position].style.background=player.color;
         }
     }
+    /*
     flipped_card_positions = [];
     for(var i = 0; i < flipped_cards.length; i++){
         card = cards[flipped_cards[i].position]
@@ -139,12 +134,15 @@ function update_game(flipped_cards, players, active_player) {
         MathJax.Hub.Queue(["Typeset",MathJax.Hub,card]);
         flipped_card_positions.push(flipped_cards[i].position);
     }
+    */
     //MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    /*
     for(var i = 0; i < cards.length; i++){
         if (!flipped_card_positions.includes(i)) {
             cards[i].classList.remove("show", "open", "no-event");
         }
     }
+    */
 }
 
 

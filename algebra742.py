@@ -18,6 +18,7 @@ from pylti.flask import lti
 from functools import wraps
 from flask import request, render_template
 from flask import Response, make_response, after_this_request
+from models import User
 from functools import wraps
 from Questions import *
 from werkzeug.datastructures import MultiDict
@@ -39,40 +40,8 @@ app.logger.addHandler(handler)
 #logging.basicConfig(filename=os.path.join(os.path.dirname(__file__),'info.log'), level=logging.DEBUG)
 db = SQLAlchemy(app)
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    firstname = db.Column(db.String(80), nullable=False)
-    lastname = db.Column(db.String(80), nullable=False)
-    lti_user_id = db.Column(db.String(255), unique=True, nullable=False)
-
-    def __repr__(self):
-        return '<User %r>' % self.username
-    def to_dict(self):
-        return({ 'id': self.id,
-                 'username': self.username,
-                 'firstname': self.firstname,
-                 'lastname': self.lastname,
-                 'lti_user_id': self.lti_user_id })
-
 from datetime import datetime
 
-class Question(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    source = db.Column(db.Text)
-    params_json = db.Column(db.Text)
-    assignment = db.Column(db.String(255))
-    number = db.Column(db.Integer)
-    variant_index = db.Column(db.Integer)
-
-question_scores = db.Table('question_scores',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('question_id', db.Integer, db.ForeignKey('question.id')),
-    db.Column('score', db.Float),
-    db.Column('answer', db.Text),
-    db.Column('datetime', db.DateTime, nullable=False,
-        default=datetime.utcnow)
-)
 # FIXME: Unique constraint?
 
 #def AnswerChecker():
