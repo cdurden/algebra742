@@ -437,6 +437,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         choices = []
         for object_,_ in Parameters['objects'].items():
             choices.append((object_,object_))
+        app.logger.error(choices)
         for it in range(n):
             form.coordinate_pair_forms.append_entry()
             form.coordinate_pair_forms[it].choices = choices
