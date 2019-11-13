@@ -6,7 +6,7 @@ from flask import send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
-from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField, SelectField
 from wtforms.validators import NumberRange
 from random import randint
 import markdown
@@ -180,9 +180,9 @@ class CoordinatePairForm(Form):
 
     :param Form:
     """
-    object_ = RadioField('object', choices=[('+','Add'),('-','Subtract'),('*','Multiply by'),('/','Divide by'),('None','Simplify by distributing and combining like terms')])
+    object_ = SelectField('object', choices=[('+','Add'),('-','Subtract'),('*','Multiply by'),('/','Divide by'),('None','Simplify by distributing and combining like terms')])
     #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
-    coordinate_pair = StringField('new_equation')
+    coordinate_pair = StringField('coordinate_pair')
 
 class CoordinatePairsForm(Form):
     """ Add data from Form
