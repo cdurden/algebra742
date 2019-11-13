@@ -440,7 +440,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for it in range(n):
             form.coordinate_pair_forms.append_entry()
             form.coordinate_pair_forms[it].choices = choices
-        form.options.choices = choices
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
                 object_ = coordinate_pair_form.object_
