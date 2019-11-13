@@ -7,6 +7,7 @@ QuestionSets = {
             'Template': 'FindCoordinatesOfObject.html',
             'ParameterSetVariants': [
                 {'image': '/static/ReadingPositiveAndNegativeCoordinates1.png',
+                    #'objects': [('star', (-7,-8))],
                     'objects': {'star': (-7,-8)},
                     'n': 4,
                     }
