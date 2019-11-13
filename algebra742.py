@@ -433,11 +433,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['CoordinatePairs']:
         form = CoordinatePairsForm(data=formdata)
+        n = Parameters['n']
+        for _ in range(n):
+            form.coordinate_pair_forms.append_entry()
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
-                n = Parameters['n']
-                for _ in range(n):
-                    form.coordinate_pair_forms.append_entry()
                 object_ = coordinate_pair_form.object_
                 coordinates = (int(x.strip("(),")) for x in coordinate_pair_form.coordinate_pair.split())
                 correct = coordinates[0] == Parameters['points'][object_]
