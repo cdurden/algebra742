@@ -50,6 +50,35 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <p><input type="submit" value="Submit"></p>
 </form>
 {% else %}
+{% if QuestionData['Type'] in ['CoordinatePairs'] %}
+{% for coordinate_pair_form in form.coordinate_pair_forms %}
+<div class="step">
+    <h3>Step {{ loop.index }}</h3>
+    Choose an object and enter its coordinates?<br/>
+    <table>
+        <tr>
+
+            <th align="left">
+                Choose an object
+            </th>
+            <th align="left">
+                What are its coordinates?
+            </th>
+        </tr>
+        <tr>
+            <td>
+    {{ coordinate_pair_form.object_ }}<br/>
+            </td>
+            <td>
+    {{ coordinate_pair_form.coordinate_pair(style="font-size: 18pt; height: 40px; width:100px;") }}<br/>
+            </td>
+        </tr>
+    </table>
+</div>
+<br/>
+{% endfor %}
+
+{% endif %}
 {% if QuestionData['Type'] in ['SetUpAndSolveEquationGuided', 'SolveEquationGuided'] %}
 
 <div class="answer_form">

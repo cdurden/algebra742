@@ -3,7 +3,7 @@ QuestionSets = {
         'ProvideImmediateFeedback': True,
         'Questions': [
         {
-            'Type': 'CoordinatePair',
+            'Type': 'CoordinatePairs',
             'Template': 'FindCoordinatesOfObject.html',
             'ParameterSetVariants': [
                 {'image': '/static/ReadingPositiveAndNegativeCoordinates1.png',

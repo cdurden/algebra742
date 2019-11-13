@@ -431,7 +431,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             pass
         answer = json.dumps(form.data)
-    if QuestionData['Type'] in ['CoordinatePair']:
+    if QuestionData['Type'] in ['CoordinatePairs']:
         form = CoordinatePairsForm(data=formdata)
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
