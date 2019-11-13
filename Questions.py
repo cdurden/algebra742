@@ -1,5 +1,5 @@
 QuestionSets = {
-    'SolvingEquationsTest': {
+    'CoordinatePairs': {
         'ProvideImmediateFeedback': True,
         'Questions': [
         {
