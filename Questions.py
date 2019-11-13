@@ -1,4 +1,51 @@
 QuestionSets = {
+    'SolvingEquationsTest': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+        {
+            'Type': 'CoordinatePair',
+            'Template': 'FindCoordinatesOfObject.html',
+            'ParameterSetVariants': [
+                {'image': '![1](/static/ReadingPositiveAndNegativeCoordinates1.png)',
+                    'objects': {'star': (-7,-8)},
+                    }
+                 ],
+#            'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
+            'SpaceAfter': '0.2cm',
+            },
+    'SolvingEquationsTest': {
+        'ProvideImmediateFeedback': False,
+        'Questions': [
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'SolveEquation.html',
+            'ParameterSetVariants': [
+                {'equation': 'x+6=19', 'CorrectAnswer': 68}, 
+                {'equation': '83+y=57','CorrectAnswer': -405},
+                {'equation': '6x+8=32','CorrectAnswer': -22},
+                {'equation': '65=5x-10','CorrectAnswer': -304},
+                {'equation': '2(y+7)=49','CorrectAnswer': -304},
+                {'equation': '81=4h+5h-9','CorrectAnswer': -304},
+                ],
+            'SpaceAfter': '4.5cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Numerical',
+            'Template': 'SolveEquation.html',
+            'ParameterSetVariants': [
+                {'equation': '8n-9=2n+3','CorrectAnswer': -304},
+                {'equation': 'x-42=98-9x','CorrectAnswer': -304},
+                {'equation': '3(x+4)=3x+11','CorrectAnswer': -304},
+                {'equation': '|x-8|=3','equation_latex': '|x-8|=3', 'CorrectAnswer': -304},
+                {'equation0': '(n-10)/12 = 8/3', 'equation': r'\frac{n-10}{12} = \frac{8}{3}','CorrectAnswer': -304},
+                {'equation0': '4/6=8/x', 'equation': r'\frac{4}{6} = \frac{8}{x}','CorrectAnswer': -304},
+                ],
+            'SpaceAfter': '5cm',
+            },
+        ],
+        },
     'BalancingCandiesRubric': {
         'ProvideImmediateFeedback': False,
         'Questions': [

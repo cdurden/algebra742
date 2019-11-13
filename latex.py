@@ -37,8 +37,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     \begin{center}
     \fbox{\fbox{\parbox{5.5in}{\centering
     Answer the questions in the spaces provided on the
-    question sheets. If you run out of room for an answer,
-    raise your hand to ask for an extra piece of paper.}}}
+    question sheets. If there is no solution, write no solution. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.}}}
     \end{center}
     \vspace{0.1in}
     \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
@@ -49,7 +48,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                     if 'equation' in Parameters.keys():
                         equation = Parameters['equation']
                         lhs, rhs = equation.split("=")
-                        Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs,transformations=transformations, evaluate=False)),latex(parse_expr(rhs,transformations=transformations, evaluate=False)))
+                        #Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs,transformations=transformations, evaluate=False)),latex(parse_expr(rhs,transformations=transformations, evaluate=False)))
                     template = jenv.get_template(Question['Template'])
                     out = template.render(**Parameters)
                     enum.add_item(NoEscape(out))
@@ -129,11 +128,13 @@ def GenerateArrowDiagram(filepath, Parameters):
 #assignment = 'SolveEquationsGuided'
 #assignment = 'SimplifyUsingDistributiveProperty'
 #assignment = 'ClassworkOct25'
-assignment = 'ClassworkOct30B'
-GenerateAssignmentPdf(assignment)
-assignment = 'ClassworkNov8A'
-GenerateAssignmentPdf(assignment)
-assignment = 'ClassworkNov8B'
+#assignment = 'ClassworkOct30B'
+#GenerateAssignmentPdf(assignment)
+#assignment = 'ClassworkNov8A'
+#GenerateAssignmentPdf(assignment)
+#assignment = 'ClassworkNov8B'
+
+assignment = 'SolvingEquationsTest'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')

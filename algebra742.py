@@ -175,6 +175,22 @@ class SolveEquationGuidedForm(Form):
     """
     steps = FieldList(FormField(SolveEquationStepForm))
 
+class CoordinatePairForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    object_ = RadioField('object', choices=[('+','Add'),('-','Subtract'),('*','Multiply by'),('/','Divide by'),('None','Simplify by distributing and combining like terms')])
+    #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
+    coordinate_pair = StringField('new_equation')
+
+class CoordinatePairsForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    coordinate_pair_forms = FieldList(FormField(CoordinatePairForm))
+
 class NumericalForm(Form):
     """ Add data from Form
 
@@ -415,6 +431,24 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             pass
         answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['CoordinatePair']:
+        form = CoordinatePairsForm(data=formdata)
+        for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
+            try:
+                object_ = coordinate_pair_form.object_
+                coordinates = (int(x.strip("(),")) for x in coordinate_pair_form.coordinate_pair.split())
+                correct = coordinates[0] == Parameters['points'][object_]
+                if not correct:
+                    message = "Coordinate pair number {:d} is incorrect.".format(it+1)
+                else:
+                    break
+                    #operations.append(operation)
+                    #operands.append(operand)
+                    #equations.append(stepform.new_equation.data)
+            except:
+                message = "Coordinate pair number {:d} is incorrect.".format(it+1)
+                correct = False
+                break
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             written = False
