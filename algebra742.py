@@ -448,7 +448,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     #operations.append(operation)
                     #operands.append(operand)
                     #equations.append(stepform.new_equation.data)
-            except:
+            except IOError:
                 message = "Coordinate pair number {:d} is incorrect.".format(it+1)
                 correct = False
                 break
