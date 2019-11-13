@@ -438,9 +438,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for object_,_ in Parameters['objects'].items():
             choices.append((object_,object_))
         app.logger.error(choices)
-        for it in range(n):
-            form.coordinate_pair_forms.append_entry()
-            form.coordinate_pair_forms[it].object_.choices = choices
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
                 object_ = coordinate_pair_form.object_
@@ -453,6 +450,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 message = "Coordinate pair number {:d} is incorrect.".format(it+1)
                 correct = False
                 break
+        for it in range(n):
+            if len(form.coordinate_pair_forms) < it+1:
+                form.coordinate_pair_forms.append_entry()
+                form.coordinate_pair_forms[it].object_.choices = choices
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
