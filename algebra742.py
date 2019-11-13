@@ -449,10 +449,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 if not correct:
                     message = "Coordinate pair number {:d} is incorrect.".format(it+1)
                     break
-                else:
-                    #operations.append(operation)
-                    #operands.append(operand)
-                    #equations.append(stepform.new_equation.data)
             except AttributeError:
                 message = "Coordinate pair number {:d} is incorrect.".format(it+1)
                 correct = False
