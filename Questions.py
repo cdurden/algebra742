@@ -13,6 +13,8 @@ QuestionSets = {
 #            'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
             'SpaceAfter': '0.2cm',
             },
+        ]
+        },
     'SolvingEquationsTest': {
         'ProvideImmediateFeedback': False,
         'Questions': [
