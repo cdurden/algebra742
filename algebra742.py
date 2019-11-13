@@ -445,11 +445,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             try:
                 object_ = coordinate_pair_form.object_
                 coordinates = (int(x.strip("(),")) for x in coordinate_pair_form.coordinate_pair.data.split())
-                correct = coordinates[0] == Parameters['points'][object_]
+                correct = (coordinates[0] == Parameters['points'][object_][0] and coordinates[1] == Parameters['points'][object_][1])
                 if not correct:
                     message = "Coordinate pair number {:d} is incorrect.".format(it+1)
-                else:
                     break
+                else:
                     #operations.append(operation)
                     #operands.append(operand)
                     #equations.append(stepform.new_equation.data)
@@ -457,6 +457,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 message = "Coordinate pair number {:d} is incorrect.".format(it+1)
                 correct = False
                 break
+        answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             written = False
