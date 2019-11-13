@@ -8,6 +8,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'image': '/static/ReadingPositiveAndNegativeCoordinates1.png',
                     'objects': {'star': (-7,-8)},
+                    'n': 4,
                     }
                  ],
 #            'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
