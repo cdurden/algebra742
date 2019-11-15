@@ -5,18 +5,14 @@
 <body>
 <h1>Hello {{ user.firstname }}!</h1>
 
-<h3>Rubrics</h3>
-<p style="font-size: 16pt; line-height: 1.5;">
-<a href="{{ url_for('static', filename='SolvingEquationsTest.pdf') }}">Chapter 2 Test: Solving Equations</a><br/>
-<a href="{{ url_for('rubric', assignment='IntegerEquationsQuiz') }}">Integer Equations Test</a><br/>
-</p>
-
 <!--Nov 8: <a href="{{ url_for('Assignment', assignment='Nov8Examples') }}">Solving equations examples</a><br/>-->
 <h3>Current assignments</h3>
 <p style="font-size: 16pt; line-height: 1.5;">
 November 15: <a href="{{ url_for('Assignment', assignment='CoordinatePairs') }}">Write a Set of Coordinate Pairs</a><br/>
 November 15: <a href="{{ url_for('Assignment', assignment='WODBFunctions') }}">Which one does not belong: Functions?</a><br/>
 
+<h3>Past assignments</h3>
+<p style="font-size: 16pt; line-height: 1.5;">
 Choose one of the following sets to practice for the test
 </p>
 <p style="font-size: 16pt; line-height: 1.5;">
@@ -25,8 +21,6 @@ Level 2: <a href="{{ url_for('Assignment', assignment='ClassworkNov8B') }}">Solv
 Level 3: <a href="{{ url_for('Assignment', assignment='ClassworkOct30B') }}">Solving equations with variables on both sides of the equals sign</a><br/>
 </p>
 
-<h3>Past assignments</h3>
-<p style="font-size: 16pt; line-height: 1.5;">
 October 26: <a href="{{ url_for('Assignment', assignment='BalancingCandy') }}">Balancing Candy</a><br/>
 October 30: <a href="{{ url_for('Assignment', assignment='ClassworkOct30') }}">Solving equations with variables on both sides of the equals sign</a><br/>
 October 29: <a href="{{ url_for('Assignment', assignment='DifferenceBetweenZeroPairAndReciprocalPair') }}">Reflection Question #8: How is a reciprocal pair similar to and different from a zero pair?</a><br/>
@@ -57,11 +51,19 @@ October 16: <a href="{{ url_for('Assignment', assignment='SolveEquationsGuided')
 <a href="{{ url_for('Assignment', assignment='PracticeTest') }}">Practice for Integers and Equations Quiz</a>
 -->
 
+<h3>Rubrics</h3>
+<p style="font-size: 16pt; line-height: 1.5;">
+<a href="{{ url_for('static', filename='SolvingEquationsTest.pdf') }}">Chapter 2 Test: Solving Equations</a><br/>
+<a href="{{ url_for('rubric', assignment='IntegerEquationsQuiz') }}">Integer Equations Test</a><br/>
+</p>
 
+
+<!--
 <h3>Assessment</h3>
 <p style="font-size: 16pt; line-height: 1.5;">
 <a href="{{ url_for('Assignment', assignment='BalancingCandiesRubric') }}">Balancing Candies</a><br/>
 </p>
+-->
 
 </body>
 </html>
