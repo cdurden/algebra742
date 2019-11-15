@@ -455,7 +455,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for it in range(n):
             if len(form.coordinate_pair_forms.entries) < it+1:
                 form.coordinate_pair_forms.append_entry()
-                form.coordinate_pair_forms[it].object_.choices = choices
+            form.coordinate_pair_forms[it].object_.choices = choices
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
