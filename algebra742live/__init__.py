@@ -44,7 +44,7 @@ def create_app():
         db.create_all()
         global ROOMS
         try:
-            question = db.session.query(Question).get(1)
+            question = db.session.query(Question).get(2)
             assert question is not None
         except:
             question = Question(params_json='{"question": "What is 1+1?}"')
