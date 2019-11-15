@@ -48,7 +48,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'image': None,
                     #'objects': [('star', (-7,-8))],
-                    'question': 'Enter the set of coordinate pairs: ${(-2,3),(4,0),(5,5)}$. (You are entering exactly what is written, including the braces "${$" and "$}$").',
+                    'question': 'Enter the set of coordinate pairs: $\{(-2,3),(4,0),(5,5)\}$. (You are entering exactly what is written, including all braces "$\{$" and "$\}$", parentheses, and commas).',
                     'set_of_coordinate_pairs': {(-6,4),(7,6),(-8,-2),(4,-7),(5,0)},
                     },
                 {'image': '/static/GraphOfPoints.png',
