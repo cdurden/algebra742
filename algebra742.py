@@ -438,7 +438,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for object_,_ in Parameters['objects'].items():
             choices.append((object_,object_))
         app.logger.error(choices)
-        app.logger.error(len(form.coordinate_pair_forms.entries))
+        app.logger.error(len(form.coordinate_pair_forms))
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
                 object_ = coordinate_pair_form.object_
