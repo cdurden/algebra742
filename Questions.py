@@ -9,7 +9,7 @@ QuestionSets = {
                 {'image': '/static/GraphOfPoints.png',
                     #'objects': [('star', (-7,-8))],
                     'question': 'Enter the set of coordinate pairs a-g in the graph',
-                    'set_of_coordinate_pairs': {(-7,-8)},
+                    'set_of_coordinate_pairs': {(-6,4),(7,6),(-8,-2),(4,-7),(5,0)},
                     },
                 {'image': '/static/MappingDiagram.png',
                     #'objects': [('star', (-7,-8))],
