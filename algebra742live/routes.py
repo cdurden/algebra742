@@ -84,7 +84,7 @@ def reset_game():
     emit('reset_game', ROOMS[0].to_json(), broadcast=True)
 
 @app.route('/userinfo', methods=['GET','POST'])
-@lti(request='session', error=error, app=app)
+@lti(request='session', error=error)
 def SetUserInfo(lti=lti):
     from sqlalchemy.sql.expression import ClauseElement
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
