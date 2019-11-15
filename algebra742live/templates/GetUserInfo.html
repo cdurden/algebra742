@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Enter login information</title>
+</head>
+<body>
+
+<form action="{{ url_for('SetUserInfo') }}" method="post" name="set_user_info_form">
+    {{ form.hidden_tag() }}
+
+    <p>
+    Username: {{ form.username }}<br/>
+    First name: {{ form.firstname }}<br/>
+    Last name: {{ form.lastname }}<br/>
+    </p>
+
+    <p><input type="submit" value="Submit"></p>
+</form>
+
+</body>
+</html>

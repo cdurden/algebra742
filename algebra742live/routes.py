@@ -13,6 +13,15 @@ def error(exception=None):
     """
     return render_template('error.html')
 
+class UserInfoForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    username = StringField('username')
+    firstname = StringField('firstname')
+    lastname = StringField('lastname')
+
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
 def algebra742live_lti(lti=lti):
@@ -70,4 +79,18 @@ def update_game():
 def reset_game():
     print("reseting game")
     emit('reset_game', ROOMS[0].to_json(), broadcast=True)
+
+@app.route('/userinfo', methods=['GET','POST'])
+@lti(request='session', error=error, app=app)
+def SetUserInfo(lti=lti):
+    from sqlalchemy.sql.expression import ClauseElement
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if user:
+        user.username = form.username.data
+    else:
+        form = UserInfoForm()
+        user = User(lti_user_id=lti.name, username=form.username.data, firstname=form.firstname.data, lastname=form.lastname.data)
+        db.session.add(user)
+    db.session.commit()
+    return render_template('algebra742live.html', user=user)
 
