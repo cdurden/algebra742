@@ -12,8 +12,7 @@ QuestionSets = {
                {'image': '/static/WhatIsAFunction2.png',
                    'question': 'Share your labels with your partner. Describe the similarities below:',},
                 {'image': '/static/WhatIsAFunction3.png',
-                    'question': "The blue 'builder' in the middle is a function. Describe what a
-                    function is using the labels you've agreed on as a class:",},
+                    'question': "The blue 'builder' in the middle is a function. Describe what a function is using the labels you've agreed on as a class:",},
                 {'image': '/static/WhatIsAFunction4a.png',
                     'question': 'Draw your answers on a separate sheet of paper, or describe what each output will look like below.',},
                 {'image': '/static/WhatIsAFunction4b.png',
