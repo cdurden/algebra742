@@ -5,6 +5,7 @@ from flask import Flask
 from flask_socketio import SocketIO
 from flask_redis import FlaskRedis
 from . import default_config
+from . import config
 #from models import Game
 
 # initialize Flask
@@ -23,6 +24,7 @@ def create_app():
     """Initialize the core application."""
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_object(default_config)
+    app.config.from_object(config)
     app.config.from_envvar('ALGEBRA742LIVE_SETTINGS')
 
     # Initialize Plugins
