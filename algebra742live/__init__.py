@@ -35,6 +35,7 @@ def create_app():
         from . import routes
         from .models import QuestionGame
         from .models.Question import Question
+        db.create_all()
         global ROOMS
         try:
             question = Question.query.get(1)
