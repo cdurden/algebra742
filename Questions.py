@@ -6,9 +6,15 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'SetOfCoordinatePairs.html',
             'ParameterSetVariants': [
-                {'image': '/static/ReadingPositiveAndNegativeCoordinates1.png',
+                {'image': '/static/GraphOfPoints.png',
                     #'objects': [('star', (-7,-8))],
+                    'question': 'Enter the set of coordinate pairs a-g in the graph',
                     'set_of_coordinate_pairs': {(-7,-8)},
+                    },
+                {'image': '/static/MappingDiagram.png',
+                    #'objects': [('star', (-7,-8))],
+                    'question': 'Enter the set of coordinate pairs that represents in the mapping diagram.',
+                    'set_of_coordinate_pairs': {(-4,4),(-2,2),(0,0),(2,2),(4,4)},
                     }
                  ],
 #            'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
