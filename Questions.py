@@ -9,10 +9,25 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'image': '/static/WhatIsAFunction1.png',
                     'question': 'Explain how you labeled the parts below.',},
-               {'image': '/static/WhatIsAFunction2.png',
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'OpenResponse',
+            'Template': 'OpenResponse.html',
+            'ParameterSetVariants': [
+               {'image': '/static/WhatIsAFunction1.png',
                    'question': 'Share your labels with your partner. Describe the similarities below:',},
-                {'image': '/static/WhatIsAFunction3.png',
+               ],
+                {'image': '/static/WhatIsAFunction1.png',
                     'question': "The blue 'builder' in the middle is a function. Describe what a function is using the labels you've agreed on as a class:",},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'OpenResponse',
+            'Template': 'FunctionBuilder.html',
+            'ParameterSetVariants': [
                 {'image': '/static/WhatIsAFunction4a.png',
                     'question': 'Draw your answers on a separate sheet of paper, or describe what each output will look like below.',},
                 {'image': '/static/WhatIsAFunction4b.png',
@@ -48,7 +63,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'image': None,
                     #'objects': [('star', (-7,-8))],
-                    'question': 'Enter the set of coordinate pairs: $\{(-2,3),(4,0),(5,5)\}$. (You are entering exactly what is written, including all braces $"\{"$ and $"\}"$, parentheses, and commas).',
+                    'question': 'Enter the set of coordinate pairs: $\{(-2,3),(4,0),(5,5)\}$. (You are entering exactly what is written, including all braces, parentheses, and commas).',
                     'set_of_coordinate_pairs': {(-6,4),(7,6),(-8,-2),(4,-7),(5,0)},
                     },
                 {'image': '/static/GraphOfPoints.png',
