@@ -8,7 +8,7 @@ QuestionSets = {
             'Template': 'FunctionBuilder.html',
             'ParameterSetVariants': [
                 {'image': '/static/WhatIsAFunction1.png',
-                    'question': '',},
+                    'question': 'Explain how you labeled the parts below.',},
                {'image': '/static/WhatIsAFunction2.png',
                    'question': 'Share your labels with your partner. Describe the similarities below:',},
                 {'image': '/static/WhatIsAFunction3.png',
@@ -48,7 +48,12 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'image': '/static/GraphOfPoints.png',
                     #'objects': [('star', (-7,-8))],
-                    'question': 'Enter the set of coordinate pairs a-g in the graph',
+                    'question': 'Enter the set of coordinate pairs: ${(-2,3),(4,0),(5,5)}$. (You are entering exactly what is written, including the braces "${$" and "$}$").',
+                    'set_of_coordinate_pairs': {(-6,4),(7,6),(-8,-2),(4,-7),(5,0)},
+                    },
+                {'image': '/static/GraphOfPoints.png',
+                    #'objects': [('star', (-7,-8))],
+                    'question': 'Enter the set of coordinate pairs a-e in the graph',
                     'set_of_coordinate_pairs': {(-6,4),(7,6),(-8,-2),(4,-7),(5,0)},
                     },
                 {'image': '/static/MappingDiagram.png',
