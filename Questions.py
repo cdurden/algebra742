@@ -3,13 +3,12 @@ QuestionSets = {
         'ProvideImmediateFeedback': True,
         'Questions': [
         {
-            'Type': 'CoordinatePairs',
-            'Template': 'FindCoordinatesOfObject.html',
+            'Type': 'SetOfCoordinatePairs',
+            'Template': 'SetOfCoordinatePairs.html',
             'ParameterSetVariants': [
                 {'image': '/static/ReadingPositiveAndNegativeCoordinates1.png',
                     #'objects': [('star', (-7,-8))],
-                    'objects': {'star': (-7,-8)},
-                    'n': 4,
+                    'set_of_coordinate_pairs': set((-7,-8)),
                     }
                  ],
 #            'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],

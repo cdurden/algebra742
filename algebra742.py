@@ -184,6 +184,14 @@ class CoordinatePairForm(Form):
     #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
     coordinate_pair = StringField('coordinate_pair')
 
+class SetOfCoordinatePairsForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
+    set_of_coordinate_pairs = StringField('set_of_coordinate_pairs')
+
 class CoordinatePairsForm(Form):
     """ Add data from Form
 
@@ -431,6 +439,25 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     message = "Your answer {:s} is not simplified. Try again!".format(answer)
         except:
             pass
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['SetOfCoordinatePairs']:
+        form = SetOfCoordinatePairsForm(data=formdata)
+        #form = CoordinatePairsForm()
+        try:
+            object_ = coordinate_pair_form.object_.data
+            input_coordinate_pairs = re.split("\)\s*,\s*\(",coordinate_pair_form.set_of_coordinate_pairs.data)
+            input_set_of_coordinate_pairs = set()
+            for input_coordinate_pair_string in input_coordinate_pairs:
+                input_coordinate_pair = tuple(int(x.strip("() ")) for x in input_coordinate_pair_string.split(","))
+                set_of_coordinate_pairs.add(input_coordinate_pair)
+            correct = input_set_of_coordinate_pairs == Params['set_of_coordinate_pairs']
+            if not correct:
+                message = "Coordinate pairs {:s} are not correct.".format(Params['set_of_coordinate_pairs'] - input_set_of_coordinate_pairs)
+                break
+        except ValueError:
+            message = "Coordinate pairs could not be read. Make sure that you entered them correctly."
+            correct = False
+            break
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['CoordinatePairs']:
         form = CoordinatePairsForm(data=formdata)
