@@ -33,7 +33,8 @@ def create_app():
     with app.app_context():
         # Include our Routes
         from . import routes
-        from .models import QuestionGame, Question
+        from .models import QuestionGame
+        from .models.Question import Question
         global ROOMS
         try:
             question = Question.query.get(1)
