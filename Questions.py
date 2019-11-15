@@ -1,4 +1,18 @@
 QuestionSets = {
+    'WODBFunctions': {
+        'ProvideImmediateFeedback': False,
+        'Questions':
+        [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'OpenResponse.html',
+            'ParameterSetVariants': [
+                {'image': '/static/WODBFunctions1.png',
+                    'question': 'Which one does not belong. Be sure to justify your answers using appropriate mathematical vocabulary.',}
+                ],
+            }
+        ]
+    },
     'CoordinatePairs': {
         'ProvideImmediateFeedback': True,
         'Questions': [

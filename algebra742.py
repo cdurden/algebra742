@@ -667,6 +667,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         #    form.steps.append_entry()
     if QuestionData['Type'] == 'OpenResponse':
         form = OpenResponseForm()
+        answer = json.dumps(form.data)
     if QuestionData['Type'] == 'MC':
         form = MCForm()
         choices = []
