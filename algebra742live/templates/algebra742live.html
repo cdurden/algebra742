@@ -48,9 +48,9 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     socket.on('connect', function() {
         console.log('Websocket connected!');
     });
-    socket.on('reset_screen', function(data) {
+    socket.on('reset_game', function(data) {
         console.log(data);
-        reset_screen(data)
+        reset_game(data)
     });
     document.onreadystatechange = function() {
         if (document.readyState == "complete") {
