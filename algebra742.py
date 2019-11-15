@@ -445,9 +445,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             try:
                 object_ = coordinate_pair_form.object_.data
                 app.logger.error(object_)
-                app.logger.error(Parameters['points'])
+                app.logger.error(Parameters['objects'])
                 coordinates = (int(x.strip("(),")) for x in coordinate_pair_form.coordinate_pair.data.split())
-                correct = (coordinates[0] == Parameters['points'][object_][0] and coordinates[1] == Parameters['points'][object_][1])
+                correct = (coordinates[0] == Parameters['objects'][object_][0] and coordinates[1] == Parameters['objects'][object_][1])
                 if not correct:
                     message = "Coordinate pair number {:d} is incorrect.".format(it+1)
                     break
