@@ -160,6 +160,11 @@ class Game(object):
             #},
 
         }
+
+class QuestionGame(Game):
+    def __init__(self, question, **kwargs):
+        self.screen_html = question.render_html()
+
 class RequestDenied(Exception):
     def __init__(self, message):
         self.message = message

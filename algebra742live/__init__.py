@@ -33,9 +33,14 @@ def create_app():
     with app.app_context():
         # Include our Routes
         from . import routes
-        from .models import Game
+        from .models import QuestionGame, Question
         global ROOMS
-        ROOMS += [Game()]
+        try:
+            question = Question.query.get(1)
+        except:
+            question = Question(question='What is 1+1?')
+            db.session.add(question)
+        ROOMS += [QuestionGame(question)]
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
