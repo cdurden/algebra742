@@ -1,4 +1,18 @@
 QuestionSets = {
+    'WhatIsAFunction': {
+        'ProvideImmediateFeedback': False,
+        'Questions':
+        [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'OpenResponse.html',
+            'ParameterSetVariants': [
+                {'image': None,
+                    'question': 'What was the big mathematical debate in class yesterday? What did you learn from the debate about functions?',}
+                ],
+            }
+        ]
+    },
     'WODBFunctions': {
         'ProvideImmediateFeedback': False,
         'Questions':
