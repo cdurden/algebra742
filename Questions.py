@@ -16,9 +16,8 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'OpenResponse.html',
             'ParameterSetVariants': [
-               {'image': '/static/WhatIsAFunction1.png',
+                {'image': '/static/WhatIsAFunction1.png',
                    'question': 'Share your labels with your partner. Describe the similarities below:',},
-               ],
                 {'image': '/static/WhatIsAFunction1.png',
                     'question': "The blue 'builder' in the middle is a function. Describe what a function is using the labels you've agreed on as a class:",},
                 ],
