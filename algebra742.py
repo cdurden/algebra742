@@ -453,7 +453,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             correct = input_set_of_coordinate_pairs == Params['set_of_coordinate_pairs']
             if not correct:
                 message = "Coordinate pairs {:s} are not correct.".format(Params['set_of_coordinate_pairs'] - input_set_of_coordinate_pairs)
-        except ValueError:
+        except ValueError, TypeError:
             message = "Coordinate pairs could not be read. Make sure that you entered them correctly."
             correct = False
         answer = json.dumps(form.data)
