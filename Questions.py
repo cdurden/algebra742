@@ -46,7 +46,7 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'SetOfCoordinatePairs.html',
             'ParameterSetVariants': [
-                {'image': '/static/GraphOfPoints.png',
+                {'image': None,
                     #'objects': [('star', (-7,-8))],
                     'question': 'Enter the set of coordinate pairs: ${(-2,3),(4,0),(5,5)}$. (You are entering exactly what is written, including the braces "${$" and "$}$").',
                     'set_of_coordinate_pairs': {(-6,4),(7,6),(-8,-2),(4,-7),(5,0)},
