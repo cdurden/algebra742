@@ -12,7 +12,7 @@ class Question(db.Model):
     params_json = db.Column(db.Text)
 
     def render_html(self):
-        template = jinja_env.get_template(self.__class__.__name__)
+        template = jinja_env.get_template("{:s}.html".format(self.__class__.__name__))
         return template.render(json.loads(self.params_json))
 
 question_scores = db.Table('question_scores',
