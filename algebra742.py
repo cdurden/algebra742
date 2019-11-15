@@ -449,7 +449,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             input_set_of_coordinate_pairs = set()
             for input_coordinate_pair_string in input_coordinate_pairs:
                 input_coordinate_pair = tuple(int(x.strip("{()} ")) for x in input_coordinate_pair_string.split(","))
-                set_of_coordinate_pairs.add(input_coordinate_pair)
+                input_set_of_coordinate_pairs.add(input_coordinate_pair)
             correct = input_set_of_coordinate_pairs == Params['set_of_coordinate_pairs']
             if not correct:
                 message = "Coordinate pairs {:s} are not correct.".format(Params['set_of_coordinate_pairs'] - input_set_of_coordinate_pairs)
