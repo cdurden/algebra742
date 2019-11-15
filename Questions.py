@@ -9,8 +9,8 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'image': '/static/WhatIsAFunction1.png',
                     'question': '',},
-                {'image': '/static/WhatIsAFunction2.png',
-                    'question': '',},
+              #  {'image': '/static/WhatIsAFunction2.png',
+              #      'question': '',},
                 {'image': '/static/WhatIsAFunction3.png',
                     'question': '',},
                 {'image': '/static/WhatIsAFunction4a.png',
