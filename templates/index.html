@@ -3,7 +3,7 @@
     <title>Algebra742</title>
 </head>
 <body>
-<h1>Hello {{ user.firstname }}!</h1>
+<h1>Welcome, {{ user.firstname }}!</h1>
 
 <!--Nov 8: <a href="{{ url_for('Assignment', assignment='Nov8Examples') }}">Solving equations examples</a><br/>-->
 <h3>Current assignments</h3>
@@ -19,7 +19,6 @@ Choose one of the following sets to practice for the test
 Level 1: <a href="{{ url_for('Assignment', assignment='ClassworkNov8A') }}">Solving equations with a variable in one place, a constant, and a coefficient</a><br/>
 Level 2: <a href="{{ url_for('Assignment', assignment='ClassworkNov8B') }}">Solving equations with variables in more than one place on the same side of the equals sign</a><br/>
 Level 3: <a href="{{ url_for('Assignment', assignment='ClassworkOct30B') }}">Solving equations with variables on both sides of the equals sign</a><br/>
-</p>
 
 October 26: <a href="{{ url_for('Assignment', assignment='BalancingCandy') }}">Balancing Candy</a><br/>
 October 30: <a href="{{ url_for('Assignment', assignment='ClassworkOct30') }}">Solving equations with variables on both sides of the equals sign</a><br/>
