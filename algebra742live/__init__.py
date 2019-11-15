@@ -26,6 +26,7 @@ def create_app():
     app.config.from_object(default_config)
     app.config.from_object(config)
     app.config.from_envvar('ALGEBRA742LIVE_SETTINGS')
+    app.logger.error(app.config("SQLALCHEMY_DATABASE_URI"))
 
     # Initialize Plugins
     db.init_app(app)
