@@ -401,9 +401,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             formdata = {}
             pass
-        app.logger.error(formdata)
-    if user.id == 86:
-        formdata = {}
+    app.logger.error(formdata)
+    #if user.id == 86:
+    #    formdata = {}
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
 
