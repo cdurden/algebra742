@@ -39,7 +39,7 @@ def create_app():
         try:
             question = Question.query.get(1)
         except:
-            question = Question(question='What is 1+1?')
+            question = Question(params_json="{question: 'What is 1+1?}'")
             db.session.add(question)
         ROOMS += [QuestionGame(question)]
 
