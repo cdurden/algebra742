@@ -5,6 +5,9 @@ from pylti.flask import lti
 from .models import db, User, Player, Game, RequestDenied
 from . import socketio, ROOMS
 
+from flask_wtf import Form
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
+
 def error(exception=None):
     """ render error page
 
