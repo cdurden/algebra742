@@ -40,7 +40,7 @@ def create_app():
         db.create_all()
         global ROOMS
         try:
-            question = Question.query.get(3)
+            question = Question.query.get(20)
         except:
             question = Question(params_json="{question: 'What is 1+1?}'")
             db.session.add(question)
