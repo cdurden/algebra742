@@ -47,7 +47,7 @@ def create_app():
             question = db.session.query(Question).get(1)
             assert question is not None
         except:
-            question = Question(params_json="{question: 'What is 1+1?}'")
+            question = Question(params_json="{'question': 'What is 1+1?}'")
             db.session.add(question)
         app.logger.error(question)
         app.logger.error(question.params_json)
