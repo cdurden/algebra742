@@ -6,7 +6,8 @@ from flask_socketio import SocketIO
 from flask_redis import FlaskRedis
 from . import default_config
 from . import config
-#from models import Game
+
+from sqlalchemy_utils import create_database, database_exists
 
 # initialize Flask
 #VERSION = '0.0.1'
@@ -22,7 +23,7 @@ r = FlaskRedis()
 
 def create_app():
     """Initialize the core application."""
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=False)
     app.config.from_object(default_config)
     app.config.from_object(config)
     app.config.from_envvar('ALGEBRA742LIVE_SETTINGS')
@@ -38,6 +39,8 @@ def create_app():
         from . import routes
         from .models import QuestionGame
         from .models.Question import Question
+        if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
+            create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
         global ROOMS
         try:
