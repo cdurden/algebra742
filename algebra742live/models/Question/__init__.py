@@ -1,5 +1,5 @@
 from datetime import datetime
-from ..models import db
+from .. import db
 import jinja2
 import json
 import os
