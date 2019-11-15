@@ -444,8 +444,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         form = SetOfCoordinatePairsForm(data=formdata)
         #form = CoordinatePairsForm()
         try:
-            object_ = coordinate_pair_form.object_.data
-            input_coordinate_pairs = re.split("\)\s*,\s*\(",coordinate_pair_form.set_of_coordinate_pairs.data)
+            input_coordinate_pairs = re.split("\)\s*,\s*\(",form.set_of_coordinate_pairs.data)
             input_set_of_coordinate_pairs = set()
             for input_coordinate_pair_string in input_coordinate_pairs:
                 input_coordinate_pair = tuple(int(x.strip("() ")) for x in input_coordinate_pair_string.split(","))
