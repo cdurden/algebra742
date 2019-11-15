@@ -444,6 +444,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
                 object_ = coordinate_pair_form.object_.data
+                app.logger.error(object_)
+                app.logger.error(Parameters['points'])
                 coordinates = (int(x.strip("(),")) for x in coordinate_pair_form.coordinate_pair.data.split())
                 correct = (coordinates[0] == Parameters['points'][object_][0] and coordinates[1] == Parameters['points'][object_][1])
                 if not correct:
