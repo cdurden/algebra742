@@ -63,7 +63,7 @@ QuestionSets = {
                 {'image': None,
                     #'objects': [('star', (-7,-8))],
                     'question': 'Enter the set of coordinate pairs: $\{(-2,3),(4,0),(5,5)\}$. (You are entering exactly what is written, including all braces, parentheses, and commas).',
-                    'set_of_coordinate_pairs': {(-6,4),(7,6),(-8,-2),(4,-7),(5,0)},
+                    'set_of_coordinate_pairs': {(-2,3),(4,0),(5,5)},
                     },
                 {'image': '/static/GraphOfPoints.png',
                     #'objects': [('star', (-7,-8))],
