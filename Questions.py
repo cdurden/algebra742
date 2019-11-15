@@ -8,15 +8,15 @@ QuestionSets = {
             'Template': 'OpenResponse.html',
             'ParameterSetVariants': [
                 {'image': 'WhatIsAFunction1.png',
-                    'question': '',}
+                    'question': '',},
                 {'image': 'WhatIsAFunction2.png',
-                    'question': '',}
+                    'question': '',},
                 {'image': 'WhatIsAFunction3.png',
-                    'question': '',}
+                    'question': '',},
                 {'image': 'WhatIsAFunction4a.png',
-                    'question': 'Draw your answers on a separate sheet of paper, or describe what each output will look like below.',}
+                    'question': 'Draw your answers on a separate sheet of paper, or describe what each output will look like below.',},
                 {'image': 'WhatIsAFunction4b.png',
-                    'question': '',}
+                    'question': '',},
                 ],
             'SpaceAfter': '4cm',
             }
