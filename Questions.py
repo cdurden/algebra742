@@ -5,7 +5,7 @@ QuestionSets = {
         [
             {
             'Type': 'OpenResponse',
-            'Template': 'OpenResponse.html',
+            'Template': 'FunctionBuilder.html',
             'ParameterSetVariants': [
                 {'image': '/static/WhatIsAFunction1.png',
                     'question': '',},
