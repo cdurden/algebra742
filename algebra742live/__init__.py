@@ -44,6 +44,7 @@ def create_app():
         except:
             question = Question(params_json="{question: 'What is 1+1?}'")
             db.session.add(question)
+        app.logger.error(question)
         ROOMS += [QuestionGame(question)]
 
         # Register Blueprints
