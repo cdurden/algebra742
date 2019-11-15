@@ -7,9 +7,18 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'OpenResponse.html',
             'ParameterSetVariants': [
-                {'image': None,
-                    'question': 'What was the big mathematical debate in class yesterday? What did you learn from the debate about functions?',}
+                {'image': 'WhatIsAFunction1.png',
+                    'question': '',}
+                {'image': 'WhatIsAFunction2.png',
+                    'question': '',}
+                {'image': 'WhatIsAFunction3.png',
+                    'question': '',}
+                {'image': 'WhatIsAFunction4a.png',
+                    'question': 'Draw your answers on a separate sheet of paper, or describe what each output will look like below.',}
+                {'image': 'WhatIsAFunction4b.png',
+                    'question': '',}
                 ],
+            'SpaceAfter': '4cm',
             }
         ]
     },
@@ -23,7 +32,10 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'image': '/static/WODBFunctions1.png',
                     'question': 'Which one does not belong. Be sure to justify your answers using appropriate mathematical vocabulary.',}
+                {'image': '/static/WODBFunctions2.png',
+                    'question': 'Which one does not belong. Be sure to justify your answers using appropriate mathematical vocabulary.',}
                 ],
+            'SpaceAfter': '4cm',
             }
         ]
     },
@@ -46,7 +58,7 @@ QuestionSets = {
                     }
                  ],
 #            'Choices': [('a', '![UpUp](/static/ArrowDiagrams/ArrowDiagram-1-1a.png)'),('b', '![UpDown](/static/ArrowDiagrams/ArrowDiagram-1-1b.png)'), ('c', '![DownUp](/static/ArrowDiagrams/ArrowDiagram-1-1c.png)'), ('d', '![DownDown](/static/ArrowDiagrams/ArrowDiagram-1-1d.png)')],
-            'SpaceAfter': '0.2cm',
+            'SpaceAfter': '2cm',
             },
         ]
         },
