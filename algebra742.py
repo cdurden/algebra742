@@ -451,7 +451,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 if not correct:
                     message = "Coordinate pair number {:d} is incorrect.".format(it+1)
                     break
-            except AttributeError:
+            except ValueError:
                 message = "Coordinate pair number {:d} is incorrect.".format(it+1)
                 correct = False
                 break
