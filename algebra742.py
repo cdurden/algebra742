@@ -433,8 +433,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             pass
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['CoordinatePairs']:
-        #form = CoordinatePairsForm(data=formdata)
-        form = CoordinatePairsForm()
+        form = CoordinatePairsForm(data=formdata)
+        #form = CoordinatePairsForm()
         n = Parameters['n']
         choices = []
         for object_,_ in Parameters['objects'].items():
