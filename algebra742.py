@@ -456,7 +456,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except ValueError:
             message = "Coordinate pairs could not be read. Make sure that you entered them correctly."
             correct = False
-            break
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['CoordinatePairs']:
         form = CoordinatePairsForm(data=formdata)
