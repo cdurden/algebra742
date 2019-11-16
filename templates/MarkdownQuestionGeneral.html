@@ -180,7 +180,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% endfor %}
 
 {% endif %}
-{% if QuestionData['Type'] in ['MC','ArrowDiagram'] %}
+{% if QuestionData['Type'] in ['RubricScore','MC','ArrowDiagram'] %}
 <div class="answer_choices">
 {% for subfield in form.options %}
 <div class="answer_choice">
