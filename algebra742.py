@@ -460,7 +460,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             if not correct:
                 message = "Your answer {:s} is not correct.".format(form.answer.data)
         except AttributeError:
-            message = "Your answer {:s} is not correct.".format(form.answer.data)
             correct = False
         except ValueError:
             message = "Your answer {:s} is not correct.".format(form.answer.data)
