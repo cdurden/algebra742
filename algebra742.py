@@ -402,7 +402,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment,Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k)).order_by(desc('datetime'))
             results = db.session.execute(statement).first()
             if not results:
-                scores.append(0)
+                scores.append("NA")
             else:
                 scores.append(results.score)
             if (q,i)==(j+1,k):
