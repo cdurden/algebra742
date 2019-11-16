@@ -169,6 +169,13 @@ class SolveEquationStepForm(Form):
     operand = StringField('operand')
     new_equation = StringField('new_equation')
 
+class MatchingForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    answers = FieldList(SelectField)
+
 class SolveEquationGuidedForm(Form):
     """ Add data from Form
 
@@ -448,6 +455,24 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     message = "Your answer {:s} is not simplified. Try again!".format(answer)
         except:
             pass
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['Matching']:
+        try:
+            form = MatchingForm(data=formdata)
+        except:
+            form = MatchingForm()
+        choices = []
+        for choice,_ in Parameters['answers'].items():
+            choices.append((choice,choice))
+        n = len(Parameters['prompts'])
+        for it in range(n):
+            if len(form.answers.entries) < it+1:
+                form.answers.append_entry()
+            form.answers[it].choices = choices
+        correct = 0
+        for it,answer in enumerate(form.answers.entries):
+            if form.answers[it].data == Parameters['CorrectAnswers'][it]:
+                correct += 1
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['GenericEquality']:
         try:
@@ -747,7 +772,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if request.method == 'POST':
         question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
         db.session.commit()
-        statement = question_scores.insert().values(user_id=user.id, question_id=question.id, answer=answer, score=bool(correct))
+        if Question['Type'] == 'Matching':
+            statement = question_scores.insert().values(user_id=user.id, question_id=question.id, answer=answer, score=correct)
+        else:
+            statement = question_scores.insert().values(user_id=user.id, question_id=question.id, answer=answer, score=bool(correct))
         db.session.execute(statement)
         db.session.commit()
         if not QuestionSets[assignment]['ProvideImmediateFeedback']:
