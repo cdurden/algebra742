@@ -462,8 +462,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             form = MatchingForm()
         choices = []
-        for choice,_ in Parameters['answers'].items():
-            choices.append((choice,choice))
+        for choice,value in Parameters['answers'].items():
+            choices.append((choice,'{:s}. {:s}'.format(choice,value)))
         n = len(Parameters['prompts'])
         for it in range(n):
             if len(form.answers.entries) < it+1:
