@@ -20,6 +20,12 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <script type="text/javascript"
     src="{{ url_for('static', filename='js/MathJax.js', config='TeX-AMS-MML_HTMLorMML') }}">
     </script>
+    <script>
+    window.onload = function() {
+        var answer_input = document.getElementById("answer");
+        answer_input.focus();
+    }
+    </script>
 </head>
 <body>
 {% block nav %}
