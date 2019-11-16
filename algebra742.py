@@ -790,7 +790,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             print("test")
             return(redirect(url_for('Assignment', assignment=assignment)))
             
-    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message,Parameters=Parameters)
+    return dict(title='Assessment on Rational Numbers, Properties of Equality', content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message,Parameters=Parameters, scores=scores)
 
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
