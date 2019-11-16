@@ -479,6 +479,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         choices = []
         for choice,value in Parameters['choices']:
             choices.append((choice,value))
+        form.answers.choices = choices
         if Parameters['CorrectAnswer'] is None:
             correct = False
         else:
