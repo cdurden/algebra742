@@ -383,7 +383,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                          'ParameterSetVariants': [{}]}
         Parameters = {}
         NextQuestion = None
-        question_number = 'Confirm submission' 
+        question_number = None 
     else:
         QuestionData = QuestionSets[assignment]['Questions'][q-1]
         Parameters = QuestionData['ParameterSetVariants'][i]
