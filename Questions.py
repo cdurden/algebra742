@@ -114,8 +114,6 @@ QuestionSets = {
             'Type': 'GenericEquality',
             'Template': 'SolveEquation.html',
             'ParameterSetVariants': [
-                {'equation': '8n-9=2n+3','CorrectAnswer': '2'},
-                {'equation': 'x-42=98-9x','CorrectAnswer': '14'},
                 {'equation': '3(x+4)=3x+11','CorrectAnswer': '{}'},
                 {'equation': '|x-8|=3','equation_latex': '|x-8|=3', 'CorrectAnswer': '{5,11}'},
                 ],
