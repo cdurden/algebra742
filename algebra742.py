@@ -731,7 +731,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] == 'OpenResponse':
         form = OpenResponseForm()
         answer = json.dumps(form.data)
-    if QuestionData['Type'] == 'MC':
+    if QuestionData['Type'] in ['MC','RubricScore']:
         form = MCForm()
         choices = []
         markdown_include = MarkdownInclude(
@@ -752,10 +752,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 answer = form.other.data
             else:
                 answer = choice
-            if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
-                correct = True
+            if QuestionData['Type'] in ['RubricScore']:
+                correct = form.options.data
             else:
-                correct = False
+                if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
+                    correct = true
+                else:
+                    correct = False
         except:
             pass
     if QuestionData['Type'] == 'Numerical':
@@ -783,7 +786,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if request.method == 'POST':
         question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
         db.session.commit()
-        if QuestionData['Type'] == 'Matching':
+        if QuestionData['Type'] in ['Matching', 'RubricScore']:
             statement = question_scores.insert().values(user_id=user.id, question_id=question.id, answer=answer, score=correct)
         else:
             statement = question_scores.insert().values(user_id=user.id, question_id=question.id, answer=answer, score=bool(correct))
