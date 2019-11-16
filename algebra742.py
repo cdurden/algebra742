@@ -479,7 +479,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         choices = []
         for choice,value in Parameters['choices']:
             choices.append((choice,value))
-        correct = Parameters['CorrectAnswer'] == set(form.answers.data)
+        if Parameters['CorrectAnswer'] is None:
+            correct = False
+        else:
+            correct = Parameters['CorrectAnswer'] == set(form.answers.data)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['Matching']:
         try:
