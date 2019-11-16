@@ -174,7 +174,7 @@ class MatchingForm(Form):
 
     :param Form:
     """
-    answers = FieldList(SelectField)
+    answers = FieldList(SelectField('answer'))
 
 class SolveEquationGuidedForm(Form):
     """ Add data from Form
