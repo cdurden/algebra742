@@ -450,7 +450,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             pass
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['GenericEquality']:
-        form = GenericForm(data=formdata)
+        try:
+            form = GenericForm(data=formdata)
+        except:
+            form = GenericForm()
         try:
             input_expr = parse_expr(form.answer.data)
             correct = input_expr == parse_expr(Parameters['CorrectAnswer'])
