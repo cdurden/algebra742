@@ -7,7 +7,7 @@ from flask import send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
-from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField, SelectField, SelectMultipleField
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField, SelectField, SelectMultipleField, widgets
 from wtforms.validators import NumberRange
 from random import randint
 import markdown
