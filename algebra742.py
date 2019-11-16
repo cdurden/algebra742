@@ -449,7 +449,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             pass
         answer = json.dumps(form.data)
-    if QuestionData['Type'] in ['SetOfNumbers']:
+    if QuestionData['Type'] in ['GenericEquality']:
         form = GenericForm(data=formdata)
         try:
             input_expr = parse_expr(form.answer.data)
