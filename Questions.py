@@ -86,7 +86,7 @@ QuestionSets = {
         'Questions': [
         {
             #'Type': 'SolveEquation',
-            'Type': 'Numerical',
+            'Type': 'GenericEquality',
             'Template': 'SolveEquation.html',
             'ParameterSetVariants': [
                 {'equation': 'x+6=19', 'CorrectAnswer': 13}, 
@@ -110,7 +110,7 @@ QuestionSets = {
             },
         {
             #'Type': 'SolveEquation',
-            'Type': 'SetOfNumbers',
+            'Type': 'GenericEquality',
             'Template': 'SolveEquation.html',
             'ParameterSetVariants': [
                 {'equation': '8n-9=2n+3','CorrectAnswer': 2},
