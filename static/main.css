@@ -39,3 +39,6 @@ div#nav {
 div#nav li {
     display: inline;
 }
+div#content {
+    clear: left;
+}
