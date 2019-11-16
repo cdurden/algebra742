@@ -159,7 +159,16 @@ QuestionSets = {
             'ParameterSetVariants': [{}],
             'Choices': [('0', 'I did not bring a note sheet to the test'), ('1','I created a note sheet containing the basic solution strategies presented in class'), ('2','I created a note sheet containing the basic solution strategies presented in class, along with examples of each'), ('3','I created a note sheet containing the more advanced solution strategies presented in class'), ('4','I created a note sheet containing the more advanced solution strategies presented in class, along with examples'), ('5','I created a note sheet containing all of the solution strategies'), ('6','I created a note sheet containing all of the solution strategies, along with examples')],
             'Question': 'Creating a note sheet',
-            }
+            },
+        {
+            'Type': 'OpenResponse',
+            'Template': 'OpenResponse.html',
+            'ParameterSetVariants': [
+                {'image': None,
+                    'question': "I demonstrated a full understanding of solution strategies on the following problems, but I made a computational error.",},
+                ],
+            'SpaceAfter': '4cm',
+            },
         ],
         },
     'BalancingCandiesRubric': {
