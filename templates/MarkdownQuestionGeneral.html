@@ -123,7 +123,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% if QuestionData['Type'] in ['Matching'] %}
 <div class="prompts">
 {% for prompt in Parameters['prompts'] %}
-                {{ loop.index }} {{ form.answers() }} {{ prompt }}
+                {{ loop.index }} {{ form.answers[loop.index]() }} {{ prompt }}
 {% endfor %}
 </div>
 <div class="answers">
