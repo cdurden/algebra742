@@ -169,6 +169,15 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+        {
+            'Type': 'OpenResponse',
+            'Template': 'OpenResponse.html',
+            'ParameterSetVariants': [
+                {'image': None,
+                    'question': "Notes about student work",},
+                ],
+            'SpaceAfter': '4cm',
+            },
         ],
         },
     'BalancingCandiesRubric': {
