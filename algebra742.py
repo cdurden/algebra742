@@ -200,6 +200,14 @@ class CoordinatePairsForm(Form):
     """
     coordinate_pair_forms = FieldList(FormField(CoordinatePairForm))
 
+class GenericForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    #answer = IntegerField('answer')
+    answer = StringField('answer')
+
 class NumericalForm(Form):
     """ Add data from Form
 
@@ -440,6 +448,20 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     message = "Your answer {:s} is not simplified. Try again!".format(answer)
         except:
             pass
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['SetOfNumbers']:
+        form = GenericForm(data=formdata)
+        try:
+            input_expr = parse_expr(form.answer.data)
+            correct = input_expr == parse_expr(Parameters['CorrectAnswer'])
+            if not correct:
+                message = "Your answer {:s} is not correct.".format(form.answer.data)
+        except ValueError:
+            message = "Your answer {:s} is not correct.".format(form.answer.data)
+            correct = False
+        except TypeError:
+            message = "Your answer {:s} is not correct.".format(form.answer.data)
+            correct = False
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SetOfCoordinatePairs']:
         form = SetOfCoordinatePairsForm(data=formdata)
