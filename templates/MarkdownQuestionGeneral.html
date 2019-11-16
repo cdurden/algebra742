@@ -46,7 +46,9 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
         </ul>
     </div>
     <div id="content">
+        {% if question_number != 'submit' %}
         {{ question_number-1 }}. {{ QuestionData['Question'] }}
+        {% endif %}
         {{ content | safe }}
     </div>
 </section>
