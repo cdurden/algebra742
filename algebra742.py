@@ -7,7 +7,7 @@ from flask import send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
-from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField, SelectField
+from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField, SelectField, SelectMultipleField
 from wtforms.validators import NumberRange
 from random import randint
 import markdown
@@ -175,6 +175,13 @@ class MatchingForm(Form):
     :param Form:
     """
     answers = FieldList(SelectField('answers'))
+
+class SelectMultipleForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    answers = SelectMultipleField('answers')
 
 class SolveEquationGuidedForm(Form):
     """ Add data from Form
@@ -463,6 +470,16 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     message = "Your answer {:s} is not simplified. Try again!".format(answer)
         except:
             pass
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['SelectMultiple']:
+        try:
+            form = SelectMultipleForm(data=formdata)
+        except:
+            form = SelectMultipleForm()
+        choices = []
+        for choice,value in Parameters['choices']:
+            choices.append((choice,value))
+        correct = Parameters['CorrectAnswer'] == set(form.answers.data)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['Matching']:
         try:
