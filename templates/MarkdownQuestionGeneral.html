@@ -46,7 +46,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
         </ul>
     </div>
     <div id="content">
-        {{ question_number }}. {{ QuestionData['Question'] }}
+        {{ question_number-1 }}. {{ QuestionData['Question'] }}
         {{ content | safe }}
     </div>
 </section>
