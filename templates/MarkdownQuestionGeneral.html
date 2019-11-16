@@ -130,7 +130,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 {% else %}
 <div class="input">
 <div class="answer_form">
-    <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" name="answer_form">
+    <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
 {% if QuestionData['Type'] in ['SetOfCoordinatePairs'] %}
     {{ form.set_of_coordinate_pairs(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
