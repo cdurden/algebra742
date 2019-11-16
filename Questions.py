@@ -139,6 +139,13 @@ QuestionSets = {
                 ],
             'SpaceAfter': '5cm',
             },
+        {
+            'Type': 'MC',
+            'Template': 'Empty.html',
+            'ParameterSetVariants': [{}],
+            'Choices': [('0', 'None of the following criteria are demonstrated.'), ('1','I recognized that the solution was not correct.'), ('2','I demonstrated a correct way to solve the equation.'), ('3','I described a correct way to solve the equation using mathematical vocabulary.')],
+            'Question': 'Explaining concepts',
+            },
         ],
         },
     'BalancingCandiesRubric': {
