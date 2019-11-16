@@ -152,7 +152,7 @@ QuestionSets = {
             'ParameterSetVariants': [{}],
             'Choices': [('0', 'I did not communicate my reasoning'), ('1','I presented my reasoning about half of the time'), ('2','I presented my reasoning for almost every problem, but some details were missing'), ('3','I presented a detailed argument, including all steps needed to reach all of my conclusions')],
             'Question': 'Communicating mathematical reasoning',
-            }
+            },
         {
             'Type': 'RubricScore',
             'Template': 'Empty.html',
