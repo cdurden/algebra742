@@ -146,6 +146,13 @@ QuestionSets = {
             'Choices': [('0', 'None of the following criteria are demonstrated.'), ('1','I recognized that the solution was not correct.'), ('2','I demonstrated a correct way to solve the equation.'), ('3','I described a correct way to solve the equation using mathematical vocabulary.')],
             'Question': 'Explaining concepts',
             },
+        {
+            'Type': 'RubricScore',
+            'Template': 'Empty.html',
+            'ParameterSetVariants': [{}],
+            'Choices': [('0', 'I did not communicate my reasoning'), ('1','I presented my reasoning for some problems'), ('2','I presented my reasoning for every problem'), ('3','I presented a detailed argument, including all steps needed to reach all of my conclusions')],
+            'Question': 'Communicating mathematical reasoning',
+            }
         ],
         },
     'BalancingCandiesRubric': {

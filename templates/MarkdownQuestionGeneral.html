@@ -184,8 +184,12 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 <div class="answer_choices">
 {% for subfield in form.options %}
 <div class="answer_choice">
+        <div style="float: left;">
         {{ subfield }}
+        </div>
+        <div style="float: left;">
         {{ subfield.label }}
+        </div>
 </div>
 {% endfor %}
 {{ form.other }}
