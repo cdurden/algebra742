@@ -33,10 +33,10 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
             </li>
             {% for item in question_indices %}
             <li>
-                <div>
+                <div style="float: left;">
                 <a href="{{ url_for('Assignment', assignment=assignment, q=item[0], i=item[1]) }}">{{ loop.index }}</a>
                 </div>
-                <div>
+                <div style="float: left;">
                     {{ scores[loop.index0] }}
                 </div>
             </li>
