@@ -497,6 +497,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except ValueError:
             message = "Your answer {:s} is not correct.".format(form.answer.data)
             correct = False
+        except SyntaxError:
+            message = "Your answer {:s} is not correct.".format(form.answer.data)
+            correct = False
         except TypeError:
             message = "Your answer {:s} is not correct.".format(form.answer.data)
             correct = False
