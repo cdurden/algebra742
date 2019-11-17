@@ -183,7 +183,7 @@ QuestionSets = {
             'Template': 'Empty.html',
             'ParameterSetVariants': [
                 {'image': None,
-                    'choices': [('a', 'Using zero pairs and reciprocal pairs to solve equations'), ('b', 'Eliminating variable terms when solving equations'), ('c', 'The distributive property'), ('d', 'Understanding like terms')],
+                    'choices': [('a', 'Using zero pairs and reciprocal pairs to solve equations'), ('b', 'Eliminating variable terms when solving equations'), ('c', 'The distributive property'), ('d', 'Understanding like terms'), ('e', 'Solving equations involving absolute value'), ('f', 'Solving equations with variables on both sides'), ('g', 'Combining like terms when solving equations')],
                     'question': "The main learning goals that you need to work on are ",
                     'CorrectAnswer': None,
                     },
