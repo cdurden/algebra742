@@ -82,7 +82,7 @@ function loadGame(flip_card_callback) {
 }
 
 function reset_game(data) {
-    update_screen(data);
+    update_game(data);
 }
 function update_game(data) {
     //enable();
