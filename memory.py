@@ -16,6 +16,31 @@ socketio = SocketIO(app)
 ROOMS = {} # dict to track active rooms
 db = SQLAlchemy(app)
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    firstname = db.Column(db.String(80), nullable=False)
+    lastname = db.Column(db.String(80), nullable=False)
+    lti_user_id = db.Column(db.String(255), unique=True, nullable=False)
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+    def to_dict(self):
+        return({ 'id': self.id,
+                 'username': self.username,
+                 'firstname': self.firstname,
+                 'lastname': self.lastname,
+                 'lti_user_id': self.lti_user_id })
+
+def error(exception=None):
+    """ render error page
+
+    :param exception: optional exception
+    :return: the error.html template rendered
+    """
+    return render_template('error.html')
+
+
 @app.route('/memory_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
 def memory_init(lti=lti):
