@@ -8,7 +8,6 @@ from game import RequestDenied
 
 # initialize Flask
 from pylti.flask import lti
-from algebra742 import User, error
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
