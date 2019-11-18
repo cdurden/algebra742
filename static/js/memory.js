@@ -81,10 +81,10 @@ function loadGame(flip_card_callback) {
   startGame();
 }
 
-function reset_screen(data) {
+function reset_game(data) {
     update_screen(data);
 }
-function update_screen(data) {
+function update_game(data) {
     //enable();
     players = data.players;
     players_dashboard = document.getElementById("players-dashboard");
