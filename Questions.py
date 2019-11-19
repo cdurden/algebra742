@@ -1,5 +1,5 @@
 QuestionSets = {
-    'EvaluatingFunctions': {
+    'EvaluateFunctions': {
         'ProvideImmediateFeedback': False,
         'Questions':
         [
