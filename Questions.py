@@ -1,4 +1,18 @@
 QuestionSets = {
+    'EvaluatingFunctions': {
+        'ProvideImmediateFeedback': False,
+        'Questions':
+        [
+            {
+            'Type': 'GenericEquality',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Evaluate the function $f(x) = x+5$ for $x=3$.','CorrectAnswer': '8'},
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'WhatIsAFunction': {
         'ProvideImmediateFeedback': False,
         'Questions':
