@@ -135,7 +135,8 @@ def GenerateArrowDiagram(filepath, Parameters):
 #assignment = 'ClassworkNov8B'
 
 #assignment = 'SolvingEquationsTest'
-assignment = 'WODBFunctions'
+#assignment = 'WODBFunctions'
+assignment = 'EvaluateFunctions'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')

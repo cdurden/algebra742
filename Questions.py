@@ -1,6 +1,6 @@
 QuestionSets = {
     'EvaluateFunctions': {
-        'ProvideImmediateFeedback': False,
+        'ProvideImmediateFeedback': True,
         'Questions':
         [
             {
@@ -8,6 +8,12 @@ QuestionSets = {
             'Template': 'Question.html',
             'ParameterSetVariants': [
                 {'question': 'Evaluate the function $f(x) = x+5$ for $x=3$.','CorrectAnswer': '8'},
+                {'question': 'Evaluate the function $f(x) = 4x+2$ for $x=7$.','CorrectAnswer': '30'},
+                {'question': 'Evaluate the function $f(x) = 5x-7$ for $x=0$.','CorrectAnswer': '-7'},
+                {'question': 'Evaluate the function $f(x) = 5(x-7)$ for $x=10$.','CorrectAnswer': '15'},
+                {'question': 'Evaluate the function $f(x) = 5(x-7)^2$ for $x=10$.','CorrectAnswer': '45'},
+                {'question': 'Evaluate the function $f(x) = 5x^2-7$ for $x=10$.','CorrectAnswer': '497'},
+                {'question': 'Evaluate the function $f(x) = x^2-2x+1$ for $x=3$.','CorrectAnswer': '4'},
                 ],
             'SpaceAfter': '4cm',
             },
