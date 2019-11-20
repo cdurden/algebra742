@@ -629,11 +629,18 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(Parameters)
         n = Parameters['n']
         input_coordinates = set()
-        CorrectAnswer = random.randint(0,3)
         choices = []
         seed = Parameters['seed']
         for i,k in enumerate(['a','b','c','d']):
             choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['Choices'][i][1]['seed'],N=Parameters['Choices'][i][1]['n']))))
+        try:
+            choice = form.options.data
+            if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
+                correct = true
+            else:
+                correct = False
+        except:
+            pass
 #            if i==CorrectAnswer:
 #                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed,N=Parameters['n']))))
 #            else:
@@ -641,6 +648,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 #                while seed0 == seed:
 #                    seed0 = random.randint(1,20)
 #                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed0,N=Parameters['n']))))
+        try:
+            form.options
         form.options.choices = choices
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTable']:
