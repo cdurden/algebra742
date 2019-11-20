@@ -395,9 +395,11 @@ def plot_mapping_diagram(N=5, seed=0):
     outputs = list(set(y))
     axis = fig.add_subplot(1, 1, 1)
     for i in range(len(inputs)):
-        axis.annotate(str(inputs[i]),(-i,0))
+        #axis.annotate(str(inputs[i]),(-i,0))
+        axis.text(-i,0,str(inputs[i]))
     for j in range(len(outputs)):
-        axis.annotate(str(outputs[j]),(-j,3))
+        #axis.annotate(str(outputs[j]),(-j,3))
+        axis.text(-j,3,str(outputs[j]))
     for x_,y_ in zip(x,y):
         i = inputs.index(x_)
         j = outputs.index(y_)
