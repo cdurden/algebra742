@@ -398,7 +398,7 @@ def plot_mapping_diagram(N=5, seed=0):
     outputs = list(set(y))
     n = max(len(inputs),len(outputs))
     axis = fig.add_subplot(1, 1, 1)
-    ells = [Ellipse((0, -float(n)/2), n, 2, 90), Ellipse((3, -float(n)/2), n, 2, 90)]
+    ells = [Ellipse((0, -float(n-1)/2), n, 2, 90), Ellipse((3, -float(n-1)/2), n, 2, 90)]
     for e in ells:
         axis.add_artist(e)
     axis.axis('off')
@@ -412,7 +412,7 @@ def plot_mapping_diagram(N=5, seed=0):
     for x_,y_ in zip(x,y):
         i = inputs.index(x_)
         j = outputs.index(y_)
-        axis.arrow(0,-i, 3, -(j-i), head_width=0.05, head_length=0.1, fc='k', ec='k')
+        axis.arrow(0.2,-i, 2.8, -(j-i), head_width=0.05, head_length=0.1, fc='k', ec='k')
     output = io.BytesIO()
     FigureCanvasSVG(fig).print_svg(output)
     return Response(output.getvalue(), mimetype="image/svg+xml")
