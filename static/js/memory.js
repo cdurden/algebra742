@@ -135,7 +135,8 @@ function update_game(flipped_cards, players, active_player) {
     for(var i = 0; i < flipped_cards.length; i++){
         card = cards[flipped_cards[i].position]
         card.classList.add("show", "open", "no-event");
-        card.innerHTML = "$"+flipped_cards[i].info+"$";
+        //card.innerHTML = "$"+flipped_cards[i].info+"$";
+        card.innerHTML = flipped_cards[i].info;
         MathJax.Hub.Queue(["Typeset",MathJax.Hub,card]);
         flipped_card_positions.push(flipped_cards[i].position);
     }
