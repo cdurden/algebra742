@@ -25,6 +25,7 @@ from Questions import *
 from werkzeug.datastructures import MultiDict
 
 import io
+import numpy as np
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.backends.backend_svg import FigureCanvasSVG
 from matplotlib.figure import Figure
@@ -386,8 +387,8 @@ def plot_svg(N=50):
     """ renders the plot on the fly.
     """
     fig = Figure()
-    x = np.random.rand(N)
-    y = np.random.rand(N)
+    x = [randint(-10,10) for i in range(N)]
+    y = [randint(-10,10) for i in range(N)]
 
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
