@@ -40,6 +40,7 @@ If you click again on the button, the drawing action is disabled.
 <button id="btn_drawar">Enable Drawing</button> 
 <button id="btn_delar">Clear Arrows</button>
 <script>
+$(function() {
 var divA       = document.querySelector("#a");
 var divB       = document.querySelector("#b");
 var arrowLeft  = document.querySelector("#arrowLeft");
@@ -106,7 +107,6 @@ function drawArrows(e){
 $('div.io-elmt').click( drawArrows);
 
 //draw arrow with SVG between the clicks coords in $elm_container
-var drawAr = new drawArrowSVG(elm_container);
 
 //register click on #btn_drawar to enable /disable drawing action
 var btn_drawar = document.getElementById('btn_drawar');
@@ -121,6 +121,7 @@ var btn_delar = document.getElementById('btn_delar');
 if(btn_delar) btn_delar.addEventListener('click', function(e){
   var arrsvg = document.querySelectorAll('.arrsvg');
   for(var i=0; i<arrsvg.length; i++) arrsvg[i].outerHTML ='';
+});
 });
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
