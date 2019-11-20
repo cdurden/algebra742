@@ -29,6 +29,7 @@ import numpy as np
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.backends.backend_svg import FigureCanvasSVG
 from matplotlib.figure import Figure
+from matplotlib.patches import Ellipse
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
