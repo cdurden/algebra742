@@ -600,7 +600,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             message = "Coordinate pairs could not be read.".format(it+1)
             correct = False
-            break
 
         for it in range(n):
             if len(form.coordinate_pair_forms.entries) < it+1:
