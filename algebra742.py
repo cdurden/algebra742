@@ -385,7 +385,7 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
     return((q,i))
 
 @app.route("/mapping_diagram-<int:N>-<int:seed>.svg")
-def plot_mapping_diagram(N=5, seed=0):
+def mapping_diagram(N=5, seed=0):
     """ renders the plot on the fly.
     """
     fig = Figure()
@@ -609,6 +609,24 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except TypeError:
             message = "Coordinate pairs could not be read. Make sure that you entered them correctly."
             correct = False
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['MCMappingDiagram']:
+        form = MCForm(data=formdata)
+        #form = CoordinatePairsForm()
+        n = Parameters['n']
+        input_coordinates = set()
+        CorrectAnswer = randint(0,3)
+        choices = []
+        seed = Parameters['seed']
+        for i,k in enumerate(['a','b','c','d']):
+            if i==CorrectAnswer:
+                choices.append((k,url_for('mapping_diagram', seed=seed,N=Parameters['n'])))
+            else:
+                seed0 = randint(1,20)
+                while seed0 == seed:
+                    seed0 = randint(1,20)
+                choices.append((k,url_for('mapping_diagram', seed=seed0,N=Parameters['n'])))
+        form.options.choices = choices
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTable']:
         form = CoordinatePairsForm(data=formdata)

@@ -213,6 +213,21 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     {{ form.answers }}
 </div>
 {% endif %}
+{% if QuestionData['Type'] in ['MCMappingDiagram'] %}
+<div class="answer_choices">
+{% for subfield in form.options %}
+<div class="answer_choice">
+        <div style="float: left;">
+        {{ subfield }}
+        </div>
+        <div>
+            <img src="{{ subfield.label }}"/>
+        </div>
+</div>
+{% endfor %}
+{{ form.other }}
+</div>
+{% endif %}
 {% if QuestionData['Type'] in ['RubricScore','MC','ArrowDiagram'] %}
 <div class="answer_choices">
 {% for subfield in form.options %}
