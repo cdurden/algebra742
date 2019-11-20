@@ -176,11 +176,11 @@ def input(data, lti=lti):
 
 def update_game(room):
     print("updating game")
-    emit('update_game', {'flipped_cards': map(lambda card: card.to_dict(), ROOMS[room].flipped_cards), 'players': map(lambda player: player.to_dict(), ROOMS[room].players), 'active_player': ROOMS[room].active_player}, room=room)
+    emit('update_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player}, room=room)
 
 def reset_game(room):
     print("reseting game")
-    emit('reset_game', {'flipped_cards': map(lambda card: card.to_dict(), ROOMS[room].flipped_cards), 'players': map(lambda player: player.to_dict(), ROOMS[room].players), 'active_player': ROOMS[room].active_player}, room=room)
+    emit('reset_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player}, room=room)
 
 
 @socketio.on('flip_card')
