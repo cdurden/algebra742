@@ -19,6 +19,14 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            {
+            'Type': 'InputOutputTable',
+            'Template': 'MappingDiagram.html',
+            'ParameterSetVariants': [
+                {'n': 5, 'seed': 0},
+                ],
+            'SpaceAfter': '4cm',
+            },
         ]
     },
     'EvaluateFunctions': {
