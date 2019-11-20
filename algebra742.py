@@ -9,7 +9,7 @@ from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField, SelectField, SelectMultipleField, widgets
 from wtforms.validators import NumberRange
-from random import randint
+import random
 import markdown
 import logging
 from logging.handlers import RotatingFileHandler
@@ -210,9 +210,10 @@ class CoordinatePairForm(Form):
 
     :param Form:
     """
-    object_ = SelectField('object', choices=[])
+    #object_ = SelectField('object', choices=[])
     #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
-    coordinate_pair = StringField('coordinate_pair')
+    x = IntegerField('x')
+    y = IntegerField('y')
 
 class SetOfCoordinatePairsForm(Form):
     """ Add data from Form
@@ -382,13 +383,14 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
                 break
     return((q,i))
 
-@app.route("/matplot-as-image-<int:N>.svg")
+@app.route("/matplot-as-image-<int:N>-<int:seed>.svg")
 def plot_svg(N=50):
     """ renders the plot on the fly.
     """
     fig = Figure()
-    x = [randint(-10,10) for i in range(N)]
-    y = [randint(-10,10) for i in range(N)]
+    random.seed(seed)
+    x = [random.randint(-10,10) for i in range(N)]
+    y = [random.randint(-10,10) for i in range(N)]
 
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
@@ -574,6 +576,35 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except TypeError:
             message = "Coordinate pairs could not be read. Make sure that you entered them correctly."
             correct = False
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['InputOutputTable']:
+        form = CoordinatePairsForm(data=formdata)
+        #form = CoordinatePairsForm()
+        n = Parameters['n']
+        app.logger.error(choices)
+        app.logger.error(len(form.coordinate_pair_forms.entries))
+        input_coordinates = set()
+        for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
+            try:
+                input_coordinates.add(tuple([int(coordinate_pair_form.x.data),int(coordinate_pair_form.x.data)]))
+            except ValueError:
+                message = "Coordinate pairs could not be read.".format(it+1)
+                correct = False
+                break
+        try:
+            random.seed(Parameters['seed'])
+            x = [random.randint(-10,10) for i in range(n)]
+            y = [random.randint(-10,10) for i in range(n)]
+            coordinates = set(zip(x,y))
+            correct = input_coordinates == coordinates
+        except:
+            message = "Coordinate pairs could not be read.".format(it+1)
+            correct = False
+            break
+
+        for it in range(n):
+            if len(form.coordinate_pair_forms.entries) < it+1:
+                form.coordinate_pair_forms.append_entry()
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['CoordinatePairs']:
         form = CoordinatePairsForm(data=formdata)

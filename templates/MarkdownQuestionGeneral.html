@@ -150,6 +150,34 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <b>{{ message }}</b>
 
 {% endif %}
+{% if QuestionData['Type'] in ['InputOutputTable'] %}
+<div>
+    <table>
+        <tr>
+
+            <th align="center">
+                x 
+            </th>
+            <th align="center">
+                y
+            </th>
+        </tr>
+{% for coordinate_pair_form in form.coordinate_pair_forms %}
+        <tr>
+            <td>
+    {{ coordinate_pair_form.x(style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
+            </td>
+            <td>
+    {{ coordinate_pair_form.y(style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
+            </td>
+        </tr>
+{% endfor %}
+    </table>
+</div>
+<br/>
+
+<b>{{ message }}</b>
+{% endif %}
 {% if QuestionData['Type'] in ['CoordinatePairs'] %}
 {% for coordinate_pair_form in form.coordinate_pair_forms %}
 <div class="step">
