@@ -640,7 +640,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             app.logger.error(choice)
             app.logger.error(CorrectAnswer)
             if choice == CorrectAnswer:
-                correct = true
+                correct = True
             else:
                 correct = False
         except:
