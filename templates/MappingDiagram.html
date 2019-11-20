@@ -88,21 +88,20 @@ $("#a, #b").draggable({
 var drawarrow =0;  //if 2, draw the arrow
 
 setTimeout(drawConnector, 250);
-  function drawArrows(e){
-      drawarrow++;
-      if(drawarrow==1) {
-        divA = $(e.target).closest("div.io-elmt");
-      }
-      if(drawarrow ==2){
-        divB = $(e.target).closest("div.io-elmt");
-        drawConnector();
-        drawarrow =0;
-      }
-  }
-
-  //register click on $container to get the coords
-  $('div.io-elmt').click( drawArrows);
+function drawArrows(e){
+    drawarrow++;
+    if(drawarrow==1) {
+      divA = $(e.target).closest("div.io-elmt");
+    }
+    if(drawarrow ==2){
+      divB = $(e.target).closest("div.io-elmt");
+      drawConnector();
+      drawarrow =0;
+    }
 }
+
+//register click on $container to get the coords
+$('div.io-elmt').click( drawArrows);
 
 //draw arrow with SVG between the clicks coords in $elm_container
 var drawAr = new drawArrowSVG(elm_container);
