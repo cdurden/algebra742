@@ -52,7 +52,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'n': 5, 'seed': 9,
                     'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'seed': 11, 'n': 5}), ('c', {'seed': 12, 'n': 5}), ('d', {'seed': 9, 'n': 5})],
-                    'CorrectAnswer': 'a'
+                    'CorrectAnswer': 'd'
                     },
                 ],
             'SpaceAfter': '4cm',
