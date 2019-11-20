@@ -384,16 +384,30 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
                 break
     return((q,i))
 
+def random_points(N=5,seed=0,function=True):
+    random.seed(int(seed))
+    #x = [random.randint(-10,10) for i in range(N)]
+    if function:
+        for i in range(N):
+            x0 = random.randint(-10,10)
+            while x0 in x:
+                x0 = random.randint(-10,10)
+                x.append(x0)
+    else:
+        x = [random.randint(-10,10) for i in range(N)]
+        x[N] = x[1]
+    
+    y = [random.randint(-10,10) for i in range(N)]
+    return(x,y)
+
 @app.route("/mapping_diagram-<int:N>-<int:seed>.svg")
 def mapping_diagram(N=5, seed=0):
     """ renders the plot on the fly.
     """
     fig = Figure()
-    random.seed(int(seed))
-    x = [random.randint(-10,10) for i in range(N)]
-    y = [random.randint(-10,10) for i in range(N)]
     app.logger.error(x)
     app.logger.error(y)
+    random_points(N=N,seed=seed)
     inputs = list(set(x))
     outputs = list(set(y))
     n = max(len(inputs),len(outputs))
@@ -421,9 +435,7 @@ def plot_svg(N=50, seed=0):
     """ renders the plot on the fly.
     """
     fig = Figure()
-    random.seed(int(seed))
-    x = [random.randint(-10,10) for i in range(N)]
-    y = [random.randint(-10,10) for i in range(N)]
+    random_points(N=N,seed=seed)
 
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
@@ -619,13 +631,14 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         choices = []
         seed = Parameters['seed']
         for i,k in enumerate(['a','b','c','d']):
-            if i==CorrectAnswer:
-                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed,N=Parameters['n']))))
-            else:
-                seed0 = random.randint(1,20)
-                while seed0 == seed:
-                    seed0 = random.randint(1,20)
-                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed0,N=Parameters['n']))))
+            choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['choices'][k]['seed',N=Parameters['choices'][k]['n']))))
+#            if i==CorrectAnswer:
+#                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed,N=Parameters['n']))))
+#            else:
+#                seed0 = random.randint(1,20)
+#                while seed0 == seed:
+#                    seed0 = random.randint(1,20)
+#                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed0,N=Parameters['n']))))
         form.options.choices = choices
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTable']:
