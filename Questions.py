@@ -24,9 +24,8 @@ QuestionSets = {
             'Template': 'Graph.html',
             'ParameterSetVariants': [
                 {'n': 5, 'seed': 0,
-                    'Choices': [('a', {'seed': 0, 'N': 5}), ('b', {'seed': 1, 'N': 5}), ('c', {'seed': 2, 'N': 5}), ('d', {'seed': 3, 'N': 5})],
+                    'Choices': [('a', {'seed': 0, 'n': 5}), ('b', {'seed': 1, 'n': 5}), ('c', {'seed': 2, 'n': 5}), ('d', {'seed': 3, 'n': 5})],
                     },
-                {'question': 'Evaluate the function $f(x) = x+5$ for $x=3$.','CorrectAnswer': '8'},
                 ],
             'SpaceAfter': '4cm',
             },

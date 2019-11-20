@@ -625,6 +625,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] in ['MCMappingDiagram']:
         form = MCForm(data=formdata)
         #form = CoordinatePairsForm()
+        app.logger.error(Parameters)
         n = Parameters['n']
         input_coordinates = set()
         CorrectAnswer = random.randint(0,3)
