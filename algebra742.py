@@ -394,13 +394,13 @@ def plot_mapping_diagram(N=5, seed=0):
     inputs = list(set(x))
     outputs = list(set(y))
     axis = fig.add_subplot(1, 1, 1)
-    axis.scatter([(-i,-1) for i in range(len(inputs)+1)],[(-j,4) for j in range(len(outputs)+1)])
+    axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs])
     for i in range(len(inputs)):
         #axis.annotate(str(inputs[i]),(-i,0))
-        axis.text(-i,0,str(inputs[i]))
+        axis.text(0,-i,str(inputs[i]))
     for j in range(len(outputs)):
         #axis.annotate(str(outputs[j]),(-j,3))
-        axis.text(-j,3,str(outputs[j]))
+        axis.text(3,-j,str(outputs[j]))
     for x_,y_ in zip(x,y):
         i = inputs.index(x_)
         j = outputs.index(y_)
