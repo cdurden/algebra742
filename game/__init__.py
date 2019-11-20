@@ -66,7 +66,7 @@ class Player(object):
                 'user': self.user.to_dict(),
                 'correct': self.correct,
                 'incorrect': self.incorrect,
-                'matched_cards': [card.to_dict() for card in self.matched_cards]),
+                'matched_cards': [card.to_dict() for card in self.matched_cards],
                 'color': self.color,
                 })
 
