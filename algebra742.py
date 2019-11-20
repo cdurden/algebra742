@@ -383,6 +383,28 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
                 break
     return((q,i))
 
+@app.route("/mapping_diagram-<int:N>-<int:seed>.svg")
+def plot_svg(N=5, seed=0):
+    """ renders the plot on the fly.
+    """
+    fig = Figure()
+    random.seed(int(seed))
+    x = [random.randint(-10,10) for i in range(N)]
+    y = [random.randint(-10,10) for i in range(N)]
+    inputs = list(set(x))
+    outputs = list(set(y))
+    axis = fig.add_subplot(1, 1, 1)
+    for i in range(len(inputs)):
+        axis.annotate(str(x[i]),-i,0)
+    for j in range(len(outputs)):
+        axis.annotate(str(y[j]),-j,3)
+    for x_,y_ in zip(x,y):
+        i = inputs.index(x_)
+        j = outputs.index(y_)
+        axis.arrow(-i, 0, -j, 3, head_width=0.05, head_length=0.1, fc='k', ec='k')
+    output = io.BytesIO()
+    FigureCanvasSVG(fig).print_svg(output)
+    return Response(output.getvalue(), mimetype="image/svg+xml")
 @app.route("/matplot-as-image-<int:N>-<int:seed>.svg")
 def plot_svg(N=50, seed=0):
     """ renders the plot on the fly.

@@ -1,0 +1,146 @@
+<style>
+#container {
+position:relative;
+width:150px;
+height:185px;
+margin:8px auto;
+background:#fefefe;
+border:2px dashed #111;
+padding:3px;
+}
+.input,.output {
+width:60px;
+height:60px;
+background:#88ee00;
+border:1px solid blue;
+}
+#dv1 {
+margin:0 0 0 80px;
+}
+#dv2 {
+margin:0 0 0 40px;
+}
+#btn_drawar {
+display:block;
+margin:8px auto;
+background:#dadafb;
+}
+</style>
+</head>
+<body>
+You can draw arrow markers with SVG inside this element when the button "Enable Drawing" is pressed (has red color).
+<div id="container">
+<div class="input">DIV 1</div>
+<div class="input">DIV 2</div>
+<div id="a">DIV 1</div>
+<div id="b">DIV 2</div>
+</div>
+- Click on this button, to Enable the drawing action, then click inside the element above to draw arrows between clicks coords.<br>
+If you click again on the button, the drawing action is disabled.
+<button id="btn_drawar">Enable Drawing</button> 
+<button id="btn_delar">Clear Arrows</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+<script>
+$(function() {
+var divA       = document.querySelector("#a");
+var divB       = document.querySelector("#b");
+var arrowLeft  = document.querySelector("#arrowLeft");
+var arrowRight = document.querySelector("#arrowRight");
+
+var drawConnector = function() {
+  var posnALeft = {
+    x: divA.offsetLeft - 8,
+    y: divA.offsetTop  + divA.offsetHeight / 2
+  };
+  var posnARight = {
+    x: divA.offsetLeft + divA.offsetWidth + 8,
+    y: divA.offsetTop  + divA.offsetHeight / 2    
+  };
+  var posnBLeft = {
+    x: divB.offsetLeft - 8,
+    y: divB.offsetTop  + divA.offsetHeight / 2
+  };
+  var posnBRight = {
+    x: divB.offsetLeft + divB.offsetWidth + 8,
+    y: divB.offsetTop  + divA.offsetHeight / 2
+  };
+  var dStrLeft =
+      "M" +
+      (posnALeft.x      ) + "," + (posnALeft.y) + " " +
+      "C" +
+      (posnALeft.x - 100) + "," + (posnALeft.y) + " " +
+      (posnBLeft.x - 100) + "," + (posnBLeft.y) + " " +
+      (posnBLeft.x      ) + "," + (posnBLeft.y);
+  arrowLeft.setAttribute("d", dStrLeft);
+  var dStrRight =
+      "M" +
+      (posnBRight.x      ) + "," + (posnBRight.y) + " " +
+      "C" +
+      (posnBRight.x + 100) + "," + (posnBRight.y) + " " +
+      (posnARight.x + 100) + "," + (posnARight.y) + " " +
+      (posnARight.x      ) + "," + (posnARight.y);
+  arrowRight.setAttribute("d", dStrRight);
+};
+
+/*
+   $("#a, #b").draggable({
+  drag: function(event, ui) {
+    drawConnector();
+  }
+});
+ */
+var drawarrow =0;  //if 2, draw the arrow
+
+setTimeout(drawConnector, 250);
+function drawArrows(e){
+    drawarrow++;
+    if(drawarrow==1) {
+      divA = $(e.target).closest("div.io-elmt").get(0);
+    }
+    if(drawarrow ==2){
+      divB = $(e.target).closest("div.io-elmt").get(0);
+      drawConnector();
+      drawarrow =0;
+    }
+}
+
+//register click on $container to get the coords
+$('div.io-elmt').click( drawArrows);
+
+//draw arrow with SVG between the clicks coords in $elm_container
+
+//register click on #btn_drawar to enable /disable drawing action
+var btn_drawar = document.getElementById('btn_drawar');
+if(btn_drawar) btn_drawar.addEventListener('click', function(e){
+  drawAr.draw *=-1;
+  e.target.style.background = (drawAr.draw ==1) ? '#f00' :'#dadafb';
+  e.target.innerHTML = (drawAr.draw ==1) ? 'Disable Drawing' :'Enable Drawing';
+});
+
+//register click on #btn_delar to delete arrows
+var btn_delar = document.getElementById('btn_delar');
+if(btn_delar) btn_delar.addEventListener('click', function(e){
+  var arrsvg = document.querySelectorAll('.arrsvg');
+  for(var i=0; i<arrsvg.length; i++) arrsvg[i].outerHTML ='';
+});
+});
+</script>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="3" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+  </defs>
+  <g fill="none" stroke="black" stroke-width="2" marker-end="url(#arrowhead)">
+    <path id="arrowLeft"/>
+    <path id="arrowRight"/>
+  </g>
+</svg>
+<div class='io-elmt' id="a">Div 1</div>
+<div class='io-elmt' id="b">Div 2</div>
+<div class='io-elmt' id="c">Div 2</div>
+<div class='io-elmt' id="d">Div 2</div>
+<div class='io-elmt' id="e">Div 2</div>
+</body>
