@@ -40,6 +40,60 @@ def error(exception=None):
     return render_template('error.html')
 
 
+import io
+from matplotlib.backends.backend_agg import FigureCanvasAgg
+from matplotlib.backends.backend_svg import FigureCanvasSVG
+from matplotlib.figure import Figure
+from matplotlib.patches import Ellipse
+
+@app.route("/mapping_diagram-<int:N>-<int:seed>.svg")
+def mapping_diagram(N=5, seed=0):
+    """ renders the plot on the fly.
+    """
+    fig = Figure()
+    random.seed(int(seed))
+    x = [random.randint(-10,10) for i in range(N)]
+    y = [random.randint(-10,10) for i in range(N)]
+    app.logger.error(x)
+    app.logger.error(y)
+    inputs = list(set(x))
+    outputs = list(set(y))
+    n = max(len(inputs),len(outputs))
+    axis = fig.add_subplot(1, 1, 1)
+    ells = [Ellipse((0, -float(n-1)/2), n, 2, 90), Ellipse((3, -float(n-1)/2), n, 2, 90)]
+    for e in ells:
+        axis.add_artist(e)
+    axis.axis('off')
+    axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs)],marker=",",alpha=0)
+    for i in range(len(inputs)):
+        #axis.annotate(str(inputs[i]),(-i,0))
+        axis.text(0,-i,str(inputs[i]))
+    for j in range(len(outputs)):
+        #axis.annotate(str(outputs[j]),(-j,3))
+        axis.text(3,-j,str(outputs[j]))
+    for x_,y_ in zip(x,y):
+        i = inputs.index(x_)
+        j = outputs.index(y_)
+        axis.arrow(0.2,-i, 2.7, -(j-i), head_width=0.1, head_length=0.1, fc='k', ec='k')
+    output = io.BytesIO()
+    FigureCanvasSVG(fig).print_svg(output)
+    return Response(output.getvalue(), mimetype="image/svg+xml")
+
+@app.route("/graph-<int:N>-<int:seed>.svg")
+def plot_svg(N=50, seed=0):
+    """ renders the plot on the fly.
+    """
+    fig = Figure()
+    random.seed(int(seed))
+    x = [random.randint(-10,10) for i in range(N)]
+    y = [random.randint(-10,10) for i in range(N)]
+
+    axis = fig.add_subplot(1, 1, 1)
+    axis.scatter(x, y)
+
+    output = io.BytesIO()
+    FigureCanvasSVG(fig).print_svg(output)
+    return Response(output.getvalue(), mimetype="image/svg+xml")
 @app.route('/memory_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error, app=app)
 def memory_init(lti=lti):
