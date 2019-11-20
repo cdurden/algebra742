@@ -66,7 +66,7 @@ class Player(object):
                 'user': self.user.to_dict(),
                 'correct': self.correct,
                 'incorrect': self.incorrect,
-                'matched_cards': map(lambda card: card.to_dict(), self.matched_cards),
+                'matched_cards': [card.to_dict() for card in self.matched_cards]),
                 'color': self.color,
                 })
 
@@ -78,7 +78,7 @@ class Game(object):
         self.flipped_cards = []
         #self.matched_cards = [[],[]]
         self.deck_name = deck_name
-        self.matches = map(lambda x: x/2, range(0,16))
+        self.matches = [x/2 for x in range(0,16)]
         #self.player_data = {} 
         self.players = []
         self.room = self.generate_room_id()
