@@ -7,7 +7,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'n': 5, 'seed': 5},
+                {'question': 'Create the input/output table for the graph below', 'n': 5, 'seed': 5},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -15,7 +15,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'n': 5, 'seed': 6},
+                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 6},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -23,7 +23,8 @@ QuestionSets = {
             'Type': 'MCMappingDiagram',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'n': 5, 'seed': 0,
+                {'question': 'Choose the mapping diagram of the relation shown in the graph.'
+                    ,'n': 5, 'seed': 0,
                     'Choices': [('a', {'seed': 0, 'n': 5}), ('b', {'seed': 1, 'n': 5}), ('c', {'seed': 2, 'n': 5}), ('d', {'seed': 3, 'n': 5})],
                     'CorrectAnswer': 'a'
                     },
@@ -34,7 +35,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'n': 5, 'seed': 7},
+                {'question': 'Create the input/output table for the graph below', 'n': 5, 'seed': 7},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -42,7 +43,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'n': 5, 'seed': 8},
+                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 8},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -50,7 +51,7 @@ QuestionSets = {
             'Type': 'MCGraph',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'n': 5, 'seed': 9,
+                {'question': 'Choose the graph of the relation shown in the mapping diagram.', 'n': 5, 'seed': 9,
                     'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'seed': 11, 'n': 5}), ('c', {'seed': 12, 'n': 5}), ('d', {'seed': 9, 'n': 5})],
                     'CorrectAnswer': 'd'
                     },
