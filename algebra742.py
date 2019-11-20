@@ -632,7 +632,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         choices = []
         seed = Parameters['seed']
         for i,k in enumerate(['a','b','c','d']):
-            choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['choices'][k]['seed'],N=Parameters['choices'][k]['n']))))
+            choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['Choices'][k]['seed'],N=Parameters['Choices'][k]['n']))))
 #            if i==CorrectAnswer:
 #                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed,N=Parameters['n']))))
 #            else:
