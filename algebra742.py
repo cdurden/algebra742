@@ -636,7 +636,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
         try:
             choice = form.options.data
-            if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
+            CorrectAnswer = QuestionData['ParameterSetVariants'][i]['CorrectAnswer']
+            app.logger.error(choice)
+            app.logger.error(CorrectAnswer)
+            if choice == CorrectAnswer:
                 correct = true
             else:
                 correct = False
