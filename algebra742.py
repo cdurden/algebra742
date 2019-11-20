@@ -420,10 +420,10 @@ def mapping_diagram(N=5, seed=0):
     axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs)],marker=",",alpha=0)
     for i in range(len(inputs)):
         #axis.annotate(str(inputs[i]),(-i,0))
-        axis.text(0,-i,str(inputs[i]))
+        axis.text(0,-i,str(inputs[i]),fontsize=18,color='white')
     for j in range(len(outputs)):
         #axis.annotate(str(outputs[j]),(-j,3))
-        axis.text(3,-j,str(outputs[j]))
+        axis.text(3,-j,str(outputs[j]),fontsize=18,color='white')
     for x_,y_ in zip(x,y):
         i = inputs.index(x_)
         j = outputs.index(y_)
