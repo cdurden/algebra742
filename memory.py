@@ -41,6 +41,7 @@ def error(exception=None):
 
 
 import io
+import random
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.backends.backend_svg import FigureCanvasSVG
 from matplotlib.figure import Figure
