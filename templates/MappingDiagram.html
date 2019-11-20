@@ -94,10 +94,10 @@ setTimeout(drawConnector, 250);
 function drawArrows(e){
     drawarrow++;
     if(drawarrow==1) {
-      divA = $(e.target).closest("div.io-elmt");
+      divA = $(e.target).closest("div.io-elmt").get(0);
     }
     if(drawarrow ==2){
-      divB = $(e.target).closest("div.io-elmt");
+      divB = $(e.target).closest("div.io-elmt").get(0);
       drawConnector();
       drawarrow =0;
     }
