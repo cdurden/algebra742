@@ -387,12 +387,13 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
 def random_points(N=5,seed=0,function=True):
     random.seed(int(seed))
     #x = [random.randint(-10,10) for i in range(N)]
+    x = []
     if function:
         for i in range(N):
             x0 = random.randint(-10,10)
             while x0 in x:
                 x0 = random.randint(-10,10)
-                x.append(x0)
+            x.append(x0)
     else:
         x = [random.randint(-10,10) for i in range(N)]
         x[N] = x[1]
