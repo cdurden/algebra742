@@ -641,15 +641,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 correct = False
         except:
             pass
-#            if i==CorrectAnswer:
-#                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed,N=Parameters['n']))))
-#            else:
-#                seed0 = random.randint(1,20)
-#                while seed0 == seed:
-#                    seed0 = random.randint(1,20)
-#                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed0,N=Parameters['n']))))
-        try:
-            form.options
         form.options.choices = choices
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTable']:
