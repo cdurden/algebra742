@@ -396,8 +396,9 @@ def plot_mapping_diagram(N=5, seed=0):
     app.logger.error(y)
     inputs = list(set(x))
     outputs = list(set(y))
+    n = max(len(inputs),len(outputs))
     axis = fig.add_subplot(1, 1, 1)
-    ells = [Ellipse((0, 1), 4, 2, 0), Ellipse((3, 1), 4, 2, 0)]
+    ells = [Ellipse((0, -float(n)/2), n, 2, 90), Ellipse((3, -float(n)/2), n, 2, 90)]
     for e in ells:
         axis.add_artist(e)
     axis.axis('off')
