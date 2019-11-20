@@ -595,6 +595,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             y = [random.randint(-10,10) for i in range(n)]
             coordinates = set(zip(x,y))
             correct = input_coordinates == coordinates
+            app.logger.error(input_coordinates)
+            app.logger.error(coordinates)
         except:
             message = "Coordinate pairs could not be read.".format(it+1)
             correct = False
