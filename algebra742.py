@@ -440,6 +440,7 @@ def plot_svg(N=50, seed=0):
 
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
+    axis.grid(color='r', linestyle='-', linewidth=2)
 
     output = io.BytesIO()
     FigureCanvasSVG(fig).print_svg(output)

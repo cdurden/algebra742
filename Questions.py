@@ -57,6 +57,17 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            {
+            'Type': 'GenericEquality',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'If $f(x) = x+5$, find $f(-5)$.','CorrectAnswer': '0'},
+                {'question': 'If $f(x) = x^2+5$, find $f(-5)$.','CorrectAnswer': '30'},
+                {'question': 'If $f(x) = 2(x-5)$, find $f(-5)$.','CorrectAnswer': '-20'},
+                {'question': 'If $f(x) = 2(x-5)^2-3$, find $f(-5)$.','CorrectAnswer': '-20'},
+                ],
+            'SpaceAfter': '4cm',
+            },
         ]
     },
     'EvaluateFunctions': {
