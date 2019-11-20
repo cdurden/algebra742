@@ -615,16 +615,16 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         #form = CoordinatePairsForm()
         n = Parameters['n']
         input_coordinates = set()
-        CorrectAnswer = randint(0,3)
+        CorrectAnswer = random.randint(0,3)
         choices = []
         seed = Parameters['seed']
         for i,k in enumerate(['a','b','c','d']):
             if i==CorrectAnswer:
                 choices.append((k,url_for('mapping_diagram', seed=seed,N=Parameters['n'])))
             else:
-                seed0 = randint(1,20)
+                seed0 = random.randint(1,20)
                 while seed0 == seed:
-                    seed0 = randint(1,20)
+                    seed0 = random.randint(1,20)
                 choices.append((k,url_for('mapping_diagram', seed=seed0,N=Parameters['n'])))
         form.options.choices = choices
         answer = json.dumps(form.data)
