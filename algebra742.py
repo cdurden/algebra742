@@ -406,9 +406,9 @@ def mapping_diagram(N=5, seed=0):
     """ renders the plot on the fly.
     """
     fig = Figure()
+    x,y = random_points(N=N,seed=seed)
     app.logger.error(x)
     app.logger.error(y)
-    x,y = random_points(N=N,seed=seed)
     inputs = list(set(x))
     outputs = list(set(y))
     n = max(len(inputs),len(outputs))
