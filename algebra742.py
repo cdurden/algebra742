@@ -404,7 +404,7 @@ def plot_mapping_diagram(N=5, seed=0):
     for x_,y_ in zip(x,y):
         i = inputs.index(x_)
         j = outputs.index(y_)
-        axis.arrow(-i, 0, -j, 3, head_width=0.05, head_length=0.1, fc='k', ec='k')
+        axis.arrow(0,-i, 3, -j, head_width=0.05, head_length=0.1, fc='k', ec='k')
     output = io.BytesIO()
     FigureCanvasSVG(fig).print_svg(output)
     return Response(output.getvalue(), mimetype="image/svg+xml")
