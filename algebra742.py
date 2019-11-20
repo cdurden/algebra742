@@ -384,7 +384,7 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
     return((q,i))
 
 @app.route("/matplot-as-image-<int:N>-<int:seed>.svg")
-def plot_svg(N=50):
+def plot_svg(N=50, seed=0):
     """ renders the plot on the fly.
     """
     fig = Figure()
