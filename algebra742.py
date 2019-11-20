@@ -632,8 +632,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         input_coordinates = set()
         choices = []
         seed = Parameters['seed']
-        for i,k in enumerate(['a','b','c','d']):
-            choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['Choices'][i][1]['seed'],N=Parameters['Choices'][i][1]['n']))))
+        for it,k in enumerate(['a','b','c','d']):
+            choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
         try:
             choice = form.options.data
             if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
