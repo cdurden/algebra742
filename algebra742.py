@@ -402,7 +402,7 @@ def plot_mapping_diagram(N=5, seed=0):
     for e in ells:
         axis.add_artist(e)
     axis.axis('off')
-    axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs)],marker=",",alpha=1)
+    axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs)],marker=",",alpha=0)
     for i in range(len(inputs)):
         #axis.annotate(str(inputs[i]),(-i,0))
         axis.text(0,-i,str(inputs[i]))
