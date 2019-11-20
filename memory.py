@@ -1,7 +1,7 @@
 #import gevent.monkey
 #gevent.monkey.patch_all()
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 from flask_socketio import SocketIO, join_room, emit
 import game
 from game import RequestDenied
