@@ -581,8 +581,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         form = CoordinatePairsForm(data=formdata)
         #form = CoordinatePairsForm()
         n = Parameters['n']
-        app.logger.error(choices)
-        app.logger.error(len(form.coordinate_pair_forms.entries))
         input_coordinates = set()
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
