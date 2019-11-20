@@ -407,7 +407,7 @@ def mapping_diagram(N=5, seed=0):
     fig = Figure()
     app.logger.error(x)
     app.logger.error(y)
-    random_points(N=N,seed=seed)
+    x,y = random_points(N=N,seed=seed)
     inputs = list(set(x))
     outputs = list(set(y))
     n = max(len(inputs),len(outputs))
@@ -435,7 +435,7 @@ def plot_svg(N=50, seed=0):
     """ renders the plot on the fly.
     """
     fig = Figure()
-    random_points(N=N,seed=seed)
+    x,y = random_points(N=N,seed=seed)
 
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
