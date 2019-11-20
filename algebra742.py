@@ -391,6 +391,8 @@ def plot_mapping_diagram(N=5, seed=0):
     random.seed(int(seed))
     x = [random.randint(-10,10) for i in range(N)]
     y = [random.randint(-10,10) for i in range(N)]
+    app.logger.error(x)
+    app.logger.error(y)
     inputs = list(set(x))
     outputs = list(set(y))
     axis = fig.add_subplot(1, 1, 1)
