@@ -394,7 +394,7 @@ def plot_mapping_diagram(N=5, seed=0):
     inputs = list(set(x))
     outputs = list(set(y))
     axis = fig.add_subplot(1, 1, 1)
-    axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs])
+    axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs)])
     for i in range(len(inputs)):
         #axis.annotate(str(inputs[i]),(-i,0))
         axis.text(0,-i,str(inputs[i]))
