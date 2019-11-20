@@ -620,7 +620,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         seed = Parameters['seed']
         for i,k in enumerate(['a','b','c','d']):
             if i==CorrectAnswer:
-                choices.append((k,url_for('mapping_diagram', seed=seed,N=Parameters['n'])))
+                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed,N=Parameters['n']))))
             else:
                 seed0 = random.randint(1,20)
                 while seed0 == seed:
