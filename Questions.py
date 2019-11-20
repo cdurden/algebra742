@@ -51,7 +51,7 @@ QuestionSets = {
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
                 {'n': 5, 'seed': 9,
-                    'Choices': [('a', {'seed': 0, 'n': 10}), ('b', {'seed': 1, 'n': 11}), ('c', {'seed': 2, 'n': 12}), ('d', {'seed': 3, 'n': 13})],
+                    'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'seed': 11, 'n': 5}), ('c', {'seed': 12, 'n': 5}), ('d', {'seed': 13, 'n': 5})],
                     'CorrectAnswer': 'a'
                     },
                 ],
