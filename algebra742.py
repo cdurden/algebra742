@@ -396,6 +396,9 @@ def plot_mapping_diagram(N=5, seed=0):
     inputs = list(set(x))
     outputs = list(set(y))
     axis = fig.add_subplot(1, 1, 1)
+    ells = [Ellipse((0, 1), 4, 2, 0), Ellipse((3, 1), 4, 2, 0)]
+    for e in ells:
+        axis.add_artist(e)
     axis.axis('off')
     axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs)])
     for i in range(len(inputs)):
