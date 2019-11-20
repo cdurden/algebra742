@@ -80,11 +80,13 @@ var drawConnector = function() {
   arrowRight.setAttribute("d", dStrRight);
 };
 
-$("#a, #b").draggable({
+/*
+   $("#a, #b").draggable({
   drag: function(event, ui) {
     drawConnector();
   }
 });
+ */
 var drawarrow =0;  //if 2, draw the arrow
 
 setTimeout(drawConnector, 250);
