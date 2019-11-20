@@ -381,14 +381,16 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
                 break
     return((q,i))
 
-@app.route("/matplot-as-image-<int:num_x_points>.svg")
-def plot_svg(num_x_points=50):
+@app.route("/matplot-as-image-<int:N>.svg")
+def plot_svg(N=50):
     """ renders the plot on the fly.
     """
     fig = Figure()
+    x = np.random.rand(N)
+    y = np.random.rand(N)
+
     axis = fig.add_subplot(1, 1, 1)
-    x_points = range(num_x_points)
-    axis.plot(x_points, [randint(1, 30) for x in x_points])
+    axis.scatter(x, y)
 
     output = io.BytesIO()
     FigureCanvasSVG(fig).print_svg(output)
