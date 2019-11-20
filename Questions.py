@@ -7,7 +7,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'n': 5, 'seed': 0},
+                {'n': 5, 'seed': 5},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -15,7 +15,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'n': 5, 'seed': 0},
+                {'n': 5, 'seed': 6},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -25,6 +25,33 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'n': 5, 'seed': 0,
                     'Choices': [('a', {'seed': 0, 'n': 5}), ('b', {'seed': 1, 'n': 5}), ('c', {'seed': 2, 'n': 5}), ('d', {'seed': 3, 'n': 5})],
+                    'CorrectAnswer': 'a'
+                    },
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTable',
+            'Template': 'Graph.html',
+            'ParameterSetVariants': [
+                {'n': 5, 'seed': 7},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTable',
+            'Template': 'MappingDiagram.html',
+            'ParameterSetVariants': [
+                {'n': 5, 'seed': 8},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'MCGraph',
+            'Template': 'MappingDiagram.html',
+            'ParameterSetVariants': [
+                {'n': 5, 'seed': 9,
+                    'Choices': [('a', {'seed': 0, 'n': 10}), ('b', {'seed': 1, 'n': 11}), ('c', {'seed': 2, 'n': 12}), ('d', {'seed': 3, 'n': 13})],
                     'CorrectAnswer': 'a'
                     },
                 ],

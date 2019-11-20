@@ -624,7 +624,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             message = "Coordinate pairs could not be read. Make sure that you entered them correctly."
             correct = False
         answer = json.dumps(form.data)
-    if QuestionData['Type'] in ['MCMappingDiagram']:
+    if QuestionData['Type'] in ['MCMappingDiagram', 'MCGraph']:
         form = MCForm(data=formdata)
         #form = CoordinatePairsForm()
         app.logger.error(Parameters)
@@ -633,7 +633,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         choices = []
         seed = Parameters['seed']
         for it,k in enumerate(['a','b','c','d']):
-            choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
+            if QuestionData['Type'] == 'MCMappingDiagram':
+                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
+            if QuestionData['Type'] == 'MCGraph':
+                choices.append((k,"<img src={:s} />".format(url_for('plot_svg', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
         try:
             choice = form.options.data
             CorrectAnswer = QuestionData['ParameterSetVariants'][i]['CorrectAnswer']
