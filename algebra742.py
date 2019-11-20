@@ -24,6 +24,7 @@ from functools import wraps
 from Questions import *
 from werkzeug.datastructures import MultiDict
 
+import io
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.backends.backend_svg import FigureCanvasSVG
 from matplotlib.figure import Figure
