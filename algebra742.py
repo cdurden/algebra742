@@ -388,7 +388,7 @@ def plot_svg(N=50, seed=0):
     """ renders the plot on the fly.
     """
     fig = Figure()
-    random.seed(seed)
+    random.seed(int(seed))
     x = [random.randint(-10,10) for i in range(N)]
     y = [random.randint(-10,10) for i in range(N)]
 
