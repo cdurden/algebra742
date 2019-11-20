@@ -24,6 +24,9 @@ from functools import wraps
 from Questions import *
 from werkzeug.datastructures import MultiDict
 
+from matplotlib.backends.backend_agg import FigureCanvasAgg
+from matplotlib.backends.backend_svg import FigureCanvasSVG
+from matplotlib.figure import Figure
 VERSION = '0.0.1'
 app = Flask(__name__)
 app.config.from_object('config')
@@ -376,6 +379,19 @@ def GetNextNoncorrectlyAnsweredQuestionVariant(db, user, assignment, q, i):
                 i = k
                 break
     return((q,i))
+
+@app.route("/matplot-as-image-<int:num_x_points>.svg")
+def plot_svg(num_x_points=50):
+    """ renders the plot on the fly.
+    """
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    x_points = range(num_x_points)
+    axis.plot(x_points, [randint(1, 30) for x in x_points])
+
+    output = io.BytesIO()
+    FigureCanvasSVG(fig).print_svg(output)
+    return Response(output.getvalue(), mimetype="image/svg+xml")
 
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])

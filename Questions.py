@@ -1,4 +1,18 @@
 QuestionSets = {
+    'RepresentRelations': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'GenericEquality',
+            'Template': 'Graph.html',
+            'ParameterSetVariants': [
+                {'question': 'Evaluate the function $f(x) = x+5$ for $x=3$.','CorrectAnswer': '8'},
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'EvaluateFunctions': {
         'ProvideImmediateFeedback': True,
         'Questions':
