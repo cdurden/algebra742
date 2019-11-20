@@ -625,7 +625,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 seed0 = random.randint(1,20)
                 while seed0 == seed:
                     seed0 = random.randint(1,20)
-                choices.append((k,url_for('mapping_diagram', seed=seed0,N=Parameters['n'])))
+                choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', seed=seed0,N=Parameters['n']))))
         form.options.choices = choices
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTable']:
