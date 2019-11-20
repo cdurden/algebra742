@@ -32,89 +32,76 @@ You can draw arrow markers with SVG inside this element when the button "Enable 
 <div id="container">
 <div class="input">DIV 1</div>
 <div class="input">DIV 2</div>
-<div class="input">DIV 3</div>
+<div id="a">DIV 1</div>
+<div id="b">DIV 2</div>
 </div>
 - Click on this button, to Enable the drawing action, then click inside the element above to draw arrows between clicks coords.<br>
 If you click again on the button, the drawing action is disabled.
 <button id="btn_drawar">Enable Drawing</button> 
-<button id="btn_delar">Delete Arrows</button>
+<button id="btn_delar">Clear Arrows</button>
 <script>
-//REPLACE 'container' WITH THE ID OF ELEMENT WHERE TO DRAW ARROWS
-var elm_container = document.querySelector('#container');
- 
-//Draw arrows with SVG in the $parent element between the click coords
-function drawArrowSVG(parent){
- //From: https://coursesweb.net/javascript/
-  var me = this;
-  var x, y = 0;  //contain the coordinates
-  var drawarrow =0;  //if 2, draw the arrow
-  var c_e1 ={};  // x,y coords for base line
-  var c_e2 ={};  // x,y coords for arrow
-  var container = parent;
-  me.draw =-1;  //if 1 allow to draw the arrow
+var divA       = document.querySelector("#a");
+var divB       = document.querySelector("#b");
+var arrowLeft  = document.querySelector("#arrowLeft");
+var arrowRight = document.querySelector("#arrowRight");
 
-  // Get X and Y position of the elm (from: vishalsays.wordpress.com)
-  function getXYpos(elm) {
-    x = elm.offsetLeft;        // set x to elm’s offsetLeft
-    y = elm.offsetTop;         // set y to elm’s offsetTop
+var drawConnector = function() {
+  var posnALeft = {
+    x: divA.offsetLeft - 8,
+    y: divA.offsetTop  + divA.offsetHeight / 2
+  };
+  var posnARight = {
+    x: divA.offsetLeft + divA.offsetWidth + 8,
+    y: divA.offsetTop  + divA.offsetHeight / 2    
+  };
+  var posnBLeft = {
+    x: divB.offsetLeft - 8,
+    y: divB.offsetTop  + divA.offsetHeight / 2
+  };
+  var posnBRight = {
+    x: divB.offsetLeft + divB.offsetWidth + 8,
+    y: divB.offsetTop  + divA.offsetHeight / 2
+  };
+  var dStrLeft =
+      "M" +
+      (posnALeft.x      ) + "," + (posnALeft.y) + " " +
+      "C" +
+      (posnALeft.x - 100) + "," + (posnALeft.y) + " " +
+      (posnBLeft.x - 100) + "," + (posnBLeft.y) + " " +
+      (posnBLeft.x      ) + "," + (posnBLeft.y);
+  arrowLeft.setAttribute("d", dStrLeft);
+  var dStrRight =
+      "M" +
+      (posnBRight.x      ) + "," + (posnBRight.y) + " " +
+      "C" +
+      (posnBRight.x + 100) + "," + (posnBRight.y) + " " +
+      (posnARight.x + 100) + "," + (posnARight.y) + " " +
+      (posnARight.x      ) + "," + (posnARight.y);
+  arrowRight.setAttribute("d", dStrRight);
+};
 
-    elm = elm.offsetParent;    // set elm to its offsetParent
-
-    //use while loop to check if elm is null
-    // if not then add current elm’s offsetLeft to x
-    //offsetTop to y and set elm to its offsetParent
-    while(elm != null) {
-      x = parseInt(x) + parseInt(elm.offsetLeft);
-      y = parseInt(y) + parseInt(elm.offsetTop);
-      elm = elm.offsetParent;
-    }
-
-    // returns an object with "xp" (Left), "=yp" (Top) position
-    return {'xp':x, 'yp':y};
+$("#a, #b").draggable({
+  drag: function(event, ui) {
+    drawConnector();
   }
+});
+var drawarrow =0;  //if 2, draw the arrow
 
-  // Get X, Y coords
-  function getCoords(e){
-    //if $draw is 1, get the coords and draw arrow
-    if(me.draw ==1){
-      var xy_pos = getXYpos(this);
-
-      // if IE
-      if(navigator.appVersion.indexOf("MSIE") != -1) {
-        // in IE scrolling page affects mouse coordinates into an element
-        // This gets the page element that will be used to add scrolling value to correct mouse coords
-        var standardBody = (document.compatMode == 'CSS1Compat') ? document.documentElement : document.body;
-
-        x = event.clientX + standardBody.scrollLeft;
-        y = event.clientY + standardBody.scrollTop;
-      }
-      else {
-        x = e.pageX;
-        y = e.pageY;
-      }
-
-      x = x - xy_pos['xp'];
-      y = y - xy_pos['yp'];
-
-      //set coords in c_e2 and c_e1; if drawarrow is 2 draw the arrow
+setTimeout(drawConnector, 250);
+  function drawArrows(e){
       drawarrow++;
-      if(drawarrow ==2){
-        c_e2 = {x:x, y:y};
-        drawarrow =0;
-        drawArrow(c_e1, c_e2);
+      if(drawarrow==1) {
+        divA = $(e.target).closest("div.io-elmt");
       }
-      else c_e1 = {x:x, y:y};
-    }
-  }
-
-  //append in #container SVG arrow with base in $c_e1 and the arrow in $c_e2 coords
-  function drawArrow(c_e1, c_e2){
-    var arrsvg = '<svg class="arrsvg" style="position:absolute; top:0; left:0; margin:0; width:99.8%; height:99.9%;"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refx="3" refy="4" orient="auto"><path d="M1,1 L1,7 L7,4 L1,1" style="fill:red;" /></marker></defs><path d="M'+ c_e1.x +','+ c_e1.y +' L'+ c_e2.x +','+ c_e2.y +'" style="stroke:red; stroke-width: 2.3px; fill: none; marker-end: url('+ location.href.replace(/[#]*$/ig, '') +'#arrow);"/></svg>';
-    container.insertAdjacentHTML('beforeend', arrsvg);  //add the arrow to the end in #container
+      if(drawarrow ==2){
+        divB = $(e.target).closest("div.io-elmt");
+        drawConnector();
+        drawarrow =0;
+      }
   }
 
   //register click on $container to get the coords
-  container.addEventListener('click', getCoords);
+  $('div.io-elmt').click( drawArrows);
 }
 
 //draw arrow with SVG between the clicks coords in $elm_container
@@ -135,4 +122,23 @@ if(btn_delar) btn_delar.addEventListener('click', function(e){
   for(var i=0; i<arrsvg.length; i++) arrsvg[i].outerHTML ='';
 });
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="3" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+  </defs>
+  <g fill="none" stroke="black" stroke-width="2" marker-end="url(#arrowhead)">
+    <path id="arrowLeft"/>
+    <path id="arrowRight"/>
+  </g>
+</svg>
+<div id="a">Div 1</div>
+<div id="b">Div 2</div>
+<div id="c">Div 2</div>
+<div id="d">Div 2</div>
+<div id="e">Div 2</div>
 </body>
