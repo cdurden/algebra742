@@ -471,6 +471,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         question_number = None 
     else:
         QuestionData = QuestionSets[assignment]['Questions'][q-1]
+        app.logger.error(QuestionData['ParameterSetVariants'])
         Parameters = QuestionData['ParameterSetVariants'][i]
         if len(QuestionSets[assignment]['Questions']) > q or len(QuestionData['ParameterSetVariants']) > i+1:
             if len(QuestionData['ParameterSetVariants']) > i+1:
