@@ -23,7 +23,7 @@ QuestionSets = {
             'Type': 'MCMappingDiagram',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'expression': '5+2x', 'CorrectAnswer': 'a',
+                {'n': 5, 'seed': 0,
                     'Choices': [('a', {'seed': 0, 'N': 5}), ('b', {'seed': 1, 'N': 5}), ('c', {'seed': 2, 'N': 5}), ('d', {'seed': 3, 'N': 5})],
                     },
                 {'question': 'Evaluate the function $f(x) = x+5$ for $x=3$.','CorrectAnswer': '8'},
