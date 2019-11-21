@@ -32,6 +32,7 @@ class Game(object):
     def __init__(self, deck_name='clt1', size='normal', teams=2, wordbank=False, mix=False):
         self.active_player = 0
         self.flipped_cards = []
+        self.scripts = []
         #self.matched_cards = [[],[]]
         self.deck_name = deck_name
         self.matches = [x/2 for x in range(0,16)]
@@ -145,6 +146,7 @@ class Game(object):
         return {
             #"game_id": self.game_id,
             "screen_html": self.screen_html,
+            "scripts": self.scripts,
             "active_player": self.active_player,
             "players": [player.to_json() for player in self.players],
             #"date_created": str(self.date_created),
@@ -165,6 +167,7 @@ class Game(object):
 class QuestionGame(Game):
     def __init__(self, question, **kwargs):
         Game.__init__(self, kwargs)
+        self.scripts = question.scripts()
         self.screen_html = question.render_html()
 
 class RequestDenied(Exception):

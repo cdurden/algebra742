@@ -82,6 +82,9 @@ function loadGame(flip_card_callback) {
 }
 
 function reset_game(data) {
+    for (var scriptId in data.scripts) {
+        createScriptLoader(scriptId, data.scripts[scriptId])( () => {});
+    }
     update_game(data);
 }
 function update_game(data) {

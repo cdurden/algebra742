@@ -9,6 +9,27 @@
     <script src="/static/js/keypress-2.1.5.min.js"></script>
     <script src="/static/js/algebra742live.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+    function createScriptLoader(scriptId, url) {
+        const loadDynamicScript = (callback) => {
+          const existingScript = document.getElementById(scriptId);
+        
+          if (!existingScript) {
+            const script = document.createElement('script');
+            script.src = url; // URL for the third-party library being loaded.
+            script.id = scriptId; // e.g., googleMaps or stripe
+            document.body.appendChild(script);
+        
+            script.onload = () => {
+              if (callback) callback();
+            };
+          }
+        
+          if (existingScript && callback) callback();
+        };
+        return(loadDynamicScript);
+    };
+    </script>
 <!--
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
