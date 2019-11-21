@@ -4,7 +4,7 @@ QuestionSets = {
         'Questions':
         [
             {
-            'Type': 'OpenResponse',
+            'Type': 'Tarsia',
             'Template': 'Sortable.html',
             'ParameterSetVariants': [
                 {
