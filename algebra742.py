@@ -537,6 +537,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         form = SubmitForm()
     if QuestionData['Type'] == 'Tarsia':
         form = TarsiaForm()
+        app.logger.error(form.answers.data)
     if QuestionData['Type'] == 'Simplify':
         #app.logger.error(form.data)
         #if form.data == None:
