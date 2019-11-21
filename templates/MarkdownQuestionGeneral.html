@@ -35,7 +35,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
 $('#answer_form').submit(function(){
      
     $('#answers').val($( "#sortable" ).sortable("serialize"));
-    //return false;
+    return true;
 }); 
 function rotateCard(e){
     var angle = ($(e.target).data('angle') + 90) || 90;
