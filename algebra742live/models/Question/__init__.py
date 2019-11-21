@@ -6,6 +6,9 @@ import os
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
 
+class PlotQuestion(Question):
+    pass
+
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     source = db.Column(db.Text)

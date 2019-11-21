@@ -38,16 +38,16 @@ def create_app():
         # Include our Routes
         from . import routes
         from .models import QuestionGame
-        from .models.Question import Question
+        from .models.Question import PlotQuestion
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
         global ROOMS
         try:
-            question = db.session.query(Question).get(3)
+            question = db.session.query(PlotQuestion).get(3)
             assert question is not None
         except:
-            question = Question(params_json='{"question": "What is 1+1?"}')
+            question = PlotQuestion(params_json='{"question": "What is 1+1?"}')
             db.session.add(question)
         app.logger.error(question)
         app.logger.error(question.params_json)
