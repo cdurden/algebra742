@@ -1060,7 +1060,7 @@ def hello_world(lti=lti):
 
 @app.route('/rubric/<username>/<assignment>', methods=['GET', 'POST'])
 @lti(request='session', error=error, app=app)
-def rubric(lti=lti, assignment=None, username=username):
+def rubric(lti=lti, assignment=None, username=None):
     """ initial access page to the lti provider.  This page provides
     authorization for the user.
 
