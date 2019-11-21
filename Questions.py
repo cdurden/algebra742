@@ -8,6 +8,7 @@ QuestionSets = {
             'Template': 'Sortable.html',
             'ParameterSetVariants': [
                 {
+                    'CorrectOrder': (),
                     'card1': '<img src="/static/deck1/card1.png"/>',
                     'card2': '<img src="/static/deck1/card2.png"/>',
                     'card3': '<img src="/static/deck1/card3.png"/>',
