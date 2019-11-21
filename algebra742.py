@@ -1069,6 +1069,7 @@ def rubric(lti=lti, assignment=None):
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user:
+        app.logger.error(os.path.join(app.config['PRIVATE_DATA_PATH'], user.username), "{:s}.pdf".format(assignment))
         return send_from_directory(
             os.path.join(app.config['PRIVATE_DATA_PATH'], user.username),
             "{:s}.pdf".format(assignment)
