@@ -18,7 +18,7 @@ class Question(db.Model):
 
 class PlotQuestion(Question):
     def scripts(self):
-        return({'canvasjs': "https://canvasjs.com/assets/script/canvasjs.min.js", 'plot': url_for('static','js/plot.js')})
+        return({'canvasjs': "https://canvasjs.com/assets/script/canvasjs.min.js", 'plot': url_for('static',filename='js/plot.js')})
 
 question_scores = db.Table('question_scores',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
