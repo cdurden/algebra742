@@ -136,7 +136,8 @@ class TarsiaForm(Form):
 
     :param Form:
     """
-    answers = FieldList(SelectField('answers'))
+    #answers = FieldList(SelectField('answers'))
+    answers = StringField('answers')
 
 
 class OpenResponseForm(Form):
