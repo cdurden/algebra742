@@ -37,7 +37,13 @@ $('#answer_form').submit(function(){
     $('#answers').val($( "#sortable" ).sortable("serialize"));
     //return false;
 }); 
+function rotateCard(e){
+    var angle = ($(e.target).data('angle') + 90) || 90;
+    $(e.target).css({'transform': 'rotate(' + angle + 'deg)'});
+    $(e.target).data('angle', angle);
+}
   } );
+$('.card').click(rotateCard);
   </script>
     {% endif %}
     <script>
