@@ -538,6 +538,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] == 'Tarsia':
         form = TarsiaForm()
         app.logger.error(form.answers.data)
+        input_order = [int(re.split("=",x)[1]) for x in re.split("$",form.answers.data)]
+        app.logger.error(input_order)
+        correct = input_order==Parameters['CorrectAnswer']
     if QuestionData['Type'] == 'Simplify':
         #app.logger.error(form.data)
         #if form.data == None:
