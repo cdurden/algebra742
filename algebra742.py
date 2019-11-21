@@ -1092,7 +1092,7 @@ def index(lti=lti):
     :return: index page for lti provider
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    app.logger.erro(user.username)
+    app.logger.error(user.username)
     if user:
         return render_template('index.html', user=user, lti=lti)
     else:
