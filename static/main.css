@@ -2,6 +2,10 @@ div.lhs {
     width: 40%;
     float: left;
 }
+.card img {
+    max-height: 100%;
+    max-width: 100%;
+}
 div.rhs {
     width: 40%;
     float: right;
