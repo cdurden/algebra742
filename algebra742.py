@@ -733,7 +733,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             #form = SetUpAndSolveEquationGuidedForm()
             form = SetUpAndSolveEquationGuidedForm(data=formdata)
             #form = EquationForm()
-            n = len(Parameters['n'])
+            n = len(Parameters['variables'])
             for it in range(n):
                 form.equation_form.variables.append_entry()
                 form.equation_form.quantities.append_entry()
