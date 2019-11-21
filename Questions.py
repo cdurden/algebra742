@@ -9,6 +9,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {
                     'CorrectOrder': (),
+                    'card0': '<img src="/static/deck1/card0.png"/>',
                     'card1': '<img src="/static/deck1/card1.png"/>',
                     'card2': '<img src="/static/deck1/card2.png"/>',
                     'card3': '<img src="/static/deck1/card3.png"/>',
