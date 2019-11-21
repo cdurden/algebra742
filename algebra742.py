@@ -1058,9 +1058,9 @@ def hello_world(lti=lti):
     """
     return render_template('up.html', lti=lti)
 
-@app.route('/rubric/<assignment>', methods=['GET', 'POST'])
+@app.route('/rubric/<username>/<assignment>', methods=['GET', 'POST'])
 @lti(request='session', error=error, app=app)
-def rubric(lti=lti, assignment=None):
+def rubric(lti=lti, assignment=None, username=username):
     """ initial access page to the lti provider.  This page provides
     authorization for the user.
 

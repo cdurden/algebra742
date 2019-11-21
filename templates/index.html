@@ -58,8 +58,8 @@ October 16: <a href="{{ url_for('Assignment', assignment='SolveEquationsGuided')
 <h3>Rubrics</h3>
 <p style="font-size: 16pt; line-height: 1.5;">
 <!--<a href="{{ url_for('static', filename='SolvingEquationsTest.pdf') }}">Chapter 2 Test: Solving Equations</a><br/>-->
-<a href="{{ url_for('rubric', assignment='SolvingEquationsTest') }}">Chapter 2 Test: Solving Equations</a><br/>
-<a href="{{ url_for('rubric', assignment='IntegerEquationsQuiz') }}">Integer Equations Test</a><br/>
+<a href="{{ url_for('rubric', username=user.username, assignment='SolvingEquationsTest') }}">Chapter 2 Test: Solving Equations</a><br/>
+<a href="{{ url_for('rubric', username=user.username, assignment='IntegerEquationsQuiz') }}">Integer Equations Test</a><br/>
 </p>
 
 <h3>Assessment</h3>
