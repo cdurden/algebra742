@@ -6,9 +6,6 @@ import os
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
 
-class PlotQuestion(Question):
-    pass
-
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     source = db.Column(db.Text)
@@ -17,6 +14,9 @@ class Question(db.Model):
     def render_html(self):
         template = jinja_env.get_template("{:s}.html".format(self.__class__.__name__))
         return template.render(json.loads(self.params_json))
+
+class PlotQuestion(Question):
+    pass
 
 question_scores = db.Table('question_scores',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
