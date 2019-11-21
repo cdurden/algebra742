@@ -130,6 +130,15 @@ class SubmitForm(Form):
     """
     feedback = TextAreaField('feedback')
 
+class TarsiaForm(Form):
+
+    """ Add data from Form
+
+    :param Form:
+    """
+    answers = FieldList(SelectField('answers'))
+
+
 class OpenResponseForm(Form):
 
     """ Add data from Form
@@ -525,7 +534,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         formdata = {}
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
-
+    if QuestionData['Type'] == 'Tarsia':
+        form = TarsiaForm()
     if QuestionData['Type'] == 'Simplify':
         #app.logger.error(form.data)
         #if form.data == None:
