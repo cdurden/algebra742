@@ -1,4 +1,30 @@
 QuestionSets = {
+    'FunctionNotationTarsia': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'Sortable.html',
+            'ParameterSetVariants': [
+                {
+                    'card1': '<img src="/static/deck1/card1.png"/>'},
+                    'card2': '<img src="/static/deck1/card2.png"/>'},
+                    'card3': '<img src="/static/deck1/card3.png"/>'},
+                    'card4': '<img src="/static/deck1/card4.png"/>'},
+                    'card5': '<img src="/static/deck1/card5.png"/>'},
+                    'card6': '<img src="/static/deck1/card6.png"/>'},
+                    'card7': '<img src="/static/deck1/card7.png"/>'},
+                    'card8': '<img src="/static/deck1/card8.png"/>'},
+                    'card9': '<img src="/static/deck1/card9.png"/>'},
+                    'card10': '<img src="/static/deck1/card10.png"/>'},
+                    'card11': '<img src="/static/deck1/card11.png"/>'},
+                    'card12': '<img src="/static/deck1/card12.png"/>'},
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'RepresentRelations': {
         'ProvideImmediateFeedback': True,
         'Questions':
