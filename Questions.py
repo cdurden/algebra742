@@ -35,8 +35,8 @@ QuestionSets = {
             'Type': 'MCGraph',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'question': 'Choose the graph of the relation shown in the mapping diagram.', 'n': 5, 'seed': 9,
-                    'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'seed': 11, 'n': 5}), ('c', {'seed': 12, 'n': 5}), ('d', {'seed': 9, 'n': 5})],
+                {'question': 'Choose the graph of the relation shown in the mapping diagram.', 'x': [-3,-1,0,1,3], 'y': [3,1,0,1,3],
+                    'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'x': [-3,-1,0,1,3], 'y': [3,1,0,1,3]}), ('c', {'seed': 12, 'n': 5}), ('d', {'seed': 9, 'n': 5})],
                     'CorrectAnswer': 'd'
                     },
                 ],
