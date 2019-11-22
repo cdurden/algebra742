@@ -445,6 +445,20 @@ def generate_scatterplot(x,y):
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
     axis.grid(color='lightgray', linestyle='--', linewidth=1)
+    axis.set_aspect('equal')
+    # set the x-spine (see below for more info on `set_position`)
+    axis.spines['left'].set_position('zero')
+
+    # turn off the right spine/ticks
+    axis.spines['right'].set_color('none')
+    axis.yaxis.tick_left()
+
+    # set the y-spine
+    axis.spines['bottom'].set_position('zero')
+
+    # turn off the top spine/ticks
+    axis.spines['top'].set_color('none')
+    axis.xaxis.tick_bottom()
     return(fig)
 
 @app.route("/random_mapping_diagram-<int:N>-<int:seed>.svg")
