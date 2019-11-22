@@ -419,6 +419,8 @@ def generate_mapping_diagram(x,y):
     app.logger.error(y)
     inputs = list(set(x))
     outputs = list(set(y))
+    inputs.sort()
+    outputs.sort()
     n = max(len(inputs),len(outputs))
     axis = fig.add_subplot(1, 1, 1)
     ells = [Ellipse((0, -float(n-1)/2), n, 2, 90, edgecolor='black',facecolor='white'), Ellipse((3, -float(n-1)/2), n, 2, 90, edgecolor='black',facecolor='white')]
