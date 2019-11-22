@@ -15,7 +15,7 @@ QuestionSets = {
                     'The set of output values or y coordinates of a function',
                     'A relationship that has one output for each input',
                     'the first coordinate of an ordered pair',
-                    'the second coordinate of an ordered pair'
+                    'the second coordinate of an ordered pair',
                     '<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>'
                     ], 
                     'answers': {
