@@ -4,6 +4,15 @@ QuestionSets = {
         'ProvideImmediateFeedback': True,
         'Questions':
         [
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Matching',
+            'Template': 'Matching.html',
+            'ParameterSetVariants': [
+                {'prompts': ['(x,y) is called a _______________', 'The set of input values or x coordinates of a function', 'The set of output values or y coordinates of a function', 'A relationship that has one output for each input', 'the first coordinate of an ordered pair', 'the second coordinate of an ordered pair'], 'answers': {'A': 'Domain','B':'Range','C':'Function','D':'x-coordinate','E':'y-coordinate','F':'ordered pair'}, 'CorrectAnswers': ['F','A','B','C','D','E']}, 
+                ],
+            'SpaceAfter': '2cm',
+            },
             {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'MappingDiagram.html',
