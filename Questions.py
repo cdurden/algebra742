@@ -71,11 +71,11 @@ QuestionSets = {
             'Type': 'MC',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'question': 'Write the relation in the mapping diagram as a set of ordered pairs.', 'n': 5, 'seed': 6,
+                {'question': 'Choose the set of ordered pairs that represents the relation in the mapping diagram.', 'n': 5, 'seed': 6,
                     'x': (-4,-2,0,2,4),
                     'y': (4,2,0,2,4),
-                    'Choices': [('a', '$\{(-4,-2),(0,2),(2,4),(4,2),(2,4)\}$'),('b', '$\{(-4,4),(-2,2),(0,0),(2,2),(4,4)\}$'),('c', '$\{(4,-4),(2,-2),(0,0),(2,2),(4,4)\}$'), ('d', '$\{(4,0),(-2,4),(2,-4),(0,2),(4,2)\}$')],
-                    'CorrectChoice': 'a'
+                    'Choices': [('A', '$\{(-4,-2),(0,2),(2,4),(4,2),(2,4)\}$'),('B', '$\{(-4,4),(-2,2),(0,0),(2,2),(4,4)\}$'),('C', '$\{(4,-4),(2,-2),(0,0),(2,2),(4,4)\}$'), ('D', '$\{(4,0),(-2,4),(2,-4),(0,2),(4,2)\}$')],
+                    'CorrectChoice': 'A'
                 },
             ],
             'SpaceAfter': '2cm',
@@ -85,9 +85,9 @@ QuestionSets = {
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
                 {'question': 'Write the relation in the mapping diagram as a set of ordered pairs.', 'n': 5, 'seed': 6,
-                    'set_of_coordinate_pairs': {(-4,4),(-2,2),(0,0),(2,2),(4,4)},
-                    'x': (-4,-2,0,2,4),
-                    'y': (4,2,0,2,4),
+                    'set_of_coordinate_pairs': {(0,1),(1,2),(2,3),(3,4),(4,5)},
+                    'x': (0,1,2,3,4),
+                    'y': (1,2,3,4,5),
                 },
             ],
             'SpaceAfter': '2cm',
@@ -96,15 +96,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the graph below', 'n': 5, 'seed': 5},
-                ],
-            'SpaceAfter': '4cm',
-            },
-            {
-            'Type': 'InputOutputTable',
-            'Template': 'MappingDiagram.html',
-            'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 6},
+                {'question': 'Create the input/output table for the graph below', 'x': (-5,-3,-1,1), 'y': (4, 2, 0, -2)},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -112,7 +104,15 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the graph below', 'n': 5, 'seed': 7},
+                {'question': 'Create the input/output table for the graph below', 'n': 4, 'seed': 24},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTable',
+            'Template': 'MappingDiagram.html',
+            'ParameterSetVariants': [
+                {'question': 'Create the input/output table for the mapping diagram below', 'n': 4, 'seed': 25},
                 ],
             'SpaceAfter': '4cm',
             },

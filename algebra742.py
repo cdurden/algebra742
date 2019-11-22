@@ -743,9 +743,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 correct = False
                 break
         try:
-            random.seed(Parameters['seed'])
-            x = [random.randint(-10,10) for i in range(n)]
-            y = [random.randint(-10,10) for i in range(n)]
+            if 'seed' in Parameters:
+                random.seed(Parameters['seed'])
+                x = [random.randint(-10,10) for i in range(n)]
+                y = [random.randint(-10,10) for i in range(n)]
+            else:
+                x = Parameters['x']
+                y = Parameters['y']
             coordinates = set(zip(x,y))
             correct = input_coordinates == coordinates
             app.logger.error(input_coordinates)
