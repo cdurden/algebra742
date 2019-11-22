@@ -484,6 +484,15 @@ def random_scatterplot(N=5, seed=0):
     FigureCanvasSVG(fig).print_svg(output)
     return Response(output.getvalue(), mimetype="image/svg+xml")
 
+@app.route("/mapping_diagram")
+def mapping_diagram():
+    x = request.args.get('x')
+    y = request.args.get('y')
+    fig = generate_mapping_diagram(x,y)
+    output = io.BytesIO()
+    FigureCanvasSVG(fig).print_svg(output)
+    return Response(output.getvalue(), mimetype="image/svg+xml")
+
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>', methods=['GET', 'POST'])
