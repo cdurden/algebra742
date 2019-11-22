@@ -166,6 +166,7 @@ $('.card').click(rotateCard);
     {{ form.set_of_coordinate_pairs(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
 {% endif %}
 {% if QuestionData['Type'] in ['Matching'] %}
+<p style="font-size: 16pt; line-height: 1.5;">
 <div class="prompts">
 {% for prompt in Parameters['prompts'] %}
 {{ loop.index }} {{ form.answers[loop.index0]() }} {{ prompt | safe}} <br/>
@@ -176,6 +177,7 @@ $('.card').click(rotateCard);
 {{ letter }}. {{answer}}
 {% endfor %}
 </div>
+</p>
 <br/>
     {% if not test %}
     <b>{{ message }}</b>
