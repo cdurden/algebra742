@@ -664,7 +664,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             if QuestionData['Type'] == 'MCMappingDiagram':
                 choices.append((k,"<img src={:s} />".format(url_for('random_mapping_diagram', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
             if QuestionData['Type'] == 'MCGraph':
-                choices.append((k,"<img src={:s} />".format(url_for('plot_svg', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
+                choices.append((k,"<img src={:s} />".format(url_for('random_scatterplot', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
         try:
             choice = form.options.data
             CorrectAnswer = QuestionData['ParameterSetVariants'][i]['CorrectAnswer']
