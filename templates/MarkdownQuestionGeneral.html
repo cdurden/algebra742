@@ -166,7 +166,7 @@ $('.card').click(rotateCard);
 {% if QuestionData['Type'] in ['Matching'] %}
 <div class="prompts">
 {% for prompt in Parameters['prompts'] %}
-{{ loop.index }} {{ form.answers[loop.index0]() }} {{ prompt }} <br/>
+{{ loop.index }} {{ form.answers[loop.index0]() }} {{ prompt | safe}} <br/>
 {% endfor %}
 </div>
 <div class="answers">
