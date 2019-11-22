@@ -444,7 +444,7 @@ def generate_scatterplot(x,y):
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
-    axis.grid(color='lightgray', linestyle='-', linewidth=2)
+    axis.grid(color='lightgray', linestyle='--', linewidth=1)
     return(fig)
 
 @app.route("/random_mapping_diagram-<int:N>-<int:seed>.svg")
