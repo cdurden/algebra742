@@ -124,7 +124,7 @@ QuestionSets = {
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
-                {'question': 'Is the relation represented below a function?<br/><table><tr><th>x</th><th>y</th></tr><td>2</td><td>3</td></tr></table>"/>',
+                {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>2</td><td>3</td></tr></table>"/>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
@@ -132,7 +132,7 @@ QuestionSets = {
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
-                {'question': 'Is the relation represented below a function?<br/><img src="/scatterplot?x=2&x=3&x=4&y=1&y=1&y=2"/>',
+                {'question': 'Is the relation represented below a function?<br/><img src="/scatterplot?x=-2&x=0&x=1&x=3&x=4&y=2&y=-3&y=-1&y=1&y=2"/>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
