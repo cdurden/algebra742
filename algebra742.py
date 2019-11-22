@@ -687,7 +687,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         form = MCForm(data=formdata)
         #form = CoordinatePairsForm()
         app.logger.error(Parameters)
-        n = Parameters['n']
         input_coordinates = set()
         choices = []
         seed = Parameters['seed']
