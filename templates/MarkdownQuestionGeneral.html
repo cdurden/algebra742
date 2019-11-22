@@ -73,7 +73,11 @@ $('.card').click(rotateCard);
                 </div>
                 {% if test %}
                 <div>
-                    {{ scores[loop.index0] != 'NA' }}
+                    {% if scores[loop.index0] != 'NA' %}
+                      $\checkmark$
+                    {% else %}
+                      $-$
+                    {% endif %}
                 </div>
                 {% else %}
                 <div>
