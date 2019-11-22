@@ -117,18 +117,22 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
-            'Type': 'InputOutputTable',
-            'Template': 'MappingDiagram.html',
-            'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 8},
-                ],
-            'SpaceAfter': '4cm',
-            },
-            {
             'Type': 'MC',
             'Template': 'Question.html',
             'ParameterSetVariants': [
                 {'question': 'Is the relation represented below a function?<br/><img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=2"/>',
+                    'Choices': [('a', 'Function'),('b','Not a function')],
+                    'CorrectAnswer': 'a'
+                    },
+                {'question': 'Is the relation represented below a function?<br/><table><tr><th>x</th><th>y</th></tr><td>2</td><td>3</td></tr></table>"/>',
+                    'Choices': [('a', 'Function'),('b','Not a function')],
+                    'CorrectAnswer': 'a'
+                    },
+                {'question': 'Does the set of coordinate pairs represent a function?<br/>$\{(-1,2),(0,0),(1,2),(1,3)\}$"/>',
+                    'Choices': [('a', 'Function'),('b','Not a function')],
+                    'CorrectAnswer': 'a'
+                    },
+                {'question': 'Is the relation represented below a function?<br/><img src="/scatterplot?x=2&x=3&x=4&y=1&y=1&y=2"/>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
