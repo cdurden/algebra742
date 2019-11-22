@@ -689,7 +689,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(Parameters)
         input_coordinates = set()
         choices = []
-        seed = Parameters['seed']
+        #seed = Parameters['seed']
         for it,k in enumerate(['a','b','c','d']):
             if QuestionData['Type'] == 'MCMappingDiagram':
                 if 'x' in Parameters['Choices'][it][1] and 'y' in Parameters['Choices'][it][1]:
