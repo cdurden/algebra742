@@ -495,6 +495,16 @@ def mapping_diagram():
     FigureCanvasSVG(fig).print_svg(output)
     return Response(output.getvalue(), mimetype="image/svg+xml")
 
+@app.route("/scatterplot")
+def scatterplot():
+    x = request.args.getlist('x')
+    y = request.args.getlist('y')
+    fig = generate_scatterplot(x,y)
+    output = io.BytesIO()
+    FigureCanvasSVG(fig).print_svg(output)
+    return Response(output.getvalue(), mimetype="image/svg+xml")
+
+
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>', methods=['GET', 'POST'])
@@ -697,7 +707,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 else:
                     choices.append((k,"<img src={:s} />".format(url_for('random_mapping_diagram', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
             if QuestionData['Type'] == 'MCGraph':
-                choices.append((k,"<img src={:s} />".format(url_for('random_scatterplot', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
+                if 'x' in Parameters['Choices'][it][1] and 'y' in Parameters['Choices'][it][1]:
+                    choices.append((k,"<img src={:s} />".format(url_for('scatterplot', x=Parameters['Choices'][it][1]['x'],y=Parameters['Choices'][it][1]['y']))))
+                else:
+                    choices.append((k,"<img src={:s} />".format(url_for('random_scatterplot', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
         try:
             choice = form.options.data
             CorrectAnswer = QuestionData['ParameterSetVariants'][i]['CorrectAnswer']
