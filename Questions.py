@@ -36,7 +36,7 @@ QuestionSets = {
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
                 {'question': 'Choose the graph of the relation shown in the mapping diagram.', 'x': [-3,-1,0,1,3], 'y': [3,1,0,1,3],
-                    'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'x': [-3,-1,0,1,3], 'y': [3,1,0,1,3]}), ('c', {'seed': 12, 'n': 5}), ('d', {'seed': 9, 'n': 5})],
+                    'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'x': [-3,-1,0,1,3], 'y': [3,1,0,1,3]}), ('c', {'seed': 12, 'n': 5}), ('d', {'x': [-3,-1,0,1,3], 'y': [0,1,3,1,0]})],
                     'CorrectAnswer': 'd'
                     },
                 ],
