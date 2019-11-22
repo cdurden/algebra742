@@ -492,8 +492,8 @@ def random_scatterplot(N=5, seed=0):
 
 @app.route("/mapping_diagram")
 def mapping_diagram():
-    x = [float(elmt) for elmt in request.args.getlist('x')]
-    y = [float(elmt) for elmt in request.args.getlist('y')]
+    x = [int(elmt) for elmt in request.args.getlist('x')]
+    y = [int(elmt) for elmt in request.args.getlist('y')]
     fig = generate_mapping_diagram(x,y)
     output = io.BytesIO()
     FigureCanvasSVG(fig).print_svg(output)
