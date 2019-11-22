@@ -411,11 +411,10 @@ def random_points(N=5,seed=0,function=True):
     y = [random.randint(-10,10) for i in range(N)]
     return(x,y)
 
-def generate_random_mapping_diagram(N=5, seed=0):
+def generate_mapping_diagram(x,y):
     """ renders the plot on the fly.
     """
     fig = Figure()
-    x,y = random_points(N=N,seed=seed)
     app.logger.error(x)
     app.logger.error(y)
     inputs = list(set(x))
@@ -439,27 +438,28 @@ def generate_random_mapping_diagram(N=5, seed=0):
         axis.arrow(0.2,-i, 2.7, -(j-i), head_width=0.1, head_length=0.1, fc='k', ec='k')
     return(fig)
 
-def generate_random_scatterplot(N=50, seed=0):
+def generate_scatterplot(x,y):
     """ renders the plot on the fly.
     """
     fig = Figure()
     x,y = random_points(N=N,seed=seed)
-
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
     axis.grid(color='r', linestyle='-', linewidth=2)
     return(fig)
 
-@app.route("/mapping_diagram-<int:N>-<int:seed>.svg")
+@app.route("/random_mapping_diagram-<int:N>-<int:seed>.svg")
 def random_mapping_diagram(N=5, seed=0):
-    fig = generate_random_mapping_diagram(N=N, seed=seed)
+    x,y = random_points(N=N,seed=seed)
+    fig = generate_mapping_diagram(x,y)
     output = io.BytesIO()
     FigureCanvasSVG(fig).print_svg(output)
     return Response(output.getvalue(), mimetype="image/svg+xml")
 
-@app.route("/scatterplot-<int:N>-<int:seed>.svg")
+@app.route("/random_scatterplot-<int:N>-<int:seed>.svg")
 def random_scatterplot(N=5, seed=0):
-    fig = generate_random_scatterplot(N=N, seed=seed)
+    x,y = random_points(N=N,seed=seed)
+    fig = generate_scatterplot(x,y)
     output = io.BytesIO()
     FigureCanvasSVG(fig).print_svg(output)
     return Response(output.getvalue(), mimetype="image/svg+xml")
