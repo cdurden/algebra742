@@ -71,9 +71,11 @@ $('.card').click(rotateCard);
                 <div>
                 <a href="{{ url_for('Assignment', assignment=assignment, q=item[0], i=item[1]) }}">{{ loop.index }}</a>
                 </div>
+                {% if not test %}
                 <div>
                     {{ scores[loop.index0] }}
                 </div>
+                {% endif %}
                 </div>
             </li>
             {% endfor %}
@@ -175,7 +177,9 @@ $('.card').click(rotateCard);
 {% endfor %}
 </div>
 <br/>
+    {% if not test %}
     <b>{{ message }}</b>
+    {% endif %}
 
 {% endif %}
 {% if QuestionData['Type'] in ['InputOutputTable'] %}
@@ -204,7 +208,10 @@ $('.card').click(rotateCard);
 </div>
 <br/>
 
+{% if not test %}
 <b>{{ message }}</b>
+{% endif %}
+
 {% endif %}
 {% if QuestionData['Type'] in ['CoordinatePairs'] %}
 {% for coordinate_pair_form in form.coordinate_pair_forms %}
@@ -232,7 +239,9 @@ $('.card').click(rotateCard);
     </table>
 </div>
 <br/>
+{% if not test %}
     <b>{{ message }}</b>
+{% endif %}
 {% endfor %}
 
 {% endif %}
@@ -297,10 +306,14 @@ $('.card').click(rotateCard);
     {% endif %}
     {% if QuestionData['Type'] not in ['SetUpAndSolveEquationGuided', 'SolveEquationGuided'] %}
     <p>
+                {% if not test %}
     <b>Your answer {{ answer }} is correct!</b>
+ {% endif %}
     </p>
     {% endif %}
+    {% if not test %}
     <b>{{ message }}</b>
+    {% endif %}
     {% if NextQuestion %}
     <a href="{{ url_for('Assignment', assignment=assignment, q=NextQuestion['q'], i=NextQuestion['i']) }}" class="button">Next question</a>
     {% else %}
@@ -311,10 +324,14 @@ $('.card').click(rotateCard);
     <p>
     <!--
     -->
+                {% if not test %}
     <b>Your answer {{ answer }} is incorrect! Try again!</b>
+    {% endif %}
     </p>
     {% endif %}
+    {% if not test %}
     <b>{{ message }}</b>
+    {% endif %}
     {% endif %}
 </div>
 </div>
