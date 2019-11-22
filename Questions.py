@@ -24,7 +24,7 @@ QuestionSets = {
                         'C':'Function',
                         'D':'x-coordinate',
                         'E':'y-coordinate',
-                        'F':'ordered pair'
+                        'F':'ordered pair',
                         'G':'mapping diagram'
                         },
                     'CorrectAnswers': ['F','A','B','C','D','E']}, 
