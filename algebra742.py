@@ -431,7 +431,7 @@ def generate_mapping_diagram(x,y):
         axis.text(0,-i,str(inputs[i]),fontsize=18,color='black')
     for j in range(len(outputs)):
         #axis.annotate(str(outputs[j]),(-j,3))
-        axis.text(3,-j,str(outputs[j]),fontsize=18,color='white')
+        axis.text(3,-j,str(outputs[j]),fontsize=18,color='black')
     for x_,y_ in zip(x,y):
         i = inputs.index(x_)
         j = outputs.index(y_)
