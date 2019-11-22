@@ -421,7 +421,7 @@ def generate_mapping_diagram(x,y):
     outputs = list(set(y))
     n = max(len(inputs),len(outputs))
     axis = fig.add_subplot(1, 1, 1)
-    ells = [Ellipse((0, -float(n-1)/2), n, 2, 90, edgecolor='black',facecolor='white'), Ellipse((3, -float(n-1)/2), n, 2, 90)]
+    ells = [Ellipse((0, -float(n-1)/2), n, 2, 90, edgecolor='black',facecolor='white'), Ellipse((3, -float(n-1)/2), n, 2, 90, edgecolor='black',facecolor='white')]
     for e in ells:
         axis.add_artist(e)
     axis.axis('off')
@@ -444,7 +444,7 @@ def generate_scatterplot(x,y):
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
-    axis.grid(color='r', linestyle='-', linewidth=2)
+    axis.grid(color='lightgray', linestyle='-', linewidth=2)
     return(fig)
 
 @app.route("/random_mapping_diagram-<int:N>-<int:seed>.svg")
