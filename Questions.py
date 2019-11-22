@@ -1,7 +1,7 @@
 QuestionSets = {
     'FunctionsTest': {
         'Title': 'Functions Test',
-        'ProvideImmediateFeedback': True,
+        'ProvideImmediateFeedback': False,
         'Questions':
         [
         {
@@ -11,11 +11,11 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'prompts': [
                     '(x,y) is called a _______________',
+                    'A relationship that has one output for each input',
+                    'The first coordinate of an ordered pair',
+                    'The second coordinate of an ordered pair',
                     'The set of input values or x coordinates of a function',
                     'The set of output values or y coordinates of a function',
-                    'A relationship that has one output for each input',
-                    'the first coordinate of an ordered pair',
-                    'the second coordinate of an ordered pair',
                     #'<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>'
                     ], 
                     'answers': {
@@ -37,7 +37,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'Choose the graph of the relation shown in the mapping diagram.', 'x': [-3,-1,0,1,3], 'y': [3,1,0,1,3],
                     'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'x': [-3,-1,0,1,3], 'y': [3,1,0,1,3]}), ('c', {'seed': 12, 'n': 5}), ('d', {'x': [-3,-1,0,1,3], 'y': [0,1,3,1,0]})],
-                    'CorrectAnswer': 'd'
+                    'CorrectAnswer': 'b'
                     },
                 ],
             'SpaceAfter': '4cm',
@@ -48,7 +48,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'Choose the mapping diagram of the relation shown in the graph.', 'x': [-4,-2,0,2,4], 'y': [-3,-1,1,3,5],
                     'Choices': [('a', {'x': [-4,-2,0,2,4], 'y': [5,3,1,-1,-3]}), ('b', {'seed': 1, 'n': 5}), ('c', {'seed': 2, 'n': 5}), ('d', {'x': [-4,-2,0,2,4], 'y': [-3,-1,1,3,5]})],
-                    'CorrectAnswer': 'a'
+                    'CorrectAnswer': 'd'
                     },
                 ],
             'SpaceAfter': '4cm',
@@ -75,7 +75,7 @@ QuestionSets = {
                     'x': (-4,-2,0,2,4),
                     'y': (4,2,0,2,4),
                     'Choices': [('A', '$\{(-4,-2),(0,2),(2,4),(4,2),(2,4)\}$'),('B', '$\{(-4,4),(-2,2),(0,0),(2,2),(4,4)\}$'),('C', '$\{(4,-4),(2,-2),(0,0),(2,2),(4,4)\}$'), ('D', '$\{(4,0),(-2,4),(2,-4),(0,2),(4,2)\}$')],
-                    'CorrectChoice': 'A'
+                    'CorrectChoice': 'B'
                 },
             ],
             'SpaceAfter': '2cm',
