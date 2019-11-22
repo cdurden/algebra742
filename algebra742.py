@@ -733,7 +733,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] in ['InputOutputTable']:
         form = CoordinatePairsForm(data=formdata)
         #form = CoordinatePairsForm()
-        n = Parameters['n']
+        if 'n' in Parameters:
+            n = Parameters['n']
+        else:
+            n = len(Parameters['x'])
         input_coordinates = set()
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
