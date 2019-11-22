@@ -454,13 +454,15 @@ def generate_random_scatterplot(N=50, seed=0):
 def random_mapping_diagram(N=5, seed=0):
     fig = generate_random_mapping_diagram(N=N, seed=seed)
     output = io.BytesIO()
-    return Response(FigureCanvasSVG(fig).print_svg(output).getvalue(), mimetype="image/svg+xml")
+    FigureCanvasSVG(fig).print_svg(output)
+    return Response(output.getvalue(), mimetype="image/svg+xml")
 
 @app.route("/scatterplot-<int:N>-<int:seed>.svg")
 def random_scatterplot(N=5, seed=0):
     fig = generate_random_scatterplot(N=N, seed=seed)
     output = io.BytesIO()
-    return Response(FigureCanvasSVG(fig).print_svg(output).getvalue(), mimetype="image/svg+xml")
+    FigureCanvasSVG(fig).print_svg(output)
+    return Response(output.getvalue(), mimetype="image/svg+xml")
 
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
