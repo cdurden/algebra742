@@ -68,6 +68,19 @@ QuestionSets = {
 #                ]
 #            },
             {
+            'Type': 'MC',
+            'Template': 'MappingDiagram.html',
+            'ParameterSetVariants': [
+                {'question': 'Write the relation in the mapping diagram as a set of ordered pairs.', 'n': 5, 'seed': 6,
+                    'x': (-4,-2,0,2,4),
+                    'y': (4,2,0,2,4),
+                    'Choices': [('a', '${(-4,-2),(0,2),(2,4),(4,2),(2,4)}$'),('b', 'Product')],
+                    'CorrectChoice': 'a'
+                },
+            ],
+            'SpaceAfter': '2cm',
+            },
+            {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
