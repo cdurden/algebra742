@@ -27,7 +27,7 @@ QuestionSets = {
                         'F':'ordered pair',
                         'G':'mapping diagram'
                         },
-                    'CorrectAnswers': ['F','A','B','C','D','E']}, 
+                    'CorrectAnswers': ['F','A','B','C','D','E','G']}, 
                 ],
             'SpaceAfter': '2cm',
             },
