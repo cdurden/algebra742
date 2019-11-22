@@ -444,7 +444,7 @@ def generate_scatterplot(x,y):
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
-    major_ticks = np.arange(-10, 10, 1)
+    major_ticks = np.arange(-10, 10, 2)
     minor_ticks = np.arange(-10, 10, 1)
     axis.set_xticks(major_ticks)
     axis.set_xticks(minor_ticks, minor=True)
