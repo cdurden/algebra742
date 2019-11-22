@@ -43,6 +43,8 @@ QuestionSets = {
                     'question': "The main learning goals that you need to work on are ",
                     'CorrectAnswer': None,
                     },
+                ]
+            },
             {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'MappingDiagram.html',
