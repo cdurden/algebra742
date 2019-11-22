@@ -444,7 +444,7 @@ def generate_scatterplot(x,y):
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
-    axis.grid(color='lightgray', linestyle='--', linewidth=1)
+    axis.grid(color='lightgray', linestyle='--', linewidth=1, markevery=1)
     axis.set_aspect('equal')
     # set the x-spine (see below for more info on `set_position`)
     axis.spines['left'].set_position('zero')
