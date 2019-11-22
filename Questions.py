@@ -16,7 +16,7 @@ QuestionSets = {
                     'A relationship that has one output for each input',
                     'the first coordinate of an ordered pair',
                     'the second coordinate of an ordered pair',
-                    '<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>'
+                    #'<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>'
                     ], 
                     'answers': {
                         'A': 'Domain',
@@ -25,7 +25,7 @@ QuestionSets = {
                         'D':'x-coordinate',
                         'E':'y-coordinate',
                         'F':'ordered pair',
-                        'G':'mapping diagram'
+                    #    'G':'mapping diagram'
                         },
                     'CorrectAnswers': ['F','A','B','C','D','E','G']}, 
                 ],
@@ -35,7 +35,7 @@ QuestionSets = {
             'Type': 'MC',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Is the relation represented below a function? <br/><img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>',
+                {'question': 'Is the relation represented below a function?<br/><img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },

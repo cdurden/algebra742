@@ -50,6 +50,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                         lhs, rhs = equation.split("=")
                         #Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs,transformations=transformations, evaluate=False)),latex(parse_expr(rhs,transformations=transformations, evaluate=False)))
                     template = jenv.get_template(Question['Template'])
+                    Parameters['tex'] = True
                     out = template.render(**Parameters)
                     enum.add_item(NoEscape(out))
                     #enum.add_item(NoEscape(Question['Question']))
@@ -136,7 +137,8 @@ def GenerateArrowDiagram(filepath, Parameters):
 
 #assignment = 'SolvingEquationsTest'
 #assignment = 'WODBFunctions'
-assignment = 'EvaluateFunctions'
+#assignment = 'EvaluateFunctions'
+assignment = 'FunctionsTest'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
