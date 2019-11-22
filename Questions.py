@@ -128,7 +128,7 @@ QuestionSets = {
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
-                {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>-2</td><td>3</td> <td>-2</td><td>3</td> <td>-1</td><td>2</td> <td>0</td><td>1</td></tr></table>',
+                {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><tr><td>-2</td><td>3</td></tr> <tr><td>-2</td><td>3</td></tr> <tr><td>-1</td><td>2</td></tr> <tr><td>0</td><td>1</td></tr></table>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
@@ -136,7 +136,7 @@ QuestionSets = {
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
-                {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>1</td><td>0</td> <td>1</td><td>2</td> <td>2</td><td>2</td> <td>3</td><td>2</td></tr></table>',
+                {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>1</td><td>0</td></tr> <tr><td>1</td><td>2</td></tr> <tr><td>2</td><td>2</td></tr> <tr><td>3</td><td>2</td></tr></table>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
