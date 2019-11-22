@@ -35,7 +35,7 @@ QuestionSets = {
             'Type': 'MC',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Is the relation represented below a function?<br/><img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>',
+                {'question': 'Is the relation represented below a function?<br/><img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=2"/>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
