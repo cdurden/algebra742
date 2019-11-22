@@ -442,7 +442,6 @@ def generate_scatterplot(x,y):
     """ renders the plot on the fly.
     """
     fig = Figure()
-    x,y = random_points(N=N,seed=seed)
     axis = fig.add_subplot(1, 1, 1)
     axis.scatter(x, y)
     axis.grid(color='r', linestyle='-', linewidth=2)
