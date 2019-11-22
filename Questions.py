@@ -32,19 +32,30 @@ QuestionSets = {
             'SpaceAfter': '2cm',
             },
             {
-            'Type': 'SelectMultiple',
-            'Template': 'Empty.html',
+            'Type': 'MC',
+            'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'image': None,
-                    'choices': [
-                        ('a','<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>'),
-                        ('b','<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=2&y=3"/>'),
-                        ],
-                    'question': "The main learning goals that you need to work on are ",
-                    'CorrectAnswer': None,
+                {'question': 'Is the relation represented below a function? <br/><img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>',
+                    'Choices': [('a', 'Function'),('b','Not a function')],
+                    'CorrectAnswer': 'a'
                     },
-                ]
+                ],
+            'SpaceAfter': '4cm',
             },
+#            {
+#            'Type': 'SelectMultiple',
+#            'Template': 'Empty.html',
+#            'ParameterSetVariants': [
+#                {'image': None,
+#                    'choices': [
+#                        ('a','<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>'),
+#                        ('b','<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=2&y=3"/>'),
+#                        ],
+#                    'question': "The main learning goals that you need to work on are ",
+#                    'CorrectAnswer': None,
+#                    },
+#                ]
+#            },
             {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'MappingDiagram.html',
