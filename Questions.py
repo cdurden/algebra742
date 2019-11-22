@@ -9,7 +9,25 @@ QuestionSets = {
             'Type': 'Matching',
             'Template': 'Matching.html',
             'ParameterSetVariants': [
-                {'prompts': ['(x,y) is called a _______________', 'The set of input values or x coordinates of a function', 'The set of output values or y coordinates of a function', 'A relationship that has one output for each input', 'the first coordinate of an ordered pair', 'the second coordinate of an ordered pair'], 'answers': {'A': 'Domain','B':'Range','C':'Function','D':'x-coordinate','E':'y-coordinate','F':'ordered pair'}, 'CorrectAnswers': ['F','A','B','C','D','E']}, 
+                {'prompts': [
+                    '(x,y) is called a _______________',
+                    'The set of input values or x coordinates of a function',
+                    'The set of output values or y coordinates of a function',
+                    'A relationship that has one output for each input',
+                    'the first coordinate of an ordered pair',
+                    'the second coordinate of an ordered pair'
+                    '<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>'
+                    ], 
+                    'answers': {
+                        'A': 'Domain',
+                        'B':'Range',
+                        'C':'Function',
+                        'D':'x-coordinate',
+                        'E':'y-coordinate',
+                        'F':'ordered pair'
+                        'G':'mapping diagram'
+                        },
+                    'CorrectAnswers': ['F','A','B','C','D','E']}, 
                 ],
             'SpaceAfter': '2cm',
             },
@@ -17,7 +35,7 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 6,
+                {'question': 'Write the relation in the mapping diagram as a set of ordered pairs.', 'n': 5, 'seed': 6,
                     'set_of_coordinate_pairs': {(-4,4),(-2,2),(0,0),(2,2),(4,4)},
                     'x': (-4,-2,0,2,4),
                     'y': (4,2,0,2,4),
