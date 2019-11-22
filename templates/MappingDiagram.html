@@ -1,6 +1,6 @@
 {{ question }}
 <br/>
-{% if set_of_coordinate_pairs is not none %}
+{% if set_of_coordinate_pairs is defined %}
 <img src="{{ url_for('mapping_diagram', x=x, y=y) }}"
          alt="random points as svg"
     >
