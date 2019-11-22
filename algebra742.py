@@ -741,7 +741,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
                 input_coordinates.add(tuple([int(coordinate_pair_form.x.data),int(coordinate_pair_form.y.data)]))
-            except ValueError:
+            except:
                 message = "Coordinate pairs could not be read.".format(it+1)
                 correct = False
                 break
