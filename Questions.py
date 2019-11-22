@@ -20,15 +20,15 @@ QuestionSets = {
                     #'<img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=1"/>'
                     ], 
                     'answers': {
-                        'A': 'Domain',
-                        'B':'Range',
-                        'C':'Function',
-                        'D':'x-coordinate',
-                        'E':'y-coordinate',
-                        'F':'ordered pair',
+                        'A':'Function',
+                        'B':'y-coordinate',
+                        'C':'x-coordinate',
+                        'D':'Range',
+                        'E':'Domain',
+                        'F':'Ordered pair',
                     #    'G':'mapping diagram'
                         },
-                    'CorrectAnswers': ['F','A','B','C','D','E','G']}, 
+                    'CorrectAnswers': ['F','A','C','B','E','D']}, 
                 ],
             'SpaceAfter': '2cm',
             },
