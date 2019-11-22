@@ -421,14 +421,14 @@ def generate_mapping_diagram(x,y):
     outputs = list(set(y))
     n = max(len(inputs),len(outputs))
     axis = fig.add_subplot(1, 1, 1)
-    ells = [Ellipse((0, -float(n-1)/2), n, 2, 90), Ellipse((3, -float(n-1)/2), n, 2, 90)]
+    ells = [Ellipse((0, -float(n-1)/2), n, 2, 90, edgecolor='black',facecolor='white'), Ellipse((3, -float(n-1)/2), n, 2, 90)]
     for e in ells:
         axis.add_artist(e)
     axis.axis('off')
     axis.scatter([-1,4,4],[1,-len(inputs),-len(outputs)],marker=",",alpha=0)
     for i in range(len(inputs)):
         #axis.annotate(str(inputs[i]),(-i,0))
-        axis.text(0,-i,str(inputs[i]),fontsize=18,color='white')
+        axis.text(0,-i,str(inputs[i]),fontsize=18,color='black')
     for j in range(len(outputs)):
         #axis.annotate(str(outputs[j]),(-j,3))
         axis.text(3,-j,str(outputs[j]),fontsize=18,color='white')
