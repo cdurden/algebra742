@@ -71,7 +71,11 @@ $('.card').click(rotateCard);
                 <div>
                 <a href="{{ url_for('Assignment', assignment=assignment, q=item[0], i=item[1]) }}">{{ loop.index }}</a>
                 </div>
-                {% if not test %}
+                {% if test %}
+                <div>
+                    {{ scores[loop.index0] != 'NA' }}
+                </div>
+                {% else %}
                 <div>
                     {{ scores[loop.index0] }}
                 </div>
