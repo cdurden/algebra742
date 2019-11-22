@@ -1,7 +1,7 @@
 table.iotable {
     border: 1px solid black;
 }
-table.iotable th td {
+.iotable th td {
     border: 1px solid black;
 }
 div.lhs {
