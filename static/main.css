@@ -1,6 +1,7 @@
 table.iotable {
     border: 1px solid black;
     border-collapse: collapse;
+    font-size: 18pt;
 }
 table.iotable td {
     border: 1px solid black;
