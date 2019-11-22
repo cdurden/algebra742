@@ -1,7 +1,7 @@
 QuestionSets = {
     'FunctionsTest': {
         'Title': 'Functions Test',
-        'Test': True,
+        'Test': False,
         'ProvideImmediateFeedback': False,
         'Questions':
         [
