@@ -128,11 +128,11 @@ QuestionSets = {
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
-                {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><tr><td>-2</td><td>3</td></tr> <tr><td>-2</td><td>3</td></tr> <tr><td>-1</td><td>2</td></tr> <tr><td>0</td><td>1</td></tr></table>',
+                {'question': 'Does the set of coordinate pairs represent a function?<br/>$\{(-1,2),(0,0),(1,2),(1,3)\}$',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
-                {'question': 'Does the set of coordinate pairs represent a function?<br/>$\{(-1,2),(0,0),(1,2),(1,3)\}$',
+                {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><tr><td>-2</td><td>3</td></tr> <tr><td>-2</td><td>3</td></tr> <tr><td>-1</td><td>2</td></tr> <tr><td>0</td><td>1</td></tr></table>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
                     'CorrectAnswer': 'a'
                     },
