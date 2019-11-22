@@ -693,7 +693,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         seed = Parameters['seed']
         for it,k in enumerate(['a','b','c','d']):
             if QuestionData['Type'] == 'MCMappingDiagram':
-                choices.append((k,"<img src={:s} />".format(url_for('random_mapping_diagram', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
+                if 'x' in Parameters['Choices'][it][1] and 'y' in Parameters['Choices'][it][1]:
+                    choices.append((k,"<img src={:s} />".format(url_for('mapping_diagram', x=Parameters['Choices'][it][1]['x'],y=Parameters['Choices'][it][1]['y']))))
+                else:
+                    choices.append((k,"<img src={:s} />".format(url_for('random_mapping_diagram', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
             if QuestionData['Type'] == 'MCGraph':
                 choices.append((k,"<img src={:s} />".format(url_for('random_scatterplot', seed=Parameters['Choices'][it][1]['seed'],N=Parameters['Choices'][it][1]['n']))))
         try:

@@ -32,11 +32,23 @@ QuestionSets = {
             'SpaceAfter': '2cm',
             },
             {
-            'Type': 'MC',
-            'Template': 'Question.html',
+            'Type': 'MCGraph',
+            'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'question': 'Is the relation represented below a function?<br/><img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=2"/>',
-                    'Choices': [('a', 'Function'),('b','Not a function')],
+                {'question': 'Choose the graph of the relation shown in the mapping diagram.', 'n': 5, 'seed': 9,
+                    'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'seed': 11, 'n': 5}), ('c', {'seed': 12, 'n': 5}), ('d', {'seed': 9, 'n': 5})],
+                    'CorrectAnswer': 'd'
+                    },
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'MCMappingDiagram',
+            'Template': 'Graph.html',
+            'ParameterSetVariants': [
+                {'question': 'Choose the mapping diagram of the relation shown in the graph.'
+                    ,'n': 5, 'seed': 0,
+                    'Choices': [('a', {'seed': 0, 'n': 5}), ('b', {'seed': 1, 'n': 5}), ('c', {'seed': 2, 'n': 5}), ('d', {'seed': 3, 'n': 5})],
                     'CorrectAnswer': 'a'
                     },
                 ],
@@ -85,18 +97,6 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
-            'Type': 'MCMappingDiagram',
-            'Template': 'Graph.html',
-            'ParameterSetVariants': [
-                {'question': 'Choose the mapping diagram of the relation shown in the graph.'
-                    ,'n': 5, 'seed': 0,
-                    'Choices': [('a', {'seed': 0, 'n': 5}), ('b', {'seed': 1, 'n': 5}), ('c', {'seed': 2, 'n': 5}), ('d', {'seed': 3, 'n': 5})],
-                    'CorrectAnswer': 'a'
-                    },
-                ],
-            'SpaceAfter': '4cm',
-            },
-            {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
@@ -113,12 +113,12 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
-            'Type': 'MCGraph',
-            'Template': 'MappingDiagram.html',
+            'Type': 'MC',
+            'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Choose the graph of the relation shown in the mapping diagram.', 'n': 5, 'seed': 9,
-                    'Choices': [('a', {'seed': 10, 'n': 5}), ('b', {'seed': 11, 'n': 5}), ('c', {'seed': 12, 'n': 5}), ('d', {'seed': 9, 'n': 5})],
-                    'CorrectAnswer': 'd'
+                {'question': 'Is the relation represented below a function?<br/><img src="/mapping_diagram?x=2&x=3&x=4&y=1&y=1&y=2"/>',
+                    'Choices': [('a', 'Function'),('b','Not a function')],
+                    'CorrectAnswer': 'a'
                     },
                 ],
             'SpaceAfter': '4cm',
