@@ -1,8 +1,21 @@
 QuestionSets = {
     'FunctionsTest': {
+        'Title': 'Functions Test',
         'ProvideImmediateFeedback': True,
         'Questions':
         [
+            {
+            'Type': 'SetOfCoordinatePairs',
+            'Template': 'MappingDiagram.html',
+            'ParameterSetVariants': [
+                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 6
+                    'set_of_coordinate_pairs': {(-4,4),(-2,2),(0,0),(2,2),(4,4)},
+                    'x': [-4,-2,0,2,4],
+                    'y': [4,2,0,2,4],
+                },
+            ],
+            'SpaceAfter': '2cm',
+            },
             {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
