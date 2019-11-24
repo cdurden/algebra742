@@ -1044,7 +1044,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     correct = True
                 else:
                     correct = False
-        except:
+        except ValueError:
             correct = False
     if QuestionData['Type'] == 'Numerical':
         form = NumericalForm()
