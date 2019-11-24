@@ -1017,7 +1017,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         form = OpenResponseForm()
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['MC','RubricScore']:
-        form = MCForm()
+        try:
+            form = MCForm(data=formdata)
+        except:
+            form = MCForm()
         choices = []
         markdown_include = MarkdownInclude(
                                configs={'base_path':app.config['MARKDOWN_INCLUDE_PATH']}
@@ -1033,10 +1036,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         try:
             choice = form.options.data
             app.logger.error(choice)
-            if form.other.data:
-                answer = form.other.data
-            else:
-                answer = choice
+#            if form.other.data:
+#                answer = form.other.data
+#            else:
+#                answer = choice
             if QuestionData['Type'] in ['RubricScore']:
                 correct = form.options.data
             else:
@@ -1046,6 +1049,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     correct = False
         except ValueError:
             correct = False
+        app.logger.error(choice)
     if QuestionData['Type'] == 'Numerical':
         form = NumericalForm()
         answer = form.answer.data
