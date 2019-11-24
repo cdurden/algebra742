@@ -1,7 +1,7 @@
 QuestionSets = {
     'FunctionsTest': {
         'Title': 'Functions Test',
-        'Test': True,
+        'Test': False,
         'ProvideImmediateFeedback': False,
         'Questions':
         [
@@ -131,7 +131,7 @@ QuestionSets = {
                     },
                 {'question': 'Does the set of coordinate pairs represent a function?<br/>$\{(-1,2),(0,0),(1,2),(1,3)\}$',
                     'Choices': [('a', 'Function'),('b','Not a function')],
-                    'CorrectAnswer': 'a'
+                    'CorrectAnswer': 'b'
                     },
                 {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><tr><td>-2</td><td>3</td></tr> <tr><td>-2</td><td>3</td></tr> <tr><td>-1</td><td>2</td></tr> <tr><td>0</td><td>1</td></tr></table>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
@@ -139,7 +139,7 @@ QuestionSets = {
                     },
                 {'question': 'Is the relation represented below a function?<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>1</td><td>0</td></tr> <tr><td>1</td><td>2</td></tr> <tr><td>2</td><td>2</td></tr> <tr><td>3</td><td>2</td></tr></table>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
-                    'CorrectAnswer': 'a'
+                    'CorrectAnswer': 'b'
                     },
                 {'question': 'Is the relation represented below a function?<br/><img src="/scatterplot?x=-2&x=0&x=1&x=3&x=4&y=2&y=-3&y=-1&y=1&y=2"/>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
@@ -147,7 +147,7 @@ QuestionSets = {
                     },
                 {'question': 'Is the relation represented below a function?<br/><img src="/scatterplot?x=-2&x=-2&x=0&x=0&x=1&x=3&y=4&y=2&y=2&y=0&y=-2&y=-4"/>',
                     'Choices': [('a', 'Function'),('b','Not a function')],
-                    'CorrectAnswer': 'a'
+                    'CorrectAnswer': 'b'
                     },
                 ],
             'SpaceAfter': '4cm',
