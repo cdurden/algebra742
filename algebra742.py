@@ -332,7 +332,7 @@ def GetNextExamQuestionVariant(db, user, assignment, q, i):
             else:
                 q0 = None
 
-def ReverseGetNextQuestionVariant(db, user, assignment, q, i):
+def ReversedGetNextQuestionVariant(db, user, assignment, q, i):
     done = False
     try:
         q = int(q)
