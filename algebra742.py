@@ -352,6 +352,9 @@ def ReversedGetNextQuestionVariant(db, user, assignment, q, i):
                     break
             if done:
                 break
+        if not done:
+            q = 1
+            i = 0
     try:
         QuestionData = QuestionSets[assignment]['Questions'][q-1]
     except:
@@ -370,7 +373,6 @@ def ReversedGetNextQuestionVariant(db, user, assignment, q, i):
                 done = True
                 break
     if not done:
-        q = 1
         i = 0
     return((q,i))
 
