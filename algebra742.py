@@ -997,7 +997,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 correct = form.options.data
             else:
                 if choice == QuestionData['ParameterSetVariants'][i]['CorrectAnswer']:
-                    correct = true
+                    correct = True
                 else:
                     correct = False
         except:
