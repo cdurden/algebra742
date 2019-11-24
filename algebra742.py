@@ -332,6 +332,44 @@ def GetNextExamQuestionVariant(db, user, assignment, q, i):
             else:
                 q0 = None
 
+def ReverseGetNextQuestionVariant(db, user, assignment, q, i):
+    done = False
+    try:
+        q = int(q)
+    except:
+        for j,QuestionData in reversed(list(enumerate(QuestionSets[assignment]['Questions']))):
+            for k in reversed(range(len(QuestionData['ParameterSetVariants']))):
+                statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k))
+                results = db.session.execute(statement).first()
+                if results:
+                    if k!=len(QuestionData['ParameterSetVariants'])-1:
+                        q = j+1
+                        i = k+1
+                    else:
+                        q = j+2
+                        i = 0 
+                    done = True
+                    break
+            if done:
+                break
+    try:
+        QuestionData = QuestionSets[assignment]['Questions'][q-1]
+    except:
+        return (None,None)
+    try:
+        i = int(i)
+    except:
+        for k in reversed(range(len(QuestionData['ParameterSetVariants']))):
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment, Question.__table__.c.number==q, Question.__table__.c.variant_index==k))
+            results = db.session.execute(statement).first()
+            if results:
+                if k!=len(QuestionData['ParameterSetVariants'])-1:
+                    i = k+1
+                else:
+                    i = k
+                break
+    return((q,i))
+
 def GetNextQuestionVariant(db, user, assignment, q, i):
     done = False
     try:
@@ -522,7 +560,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         return render_template('thankyou.html')
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     app.logger.error(i)
-    q,i = GetNextQuestionVariant(db, user, assignment, q, i)
+    q,i = ReversedGetNextQuestionVariant(db, user, assignment, q, i)
     app.logger.error(i)
     #if q is None:
     #    q = len(QuestionSets[assignment]['Questions'])
