@@ -367,7 +367,11 @@ def ReversedGetNextQuestionVariant(db, user, assignment, q, i):
                     i = k+1
                 else:
                     i = k
+                done = True
                 break
+    if not done:
+        q = 1
+        i = 0
     return((q,i))
 
 def GetNextQuestionVariant(db, user, assignment, q, i):
