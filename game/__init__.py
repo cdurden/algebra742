@@ -5,7 +5,10 @@ import random
 import math
 import string
 import os
-import sympy
+from sympy import sympify, simplify, symbols, latex
+from sympy.parsing.sympy_parser import parse_expr
+from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
+transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
 
 class RequestDenied(Exception):
     def __init__(self, message):
@@ -308,7 +311,7 @@ class ConnectFourGame(Game):
             raise RequestDenied("Player {:s} tried to take unselectable card when player {:s} was active".format(player.session_id, self.players[self.active_player].session_id))
 
     def input(self, player, data, update_game_callback):
-        correct = sympy.simplify(data-expression) == 0
+        correct = simplify(parse_expr(data)-parse_expr(self.selected_card.info)) == 0
         if correct:
             player.matched_cards += [card]
         self.activate_next_player()
