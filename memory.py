@@ -123,7 +123,9 @@ def memory():
 def on_create(data, lti=lti):
     """Create a game lobby"""
     #username = data['username']
-    gm = game.Game(deck_name='RelationDiagrams')
+    #gm = game.Game(deck_name='RelationDiagrams')
+    gm = game.MemoryGame(deck_name='RelationDiagrams')
+    #gm = game.ConnectFourGame(deck_name='RelationDiagrams')
     room = gm.room
     ROOMS[room] = gm
     data['room'] = room
