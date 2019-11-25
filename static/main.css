@@ -3,7 +3,7 @@
 .south{ background: green; position: absolute; bottom: -50px; }
 .west { background: orange; position: absolute; left: -50px; }
 .mid { background: red; position: absolute; top: 0px; left: 0px; }
-.frame { background: red; margin: 100px auto 0 auto; position: relative; overflow: visible; }
+.frame { background: red; margin: 20px auto 0 auto; position: relative; overflow: visible; }
 .east input {transform: rotate(-90deg)}
 table.iotable {
     border: 1px solid black;
