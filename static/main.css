@@ -1,5 +1,5 @@
 div.north { background: none; position: absolute; top: -20px; }
-div.east { background: none; position: absolute; width: 160px; right: -20px;}
+div.east { background: none; position: absolute; width: 160px; right: -15px;}
 div.south{ background: none; position: absolute; bottom: 0px; }
 div.west { background: none; position: absolute; width:160px; left: -170px; }
 div.mid { background: none; position: absolute; top: 0px; left: 0px; }
