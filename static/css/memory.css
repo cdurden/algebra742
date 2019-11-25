@@ -117,6 +117,18 @@ font-size: 36pt;
 	align-items: center;
 	margin: 0 0 3em;
 }
+.dice {
+	width: 85%;
+	background: #716F71;
+	padding: 1rem;
+	border-radius: 4px;
+	box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	margin: 0 0 3em;
+}
 
 
 .deck {
