@@ -308,7 +308,7 @@ class ConnectFourGame(Game):
             raise RequestDenied("Player {:s} tried to take unselectable card when player {:s} was active".format(player.session_id, self.players[self.active_player].session_id))
 
     def input(self, player, data, update_game_callback):
-        correct = simplify(data-expression) == 0
+        correct = sympy.simplify(data-expression) == 0
         if correct:
             player.matched_cards += [card]
         self.activate_next_player()
