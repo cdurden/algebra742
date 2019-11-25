@@ -3,7 +3,7 @@
 .south{ width: 50px; height: 50px; background: green; position: absolute; bottom: -50px; }
 .west { width: 50px; height: 50px; background: orange; position: absolute; left: -50px; }
 .mid { width: 50px; height: 50px; background: red; position: absolute; top: 0px; left: 0px; }
-.card { width: 50px; height: 50px; background: red; margin: 100px auto 0 auto; position: relative; overflow: visible; }
+.frame { width: 50px; height: 50px; background: red; margin: 100px auto 0 auto; position: relative; overflow: visible; }
 .east input {'transform': 'rotate(90deg)'}
 table.iotable {
     border: 1px solid black;
