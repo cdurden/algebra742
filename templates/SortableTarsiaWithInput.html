@@ -1,113 +1,16 @@
 <ul id="sortable">
+    {% for card in cards %}
     <li id="card_0" class="card ui-state-default">
       <div class="frame">
         <div class="north"><input class="north" type="text" name="card_0_north"></input></div>
         <div class="east"><input class="east" type="text" name="card_0_east"></input></div>
         <div class="mid">
-          {{ card0 | safe }}
+          {{ cards[loop.index0] | safe }}
         </div>
         <div class="south"><input class="south" type="text" name="card_0_south"></input></div>
         <div class="west"><input class="west" type="text" name="card_0_west"></input></div>
       </div>
     </li>
-    <li id="card_1" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_1_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_1_east"></input></div>
-        <div class="mid">
-          {{ card1 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_1_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_1_west"></input></div>
-      </div>
-    </li>
-    <li id="card_2" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_2_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_2_east"></input></div>
-        <div class="mid">
-          {{ card2 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_2_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_2_west"></input></div>
-      </div>
-    </li>
-    <li id="card_3" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_3_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_3_east"></input></div>
-        <div class="mid">
-          {{ card3 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_3_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_3_west"></input></div>
-      </div>
-    </li>
-    <li id="card_4" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_4_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_4_east"></input></div>
-        <div class="mid">
-          {{ card4 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_4_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_4_west"></input></div>
-      </div>
-    </li>
-    <li id="card_0" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_0_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_0_east"></input></div>
-        <div class="mid">
-          {{ card0 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_0_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_0_west"></input></div>
-      </div>
-    </li>
-    <li id="card_0" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_0_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_0_east"></input></div>
-        <div class="mid">
-          {{ card0 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_0_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_0_west"></input></div>
-      </div>
-    </li>
-    <li id="card_0" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_0_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_0_east"></input></div>
-        <div class="mid">
-          {{ card0 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_0_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_0_west"></input></div>
-      </div>
-    </li>
-    <li id="card_0" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_0_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_0_east"></input></div>
-        <div class="mid">
-          {{ card0 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_0_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_0_west"></input></div>
-      </div>
-    </li>
-    <li id="card_0" class="card ui-state-default">
-      <div class="frame">
-        <div class="north"><input class="north" type="text" name="card_0_north"></input></div>
-        <div class="east"><input class="east" type="text" name="card_0_east"></input></div>
-        <div class="mid">
-          {{ card0 | safe }}
-        </div>
-        <div class="south"><input class="south" type="text" name="card_0_south"></input></div>
-        <div class="west"><input class="west" type="text" name="card_0_west"></input></div>
-      </div>
-    </li>
+    {% endfor %}
 </ul>
  
