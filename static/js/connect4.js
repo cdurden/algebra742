@@ -34,7 +34,7 @@ var cards;
 timeLimitMinutes = 0;
 timeLimitSeconds = 10;
 
-function loadGame(flip_card_callback) {
+function loadGame(flip_card_callback, roll_callback) {
   listener = new window.keypress.Listener(); 
   correctPlayer1 = document.getElementById("correctPlayer1");
   correctPlayer2 = document.getElementById("correctPlayer2");
@@ -81,18 +81,22 @@ function loadGame(flip_card_callback) {
   startGame();
 }
 
-function reset_game(flipped_cards, players, active_player) {
+function reset_game(flipped_cards, players, active_player, dice) {
     players_dashboard = document.getElementById("players-dashboard");
     players_dashboard.innerHTML = '';
     for(var i = 0; i < cards.length; i++){
         cards[i].classList.remove("disabled");
         cards[i].removeAttribute("style");
     }
-    update_game(flipped_cards, players);
+    update_game(flipped_cards, players, active_player, dice);
 }
-function update_game(flipped_cards, players, active_player) {
+function update_game(flipped_cards, players, active_player, dice) {
     enable();
 
+    die1_div = document.getElementById("die1");
+    die1_div.innerHTML = dice[0].toString();
+    die2_div = document.getElementById("die2");
+    die1_div.innerHTML = dice[1].toString();
     players_dashboard = document.getElementById("players-dashboard");
     //players_dashboard.innerHTML = '';
     //for(var player = 0; player < players.length; player++) {
@@ -122,6 +126,13 @@ function update_game(flipped_cards, players, active_player) {
         }
         if (i == active_player) {
             player_dashboard.style.background = player.color;
+            player_roll_button = player_input_div.getElementsByClassName("roll-button")[0];
+            player_roll_button.id = "player-"+player.session_id+"-roll-button";
+            if (player.rolled) {
+                player_roll_button.style.display = "none";
+            } else {
+                player_roll_button.style.display = "block";
+            }
         } else {
             player_dashboard.removeAttribute("style");
         }

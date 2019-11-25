@@ -57,6 +57,7 @@ class Player(object):
         self.correct = 0
         self.incorrect = 0
         self.matched_cards = []
+        self.rolled = False
         self.color = "yellow"
     def __eq__(self, other):
         return self.session_id == other.session_id
@@ -275,6 +276,12 @@ class ConnectFourGame(Game):
     def __init__(self, **kwargs):
         Game.__init__(self,**kwargs)
         self.flipped_cards = self.deck
+        self.dice = [None,None]
+
+    def roll(self, player, select_callback):
+        self.dice = [random.randint(1,6),random.randint(1,6)]
+        player.rolled = True
+        #select_callback(self)
 
     def input(self, player, data, update_game_callback):
         pass

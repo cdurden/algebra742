@@ -106,7 +106,8 @@ def memory_init(lti=lti):
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user:
-        return render_template('memory.html')
+        #return render_template('memory.html')
+        return render_template('connect4.html')
         #return render_template('index.html', user=user)
     else:
         form = UserInfoForm()
@@ -179,12 +180,29 @@ def input(data, lti=lti):
 
 def update_game(room):
     print("updating game")
-    emit('update_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player}, room=room)
+    emit('update_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player, 'dice': ROOMS[room].dice}, room=room)
 
 def reset_game(room):
     print("reseting game")
-    emit('reset_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player}, room=room)
+    emit('reset_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player, 'dice': ROOMS[room].dice}, room=room)
 
+@socketio.on('roll')
+@lti(request='session', error=error, app=app)
+def on_roll(data, lti=lti):
+    """flip card and rebroadcast game object"""
+    print("flipping card")
+    room = data['room']
+    player = ROOMS[room].get_player(request.sid)
+    try:
+        assert player is not None
+    except AssertionError:
+        emit('error', {'error': 'Unable to flip card. Player {:s} not in game'.format(request.sid)})
+    try:
+        ROOMS[room].roll(player, lambda x,y: emit('select', { 'player': player.to_dict(), 'x': x, 'y': y }, room=request.sid))
+        update_game(room)
+    except RequestDenied as err:
+        print(err.message)
+    #send(ROOMS[room].to_json(), room=room)
 
 @socketio.on('flip_card')
 @lti(request='session', error=error, app=app)
