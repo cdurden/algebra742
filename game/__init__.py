@@ -142,7 +142,7 @@ class Game(object):
 
     def __load_deck(self):
         with open(os.path.join(DECKS_ROOT,self.deck_name), 'r') as deck_file:
-            self.deck = [Card(i,info=elem) for i,elem in enumerate(deck_file.read().split('\n')) if len(elem.strip()) > 0]
+            self.deck = [Card(i,info=(lambda e: {'expr': e[0],'latex': e[1]})(elem.split(' '))) for i,elem in enumerate(deck_file.read().split('\n')) if len(elem.strip()) > 0]
 
     # Not sure if anything below is necessary
     def to_json(self):
@@ -311,7 +311,7 @@ class ConnectFourGame(Game):
             raise RequestDenied("Player {:s} tried to take unselectable card when player {:s} was active".format(player.session_id, self.players[self.active_player].session_id))
 
     def input(self, player, data, update_game_callback):
-        correct = simplify(parse_expr(data)-parse_expr(self.selected_card.info)) == 0
+        correct = simplify(parse_expr(data)-parse_expr(self.selected_card.info['expr'])) == 0
         if correct:
             player.matched_cards += [card]
         self.activate_next_player()
