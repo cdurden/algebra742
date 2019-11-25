@@ -49,7 +49,7 @@ function rotateCard(e){
     card.css({'transform': 'rotate(' + angle + 'deg)'});
     card.data('angle', angle);
 }
-$('.card').click(rotateCard);
+$('.card img').click(rotateCard);
     var right_inputs = $('.card').find("input.right");
     right_inputs.css({'transform': 'rotate(90deg)'});
   } 
