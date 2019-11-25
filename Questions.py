@@ -1,4 +1,20 @@
 QuestionSets = {
+    'UsingDistributiveProperty': {
+        'ProvideImmediateFeedback': True,
+        'Questions':
+        [
+            {
+            'Type': 'Simplify',
+            'Template': 'Simplify.html',
+            'ParameterSetVariants': [
+                {'expression': '3q+4r+5q+r+1'},
+                {'expression': '-3s+4b-7s-b-1'},
+                {'expression': '3(w-5)-2(12+w)'},
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'UsingZeroPairsAndReciprocalPairs': {
         'ProvideImmediateFeedback': True,
         'Questions': [
@@ -222,7 +238,7 @@ QuestionSets = {
         [
             {
             'Type': 'Tarsia',
-            'Template': 'Sortable.html',
+            'Template': 'SortableTarsiaWithInput.html',
             'ParameterSetVariants': [
                 {
                     'CorrectAnswer': [0,1,2,3,4,5,6,7,8,9,10,11],
