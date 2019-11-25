@@ -180,11 +180,11 @@ def input(data, lti=lti):
 
 def update_game(room):
     print("updating game")
-    emit('update_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player, 'dice': ROOMS[room].dice, 'choosable_cards': ROOMS[room].choosable_cards}, room=room)
+    emit('update_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player, 'dice': ROOMS[room].dice, 'choosable_cards': [card.to_dict() for card in ROOMS[room].choosable_cards]}, room=room)
 
 def reset_game(room):
     print("reseting game")
-    emit('reset_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player, 'dice': ROOMS[room].dice, 'choosable_cards': ROOMS[room].choosable_cards}, room=room)
+    emit('reset_game', {'flipped_cards': [card.to_dict() for card in ROOMS[room].flipped_cards], 'players': [player.to_dict() for player in ROOMS[room].players], 'active_player': ROOMS[room].active_player, 'dice': ROOMS[room].dice, 'choosable_cards': [card.to_dict() for card in ROOMS[room].choosable_cards]}, room=room)
 
 @socketio.on('roll')
 @lti(request='session', error=error, app=app)
