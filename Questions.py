@@ -1,4 +1,38 @@
 QuestionSets = {
+    'SolvingEquationsTestCorrections': {
+        'ProvideImmediateFeedback': False,
+        'Questions': [
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'SolveEquationGuided',
+            'Template': 'SolveEquationGuided.html',
+            'ParameterSetVariants': [
+                {'equation': 'x+6=19', 'CorrectAnswer': '13', 'variables': ['x']},
+}, 
+                {'equation': '83+y=57','CorrectAnswer': '-26', 'variables': ['y']},
+                {'equation': '6x+8=32','CorrectAnswer': '4', 'variables': ['x']},
+                {'equation': '65=5x-10','CorrectAnswer': '15', 'variables': ['x']},
+                {'equation': '2(y+7)=49','CorrectAnswer': '35/2', 'variables': ['y']},
+                {'equation': '81=4h+5h-9','CorrectAnswer': '10', 'variables': ['h']},
+                {'equation': '8n-9=2n+3','CorrectAnswer': '2', 'variables': ['h']},
+                {'equation': 'x-42=98-9x','CorrectAnswer': '14', 'variables': ['x']},
+                ],
+            'SpaceAfter': '4.5cm',
+            },
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'GenericEquality',
+            'Template': 'SolveEquation.html',
+            'ParameterSetVariants': [
+                {'equation': '3(x+4)=3x+11','CorrectAnswer': '{}'},
+                {'equation': '|x-8|=3','equation_latex': '|x-8|=3', 'CorrectAnswer': '{5,11}'},
+                {'equation': '(n-10)/12 = 8/3', 'equation': r'\frac{n-10}{12} = \frac{8}{3}','CorrectAnswer': '42'},
+                {'equation': '4/6=8/x', 'equation': r'\frac{4}{6} = \frac{8}{x}','CorrectAnswer': '12'},
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'UsingDistributiveProperty': {
         'ProvideImmediateFeedback': True,
         'Questions':
