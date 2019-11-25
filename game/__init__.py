@@ -277,6 +277,7 @@ class ConnectFourGame(Game):
         Game.__init__(self,**kwargs)
         self.flipped_cards = self.deck
         self.dice = [None,None]
+        self.choosable_cards = []
 
     def roll(self, player, select_callback):
         self.dice = [random.randint(1,6),random.randint(1,6)]
