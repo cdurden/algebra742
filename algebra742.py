@@ -635,15 +635,19 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
     if QuestionData['Type'] == 'Tarsia':
-        form = TarsiaForm()
+        try:
+            form = TarsiaForm(data=formdata)
+        except:
+            form = TarsiaForm()
         app.logger.error(form.answers.data)
-        Parameters['cards'] = [Parameters['cards'][i] for i in Parameters['shuffle']]
         try:
             input_order = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
             correct = input_order==Parameters['CorrectAnswer']
+            Parameters['cards'] = [Parameters['cards'][i] for i in [Parameters['shuffle'][j] for j in input_order]]
             app.logger.error(correct)
         except:
             correct = False
+            Parameters['cards'] = [Parameters['cards'][i] for i in Parameters['shuffle']]
         answer = json.dumps(form.data)
     if QuestionData['Type'] == 'Simplify':
         #app.logger.error(form.data)
