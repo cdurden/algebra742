@@ -639,12 +639,12 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(form.answers.data)
         Parameters['cards'] = [Parameters['cards'][i] for i in Parameters['shuffle']]
         try:
-            answer = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
-            app.logger.error(answer)
-            correct = answer==Parameters['CorrectAnswer']
+            input_order = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
+            correct = input_order==Parameters['CorrectAnswer']
             app.logger.error(correct)
         except:
             correct = False
+        answer = json.dumps(form.data)
     if QuestionData['Type'] == 'Simplify':
         #app.logger.error(form.data)
         #if form.data == None:
