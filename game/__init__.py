@@ -282,7 +282,7 @@ class MemoryGame(Game):
         return(matched_cards)
 
     def match_is_flipped(self):
-        if len(set(self.flipped_cards)) != 2:
+        if len(self.flipped_cards) != 2:
             return(False)
         else:
             print(self.flipped_cards[0]);
