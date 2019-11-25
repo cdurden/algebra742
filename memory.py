@@ -217,7 +217,7 @@ def on_flip_card(data, lti=lti):
     except AssertionError:
         emit('error', {'error': 'Unable to flip card. Player {:s} not in game'.format(request.sid)})
     try:
-        ROOMS[room].take_card(player, card, lambda: emit('prompt', { 'player': player.to_dict() }, room=request.sid))
+        ROOMS[room].select_card(player, card, lambda: emit('prompt', { 'player': player.to_dict() }, room=request.sid))
         update_game(room)
     except RequestDenied as err:
         print(err.message)
