@@ -59,6 +59,9 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
         var roll = function(room) { return function() {
             socket.emit('roll', {room: room});
         }; }(room);
+        input_callback = function(room) { return function() {
+            socket.emit('input', {room: room});
+        }; }(room);
         roll_callback = function(room) { return function() {
             socket.emit('roll', {room: room});
         }; }(room);
@@ -76,7 +79,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     socket.on('prompt', function(data) {
         console.log(data);
         player = data['player'];
-        get_input(player, roll_callback);
+        get_input(player, input_callback);
     });
     function createRoom() {
         socket.emit('create', {size: 'normal', teams: 2, dictionary: 'Simple'});
@@ -211,6 +214,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
             <div class="player-input">
                 <div class="player-input-prompt"></div>
                 <button class="roll-button">Roll</button>
+                <input class="player-input-text" type="text"></input>
             </div>
         </li>
 

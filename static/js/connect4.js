@@ -83,6 +83,28 @@ function loadGame(flip_card_callback, roll_callback_) {
   roll_callback = roll_callback_
 }
 
+function prompt_for_roll(player, msg, rollFn) {
+    var player_input_div = document.getElementById("player-"+player.session_id+"-input");
+    var roll_button = document.getElementById("player-"+player.session_id+"-roll-button");
+    roll_button.addEventListener("click", function() {
+        //player_input_div.classList.remove("show");
+        rollFn();
+        player_input_div.style.display = "none";
+    });
+    player_input_div.style.display = "block";
+}
+
+function prompt_for_input(player, msg, input_callback) {
+    var player_input_div = document.getElementById("player-"+player.session_id+"-input");
+    var player_input = document.getElementById("player-"+player.session_id+"-input-text");
+    var submit_button = document.getElementById("player-"+player.session_id+"-submit-button");
+    submit_button.addEventListener("click", function() {
+        input_callback(player_input.value);
+        player_input_div.style.display = "none";
+    });
+    player_input_div.style.display = "block";
+}
+
 function reset_game(flipped_cards, players, active_player, dice, choosable_cards) {
     players_dashboard = document.getElementById("players-dashboard");
     players_dashboard.innerHTML = '';
@@ -123,6 +145,8 @@ function update_game(flipped_cards, players, active_player, dice, choosable_card
             stats.getElementsByClassName("matches")[0].id = "player-"+player.session_id+"-stats-matches";
             player_input_div = player_dashboard.getElementsByClassName("player-input")[0];
             player_input_div.id = "player-"+player.session_id+"-input";
+            player_input_text = player_dashboard.getElementsByClassName("player-input-text")[0];
+            player_input_text.id = "player-"+player.session_id+"-input-text";
             //player_input_div.getElementsByClassName("yes-button")[0].id = "player-"+player.session_id+"-yes-button";
             //player_input_div.getElementsByClassName("no-button")[0].id = "player-"+player.session_id+"-no-button";
             player_input_div.style.display = "none";
@@ -136,7 +160,7 @@ function update_game(flipped_cards, players, active_player, dice, choosable_card
                 player_roll_button.style.display = "none";
             } else {
                 player_roll_button.style.display = "block";
-                prompt_for_input(player, "", roll_callback);
+                prompt_for_roll(player, "", roll_callback);
             }
         } else {
             player_dashboard.removeAttribute("style");
@@ -283,10 +307,11 @@ function startGame(){
 };
 */
 
-var get_input = function(player, roll_callback) {
+
+var get_input = function(player, input_callback) {
     disable();
     //moveCounter();
-    prompt_for_input(player, "", roll_callback);
+    prompt_for_input(player, "", input_callback);
 }
 
 /*
@@ -610,15 +635,4 @@ function playAgain(){
 }
 
 
-
-function prompt_for_input(player, msg, rollFn) {
-    var player_input_div = document.getElementById("player-"+player.session_id+"-input");
-    var roll_button = document.getElementById("player-"+player.session_id+"-roll-button");
-    roll_button.addEventListener("click", function() {
-        //player_input_div.classList.remove("show");
-        rollFn();
-        player_input_div.style.display = "none";
-    });
-    player_input_div.style.display = "block";
-}
 
