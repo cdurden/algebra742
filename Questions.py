@@ -241,7 +241,8 @@ QuestionSets = {
             'Template': 'SortableTarsiaWithInput.html',
             'ParameterSetVariants': [
                 {
-                    'CorrectAnswer': [0,1,2,3,4,5,6,7,8,9,10,11],
+                    #'CorrectAnswer': [0,1,2,3,4,5,6,7,8,9,10,11],
+                    'shuffle': [7,1,3,4,6,2,5,9,11,10,8,0],
                     'cards': ['<img src="/static/deck1/card0.png"/>','<img src="/static/deck1/card1.png"/>', '<img src="/static/deck1/card2.png"/>', '<img src="/static/deck1/card3.png"/>', '<img src="/static/deck1/card4.png"/>', '<img src="/static/deck1/card5.png"/>', '<img src="/static/deck1/card6.png"/>', '<img src="/static/deck1/card7.png"/>', '<img src="/static/deck1/card8.png"/>', '<img src="/static/deck1/card9.png"/>', '<img src="/static/deck1/card10.png"/>', '<img src="/static/deck1/card11.png"/>']
                     }
                 ],
