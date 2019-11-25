@@ -313,7 +313,7 @@ class ConnectFourGame(Game):
     def input(self, player, data, update_game_callback):
         correct = simplify(parse_expr(data)-parse_expr(self.selected_card.info['expr'])) == 0
         if correct:
-            player.matched_cards += [card]
+            player.matched_cards += [self.selected_card]
         self.activate_next_player()
         update_game_callback(self.room)
 
