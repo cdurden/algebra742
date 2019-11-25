@@ -95,7 +95,7 @@ function update_game(flipped_cards, players, active_player, dice) {
 
     die1_div = document.getElementById("die1");
     die2_div = document.getElementById("die2");
-    if (dice[0] != null and dice[1] != null) {
+    if (dice[0] != null && dice[1] != null) {
         die1_div.innerHTML = dice[0].toString();
         die1_div.innerHTML = dice[1].toString();
     }
