@@ -1,10 +1,10 @@
 div.north { background: blue; position: absolute; top: -20px; }
-div.east { background: yellow; position: absolute; right: -20px; transform: rotate(-90deg);}
+div.east { background: yellow; position: absolute; width: 100%; right: -20px;}
 div.south{ background: green; position: absolute; bottom: -20px; }
 div.west { background: orange; position: absolute; left: -20px; }
 div.mid { background: red; position: absolute; top: 0px; left: 0px; }
-div.frame { background: red; margin: 20px 20px 20px 20px; position: relative; overflow: visible; }
-.east input { transform: rotate(-90deg); }
+div.frame { background: red; margin: 20px 20px 20px 20px; position: relative; overflow: visible; height: 160px;}
+.east input { position: absolute; transform: rotate(-90deg); }
 table.iotable {
     border: 1px solid black;
     border-collapse: collapse;
