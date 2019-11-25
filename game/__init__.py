@@ -273,7 +273,7 @@ class Game(object):
 
 class ConnectFourGame(Game):
     def __init__(self, **kwargs):
-        self.__init__(kwargs)
+        Game.__init__(self,**kwargs)
         self.flipped_cards = self.deck
 
     def input(self, player, data, update_game_callback):
