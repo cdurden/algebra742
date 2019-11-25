@@ -283,7 +283,7 @@ class ConnectFourGame(Game):
         self.dice = [random.randint(1,4),random.randint(1,4)]
         self.choosable_cards = []
         for x,y in [(self.dice[i],self.dice[j]) for i,j in [(0,1),(1,0)]]:
-            card_position = (y-1)*6+x-1
+            card_position = (y-1)*4+x-1
             self.choosable_cards.append(self.deck[card_position])
         player.rolled = True
         #select_callback(self)
