@@ -1,6 +1,6 @@
 QuestionSets = {
     'SolvingEquationsTestCorrections': {
-        'ProvideImmediateFeedback': False,
+        'ProvideImmediateFeedback': True,
         'Questions': [
         {
             #'Type': 'SolveEquation',
@@ -57,11 +57,7 @@ QuestionSets = {
             'Template': 'ReciprocalPair.html',
             'ParameterSetVariants': [
                 {'expression': r'\frac{4}{3}','CorrectAnswer': '3/4'},
-                {'expression': r'\frac{2}{3}','CorrectAnswer': '3/2'},
                 {'expression': r'3', 'CorrectAnswer': '1/3'}, 
-                {'expression': r'-\frac{2}{3}','CorrectAnswer': '-3/2'},
-                {'expression': r'-\frac{1}{3}','CorrectAnswer': '-3'},
-                {'expression': r'-5','CorrectAnswer': '-1/5'},
                 {'expression': r'-\frac{2}{3}','CorrectAnswer': '-3/2'},
                 ],
             'SpaceAfter': '2cm',
@@ -71,7 +67,6 @@ QuestionSets = {
             'Template': 'ZeroPair.html',
             'ParameterSetVariants': [
                 {'expression': r'10', 'CorrectAnswer': '-10'}, 
-                {'expression': r'-3','CorrectAnswer': '3'},
                 {'expression': r'-136','CorrectAnswer': '136'},
                 {'expression': r'-\frac{1}{4}','CorrectAnswer': '1/4'},
                 ],
