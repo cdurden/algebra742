@@ -6,6 +6,10 @@ div.mid { background: red; position: absolute; top: 0px; left: 0px; }
 div.frame { background: red; margin: 20px 20px 20px 20px; position: relative; overflow: visible; height: 160px;}
 .east input { position: absolute; transform: rotate(-90deg); top: 70px; }
 .south input { position: absolute;}
+li.card {
+    width: 200px;
+    height: 200px;
+}
 table.iotable {
     border: 1px solid black;
     border-collapse: collapse;
