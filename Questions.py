@@ -1,4 +1,15 @@
 QuestionSets = {
+    'UsingZeroPairsAndReciprocalPairs': {
+        'ProvideImmediateFeedback': False,
+        'Questions':
+        [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'DifferenceBetweenZeroPairAndReciprocalPair.html',
+            'ParameterSetVariants': [{}],
+            }
+        ]
+    },
     'FunctionsTest': {
         'Title': 'Functions Test',
         'Test': False,
