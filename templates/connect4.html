@@ -59,8 +59,8 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
         var roll = function(room) { return function() {
             socket.emit('roll', {room: room});
         }; }(room);
-        input_callback = function(room) { return function() {
-            socket.emit('input', {room: room});
+        input_callback = function(room) { return function(answer) {
+            socket.emit('input', {response: answer, room: room});
         }; }(room);
         roll_callback = function(room) { return function() {
             socket.emit('roll', {room: room});
