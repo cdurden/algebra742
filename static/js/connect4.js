@@ -616,7 +616,7 @@ function prompt_for_input(player, msg, rollFn) {
     var roll_button = document.getElementById("player-"+player.session_id+"-roll-button");
     roll_button.addEventListener("click", function() {
         //player_input_div.classList.remove("show");
-        yesFn();
+        rollFn();
         player_input_div.style.display = "none";
     });
     player_input_div.style.display = "block";
