@@ -1,13 +1,53 @@
 QuestionSets = {
     'UsingZeroPairsAndReciprocalPairs': {
-        'ProvideImmediateFeedback': False,
-        'Questions':
-        [
-            {
-            'Type': 'OpenResponse',
-            'Template': 'DifferenceBetweenZeroPairAndReciprocalPair.html',
-            'ParameterSetVariants': [{}],
-            }
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+        {
+            #'Type': 'SolveEquation',
+            'Type': 'Expression',
+            'Template': 'ReciprocalPair.html',
+            'ParameterSetVariants': [
+                {'expression': r'\frac{4}{3}','CorrectAnswer': '3/4'},
+                {'expression': r'\frac{2}{3}','CorrectAnswer': '3/2'},
+                {'expression': r'3', 'CorrectAnswer': '1/3'}, 
+                {'expression': r'-\frac{2}{3}','CorrectAnswer': '-3/2'},
+                {'expression': r'-\frac{1}{3}','CorrectAnswer': '-3'},
+                {'expression': r'-5','CorrectAnswer': '-1/5'},
+                {'expression': r'-\frac{2}{3}','CorrectAnswer': '-3/2'},
+                ],
+            'SpaceAfter': '2cm',
+            },
+        {
+            'Type': 'Expression',
+            'Template': 'ZeroPair.html',
+            'ParameterSetVariants': [
+                {'expression': r'10', 'CorrectAnswer': '-10'}, 
+                {'expression': r'-3','CorrectAnswer': '3'},
+                {'expression': r'-136','CorrectAnswer': '136'},
+                {'expression': r'-\frac{1}{4}','CorrectAnswer': '1/4'},
+                ],
+            'SpaceAfter': '2cm',
+            },
+        {
+            'Type': 'Expression',
+            'Template': 'IdentifyConstant.html',
+            'ParameterSetVariants': [
+                {'expression': r'3x+10', 'CorrectAnswer': '10'}, 
+                {'expression': r'2x+15=83', 'CorrectAnswer': '15'}, 
+                {'expression': r'\frac{1}{3}x+(-136)','CorrectAnswer': '-136'},
+                ],
+            'SpaceAfter': '2cm',
+            },
+        {
+            'Type': 'Expression',
+            'Template': 'IdentifyCoefficient.html',
+            'ParameterSetVariants': [
+                {'expression': r'3x', 'CorrectAnswer': '3'}, 
+                {'expression': r'\frac{1}{3}(x+3)=9','CorrectAnswer': '1/3'},
+                {'expression': r'-\frac{1}{4}(x+2)=10','CorrectAnswer': '-1/4'},
+                ],
+            'SpaceAfter': '2cm',
+            },
         ]
     },
     'FunctionsTest': {
