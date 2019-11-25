@@ -5,6 +5,7 @@ div.west { background: orange; position: absolute; left: -20px; }
 div.mid { background: red; position: absolute; top: 0px; left: 0px; }
 div.frame { background: red; margin: 20px 20px 20px 20px; position: relative; overflow: visible; height: 160px;}
 .east input { position: absolute; transform: rotate(-90deg); }
+.south input { position: absolute;}
 table.iotable {
     border: 1px solid black;
     border-collapse: collapse;
