@@ -105,16 +105,16 @@ function prompt_for_input(player, msg, input_callback) {
     player_input_div.style.display = "block";
 }
 
-function reset_game(flipped_cards, players, active_player, dice, choosable_cards) {
+function reset_game(flipped_cards, players, active_player, dice, selectable_cards) {
     players_dashboard = document.getElementById("players-dashboard");
     players_dashboard.innerHTML = '';
     for(var i = 0; i < cards.length; i++){
         cards[i].classList.remove("disabled");
         cards[i].removeAttribute("style");
     }
-    update_game(flipped_cards, players, active_player, dice, choosable_cards);
+    update_game(flipped_cards, players, active_player, dice, selectable_cards);
 }
-function update_game(flipped_cards, players, active_player, dice, choosable_cards) {
+function update_game(flipped_cards, players, active_player, dice, selectable_cards) {
     enable();
 
     die1_div = document.getElementById("die1");

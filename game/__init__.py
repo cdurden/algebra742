@@ -5,6 +5,7 @@ import random
 import math
 import string
 import os
+import sympy
 
 class RequestDenied(Exception):
     def __init__(self, message):
@@ -277,18 +278,18 @@ class ConnectFourGame(Game):
         Game.__init__(self,**kwargs)
         self.flipped_cards = self.deck
         self.dice = [None,None]
-        self.choosable_cards = []
+        self.selectable_cards = []
 
     def roll(self, player, select_callback):
         self.dice = [random.randint(1,4),random.randint(1,4)]
-        self.choosable_cards = []
+        self.selectable_cards = []
         for x,y in [(self.dice[i],self.dice[j]) for i,j in [(0,1),(1,0)]]:
             card_position = (y-1)*4+x-1
-            self.choosable_cards.append(self.deck[card_position])
+            self.selectable_cards.append(self.deck[card_position])
         player.rolled = True
         #select_callback(self)
 
-    def take_card(self, player, card_position, input_callback):
+    def select_card(self, player, card_position, input_callback):
         try:
             card = self.deck[card_position]
         except IndexError:
@@ -300,13 +301,18 @@ class ConnectFourGame(Game):
         if card not in self.deck:
             raise TypeError("card must in the deck.")
         """Assign color to card in solution dict"""
-        if self.player_is_active(player) and card in self.choosable_cards: 
+        if self.player_is_active(player) and card in self.selectable_cards: 
+            self.selected_card = card
             input_callback()
         else:
-            raise RequestDenied("Player {:s} tried to take unchoosable card when player {:s} was active".format(player.session_id, self.players[self.active_player].session_id))
+            raise RequestDenied("Player {:s} tried to take unselectable card when player {:s} was active".format(player.session_id, self.players[self.active_player].session_id))
 
     def input(self, player, data, update_game_callback):
-        pass
+        correct = simplify(data-expression) == 0
+        if correct:
+            player.matched_cards += [card]
+        self.activate_next_player()
+        update_game_callback(self.room)
 
 class MemoryGame(Game):
     def matched_cards(self):
