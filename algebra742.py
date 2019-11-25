@@ -643,8 +643,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         try:
             input_order = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
             correct = input_order==Parameters['shuffle']
-            Parameters['cards'] = [Parameters['cards'][i] for i in [Parameters['shuffle'][j] for j in input_order]]
-            app.logger.error([Parameters['shuffle'][j] for j in input_order])
+            cards = Parameters['cards'].copy()
+            cards = [cards[i] for i in [Parameters['shuffle'][j] for j in input_order]]
             app.logger.error(input_order)
             #Parameters['cards'] = [Parameters['cards'][input_order[i]] for i in Parameters['shuffle']]
             app.logger.error(correct)
