@@ -8,7 +8,6 @@ QuestionSets = {
             'Template': 'SolveEquationGuided.html',
             'ParameterSetVariants': [
                 {'equation': 'x+6=19', 'CorrectAnswer': '13', 'variables': ['x']},
-}, 
                 {'equation': '83+y=57','CorrectAnswer': '-26', 'variables': ['y']},
                 {'equation': '6x+8=32','CorrectAnswer': '4', 'variables': ['x']},
                 {'equation': '65=5x-10','CorrectAnswer': '15', 'variables': ['x']},
