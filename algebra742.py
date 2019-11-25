@@ -642,7 +642,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(form.answers.data)
         try:
             input_order = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
-            correct = input_order==Parameters['CorrectAnswer']
+            correct = input_order==Parameters['shuffle']
             Parameters['cards'] = [Parameters['cards'][i] for i in [Parameters['shuffle'][j] for j in input_order]]
             app.logger.error([Parameters['shuffle'][j] for j in input_order])
             app.logger.error(input_order)
