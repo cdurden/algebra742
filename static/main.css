@@ -4,6 +4,7 @@
 .west { background: orange; position: absolute; left: -20px; }
 .mid { background: red; position: absolute; top: 0px; left: 0px; }
 .frame { background: red; margin: 20px 20px 20px 20px; position: relative; overflow: visible; }
+.east input { transform: rotate(-90deg); }
 table.iotable {
     border: 1px solid black;
     border-collapse: collapse;
