@@ -83,16 +83,16 @@ function loadGame(flip_card_callback, roll_callback_) {
   roll_callback = roll_callback_
 }
 
-function reset_game(flipped_cards, players, active_player, dice) {
+function reset_game(flipped_cards, players, active_player, dice, choosable_cards) {
     players_dashboard = document.getElementById("players-dashboard");
     players_dashboard.innerHTML = '';
     for(var i = 0; i < cards.length; i++){
         cards[i].classList.remove("disabled");
         cards[i].removeAttribute("style");
     }
-    update_game(flipped_cards, players, active_player, dice);
+    update_game(flipped_cards, players, active_player, dice, choosable_cards);
 }
-function update_game(flipped_cards, players, active_player, dice) {
+function update_game(flipped_cards, players, active_player, dice, choosable_cards) {
     enable();
 
     die1_div = document.getElementById("die1");

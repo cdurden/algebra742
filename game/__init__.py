@@ -280,8 +280,30 @@ class ConnectFourGame(Game):
 
     def roll(self, player, select_callback):
         self.dice = [random.randint(1,6),random.randint(1,6)]
+        self.choosable_cards = []
+        for x,y in [self.dice[i],self.dice[j] for i,j in [(0,1),(1,0)]]:
+            card_position = (y-1)*6+x-1
+            self.choosable_cards.append(self.deck[card_position])
         player.rolled = True
         #select_callback(self)
+
+    def flip_card(self, player, card_position, input_callback):
+        try:
+            card = self.deck[card_position]
+        except IndexError:
+            raise RequestDenied("There is no card at that position in the deck")
+        if player not in self.players:
+            raise KeyError("player is not in the game.")
+        #if type(player) != int:
+        #    raise TypeError("player must be an integer. Got type {:s}.".format(type(player)))
+        if card not in self.deck:
+            raise TypeError("card must in the deck.")
+        """Assign color to card in solution dict"""
+        if self.player_is_active(player) and len(self.flipped_cards) < 1: 
+            self.flipped_cards.append(card)
+            input_callback()
+        else:
+            raise RequestDenied("Player {:s} tried to flip a card when player {:s} was active and {:d} cards were already flipped".format(player.session_id, self.players[self.active_player].session_id, len(self.flipped_cards)))
 
     def input(self, player, data, update_game_callback):
         pass
