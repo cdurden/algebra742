@@ -33,8 +33,9 @@ var cards;
 // timer variables
 timeLimitMinutes = 0;
 timeLimitSeconds = 10;
+var roll_callback;
 
-function loadGame(flip_card_callback, roll_callback) {
+function loadGame(flip_card_callback, roll_callback_) {
   listener = new window.keypress.Listener(); 
   correctPlayer1 = document.getElementById("correctPlayer1");
   correctPlayer2 = document.getElementById("correctPlayer2");
@@ -79,6 +80,7 @@ function loadGame(flip_card_callback, roll_callback) {
   };
   
   startGame();
+  roll_callback = roll_callback_
 }
 
 function reset_game(flipped_cards, players, active_player, dice) {
@@ -134,6 +136,7 @@ function update_game(flipped_cards, players, active_player, dice) {
                 player_roll_button.style.display = "none";
             } else {
                 player_roll_button.style.display = "block";
+                prompt_for_input(player, "", roll_callback);
             }
         } else {
             player_dashboard.removeAttribute("style");
