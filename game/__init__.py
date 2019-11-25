@@ -272,7 +272,12 @@ class Game(object):
         return mix
 
 class ConnectFourGame(Game):
-    pass
+    def __init__(self, **kwargs):
+        self.__init__(kwargs)
+        self.flipped_cards = self.deck
+
+    def input(self, player, data, update_game_callback):
+        pass
 
 class MemoryGame(Game):
     def matched_cards(self):
