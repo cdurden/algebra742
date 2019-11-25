@@ -44,6 +44,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     var socket = io.connect('https://' + document.domain + ':' + location.port);
     //var flip_card;
     var input_callback;
+    var roll_callback;
     var player_id;
     socket.on('connect', function() {
         console.log('Websocket connected!');
@@ -58,8 +59,8 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
         var roll = function(room) { return function() {
             socket.emit('roll', {room: room});
         }; }(room);
-        input_callback = function(room) { return function(response) {
-            socket.emit('input', {response: response, room: room});
+        roll_callback = function(room) { return function() {
+            socket.emit('roll', {room: room});
         }; }(room);
         loadGame(flip_card, roll, input_callback)
         console.log("Game loaded");
@@ -75,7 +76,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     socket.on('prompt', function(data) {
         console.log(data);
         player = data['player'];
-        get_input(player, input_callback);
+        get_input(player, roll_callback);
     });
     function createRoom() {
         socket.emit('create', {size: 'normal', teams: 2, dictionary: 'Simple'});

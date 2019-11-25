@@ -121,8 +121,8 @@ function update_game(flipped_cards, players, active_player, dice) {
             stats.getElementsByClassName("matches")[0].id = "player-"+player.session_id+"-stats-matches";
             player_input_div = player_dashboard.getElementsByClassName("player-input")[0];
             player_input_div.id = "player-"+player.session_id+"-input";
-            player_input_div.getElementsByClassName("yes-button")[0].id = "player-"+player.session_id+"-yes-button";
-            player_input_div.getElementsByClassName("no-button")[0].id = "player-"+player.session_id+"-no-button";
+            //player_input_div.getElementsByClassName("yes-button")[0].id = "player-"+player.session_id+"-yes-button";
+            //player_input_div.getElementsByClassName("no-button")[0].id = "player-"+player.session_id+"-no-button";
             player_input_div.style.display = "none";
             players_dashboard.appendChild(player_dashboard);
         }
@@ -280,28 +280,10 @@ function startGame(){
 };
 */
 
-var get_input = function(player, input_callback) {
+var get_input = function(player, roll_callback) {
     disable();
     //moveCounter();
-    prompt_for_input(player, "", function yes()
-    {
-         //var confirmBoxPlayer1 = $("#confirmBoxPlayer1");
-         //confirmBoxPlayer1.hide();
-         input_callback('y');
-         //i = Number(active_player!=0)+1;
-         //outcome[i] = 1;
-         //answer[0] = 1;
-         //update_state(0);
-    }, function no()
-    {
-         //var confirmBoxPlayer1 = $("#confirmBoxPlayer1");
-         //confirmBoxPlayer1.hide();
-         input_callback('n');
-         //i = Number(active_player!=0)+1;
-         //outcome[i] = 0;
-         //answer[0] = 0;
-         //update_state(0);
-    });
+    prompt_for_input(player, "", roll_callback);
 }
 
 /*
@@ -626,18 +608,12 @@ function playAgain(){
 
 
 
-function prompt_for_input(player, msg, yesFn, noFn) {
+function prompt_for_input(player, msg, rollFn) {
     var player_input_div = document.getElementById("player-"+player.session_id+"-input");
-    var yes_button = document.getElementById("player-"+player.session_id+"-yes-button");
-    var no_button = document.getElementById("player-"+player.session_id+"-no-button");
-    yes_button.addEventListener("click", function() {
+    var roll_button = document.getElementById("player-"+player.session_id+"-roll-button");
+    roll_button.addEventListener("click", function() {
         //player_input_div.classList.remove("show");
         yesFn();
-        player_input_div.style.display = "none";
-    });
-    no_button.addEventListener("click",function() {
-        //player_input_div.classList.remove("show");
-        noFn();
         player_input_div.style.display = "none";
     });
     player_input_div.style.display = "block";
