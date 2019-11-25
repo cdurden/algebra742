@@ -639,9 +639,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(form.answers.data)
         Parameters['cards'] = [Parameters['cards'][i] for i in Parameters['shuffle']]
         try:
-            input_order = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
-            app.logger.error(input_order)
-            correct = input_order==Parameters['CorrectAnswer']
+            answer = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
+            app.logger.error(answer)
+            correct = answer==Parameters['CorrectAnswer']
             app.logger.error(correct)
         except:
             correct = False
