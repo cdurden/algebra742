@@ -14,7 +14,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for $2 each and a bag of candy for $1 each. How many of each will you buy? <br/>Let $p$ be the number of bottle of pop that you buy, and let $c$ stand for the number of bags of candy. Can you come up with more than one combination of $b$ and $c$ that you can buy and still spend all of your money?', 'equation': '2p+c=12', 'variables': ['p','c'], 'n': 4},
+                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for \$2 each and a bag of candy for \$1 each. How many of each will you buy? <br/>Let $p$ be the number of bottle of pop that you buy, and let $c$ stand for the number of bags of candy. Can you come up with more than one combination of $p$ and $c$ that you can buy and still spend all of your money?', 'equation': '2p+c=12', 'variables': ['p','c'], 'n': 4},
                 ],
             'SpaceAfter': '4cm',
             },
