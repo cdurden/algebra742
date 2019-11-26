@@ -827,7 +827,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 rhs0 = lhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
                 if parse_expr(lhs0)-parse_expr(rhs0)!=0:
                     correct = False
-            except KeyError:
+            except AttributeError:
                 message = "Coordinate pairs could not be read.".format(it+1)
                 correct = False
                 break
