@@ -70,7 +70,6 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Find pairs of numbers x and y that add up to 12, make a table, and plot the points in the coordinate plane.', 'equation': 'x+y=12', 'n': 4}
                 {'question': r'Let $x$ and $y$ be the length and width of a yard in feet. Suppose you have 20 feet of fencing. How can you write an equation in standard form to represent the sizes of yards that you could enclose using all of the fencing? Use your equation to find four possible combinations of length and widths.', 'equation': '2x+2y=20', 'variables': ['x','y'], 'n': 4},
                 ],
             'SpaceAfter': '4cm',
