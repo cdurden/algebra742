@@ -206,10 +206,10 @@ $('.card img').click(rotateCard);
         <tr>
 
             <th align="center">
-                x 
+                {{ Parameters['variables'][0] }} 
             </th>
             <th align="center">
-                y
+                {{ Parameters['variables'][1] }} 
             </th>
         </tr>
 {% for coordinate_pair_form in form.coordinate_pair_forms %}

@@ -30,7 +30,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for $2 each and a bag of candy for $1 each. How many of each will you buy? The graph shows some possible combinations. Make a table of the values shown in the graph.', 'x': [6,4,2,0], 'y': [0,4,8,12]},
+                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for $2 each and a bag of candy for $1 each. How many of each will you buy? The graph shows some possible combinations. Make a table of the values shown in the graph.', 'x': [6,4,2,0], 'y': [0,4,8,12], 'variables': ['x','y']},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -237,7 +237,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the graph below', 'x': (-5,-3,-1,1), 'y': (4, 2, 0, -2)},
+                {'question': 'Create the input/output table for the graph below', 'x': (-5,-3,-1,1), 'y': (4, 2, 0, -2), 'variables': ['x','y']},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -245,7 +245,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the graph below', 'n': 4, 'seed': 24},
+                {'question': 'Create the input/output table for the graph below', 'n': 4, 'seed': 24, 'variables': ['x','y']},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -253,7 +253,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the mapping diagram below', 'n': 4, 'seed': 25},
+                {'question': 'Create the input/output table for the mapping diagram below', 'n': 4, 'seed': 25, 'variables': ['x','y']},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -333,7 +333,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the graph below', 'n': 5, 'seed': 5},
+                {'question': 'Create the input/output table for the graph below', 'n': 5, 'seed': 5, 'variables': ['x','y']},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -341,7 +341,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 6},
+                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 6, 'variables': ['x','y']},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -361,7 +361,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'Graph.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the graph below', 'n': 5, 'seed': 7},
+                {'question': 'Create the input/output table for the graph below', 'n': 5, 'seed': 7, 'variables': ['x','y']},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -369,7 +369,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'MappingDiagram.html',
             'ParameterSetVariants': [
-                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 8},
+                {'question': 'Create the input/output table for the mapping diagram below', 'n': 5, 'seed': 8, 'variables': ['x','y']},
                 ],
             'SpaceAfter': '4cm',
             },
