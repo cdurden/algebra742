@@ -7,7 +7,7 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for $2 each and a bag of candy for $1 each. How many of each will you buy?',
+                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for $2 each and a bag of candy for $1 each. How many of each will you buy?',}
                 ],
             'SpaceAfter': '4cm',
             },
