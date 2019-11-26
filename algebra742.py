@@ -800,7 +800,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         #form = CoordinatePairsForm()
         n = len(Parameters['variables'])
         variables = Parameters['variables']
-        correct = True
+        if request.method == 'POST':
+            correct = True
         for it,answer_form in enumerate(form.answers.entries):
             try:
                 if simplify(parse_expr(answer_form.answer.data)-parse_expr(variables[it][1])) != 0:
@@ -820,7 +821,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         n = Parameters['n']
         input_coordinates = set()
         lhs,rhs = Parameters['equation'].split("=")
-        correct = True
+        if request.method == 'POST':
+            correct = True
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
                 variables = Parameters['variables']
