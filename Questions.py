@@ -2,7 +2,6 @@ QuestionSets = {
     'LinearEquationsInStandardForm': {
         'ProvideImmediateFeedback': True,
         'Questions': [
-        {
             {
             'Type': 'OpenResponse',
             'Template': 'Question.html',
