@@ -54,7 +54,7 @@ QuestionSets = {
             'Type': 'FindValues',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-            'question': r'Let $x$ and $y$ be the length and width of a yard in feet. Suppose you have 20 feet of fencing. How can you write an equation in standard form to represent the sizes of yards that you could enclose using all of the fencing? <br/><br/>Write an equation, in standard form $Ax+By=C$ and determine the values of $A$, $B$, and $C$.', 'equation': '2x+2y=20', 'variables': [('A', '2'),('B', '2'),('C', '20')]},
+                {'question': r'Let $x$ and $y$ be the length and width of a yard in feet. Suppose you have 20 feet of fencing. How can you write an equation in standard form to represent the sizes of yards that you could enclose using all of the fencing? <br/><br/>Write an equation, in standard form $Ax+By=C$ and determine the values of $A$, $B$, and $C$.', 'equation': '2x+2y=20', 'variables': [('A', '2'),('B', '2'),('C', '20')]},
                 ],
             'SpaceAfter': '4cm',
             },
