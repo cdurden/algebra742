@@ -14,7 +14,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for $2 each and a bag of candy for $1 each. How many of each will you buy? <br/>Let $p$ be the number of bottle of pop that you buy, and let $c$ stand for the number of bags of candy. Can you come up with more than one combination of $b$ and $c$ that you can buy and still spend all of your money?', 'equations': '2p+c=12', 'variables': ['p','c'], 'n': 4},
+                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for $2 each and a bag of candy for $1 each. How many of each will you buy? <br/>Let $p$ be the number of bottle of pop that you buy, and let $c$ stand for the number of bags of candy. Can you come up with more than one combination of $b$ and $c$ that you can buy and still spend all of your money?', 'equation': '2p+c=12', 'variables': ['p','c'], 'n': 4},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -22,7 +22,7 @@ QuestionSets = {
             'Type': 'FindValues',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'A linear equation is an equation that forms a line when graphed. A linear equation can be written in the form $Ax+By=C$. This is called the $\textbf{standard form}$ of a linear equation.', 'equations': '2x+y=12', 'variables': [('A', '2'),('B', '1'),('C', '12')]},
+                {'question': r'A linear equation is an equation that forms a line when graphed. A linear equation can be written in the form $Ax+By=C$. This is called the $\textbf{standard form}$ of a linear equation.', 'equation': '2x+y=12', 'variables': [('A', '2'),('B', '1'),('C', '12')]},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -38,7 +38,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Find pairs of numbers x and y that add up to 12, make a table, and plot the points in the coordinate plane.', 'equations': 'x+y=12',}
+                {'question': 'Find pairs of numbers x and y that add up to 12, make a table, and plot the points in the coordinate plane.', 'equation': 'x+y=12',}
                 ],
             'SpaceAfter': '4cm',
             },
