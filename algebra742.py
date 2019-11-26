@@ -803,7 +803,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         correct = True
         for it,answer_form in enumerate(form.answers.entries):
             try:
-                if simplify(parse_expr(answer_form.answer.data)-parse_expr(variables[1])) != 0:
+                if simplify(parse_expr(answer_form.answer.data)-parse_expr(variables[it][1])) != 0:
                     correct = False
                     break
             except:
