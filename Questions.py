@@ -39,7 +39,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Find pairs of numbers x and y that add up to 12, make a table, and plot the points in the coordinate plane.', 'equations': 'x+y=12',
+                {'question': 'Find pairs of numbers x and y that add up to 12, make a table, and plot the points in the coordinate plane.', 'equations': 'x+y=12',}
                 ],
             'SpaceAfter': '4cm',
             },
