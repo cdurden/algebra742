@@ -130,6 +130,14 @@ class SubmitForm(Form):
     """
     feedback = TextAreaField('feedback')
 
+class GenericForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    #answer = IntegerField('answer')
+    answer = StringField('answer')
+
 class TarsiaForm(Form):
 
     """ Add data from Form
@@ -150,7 +158,7 @@ class FindValuesForm(Form):
 
     :param Form:
     """
-    answers = FieldList(FormField(CoordinatePairForm))
+    answers = FieldList(FormField(GenericForm))
 
 
 class OpenResponseForm(Form):
@@ -253,14 +261,6 @@ class CoordinatePairsForm(Form):
     :param Form:
     """
     coordinate_pair_forms = FieldList(FormField(CoordinatePairForm))
-
-class GenericForm(Form):
-    """ Add data from Form
-
-    :param Form:
-    """
-    #answer = IntegerField('answer')
-    answer = StringField('answer')
 
 class NumericalForm(Form):
     """ Add data from Form
