@@ -140,6 +140,19 @@ class TarsiaForm(Form):
     answers = StringField('answers')
 
 
+class FindValuesForm(Form):
+
+    """ Add data from Form
+
+    :param Form:
+    """
+    """ Add data from Form
+
+    :param Form:
+    """
+    answers = FieldList(FormField(CoordinatePairForm))
+
+
 class OpenResponseForm(Form):
 
     """ Add data from Form
@@ -781,6 +794,46 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             pass
         form.options.choices = choices
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['FindValues']:
+        form = FindValuesForm(data=formdata)
+        #form = CoordinatePairsForm()
+        n = len(Parameters['variables'])
+        variables = Parameters['variables']
+        correct = True
+        for it,answer_form in enumerate(form.answers.entries):
+            try:
+                if simplify(parse_expr(answer_form.answer.data)-parse_expr(variables[1])) != 0
+                    correct = False
+                    break
+            except:
+                message = "Coordinate pairs could not be read.".format(it+1)
+                correct = False
+                break
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['InputOutputTableEquation']:
+        form = CoordinatePairsForm(data=formdata)
+        #form = CoordinatePairsForm()
+        n = Parameters['n']
+        input_coordinates = set()
+        lhs,rhs = Parameters['equation'].split("=")
+        correct = True
+        for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
+            try:
+                variables = Parameters['variables']
+                lhs0 = lhs.replace(variables[0], "({:s})".format(coordinate_pair_form.x.data))
+                rhs0 = lhs.replace(variables[0], "({:s})".format(coordinate_pair_form.x.data))
+                lhs0 = lhs0.replace(variables[1], "({:s})".format(coordinate_pair_form.y.data))
+                rhs0 = lhs0.replace(variables[1], "({:s})".format(coordinate_pair_form.y.data))
+                if parse_expr(lhs0)-parse_expr(rhs0)!=0:
+                    correct = False
+            except:
+                message = "Coordinate pairs could not be read.".format(it+1)
+                correct = False
+                break
+        for it in range(n):
+            if len(form.coordinate_pair_forms.entries) < it+1:
+                form.coordinate_pair_forms.append_entry()
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTable']:
         form = CoordinatePairsForm(data=formdata)

@@ -200,7 +200,7 @@ $('.card img').click(rotateCard);
     {% endif %}
 
 {% endif %}
-{% if QuestionData['Type'] in ['InputOutputTable'] %}
+{% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation'] %}
 <div>
     <table>
         <tr>
@@ -267,6 +267,13 @@ $('.card img').click(rotateCard);
 <div class="answer_choices">
     {{ form.answers }}
 </div>
+{% endif %}
+{% if QuestionData['Type'] in ['FindValues'] %}
+{% for subform in form.answers %}
+<div style="float: left;">
+    {{ Parameters['variables'][loop.index0][0] }} = {{ subform.answer }}
+</div>
+{% endfor %}
 {% endif %}
 {% if QuestionData['Type'] in ['MCMappingDiagram','MCGraph'] %}
 <div class="answer_choices">
