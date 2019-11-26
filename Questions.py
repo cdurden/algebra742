@@ -1,4 +1,116 @@
 QuestionSets = {
+    'LinearEquationsInStandardFormB': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for \$2 each and a bag of candy for \$1 each. How many of each will you buy?',}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Let $p$ be the number of bottles of pop that you buy, and let $c$ stand for the number of bags of candy. Can you come up with more than one combination of $p$ and $c$ that you can buy and still spend all of your money?<br/> $\textbf{Original problem}$: You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for \$2 each and a bag of candy for \$1 each. How many of each will you buy? <br/>', 'equation': '2p+c=12', 'variables': ['p','c'], 'n': 4},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTable',
+            'Template': 'Graph.html',
+            'ParameterSetVariants': [
+                {'question': r'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for \$2 each and a bag of candy for \$1 each. How many of each will you buy? The graph shows some possible combinations. Make a table of the values shown in the graph.', 'x': [6,4,2,0], 'y': [0,4,8,12], 'variables': ['x','y']},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Find pairs of numbers x and y that add up to 12, make a table, and plot the points in the coordinate plane.', 'equation': 'x+y=12', 'n': 4, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'FindValues',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'A $\textbf{linear equation}$ is an equation that forms a line when graphed. A linear equation can be written in the form $Ax+By=C$. This is called the $\textbf{standard form}$ of a linear equation. How can you write an equation in standard for the problem: <br/><br/>$\textbf{Find pairs of numbers x and y that add up to 12.}$. Write your equation and then find the values of $A$, $B$, and $C$.', 'equation': 'x+y=12', 'variables': [('A', '1'),('B', '1'),('C', '12')]},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Suppose you have 20 feet of fencing to enclose all four sides of a rectangular yard. Let $x$ and $y$ be the length and width of a yard in feet. Find four possible combinations of $x$ and $y$, the lengths and widths of yards that can be enclosed with 20 feet of fencing. <br/><br/>Suppose you have 20 feet of fencing.', 'equation': '2x+2y=20', 'variables': ['x','y'], 'n': 4},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'FindValues',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Let $x$ and $y$ be the length and width of the yard in feet. Suppose you have 20 feet of fencing. Use the variables $x$ and $y$ to write an equation that you could use to find the lengths and widths of yards that can be enclose with 20 feet of fencing. <br/><br/>Write an equation, in standard form $Ax+By=C$ and determine the values of $A$, $B$, and $C$.', 'equation': '2x+2y=20', 'variables': [('A', '2'),('B', '2'),('C', '20')]},
+                ],
+            'SpaceAfter': '4cm',
+            },
+#            {
+#            'Type': 'FindValues',
+#            'Template': 'Question.html',
+#            'ParameterSetVariants': [
+#                {'question': r'Write the equation $y=-3x+18$ in standard form $Ax+By=C$.', 'equation': '3x+y=18', 'variables': [('A', '3'),('B', '1'),('C', '18')]},
+#                ],
+#            'SpaceAfter': '4cm',
+#            },
+#            {
+#            'Type': 'FindValues',
+#            'Template': 'Question.html',
+#            'ParameterSetVariants': [
+#                {'question': r'Write the equation $y+2x-6=0$ in standard form $Ax+By=C$.', 'equation': '2x+y=6', 'variables': [('A', '2'),('B', '1'),('C', '6')]},
+#                ],
+#            'SpaceAfter': '4cm',
+#            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Find pairs of numbers x and y that are solutions to the equation $4x+2y=24$.', 'equation': '4x+2y=24', 'n': 4, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Make a table of numbers x and y that are solutions to the equation $3x+6y=42$.', 'equation': '3x+6y=42', 'n': 3, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $x=-3y+27$.', 'equation': 'x+3y=27', 'n': 3, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y=-8x$.', 'equation': 'y=-8x', 'n': 3, 'variables': ['x','y']},
+                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $3x=y$.', 'equation': '3x=y', 'n': 3, 'variables': ['x','y']},
+                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y-8=-x$.', 'equation': 'y-8=-x', 'n': 3, 'variables': ['x','y']},
+                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $x=10-y$.', 'equation': 'x=10-y', 'n': 3, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'LinearEquationsInStandardForm': {
         'ProvideImmediateFeedback': True,
         'Questions': [
