@@ -821,10 +821,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
                 variables = Parameters['variables']
-                lhs0 = lhs.replace(variables[0], "({:s})".format(coordinate_pair_form.x.data))
-                rhs0 = lhs.replace(variables[0], "({:s})".format(coordinate_pair_form.x.data))
-                lhs0 = lhs0.replace(variables[1], "({:s})".format(coordinate_pair_form.y.data))
-                rhs0 = lhs0.replace(variables[1], "({:s})".format(coordinate_pair_form.y.data))
+                lhs0 = lhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
+                rhs0 = lhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
+                lhs0 = lhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
+                rhs0 = lhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
                 if parse_expr(lhs0)-parse_expr(rhs0)!=0:
                     correct = False
             except KeyError:
