@@ -810,6 +810,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 message = "Coordinate pairs could not be read.".format(it+1)
                 correct = False
                 break
+        for it in range(n):
+            if len(form.answers.entries) < it+1:
+                form.answers.append_entry()
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTableEquation']:
         form = CoordinatePairsForm(data=formdata)
