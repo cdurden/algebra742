@@ -828,8 +828,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 app.logger.error(lhs0)
                 app.logger.error(rhs0)
 
-                #if simplify(parse_expr(lhs0)-parse_expr(rhs0))!=0:
-                #    correct = False
+                if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
+                    correct = False
             except AttributeError:
                 message = "Coordinate pairs could not be read.".format(it+1)
                 correct = False
