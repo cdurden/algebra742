@@ -54,15 +54,7 @@ QuestionSets = {
             'Type': 'FindValues',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'A linear equation is an equation that forms a line when graphed. A linear equation can be written in the form $Ax+By=C$. This is called the $\textbf{standard form}$ of a linear equation. How can you write an equation in standard for the problem: $\textbf{Find pairs of numbers x and y that add up to 12.}$', 'equation': 'x+y=12', 'variables': [('A', '1'),('B', '1'),('C', '12')]},
-                ],
-            'SpaceAfter': '4cm',
-            },
-            {
-            'Type': 'FindValues',
-            'Template': 'Question.html',
-            'ParameterSetVariants': [
-                {'question': r'Let $x$ and $y$ be the length and width of a yard in feet. Suppose you have 20 feet of fencing. How can you write an equation in standard form to represent the sizes of yards that you could enclose using all of the fencing? Write an equation, in standard form $Ax+By=C$ and determine the values of $A$, $B$, and $C$.', 'equation': '2x+2y=20', 'variables': [('A', '2'),('B', '2'),('C', '20')]},
+            'question': r'Let $x$ and $y$ be the length and width of a yard in feet. Suppose you have 20 feet of fencing. How can you write an equation in standard form to represent the sizes of yards that you could enclose using all of the fencing? <br/><br/>Write an equation, in standard form $Ax+By=C$ and determine the values of $A$, $B$, and $C$.', 'equation': '2x+2y=20', 'variables': [('A', '2'),('B', '2'),('C', '20')]},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -70,7 +62,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'Let $x$ and $y$ be the length and width of a yard in feet. Suppose you have 20 feet of fencing. How can you write an equation in standard form to represent the sizes of yards that you could enclose using all of the fencing? Use your equation to find four possible combinations of length and widths.', 'equation': '2x+2y=20', 'variables': ['x','y'], 'n': 4},
+                {'question': r'Use your equation to find four possible combinations of $x$ and $y$, the lengths and widths of yards that can be enclosed with 20 feet of fencing. <br/><br/>$\textbf{Original Problem:}$ Let $x$ and $y$ be the length and width of a yard in feet. Suppose you have 20 feet of fencing. How can you write an equation in standard form to represent the sizes of yards that you could enclose using all of the fencing? ', 'equation': '2x+2y=20', 'variables': ['x','y'], 'n': 4},
                 ],
             'SpaceAfter': '4cm',
             },
