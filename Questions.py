@@ -38,7 +38,7 @@ QuestionSets = {
             'Type': 'FindValues',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'A linear equation is an equation that forms a line when graphed. A linear equation can be written in the form $Ax+By=C$. This is called the $\textbf{standard form}$ of a linear equation. How can you write an equation in standard for the problem: $\textbf{Find pairs of numbers x and y that add up to 12.}$', 'equation': 'x+y=12', 'variables': [('A', '1'),('B', '1'),('C', '12')]},
+                {'question': r'A $\textbf{linear equation}$ is an equation that forms a line when graphed. A linear equation can be written in the form $Ax+By=C$. This is called the $\textbf{standard form}$ of a linear equation. How can you write an equation in standard for the problem: <br/><br/>$\textbf{Find pairs of numbers x and y that add up to 12.}$. Write your equation and then find the values of $A$, $B$, and $C$.', 'equation': 'x+y=12', 'variables': [('A', '1'),('B', '1'),('C', '12')]},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -71,6 +71,46 @@ QuestionSets = {
             'Template': 'Question.html',
             'ParameterSetVariants': [
                 {'question': r'Let $x$ and $y$ be the length and width of a yard in feet. Suppose you have 20 feet of fencing. How can you write an equation in standard form to represent the sizes of yards that you could enclose using all of the fencing? Use your equation to find four possible combinations of length and widths.', 'equation': '2x+2y=20', 'variables': ['x','y'], 'n': 4},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'FindValues',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Write the equation $y=-3x+18$ in standard form $Ax+By=C$.', 'equation': '3x+y=18', 'variables': [('A', '3'),('B', '1'),('C', '18')]},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'FindValues',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Write the equation $y+2x-6=0$ in standard form $Ax+By=C$.', 'equation': '2x+y=6', 'variables': [('A', '2'),('B', '1'),('C', '6')]},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Find pairs of numbers x and y that are solutions to the equation $4x+2y=24$.', 'equation': '4x+2y=24', 'n': 4, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Find pairs of numbers x and y that are solutions to the equation $3x+6y=42$.', 'equation': '3x+6y=42', 'n': 4, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Find pairs of numbers x and y that are solutions to the equation $x=-3y+27$.', 'equation': 'x+3y=27', 'n': 4, 'variables': ['x','y']}
                 ],
             'SpaceAfter': '4cm',
             },
