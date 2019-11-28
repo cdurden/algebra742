@@ -140,6 +140,7 @@ def GenerateArrowDiagram(filepath, Parameters):
 #assignment = 'EvaluateFunctions'
 #assignment = 'FunctionsTest'
 assignment = "UsingZeroPairsAndReciprocalPairs"
+assignment = "LinearEquationsInStandardFormB"
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
