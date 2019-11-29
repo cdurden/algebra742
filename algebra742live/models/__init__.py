@@ -183,6 +183,7 @@ class QuestionGame(Game):
     def input(self, player, data, update_game_callback):
         if self.active_question.data.check_answer(data):
             self.active_question = self.active_question.next
+            self.screen_html()
             update_game_callback()
 
 class RequestDenied(Exception):
