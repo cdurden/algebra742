@@ -37,21 +37,17 @@ def create_app():
     with app.app_context():
         # Include our Routes
         from . import routes
-        from .models import QuestionGame
+        from .models import QuestionGame, Node, SinglyLinkedList, get_or_create
         from .models.Question import Question
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
         global ROOMS
-        try:
-            question = db.session.query(Question).get(5)
-            assert question is not None
-        except:
-            question = Question(params_json='{"question": "What is 1+1?"}')
-            db.session.add(question)
-        app.logger.error(question)
-        app.logger.error(question.params_json)
-        ROOMS += [QuestionGame(question)]
+        questions = SinglyLinkedList():
+        for json_data in ['{"question": "What is 1+1?"}', '{"question": "What is 2+1?"}']:
+            question = get_or_create(db.session, Question, params_json=json_data)
+            questions.append(question)
+        ROOMS += [QuestionGame(questions)]
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)

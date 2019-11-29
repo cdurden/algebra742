@@ -81,6 +81,12 @@ def form_submit(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
     print(data)
+    player = ROOMS[0].get_player(request.sid)
+    try:
+        ROOMS[0].input(player, data, update_game)
+    except RequestDenied as err:
+        print(err.message) 
+
 
 
 def update_game():

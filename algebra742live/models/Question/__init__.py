@@ -25,6 +25,10 @@ class Question(db.Model):
         template = jinja_env.get_template("{:s}.html".format(self.__class__.__name__))
         return template.render(json.loads(self.params_json), form=form)
 
+class QuestionOnePlusOne(Question):
+    def check_answer(self, formdata):
+        return(formdata.answer==2)
+
 class PlotQuestion(Question):
     def scripts(self):
         #return({'canvasjs': "https://canvasjs.com/assets/script/canvasjs.min.js", 'plot': url_for('static',filename='js/plot.js')})
