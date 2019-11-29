@@ -8,8 +8,6 @@ from . import socketio, ROOMS
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 
-import json
-
 def error(exception=None):
     """ render error page
 
@@ -85,7 +83,7 @@ def form_submit(data, lti=lti):
     print(data)
     player = ROOMS[0].get_player(request.sid)
     try:
-        ROOMS[0].input(player, json.loads(data), update_game)
+        ROOMS[0].input(player, data, update_game)
     except RequestDenied as err:
         print(err.message) 
 
