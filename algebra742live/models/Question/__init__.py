@@ -27,9 +27,9 @@ class Question(db.Model):
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
+                return template.render(json.loads(self.params_json), form=form)
             except TemplateNotFound:
                 next 
-            return template.render(json.loads(self.params_json), form=form)
 
 
 class QuestionOnePlusOne(Question):
