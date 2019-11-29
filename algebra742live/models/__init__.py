@@ -41,7 +41,7 @@ class Game(object):
         self.room = self.generate_room_id()
         self.date_created = datetime.now()
         self.date_modified = self.date_created
-        self.screen_html = ""
+        #self.screen_html = ""
         #self.__load_deck()
         #random.shuffle(self.deck)
         #for position,card in enumerate(self.deck):
@@ -145,7 +145,7 @@ class Game(object):
         """Serialize object to JSON"""
         return {
             #"game_id": self.game_id,
-            "screen_html": self.screen_html,
+            "screen_html": self.screen_html(),
             "scripts": self.scripts,
             "active_player": self.active_player,
             "players": [player.to_json() for player in self.players],
@@ -168,7 +168,10 @@ class QuestionGame(Game):
     def __init__(self, question, **kwargs):
         Game.__init__(self, kwargs)
         self.scripts = question.scripts()
-        self.screen_html = question.render_html()
+        self.question = question
+
+    def screen_html(self):
+        return(self.question.render_html())
 
 class RequestDenied(Exception):
     def __init__(self, message):
