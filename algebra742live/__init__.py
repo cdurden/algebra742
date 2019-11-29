@@ -44,6 +44,9 @@ def create_app():
         db.create_all()
         global ROOMS
         questions = SinglyLinkedList()
+        #for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
+        #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
+        #    questions.append(question)
         for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
             question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
             questions.append(question)

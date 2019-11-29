@@ -13,16 +13,10 @@ jinja_env = jinja2.Environment(loader=loader)
 class AnswerForm(Form):
     answer = StringField('answer')
 
-class Question(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    source = db.Column(db.Text)
-    params_json = db.Column(db.Text)
-
-    def scripts(self):
-        return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
+    def __init__(self, **kwargs):
+        super().__init__(self, **kwargs)
 
     def render_html(self):
-        form = AnswerForm()
         import inspect
         for base_class in inspect.getmro(self.__class__):
             try:
@@ -30,6 +24,56 @@ class Question(db.Model):
                 return template.render(json.loads(self.params_json), form=form)
             except TemplateNotFound:
                 next 
+
+class MultiPartAnswerForm(Form):
+    parts = []
+
+
+class Question(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    source = db.Column(db.Text)
+    params_json = db.Column(db.Text)
+    form_class = AnswerForm
+
+    def scripts(self):
+        return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
+
+    def render_html(self, form=None):
+        import inspect
+        if form is None:
+            form = self.form_class()
+        for base_class in inspect.getmro(self.__class__):
+            try:
+                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
+                return template.render(json.loads(self.params_json), form=form)
+            except TemplateNotFound:
+                next 
+
+class MultiPartQuestion(Question):
+    form_class = MultiPartAnswerForm
+
+    def render_html(self, form=None):
+        params = json.loads(self.params_json)
+        import importlib
+        if form is None:
+            form = self.form_class()
+        parts = SinglyLinkedList()
+        for part in params['parts']:
+            module_class_string = part['class']
+            module_name, class_name = module_class_string.rsplit(".", 1)
+            module = importlib.import_module(module_name)
+            class_ = getattr(module, class_name)
+            question = get_or_create(db.session, class_, params_json=part['params_json'])
+            parts.append(question)
+            form.parts.append(FormField(question.form_class))
+        import inspect
+        for base_class in inspect.getmro(self.__class__):
+            try:
+                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
+                return template.render(), form=form)
+            except TemplateNotFound:
+                next 
+    
 
 
 class QuestionOnePlusOne(Question):
