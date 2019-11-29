@@ -22,8 +22,12 @@ class Question(db.Model):
 
     def render_html(self):
         form = AnswerForm()
-        template = jinja_env.get_template("{:s}.html".format(self.__class__.__name__))
-        return template.render(json.loads(self.params_json), form=form)
+        try:
+            template = jinja_env.get_template("{:s}.html".format(self.__class__.__name__))
+            return template.render(json.loads(self.params_json), form=form)
+        except TemplateNotFound:
+            return super().render_html()
+
 
 class QuestionOnePlusOne(Question):
     def check_answer(self, formdata):
