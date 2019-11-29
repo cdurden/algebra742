@@ -27,7 +27,7 @@ class Question(db.Model):
             template = jinja_env.get_template("{:s}.html".format(self.__class__.__name__))
             return template.render(json.loads(self.params_json), form=form)
         except TemplateNotFound:
-            return super().render_html()
+            return super(self.__class__, self).render_html()
 
 
 class QuestionOnePlusOne(Question):
