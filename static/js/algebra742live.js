@@ -131,6 +131,7 @@ function update_game(data) {
             cards[player.matched_cards[j].position].style.background=player.color;
         }
     }
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     /*
     flipped_card_positions = [];
     for(var i = 0; i < flipped_cards.length; i++){
@@ -140,9 +141,8 @@ function update_game(data) {
         MathJax.Hub.Queue(["Typeset",MathJax.Hub,card]);
         flipped_card_positions.push(flipped_cards[i].position);
     }
-    */
-    //MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-    /*
+    
+    
     for(var i = 0; i < cards.length; i++){
         if (!flipped_card_positions.includes(i)) {
             cards[i].classList.remove("show", "open", "no-event");
