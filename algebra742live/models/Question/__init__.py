@@ -24,7 +24,7 @@ class Question(db.Model):
     def render_html(self):
         form = AnswerForm()
         import inspect
-        for base_class in inspect.getmro(self):
+        for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
             except TemplateNotFound:
