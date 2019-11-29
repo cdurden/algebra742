@@ -43,7 +43,7 @@ def create_app():
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
         global ROOMS
-        questions = SinglyLinkedList():
+        questions = SinglyLinkedList()
         for json_data in ['{"question": "What is 1+1?"}', '{"question": "What is 2+1?"}']:
             question = get_or_create(db.session, Question, params_json=json_data)
             questions.append(question)
