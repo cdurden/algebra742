@@ -38,14 +38,14 @@ def create_app():
         # Include our Routes
         from . import routes
         from .models import QuestionGame, Node, SinglyLinkedList, get_or_create
-        from .models.Question import Question
+        from .models.Question import QuestionOnePlusOne
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
         global ROOMS
         questions = SinglyLinkedList()
         for json_data in ['{"question": "What is 1+1?"}', '{"question": "What is 2+1?"}']:
-            question = get_or_create(db.session, Question, params_json=json_data)
+            question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
             questions.append(question)
         ROOMS += [QuestionGame(questions)]
 
