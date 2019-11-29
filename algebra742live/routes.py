@@ -75,6 +75,14 @@ def input(data, lti=lti):
     except RequestDenied as err:
         print(err.message) 
 
+@socketio.on('form_submit')
+@lti(request='session', error=error)
+def form_submit(data, lti=lti):
+    print("receiving input")
+    """submit response and rebroadcast game object"""
+    print(data)
+
+
 def update_game():
     print("updating game")
     emit('update_game', ROOMS[0].to_json(), broadcast=True)

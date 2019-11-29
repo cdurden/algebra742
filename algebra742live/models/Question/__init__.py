@@ -18,7 +18,7 @@ class Question(db.Model):
     params_json = db.Column(db.Text)
 
     def scripts(self):
-        pass
+        return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
 
     def render_html(self):
         form = AnswerForm()
