@@ -34,7 +34,7 @@ class Question(db.Model):
 
 class QuestionOnePlusOne(Question):
     def check_answer(self, formdata):
-        return(formdata['answer']==2)
+        return(formdata['answer']=='2')
 
 class PlotQuestion(Question):
     def scripts(self):
