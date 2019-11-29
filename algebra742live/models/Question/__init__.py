@@ -13,8 +13,8 @@ jinja_env = jinja2.Environment(loader=loader)
 class AnswerForm(Form):
     answer = StringField('answer')
 
-    def __init__(self, **kwargs):
-        super().__init__(self, **kwargs)
+#    def __init__(self, **kwargs):
+#        super().__init__(self, **kwargs)
 
     def render_html(self):
         import inspect
