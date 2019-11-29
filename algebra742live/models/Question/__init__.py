@@ -17,6 +17,9 @@ class Question(db.Model):
     source = db.Column(db.Text)
     params_json = db.Column(db.Text)
 
+    def scripts(self):
+        pass
+
     def render_html(self):
         form = AnswerForm()
         template = jinja_env.get_template("{:s}.html".format(self.__class__.__name__))
