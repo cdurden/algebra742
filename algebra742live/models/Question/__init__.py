@@ -50,6 +50,8 @@ class Question(db.Model):
 #        super().__init__(self, **kwargs)
     def build_form(self, formdata=None):
         self.form = self.form_class(MultiDict(formdata))
+        print('building Question form')
+        print(self.form.data)
         return(self.form)
 
     def scripts(self):
@@ -80,6 +82,8 @@ class MultiPartQuestion(Question):
             #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
         #form = F(prefix='test')
         self.form = F(MultiDict(formdata))
+        print('building MultiPartQuestion form')
+        print(self.form.data)
         return(self.form)
 
     def params(self):
@@ -120,6 +124,8 @@ class QuestionOnePlusOne(Question):
 
     def build_form(self, formdata=None):
         self.form = self.form_class(MultiDict(formdata))
+        print('building MultiPartQuestion form')
+        print(self.form.data)
         return(self.form)
 
     def check_answer(self):
