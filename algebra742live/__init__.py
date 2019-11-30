@@ -39,7 +39,7 @@ def create_app():
         # Include our Routes
         from . import routes
         from .models import QuestionGame, Node, SinglyLinkedList, get_or_create
-        from .models.Question import QuestionOnePlusOne
+        from .models.Question import QuestionOnePlusOne, MultiPartQuestion
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
