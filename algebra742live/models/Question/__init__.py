@@ -68,7 +68,7 @@ class MultiPartQuestion(Question):
         for i,part in enumerate(params['parts']):
             setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class))
             setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
-        form = F()
+        form = F(prefix='test')
         return(form)
 
     def params(self):
