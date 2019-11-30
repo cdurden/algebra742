@@ -181,6 +181,7 @@ class QuestionGame(Game):
         return(self.active_question.data.render_html())
 
     def input(self, player, data, update_game_callback):
+        self.active_question.data.build_form(data)
         if self.active_question.data.check_answer():
             self.active_question = self.active_question.next
             self.screen_html()

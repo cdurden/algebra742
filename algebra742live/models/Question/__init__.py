@@ -43,25 +43,33 @@ class Question(db.Model):
     source = db.Column(db.Text)
     params_json = db.Column(db.Text)
     form_class = AnswerForm
+    form = None
+
+#    def __init__(self, **kwargs):
+#        super().__init__(self, **kwargs)
+    def build_form(self, formdata=None):
+        self.form = form_class(formdata)
+        return(self.form)
 
     def scripts(self):
         return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
 
-    def render_html(self, form=None):
+    def render_html(self):
         import inspect
-        if form is None:
-            form = self.form_class()
+        if self.form is None:
+            self.build_form()
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(json.loads(self.params_json), form=form)
+                return template.render(json.loads(self.params_json), form=self.form)
             except TemplateNotFound:
                 next 
 
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
+    form = None
 
-    def form(self):
+    def build_form(self, formdata=None):
         params = self.params()
         class F(MultiPartAnswerForm):
             pass
@@ -70,8 +78,8 @@ class MultiPartQuestion(Question):
             #setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class,_name='part_{:d}'.format(i)))
             #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
         #form = F(prefix='test')
-        form = F()
-        return(form)
+        self.form = F(formdata)
+        return(self.form)
 
     def params(self):
         params = json.loads(self.params_json)
@@ -85,27 +93,34 @@ class MultiPartQuestion(Question):
             part['question'] = question
         return(params)
 
-    def render_html(self, form=None):
+    def render_html(self):
         import inspect
+        if self.form is None:
+            self.build_form()
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(self.params(), form=self.form())
+                return template.render(self.params(), form=self.form)
             except TemplateNotFound:
                 next 
     
     def check_answer(self):
         params = self.params()
-        form = self.form()
         #return all([part['question'].check_answer(getattr(form,'part_'+str(i))) for i,part in enumerate(params['parts'])])
         return all([part['question'].check_answer() for i,part in enumerate(params['parts'])])
 
 
 class QuestionOnePlusOne(Question):
     form_class = AnswerForm
+    form = None
+
+    def build_form(self, formdata=None):
+        self.form = form_class(formdata)
+        return(self.form)
+
     def check_answer(self):
-        print(self.form_class().answer.data)
-        return(self.form_class().answer.data=='2')
+        print(self.form.answer.data)
+        return(self.form.answer.data=='2')
 
 class PlotQuestion(Question):
     def scripts(self):
