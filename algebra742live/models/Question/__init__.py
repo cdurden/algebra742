@@ -66,7 +66,7 @@ class MultiPartQuestion(Question):
         class F(MultiPartAnswerForm):
             pass
         for i,part in enumerate(params['parts']):
-            setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class))
+            setattr(F, 'part_{:d}'.format(i), FieldList(FormField(part['question'].form_class)))
         form = F()
         return(form)
 
