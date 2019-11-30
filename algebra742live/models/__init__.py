@@ -178,6 +178,8 @@ class QuestionGame(Game):
         self.scripts = self.active_question.data.scripts()
 
     def screen_html(self):
+        print(self)
+        print(self.questions)
         self.active_question.data.build_form()
         return(self.active_question.data.render_html())
 
