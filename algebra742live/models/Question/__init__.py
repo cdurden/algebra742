@@ -4,7 +4,7 @@ import jinja2
 import json
 import os
 from flask_wtf import Form
-from wtforms import StringField
+from wtforms import StringField, FormField
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
 from .. import SinglyLinkedList, get_or_create
