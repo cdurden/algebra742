@@ -91,6 +91,10 @@ class MultiPartQuestion(Question):
             except TemplateNotFound:
                 next 
     
+    def check_answer(self, formdata):
+        params = self.params()
+        form = self.form()
+        return all([part['question'].check_answer(getattr(form,'part_'+str(i)).data for i in range(len(params['parts'])))])
 
 
 class QuestionOnePlusOne(Question):
