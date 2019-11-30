@@ -75,7 +75,7 @@ class MultiPartQuestion(Question):
             class_ = getattr(module, class_name)
             question = get_or_create(db.session, class_, params_json=part['params_json'])
 #            questions.append(question)
-            part['question'] = question
+            params['parts'][i]['question'] = question
             setattr(F, 'part_{:d}'.format(i), FormField(question.form_class))
         setattr(F, 'n', len(params['parts']))
         form = F()
