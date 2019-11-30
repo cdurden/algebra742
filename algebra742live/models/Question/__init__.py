@@ -17,14 +17,14 @@ class AnswerForm(Form):
 #    def __init__(self, **kwargs):
 #        super().__init__(self, **kwargs)
 
-#    def render_html(self):
-#        import inspect
-#        for base_class in inspect.getmro(self.__class__):
-#            try:
-#                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-#                return template.render(json.loads(self.params_json), form=form)
-#            except TemplateNotFound:
-#                next 
+    def render_html(self):
+        import inspect
+        for base_class in inspect.getmro(self.__class__):
+            try:
+                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
+                return template.render(form=self)
+            except TemplateNotFound:
+                next 
 
 class MultiPartAnswerForm(Form):
     pass

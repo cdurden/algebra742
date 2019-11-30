@@ -1,3 +1,6 @@
+{% extends "Form.html" %}
+{% block form_content %}
 {{ question }}
 
-{{ form.answer }}
+{{ form.render_html() }}
+{% endblock %}
