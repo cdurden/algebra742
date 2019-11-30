@@ -6,6 +6,7 @@ from flask_socketio import SocketIO
 from flask_redis import FlaskRedis
 from . import default_config
 from . import config
+import json
 
 from sqlalchemy_utils import create_database, database_exists
 
@@ -47,9 +48,9 @@ def create_app():
         #for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
         #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
         #    questions.append(question)
-        for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
-            question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
-            questions.append(question)
+        params = {'parts': [{'class': 'QuestionOnePlusOne', 'params_json': '{"question": "What is $1+1$?"}'}, {'class': 'QuestionOnePlusOne', 'params_json': '{"question": "What is 2+1?"}'}]}
+        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
+        questions.append(question)
         ROOMS += [QuestionGame(questions)]
 
         # Register Blueprints
