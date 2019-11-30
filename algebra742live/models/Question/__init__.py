@@ -8,6 +8,7 @@ from wtforms import StringField, FormField
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
 from .. import SinglyLinkedList, get_or_create
+from werkzeug.datastructures import MultiDict
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
 
@@ -48,7 +49,7 @@ class Question(db.Model):
 #    def __init__(self, **kwargs):
 #        super().__init__(self, **kwargs)
     def build_form(self, formdata=None):
-        self.form = self.form_class(formdata)
+        self.form = self.form_class(MultiDict(formdata))
         return(self.form)
 
     def scripts(self):
@@ -78,7 +79,7 @@ class MultiPartQuestion(Question):
             #setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class,_name='part_{:d}'.format(i)))
             #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
         #form = F(prefix='test')
-        self.form = F(formdata)
+        self.form = F(MultiDict(formdata))
         return(self.form)
 
     def params(self):
@@ -115,7 +116,7 @@ class QuestionOnePlusOne(Question):
     form = None
 
     def build_form(self, formdata=None):
-        self.form = self.form_class(formdata)
+        self.form = self.form_class(MultiDict(formdata))
         return(self.form)
 
     def check_answer(self):
