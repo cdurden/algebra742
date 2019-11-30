@@ -76,6 +76,16 @@ class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
     form = None
 
+    def scripts(self):
+        params = self.params()
+        scripts = {}
+        class F(MultiPartAnswerForm):
+            pass
+        for i,part in enumerate(params['parts']):
+            scripts.update(part['question'].scripts())
+        return(scripts)
+
+
     def build_form(self, formdata=None):
         params = self.params()
         class F(MultiPartAnswerForm):
