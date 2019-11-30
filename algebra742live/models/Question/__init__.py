@@ -47,12 +47,16 @@ class Question(db.Model):
     form = None
 
 #    def __init__(self, **kwargs):
+#        self.params_json = json.dumps(kwargs['params'])
 #        super().__init__(self, **kwargs)
     def build_form(self, formdata=None):
         self.form = self.form_class(MultiDict(formdata))
         print('building Question form')
         print(self.form.data)
         return(self.form)
+
+    def params(self):
+        return(json.loads(self.params_json))
 
     def scripts(self):
         return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
@@ -64,7 +68,7 @@ class Question(db.Model):
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(json.loads(self.params_json), form=self.form)
+                return template.render(self.params(), form=self.form)
             except TemplateNotFound:
                 next 
 
@@ -95,6 +99,7 @@ class MultiPartQuestion(Question):
             module_name, class_name = module_class_string.rsplit(".", 1)
             module = importlib.import_module('..' + module_name, package=__name__)
             class_ = getattr(module, class_name)
+            part['params_json'] = json.dumps(part['params'])
             question = get_or_create(db.session, class_, params_json=part['params_json'])
             part['question'] = question
         return(params)

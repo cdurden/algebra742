@@ -48,12 +48,10 @@ def create_app():
         #for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
         #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
         #    questions.append(question)
-        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params_json': '{"question": "What is $1+1$?"}'}, {'class': 'Question.QuestionOnePlusOne', 'params_json': '{"question": "What is 2+1?"}'}]}
+        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params_json': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params_json': {"question": "What is 2+1?"}}]}
         question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
         questions.append(question)
-        print(questions.head)
         ROOMS += [QuestionGame(questions)]
-        print(ROOMS[0].questions.head)
         print(ROOMS[0].active_question)
 
         # Register Blueprints

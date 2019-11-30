@@ -148,6 +148,7 @@ class Game(object):
             "screen_html": self.screen_html(),
             "scripts": self.scripts,
             "active_player": self.active_player,
+            #"active_question": self.active_question,
             "players": [player.to_json() for player in self.players],
             #"date_created": str(self.date_created),
             #"date_modified": str(self.date_modified),
@@ -174,7 +175,6 @@ class QuestionGame(Game):
     def __init__(self, questions, **kwargs):
         Game.__init__(self, kwargs)
         self.questions = questions
-        print(self.questions.head)
         self.active_question = self.questions.head
         self.scripts = self.active_question.data.scripts()
 
