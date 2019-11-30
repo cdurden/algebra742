@@ -75,7 +75,8 @@ class MultiPartQuestion(Question):
             class_ = getattr(module, class_name)
             question = get_or_create(db.session, class_, params_json=part['params_json'])
 #            questions.append(question)
-            params['parts'][i]['question'] = question
+            #params['parts'][i]['question'] = question
+            part['question'] = question
             setattr(F, 'part_{:d}'.format(i), FormField(question.form_class))
         setattr(F, 'n', len(params['parts']))
         form = F()
@@ -83,7 +84,7 @@ class MultiPartQuestion(Question):
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(json.loads(self.params_json), form=form)
+                return template.render(params, form=form)
             except TemplateNotFound:
                 next 
     
