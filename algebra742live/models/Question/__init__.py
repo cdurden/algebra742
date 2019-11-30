@@ -82,6 +82,7 @@ class MultiPartQuestion(Question):
             #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
         #form = F(prefix='test')
         self.form = F(MultiDict(formdata))
+        print(formdata)
         print('building MultiPartQuestion form')
         print(self.form.data)
         return(self.form)
@@ -124,7 +125,7 @@ class QuestionOnePlusOne(Question):
 
     def build_form(self, formdata=None):
         self.form = self.form_class(MultiDict(formdata))
-        print('building MultiPartQuestion form')
+        print('building QuestionOnePlusOne form')
         print(self.form.data)
         return(self.form)
 
