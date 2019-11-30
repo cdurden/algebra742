@@ -178,7 +178,7 @@ class QuestionGame(Game):
         self.scripts = self.active_question.data.scripts()
 
     def screen_html(self):
-        self.active_question.data.build_form(data)
+        self.active_question.data.build_form()
         return(self.active_question.data.render_html())
 
     def input(self, player, data, update_game_callback):
