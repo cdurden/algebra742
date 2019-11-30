@@ -104,7 +104,7 @@ class MultiPartQuestion(Question):
 class QuestionOnePlusOne(Question):
     form_class = AnswerForm
     def check_answer(self):
-        return(form_class().answer.data=='2')
+        return(self.form_class().answer.data=='2')
 
 class PlotQuestion(Question):
     def scripts(self):
