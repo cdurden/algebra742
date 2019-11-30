@@ -61,30 +61,33 @@ class Question(db.Model):
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
 
-    def render_html(self, form=None):
-        params = json.loads(self.params_json)
-        import importlib
-#        questions = SinglyLinkedList()
+    def form(self):
+        params = self.params()
         class F(MultiPartAnswerForm):
             pass
         for i,part in enumerate(params['parts']):
+            setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class))
+        form = F()
+        return(form)
+
+    def params(self):
+        params = json.loads(self.params_json)
+        import importlib
+        for i,part in enumerate(params['parts']):
             module_class_string = part['class']
             module_name, class_name = module_class_string.rsplit(".", 1)
-            #module = importlib.import_module(module_name, package='algebra742.algebra742live.models')
             module = importlib.import_module('..' + module_name, package=__name__)
             class_ = getattr(module, class_name)
             question = get_or_create(db.session, class_, params_json=part['params_json'])
-#            questions.append(question)
-            #params['parts'][i]['question'] = question
             part['question'] = question
-            setattr(F, 'part_{:d}'.format(i), FormField(question.form_class))
-        setattr(F, 'n', len(params['parts']))
-        form = F()
+        return(params)
+
+    def render_html(self, form=None):
         import inspect
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(params, form=form)
+                return template.render(self.params(), form=self.form())
             except TemplateNotFound:
                 next 
     
