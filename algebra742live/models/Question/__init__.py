@@ -103,6 +103,8 @@ class MultiPartQuestion(Question):
         import inspect
         if self.form is None:
             self.build_form()
+        for i,part in enumerate(params['parts']):
+            part['question'].form = getattr(self.form, 'part_{:d}'.format(i))
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
