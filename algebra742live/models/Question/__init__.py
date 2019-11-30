@@ -94,15 +94,17 @@ class MultiPartQuestion(Question):
             except TemplateNotFound:
                 next 
     
-    def check_answer(self, formdata):
+    def check_answer(self):
         params = self.params()
         form = self.form()
-        return all([part['question'].check_answer(getattr(form,'part_'+str(i)).data) for i,part in enumerate(params['parts'])])
+        #return all([part['question'].check_answer(getattr(form,'part_'+str(i))) for i,part in enumerate(params['parts'])])
+        return all([part['question'].check_answer() for i,part in enumerate(params['parts'])])
 
 
 class QuestionOnePlusOne(Question):
-    def check_answer(self, formdata):
-        return(formdata['answer']=='2')
+    form_class = AnswerForm
+    def check_answer(self):
+        return(form_class().answer.data=='2')
 
 class PlotQuestion(Question):
     def scripts(self):
