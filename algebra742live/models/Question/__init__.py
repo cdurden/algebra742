@@ -27,7 +27,14 @@ class AnswerForm(Form):
                 next 
 
 class MultiPartAnswerForm(Form):
-    parts = []
+    def render_html(self):
+        import inspect
+        for base_class in inspect.getmro(self.__class__):
+            try:
+                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
+                return template.render(json.loads(self.params_json), form=form)
+            except TemplateNotFound:
+                next 
 
 
 class Question(db.Model):
@@ -56,10 +63,10 @@ class MultiPartQuestion(Question):
     def render_html(self, form=None):
         params = json.loads(self.params_json)
         import importlib
-        if form is None:
-            form = self.form_class()
         parts = SinglyLinkedList()
-        for part in params['parts']:
+        class F(MultiPartAnswerForm):
+            pass
+        for i,part in enumerate(params['parts']):
             module_class_string = part['class']
             module_name, class_name = module_class_string.rsplit(".", 1)
             #module = importlib.import_module(module_name, package='algebra742.algebra742live.models')
@@ -67,7 +74,8 @@ class MultiPartQuestion(Question):
             class_ = getattr(module, class_name)
             question = get_or_create(db.session, class_, params_json=part['params_json'])
             parts.append(question)
-            form.parts.append(FormField(question.form_class))
+            setattr(F, 'part_{:d}'.format(i), FormField(question.form_class))
+        setattr(F, 'n', len(params['parts']))
         import inspect
         for base_class in inspect.getmro(self.__class__):
             try:
