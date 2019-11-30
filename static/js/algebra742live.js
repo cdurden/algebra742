@@ -131,7 +131,7 @@ function update_game(data) {
             cards[player.matched_cards[j].position].style.background=player.color;
         }
     }
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    window.MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     /*
     flipped_card_positions = [];
     for(var i = 0; i < flipped_cards.length; i++){
