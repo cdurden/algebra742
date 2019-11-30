@@ -174,6 +174,7 @@ class QuestionGame(Game):
     def __init__(self, questions, **kwargs):
         Game.__init__(self, kwargs)
         self.questions = questions
+        print(self.questions.head)
         self.active_question = self.questions.head
         self.scripts = self.active_question.data.scripts()
 
