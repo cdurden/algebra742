@@ -108,6 +108,9 @@ class MultiPartQuestion(Question):
     def check_answer(self):
         params = self.params()
         #return all([part['question'].check_answer(getattr(form,'part_'+str(i))) for i,part in enumerate(params['parts'])])
+        print(self.form.data)
+        for i,part in enumerate(params['parts']):
+            part['question'].build_form(getattr(self.form,'part_{:d}'.format(i)).data)
         return all([part['question'].check_answer() for i,part in enumerate(params['parts'])])
 
 
