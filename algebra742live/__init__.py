@@ -39,7 +39,7 @@ def create_app():
         # Include our Routes
         from . import routes
         from .models import QuestionGame, Node, SinglyLinkedList, get_or_create
-        from .models.Question import PlotQuestion, QuestionOnePlusOne, MultiPartQuestion
+        from .models.Question import QuestionOnePlusOne, MultiPartQuestion
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
@@ -48,7 +48,7 @@ def create_app():
         #for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
         #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
         #    questions.append(question)
-        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion', 'params': {'question': 'test'}}]}
+        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}]}
         question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
         questions.append(question)
         ROOMS += [QuestionGame(questions)]
