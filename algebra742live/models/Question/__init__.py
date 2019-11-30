@@ -62,7 +62,7 @@ class MultiPartQuestion(Question):
         for part in params['parts']:
             module_class_string = part['class']
             module_name, class_name = module_class_string.rsplit(".", 1)
-            module = importlib.import_module(module_name)
+            module = importlib.import_module(module_name, package='algebra742.algebra742live.models')
             class_ = getattr(module, class_name)
             question = get_or_create(db.session, class_, params_json=part['params_json'])
             parts.append(question)
