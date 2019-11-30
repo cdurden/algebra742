@@ -51,6 +51,7 @@ def create_app():
         params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params_json': '{"question": "What is $1+1$?"}'}, {'class': 'Question.QuestionOnePlusOne', 'params_json': '{"question": "What is 2+1?"}'}]}
         question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
         questions.append(question)
+        print(ROOMS[0].active_question)
         ROOMS += [QuestionGame(questions)]
 
         # Register Blueprints
