@@ -76,6 +76,7 @@ class MultiPartQuestion(Question):
             parts.append(question)
             setattr(F, 'part_{:d}'.format(i), FormField(question.form_class))
         setattr(F, 'n', len(params['parts']))
+        form = F()
         import inspect
         for base_class in inspect.getmro(self.__class__):
             try:
