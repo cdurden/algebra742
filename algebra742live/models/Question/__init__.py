@@ -48,7 +48,7 @@ class Question(db.Model):
 #    def __init__(self, **kwargs):
 #        super().__init__(self, **kwargs)
     def build_form(self, formdata=None):
-        self.form = form_class(formdata)
+        self.form = self.form_class(formdata)
         return(self.form)
 
     def scripts(self):
@@ -115,7 +115,7 @@ class QuestionOnePlusOne(Question):
     form = None
 
     def build_form(self, formdata=None):
-        self.form = form_class(formdata)
+        self.form = self.form_class(formdata)
         return(self.form)
 
     def check_answer(self):
