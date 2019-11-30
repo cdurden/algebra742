@@ -64,7 +64,7 @@ class MultiPartQuestion(Question):
     def render_html(self, form=None):
         params = json.loads(self.params_json)
         import importlib
-        parts = SinglyLinkedList()
+#        questions = SinglyLinkedList()
         class F(MultiPartAnswerForm):
             pass
         for i,part in enumerate(params['parts']):
@@ -74,7 +74,8 @@ class MultiPartQuestion(Question):
             module = importlib.import_module('..' + module_name, package=__name__)
             class_ = getattr(module, class_name)
             question = get_or_create(db.session, class_, params_json=part['params_json'])
-            parts.append(question)
+#            questions.append(question)
+            part['question'] = question
             setattr(F, 'part_{:d}'.format(i), FormField(question.form_class))
         setattr(F, 'n', len(params['parts']))
         form = F()
