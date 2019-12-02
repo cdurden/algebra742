@@ -19,7 +19,7 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
-            'Type': 'GenericAnswer',
+            'Type': 'GenericEquality',
             'Template': 'Question.html',
             'ParameterSetVariants': [
                 {'question': 'You want to save \$200 to buy a gift for a friend. Suppose you have \$80, and you earn \$10 every week for an allowance. How many weeks will it take to earn enough money?', 'CorrectAnswer': '12'}
