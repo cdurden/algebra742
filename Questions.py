@@ -14,7 +14,7 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'One quantity that I care about is...',}
+                {'question': 'One quantity that I care about and that can change is...',}
                 ],
             'SpaceAfter': '4cm',
             },
