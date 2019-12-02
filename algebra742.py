@@ -1083,7 +1083,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         #if len(form.steps.entries)==0 or len(form.steps.entries)==i+1:
         #    form.steps.append_entry()
     if QuestionData['Type'] == 'OpenResponse':
-        form = OpenResponseForm()
+        try:
+            form = OpenResponseForm(data=formdata)
+        except:
+            form = OpenResponseForm()
         if request.method == 'POST':
             correct = True
         else:
