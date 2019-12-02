@@ -58,6 +58,7 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
