@@ -36,14 +36,6 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
-            'Type': 'OpenResponse',
-            'Template': 'Question.html',
-            'ParameterSetVariants': [
-                {'question': 'Suppose you want to save \$300 to buy a gift in the next 12 weeks. Suppose your friend is also going to save money each week? Let $m$ be how much you need to save and let $f$ be how much your friend needs to save. Describe how you determined how much money you and your friend each needed to save. Is there more than one possible answer?',}
-                ],
-            'SpaceAfter': '4cm',
-            },
-            {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
@@ -79,7 +71,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'Each pair of socks in a store costs $6, and each pair of gloves costs $12. If you want to spend exactly $48, Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with 3 pairs of values of $s$ and $g$ that would work.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
+                {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. If you want to spend exactly \$48, Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with 3 pairs of values of $s$ and $g$ that would work.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
                 ],
             'SpaceAfter': '4cm',
             },
@@ -91,14 +83,14 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
-            {
-            'Type': 'OpenResponse',
-            'Template': 'Question.html',
-            'ParameterSetVariants': [
-                {'question': 'Come up with a quantity that depends on more than one variable. Describe a situation in which the quantity arises.',}
-                ],
-            'SpaceAfter': '4cm',
-            },
+#            {
+#            'Type': 'OpenResponse',
+#            'Template': 'Question.html',
+#            'ParameterSetVariants': [
+#                {'question': 'Come up with a quantity that depends on more than one variable. Describe a situation in which the quantity arises.',}
+#                ],
+#            'SpaceAfter': '4cm',
+#            },
 #            {
 #            'Type': 'InputOutputTableEquation',
 #            'Template': 'Question.html',
