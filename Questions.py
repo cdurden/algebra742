@@ -6,7 +6,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. If you want to spend exactly \$48, Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with 3 pairs of values of $s$ and $g$ that would work.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
+                {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. You have exactly \$48, and you want to spend all of it. Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with pairs of values of $s$ and $g$ that would work.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
                 ],
             'SpaceAfter': '6cm',
             },
