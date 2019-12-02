@@ -225,6 +225,12 @@ $('.card img').click(rotateCard);
     </table>
 </div>
 <br/>
+{% if 'explanation' in Parameters and Parameters['explanation']%}
+Explain how you got your answer below.
+<p>
+{{ form.explanation(autofocus=true, style="font-size: 18pt; height: 80px; width:640px; ") }}
+</p>
+{% endif %}
 
 {% if not test %}
 <b>{{ message }}</b>

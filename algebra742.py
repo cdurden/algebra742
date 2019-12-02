@@ -262,6 +262,7 @@ class CoordinatePairsForm(Form):
     :param Form:
     """
     coordinate_pair_forms = FieldList(FormField(CoordinatePairForm))
+    explanation = TextAreaField('explanation')
 
 class NumericalForm(Form):
     """ Add data from Form
