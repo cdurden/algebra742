@@ -11,6 +11,14 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
+            'Type': 'OpenResponse',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'One quantity that I care about is...',}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
             'Type': 'GenericAnswer',
             'Template': 'Question.html',
             'ParameterSetVariants': [
