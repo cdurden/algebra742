@@ -14,7 +14,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. You have exactly \$48, and you want to spend all of it. Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with pairs of values of $s$ and $g$ that would work.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
+                {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. You have exactly \$48, and you want to spend all of it. Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with pairs of values of $s$ and $g$ that would work. Then graph the relationship.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
                 ],
             'SpaceAfter': '6cm',
             },
@@ -22,7 +22,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'Louisa has \$36 in five-dollar bills and singles. Make a table to show how many of each type she could have. Let of $f$ stand for the number of five-dollar bills and let $s$ stand for the number of singles.', 'equation': '5f+s=36', 'variables': ['f','s'], 'n': 3},
+                {'question': r'Louisa has \$36 in five-dollar bills and singles. Make a table to show how many of each type she could have. Then graph the relationship. Let of $f$ stand for the number of five-dollar bills and let $s$ stand for the number of singles.', 'equation': '5f+s=36', 'variables': ['f','s'], 'n': 3},
                 ],
             'SpaceAfter': '6cm',
             },
