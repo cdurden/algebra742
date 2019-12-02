@@ -1,4 +1,89 @@
 QuestionSets = {
+    'LinearEquationsInStandardFormPart2': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'What is one thing that you will do to be successful Chapter 3?',}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'GenericAnswer',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Suppose you have $80 total, and that comes from earning $10 every week for an allowance. How many weeks did it take to earn this money?', 'CorrectAnswer': '8'}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'GenericAnswer',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Suppose you need to save $200 to buy a gift, and you want the money in the next 12 weeks. How much money do you need to earn each week?', 'CorrectAnswer': '200/12'}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'OpenResponse',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Suppose you need to save $200 to buy a gift, and you want the money in the next 12 weeks. Suppose your friend is also going to save money each week? How would you determine how much money you and your friend need to save?',}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Each book in a store costs \$8, and each pen costs \$3. You want to spend exactly \$25. Let $b$ be the number of books and let $p$ be the number of pens that you buy. Make a table with 3 pairs of values that you could use.', 'equation': '8b+3p=25', 'variables': ['b','p'], 'n': 3},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Each pair of socks in a store costs $6, and each pair of gloves costs $7. If you want to spend exactly $40, Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with 3 pairs of values of $s$ and $g$ that would work.', 'equation': '6s+7g=40', 'variables': ['s','g'], 'n': 3},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Louisa has \$36 in five-dollar bills and singles. Make a table to show how many of each type she could have. Let of $f$ stand for the number of five-dollar bills and let $s$ stand for the number of singles.', 'equation': '5f+s=36', 'variables': ['f','s'], 'n': 3},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Find pairs of numbers x and y that are solutions to the equation $6x+2y=24$.', 'equation': '6x+2y=24', 'n': 4, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Make a table of numbers x and y that are solutions to the equation $5x+10y=75$.', 'equation': '5x+10y=75', 'n': 3, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y=-3x$.', 'equation': 'y=-3x', 'n': 3, 'variables': ['x','y']},
+                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y+3=-x$.', 'equation': 'y+3=-x', 'n': 3, 'variables': ['x','y']},
+                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $2x+2y=10$.', 'equation': '2x+2y=10', 'n': 3, 'variables': ['x','y']}
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'LinearEquationsInStandardFormB': {
         'ProvideImmediateFeedback': True,
         'Questions': [
