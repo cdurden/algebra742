@@ -828,9 +828,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             try:
                 variables = Parameters['variables']
                 lhs0 = lhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
-                rhs0 = lhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
+                rhs0 = rhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
                 lhs0 = lhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
-                rhs0 = lhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
+                rhs0 = rhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
                 app.logger.error(lhs0)
                 app.logger.error(rhs0)
 
