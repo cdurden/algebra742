@@ -141,6 +141,7 @@ def GenerateArrowDiagram(filepath, Parameters):
 #assignment = 'FunctionsTest'
 assignment = "UsingZeroPairsAndReciprocalPairs"
 assignment = "LinearEquationsInStandardFormB"
+assignment = "LinearEquationsInStandardFormPart2"
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')

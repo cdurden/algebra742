@@ -1,4 +1,35 @@
 QuestionSets = {
+    'LinearEquationsInStandardFormPart3': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. If you want to spend exactly \$48, Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with 3 pairs of values of $s$ and $g$ that would work.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
+                ],
+            'SpaceAfter': '6cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': r'Louisa has \$36 in five-dollar bills and singles. Make a table to show how many of each type she could have. Let of $f$ stand for the number of five-dollar bills and let $s$ stand for the number of singles.', 'equation': '5f+s=36', 'variables': ['f','s'], 'n': 3},
+                ],
+            'SpaceAfter': '6cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Make a table of numbers x and y that are solutions to the equation $12x+3y=36$.', 'equation': 'x=7y', 'n': 3, 'variables': ['x','y']},
+                {'question': 'Make a table of numbers x and y that are solutions to the equation $x=7y$.', 'equation': 'x=7y', 'n': 3, 'variables': ['x','y']},
+                {'question': 'Make a table of numbers x and y that are solutions to the equation $x=5$.', 'equation': 'x=5', 'n': 3, 'variables': ['x','y']},
+                ],
+            'SpaceAfter': '6cm',
+            },
+        ]
+    },
     'LinearEquationsInStandardFormPart2': {
         'ProvideImmediateFeedback': True,
         'Questions': [
@@ -8,7 +39,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'What is one thing that you will do to be successful in math class during the next three weeks?',}
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'OpenResponse',
@@ -16,7 +47,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'One quantity that I care about and that can change is...',}
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'GenericEquality',
@@ -24,7 +55,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'You want to save \$200 to buy a gift for a friend. Suppose you have \$80, and you earn \$10 every week for an allowance. How many weeks will it take to earn enough money?', 'CorrectAnswer': '12', 'explanation': True}
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'InputOutputTableEquation',
@@ -33,7 +64,7 @@ QuestionSets = {
                 {'question': 'Suppose you want to save \$300 to buy a gift in the next 12 weeks. Suppose your friend is also going to save money each week. How much money do you and your friend each need to save? Let $m$ be how much you need to save and let $f$ be how much your friend needs to save. Put your answers in the table.',
                     'equation': '12f+12m=300', 'n': 2, 'variables': ['f','m'], 'explanation': True}
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'InputOutputTableEquation',
@@ -41,7 +72,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'Find pairs of numbers x and y that are solutions to the equation $12x+12y=300$.', 'equation': '12x+12y=300', 'n': 4, 'variables': ['x','y']}
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'InputOutputTableEquation',
@@ -49,7 +80,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'Find pairs of numbers x and y that are solutions to the equation $6x+2y=24$.', 'equation': '6x+2y=24', 'n': 4, 'variables': ['x','y']}
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'InputOutputTableEquation',
@@ -57,7 +88,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': r'Each book in a store costs \$8, and each pen costs \$4. You want to spend exactly \$24. Let $b$ be the number of books and let $p$ be the number of pens that you buy. Make a table with 3 pairs of values that you could use.', 'equation': '8b+4p=24', 'variables': ['b','p'], 'n': 3},
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'InputOutputTableEquation',
@@ -65,7 +96,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'Make a table of numbers x and y that are solutions to the equation $5x+10y=75$.', 'equation': '5x+10y=75', 'n': 3, 'variables': ['x','y']}
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'InputOutputTableEquation',
@@ -73,7 +104,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. If you want to spend exactly \$48, Let $s$ be the number of books and let $g$ be the number of pens that you buy. Make a table with 3 pairs of values of $s$ and $g$ that would work.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
             {
             'Type': 'InputOutputTableEquation',
@@ -81,7 +112,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': r'Louisa has \$36 in five-dollar bills and singles. Make a table to show how many of each type she could have. Let of $f$ stand for the number of five-dollar bills and let $s$ stand for the number of singles.', 'equation': '5f+s=36', 'variables': ['f','s'], 'n': 3},
                 ],
-            'SpaceAfter': '4cm',
+            'SpaceAfter': '6cm',
             },
 #            {
 #            'Type': 'OpenResponse',
@@ -99,7 +130,7 @@ QuestionSets = {
 #                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y+3=-x$.', 'equation': 'y+3=-x', 'n': 3, 'variables': ['x','y']},
 #                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $2x+2y=10$.', 'equation': '2x+2y=10', 'n': 3, 'variables': ['x','y']}
 #                ],
-#            'SpaceAfter': '4cm',
+#            'SpaceAfter': '6cm',
 #            },
         ]
     },
