@@ -1084,7 +1084,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         #    form.steps.append_entry()
     if QuestionData['Type'] == 'OpenResponse':
         form = OpenResponseForm()
-        correct = True
+        if request.method == 'POST':
+            correct = True
+        else:
+            correct = False
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['MC','RubricScore']:
         try:
