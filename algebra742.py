@@ -137,6 +137,7 @@ class GenericForm(Form):
     """
     #answer = IntegerField('answer')
     answer = StringField('answer')
+    explanation = TextAreaField('explanation')
 
 class TarsiaForm(Form):
 
