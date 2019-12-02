@@ -836,7 +836,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
-            except AttributeError:
+            except:
                 message = "Coordinate pairs could not be read.".format(it+1)
                 correct = False
                 break
