@@ -3,6 +3,14 @@ QuestionSets = {
         'ProvideImmediateFeedback': True,
         'Questions': [
             {
+            'Type': 'OpenResponse',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'What questions do you have about linear equations?',}
+                ],
+            'SpaceAfter': '6cm',
+            },
+            {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
