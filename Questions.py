@@ -6,7 +6,7 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'What is one thing that you will do to be successful Chapter 3?',}
+                {'question': 'What is one thing that you will do to be successful in math class during the next three weeks?',}
                 ],
             'SpaceAfter': '4cm',
             },
