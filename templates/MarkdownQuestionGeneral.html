@@ -314,6 +314,12 @@ $('.card img').click(rotateCard);
 <p>
 {{ form.answer(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
 </p>
+{% if explanation is defined and explanation%}
+Explain how you got your answer below.
+<p>
+{{ form.answer(autofocus=true, style="font-size: 18pt; height: 80px; width:640px; ") }}
+</p>
+{% endif %}
 {% endif %}
 
     <p><input type="submit" value="Submit"></p>
