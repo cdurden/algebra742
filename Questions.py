@@ -19,6 +19,14 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
+            'Type': 'OpenResponse',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Come up with a quantity that depends on more than one variable. Describe a situation in which the quantity arises.',}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
             'Type': 'GenericAnswer',
             'Template': 'Question.html',
             'ParameterSetVariants': [
@@ -81,15 +89,23 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
-            'Type': 'InputOutputTableEquation',
+            'Type': 'OpenResponse',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y=-3x$.', 'equation': 'y=-3x', 'n': 3, 'variables': ['x','y']},
-                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y+3=-x$.', 'equation': 'y+3=-x', 'n': 3, 'variables': ['x','y']},
-                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $2x+2y=10$.', 'equation': '2x+2y=10', 'n': 3, 'variables': ['x','y']}
+                {'question': 'Come up with a quantity that depends on more than one variable. Describe a situation in which the quantity arises.',}
                 ],
             'SpaceAfter': '4cm',
             },
+#            {
+#            'Type': 'InputOutputTableEquation',
+#            'Template': 'Question.html',
+#            'ParameterSetVariants': [
+#                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y=-3x$.', 'equation': 'y=-3x', 'n': 3, 'variables': ['x','y']},
+#                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y+3=-x$.', 'equation': 'y+3=-x', 'n': 3, 'variables': ['x','y']},
+#                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $2x+2y=10$.', 'equation': '2x+2y=10', 'n': 3, 'variables': ['x','y']}
+#                ],
+#            'SpaceAfter': '4cm',
+#            },
         ]
     },
     'LinearEquationsInStandardFormB': {
