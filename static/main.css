@@ -75,6 +75,7 @@ div#nav li {
     display: inline;
 }
 div#content {
+    width: 65%;
     clear: left;
     font-size: 18pt;
 }
