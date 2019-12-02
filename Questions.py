@@ -30,7 +30,23 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Suppose you want to save \$300 to buy a gift in the next 12 weeks. Suppose your friend is also going to save money each week? How would you determine how much money you and your friend need to save?',}
+                {'question': 'Suppose you want to save \$300 to buy a gift in the next 12 weeks. Suppose your friend is also going to save money each week. How much money could you and your friend save each week?',}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'OpenResponse',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Suppose you want to save \$300 to buy a gift in the next 12 weeks. Suppose your friend is also going to save money each week? How would you determine how much money you and your friend each need to save? Let $m$ be how much you need to save and let $f$ be how much your friend needs to save.',}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableEquation',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'Find pairs of numbers x and y that are solutions to the equation $12x+12y=300$.', 'equation': '12x+12y=300', 'n': 4, 'variables': ['x','y']}
                 ],
             'SpaceAfter': '4cm',
             },
