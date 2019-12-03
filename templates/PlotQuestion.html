@@ -1,20 +1,20 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!--<script src="{{ url_for('static', filename='js/plotly_ex1.js') }}"></script>-->
 <script>
-String.prototype.trimLeft = function(charlist) {
+String.prototype.myTrimLeft = function(charlist) {
       if (charlist === undefined)
               charlist = "\s";
 
         return this.replace(new RegExp("^[" + charlist + "]+"), "");
 };
-String.prototype.trimRight = function(charlist) {
+String.prototype.myTrimRight = function(charlist) {
       if (charlist === undefined)
               charlist = "\s";
 
         return this.replace(new RegExp("[" + charlist + "]+$"), "");
 };
-String.prototype.trim = function(charlist) {
-      return this.trimLeft(charlist).trimRight(charlist);
+String.prototype.myTrim = function(charlist) {
+      return this.myTrimLeft(charlist).myTrimRight(charlist);
 };
 window.onload = function () {
 var myPlot = document.getElementById('myDiv'),
@@ -35,7 +35,7 @@ myPlot.on('plotly_click', function(data){
     var answer_input = document.getElementById('set_of_coordinate_pairs');
     //var pts = $("#answer").val();
     var pts = answer_input.value;
-    pts = pts.trim("{}");
+    pts = pts.myTrim("{}");
     for(var i=0; i < data.points.length; i++){
         //pts = 'x = '+data.points[i].x +'\ny = '+
         //    data.points[i].y.toPrecision(4) + '\n\n';
