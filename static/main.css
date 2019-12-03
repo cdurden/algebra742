@@ -75,10 +75,12 @@ div#nav li {
     display: inline;
 }
 div#content {
-    width: 65%;
+    width: 100%;
     clear: left;
     font-size: 18pt;
 }
+#myDiv { width: 50%;}
+#drawing { width: 45%; float: left;}
 #container { position: relative; }
 #imageView { border: 1px solid #000; }
 #imageTemp { position: absolute; top: 1px; left: 1px; }
