@@ -20,7 +20,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                 },
                 {'question': 'Plot the linear equation $5-y=-3x$ using the x- and y-intercepts.',
-                    'x': json.dumps(numpy.linspace(-3,5,num=25).tolist()+[0]*25]),
+                    'x': json.dumps(numpy.linspace(-3,5,num=25).tolist()+[0]*25),
                     'y': json.dumps([0]*25+numpy.linspace(-3,5,num=25).tolist()),
                     'set_of_coordinate_pairs': {(0,5),(-5.0/3,0)},
                     'N': json.dumps(2),
