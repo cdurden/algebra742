@@ -17,12 +17,20 @@ var myPlot = document.getElementById('myDiv'),
 Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
 
 myPlot.on('plotly_click', function(data){
-    var pts = '';
+    var pts = $("#answer").val();
+    pts.trim("{}");
     for(var i=0; i < data.points.length; i++){
-        pts = 'x = '+data.points[i].x +'\ny = '+
-            data.points[i].y.toPrecision(4) + '\n\n';
+        //pts = 'x = '+data.points[i].x +'\ny = '+
+        //    data.points[i].y.toPrecision(4) + '\n\n';
+        if (pts.length>0) {
+            pts = pts+','
+        }
+        pts = pts+'('+data.points[i].x +','+
+            data.points[i].y.toPrecision(4)')';
     }
-    alert('Closest point clicked:\n\n'+pts);
+    pts = '{'+pts+'}'
+    $("#answer").val(pts);
+    //alert('Closest point clicked:\n\n'+pts);
 });
 }
 </script>
