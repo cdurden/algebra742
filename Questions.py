@@ -15,7 +15,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. You have exactly \$48, and you want to spend all of it. Let $s$ be the number of pairs of socks and let $g$ be the number of pairs of gloves that you buy. Make a table with pairs of values of $s$ and $g$ that would work. Then graph the relationship.', 'equation': '6s+8g=48', 'variables': ['s','g'], 'n': 3},
+                {'question': r'Each pair of socks in a store costs \$6, and each pair of gloves costs \$12. You have exactly \$48, and you want to spend all of it. Let $s$ be the number of pairs of socks and let $g$ be the number of pairs of gloves that you buy. Make a table with pairs of values of $s$ and $g$ that would work. Then graph the relationship.', 'equation': '6s+12g=48', 'variables': ['s','g'], 'n': 3},
                 ],
             'SpaceAfter': '6cm',
             },
@@ -88,7 +88,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Make a table of numbers x and y that are solutions to the equation $12x+3y=36$.', 'equation': 'x=7y', 'n': 3, 'variables': ['x','y']},
+                {'question': 'Make a table of numbers x and y that are solutions to the equation $12x+3y=36$.', 'equation': '12x+3y=36', 'n': 3, 'variables': ['x','y']},
                 {'question': 'Make a table of numbers x and y that are solutions to the equation $x=7y$.', 'equation': 'x=7y', 'n': 3, 'variables': ['x','y']},
                 {'question': 'Make a table of numbers x and y that are solutions to the equation $x=5$.', 'equation': 'x=5', 'n': 3, 'variables': ['x','y']},
                 ],
