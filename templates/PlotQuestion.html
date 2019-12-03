@@ -1,6 +1,21 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!--<script src="{{ url_for('static', filename='js/plotly_ex1.js') }}"></script>-->
 <script>
+String.prototype.trimLeft = function(charlist) {
+      if (charlist === undefined)
+              charlist = "\s";
+
+        return this.replace(new RegExp("^[" + charlist + "]+"), "");
+};
+String.prototype.trimRight = function(charlist) {
+      if (charlist === undefined)
+              charlist = "\s";
+
+        return this.replace(new RegExp("[" + charlist + "]+$"), "");
+};
+String.prototype.trim = function(charlist) {
+      return this.trimLeft(charlist).trimRight(charlist);
+};
 window.onload = function () {
 var myPlot = document.getElementById('myDiv'),
     d3 = Plotly.d3,
