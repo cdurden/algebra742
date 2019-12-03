@@ -50,12 +50,12 @@ myPlot.on('plotly_click', function(data){
             pts_x[j] = data.points[i].x;
             pts_y[j] = data.points[i].y;
             pts_array[j] = '('+data.points[i].x +','+
-                        data.points[i].y.toPrecision(4)+')';
+                        data.points[i].y+')';
         } else {
             pts_x.push(data.points[i].x);
             pts_y.push(data.points[i].y);
             pts_array.push('('+data.points[i].x +','+
-                        data.points[i].y.toPrecision(4)+')');
+                        data.points[i].y+')');
         }
         //pts = pts+'('+data.points[i].x +','+
         //    data.points[i].y.toPrecision(4)+')';
