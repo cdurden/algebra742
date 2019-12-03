@@ -1,5 +1,35 @@
 import json
+import numpy
+numpy.linspace(0, 10, num=4)
+def frange(x, y, jump):
+    while x < y:
+        yield x
+        x += jump
 QuestionSets = {
+    'HomeworkDec3': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+            {
+            'Type': 'SetOfCoordinatePairs',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': 'Plot the linear equation $y=4+2x$ using the x- and y-intercepts.',
+                    'x': json.dumps([-4,-3,-2,-1,1,2,3,4,5,6,7,8,0,0,0,0,0,0,0,0,0]),
+                    'y': json.dumps([0,0,0,0,0,0,0,0,0,0,0,0,-1,1,2,3,4,5,6,7,8]),
+                    'set_of_coordinate_pairs': {(0,4),(-2,0)},
+                    'N': json.dumps(2),
+                },
+                {'question': 'Plot the linear equation $5-y=-3x$ using the x- and y-intercepts.',
+                    'x': json.dumps(numpy.linspace(-3,5,num=25).tolist()+[0]*25]),
+                    'y': json.dumps([0]*25+numpy.linspace(-3,5,num=25).tolist()),
+                    'set_of_coordinate_pairs': {(0,5),(-5.0/3,0)},
+                    'N': json.dumps(2),
+                },
+                ],
+            'SpaceAfter': '6cm',
+            },
+        ]
+    },
     'LinearEquationsInStandardFormPart3': {
         'ProvideImmediateFeedback': True,
         'Questions': [
@@ -180,24 +210,6 @@ QuestionSets = {
                 ],
             'SpaceAfter': '6cm',
             },
-#            {
-#            'Type': 'OpenResponse',
-#            'Template': 'Question.html',
-#            'ParameterSetVariants': [
-#                {'question': 'Come up with a quantity that depends on more than one variable. Describe a situation in which the quantity arises.',}
-#                ],
-#            'SpaceAfter': '4cm',
-#            },
-#            {
-#            'Type': 'InputOutputTableEquation',
-#            'Template': 'Question.html',
-#            'ParameterSetVariants': [
-#                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y=-3x$.', 'equation': 'y=-3x', 'n': 3, 'variables': ['x','y']},
-#                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $y+3=-x$.', 'equation': 'y+3=-x', 'n': 3, 'variables': ['x','y']},
-#                {'question': 'Make a table of pairs of numbers x and y that are solutions to the equation $2x+2y=10$.', 'equation': '2x+2y=10', 'n': 3, 'variables': ['x','y']}
-#                ],
-#            'SpaceAfter': '6cm',
-#            },
         ]
     },
     'LinearEquationsInStandardFormB': {
