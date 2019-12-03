@@ -16,8 +16,8 @@ QuestionSets = {
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'question': 'Plot the linear equation $4x+2y=8$ using the x- and y-intercepts.',
-                    'x': json.dumps([1,2,3,4,5,6,7,8,0,0,0,0,0,0,0,0]),
-                    'y': json.dumps([0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8]),
+                    'x': json.dumps([-1,1,2,3,4,5,6,7,8,0,0,0,0,0,0,0,0,0]),
+                    'y': json.dumps([0,0,0,0,0,0,0,0,0,-1,1,2,3,4,5,6,7,8]),
                     'set_of_coordinate_pairs': {(0,4),(2,0)},
                     'N': json.dumps(2),
                 },
