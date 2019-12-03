@@ -6,6 +6,38 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'XAndYInterceptsPractice': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': 'What questions do you have about graphing linear equations?',}
+                ],
+            'SpaceAfter': '6cm',
+            },
+            {
+            'Type': 'SetOfCoordinatePairs',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': 'Plot the linear equation $7x+14y=21$ using the x- and y-intercepts.',
+                    'x': json.dumps(numpy.linspace(-1,5,num=13).tolist()+[0]*13),
+                    'y': json.dumps([0]*13+numpy.linspace(-1,5,num=13).tolist()),
+                    'set_of_coordinate_pairs': {(0,3.0/2),(3,0)},
+                    'N': json.dumps(2),
+                },
+                {'question': 'What is the x-intercept of the linear equation $5x+2y=10$?',
+                    'x': json.dumps([1,2,3,4,5,6,7,8,0,0,0,0,0,0,0,0]),
+                    'y': json.dumps([0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8]),
+                    'set_of_coordinate_pairs': {(2,0)},
+                    'N': json.dumps(1),
+                },
+            ],
+            'SpaceAfter': '6cm',
+            },
+        ]
+    },
     'HomeworkDec3': {
         'ProvideImmediateFeedback': True,
         'Questions': [
