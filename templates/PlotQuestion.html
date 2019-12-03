@@ -29,7 +29,8 @@ var myPlot = document.getElementById('myDiv'),
         title:'Click on Points'
      };
 
-Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
+//Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
+Plotly.react('myDiv', data, layout, {showSendToCloud: true});
 var j = 0;
 var pts_array = [];
 myPlot.on('plotly_click', function(data){
@@ -53,6 +54,18 @@ myPlot.on('plotly_click', function(data){
         //pts = pts+'('+data.points[i].x +','+
         //    data.points[i].y.toPrecision(4)+')';
     }
+    layout.shapes = [{
+      type: 'line',
+      x0: 1,
+      y0: 0,
+      x1: 1,
+      y1: 2,
+      line: {
+        color: 'rgb(55, 128, 191)',
+        width: 3
+      }
+    }];
+    Plotly.react('myDiv', data, layout, {showSendToCloud: true});
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
     answer_input.value = pts;
