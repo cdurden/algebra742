@@ -11,6 +11,14 @@ QuestionSets = {
             'SpaceAfter': '6cm',
             },
             {
+            'Type': 'SetOfCoordinatePairs',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': '',}
+                ],
+            'SpaceAfter': '6cm',
+            },
+            {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
