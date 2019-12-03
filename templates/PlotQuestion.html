@@ -33,6 +33,8 @@ var myPlot = document.getElementById('myDiv'),
 Plotly.react('myDiv', point_data, layout, {showSendToCloud: true});
 var j = 0;
 var pts_array = [];
+var pts_x = [];
+var pts_y = [];
 myPlot.on('plotly_click', function(data){
     var answer_input = document.getElementById('set_of_coordinate_pairs');
     //var pts = $("#answer").val();
@@ -45,9 +47,13 @@ myPlot.on('plotly_click', function(data){
             pts = pts+','
         }
         if (pts_array.length > j) {
+            pts_x[j] = data.points[i].x;
+            pts_y[j] = data.points[i].y;
             pts_array[j] = '('+data.points[i].x +','+
                         data.points[i].y.toPrecision(4)+')';
         } else {
+            pts_x.push(data.points[i].x);
+            pts_y.push(data.points[i].y);
             pts_array.push('('+data.points[i].x +','+
                         data.points[i].y.toPrecision(4)+')');
         }
@@ -56,10 +62,10 @@ myPlot.on('plotly_click', function(data){
     }
     layout.shapes = [{
       type: 'line',
-      x0: 1,
-      y0: 0,
-      x1: 1,
-      y1: 2,
+      x0: pts_x[0],
+      y0: pts_y[0],
+      x1: pts_x[1],
+      y1: pts_y[1],
       line: {
         color: 'rgb(55, 128, 191)',
         width: 3
