@@ -1,3 +1,4 @@
+import json
 QuestionSets = {
     'LinearEquationsInStandardFormPart3': {
         'ProvideImmediateFeedback': True,
@@ -14,7 +15,9 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': '',}
+                {'question': '',
+                    'x': json.dumps([1,2,3,4,5,6,7,8,0,0,0,0,0,0,0,0]),
+                    'y': json.dumps([0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8])}
                 ],
             'SpaceAfter': '6cm',
             },
