@@ -17,7 +17,9 @@ var myPlot = document.getElementById('myDiv'),
 Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
 
 myPlot.on('plotly_click', function(data){
-    var pts = $("#answer").val();
+    var answer_input = document.getElementById('answer');
+    //var pts = $("#answer").val();
+    var pts = answer_input.value;
     pts.trim("{}");
     for(var i=0; i < data.points.length; i++){
         //pts = 'x = '+data.points[i].x +'\ny = '+
@@ -29,7 +31,8 @@ myPlot.on('plotly_click', function(data){
             data.points[i].y.toPrecision(4)+')';
     }
     pts = '{'+pts+'}'
-    $("#answer").val(pts);
+    //$("#answer").val(pts);
+    answer_input.value = pts;
     //alert('Closest point clicked:\n\n'+pts);
 });
 }
