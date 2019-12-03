@@ -26,7 +26,13 @@ var myPlot = document.getElementById('myDiv'),
             mode:'markers', marker:{size:1} } ],
     layout = {
         hovermode:'closest',
-        title:'Click on Points'
+        title:'Click on Points',
+        xaxis: {
+            dtick: 1,
+        },
+        yaxis: {
+            dtick: 1,
+        },
      };
 
 //Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
