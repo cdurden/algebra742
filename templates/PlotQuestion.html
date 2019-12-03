@@ -17,7 +17,7 @@ var myPlot = document.getElementById('myDiv'),
 Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
 
 myPlot.on('plotly_click', function(data){
-    var answer_input = document.getElementById('answer');
+    var answer_input = document.getElementById('set_of_coordinate_pairs');
     //var pts = $("#answer").val();
     var pts = answer_input.value;
     pts.trim("{}");
