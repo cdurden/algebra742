@@ -64,6 +64,9 @@ window.addEventListener('load', function () {
     canvas.addEventListener('mousedown', ev_canvas, false);
     canvas.addEventListener('mousemove', ev_canvas, false);
     canvas.addEventListener('mouseup',   ev_canvas, false);
+    canvas.addEventListener('touchstart', ev_canvas, false);
+    canvas.addEventListener('touchmove', ev_canvas, false);
+    canvas.addEventListener('touchend',   ev_canvas, false);
   }
 
   // The general-purpose event handler. This function just determines the mouse 
@@ -172,6 +175,9 @@ window.addEventListener('load', function () {
         img_update();
       }
     };
+    this.touchstart = this.mousedown;
+    this.touchmove = this.mousemove;
+    this.touchend = this.mouseup;
   };
 
   // The line tool.
@@ -206,6 +212,9 @@ window.addEventListener('load', function () {
         img_update();
       }
     };
+    this.touchstart = this.mousedown;
+    this.touchmove = this.mousemove;
+    this.touchend = this.mouseup;
   };
 
   init();
