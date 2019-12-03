@@ -136,6 +136,13 @@ window.addEventListener('load', function () {
         img_update();
       }
     };
+    this.touchend = function (ev) {
+      if (tool.started) {
+        tool.touchmove(ev);
+        tool.started = false;
+        img_update();
+      }
+    };
   };
 
   // The rectangle tool.
@@ -175,9 +182,15 @@ window.addEventListener('load', function () {
         img_update();
       }
     };
+    this.touchend = function (ev) {
+      if (tool.started) {
+        tool.touchmove(ev);
+        tool.started = false;
+        img_update();
+      }
+    };
     this.touchstart = this.mousedown;
     this.touchmove = this.mousemove;
-    this.touchend = this.mouseup;
   };
 
   // The line tool.
@@ -212,9 +225,15 @@ window.addEventListener('load', function () {
         img_update();
       }
     };
+    this.touchend = function (ev) {
+      if (tool.started) {
+        tool.touchmove(ev);
+        tool.started = false;
+        img_update();
+      }
+    };
     this.touchstart = this.mousedown;
     this.touchmove = this.mousemove;
-    this.touchend = this.mouseup;
   };
 
   init();
