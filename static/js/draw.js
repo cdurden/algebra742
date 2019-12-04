@@ -41,8 +41,9 @@ window.addEventListener('load', function () {
     }
 
     canvas.id     = 'imageTemp';
-    canvas.width  = canvaso.width;
-    canvas.height = canvaso.height;
+    //canvas.width  = canvaso.width;
+    //canvas.height = canvaso.height;
+    canvas.class = 'imageCanvas';
     container.appendChild(canvas);
 
     context = canvas.getContext('2d');
