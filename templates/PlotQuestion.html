@@ -91,8 +91,8 @@ function plot_data(data){
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
     if (!no_answer) {
-      answer_input.value = pts;
       var answer_input = document.getElementById('set_of_coordinate_pairs');
+      answer_input.value = pts;
       pts = answer_input.value;
     }
     //alert('Closest point clicked:\n\n'+pts);
