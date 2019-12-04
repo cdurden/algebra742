@@ -83,7 +83,7 @@ div#content {
 #drawing { width: 45%; overflow: auto width; position: absolute; left: 50%;}
 #container { position: relative; }
 #imageView { border: 1px solid #000; position: absolute; top: 10px; left: 10px; touch-action: none; }
-#imageTemp { position: absolute; top: 10px; left: 10px; }
+#imageTemp { position: absolute; top: 10px; left: 10px; touch-action: none;}
 div#canvas_container
 {
   border: red 1px solid;
