@@ -166,9 +166,9 @@ window.addEventListener('load', function () {
     // This is called when you start holding down the mouse button.
     // This starts the erasing.
     this.mousedown = function (ev) {
-        context.globalCompositeOperation="destination-out";
-        context.strokeStyle = "rgba(0,0,0,1)";
-        //context.globalCompositeOperation="source-over";
+        //context.globalCompositeOperation="destination-out";
+        context.globalCompositeOperation="source-over";
+        context.strokeStyle = "rgba(1,1,1,1)";
         context.lineWidth = 10;
         context.beginPath();
         context.moveTo(ev._x, ev._y);
