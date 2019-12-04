@@ -77,18 +77,18 @@ window.addEventListener('load', function () {
     }
 
     // Attach the mousedown, mousemove and mouseup event listeners.
-    canvas.addEventListener('mousedown', ev_canvas, false);
-    canvas.addEventListener('mousemove', ev_canvas, false);
-    canvas.addEventListener('mouseup',   ev_canvas, false);
-    canvas.addEventListener('touchstart', ev_canvas, false);
-    canvas.addEventListener('touchmove', ev_canvas, false);
-    canvas.addEventListener('touchend',   ev_canvas, false);
-    canvaso.addEventListener('mousedown', function(ev) {ev.preventDefault()}, false);
-    canvaso.addEventListener('mousemove', function(ev) {ev.preventDefault()}, false);
-    canvaso.addEventListener('mouseup', function(ev) {ev.preventDefault()}, false);
-    canvaso.addEventListener('touchstart', function(ev) {ev.preventDefault()}, false);
-    canvaso.addEventListener('touchmove', function(ev) {ev.preventDefault()}, false);
-    canvaso.addEventListener('touchend', function(ev) {ev.preventDefault()}, false);
+    canvas.addEventListener('mousedown', ev_canvas, {passive: false});
+    canvas.addEventListener('mousemove', ev_canvas, { passive: false });
+    canvas.addEventListener('mouseup',   ev_canvas, { passive: false });
+    canvas.addEventListener('touchstart', ev_canvas, { passive: false });
+    canvas.addEventListener('touchmove', ev_canvas, { passive: false });
+    canvas.addEventListener('touchend',   ev_canvas, { passive: false });
+    canvaso.addEventListener('mousedown', function(ev) {ev.preventDefault()}, { passive: false });
+    canvaso.addEventListener('mousemove', function(ev) {ev.preventDefault()}, { passive: false });
+    canvaso.addEventListener('mouseup', function(ev) {ev.preventDefault()}, { passive: false });
+    canvaso.addEventListener('touchstart', function(ev) {ev.preventDefault()}, { passive: false });
+    canvaso.addEventListener('touchmove', function(ev) {ev.preventDefault()}, { passive: false });
+    canvaso.addEventListener('touchend', function(ev) {ev.preventDefault()}, { passive: false });
   }
 
   // The general-purpose event handler. This function just determines the mouse 
