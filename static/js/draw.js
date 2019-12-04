@@ -162,9 +162,10 @@ window.addEventListener('load', function () {
     this.started = false;
 
     // This is called when you start holding down the mouse button.
-    // This starts the pencil drawing.
+    // This starts the erasing.
     this.mousedown = function (ev) {
         context.beginPath();
+        context.moveTo(ev._x, ev._y);
         tool.started = true;
     };
 
@@ -264,7 +265,6 @@ window.addEventListener('load', function () {
       }
 
       context.clearRect(0, 0, canvas.width, canvas.height);
-
       context.beginPath();
       context.moveTo(tool.x0, tool.y0);
       context.lineTo(ev._x,   ev._y);
