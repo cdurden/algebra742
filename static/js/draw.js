@@ -18,10 +18,10 @@ window.addEventListener('load', function () {
       //canvas.width  = canvaso.width;
       //canvas.height = canvaso.height;
       var rect = canvas_container.getBoundingClientRect();
-      canvas.width  = rect.width;
-      canvas.height = rect.height;
-      canvaso.width  = rect.width;
-      canvaso.height = rect.height;
+      canvas.width  = rect.width-20;
+      canvas.height = rect.height-20;
+      canvaso.width  = rect.width-20;
+      canvaso.height = rect.height-20;
     });
     // Find the canvas element.
     canvaso = document.getElementById('imageView');
