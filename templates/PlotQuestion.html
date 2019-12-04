@@ -53,7 +53,6 @@ var pts_x = [];
 var pts_y = [];
 myPlot.on('plotly_click', plot_data);
 function plot_data(data){
-    var answer_input = document.getElementById('set_of_coordinate_pairs');
     //var pts = $("#answer").val();
     for(var i=0; i < data.points.length; i++){
         //pts = 'x = '+data.points[i].x +'\ny = '+
@@ -98,7 +97,8 @@ function plot_data(data){
     //alert('Closest point clicked:\n\n'+pts);
     j=(j+1)%N;
 }
-    var pts = answer_input.value;
+    var answer_input = document.getElementById('set_of_coordinate_pairs');
+    pts = answer_input.value;
     pts = pts.myTrim("{()}");
     pts_list = pts.split("),(");
     pts_data = { 'points': pts_list.map(xy => { return({'x': xy[0], 'y': xy[1]})}) };
