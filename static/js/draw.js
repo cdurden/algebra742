@@ -125,6 +125,7 @@ window.addEventListener('load', function () {
     // This starts the pencil drawing.
     this.mousedown = function (ev) {
         tool.started = true;
+        window.addEventListener("mouseup", tool.mouseup, false);
     };
 
     // This function is called every time you move the mouse. Obviously, it only 
