@@ -23,6 +23,7 @@ var myPlot = document.getElementById('myDiv'),
     N = {{ N|safe }},
     x = {{ x|safe }},
     y = {{ y|safe }},
+    no_answer = {{ no_answer | safe }},
     point_data = [ { x:x, y:y, type:'scatter',
             mode:'markers', marker:{size:1}, showlegend: false } ],
     //point_data0 = [],
@@ -89,11 +90,13 @@ function plot_data(data){
     //Plotly.react('myDiv', point_data0.concat(point_data), layout, {showSendToCloud: true});
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
-    answer_input.value = pts;
+    if (not no_answer) {
+      answer_input.value = pts;
+      var answer_input = document.getElementById('set_of_coordinate_pairs');
+      pts = answer_input.value;
+    }
     //alert('Closest point clicked:\n\n'+pts);
 }
-    var answer_input = document.getElementById('set_of_coordinate_pairs');
-    pts = answer_input.value;
     pts = pts.myTrim("{()}");
     pts_list = pts.split("),(");
     pts_data = { 'points': pts_list.map(xy_str => { xy = xy_str.split(","); return({'x': xy[0], 'y': xy[1]})}) };

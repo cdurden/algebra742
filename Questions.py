@@ -110,10 +110,10 @@ QuestionSets = {
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'question': 'Can you draw a line that has only an x-intercept or only a y-intercept?',
-                    'x': json.dumps(numpy.linspace(-1,5,num=13).tolist()+[0]*13),
-                    'y': json.dumps([0]*13+numpy.linspace(-1,5,num=13).tolist()),
-                    'set_of_coordinate_pairs': {(0,3.0/2),(3,0)},
+                    'x': json.dumps([x[0] for x in grid]),
+                    'y': json.dumps([x[1] for x in grid]),
                     'N': json.dumps(2),
+                    'no_answer': json.dumps(True),
                 },
             ],
             'SpaceAfter': '6cm',
