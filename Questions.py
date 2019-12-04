@@ -6,6 +6,44 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'StainedGlassGraphs': {
+        'ProvideImmediateFeedback': True,
+        'Questions': [
+            {
+            'Type': 'SetOfCoordinatePairs',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': '$x+2y=-8$',
+                    'x': json.dumps(numpy.linspace(-12,12,num=25).tolist()+[0]*25),
+                    'y': json.dumps([0]*25+numpy.linspace(-12,12,num=25).tolist()),
+                    'set_of_coordinate_pairs': {(0,-4),(-8,0)},
+                    'N': json.dumps(2),
+                },
+                {'question': '$x+y=12$',
+                    'x': json.dumps(numpy.linspace(-12,12,num=25).tolist()+[0]*25),
+                    'y': json.dumps([0]*25+numpy.linspace(-12,12,num=25).tolist()),
+                    'set_of_coordinate_pairs': {(0,12),(12,0)},
+                    'N': json.dumps(2),
+                },
+            ],
+            'SpaceAfter': '3cm',
+            },
+            {
+            'Type': 'SetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': '$y=12$',
+                    'x': json.dumps(numpy.linspace(-12,12,num=25).tolist()+[0]*25+numpy.linspace(-12,12,num=25).tolist()),
+                    'y': json.dumps([0]*25+numpy.linspace(-12,12,num=25).tolist()+[12]*25),
+                    'N': json.dumps(2),
+                    'variables': ['x','y'],
+                    'equation': 'y=12',
+                },
+            ],
+            'SpaceAfter': '3cm',
+            },
+        ]
+    },
     'XAndYInterceptsPractice': {
         'ProvideImmediateFeedback': True,
         'Questions': [
