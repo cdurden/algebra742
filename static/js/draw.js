@@ -17,10 +17,11 @@ window.addEventListener('load', function () {
     new ResizeSensor(canvas_container, function(){ 
       //canvas.width  = canvaso.width;
       //canvas.height = canvaso.height;
-      canvas.width  = canvas_container.width;
-      canvas.height = canvas_container.height;
-      canvaso.width  = canvas_container.width;
-      canvaso.height = canvas_container.height;
+      var rect = canvas_container.getBoundingClientRect();
+      canvas.width  = rect.width;
+      canvas.height = rect.height;
+      canvaso.width  = rect.width;
+      canvaso.height = rect.height;
     });
     // Find the canvas element.
     canvaso = document.getElementById('imageView');
