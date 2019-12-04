@@ -47,20 +47,20 @@ var myPlot = document.getElementById('myDiv'),
 //Plotly.react('myDiv', point_data, layout, {showSendToCloud: true});
 Plotly.react('myDiv', point_data, layout);
 var j = 0;
+var pts;
 var pts_array = [];
 var pts_x = [];
 var pts_y = [];
-myPlot.on('plotly_click', function(data){
+myPlot.on('plotly_click', plot_data);
+plot_data function(data){
     var answer_input = document.getElementById('set_of_coordinate_pairs');
     //var pts = $("#answer").val();
-    var pts = answer_input.value;
-    pts = pts.myTrim("{}");
     for(var i=0; i < data.points.length; i++){
         //pts = 'x = '+data.points[i].x +'\ny = '+
         //    data.points[i].y.toPrecision(4) + '\n\n';
-        if (pts.length>0) {
-            pts = pts+','
-        }
+        //if (pts.length>0) {
+        //    pts = pts+','
+        //}
         if (pts_array.length > j) {
             pts_x[j] = data.points[i].x;
             pts_y[j] = data.points[i].y;
@@ -97,7 +97,12 @@ myPlot.on('plotly_click', function(data){
     answer_input.value = pts;
     //alert('Closest point clicked:\n\n'+pts);
     j=(j+1)%N;
-});
+}
+    var pts = answer_input.value;
+    pts = pts.myTrim("{()}");
+    pts_list = pts.split("),(");
+    pts_data = pts_list.map(xy => {x: xy[0], y:xy[1]});
+    plot_data(pts_data);
 }
 </script>
 <script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
