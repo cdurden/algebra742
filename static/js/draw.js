@@ -113,6 +113,8 @@ window.addEventListener('load', function () {
     if (func) {
       func(ev);
     }
+    ev.preventDefault();
+    return false;
   }
 
   // The event handler for any changes made to the tool selector.
