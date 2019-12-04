@@ -123,8 +123,10 @@ window.addEventListener('load', function () {
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
     this.mousedown = function (ev) {
+        context.globalCompositeOperation="source-in";
         context.beginPath();
         context.moveTo(ev._x, ev._y);
+        context.lineWidth = 1;
         tool.started = true;
     };
 
@@ -165,7 +167,9 @@ window.addEventListener('load', function () {
     // This starts the erasing.
     this.mousedown = function (ev) {
         context.beginPath();
+        context.globalCompositeOperation="destination-out";
         context.moveTo(ev._x, ev._y);
+        context.lineWidth = 10;
         tool.started = true;
     };
 
@@ -174,10 +178,10 @@ window.addEventListener('load', function () {
     // the mouse button).
     this.mousemove = function (ev) {
       if (tool.started) {
-/*        context.globalCompositeOperation="destination-out";
-        context.arc(ev._x,ev._y,8,0,Math.PI*2,false);
-        context.fill();
-        */
+        context.lineTo(ev._x, ev._y);
+        context.stroke();
+        //context.arc(ev._x,ev._y,8,0,Math.PI*2,false);
+        //context.fill();
       }
     };
 
