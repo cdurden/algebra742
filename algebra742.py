@@ -755,6 +755,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             for input_coordinate_pair_string in input_coordinate_pairs:
                 input_coordinate_pair = tuple(float(x.strip("{()} ")) for x in input_coordinate_pair_string.split(","))
                 input_set_of_coordinate_pairs.add(input_coordinate_pair)
+            if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
+                correct = False
             app.logger.error(input_set_of_coordinate_pairs)
             app.logger.error(Parameters['set_of_coordinate_pairs'])
             correct = input_set_of_coordinate_pairs == Parameters['set_of_coordinate_pairs']
@@ -861,6 +863,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             input_set_of_coordinate_pairs = set()
             for input_coordinate_pair_string in input_coordinate_pairs:
                 input_coordinate_pair = tuple(float(x.strip("{()} ")) for x in input_coordinate_pair_string.split(","))
+                input_set_of_coordinate_pairs.add(input_coordinate_pair)
                 x = input_coordinate_pair[0]
                 y = input_coordinate_pair[1]
                 variables = Parameters['variables']
@@ -873,6 +876,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
+            if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
+                correct = False
         except:
             message = "Coordinate pairs could not be read."
             correct = False
