@@ -166,8 +166,8 @@ window.addEventListener('load', function () {
     // This is called when you start holding down the mouse button.
     // This starts the erasing.
     this.mousedown = function (ev) {
-        context.beginPath();
         context.globalCompositeOperation="destination-out";
+        context.beginPath();
         context.moveTo(ev._x, ev._y);
         context.lineWidth = 10;
         tool.started = true;
