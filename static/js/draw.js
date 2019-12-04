@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
   var lastX, lastY;
 
   function init () {
-    new ResizeSensor(document.getElementById('#canvas_container'), function(){ 
+    new ResizeSensor(document.getElementById('canvas_container'), function(){ 
       canvas.width  = canvaso.width;
       canvas.height = canvaso.height;
     });
