@@ -78,10 +78,10 @@ window.addEventListener('load', function () {
     } else if (ev.offsetX || ev.offsetX == 0) { // Opera
       ev._x = ev.offsetX;
       ev._y = ev.offsetY;
-    } else if (ev.touches) {
+    } else if (ev.targetTouches) {
       var rect = ev.target.getBoundingClientRect();
-      ev._x = ev.touches[0].pageX - rect.left;
-      ex._y = ev.touches[0].pageY - rect.top;
+      ev._x = ev.targetTouches[0].pageX - rect.left;
+      ex._y = ev.targetTouches[0].pageY - rect.top;
     }
 
     // Call the event handler of the tool.
