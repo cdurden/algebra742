@@ -52,7 +52,7 @@ var pts_array = [];
 var pts_x = [];
 var pts_y = [];
 myPlot.on('plotly_click', plot_data);
-plot_data function(data){
+function plot_data(data){
     var answer_input = document.getElementById('set_of_coordinate_pairs');
     //var pts = $("#answer").val();
     for(var i=0; i < data.points.length; i++){
