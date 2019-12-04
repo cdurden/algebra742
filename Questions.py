@@ -110,7 +110,7 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': '<b>Bellringer:</b> Can you draw a line that has only an x-intercept or only a y-intercept? Tap on the coordinate grid at two points to try to draw such a line. Then explain your answer in the box below.',
+                {'question': 'Bellringer: Can you draw a line that has only an x-intercept or only a y-intercept? Tap on the coordinate grid at two points to try to draw such a line. Then explain your answer in the box below.',
                     'x': json.dumps([x[0] for x in grid]),
                     'y': json.dumps([x[1] for x in grid]),
                     'N': json.dumps(2),
