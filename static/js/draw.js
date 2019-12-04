@@ -116,6 +116,45 @@ window.addEventListener('load', function () {
   // This object holds the implementation of each drawing tool.
   var tools = {};
 
+  // resize
+  tools.resize = function () {
+    var tool = this;
+    this.started = false;
+
+    // This is called when you start holding down the mouse button.
+    // This starts the pencil drawing.
+    this.mousedown = function (ev) {
+        tool.started = true;
+    };
+
+    // This function is called every time you move the mouse. Obviously, it only 
+    // draws if the tool.started state is set to true (when you are holding down 
+    // the mouse button).
+    this.mousemove = function (ev) {
+      if (tool.started) {
+        canvas.width = ev._x
+        canvas.height = ev._y
+      }
+    };
+
+    // This is called when you release the mouse button.
+    this.mouseup = function (ev) {
+      if (tool.started) {
+        tool.mousemove(ev);
+        tool.started = false;
+        img_update();
+      }
+    };
+    this.touchend = function (ev) {
+      if (tool.started) {
+        tool.touchmove(ev);
+        tool.started = false;
+        img_update();
+      }
+    };
+    this.touchstart = this.mousedown;
+    this.touchmove = this.mousemove;
+  };
   // The drawing pencil.
   tools.pencil = function () {
     var tool = this;
