@@ -24,6 +24,7 @@ var myPlot = document.getElementById('myDiv'),
     y = {{ y|safe }},
     point_data = [ { x:x, y:y, type:'scatter',
             mode:'markers', marker:{size:1} } ],
+    point_data0 = [],
     layout = {
         hovermode:'closest',
         title:'{{ graph_title }}',
@@ -73,7 +74,9 @@ myPlot.on('plotly_click', function(data){
         //pts = pts+'('+data.points[i].x +','+
         //    data.points[i].y.toPrecision(4)+')';
     }
-    if (N>1) {
+    point_data0 = [ { x:pts_x, y:pts_y, type:'scatter',
+            mode:'markers', marker:{size:10} } ],
+    if (pts_array.length > 1) {
       layout.shapes = [{
         type: 'line',
         x0: pts_x[0],
