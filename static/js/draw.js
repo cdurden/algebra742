@@ -10,6 +10,7 @@ window.addEventListener('load', function () {
   // The active tool instance.
   var tool;
   var tool_default = 'pencil';
+  var lastX, lastY;
 
   function init () {
     // Find the canvas element.
@@ -166,14 +167,17 @@ window.addEventListener('load', function () {
     // This is called when you start holding down the mouse button.
     // This starts the erasing.
     this.mousedown = function (ev) {
-        //context.globalCompositeOperation="destination-out";
-        context.globalCompositeOperation="source-over";
+        context.globalCompositeOperation="destination-out";
+        //context.globalCompositeOperation="source-over";
         //context.strokeStyle = "rgba(1,1,1,1)";
         context.strokeStyle = "rgba(0,0,0,1)";
         context.lineWidth = 10;
         context.beginPath();
         context.moveTo(ev._x, ev._y);
+        //context.moveTo(lastX, lastY);
         tool.started = true;
+        lastX = ev._x;
+        lastY = ev._y;
     };
 
     // This function is called every time you move the mouse. Obviously, it only 
@@ -181,8 +185,12 @@ window.addEventListener('load', function () {
     // the mouse button).
     this.mousemove = function (ev) {
       if (tool.started) {
+        context.moveTo(lastX, lastY);
         context.lineTo(ev._x, ev._y);
+        context.closePath();
         context.stroke();
+        lastX = ev._x;
+        lastY = ev._y;
         //context.arc(ev._x,ev._y,8,0,Math.PI*2,false);
         //context.fill();
       }
