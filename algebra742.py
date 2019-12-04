@@ -852,7 +852,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             form = CoordinatePairsForm()
         #form = CoordinatePairsForm()
-        n = Parameters['n']
         input_coordinates = set()
         lhs,rhs = Parameters['equation'].split("=")
         if request.method == 'POST':
