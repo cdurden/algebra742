@@ -167,6 +167,11 @@ window.addEventListener('load', function () {
     // This is called when you start holding down the mouse button.
     // This starts the erasing.
     this.mousedown = function (ev) {
+        context.strokeStyle = "#FFFFFF"; //rgba(0,0,0,1)";
+        context.globalCompositeOperation="source-over";
+        context.beginPath();
+        context.moveTo(ev._x, ev._y);
+        context.lineWidth = 10;
         /*context.beginPath();
         context.globalCompositeOperation="destination-out";
         context.lineWidth = 10;
@@ -183,19 +188,15 @@ window.addEventListener('load', function () {
     // the mouse button).
     this.mousemove = function (ev) {
       if (tool.started) {
-        context.strokeStyle = "#FFFFFF"; //rgba(0,0,0,1)";
-        context.beginPath();
         //context.globalCompositeOperation="destination-out";
-        context.globalCompositeOperation="source-over";
         //context.strokeStyle = "rgba(1,1,1,1)";
-        context.lineWidth = 10;
-        context.moveTo(lastX, lastY);
+        //context.moveTo(lastX, lastY);
         context.lineTo(ev._x, ev._y);
         //context.closePath();
-        context.lineJoin = context.lineCap = 'round';
+        //context.lineJoin = context.lineCap = 'round';
         context.stroke();
-        lastX = ev._x;
-        lastY = ev._y;
+        //lastX = ev._x;
+        //lastY = ev._y;
         //context.arc(ev._x,ev._y,8,0,Math.PI*2,false);
         //context.fill();
       }
