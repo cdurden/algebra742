@@ -124,6 +124,7 @@ window.addEventListener('load', function () {
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
     this.mousedown = function (ev) {
+        context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
         context.globalCompositeOperation="source-over";
         context.beginPath();
         context.moveTo(ev._x, ev._y);
@@ -228,6 +229,7 @@ window.addEventListener('load', function () {
     this.started = false;
 
     this.mousedown = function (ev) {
+      context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
       tool.started = true;
       tool.x0 = ev._x;
       tool.y0 = ev._y;
@@ -276,6 +278,7 @@ window.addEventListener('load', function () {
     this.started = false;
 
     this.mousedown = function (ev) {
+      context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
       tool.started = true;
       tool.x0 = ev._x;
       tool.y0 = ev._y;
