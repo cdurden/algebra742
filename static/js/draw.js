@@ -151,6 +151,8 @@ window.addEventListener('load', function () {
         img_update();
       }
     };
+    this.touchstart = this.mousedown;
+    this.touchmove = this.mousemove;
   };
 
   // The rectangle tool.
