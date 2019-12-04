@@ -104,6 +104,7 @@ QuestionSets = {
     },
     'XAndYInterceptsPractice': {
         'ProvideImmediateFeedback': True,
+        'Title': 'December 4: x- and y-Intercepts',
         'Questions': [
             {
             'Type': 'OpenResponse',

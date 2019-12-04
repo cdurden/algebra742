@@ -101,6 +101,7 @@ $('.card img').click(rotateCard);
         </ul>
     </div>
     <div id="content">
+        <h3>{{ title }}</h3>
         {% if question_number is not none %}
         {{ question_number }}. {{ QuestionData['Question'] }}
         {% endif %}
