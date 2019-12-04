@@ -185,6 +185,12 @@ window.addEventListener('load', function () {
     // the mouse button).
     this.mousemove = function (ev) {
       if (tool.started) {
+        context.beginPath();
+        context.globalCompositeOperation="destination-out";
+        //context.globalCompositeOperation="source-over";
+        //context.strokeStyle = "rgba(1,1,1,1)";
+        context.strokeStyle = "rgba(0,0,0,1)";
+        context.lineWidth = 10;
         context.moveTo(lastX, lastY);
         context.lineTo(ev._x, ev._y);
         context.closePath();
