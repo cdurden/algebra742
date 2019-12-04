@@ -13,6 +13,10 @@ window.addEventListener('load', function () {
   var lastX, lastY;
 
   function init () {
+    new ResizeSensor(document.getElementById('#canvas_container'), function(){ 
+      canvas.width  = canvaso.width;
+      canvas.height = canvaso.height;
+    });
     // Find the canvas element.
     canvaso = document.getElementById('imageView');
     if (!canvaso) {
@@ -41,9 +45,9 @@ window.addEventListener('load', function () {
     }
 
     canvas.id     = 'imageTemp';
-    //canvas.width  = canvaso.width;
-    //canvas.height = canvaso.height;
-    canvas.class = 'imageCanvas';
+    canvas.width  = canvaso.width;
+    canvas.height = canvaso.height;
+    //canvas.class = 'imageCanvas';
     container.appendChild(canvas);
 
     context = canvas.getContext('2d');
