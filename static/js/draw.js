@@ -77,7 +77,7 @@ window.addEventListener('load', function () {
     }
 
     // Attach the mousedown, mousemove and mouseup event listeners.
-    canvas.addEventListener('mousedown', ev_canvas, {passive: false});
+    canvas.addEventListener('mousedown', ev_canvas, { passive: false});
     canvas.addEventListener('mousemove', ev_canvas, { passive: false });
     canvas.addEventListener('mouseup',   ev_canvas, { passive: false });
     canvas.addEventListener('touchstart', ev_canvas, { passive: false });
@@ -89,7 +89,11 @@ window.addEventListener('load', function () {
     canvaso.addEventListener('touchstart', function(ev) {ev.preventDefault()}, { passive: false });
     canvaso.addEventListener('touchmove', function(ev) {ev.preventDefault()}, { passive: false });
     canvaso.addEventListener('touchend', function(ev) {ev.preventDefault()}, { passive: false });
-  }
+    document.body.addEventListener("touchmove", function (ev) { if (ev.target == canvas) { ev_canvas(ev); } }, { passive: false }); }
+    //document.body.addEventListener("touchstart", function (ev) { if (ev.target 
+  //== canvas) { ev_canvas(ev); } }, { passive: false }); }
+    //document.body.addEventListener("touchend", function (ev) { if (ev.target 
+  //== canvas) { ev_canvas(ev); } }, { passive: false }); }
 
   // The general-purpose event handler. This function just determines the mouse 
   // position relative to the canvas element.
