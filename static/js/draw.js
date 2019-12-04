@@ -167,6 +167,7 @@ window.addEventListener('load', function () {
     // This starts the erasing.
     this.mousedown = function (ev) {
         context.globalCompositeOperation="destination-out";
+        context.strokeStyle = "rgba(0,0,0,1)";
         //context.globalCompositeOperation="source-over";
         context.lineWidth = 10;
         context.beginPath();
