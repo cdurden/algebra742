@@ -874,7 +874,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
         except:
-            message = "Coordinate pairs could not be read.".format(it+1)
+            message = "Coordinate pairs could not be read."
             correct = False
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTable']:
