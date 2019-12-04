@@ -90,10 +90,8 @@ window.addEventListener('load', function () {
     canvaso.addEventListener('touchmove', function(ev) {ev.preventDefault()}, { passive: false });
     canvaso.addEventListener('touchend', function(ev) {ev.preventDefault()}, { passive: false });
     document.body.addEventListener("touchmove", function (ev) { if (ev.target == canvas) { ev_canvas(ev); } }, { passive: false }); }
-    //document.body.addEventListener("touchstart", function (ev) { if (ev.target 
-  //== canvas) { ev_canvas(ev); } }, { passive: false }); }
-    //document.body.addEventListener("touchend", function (ev) { if (ev.target 
-  //== canvas) { ev_canvas(ev); } }, { passive: false }); }
+    document.body.addEventListener("touchstart", function (ev) { if (ev.target == canvas) { ev_canvas(ev); } }, { passive: false }); }
+    document.body.addEventListener("touchend", function (ev) { if (ev.target == canvas) { ev_canvas(ev); } }, { passive: false }); }
 
   // The general-purpose event handler. This function just determines the mouse 
   // position relative to the canvas element.
