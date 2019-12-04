@@ -174,9 +174,10 @@ window.addEventListener('load', function () {
     // the mouse button).
     this.mousemove = function (ev) {
       if (tool.started) {
-        context.globalCompositeOperation="destination-out";
+/*        context.globalCompositeOperation="destination-out";
         context.arc(ev._x,ev._y,8,0,Math.PI*2,false);
         context.fill();
+        */
       }
     };
 
