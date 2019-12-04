@@ -78,7 +78,7 @@ window.addEventListener('load', function () {
     } else if (ev.offsetX || ev.offsetX == 0) { // Opera
       ev._x = ev.offsetX;
       ev._y = ev.offsetY;
-    } else if (ev.targetTouches) {
+    } else if (ev.targetTouches && ev.targetTouches[0]) {
       var rect = ev.target.getBoundingClientRect();
       ev._x = ev.targetTouches[0].pageX - rect.left;
       ev._y = ev.targetTouches[0].pageY - rect.top;
