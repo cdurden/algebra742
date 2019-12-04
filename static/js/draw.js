@@ -83,6 +83,12 @@ window.addEventListener('load', function () {
     canvas.addEventListener('touchstart', ev_canvas, false);
     canvas.addEventListener('touchmove', ev_canvas, false);
     canvas.addEventListener('touchend',   ev_canvas, false);
+    canvaso.addEventListener('mousedown', function(ev) {ev.preventDefault()}, false);
+    canvaso.addEventListener('mousemove', function(ev) {ev.preventDefault()}, false);
+    canvaso.addEventListener('mouseup', function(ev) {ev.preventDefault()}, false);
+    canvaso.addEventListener('touchstart', function(ev) {ev.preventDefault()}, false);
+    canvaso.addEventListener('touchmove', function(ev) {ev.preventDefault()}, false);
+    canvaso.addEventListener('touchend', function(ev) {ev.preventDefault()}, false);
   }
 
   // The general-purpose event handler. This function just determines the mouse 
