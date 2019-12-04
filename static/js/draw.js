@@ -79,10 +79,12 @@ window.addEventListener('load', function () {
       ev._x = ev.offsetX;
       ev._y = ev.offsetY;
     } else if (ev.targetTouches && ev.targetTouches[0]) {
+      ev.preventDefault();
       var rect = ev.target.getBoundingClientRect();
       ev._x = ev.targetTouches[0].clientX - rect.left;
       ev._y = ev.targetTouches[0].clientY - rect.top;
     } else if (ev.changedTouches && ev.changedTouches[0]) {
+      ev.preventDefault();
       var rect = ev.target.getBoundingClientRect();
       ev._x = ev.changedTouches[0].clientX - rect.left;
       ev._y = ev.changedTouches[0].clientY - rect.top;
