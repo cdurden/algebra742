@@ -1,6 +1,7 @@
 import json
 import numpy
 numpy.linspace(0, 10, num=4)
+grid = numpy.array(numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25))).T.reshape(-1,2)
 def frange(x, y, jump):
     while x < y:
         yield x
@@ -47,8 +48,8 @@ QuestionSets = {
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'question': '$x=0$',
-                    'x': numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25),sparse=True)[0],
-                    'y': numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25),sparse=True)[1],
+                    'x': json.dumps([x[0] for x in grid]),
+                    'y': json.dymps([x[1] for x in grid]),
                     'N': json.dumps(2),
                     'variables': ['x','y'],
                     'equation': 'x=0',
