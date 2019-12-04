@@ -9,6 +9,7 @@ def frange(x, y, jump):
 QuestionSets = {
     'StainedGlassGraphs': {
         'ProvideImmediateFeedback': True,
+        'Title': "Stained Glass Graphs",
         'Questions': [
             {
             'Type': 'SetOfCoordinatePairs',
@@ -97,7 +98,7 @@ QuestionSets = {
                     'equation': 'y=x-12',
                 },
             ],
-            'SpaceAfter': '3cm',
+            'SpaceAfter': '2.5cm',
             },
         ]
     },

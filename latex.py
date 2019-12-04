@@ -32,15 +32,22 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     doc.packages.append(Package('graphicx'))
     doc.packages.append(Package('amsmath'))
     QuestionData = QuestionSets[assignment]['Questions'] 
-    with doc.create(Section('')):
+    with doc.create(Section(QuestionSets[assignment]['Title'])):
         doc.append(NoEscape(r'''
     \begin{center}
     \fbox{\fbox{\parbox{5.5in}{\centering
-    Answer the questions in the spaces provided on the
-    question sheets. If there is no solution, write no solution. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.}}}
+    \begin{enumerate}
+    \item Using regular graph paper, create a table for each equation, and then graph each of the lines.
+    \item Draw the lines to the edges of your graph paper.
+    \item Bold each line with a black marker.
+    \item Color each section a different color.
+    \end{enumerate}
+%    Answer the questions in the spaces provided on the
+%    question sheets. If there is no solution, write no solution. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.
+}}}
     \end{center}
-    \vspace{0.1in}
-    \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
+%    \vspace{0.1in}
+%    \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
         doc.append(NoEscape(r'\begin{multicols}{2}'))
         with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 1})) as enum:
             for Question in QuestionData:
@@ -142,6 +149,7 @@ def GenerateArrowDiagram(filepath, Parameters):
 assignment = "UsingZeroPairsAndReciprocalPairs"
 assignment = "LinearEquationsInStandardFormB"
 assignment = "LinearEquationsInStandardFormPart2"
+assignment = "StainedGlassGraphs"
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')

@@ -1,3 +1,4 @@
+{% if tex is not defined%}
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!--<script src="{{ url_for('static', filename='js/plotly_ex1.js') }}"></script>-->
 <script>
@@ -53,13 +54,7 @@ var pts_x = [];
 var pts_y = [];
 myPlot.on('plotly_click', plot_data);
 function plot_data(data){
-    //var pts = $("#answer").val();
     for(var i=0; i < data.points.length; i++){
-        //pts = 'x = '+data.points[i].x +'\ny = '+
-        //    data.points[i].y.toPrecision(4) + '\n\n';
-        //if (pts.length>0) {
-        //    pts = pts+','
-        //}
         if (pts_array.length > j) {
             pts_x[j] = data.points[i].x;
             pts_y[j] = data.points[i].y;
@@ -73,6 +68,7 @@ function plot_data(data){
         }
         //pts = pts+'('+data.points[i].x +','+
         //    data.points[i].y.toPrecision(4)+')';
+        j=(j+1)%N;
     }
     point_data0 = [ { x:pts_x, y:pts_y, type:'scatter',
             mode:'markers', marker:{size:10}, showlegend: false } ];
@@ -95,7 +91,6 @@ function plot_data(data){
     //$("#answer").val(pts);
     answer_input.value = pts;
     //alert('Closest point clicked:\n\n'+pts);
-    j=(j+1)%N;
 }
     var answer_input = document.getElementById('set_of_coordinate_pairs');
     pts = answer_input.value;
@@ -108,12 +103,15 @@ function plot_data(data){
 <script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ElementQueries.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/draw.js') }}"></script>
+{% endif %}
 
 {{ question }}
 
+{% if tex is not defined%}
 <div id="myDiv">
 </div>
 <div id="drawing">
     <p><label>Drawing tool: <select id="dtool"><option value="pencil">Pencil</option><option value="eraser">Eraser</option><option value="line">Line</option><option value="rect">Rectangle</option><option value="resize">Resize</option></select></label></p>
 <div id="canvas_container"><canvas class="imageCanvas" id="imageView"><p>Unfortunately, your browser is currently unsupported by our web application. We are sorry for the inconvenience. Please use one of the supported browsers listed below, or draw the image you want using an offline tool.</p><p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a href="http://www.mozilla.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a>, and <a href="http://www.konqueror.org">Konqueror</a>.</p></canvas></div>
 </div>
+{% endif %}
