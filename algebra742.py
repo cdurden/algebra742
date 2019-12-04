@@ -848,9 +848,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SetOfCoordinatePairsEquation']:
         try:
-            form = CoordinatePairsForm(data=formdata)
+            form = SetOfCoordinatePairsForm(data=formdata)
         except:
-            form = CoordinatePairsForm()
+            form = SetOfCoordinatePairsForm()
         #form = CoordinatePairsForm()
         input_coordinates = set()
         lhs,rhs = Parameters['equation'].split("=")
