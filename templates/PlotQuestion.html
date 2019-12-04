@@ -91,10 +91,12 @@ function plot_data(data){
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
     //alert('Closest point clicked:\n\n'+pts);
+    if (!no_answer) {
+      answer_input.value = pts;
+    }
 }
     if (!no_answer) {
       var answer_input = document.getElementById('set_of_coordinate_pairs');
-      answer_input.value = pts;
       pts = answer_input.value;
     }
     pts = pts.myTrim("{()}");
