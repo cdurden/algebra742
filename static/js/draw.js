@@ -123,7 +123,7 @@ window.addEventListener('load', function () {
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
     this.mousedown = function (ev) {
-        context.globalCompositeOperation="source-in";
+        context.globalCompositeOperation="source-over";
         context.beginPath();
         context.moveTo(ev._x, ev._y);
         context.lineWidth = 1;
