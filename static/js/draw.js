@@ -5,7 +5,7 @@
 // Keep everything in anonymous function, called on window load.
 if(window.addEventListener) {
 window.addEventListener('load', function () {
-  var canvas, context, canvaso, contexto;
+  var canvas, context, canvaso, contexto, canvas_container;
 
   // The active tool instance.
   var tool;
@@ -13,9 +13,14 @@ window.addEventListener('load', function () {
   var lastX, lastY;
 
   function init () {
-    new ResizeSensor(document.getElementById('canvas_container'), function(){ 
-      canvas.width  = canvaso.width;
-      canvas.height = canvaso.height;
+    canvas_container = document.getElementById('canvas_container');
+    new ResizeSensor(canvas_container, function(){ 
+      //canvas.width  = canvaso.width;
+      //canvas.height = canvaso.height;
+      canvas.width  = canvas_container.width;
+      canvas.height = canvas_container.height;
+      canvaso.width  = canvas_container.width;
+      canvaso.height = canvas_container.height;
     });
     // Find the canvas element.
     canvaso = document.getElementById('imageView');
