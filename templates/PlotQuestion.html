@@ -90,7 +90,7 @@ function plot_data(data){
     //Plotly.react('myDiv', point_data0.concat(point_data), layout, {showSendToCloud: true});
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
-    if (not no_answer) {
+    if (!no_answer) {
       answer_input.value = pts;
       var answer_input = document.getElementById('set_of_coordinate_pairs');
       pts = answer_input.value;
