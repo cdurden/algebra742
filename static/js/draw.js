@@ -81,12 +81,14 @@ window.addEventListener('load', function () {
       ev._y = ev.offsetY;
     } else if (ev.targetTouches && ev.targetTouches[0]) {
       ev.preventDefault();
-      var rect = ev.target.getBoundingClientRect();
+      //var rect = ev.target.getBoundingClientRect();
+      var rect = document.getElementById("imageView").getBoundingClientRect();
       ev._x = ev.targetTouches[0].clientX - rect.left;
       ev._y = ev.targetTouches[0].clientY - rect.top;
     } else if (ev.changedTouches && ev.changedTouches[0]) {
       ev.preventDefault();
-      var rect = ev.target.getBoundingClientRect();
+      //var rect = ev.target.getBoundingClientRect();
+      var rect = document.getElementById("imageView").getBoundingClientRect();
       ev._x = ev.changedTouches[0].clientX - rect.left;
       ev._y = ev.changedTouches[0].clientY - rect.top;
     }
@@ -125,7 +127,7 @@ window.addEventListener('load', function () {
     // This starts the pencil drawing.
     this.mousedown = function (ev) {
         tool.started = true;
-        window.addEventListener("mouseup", tool.mouseup, false);
+        window.addEventListener("mouseup", ev_canvas, false);
     };
 
     // This function is called every time you move the mouse. Obviously, it only 
