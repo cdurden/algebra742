@@ -84,8 +84,8 @@ window.addEventListener('load', function () {
       ev._y = ev.targetTouches[0].clientY - rect.top;
     } else if (ev.changedTouches && ev.changedTouches[0]) {
       var rect = ev.target.getBoundingClientRect();
-      ev._x = ev.targetTouches[0].clientX - rect.left;
-      ev._y = ev.targetTouches[0].clientY - rect.top;
+      ev._x = ev.changedTouches[0].clientX - rect.left;
+      ev._y = ev.changedTouches[0].clientY - rect.top;
     }
 
     // Call the event handler of the tool.
