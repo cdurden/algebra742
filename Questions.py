@@ -42,6 +42,20 @@ QuestionSets = {
             ],
             'SpaceAfter': '3cm',
             },
+            {
+            'Type': 'SetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': '$x=0$',
+                    'x': numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25),sparse=True)[0],
+                    'y': numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25),sparse=True)[1],
+                    'N': json.dumps(2),
+                    'variables': ['x','y'],
+                    'equation': 'x=0',
+                },
+            ],
+            'SpaceAfter': '3cm',
+            },
         ]
     },
     'XAndYInterceptsPractice': {
