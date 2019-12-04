@@ -82,7 +82,7 @@ div#content {
 #myDiv { width: 50%; float: left;}
 #drawing { width: 45%; overflow: hidden;}
 #container { position: relative; }
-#imageView { border: 1px solid #000; }
+#imageView { border: 1px solid #000; position: absolute; top: 1px; left: 1px; }
 #imageTemp { position: absolute; top: 1px; left: 1px; }
 div#canvas_container
 {
