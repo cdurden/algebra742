@@ -24,7 +24,7 @@ var myPlot = document.getElementById('myDiv'),
     y = {{ y|safe }},
     point_data = [ { x:x, y:y, type:'scatter',
             mode:'markers', marker:{size:1}, showlegend: false } ],
-    point_data0 = [],
+    //point_data0 = [],
     layout = {
         hovermode:'closest',
         title:'{{ graph_title }}',
@@ -44,7 +44,8 @@ var myPlot = document.getElementById('myDiv'),
      };
 
 //Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
-Plotly.react('myDiv', point_data, layout, {showSendToCloud: true});
+//Plotly.react('myDiv', point_data, layout, {showSendToCloud: true});
+Plotly.react('myDiv', point_data, layout);
 var j = 0;
 var pts_array = [];
 var pts_x = [];
@@ -89,7 +90,8 @@ myPlot.on('plotly_click', function(data){
         }
       }];
     }
-    Plotly.react('myDiv', point_data0.concat(point_data), layout, {showSendToCloud: true});
+    Plotly.react('myDiv', point_data, layout);
+    //Plotly.react('myDiv', point_data0.concat(point_data), layout, {showSendToCloud: true});
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
     answer_input.value = pts;
