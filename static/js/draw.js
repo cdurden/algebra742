@@ -192,6 +192,7 @@ window.addEventListener('load', function () {
         context.moveTo(lastX, lastY);
         context.lineTo(ev._x, ev._y);
         //context.closePath();
+        context.lineJoin = context.lineCap = 'round';
         context.stroke();
         lastX = ev._x;
         lastY = ev._y;
