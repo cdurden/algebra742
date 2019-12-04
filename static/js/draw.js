@@ -156,6 +156,48 @@ window.addEventListener('load', function () {
     this.touchstart = this.mousedown;
     this.touchmove = this.mousemove;
   };
+  // The eraser.
+  tools.eraser = function () {
+    var tool = this;
+    this.started = false;
+
+    // This is called when you start holding down the mouse button.
+    // This starts the pencil drawing.
+    this.mousedown = function (ev) {
+        context.beginPath();
+        tool.started = true;
+    };
+
+    // This function is called every time you move the mouse. Obviously, it only 
+    // draws if the tool.started state is set to true (when you are holding down 
+    // the mouse button).
+    this.mousemove = function (ev) {
+      if (tool.started) {
+        context.globalCompositeOperation="destination-out";
+        context.arc(ev._x,ev._y,8,0,Math.PI*2,false);
+        context.fill();
+      }
+    };
+
+    // This is called when you release the mouse button.
+    this.mouseup = function (ev) {
+      if (tool.started) {
+        tool.mousemove(ev);
+        tool.started = false;
+        img_update();
+      }
+    };
+    this.touchend = function (ev) {
+      if (tool.started) {
+        tool.touchmove(ev);
+        tool.started = false;
+        img_update();
+      }
+    };
+    this.touchstart = this.mousedown;
+    this.touchmove = this.mousemove;
+  };
+
 
   // The rectangle tool.
   tools.rect = function () {
