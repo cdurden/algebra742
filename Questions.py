@@ -49,7 +49,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': '$x=0$',
                     'x': json.dumps([x[0] for x in grid]),
-                    'y': json.dymps([x[1] for x in grid]),
+                    'y': json.dumps([x[1] for x in grid]),
                     'N': json.dumps(2),
                     'variables': ['x','y'],
                     'equation': 'x=0',
