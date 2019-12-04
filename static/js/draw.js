@@ -81,7 +81,7 @@ window.addEventListener('load', function () {
     } else if (ev.targetTouches) {
       var rect = ev.target.getBoundingClientRect();
       ev._x = ev.targetTouches[0].pageX - rect.left;
-      ex._y = ev.targetTouches[0].pageY - rect.top;
+      ev._y = ev.targetTouches[0].pageY - rect.top;
     }
 
     // Call the event handler of the tool.
