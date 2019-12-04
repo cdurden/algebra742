@@ -89,6 +89,7 @@ div#canvas_container
   border: red 1px solid;
   overflow: hidden;
   resize: both;
+  position: relative;
 
   height: 400px; 
   width:300px; margin:10px;padding:10px;
