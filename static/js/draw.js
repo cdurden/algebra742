@@ -9,7 +9,7 @@ window.addEventListener('load', function () {
 
   // The active tool instance.
   var tool;
-  var tool_default = 'line';
+  var tool_default = 'pencil';
 
   function init () {
     // Find the canvas element.
