@@ -89,7 +89,7 @@ myPlot.on('plotly_click', function(data){
         }
       }];
     }
-    Plotly.react('myDiv', point_data.concat(point_data0), layout, {showSendToCloud: true});
+    Plotly.react('myDiv', point_data0.concat(point_data), layout, {showSendToCloud: true});
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
     answer_input.value = pts;
