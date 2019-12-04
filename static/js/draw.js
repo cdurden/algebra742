@@ -191,7 +191,7 @@ window.addEventListener('load', function () {
         context.lineWidth = 10;
         context.moveTo(lastX, lastY);
         context.lineTo(ev._x, ev._y);
-        context.closePath();
+        //context.closePath();
         context.stroke();
         lastX = ev._x;
         lastY = ev._y;
