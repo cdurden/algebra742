@@ -101,7 +101,7 @@ function plot_data(data){
     pts = answer_input.value;
     pts = pts.myTrim("{()}");
     pts_list = pts.split("),(");
-    pts_data = { 'points': pts_list.map(xy => { return({'x': xy[0], 'y': xy[1]})}) };
+    pts_data = { 'points': pts_list.map(xy_str => { xy = xy_str.split(","); return({'x': xy[0], 'y': xy[1]})}) };
     plot_data(pts_data);
 }
 </script>
