@@ -187,9 +187,14 @@ $('.card img').click(rotateCard);
 {% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation','SetOfCoordinatePairsEquationAndPrediction'] %}
     {{ form.set_of_coordinate_pairs(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
     {% if QuestionData['Type'] in ['SetOfCoordinatePairsEquationAndPrediction'] %}
-        {{ form.answer(style="font-size: 18pt; height: 40px; width:640px; ") }}
+        <p>
+        Enter your prediction for $y$ when $x={{ x0 }}$.
+        </p>
+        y = {{ form.answer(style="font-size: 18pt; height: 40px; width:640px; ") }}
         {% if 'explanation' in Parameters and Parameters['explanation']%}
+        <p>
             Explain how you got your answer below.
+        </p>
             <p>
             {{ form.explanation(style="font-size: 18pt; height: 80px; width:640px; ") }}
             </p>
