@@ -29,7 +29,7 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairsEquationAndPrediction',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': '$x+y=4$',
+                {'question': 'Graph the equation $x+y=4$. Then predict the value of $y$ when $x=3$.',
                     'x': json.dumps([x[0] for x in grid]),
                     'y': json.dumps([x[1] for x in grid]),
                     'N': json.dumps(2),
@@ -38,7 +38,7 @@ QuestionSets = {
                     'x0': '2',
                     'explanation': True,
                 },
-                {'question': '$4x+2y=12$',
+                {'question': 'Graph the equation $4x+2y=12$. Then predict the value of $y$ when $x=3$.',
                     'x': json.dumps([x[0] for x in grid]),
                     'y': json.dumps([x[1] for x in grid]),
                     'N': json.dumps(2),
