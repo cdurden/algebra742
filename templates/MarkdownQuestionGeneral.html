@@ -184,8 +184,18 @@ $('.card img').click(rotateCard);
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
-{% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation'] %}
+{% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation','SetOfCoordinatePairsEquationAndPrediction'] %}
     {{ form.set_of_coordinate_pairs(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
+    {% if QuestionData['Type'] in ['SetOfCoordinatePairsEquationAndPrediction'] %}
+        {{ form.answer(style="font-size: 18pt; height: 40px; width:640px; ") }}
+        {% if 'explanation' in Parameters and Parameters['explanation']%}
+            Explain how you got your answer below.
+            <p>
+            {{ form.explanation(style="font-size: 18pt; height: 80px; width:640px; ") }}
+            </p>
+        {% endif %}
+    {% endif %}
+
 {% endif %}
 {% if QuestionData['Type'] in ['Matching'] %}
 <p style="font-size: 16pt; line-height: 1.5;">

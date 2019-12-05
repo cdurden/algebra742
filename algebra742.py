@@ -256,6 +256,15 @@ class SetOfCoordinatePairsForm(Form):
     #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
     set_of_coordinate_pairs = StringField('set_of_coordinate_pairs')
 
+class SetOfCoordinatePairsAndPredictionForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    set_of_coordinate_pairs = StringField('set_of_coordinate_pairs')
+    answer = StringField('answer')
+    explanation = TextAreaField('explanation')
+
 class CoordinatePairsForm(Form):
     """ Add data from Form
 
@@ -836,11 +845,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             if len(form.coordinate_pair_forms.entries) < it+1:
                 form.coordinate_pair_forms.append_entry()
         answer = json.dumps(form.data)
-    if QuestionData['Type'] in ['SetOfCoordinatePairsEquation']:
+    if QuestionData['Type'] in ['SetOfCoordinatePairsEquation', 'SetOfCoordinatePairsEquationAndPrediction']:
         try:
-            form = SetOfCoordinatePairsForm(data=formdata)
+            form = SetOfCoordinatePairsAndPredictionForm(data=formdata)
         except:
-            form = SetOfCoordinatePairsForm()
+            form = SetOfCoordinatePairsAndPredictionForm()
         #form = CoordinatePairsForm()
         input_coordinates = set()
         lhs,rhs = Parameters['equation'].split("=")
@@ -866,6 +875,17 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     correct = False
             if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
                 correct = False
+            if QuestionData['Type'] in ['SetOfCoordinatePairsEquationAndPrediction']:
+                x0 = Parameters['x0']
+                y0 = form.answer.data
+                lhs0 = lhs.replace(variables[0], "({:s})".format(str(x0)))
+                rhs0 = rhs.replace(variables[0], "({:s})".format(str(x0)))
+                lhs0 = lhs0.replace(variables[1], "({:s})".format(str(y0)))
+                rhs0 = rhs0.replace(variables[1], "({:s})".format(str(y0)))
+                app.logger.error(lhs0)
+                app.logger.error(rhs0)
+                if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
+                    correct = False
         except:
             message = "Coordinate pairs could not be read."
             correct = False
