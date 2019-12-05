@@ -35,7 +35,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                     'variables': ['x','y'],
                     'equation': 'x+y=4',
-                    'x0': '2',
+                    'x0': '3',
                     'explanation': True,
                 },
                 {'question': 'Graph the equation $4x+2y=12$. Then predict the value of $y$ when $x=3$.',
