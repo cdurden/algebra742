@@ -13,7 +13,7 @@ QuestionSets = {
         'Questions': [
             {
             'Type': 'OpenResponse',
-            'Template': 'PlotQuestion.html',
+            'Template': 'OpenResponse.html',
             'ParameterSetVariants': [
                 {'question': 'Bellringer: The graph below has an x-intercept of 12 and a y-intercept of 6. Think of this graph as a function. Can you use the graph to predict the output $y$ when the input $x$ is 6? Can you predict the output when $x$ is greater than 12?',
                     'x': json.dumps([x[0] for x in grid]),
