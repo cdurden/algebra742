@@ -7,7 +7,7 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
-    'FindXandYInterceptsAndPredict': {
+    'FindXAndYInterceptsAndPredict': {
         'ProvideImmediateFeedback': True,
         'Title': 'December 4: x- and y-Intercepts',
         'Questions': [
