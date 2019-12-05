@@ -55,7 +55,6 @@ var pts_x = [];
 var pts_y = [];
 myPlot.on('plotly_click', plot_data);
 function plot_data(data){
-    pts_array = [];
     for(var i=0; i < data.points.length; i++){
         if (pts_array.length > j) {
             pts_x[j] = data.points[i].x;
