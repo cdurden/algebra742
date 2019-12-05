@@ -188,7 +188,7 @@ $('.card img').click(rotateCard);
     {{ form.set_of_coordinate_pairs(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
     {% if QuestionData['Type'] in ['SetOfCoordinatePairsEquationAndPrediction'] %}
         <p>
-        Enter your prediction for $y$ when $x={{ x0 }}$.
+        Enter your prediction for $y$ when $x={{ Parameters['x0'] }}$.
         </p>
         y = {{ form.answer(style="font-size: 18pt; height: 40px; width:640px; ") }}
         {% if 'explanation' in Parameters and Parameters['explanation']%}
