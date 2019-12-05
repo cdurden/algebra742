@@ -9,7 +9,7 @@ def frange(x, y, jump):
 QuestionSets = {
     'FindXAndYInterceptsAndPredict': {
         'ProvideImmediateFeedback': True,
-        'Title': 'December 4: x- and y-Intercepts',
+        'Title': 'December 5: Find the x- and y-intercepts and predict the output of a linear equation',
         'Questions': [
             {
             'Type': 'OpenResponse',
