@@ -873,6 +873,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
+                    message = "The points you entered are not on the line."
             if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
                 correct = False
             if QuestionData['Type'] in ['SetOfCoordinatePairsEquationAndPrediction']:
@@ -886,6 +887,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 app.logger.error(rhs0)
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
+                    message += "Your prediction is incorrect."
         except:
             message = "Coordinate pairs could not be read."
             correct = False
