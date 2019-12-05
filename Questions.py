@@ -15,10 +15,11 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': 'Bellringer: Can you draw a line that has only an x-intercept or only a y-intercept? Tap on the coordinate grid at two points to try to draw such a line. Then explain your answer in the box below.',
+                {'question': 'Bellringer: The graph below has an x-intercept of 12 and a y-intercept of 6. Think of this graph as a function. Can you use the graph to predict the output $y$ when the input $x$ is 6? Can you predict the output when $x$ is greater than 12?',
                     'x': json.dumps([x[0] for x in grid]),
                     'y': json.dumps([x[1] for x in grid]),
                     'N': json.dumps(2),
+                    'image': '/static/PredictBasedOnLineBellringer.png',
                     'no_answer': json.dumps(True),
                 },
             ],
