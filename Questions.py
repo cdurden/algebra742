@@ -2,7 +2,7 @@ import json
 import numpy
 numpy.linspace(0, 10, num=4)
 grid = numpy.array(numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25))).T.reshape(-1,2)
-grid32x32 = numpy.array(numpy.meshgrid(numpy.linspace(-8,32,num=21),numpy.linspace(-8,32,num=21))).T.reshape(-1,2)
+grid36x36 = numpy.array(numpy.meshgrid(numpy.linspace(-4,36,num=41),numpy.linspace(-4,36,num=41))).T.reshape(-1,2)
 def frange(x, y, jump):
     while x < y:
         yield x
@@ -46,8 +46,8 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'You are building a swimming pool with a perimeter of 72 feet, and there are two sides with length $x$ and two sides with length $y$. You write the equation $2x+2y=72$. Graph this equation. If the length $x$ is 12, what must $y$ be?',
                     'image': '/static/PerimeterLinearEquation.png',
-                    'x': json.dumps([x[0] for x in grid32x32]),
-                    'y': json.dumps([x[1] for x in grid32x32]),
+                    'x': json.dumps([x[0] for x in grid36x36]),
+                    'y': json.dumps([x[1] for x in grid36x36]),
                     'N': json.dumps(2),
                     'variables': ['x','y'],
                     'equation': '2x+2y=72',
