@@ -299,7 +299,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': r'Louisa has \$36 in five-dollar bills and singles. Make a table to show how many of each type she could have. Then graph the relationship. Let of $f$ stand for the number of five-dollar bills and let $s$ stand for the number of singles.', 'equation': '5f+s=36', 'variables': ['f','s'], 'n': 3},
+                {'question': r'Make a table to of values of $f$ and $s$ that are solutions to the equation $5f+s=36$.', 'equation': '5f+s=36', 'variables': ['f','s'], 'n': 3},
                 ],
             'SpaceAfter': '6cm',
             },
