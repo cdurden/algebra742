@@ -245,8 +245,8 @@ class CoordinatePairForm(Form):
     """
     #object_ = SelectField('object', choices=[])
     #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
-    x = IntegerField('x')
-    y = IntegerField('y')
+    x = StringField('x')
+    y = StringField('y')
 
 class SetOfCoordinatePairsForm(Form):
     """ Add data from Form
