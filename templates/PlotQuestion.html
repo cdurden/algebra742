@@ -55,6 +55,7 @@ var pts_x = [];
 var pts_y = [];
 myPlot.on('plotly_click', plot_data);
 function plot_data(data){
+    pts_array = [];
     for(var i=0; i < data.points.length; i++){
         if (pts_array.length > j) {
             pts_x[j] = data.points[i].x;
@@ -87,12 +88,14 @@ function plot_data(data){
       }];
     }
     Plotly.react('myDiv', point_data, layout);
-    //Plotly.react('myDiv', point_data0.concat(point_data), layout, {showSendToCloud: true});
+    //Plotly.react('myDiv', point_data0.concat(point_data), layout);
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
     //alert('Closest point clicked:\n\n'+pts);
     if (!no_answer) {
-      answer_input.value = pts;
+        if (pts_array.length > 0) {
+            answer_input.value = pts;
+        }
     }
 }
     if (!no_answer) {
@@ -116,7 +119,7 @@ function plot_data(data){
 <div id="myDiv">
 </div>
 <div id="drawing">
-    <p><label>Drawing tool: <select id="dtool"><option value="pencil">Pencil</option><option value="eraser">Eraser</option><option value="line">Line</option><option value="rect">Rectangle</option><option value="resize">Resize</option></select></label></p>
+    <p><label>Drawing tool: <select id="dtool"><option value="pencil">Pencil</option><option value="eraser">Eraser</option><option value="line">Line</option><option value="rect">Rectangle</option></select></label></p>
 <div id="canvas_container"><canvas class="imageCanvas" id="imageView"><p>Unfortunately, your browser is currently unsupported by our web application. We are sorry for the inconvenience. Please use one of the supported browsers listed below, or draw the image you want using an offline tool.</p><p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a href="http://www.mozilla.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a>, and <a href="http://www.konqueror.org">Konqueror</a>.</p></canvas></div>
 </div>
 {% endif %}
