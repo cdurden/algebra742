@@ -606,18 +606,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         else:
             NextQuestion = None
     question_indices = []
-    scores = []
-    for j,question in enumerate(QuestionSets[assignment]['Questions']):
-        for k in range(len(question['ParameterSetVariants'])):
-            question_indices.append((j+1,k))
-            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment,Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k)).order_by(desc('datetime'))
-            results = db.session.execute(statement).first()
-            if not results:
-                scores.append("NA")
-            else:
-                scores.append(results.score)
-            if (q,i)==(j+1,k):
-                question_number = len(question_indices)
     if not user:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
@@ -1203,6 +1191,18 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         test = True
     else:
         test = False
+    scores = []
+    for j,question in enumerate(QuestionSets[assignment]['Questions']):
+        for k in range(len(question['ParameterSetVariants'])):
+            question_indices.append((j+1,k))
+            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment,Question.__table__.c.number==j+1, Question.__table__.c.variant_index==k)).order_by(desc('datetime'))
+            results = db.session.execute(statement).first()
+            if not results:
+                scores.append("NA")
+            else:
+                scores.append(results.score)
+            if (q,i)==(j+1,k):
+                question_number = len(question_indices)
             
     try:
         title = QuestionSets[assignment]['Title']

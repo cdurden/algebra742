@@ -346,7 +346,7 @@ QuestionSets = {
             'Type': 'InputOutputTableEquation',
             'Template': 'Question.html',
             'ParameterSetVariants': [
-                {'question': 'Suppose you want to save \$300 to buy a gift in the next 12 weeks. Suppose your friend is also going to save money each week. How much money do you and your friend each need to save? Let $m$ be how much you need to save and let $f$ be how much your friend needs to save. Put your answers in the table.',
+                {'question': 'Suppose you want to save \$300 to buy a gift in the next 12 weeks. Suppose your friend is also going to save money each week. How much money do you and your friend each need to save each week? Let $m$ be how much you need to save each week and let $f$ be how much your friend needs to save each week. Put your answers in the table.',
                     'equation': '12f+12m=300', 'n': 2, 'variables': ['f','m'], 'explanation': True}
                 ],
             'SpaceAfter': '6cm',
