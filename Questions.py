@@ -15,7 +15,7 @@ QuestionSets = {
             'Type': 'OpenResponse',
             'Template': 'OpenResponse.html',
             'ParameterSetVariants': [
-                {'question': 'Bellringer: The graph shown has an x-intercept of 12 and a y-intercept of 6. Think of this graph as a function. Can you use the graph to predict the output $y$ when the input $x$ is 6? Can you predict the output when $x$ is greater than 12? Give your answers and explain how you found them.',
+                {'question': 'Bellringer: The graph shown has an x-intercept of 12 and a y-intercept of 6. Think of this graph as a function. Can you use the graph to predict the output $y$ when the input $x$ is 6? Can you predict the output when $x$ is greater than 12? Write any questions that you have, or give your answers and explain how you found them.',
                     'x': json.dumps([x[0] for x in grid]),
                     'y': json.dumps([x[1] for x in grid]),
                     'N': json.dumps(2),
