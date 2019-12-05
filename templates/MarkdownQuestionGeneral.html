@@ -350,7 +350,7 @@ Explain how you got your answer below.
     {% if QuestionData['Type'] not in ['SetUpAndSolveEquationGuided', 'SolveEquationGuided'] %}
     <p>
                 {% if not test %}
-    <b>Your answer {{ answer }} is correct!</b>
+    <b>Your answer is correct!</b>
  {% endif %}
     </p>
     {% endif %}
@@ -368,7 +368,8 @@ Explain how you got your answer below.
     <!--
     -->
                 {% if not test %}
-    <b>Your answer {{ answer }} is incorrect! Try again!</b>
+                <!--<b>Your answer {{ answer }} is incorrect! Try again!</b>-->
+    <b>Your answer is incorrect! Try again!</b>
     {% endif %}
     </p>
     {% endif %}
