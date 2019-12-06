@@ -18,8 +18,8 @@ QuestionSets = {
             'Template': 'OpenResponse.html',
             'ParameterSetVariants': [
                 {'question': 'Bellringer: What do you think it would feel like not to have a permanent home?',
-                    'image': '/static/PerimeterLinearEquation.png',
-                    #'html': '<iframe id="vzvd-18185520" name="vzvd-18185520" title="video player" class="video-player d-block" type="text/html" width="918" height="516" frameborder="0" allowFullScreen="" allowTransparency="true" src="https://view.vzaar.com/18185520/player">',
+                    #'image': '/static/PerimeterLinearEquation.png',
+                    'html': '<iframe id="vzvd-18185520" name="vzvd-18185520" title="video player" class="video-player d-block" type="text/html" width="918" height="516" frameborder="0" allowFullScreen="" allowTransparency="true" src="https://view.vzaar.com/18185520/player">',
                     'no_answer': json.dumps(True),
                 },
                 {'question': 'New York and Los Angeles are two of the largest cities in the United States. They’re also two of the most expensive. As more people move there, the cost of renting an apartment goes up...as does the number of people experiencing homelessness on any given night. Between 2011 and 2017, in which city would you say the homeless population grew by more? Explain.',
