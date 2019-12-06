@@ -3,7 +3,7 @@ import numpy
 numpy.linspace(0, 10, num=4)
 grid = numpy.array(numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25))).T.reshape(-1,2)
 grid36x36 = numpy.array(numpy.meshgrid(numpy.linspace(-4,36,num=41),numpy.linspace(-4,36,num=41))).T.reshape(-1,2)
-homelessness_grid = numpy.meshgrid(numpy.array(numpy.linspace(2011,2035,num=25),numpy.linspace(0,100000,num=21))).T.reshape(-1,2)
+homelessness_grid = numpy.array(numpy.meshgrid(numpy.linspace(2011,2035,num=25),numpy.linspace(0,100000,num=21))).T.reshape(-1,2)
 def frange(x, y, jump):
     while x < y:
         yield x
