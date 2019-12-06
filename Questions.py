@@ -19,7 +19,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'Bellringer: What do you think it would feel like not to have a permanent home?',
                     'image': '/static/PerimeterLinearEquation.png',
-                    'html': '<iframe id="vzvd-18185520" name="vzvd-18185520" title="video player" class="video-player d-block" type="text/html" width="918" height="516" frameborder="0" allowFullScreen="" allowTransparency="true" src="https://view.vzaar.com/18185520/player">',
+                    #'html': '<iframe id="vzvd-18185520" name="vzvd-18185520" title="video player" class="video-player d-block" type="text/html" width="918" height="516" frameborder="0" allowFullScreen="" allowTransparency="true" src="https://view.vzaar.com/18185520/player">',
                     'no_answer': json.dumps(True),
                 },
                 {'question': 'New York and Los Angeles are two of the largest cities in the United States. They’re also two of the most expensive. As more people move there, the cost of renting an apartment goes up...as does the number of people experiencing homelessness on any given night. Between 2011 and 2017, in which city would you say the homeless population grew by more? Explain.',
@@ -65,7 +65,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': 'According to the U.S. government, more than 500,000 people are experiencing homelessness at any given moment; this includes everyone from veterans to kids. Watch the videos about homelessness in cities around the country. Who do you think should be responsible for ensuring that people have safe and affordable places to live: governments, charities, employers, or individuals? Is there anything that you can do to help?',
                     #'image': '/static/HomelessnessQuestion3.png',
-                    'html': '<iframe class="interactive-iframe" frameborder="no" height="520" scrolling="auto" src="https://mathalicious-production.s3.amazonaws.com/interactives/lessons/SeekingShelter/Q0.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIACU7RQ26H7DPBYQ%2F20191206%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20191206T124110Z&amp;X-Amz-Expires=900&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=019ffdae23eb4aa635b2366475789f626515dc628e48ebfa54fc413508b70cf7" width="100%"></iframe>',
+                    #'html': '<iframe class="interactive-iframe" frameborder="no" height="520" scrolling="auto" src="https://mathalicious-production.s3.amazonaws.com/interactives/lessons/SeekingShelter/Q0.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIACU7RQ26H7DPBYQ%2F20191206%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20191206T124110Z&amp;X-Amz-Expires=900&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=019ffdae23eb4aa635b2366475789f626515dc628e48ebfa54fc413508b70cf7" width="100%"></iframe>',
                     'no_answer': json.dumps(True),
                 },
                 #{'question': 'Bellringer: What do you think it would feel like not to have a permanent home?',
