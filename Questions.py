@@ -3,7 +3,7 @@ import numpy
 numpy.linspace(0, 10, num=4)
 grid = numpy.array(numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25))).T.reshape(-1,2)
 grid36x36 = numpy.array(numpy.meshgrid(numpy.linspace(-4,36,num=41),numpy.linspace(-4,36,num=41))).T.reshape(-1,2)
-homelessness_grid = numpy.array(numpy.meshgrid(numpy.linspace(2011,2035,num=25),numpy.linspace(0,100000,num=21))).T.reshape(-1,2)
+homelessness_grid = numpy.array(numpy.meshgrid(numpy.linspace(2011,2035,num=25),numpy.linspace(0,200000,num=41))).T.reshape(-1,2)
 def frange(x, y, jump):
     while x < y:
         yield x
@@ -34,9 +34,9 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairsEquationAndPrediction',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': 'Let’s assume the homeless population increases by a constant amount each year. The equation for the line in the NYC graph is $t = 51,123 + 4,230x$, where $t$ is the total number of homeless people and $x$ is the number of years since 2011. Project how many people you expect will be homeless in NYC in ten years.',
+                {'question': 'Let’s assume the homeless population increases by a constant amount each year. If we round the data to the nearest thousand, the equation for the line in the NYC graph is $t = 50,000 + 4,000x$, where $t$ is the total number of homeless people and $x$ is the number of years since 2011. Project how many people you expect will be homeless in NYC in ten years.',
                     'image': '/static/HomelessnessQuestion1.png',
-                    'equation': 't = 51123 + 4230x',
+                    'equation': 't = 50000 + 4000x',
                     'x': json.dumps([x[0] for x in homelessness_grid]),
                     'y': json.dumps([x[1] for x in homelessness_grid]),
                     'N': json.dumps(2),
@@ -45,9 +45,9 @@ QuestionSets = {
                     'explanation': True,
                     'no_answer': json.dumps(True),
                 },
-                {'question': 'Let’s assume the homeless population increases by a constant amount each year. The equation for the line in the LA graph is $t = 51,123 + 4,230x$, where $t$ is the total number of homeless people and $x$ is the number of years since 2011. Project how many people you expect will be homeless in LA in ten years.',
+                {'question': 'Let’s assume the homeless population increases by a constant amount each year. If we round the data to the nearest thousand, the equation for the line in the LA graph is $t = 35,000 + 3,000x$, where $t$ is the total number of homeless people and $x$ is the number of years since 2011. Project how many people you expect will be homeless in LA in ten years.',
                     'image': '/static/HomelessnessQuestion1.png',
-                    'equation': 't =  34622 + 3428x',
+                    'equation': 't =  35000 + 3000x',
                     'x': json.dumps([x[0] for x in homelessness_grid]),
                     'y': json.dumps([x[1] for x in homelessness_grid]),
                     'N': json.dumps(2),
