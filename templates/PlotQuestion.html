@@ -87,8 +87,9 @@ function plot_data(data){
         }
       }];
     }
-    Plotly.react('myDiv', point_data, layout);
-    //Plotly.react('myDiv', point_data0.concat(point_data), layout);
+    //Plotly.react('myDiv', point_data, layout);
+    Plotly.react('myDiv', point_data0.concat(point_data), layout);
+    //Plotly.react('myDiv', point_data0, layout);
     pts = '{'+pts_array.join()+'}';
     //$("#answer").val(pts);
     //alert('Closest point clicked:\n\n'+pts);
