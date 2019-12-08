@@ -56,6 +56,27 @@ var pts_array = [];
 var pts_x = [];
 var pts_y = [];
 myPlot.on('plotly_click', plot_data);
+function get_boundary_points(x0,y0,x1,y1) {
+    x_min = Math.min(...x);
+    x_max = Math.max(...x);
+    y_min = Math.min(...y);
+    y_max = Math.max(...y);
+    m = (y1-y0)/(x1-x0);
+    boundary_points = []
+    if( m*(x_max - x0) > y_min - y0 && m*(x_max - x0) < y_max - y0 ) {
+        boundary_points.push([x_max, y0 + m*(x_max - x0)]
+    }
+    if( 1/m*(y_max - y0) > x_min - x0 && 1/m*(y_max - y0) < x_max - x0 ) {
+        boundary_points.push([x0 + 1/m*(y_max - y0),y_max]
+    }
+    if( m*(x_min - x0) > y_min - y0 && m*(x_min - x0) < y_max - y0 ) {
+        boundary_points.push([x_min, y0 + m*(x_min - x0)]
+    }
+    if( 1/m*(y_min - y0) > x_min - x0 && 1/m*(y_min - y0) < x_max - x0 ) {
+        boundary_points.push([x0 + 1/m*(y_min - y0),y_min]
+    }
+    return(boundary_points)
+}
 function plot_data(data){
     for(var i=0; i < data.points.length; i++){
         if (pts_array.length > j) {
@@ -76,12 +97,17 @@ function plot_data(data){
     point_data0 = [ { x:pts_x, y:pts_y, type:'scatter',
             mode:'markers', marker:{size:10}, showlegend: false } ];
     if (pts_array.length > 1) {
+      bdry_pts = get_boundary_points(x0,y0,x1,y1);
       layout.shapes = [{
         type: 'line',
-        x0: pts_x[0],
-        y0: pts_y[0],
-        x1: pts_x[1],
-        y1: pts_y[1],
+#        x0: pts_x[0],
+#        y0: pts_y[0],
+#        x1: pts_x[1],
+#        y1: pts_y[1],
+        x0: bdry_pts[0][0],
+        y0: bdry_pts[0][1],
+        x1: bdry_pts[1][0],
+        y1: bdry_pts[1][1],
         line: {
           color: 'rgb(55, 128, 191)',
           width: 3
