@@ -39,10 +39,10 @@ var myPlot = document.getElementById('myDiv'),
     pad: 4
   },
         xaxis: {
-            dtick: 1,
+            dtick: {{ dtickx |safe }},
         },
         yaxis: {
-            dtick: 5000,
+            dtick: {{ dticky | safe }},
         },
      };
 
