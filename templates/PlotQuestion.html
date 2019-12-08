@@ -30,6 +30,7 @@ var myPlot = document.getElementById('myDiv'),
     layout = {
         hovermode:'closest',
         height: 700,
+        datarevision: 0,
         title:'{{ graph_title }}',
   margin: {
     l: 50,
@@ -86,6 +87,7 @@ function plot_data(data){
           width: 3
         }
       }];
+      layout.datarevision += 1;
     }
     //Plotly.react('myDiv', point_data, layout);
     Plotly.react('myDiv', point_data0.concat(point_data), layout);
