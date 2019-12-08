@@ -621,6 +621,8 @@ QuestionSets = {
                     'y': json.dumps([0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8]),
                     'set_of_coordinate_pairs': {(2,0)},
                     'N': json.dumps(1),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
                 },
                 {'question': 'What is the y-intercept of the linear equation $5x+2y=10$?',
                     'x': json.dumps([1,2,3,4,5,6,7,8,0,0,0,0,0,0,0,0]),
