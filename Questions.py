@@ -226,7 +226,7 @@ QuestionSets = {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Graph $2x+4y=16$ by making a table and then graphing the points. (You can choose any value of $x$ between $-5$ and $5$.)', 'x': [5,1], 'y': [None,None], 'variables': ['x','y'],
+                {'question': r'Graph $2x+4y=16$ by making a table and then graphing the points. (You can choose any value of $x$ between $-5$ and $5$.)', 'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-5,5,-5,5,0.5,0.5)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-5,5,-5,5,0.5,0.5)]),
                     'N': json.dumps(2),
