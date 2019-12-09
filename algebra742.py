@@ -674,6 +674,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         try:
             shuffle = Parameters['shuffle']
             input_order = [shuffle[int(re.split("=",x)[1])] for x in re.split("&",form.answers.data)]
+            Parameters['shuffle'] = input_order
             correct = input_order==Parameters['solution']
             app.logger.error(input_order)
             app.logger.error(correct)
