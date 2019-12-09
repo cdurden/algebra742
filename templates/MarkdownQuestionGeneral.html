@@ -192,7 +192,9 @@ $('.card img').click(rotateCard);
     {{ form.hidden_tag() }}
 {% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation','SetOfCoordinatePairsEquationAndPrediction', 'InputOutputTableAndSetOfCoordinatePairsEquation'] %}
     {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    {% if QuestionData['Type'] not in ['InputOutputTableAndSetOfCoordinatePairsEquation'] %}
     <div id="myDiv"></div>
+    {% endif %}
     {% endif %}
     {{ form.set_of_coordinate_pairs(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
     {% if QuestionData['Type'] in ['SetOfCoordinatePairsEquationAndPrediction'] %}
@@ -262,9 +264,7 @@ Explain how you got your answer below.
 </p>
 {% endif %}
     {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
-    {% if QuestionData['Type'] not in ['InputOutputTableAndSetOfCoordinatePairsEquation'] %}
     <div id="myDiv"></div>
-    {% endif %}
     {% endif %}
 
 {% if not test %}
