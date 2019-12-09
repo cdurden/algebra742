@@ -678,7 +678,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             app.logger.error(correct)
         except:
             correct = False
-            Parameters['cards'] = [Parameters['cards'][i] for i in Parameters['shuffle']]
+            #Parameters['cards'] = [Parameters['cards'][i] for i in Parameters['shuffle']]
         answer = json.dumps(form.data)
     if QuestionData['Type'] == 'Tarsia':
         try:
