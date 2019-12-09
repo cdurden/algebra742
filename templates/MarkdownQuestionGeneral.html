@@ -21,8 +21,13 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="{{ url_for('static', filename='js/plotly_ex1.js') }}"></script>
     {% endif %}
+    <!--
     <script type="text/javascript"
     src="{{ url_for('static', filename='js/MathJax.js', config='TeX-AMS-MML_HTMLorMML') }}">
+    </script>
+    -->
+    <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
     {% if QuestionData['Type'] in ['Tarsia'] %}
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
