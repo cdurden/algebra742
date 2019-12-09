@@ -1,0 +1,10 @@
+<ul id="sortable">
+    {% for card in cards %}
+    <li id="card_{{ loop.index0 }}" class="card ui-state-default">
+      <div class="frame">
+          {{ cards[shuffle[loop.index0]] | safe }}
+      </div>
+    </li>
+    {% endfor %}
+</ul>
+ 

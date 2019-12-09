@@ -149,6 +149,15 @@ class TarsiaForm(Form):
     #answers = FieldList(SelectField('answers'))
     answers = StringField('answers')
 
+class SortableForm(Form):
+
+    """ Add data from Form
+
+    :param Form:
+    """
+    #answers = FieldList(SelectField('answers'))
+    answers = StringField('answers')
+
 
 class FindValuesForm(Form):
 
@@ -656,6 +665,21 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         formdata = {}
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
+    if QuestionData['Type'] == 'SortCards':
+        try:
+            form = SortableForm(data=formdata)
+        except:
+            form = SortableForm()
+        app.logger.error(form.answers.data)
+        try:
+            input_order = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
+            correct = input_order==Parameters['shuffle']
+            app.logger.error(input_order)
+            app.logger.error(correct)
+        except:
+            correct = False
+            Parameters['cards'] = [Parameters['cards'][i] for i in Parameters['shuffle']]
+        answer = json.dumps(form.data)
     if QuestionData['Type'] == 'Tarsia':
         try:
             form = TarsiaForm(data=formdata)

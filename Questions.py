@@ -144,6 +144,20 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            {
+            'Type': 'SortCards',
+            'Template': 'SortCards.html',
+            'ParameterSetVariants': [
+                {
+                    #'CorrectAnswer': [0,1,2,3,4,5,6,7,8,9,10,11],
+                    #'shuffle': [7,1,3,4,6,2,5,9,11,10,8,0],
+                    #'cards': ['<img src="/static/deck1/card0.png"/>','<img src="/static/deck1/card1.png"/>', '<img src="/static/deck1/card2.png"/>', '<img src="/static/deck1/card3.png"/>', '<img src="/static/deck1/card4.png"/>', '<img src="/static/deck1/card5.png"/>', '<img src="/static/deck1/card6.png"/>', '<img src="/static/deck1/card7.png"/>', '<img src="/static/deck1/card8.png"/>', '<img src="/static/deck1/card9.png"/>', '<img src="/static/deck1/card10.png"/>', '<img src="/static/deck1/card11.png"/>']
+                    'shuffle': [7,1,3,2,5,4,6,0,8,9,10,11,12,13,14,15,16,17],
+                    'cards': ['<img src="/static/deck3/card0.png"/>','<img src="/static/deck3/card1.png"/>', '<img src="/static/deck3/card2.png"/>', '<img src="/static/deck3/card3.png"/>', '<img src="/static/deck3/card4.png"/>', '<img src="/static/deck3/card5.png"/>', '<img src="/static/deck3/card6.png"/>', '<img src="/static/deck3/card7.png"/>', '<img src="/static/deck3/card8.png"/>', '<img src="/static/deck3/card9.png"/>', '<img src="/static/deck3/card10.png"/>', '<img src="/static/deck3/card11.png"/>', '<img src="/static/deck3/card12.png"/>', '<img src="/static/deck3/card13.png"/>', '<img src="/static/deck3/card14.png"/>', '<img src="/static/deck3/card15.png"/>', '<img src="/static/deck3/card16.png"/>', '<img src="/static/deck3/card17.png"/>']
+                    }
+                ],
+            'SpaceAfter': '4cm',
+            },
         ]
     },
     'SeekingShelterB': {

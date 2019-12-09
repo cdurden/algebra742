@@ -9,8 +9,8 @@ div.frame { background: none; margin: 20px 20px 20px 20px; position: relative; o
 .south input { position: absolute; text-align: center;}
 .north input { position: absolute; transform: rotate(180deg); text-align: center;}
 li.card {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 }
 table.iotable {
     border: 1px solid black;
