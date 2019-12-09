@@ -13,6 +13,69 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'GraphingLinearEquationsSkillsExtra': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 9: Graphing Linear Equations',
+        'Questions': [
+            {
+            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'A rodeo charges \$5 for children and \$10 for adults. The equation $5x+10y=60$ represents the number of children $x$ and adults $y$ who can attend the rodeo with \$60. Find the $x$ and $y$-intercepts and use them to graph the equation. Then explain what the $x$ and $y$-intercepts mean.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '5x+10y=60',
+                    'explanation': True,
+                 },
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'An amusement part charges \$50 for admission before 6 PM, and \$20 for admission after 6 PM. On Saturday, the park took in a total of \$20,000. Let $x$ be the admissions sold before 6 PM, and let $y$ be the admissions sold after 6 PM. Fill in the table with possible numbers of admissions, and graph the relationship. Then explain what the $x$ and $y$-intercepts mean.', 'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '5x+10y=60',
+                    'explanation': True,
+                 },
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'SortCards',
+            'Template': 'SortCards.html',
+            'ParameterSetVariants': [
+                {
+                    'shuffle': [0 ,1 ,2 ,3 ,10,10,4 ,
+                                10,10,10,10,10,10,10,
+                                1 ,5 ,1 ,2 ,3 ,3 ,5 ,
+                                10,10,10,10,10,10,4 ,
+                                5 ,6 ,7 ,6 ,6 ,8 ,9],
+                    'solutions': [[0, 1, 2, 3, 10, 10, 4, 5, 10, 10, 10, 5, 10, 10, 10, 10, 2, 3, 5, 1, 4, 10, 10, 6, 10, 6, 10, 6, 10, 10, 7, 3, 8, 1, 9]],
+                    'cards': ['<img src="/static/deck5/card0.png"/>','<img src="/static/deck5/card1.png"/>', '<img src="/static/deck5/card2.png"/>', '<img src="/static/deck5/card3.png"/>', '<img src="/static/deck5/card4.png"/>', '<img src="/static/deck5/card5.png"/>', '<img src="/static/deck5/card6.png"/>', '<img src="/static/deck5/card7.png"/>', '<img src="/static/deck5/card8.png"/>', '<img src="/static/deck5/card9.png"/>', '<img src="/static/deck5/card10.png"/>']
+                    },
+                {
+                    'shuffle': [11 ,11 ,0 ,1 ,2 ,3 ,4 ,
+                                11 ,11 ,11 ,11 ,11 ,11 ,11 ,
+                                1 ,5 ,1 ,7 ,3 ,3 ,5 ,
+                                11,10,9 ,9 ,11,11,8 ,
+                                5 ,6 ,11,11,6 ,8 ,11],
+                    'solutions': [[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 9, 11, 11, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8],[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 11, 9, 11, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8],[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 11, 11, 9, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8]],
+                    'cards': ['<img src="/static/deck6/card0.png"/>','<img src="/static/deck6/card1.png"/>', '<img src="/static/deck6/card2.png"/>', '<img src="/static/deck6/card3.png"/>', '<img src="/static/deck6/card4.png"/>', '<img src="/static/deck6/card5.png"/>', '<img src="/static/deck6/card6.png"/>', '<img src="/static/deck6/card7.png"/>', '<img src="/static/deck6/card8.png"/>', '<img src="/static/deck6/card9.png"/>', '<img src="/static/deck6/card10.png"/>', '<img src="/static/deck6/card11.png"/>']
+                    }
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'GraphingLinearEquationsSkills': {
                 # Questions:
                 # Concepts: A line can be horizontal, vertical, or diagonal. 
@@ -146,38 +209,6 @@ QuestionSets = {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'A rodeo charges \$5 for children and \$10 for adults. The equation $5x+10y=60$ represents the number of children $x$ and adults $y$ who can attend the rodeo with \$60. Find the $x$ and $y$-intercepts and use them to graph the equation. Then explain what the $x$ and $y$-intercepts mean.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
-                    'N': json.dumps(2),
-                    'dtickx': json.dumps(1),
-                    'dticky': json.dumps(1),
-                    'equation': '5x+10y=60',
-                    'explanation': True,
-                 },
-                ],
-            'SpaceAfter': '4cm',
-            },
-            {
-            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
-            'Template': 'PlotQuestion.html',
-            'ParameterSetVariants': [
-                {'question': r'An amusement part charges \$50 for admission before 6 PM, and \$20 for admission after 6 PM. On Saturday, the park took in a total of \$20,000. Let $x$ be the admissions sold before 6 PM, and let $y$ be the admissions sold after 6 PM. Fill in the table with possible numbers of admissions, and graph the relationship. Then explain what the $x$ and $y$-intercepts mean.', 'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
-                    'N': json.dumps(2),
-                    'dtickx': json.dumps(1),
-                    'dticky': json.dumps(1),
-                    'equation': '5x+10y=60',
-                    'explanation': True,
-                 },
-                ],
-            'SpaceAfter': '4cm',
-            },
-            {
-            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
-            'Template': 'PlotQuestion.html',
-            'ParameterSetVariants': [
                 {'question': r'Graph the equation $y=4+x$ by filling in the missing entries of the table and then graphing the points.', 'x': [1,None], 'y': [None,10], 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
@@ -276,24 +307,6 @@ QuestionSets = {
                     'solutions': [[0,4,2,5,10,10,3,1,10,10,10,1,10,10,10,10,2,5,1,4,3,10,10,7,10,7,10,7,10,10,6,5,9,4,8]],
                     'cards': ['<img src="/static/deck4/card0.png"/>','<img src="/static/deck4/card1.png"/>', '<img src="/static/deck4/card2.png"/>', '<img src="/static/deck4/card3.png"/>', '<img src="/static/deck4/card4.png"/>', '<img src="/static/deck4/card5.png"/>', '<img src="/static/deck4/card6.png"/>', '<img src="/static/deck4/card7.png"/>', '<img src="/static/deck4/card8.png"/>', '<img src="/static/deck4/card9.png"/>', '<img src="/static/deck4/card10.png"/>']
                     },
-                {
-                    'shuffle': [0 ,1 ,2 ,3 ,10,10,4 ,
-                                10,10,10,10,10,10,10,
-                                1 ,5 ,1 ,2 ,3 ,3 ,5 ,
-                                10,10,10,10,10,10,4 ,
-                                5 ,6 ,7 ,6 ,6 ,8 ,9],
-                    'solutions': [[0, 1, 2, 3, 10, 10, 4, 5, 10, 10, 10, 5, 10, 10, 10, 10, 2, 3, 5, 1, 4, 10, 10, 6, 10, 6, 10, 6, 10, 10, 7, 3, 8, 1, 9]],
-                    'cards': ['<img src="/static/deck5/card0.png"/>','<img src="/static/deck5/card1.png"/>', '<img src="/static/deck5/card2.png"/>', '<img src="/static/deck5/card3.png"/>', '<img src="/static/deck5/card4.png"/>', '<img src="/static/deck5/card5.png"/>', '<img src="/static/deck5/card6.png"/>', '<img src="/static/deck5/card7.png"/>', '<img src="/static/deck5/card8.png"/>', '<img src="/static/deck5/card9.png"/>', '<img src="/static/deck5/card10.png"/>']
-                    },
-                {
-                    'shuffle': [11 ,11 ,0 ,1 ,2 ,3 ,4 ,
-                                11 ,11 ,11 ,11 ,11 ,11 ,11 ,
-                                1 ,5 ,1 ,7 ,3 ,3 ,5 ,
-                                11,10,9 ,9 ,11,11,8 ,
-                                5 ,6 ,11,11,6 ,8 ,11],
-                    'solutions': [[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 9, 11, 11, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8],[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 11, 9, 11, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8],[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 11, 11, 9, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8]],
-                    'cards': ['<img src="/static/deck6/card0.png"/>','<img src="/static/deck6/card1.png"/>', '<img src="/static/deck6/card2.png"/>', '<img src="/static/deck6/card3.png"/>', '<img src="/static/deck6/card4.png"/>', '<img src="/static/deck6/card5.png"/>', '<img src="/static/deck6/card6.png"/>', '<img src="/static/deck6/card7.png"/>', '<img src="/static/deck6/card8.png"/>', '<img src="/static/deck6/card9.png"/>', '<img src="/static/deck6/card10.png"/>', '<img src="/static/deck6/card11.png"/>']
-                    }
                 ],
             'SpaceAfter': '4cm',
             },
