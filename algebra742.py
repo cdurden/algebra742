@@ -673,9 +673,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(form.answers.data)
         try:
             shuffle = Parameters['shuffle']
-            input_order = [shuffle[int(re.split("=",x)[1])] for x in re.split("&",form.answers.data)]
+            #input_order = [shuffle[int(re.split("=",x)[1])] for x in re.split("&",form.answers.data)]
+            input_order = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
+            card_order = [shuffle[i] for i in input_order]
             Parameters['input_order'] = json.dumps(input_order)
-            correct = input_order in Parameters['solutions']
+            correct = card_order in Parameters['solutions']
             app.logger.error(input_order)
             app.logger.error(correct)
         except:
