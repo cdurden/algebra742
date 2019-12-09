@@ -77,8 +77,8 @@ $('.card img').click(rotateCard);
   <script>
   $( function() {
       // The new index order for each item
-      var items = $( "#sortable" ).detach();
       {% if 'input_order' in Parameters %}
+      var items = $( "#sortable" ).detach();
       var order = {{ Parameters['input_order'] }};
 
       // Map the existing items to their new positions        
