@@ -76,7 +76,17 @@ $('.card img').click(rotateCard);
       <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
   <script>
   $( function() {
-      $( "#sortable" ).sortable({
+      // The new index order for each item
+      var items = $( "#sortable" );
+      {% if 'input_order' in Parameters %}
+      var order = {{ Parameters['input_order'] }};
+
+      // Map the existing items to their new positions        
+      var orderedItems = $.map(order, function(value) {
+              return items.get(value);
+      });
+      {% endif %}
+      items.sortable({
         start: function (event, ui) {
             $(ui.item).data("startindex", ui.item.index());
         },
