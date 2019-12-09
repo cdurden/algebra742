@@ -146,7 +146,7 @@ QuestionSets = {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'The equation $5x+10y=60$ represents the number of children $x$ and adults $y$ who can attend the rodeo with \$60. Find the $x$ and $y$-intercepts and use them to graph the equation. Then explain what the $x$ and $y$-intercepts mean.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                {'question': r'A rodeo charges \$5 for children and \$10 for adults. The equation $5x+10y=60$ represents the number of children $x$ and adults $y$ who can attend the rodeo with \$60. Find the $x$ and $y$-intercepts and use them to graph the equation. Then explain what the $x$ and $y$-intercepts mean.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
                     'N': json.dumps(2),
