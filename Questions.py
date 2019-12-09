@@ -9,6 +9,54 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'GraphingLinearEquationsSkills': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 6: Seeking Shelter: How is the homeless population changing around the country?',
+        'Questions': [
+            {
+            'Type': 'InputOutputTable',
+            'Template': 'Graph.html',
+            'ParameterSetVariants': [
+                {'question': r'You have 12 dollars to spend and plan on spending all of your money. You are going to spend all of your money on pop and candy. You can buy bottles of pop for \$2 each and a bag of candy for \$1 each. How many of each will you buy? The graph shows some possible combinations. Make a table of the values shown in the graph.', 'x': [6,4,2,0], 'y': [0,4,8,12], 'variables': ['x','y']},
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'OpenResponse',
+            'Template': 'OpenResponse.html',
+            'ParameterSetVariants': [
+                # Questions:
+                # Concepts: A line can be horizontal, vertical, or diagonal. 
+                # Concepts: When a line is horizontal or diagonal, we can travel along the x-axis to any given x value, and then we can travel up or down until we reach the graph of the line. By reading the y value of this point, we can determine the y value that corresponds to the given x value. 
+                # Concept: We can do something similar with an equation of a line. We can substitute a value for x, and solve the equation for y to find the corresponding value of y.
+                # Concepts: We can use different representations of a line (equation, table, graph) to find coordinates of points on the line
+                # 0. Create the table for the discrete graph.
+                # 1. A question that makes the connection between finding table when a graph has discrete points and when a graph is continuous. 
+                # 1. Go over to x=4. How far up do you need to go to reach the graph? This is the y value associated with x=4.
+                # 2. Choose any x value, enter it into the first column of the table. Repeate a question like #1 with the chosen x-value. Ensure that students understand that they could have chosen any x value, and used the graph to find the associated y-value.
+                # 3. Use the language that y depends on x.
+                # 4. Students explain the nature of the relationship. What happens to y when x increases?
+                # 5. What happens to the y value when the x value gets bigger?
+                # 6. If we have a table of x and y values of a line, we can plot the line. Have students use a table with two entries to graph a line, and then use the graph to find missing entries in the table.
+                # 7. Another representation of a line is an equation. Have students use the equation to create a table. Then use the table to graph the line.
+                # 8. A special entry in a table, is the entry where either the x value is 0 or the y value is 0. Plot these points. Which axis is the point (0,5) on? 
+                # 9. Use an equation to create a table with x and y-intercepts.
+                {'question': 'Graph the equation $x+y=4$. Then predict the output when $x=3$.',
+                    'x': json.dumps([x[0] for x in grid]),
+                    'y': json.dumps([x[1] for x in grid]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'variables': ['x','y'],
+                    'equation': 'x+y=4',
+                    'x0': '3',
+                    'explanation': True,
+                },
+            ],
+            'SpaceAfter': '6cm',
+            },
+        ]
+    },
     'SeekingShelterB': {
         'ProvideImmediateFeedback': True,
         'Title': 'December 6: Seeking Shelter: How is the homeless population changing around the country?',
