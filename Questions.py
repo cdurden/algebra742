@@ -50,6 +50,37 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
+            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'Use the equation $y=3x+4$ to find the missing entries in the table. Then graph the relationship.', 'x': [0,2,4], 'y': [None,None,None], 'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=3x+4',
+                 },
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'Graph the equation $y=4+x$ by filling in the missing entries of the table and then graphing the points.', 'x': [1,None], 'y': [None,10], 'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=4+x',
+                    'explanation': False,
+                 },
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
             'Type': 'SortCards',
             'Template': 'SortCards.html',
             'ParameterSetVariants': [
@@ -194,7 +225,7 @@ QuestionSets = {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Use the equation $y=3x+4$ to find the missing entries in the table. Then graph the relationship.', 'x': [0,2,4], 'y': [None,None,None], 'variables': ['x','y'],
+                {'question': r'Write the equation $y=3x+4$ in standard form. Fill in the $x$ and $y$-intercepts in the the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'N': json.dumps(2),
@@ -209,7 +240,7 @@ QuestionSets = {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Graph the equation $y=4+x$ by filling in the missing entries of the table and then graphing the points.', 'x': [1,None], 'y': [None,10], 'variables': ['x','y'],
+                {'question': r'Write the equation $y=4+x$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [0,None], 'y': [None,0], 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
                     'N': json.dumps(2),
