@@ -4,6 +4,7 @@ div.south{ background: none; position: absolute; bottom: 0px; }
 div.west { background: none; position: absolute; width:160px; left: -170px; }
 div.mid { background: none; position: absolute; top: 0px; left: 0px; }
 div.frame { background: none; margin: 20px 20px 20px 20px; position: relative; overflow: visible; height: 160px;}
+div.frame0 { background: none; margin: 0px; position: relative; overflow: visible;}
 .east input { position: absolute; transform: rotate(-90deg); top: 70px; text-align: center;}
 .west input { position: absolute; transform: rotate(90deg); top: 70px; text-align: center;}
 .south input { position: absolute; text-align: center;}
