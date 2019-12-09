@@ -22,7 +22,7 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
-            'Type': 'SetOfCoordinatePairsEquation',
+            'Type': 'SetOfCoordinatePairs',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'question': 'Graph the relationship shown in the table (Tap on the graph to add a point).<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>0</td><td>2</td></tr> <tr><td>1</td><td>1</td></tr> <tr><td>2</td><td>0</td></tr> <tr><td>3</td><td>-1</td></tr></table>',
