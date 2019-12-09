@@ -77,7 +77,7 @@ $('.card img').click(rotateCard);
   <script>
   $( function() {
       // The new index order for each item
-      var items = $( "#sortable" );
+      var items = $( "#sortable" ).detach();
       {% if 'input_order' in Parameters %}
       var order = {{ Parameters['input_order'] }};
 
@@ -85,8 +85,9 @@ $('.card img').click(rotateCard);
       var orderedItems = $.map(order, function(value) {
               return items.get(value);
       });
+      $( "#sortable" ).html(orderedItems);
       {% endif %}
-      items.sortable({
+      $( "#sortable" ).sortable({
         start: function (event, ui) {
             $(ui.item).data("startindex", ui.item.index());
         },
