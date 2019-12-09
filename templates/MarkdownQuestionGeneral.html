@@ -236,10 +236,10 @@ $('.card img').click(rotateCard);
 {% for coordinate_pair_form in form.coordinate_pair_forms %}
         <tr>
             <td>
-    {{ coordinate_pair_form.x(style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
+    {{ coordinate_pair_form.x(disabled=false, style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
             </td>
             <td>
-    {{ coordinate_pair_form.y(style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
+    {{ coordinate_pair_form.y(disabled=false, style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
             </td>
         </tr>
 {% endfor %}
