@@ -840,6 +840,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         if request.method == 'POST':
             correct = True
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
+            if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
+                read_only(form.coordinate_pair_forms.entries[it].x)
+            if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
+                read_only(form.coordinate_pair_forms.entries[it].y)
+        for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
                 variables = Parameters['variables']
                 lhs0 = lhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
@@ -851,10 +856,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
-                if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
-                    read_only(form.coordinate_pair_forms.entries[it].x)
-                if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
-                    read_only(form.coordinate_pair_forms.entries[it].y)
             except:
                 message = "Coordinate pairs could not be read.".format(it+1)
                 correct = False
