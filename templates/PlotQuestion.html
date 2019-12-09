@@ -172,7 +172,11 @@ function plot_data(data){
 </script>
 {% endif %}
 
-{{ question | safe }}
+{{ question}}
+
+{% if html is not none %}
+{{ html | safe }}
+{% endif %}
 
 <p>
 {% if image is not none %}

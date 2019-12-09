@@ -45,7 +45,8 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': 'Graph the relationship shown in the table (Tap on the graph to add a point).<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>0</td><td>2</td></tr> <tr><td>1</td><td>1</td></tr> <tr><td>2</td><td>0</td></tr> <tr><td>3</td><td>-1</td></tr></table>',
+                {'question': 'Graph the relationship shown in the table (Tap on the graph to add a point).',
+                    'html': '<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>0</td><td>2</td></tr> <tr><td>1</td><td>1</td></tr> <tr><td>2</td><td>0</td></tr> <tr><td>3</td><td>-1</td></tr></table>',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,5,-1,5,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,5,-1,5,1,1)]),
                     'dtickx': json.dumps(1),
