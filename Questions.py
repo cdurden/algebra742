@@ -21,9 +21,23 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            'Type': 'SetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': 'Graph the relationship shown in the table (Tap on the graph to add a point).<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>0</td><td>2</td></tr> <tr><td>1</td><td>1</td></tr> <tr><td>2</td><td>0</td></tr> <tr><td>3</td><td>-1</td></tr></table>',
+                    'x': json.dumps(numpy.linspace(-1,5,num=7).tolist()+[0]*7),
+                    'y': json.dumps([0]*7+numpy.linspace(-1,5,num=7).tolist()),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'set_of_coordinate_pairs': {(0,2),(1,1,(2,0),(3,-1)},
+                    'N': json.dumps(4),
+                    },
+                ],
+            'SpaceAfter': '4cm',
+            },
             {
-            'Type': 'OpenResponse',
-            'Template': 'OpenResponse.html',
+            'Type': 'SetOfCoordinatePairsEquationAndPrediction',
+            'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 # Questions:
                 # Concepts: A line can be horizontal, vertical, or diagonal. 
