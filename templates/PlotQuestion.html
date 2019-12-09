@@ -94,13 +94,13 @@ function get_boundary_points(x0,y0,x1,y1) {
     y_max = Math.max(...grid_y);
     m = (y1-y0)/(x1-x0);
     boundary_points = []
-    if( m*(x_max - x0) > y_min - y0 && m*(x_max - x0) < y_max - y0 ) {
+    if( m*(x_max - x0) >= y_min - y0 && m*(x_max - x0) <= y_max - y0 ) {
         boundary_points.push([x_max, y0 + m*(x_max - x0)]);
     }
     if( 1/m*(y_max - y0) > x_min - x0 && 1/m*(y_max - y0) < x_max - x0 ) {
         boundary_points.push([x0 + 1/m*(y_max - y0),y_max]);
     }
-    if( m*(x_min - x0) > y_min - y0 && m*(x_min - x0) < y_max - y0 ) {
+    if( m*(x_min - x0) >= y_min - y0 && m*(x_min - x0) <= y_max - y0 ) {
         boundary_points.push([x_min, y0 + m*(x_min - x0)]);
     }
     if( 1/m*(y_min - y0) > x_min - x0 && 1/m*(y_min - y0) < x_max - x0 ) {
