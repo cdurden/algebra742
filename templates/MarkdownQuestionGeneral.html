@@ -83,7 +83,8 @@ $('.card img').click(rotateCard);
         stop: function (event, ui)
         {        
             var startIndex = ui.item.data("startindex");
-            if (startIndex < 8) {
+            var stopIndex = ui.item.index();
+            if (startIndex < 7 || stopIndex < 7) {
               $(this).sortable('cancel');        
             }
         }  
