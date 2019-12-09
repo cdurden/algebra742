@@ -162,7 +162,9 @@ function plot_data(data){
 }
     if (!no_answer) {
       var answer_input = document.getElementById('set_of_coordinate_pairs');
-      pts = answer_input.value;
+      if (typeof(answer_input) != 'undefined') {
+          pts = answer_input.value;
+      }
     }
     pts = pts.myTrim("{()}");
     if (pts.length > 0) {
