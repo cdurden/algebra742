@@ -131,8 +131,8 @@ QuestionSets = {
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'question': r'Find the $x$-intercept of the graph.', 'a': [0,2], 'b': [3,4], 'variables': ['a','b'],
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
                     'x': [0,2],
                     'y': [3,4],
                     'set_of_coordinate_pairs': {(-6,0)},
