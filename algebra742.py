@@ -851,6 +851,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
+                if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
+                    read_only(form.coordinate_pair_forms.entries[it].x)
+                if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
+                    read_only(form.coordinate_pair_forms.entries[it].y)
             except:
                 message = "Coordinate pairs could not be read.".format(it+1)
                 correct = False
@@ -905,6 +909,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     rhs0 = rhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
                     app.logger.error(lhs0)
                     app.logger.error(rhs0)
+                    if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
+                        read_only(form.coordinate_pair_forms.entries[it].x)
+                    if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
+                        read_only(form.coordinate_pair_forms.entries[it].y)
     
                     if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                         correct = False
