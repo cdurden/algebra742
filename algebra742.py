@@ -274,6 +274,15 @@ class CoordinatePairsForm(Form):
     coordinate_pair_forms = FieldList(FormField(CoordinatePairForm))
     explanation = TextAreaField('explanation')
 
+class InputOutputTableAndSetOfCoordinatePairsForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    set_of_coordinate_pairs = StringField('set_of_coordinate_pairs')
+    coordinate_pair_forms = FieldList(FormField(CoordinatePairForm))
+    explanation = TextAreaField('explanation')
+
 class NumericalForm(Form):
     """ Add data from Form
 
@@ -858,7 +867,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     read_only(form.coordinate_pair_forms.entries[it].y)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTableAndSetOfCoordinatePairsEquation']:
-        form = CoordinatePairsForm(data=formdata)
+        form = InputOutputTableAndSetOfCoordinatePairsForm(data=formdata)
         #form = CoordinatePairsForm()
         variables = Parameters['variables']
         if 'n' in Parameters:
