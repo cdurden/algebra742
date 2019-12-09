@@ -113,7 +113,7 @@ $('.card img').click(rotateCard);
         {% if question_number is not none %}
         {{ question_number }}. {{ QuestionData['Question'] }}
         {% endif %}
-        {{ content | safe }}
+        {{ content }}
     </div>
 </section>
 
