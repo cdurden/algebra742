@@ -154,7 +154,7 @@ QuestionSets = {
                                 1 ,1 ,1 ,2 ,3 ,4 ,5 ,
                                 10,10,10,10,10,10,4 ,
                                 5 ,6 ,7 ,7 ,7 ,8 ,9],
-                    'solution': [0, 4, 2, 5, 10, 10, 3, 1, 10, 10, 10, 1, 10, 10, 10, 10, 2, 5, 1, 4, 3, 10, 10, 7, 10, 7, 10, 7, 10, 10, 6, 5, 9, 4, 8],
+                    'solutions': [[0,4,2,5,10,10,3,1,10,10,10,1,10,10,10,10,2,5,1,4,3,10,10,7,10,7,10,7,10,10,6,5,9,4,8]],
                     'cards': ['<img src="/static/deck4/card0.png"/>','<img src="/static/deck4/card1.png"/>', '<img src="/static/deck4/card2.png"/>', '<img src="/static/deck4/card3.png"/>', '<img src="/static/deck4/card4.png"/>', '<img src="/static/deck4/card5.png"/>', '<img src="/static/deck4/card6.png"/>', '<img src="/static/deck4/card7.png"/>', '<img src="/static/deck4/card8.png"/>', '<img src="/static/deck4/card9.png"/>', '<img src="/static/deck4/card10.png"/>']
                     },
                 {
@@ -163,7 +163,7 @@ QuestionSets = {
                                 1 ,5 ,1 ,2 ,3 ,3 ,5 ,
                                 10,10,10,10,10,10,4 ,
                                 5 ,6 ,7 ,6 ,6 ,8 ,9],
-                    'solution': [0, 1, 2, 3, 10, 10, 4, 5, 10, 10, 10, 5, 10, 10, 10, 10, 2, 3, 5, 1, 4, 10, 10, 6, 10, 6, 10, 6, 10, 10, 7, 3, 8, 1, 9],
+                    'solutions': [[0, 1, 2, 3, 10, 10, 4, 5, 10, 10, 10, 5, 10, 10, 10, 10, 2, 3, 5, 1, 4, 10, 10, 6, 10, 6, 10, 6, 10, 10, 7, 3, 8, 1, 9]],
                     'cards': ['<img src="/static/deck5/card0.png"/>','<img src="/static/deck5/card1.png"/>', '<img src="/static/deck5/card2.png"/>', '<img src="/static/deck5/card3.png"/>', '<img src="/static/deck5/card4.png"/>', '<img src="/static/deck5/card5.png"/>', '<img src="/static/deck5/card6.png"/>', '<img src="/static/deck5/card7.png"/>', '<img src="/static/deck5/card8.png"/>', '<img src="/static/deck5/card9.png"/>', '<img src="/static/deck5/card10.png"/>']
                     },
                 {
@@ -172,7 +172,7 @@ QuestionSets = {
                                 1 ,5 ,1 ,7 ,3 ,3 ,5 ,
                                 11,10,9 ,9 ,11,11,8 ,
                                 5 ,6 ,11,11,6 ,8 ,11],
-                    'solution': [0, 1, 2, 3, 11 , 11 , 4, 5, 11 , 11 , 11 , 5, 11 , 11 , 11 , 11 , 2, 3, 5, 1, 4, 11 , 11 , 6, 11 , 6, 11 , 6, 11 , 11 , 7, 3, 8, 1, 11],
+                    'solutions': [[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 9, 11, 11, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8],[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 9, 11, 11, 11, 11, 9, 11, 7, 3, 6, 1, 11, 11, 8],[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 9, 11, 11, 11, 11, 11, 9, 7, 3, 6, 1, 11, 11, 8]],
                     'cards': ['<img src="/static/deck6/card0.png"/>','<img src="/static/deck6/card1.png"/>', '<img src="/static/deck6/card2.png"/>', '<img src="/static/deck6/card3.png"/>', '<img src="/static/deck6/card4.png"/>', '<img src="/static/deck6/card5.png"/>', '<img src="/static/deck6/card6.png"/>', '<img src="/static/deck6/card7.png"/>', '<img src="/static/deck6/card8.png"/>', '<img src="/static/deck6/card9.png"/>', '<img src="/static/deck6/card10.png"/>', '<img src="/static/deck6/card11.png"/>']
                     }
                 ],
