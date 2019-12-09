@@ -236,7 +236,7 @@ QuestionSets = {
             'Template': 'SortCards.html',
             'ParameterSetVariants': [
                 {
-                    'question': 'Change the equation $2x+3y = 6$ into slope-intercept form. Place the cards below in the correct order to show the steps.',
+                    'question': 'Change the equation $y = 2x+8$ into standard form. Place the cards below in the correct order to show the steps.',
                     'shuffle': [6 ,6 ,0 ,1 ,2 ,3 ,4 ,
                                 6 ,6 ,6 ,6 ,6 ,3 ,5 ,
                                 6 ,5 ,1 ,5 ,0 ,6 ,4],
@@ -246,6 +246,7 @@ QuestionSets = {
                     'cards': ['<img src="/static/deck7/card0.png"/>','<img src="/static/deck7/card1.png"/>', '<img src="/static/deck7/card2.png"/>', '<img src="/static/deck7/card3.png"/>', '<img src="/static/deck7/card4.png"/>', '<img src="/static/deck7/card5.png"/>', '<img src="/static/deck7/card6.png"/>', '<img src="/static/deck7/card7.png"/>', '<img src="/static/deck7/card8.png"/>', '<img src="/static/deck7/card9.png"/>', '<img src="/static/deck7/card10.png"/>', '<img src="/static/deck7/card11.png"/>']
                     },
                 {
+                    'question': 'Change the equation $4x = 2y-3$ into standard form. Place the cards below in the correct order to show the steps.',
                     'shuffle': [0, 6 ,6 ,1 ,2 ,3 ,4 ,
                                 6 ,6 ,6 ,6 ,6 ,3 ,5 ,
                                 6 ,5 ,1 ,2 ,0 ,6 ,7],
@@ -254,6 +255,7 @@ QuestionSets = {
                     'cards': ['<img src="/static/deck8/card0.png"/>','<img src="/static/deck8/card1.png"/>', '<img src="/static/deck8/card2.png"/>', '<img src="/static/deck8/card3.png"/>', '<img src="/static/deck8/card4.png"/>', '<img src="/static/deck8/card5.png"/>', '<img src="/static/deck8/card6.png"/>', '<img src="/static/deck8/card7.png"/>', '<img src="/static/deck8/card8.png"/>', '<img src="/static/deck8/card9.png"/>', '<img src="/static/deck8/card10.png"/>', '<img src="/static/deck8/card11.png"/>']
                     },
                 {
+                    'question': 'Change the equation $x = -2y-5$ into standard form. Place the cards below in the correct order to show the steps.',
                     'shuffle': [0 ,6 ,6 ,1 ,2 ,3 ,4 ,
                                 6 ,6 ,6 ,6 ,6 ,0 ,5 ,
                                 6 ,5 ,1 ,8 ,7 ,6 ,9],
