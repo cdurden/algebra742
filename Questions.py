@@ -130,7 +130,7 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Find the $x$-intercept of the graph.', 'a': [0,2], 'b': [3,4], 'variables': ['a','b'],
+                {'question': r'Find the $x$-intercept of the graph. (Tap or click on the point to select it.)', 'a': [0,2], 'b': [3,4], 'variables': ['a','b'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
                     'x': [0,2],
@@ -149,6 +149,7 @@ QuestionSets = {
             'Template': 'SortCards.html',
             'ParameterSetVariants': [
                 {
+                    'question': 'Change the equation $2x+3y = 6$ into slope-intercept form',
                     'shuffle': [0 ,4 ,2 ,5 ,10,10,3 ,
                                 10,10,10,10,10,10,10,
                                 1 ,1 ,1 ,2 ,3 ,4 ,5 ,
