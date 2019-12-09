@@ -254,7 +254,7 @@ QuestionSets = {
                     },
                 {
                     'shuffle': [0 ,6 ,6 ,1 ,2 ,3 ,4 ,
-                                6 ,6 ,6 ,6 ,6 ,3 ,5 ,
+                                6 ,6 ,6 ,6 ,6 ,0 ,5 ,
                                 6 ,5 ,1 ,8 ,7 ,6 ,9],
                     'solutions': [[0, 6, 6, 1, 2, 3, 4, 6, 6, 5, 6, 5, 6, 6, 0, 3, 2, 1, 6, 6, 7],[0, 6, 6, 1, 2, 3, 4, 5, 6, 6, 6, 5, 6, 6, 0, 3, 2, 1, 6, 6, 7],[0, 6, 6, 1, 2, 3, 4, 6, 5, 6, 6, 5, 6, 6, 0, 3, 2, 1, 6, 6, 7],],
                     'cards': ['<img src="/static/deck9/card0.png"/>','<img src="/static/deck9/card1.png"/>', '<img src="/static/deck9/card2.png"/>', '<img src="/static/deck9/card3.png"/>', '<img src="/static/deck9/card4.png"/>', '<img src="/static/deck9/card5.png"/>', '<img src="/static/deck9/card6.png"/>', '<img src="/static/deck9/card7.png"/>', '<img src="/static/deck9/card8.png"/>', '<img src="/static/deck9/card9.png"/>', '<img src="/static/deck9/card10.png"/>', '<img src="/static/deck9/card11.png"/>']
