@@ -821,6 +821,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] in ['InputOutputTableEquation']:
         form = CoordinatePairsForm(data=formdata)
         #form = CoordinatePairsForm()
+        variables = Parameters['variables']
         if 'n' in Parameters:
             n = Parameters['n']
         else:
