@@ -672,7 +672,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             form = SortableForm()
         app.logger.error(form.answers.data)
         try:
-            input_order = [int(re.split("=",x)[1]) for x in re.split("&",form.answers.data)]
+            shuffle = Parameters['shuffle']
+            input_order = [shuffle[int(re.split("=",x)[1])] for x in re.split("&",form.answers.data)]
             correct = input_order==Parameters['shuffle']
             app.logger.error(input_order)
             app.logger.error(correct)
