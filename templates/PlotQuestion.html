@@ -99,10 +99,10 @@ function plot_data(data){
     }
     point_data0 = [ { x:pts_x, y:pts_y, type:'scatter',
             mode:'markers', marker:{size:10}, showlegend: false } ];
-    if (pts_array.length > (j-1)%N && pts_array.length > (j-2)%N) {
+    var j1 = mod(j-1,N);
+    var j2 = mod(j-2,N);
+    if (pts_array.length > j1 && pts_array.length > j2) {
       //bdry_pts = get_boundary_points(pts_x[0],pts_y[0],pts_x[1],pts_y[1]);
-      var j1 = mod(j-1,N);
-      var j2 = mod(j-2,N);
       bdry_pts = get_boundary_points(pts_x[j1],pts_y[j1],pts_x[j2],pts_y[j2]);
       layout.shapes = [{
         type: 'line',
