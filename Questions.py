@@ -248,7 +248,7 @@ QuestionSets = {
                                 2 ,5 ,1 ,5 ,2 ,3 ,4],
                     'solutions': [[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 9, 11, 11, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8],[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 11, 9, 11, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8],[11, 11, 0, 1, 2, 3, 4, 11, 11, 5, 11, 5, 11, 5, 11, 11, 6, 1, 10, 3, 8, 11, 11, 9, 11, 9, 11, 11, 7, 3, 6, 1, 11, 11, 8]],
                     'cards': ['<img src="/static/deck7/card0.png"/>','<img src="/static/deck7/card1.png"/>', '<img src="/static/deck7/card2.png"/>', '<img src="/static/deck7/card3.png"/>', '<img src="/static/deck7/card4.png"/>', '<img src="/static/deck7/card5.png"/>', '<img src="/static/deck7/card6.png"/>', '<img src="/static/deck7/card7.png"/>', '<img src="/static/deck7/card8.png"/>', '<img src="/static/deck7/card9.png"/>', '<img src="/static/deck7/card10.png"/>', '<img src="/static/deck7/card11.png"/>']
-                    }
+                    },
                 {
                     'question': 'Change the equation $2x+3y = 6$ into slope-intercept form. Place the cards below in the correct order to show the steps.',
                     'shuffle': [0 ,4 ,2 ,5 ,10,10,3 ,
