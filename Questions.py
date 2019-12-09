@@ -31,7 +31,7 @@ QuestionSets = {
                 # 8. A special entry in a table, is the entry where either the x value is 0 or the y value is 0. Plot these points. Which axis is the point (0,5) on? 
                 # 9. Use an equation to create a table with x and y-intercepts.
         'ProvideImmediateFeedback': True,
-        'Title': 'December 6: Seeking Shelter: How is the homeless population changing around the country?',
+        'Title': 'December 9: Graphing Linear Equations',
         'Questions': [
             {
             'Type': 'InputOutputTable',
