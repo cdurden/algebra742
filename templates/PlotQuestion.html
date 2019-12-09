@@ -66,10 +66,10 @@ var pts_x = [];
 var pts_y = [];
 myPlot.on('plotly_click', plot_data);
 function get_boundary_points(x0,y0,x1,y1) {
-    x_min = Math.min(...x);
-    x_max = Math.max(...x);
-    y_min = Math.min(...y);
-    y_max = Math.max(...y);
+    x_min = Math.min(...grid_x);
+    x_max = Math.max(...grid_x);
+    y_min = Math.min(...grid_y);
+    y_max = Math.max(...grid_y);
     m = (y1-y0)/(x1-x0);
     boundary_points = []
     if( m*(x_max - x0) > y_min - y0 && m*(x_max - x0) < y_max - y0 ) {
