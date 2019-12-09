@@ -36,7 +36,7 @@ app.config.from_object('config')
 #logging.basicConfig(level=logging.INFO)
 #root = logging.getLogger()
 #logger = root
-from wtforms_components import TimeField, read_only
+#from wtforms_components import TimeField, read_only
 
 handler = RotatingFileHandler(os.path.join(os.path.dirname(__file__),'info.log'), maxBytes=10000, backupCount=1)
 handler.setLevel(logging.INFO)
