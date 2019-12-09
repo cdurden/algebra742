@@ -142,7 +142,7 @@ function plot_data(data){
 <script type="text/javascript" src="{{ url_for('static', filename='js/draw.js') }}"></script>
 {% endif %}
 
-{{ question }}
+{{ question | safe }}
 
 <p>
 {% if image is not none %}
