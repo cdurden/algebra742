@@ -169,8 +169,8 @@ QuestionSets = {
                 {
                     'shuffle': [11 ,11 ,0 ,1 ,2 ,3 ,4 ,
                                 11 ,11 ,11 ,11 ,11 ,11 ,11 ,
-                                1 ,5 ,1 ,2 ,3 ,3 ,5 ,
-                                11 ,10 ,9 ,9 ,11 ,11 ,4 ,
+                                1 ,5 ,1 ,7 ,3 ,3 ,5 ,
+                                11 ,10 ,9 ,9 ,11 ,11 ,8 ,
                                 5 ,6 ,7 ,6 ,6 ,8 ,11],
                     'solution': [0, 1, 2, 3, 11 , 11 , 4, 5, 11 , 11 , 11 , 5, 11 , 11 , 11 , 11 , 2, 3, 5, 1, 4, 11 , 11 , 6, 11 , 6, 11 , 6, 11 , 11 , 7, 3, 8, 1, 11],
                     'cards': ['<img src="/static/deck6/card0.png"/>','<img src="/static/deck6/card1.png"/>', '<img src="/static/deck6/card2.png"/>', '<img src="/static/deck6/card3.png"/>', '<img src="/static/deck6/card4.png"/>', '<img src="/static/deck6/card5.png"/>', '<img src="/static/deck6/card6.png"/>', '<img src="/static/deck6/card7.png"/>', '<img src="/static/deck6/card8.png"/>', '<img src="/static/deck6/card9.png"/>', '<img src="/static/deck6/card10.png"/>', '<img src="/static/deck6/card11.png"/>']
