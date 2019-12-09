@@ -4,6 +4,10 @@ numpy.linspace(0, 10, num=4)
 grid = numpy.array(numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25))).T.reshape(-1,2)
 grid36x36 = numpy.array(numpy.meshgrid(numpy.linspace(-4,36,num=41),numpy.linspace(-4,36,num=41))).T.reshape(-1,2)
 homelessness_grid = numpy.array(numpy.meshgrid(numpy.linspace(2011,2035,num=25),numpy.linspace(0,150000,num=151))).T.reshape(-1,2)
+def gen_grid(xmin,xmax,ymin,ymax,dx,dy):
+    grid = numpy.array(numpy.meshgrid(numpy.linspace(xmin,xmax,num=(xmax-xmin)/dx+1),numpy.linspace(ymin,ymax,num=(ymax-ymin)/dy+1))).T.reshape(-1,2)
+    return(grid)
+
 def frange(x, y, jump):
     while x < y:
         yield x
@@ -26,8 +30,8 @@ QuestionSets = {
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'question': 'Graph the relationship shown in the table (Tap on the graph to add a point).<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>0</td><td>2</td></tr> <tr><td>1</td><td>1</td></tr> <tr><td>2</td><td>0</td></tr> <tr><td>3</td><td>-1</td></tr></table>',
-                    'x': json.dumps(numpy.linspace(-1,5,num=7).tolist()+[0]*7),
-                    'y': json.dumps([0]*7+numpy.linspace(-1,5,num=7).tolist()),
+                    'x': json.dumps([x[0] for x in gen_grid(-1,5,-1,5,1,1)]),
+                    'y': json.dumps([x[1] for x in gen_grid(-1,5,-1,5,1,1)]),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
                     'set_of_coordinate_pairs': {(0,2),(1,1),(2,0),(3,-1)},
