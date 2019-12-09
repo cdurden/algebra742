@@ -109,6 +109,23 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            {
+            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'Use the equation $y=3x+4$ to find the missing entries in the table.', 'x': [0,2,4], 'y': [None,None,None], 'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'grid_x': json.dumps([x[0] for x in grid]),
+                    'grid_y': json.dumps([x[1] for x in grid]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=3x+4',
+                 },
+                ],
+            'SpaceAfter': '4cm',
+            },
         ]
     },
     'SeekingShelterB': {

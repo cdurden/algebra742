@@ -857,6 +857,67 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
                     read_only(form.coordinate_pair_forms.entries[it].y)
         answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['InputOutputTableAndSetOfCoordinatePairsEquation']:
+        form = CoordinatePairsForm(data=formdata)
+        #form = CoordinatePairsForm()
+        variables = Parameters['variables']
+        if 'n' in Parameters:
+            n = Parameters['n']
+        else:
+            n = len(Parameters[variables[0]])
+        input_coordinates = set()
+        lhs,rhs = Parameters['equation'].split("=")
+        if request.method == 'POST':
+            correct = True
+        try:
+            input_coordinate_pairs = re.split("\)\s*,\s*\(",form.set_of_coordinate_pairs.data)
+            input_set_of_coordinate_pairs = set()
+            for input_coordinate_pair_string in input_coordinate_pairs:
+                input_coordinate_pair = tuple(float(x.strip("{()} ")) for x in input_coordinate_pair_string.split(","))
+                input_set_of_coordinate_pairs.add(input_coordinate_pair)
+                x = input_coordinate_pair[0]
+                y = input_coordinate_pair[1]
+                lhs0 = lhs.replace(variables[0], "({:s})".format(str(x)))
+                rhs0 = rhs.replace(variables[0], "({:s})".format(str(x)))
+                lhs0 = lhs0.replace(variables[1], "({:s})".format(str(y)))
+                rhs0 = rhs0.replace(variables[1], "({:s})".format(str(y)))
+                app.logger.error(lhs0)
+                app.logger.error(rhs0)
+
+                if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
+                    correct = False
+                    message = "The points you entered are not on the line."
+            if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
+                correct = False
+        for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
+            try:
+                lhs0 = lhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
+                rhs0 = rhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
+                lhs0 = lhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
+                rhs0 = rhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
+                app.logger.error(lhs0)
+                app.logger.error(rhs0)
+
+                if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
+                    correct = False
+            except:
+                message = "Coordinate pairs could not be read.".format(it+1)
+                correct = False
+                break
+        except:
+            message = "Coordinate pairs could not be read."
+            correct = False
+        for it in range(n):
+            if len(form.coordinate_pair_forms.entries) < it+1:
+                try:
+                    form.coordinate_pair_forms.append_entry({'x': Parameters[variables[0]][it], 'y': Parameters[variables[1]][it]})
+                except:
+                    form.coordinate_pair_forms.append_entry()
+                if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
+                    read_only(form.coordinate_pair_forms.entries[it].x)
+                if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
+                    read_only(form.coordinate_pair_forms.entries[it].y)
+        answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SetOfCoordinatePairsEquation', 'SetOfCoordinatePairsEquationAndPrediction']:
         try:
             form = SetOfCoordinatePairsAndPredictionForm(data=formdata)
