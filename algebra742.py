@@ -911,7 +911,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         if 'n' in Parameters:
             n = Parameters['n']
         else:
-            n = len(Parameters[variables[0]])
+            n = len(Parameters['x'])
         input_coordinates = set()
         for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
             try:
