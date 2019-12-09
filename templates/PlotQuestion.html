@@ -97,7 +97,8 @@ function plot_data(data){
     point_data0 = [ { x:pts_x, y:pts_y, type:'scatter',
             mode:'markers', marker:{size:10}, showlegend: false } ];
     if (pts_array.length > 1) {
-      bdry_pts = get_boundary_points(pts_x[0],pts_y[0],pts_x[1],pts_y[1]);
+      //bdry_pts = get_boundary_points(pts_x[0],pts_y[0],pts_x[1],pts_y[1]);
+      bdry_pts = get_boundary_points(pts_x[j],pts_y[j],pts_x[j-1],pts_y[j-1]);
       layout.shapes = [{
         type: 'line',
 //        x0: pts_x[0],
@@ -132,9 +133,11 @@ function plot_data(data){
       pts = answer_input.value;
     }
     pts = pts.myTrim("{()}");
-    pts_list = pts.split("),(");
-    pts_data = { 'points': pts_list.map(xy_str => { xy = xy_str.split(","); return({'x': parseFloat(xy[0]), 'y': parseFloat(xy[1])})}) };
-    plot_data(pts_data);
+    if (pts.length > 0) {
+        pts_list = pts.split("),(");
+        pts_data = { 'points': pts_list.map(xy_str => { xy = xy_str.split(","); return({'x': parseFloat(xy[0]), 'y': parseFloat(xy[1])})}) };
+        plot_data(pts_data);
+    }
 }
 </script>
 <script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
