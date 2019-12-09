@@ -36,6 +36,7 @@ app.config.from_object('config')
 #logging.basicConfig(level=logging.INFO)
 #root = logging.getLogger()
 #logger = root
+from wtforms_components import TimeField, read_only
 
 handler = RotatingFileHandler(os.path.join(os.path.dirname(__file__),'info.log'), maxBytes=10000, backupCount=1)
 handler.setLevel(logging.INFO)
@@ -928,9 +929,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             if len(form.coordinate_pair_forms.entries) < it+1:
                 form.coordinate_pair_forms.append_entry()
                 if len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
-                    form.coordinate_pair_forms.entries[it].x.render_kw.readonly = True
+                    read_only(form.coordinate_pair_forms.entries[it].x)
                 if len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
-                    form.coordinate_pair_forms.entries[it].y.render_kw.readonly = True
+                    read_only(form.coordinate_pair_forms.entries[it].y)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['CoordinatePairs']:
         form = CoordinatePairsForm(data=formdata)
