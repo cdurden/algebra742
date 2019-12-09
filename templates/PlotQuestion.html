@@ -29,7 +29,7 @@ var myPlot = document.getElementById('myDiv'),
     no_answer = {% if no_answer is defined %}{{ no_answer | safe }}{% else %}false{% endif %},
     point_data = [ { x:grid_x, y:grid_y, type:'scatter',
             mode:'markers', marker:{size:1}, showlegend: false } ],
-    {% if x is defined and y is defined %}
+    {% if x is defined and y is defined and show_points%}
     x = {{ x|safe }},
     y = {{ y|safe }},
     point_data = point_data.concat([ { x:x, y:y, type:'scatter',
@@ -41,6 +41,7 @@ var myPlot = document.getElementById('myDiv'),
         height: 700,
         datarevision: 0,
         title:'{{ graph_title }}',
+        shapes: [],
   margin: {
     l: 50,
     r: 50,
