@@ -56,6 +56,22 @@ var myPlot = document.getElementById('myDiv'),
             dtick: {{ dticky | safe }},
         },
      };
+    {% if x is defined and y is defined and show_points%}
+    if (x.length > 1 && y.length > 2) {
+      bdry_pts = get_boundary_points(x[0],y[0],x[1],y[1]);
+      layout.shapes = layout.shapes.concat([{
+        type: 'line',
+        x0: bdry_pts[0][0],
+        y0: bdry_pts[0][1],
+        x1: bdry_pts[1][0],
+        y1: bdry_pts[1][1],
+        line: {
+          color: 'rgb(55, 128, 191)',
+          width: 3
+        }
+      }]);
+    }
+    {% endif %}
 
 //Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});
 //Plotly.react('myDiv', point_data, layout, {showSendToCloud: true});
@@ -111,7 +127,7 @@ function plot_data(data){
     if (N>1 && pts_array.length > j1 && pts_array.length > j2) {
       //bdry_pts = get_boundary_points(pts_x[0],pts_y[0],pts_x[1],pts_y[1]);
       bdry_pts = get_boundary_points(pts_x[j1],pts_y[j1],pts_x[j2],pts_y[j2]);
-      layout.shapes = [{
+      layout.shapes = layout.shapes.concat([{
         type: 'line',
 //        x0: pts_x[0],
 //        y0: pts_y[0],
@@ -125,7 +141,7 @@ function plot_data(data){
           color: 'rgb(55, 128, 191)',
           width: 3
         }
-      }];
+      }]);
     }
     layout.datarevision += 1;
     //Plotly.react('myDiv', point_data, layout);
