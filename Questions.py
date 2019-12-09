@@ -30,7 +30,7 @@ QuestionSets = {
                     'y': json.dumps([0]*7+numpy.linspace(-1,5,num=7).tolist()),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
-                    'set_of_coordinate_pairs': {(0,2),(1,1,(2,0),(3,-1)},
+                    'set_of_coordinate_pairs': {(0,2),(1,1),(2,0),(3,-1)},
                     'N': json.dumps(4),
                     },
                 ],
