@@ -899,7 +899,16 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     
                     if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                         correct = False
-                        message = "The points you entered are not on the line."
+                        message = "The points on your graph are not solutions to the equation."
+            except:
+                message = "The points on your graph could not be read."
+                correct = False
+            for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
+                if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
+                    read_only(form.coordinate_pair_forms.entries[it].x)
+                if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
+                    read_only(form.coordinate_pair_forms.entries[it].y)
+            try:
                 if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
                     correct = False
                 for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
@@ -909,10 +918,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     rhs0 = rhs0.replace(variables[1], "({:s})".format(str(coordinate_pair_form.y.data)))
                     app.logger.error(lhs0)
                     app.logger.error(rhs0)
-                    if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
-                        read_only(form.coordinate_pair_forms.entries[it].x)
-                    if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
-                        read_only(form.coordinate_pair_forms.entries[it].y)
     
                     if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                         correct = False
