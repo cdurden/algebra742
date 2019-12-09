@@ -24,11 +24,17 @@ window.onload = function () {
 var myPlot = document.getElementById('myDiv'),
     d3 = Plotly.d3,
     N = {{ N|safe }},
-    x = {{ grid_x|safe }},
-    y = {{ grid_y|safe }},
+    grid_x = {{ grid_x|safe }},
+    grid_y = {{ grid_y|safe }},
     no_answer = {% if no_answer is defined %}{{ no_answer | safe }}{% else %}false{% endif %},
-    point_data = [ { x:x, y:y, type:'scatter',
+    point_data = [ { x:grid_x, y:grid_y, type:'scatter',
             mode:'markers', marker:{size:1}, showlegend: false } ],
+    {% if x is defined and y is defined %}
+    x = {{ x|safe }},
+    y = {{ y|safe }},
+    point_data = point_data.concat([ { x:x, y:y, type:'scatter',
+            mode:'markers', marker:{size:10}, showlegend: false } ]),
+    {% endif %}
     //point_data0 = [],
     layout = {
         hovermode:'closest',

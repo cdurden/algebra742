@@ -922,7 +922,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             app.logger.error(input_coordinates)
             app.logger.error(coordinates)
         except:
-            message = "Coordinate pairs could not be read.".format(it+1)
+            message = "Coordinate pairs could not be read."
             correct = False
 
         for it in range(n):
