@@ -250,7 +250,7 @@ QuestionSets = {
                     'cards': ['<img src="/static/deck7/card0.png"/>','<img src="/static/deck7/card1.png"/>', '<img src="/static/deck7/card2.png"/>', '<img src="/static/deck7/card3.png"/>', '<img src="/static/deck7/card4.png"/>', '<img src="/static/deck7/card5.png"/>', '<img src="/static/deck7/card6.png"/>', '<img src="/static/deck7/card7.png"/>', '<img src="/static/deck7/card8.png"/>', '<img src="/static/deck7/card9.png"/>', '<img src="/static/deck7/card10.png"/>', '<img src="/static/deck7/card11.png"/>']
                     },
                 {
-                    'shuffle': [6 ,6 ,0 ,1 ,2 ,3 ,4 ,
+                    'shuffle': [0, 6 ,6 ,1 ,2 ,3 ,4 ,
                                 6 ,6 ,6 ,6 ,6 ,3 ,5 ,
                                 6 ,5 ,1 ,2 ,0 ,6 ,7],
                     'solutions': [[6, 6, 0, 1, 2, 3, 4, 5, 6, 6, 6, 5, 6, 6, 5, 3, 0, 1, 6, 6, 4]],
