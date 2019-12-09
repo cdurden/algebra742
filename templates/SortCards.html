@@ -1,7 +1,7 @@
 <ul id="sortable">
     {% for i in shuffle %}
     <li id="card_{{ loop.index0 }}" class="card ui-state-default">
-        <div class="frame0" {% if loop.index0 in [17,19,21] %} style="border-bottom: 3px solid black;">
+        <div class="frame0" {% if loop.index0 in [17,19,21] %} style="border-bottom: 3px solid black;" {% endif %}>
           {{ cards[i] | safe }}
       </div>
     </li>
