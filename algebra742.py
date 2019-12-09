@@ -928,7 +928,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for it in range(n):
             if len(form.coordinate_pair_forms.entries) < it+1:
                 try:
-                    form.coordinate_pair_forms.append_entry(CoordinatePairForm({'x': Parameters[variables[0]][it], 'y': Parameters[variables[1]][it]}))
+                    form.coordinate_pair_forms.append_entry(CoordinatePairForm(data={'x': Parameters[variables[0]][it], 'y': Parameters[variables[1]][it]}))
                 except:
                     form.coordinate_pair_forms.append_entry()
                 if len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
