@@ -21,6 +21,7 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            {
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
