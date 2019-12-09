@@ -79,7 +79,7 @@ div#content {
     clear: left;
     font-size: 18pt;
 }
-#myDiv { width: 65%; float: left;}
+#myDiv {}
 #drawing { width: 25%; overflow: auto width; position: absolute; left: 65%;}
 #container { position: relative; }
 #imageView { border: 1px solid #000; position: absolute; top: 10px; left: 10px; touch-action: none; }
