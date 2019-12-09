@@ -42,7 +42,7 @@ QuestionSets = {
             },
             {
             'Type': 'InputOutputTable',
-            'Template': 'Graph.html',
+            'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'question': r'Graph the relationship shown in the table.', 'x': [6,4,2], 'y': [0,4,None], 'variables': ['x','y']},
                 ],
