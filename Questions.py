@@ -45,7 +45,7 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairs',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': 'Graph the relationship shown in the table (Tap on the graph to add a point).',
+                {'question': 'Graph the relationship shown in the table. (Tap on the graph to add each coordinate pair.)',
                     'html': '<br/><table class="iotable"><tr><th>x</th><th>y</th></tr><td>0</td><td>2</td></tr> <tr><td>1</td><td>1</td></tr> <tr><td>2</td><td>0</td></tr> <tr><td>3</td><td>-1</td></tr></table>',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,5,-1,5,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,5,-1,5,1,1)]),
@@ -61,7 +61,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Use the graph to complete the table.', 'a': [0,2,4], 'b': [3,4,None], 'variables': ['a','b'],
+                {'question': r'Use the graph of the line to find the missing value in the table.', 'a': [0,2,4], 'b': [3,4,None], 'variables': ['a','b'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'x': [0,2,4],
@@ -78,7 +78,7 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Graph the relationship shown in the table. Then find the missing value in the table.', 'a': [6,4,2], 'b': [0,4,None], 'variables': ['a','b'],
+                {'question': r'Assume the relationship represented in the table is linear. Graph the line. Then use the graph to find the missing value in the table.', 'a': [6,4,2], 'b': [0,4,None], 'variables': ['a','b'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'x': [6,4,2],
@@ -113,7 +113,7 @@ QuestionSets = {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Use the equation $y=3x+4$ to find the missing entries in the table.', 'x': [0,2,4], 'y': [None,None,None], 'variables': ['x','y'],
+                {'question': r'Use the equation $y=3x+4$ to find the missing entries in the table. Then graph the relationship.', 'x': [0,2,4], 'y': [None,None,None], 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'grid_x': json.dumps([x[0] for x in grid]),
@@ -123,6 +123,24 @@ QuestionSets = {
                     'dticky': json.dumps(1),
                     'equation': 'y=3x+4',
                  },
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'SetOfCoordinatePairs',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'Find the $x$-intercept of the graph.', 'a': [0,2], 'b': [3,4], 'variables': ['a','b'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'x': [0,2],
+                    'y': [3,4],
+                    'set_of_coordinate_pairs': {(-6,0)},
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(1),
+                    }
                 ],
             'SpaceAfter': '4cm',
             },
