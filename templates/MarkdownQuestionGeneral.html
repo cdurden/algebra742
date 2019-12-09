@@ -190,7 +190,7 @@ $('.card img').click(rotateCard);
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
-{% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation','SetOfCoordinatePairsEquationAndPrediction'] %}
+{% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation','SetOfCoordinatePairsEquationAndPrediction', 'InputOutputTableAndSetOfCoordinatePairsEquation'] %}
     {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
     <div id="myDiv"></div>
     {% endif %}
@@ -230,7 +230,7 @@ $('.card img').click(rotateCard);
     {% endif %}
 
 {% endif %}
-{% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation'] %}
+{% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation','InputOutputTableAndSetOfCoordinatePairsEquation'] %}
 <div>
     <table>
         <tr>
@@ -262,7 +262,9 @@ Explain how you got your answer below.
 </p>
 {% endif %}
     {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    {% if QuestionData['Type'] not in ['InputOutputTableAndSetOfCoordinatePairsEquation'] %}
     <div id="myDiv"></div>
+    {% endif %}
     {% endif %}
 
 {% if not test %}
