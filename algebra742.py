@@ -889,7 +889,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                         message = "The points you entered are not on the line."
                 if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
                     correct = False
-            try:
                 for it,coordinate_pair_form in enumerate(form.coordinate_pair_forms.entries):
                     lhs0 = lhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
                     rhs0 = rhs.replace(variables[0], "({:s})".format(str(coordinate_pair_form.x.data)))
