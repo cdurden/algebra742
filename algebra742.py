@@ -682,6 +682,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             app.logger.error(correct)
         except:
             correct = False
+            Parameters['input_order'] = range(len(Parameters['shuffle'])) 
             #Parameters['shuffle0'] = Parameters['shuffle']
             #Parameters['cards'] = [Parameters['cards'][i] for i in Parameters['shuffle']]
         answer = json.dumps(form.data)
