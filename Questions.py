@@ -44,6 +44,23 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
+                {'question': r'Use the graph to complete the table.', 'a': [0,2,4], 'b': [3,4,None], 'variables': ['a','b'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'x': [0,2,4],
+                    'y': [3,4,5],
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(2),
+                    }
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'InputOutputTable',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
                 {'question': r'Graph the relationship shown in the table.', 'a': [6,4,2], 'b': [0,4,None], 'variables': ['a','b'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
