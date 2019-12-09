@@ -26,6 +26,7 @@ var myPlot = document.getElementById('myDiv'),
     N = {{ N|safe }},
     grid_x = {{ grid_x|safe }},
     grid_y = {{ grid_y|safe }},
+    shapes = [],
     no_answer = {% if no_answer is defined %}{{ no_answer | safe }}{% else %}false{% endif %},
     point_data = [ { x:grid_x, y:grid_y, type:'scatter',
             mode:'markers', marker:{size:1}, showlegend: false } ],
@@ -59,7 +60,7 @@ var myPlot = document.getElementById('myDiv'),
     {% if x is defined and y is defined and show_points%}
     if (x.length > 1 && y.length > 2) {
       bdry_pts = get_boundary_points(x[0],y[0],x[1],y[1]);
-      layout.shapes = layout.shapes.concat([{
+      shapes = [{
         type: 'line',
         x0: bdry_pts[0][0],
         y0: bdry_pts[0][1],
@@ -69,7 +70,7 @@ var myPlot = document.getElementById('myDiv'),
           color: 'rgb(55, 128, 191)',
           width: 3
         }
-      }]);
+      }];
     }
     {% endif %}
 
@@ -127,7 +128,7 @@ function plot_data(data){
     if (N>1 && pts_array.length > j1 && pts_array.length > j2) {
       //bdry_pts = get_boundary_points(pts_x[0],pts_y[0],pts_x[1],pts_y[1]);
       bdry_pts = get_boundary_points(pts_x[j1],pts_y[j1],pts_x[j2],pts_y[j2]);
-      layout.shapes = layout.shapes.concat([{
+      layout.shapes = shapes.concat([{
         type: 'line',
 //        x0: pts_x[0],
 //        y0: pts_y[0],
