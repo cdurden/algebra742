@@ -44,13 +44,14 @@ QuestionSets = {
             'Type': 'InputOutputTable',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Graph the relationship shown in the table.', 'x': [6,4,2], 'y': [0,4,None], 'variables': ['x','y']},
+                {'question': r'Graph the relationship shown in the table.', 'x': [6,4,2], 'y': [0,4,None], 'variables': ['x','y'],
                     'x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
                     'set_of_coordinate_pairs': {(6,0),(4,4),(2,0)},
                     'N': json.dumps(2),
+                    }
                 ],
             'SpaceAfter': '4cm',
             },
