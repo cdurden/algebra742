@@ -76,13 +76,24 @@ $('.card img').click(rotateCard);
       <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
   <script>
   $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-$('#answer_form').submit(function(){
+      $( "#sortable" ).sortable({
+        start: function (event, ui) {
+            $(ui.item).data("startindex", ui.item.index());
+        },
+        stop: function (event, ui)
+        {        
+            var startIndex = ui.item.data("startindex");
+            if (startIndex < 8) {
+              $(this).sortable('cancel');        
+            }
+        }  
+      });
+      $( "#sortable" ).disableSelection();
+  $('#answer_form').submit(function(){
      
-    $('#answers').val($( "#sortable" ).sortable("serialize"));
-    return true;
-}); 
+      $('#answers').val($( "#sortable" ).sortable("serialize"));
+      return true;
+  }); 
 });
   </script>
     {% endif %}
