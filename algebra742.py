@@ -821,7 +821,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] in ['InputOutputTableEquation']:
         form = CoordinatePairsForm(data=formdata)
         #form = CoordinatePairsForm()
-        n = Parameters['n']
+        if 'n' in Parameters:
+            n = Parameters['n']
+        else:
+            n = len(Parameters[variables[0]])
         input_coordinates = set()
         lhs,rhs = Parameters['equation'].split("=")
         if request.method == 'POST':
@@ -844,7 +847,14 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 break
         for it in range(n):
             if len(form.coordinate_pair_forms.entries) < it+1:
-                form.coordinate_pair_forms.append_entry()
+                try:
+                    form.coordinate_pair_forms.append_entry({'x': Parameters[variables[0]][it], 'y': Parameters[variables[1]][it]})
+                except:
+                    form.coordinate_pair_forms.append_entry()
+                if len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
+                    read_only(form.coordinate_pair_forms.entries[it].x)
+                if len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
+                    read_only(form.coordinate_pair_forms.entries[it].y)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SetOfCoordinatePairsEquation', 'SetOfCoordinatePairsEquationAndPrediction']:
         try:
