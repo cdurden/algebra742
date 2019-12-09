@@ -852,9 +852,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     form.coordinate_pair_forms.append_entry({'x': Parameters[variables[0]][it], 'y': Parameters[variables[1]][it]})
                 except:
                     form.coordinate_pair_forms.append_entry()
-                if len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
+                if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
                     read_only(form.coordinate_pair_forms.entries[it].x)
-                if len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
+                if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
                     read_only(form.coordinate_pair_forms.entries[it].y)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SetOfCoordinatePairsEquation', 'SetOfCoordinatePairsEquationAndPrediction']:
@@ -942,9 +942,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     form.coordinate_pair_forms.append_entry({'x': Parameters[variables[0]][it], 'y': Parameters[variables[1]][it]})
                 except:
                     form.coordinate_pair_forms.append_entry()
-                if len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
+                if variables[0] in Parameters and len(Parameters[variables[0]])>it and Parameters[variables[0]][it] is not None:
                     read_only(form.coordinate_pair_forms.entries[it].x)
-                if len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
+                if variables[0] in Parameters and len(Parameters[variables[1]])>it and Parameters[variables[1]][it] is not None:
                     read_only(form.coordinate_pair_forms.entries[it].y)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['CoordinatePairs']:
