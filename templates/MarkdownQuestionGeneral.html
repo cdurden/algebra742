@@ -190,6 +190,46 @@ $('.card img').click(rotateCard);
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
+{% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation','InputOutputTableAndSetOfCoordinatePairsEquation'] %}
+<div>
+    <table>
+        <tr>
+
+            <th align="center">
+                {{ Parameters['variables'][0] }} 
+            </th>
+            <th align="center">
+                {{ Parameters['variables'][1] }} 
+            </th>
+        </tr>
+{% for coordinate_pair_form in form.coordinate_pair_forms %}
+        <tr>
+            <td>
+    {{ coordinate_pair_form.x(disabled=false, style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
+            </td>
+            <td>
+    {{ coordinate_pair_form.y(disabled=false, style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
+            </td>
+        </tr>
+{% endfor %}
+    </table>
+</div>
+<br/>
+{% if 'explanation' in Parameters and Parameters['explanation']%}
+Explain how you got your answer below.
+<p>
+{{ form.explanation(autofocus=true, style="font-size: 18pt; height: 80px; width:640px; ") }}
+</p>
+{% endif %}
+    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    <div id="myDiv"></div>
+    {% endif %}
+
+{% if not test %}
+<b>{{ message }}</b>
+{% endif %}
+
+{% endif %}
 {% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation','SetOfCoordinatePairsEquationAndPrediction', 'InputOutputTableAndSetOfCoordinatePairsEquation'] %}
     {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
     {% if QuestionData['Type'] not in ['InputOutputTableAndSetOfCoordinatePairsEquation'] %}
@@ -230,46 +270,6 @@ $('.card img').click(rotateCard);
     {% if not test %}
     <b>{{ message }}</b>
     {% endif %}
-
-{% endif %}
-{% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation','InputOutputTableAndSetOfCoordinatePairsEquation'] %}
-<div>
-    <table>
-        <tr>
-
-            <th align="center">
-                {{ Parameters['variables'][0] }} 
-            </th>
-            <th align="center">
-                {{ Parameters['variables'][1] }} 
-            </th>
-        </tr>
-{% for coordinate_pair_form in form.coordinate_pair_forms %}
-        <tr>
-            <td>
-    {{ coordinate_pair_form.x(disabled=false, style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
-            </td>
-            <td>
-    {{ coordinate_pair_form.y(disabled=false, style="font-size: 18pt; height: 40px; width:50px;") }}<br/>
-            </td>
-        </tr>
-{% endfor %}
-    </table>
-</div>
-<br/>
-{% if 'explanation' in Parameters and Parameters['explanation']%}
-Explain how you got your answer below.
-<p>
-{{ form.explanation(autofocus=true, style="font-size: 18pt; height: 80px; width:640px; ") }}
-</p>
-{% endif %}
-    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
-    <div id="myDiv"></div>
-    {% endif %}
-
-{% if not test %}
-<b>{{ message }}</b>
-{% endif %}
 
 {% endif %}
 {% if QuestionData['Type'] in ['CoordinatePairs'] %}
