@@ -158,7 +158,7 @@ QuestionSets = {
                     'cards': ['<img src="/static/deck4/card0.png"/>','<img src="/static/deck4/card1.png"/>', '<img src="/static/deck4/card2.png"/>', '<img src="/static/deck4/card3.png"/>', '<img src="/static/deck4/card4.png"/>', '<img src="/static/deck4/card5.png"/>', '<img src="/static/deck4/card6.png"/>', '<img src="/static/deck4/card7.png"/>', '<img src="/static/deck4/card8.png"/>', '<img src="/static/deck4/card9.png"/>', '<img src="/static/deck4/card10.png"/>']
                     },
                 {
-                    'shuffle': [0 ,4 ,2 ,5 ,10,10,3 ,
+                    'shuffle': [0 ,1 ,2 ,3 ,10,10,4 ,
                                 10,10,10,10,10,10,10,
                                 1 ,1 ,1 ,2 ,3 ,4 ,5 ,
                                 10,10,10,10,10,10,4 ,
