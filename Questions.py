@@ -236,6 +236,7 @@ QuestionSets = {
             'Template': 'SortCards.html',
             'ParameterSetVariants': [
                 {
+                    'question': 'Change the equation $2x+3y = 6$ into slope-intercept form. Place the cards below in the correct order to show the steps.',
                     'shuffle': [6 ,6 ,0 ,1 ,2 ,3 ,4 ,
                                 6 ,6 ,6 ,6 ,6 ,3 ,5 ,
                                 6 ,5 ,1 ,5 ,0 ,6 ,4],
