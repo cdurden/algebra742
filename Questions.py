@@ -17,10 +17,10 @@ QuestionSets = {
         'ProvideImmediateFeedback': True,
         'Title': 'December 10: Transforming a Linear Equation into Standard Form',
         'Questions': [
-            {
-            'Type': 'SortCards',
-            'Template': 'SortCards.html',
-            'ParameterSetVariants': [
+#            {
+#            'Type': 'SortCards',
+#            'Template': 'SortCards.html',
+#            'ParameterSetVariants': [
 #                {
 #                    'question': 'Change the equation $x= y -5$ into standard form. Place the cards below in the correct order to show the steps.',
 #                    'shuffle': [0 ,7 ,7 ,1 ,2 ,3 ,4 ,
