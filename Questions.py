@@ -25,7 +25,7 @@ QuestionSets = {
                     'question': 'Change the equation $x= y -5$ into standard form. Place the cards below in the correct order to show the steps.',
                     'shuffle': [0 ,7 ,7 ,1 ,2 ,3 ,4 ,
                                 7 ,7 ,7 ,7 ,7 ,7 ,7 ,
-                                7 ,1 ,4 ,2 ,0 ,8 ,8],
+                                9 ,1 ,9 ,2 ,0 ,8 ,8],
                     'solutions': [[0, 1, 2, 3, 10, 10, 4, 5, 10, 10, 10, 5, 10, 10, 10, 10, 2, 3, 5, 1, 4, 10, 10, 6, 10, 6, 10, 6, 10, 10, 7, 3, 8, 1, 9]],
                     'cards': ['<img src="/static/deck10/card0.png"/>','<img src="/static/deck10/card1.png"/>', '<img src="/static/deck10/card2.png"/>', '<img src="/static/deck10/card3.png"/>', '<img src="/static/deck10/card4.png"/>', '<img src="/static/deck10/card5.png"/>', '<img src="/static/deck10/card6.png"/>', '<img src="/static/deck10/card7.png"/>', '<img src="/static/deck10/card8.png"/>', '<img src="/static/deck10/card9.png"/>', '<img src="/static/deck10/card10.png"/>']
                     },
