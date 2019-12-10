@@ -23,7 +23,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {
                     'question': 'Change the equation $x= y -5$ into standard form. Place the cards below in the correct order to show the steps.',
-                    'shuffle': [0 ,7 , 7, 1 ,2 ,3 ,
+                    'shuffle': [0 ,7 ,7 ,1 ,2 ,3 ,4 ,
                                 7 ,7 ,7 ,7 ,7 ,7 ,7 ,
                                 7 ,1 ,6 ,2 ,0 ,4 ,4],
                     'solutions': [[0, 1, 2, 3, 10, 10, 4, 5, 10, 10, 10, 5, 10, 10, 10, 10, 2, 3, 5, 1, 4, 10, 10, 6, 10, 6, 10, 6, 10, 10, 7, 3, 8, 1, 9]],
