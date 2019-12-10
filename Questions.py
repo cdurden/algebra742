@@ -13,6 +13,56 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'TransformIntoStandardForm': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 10: Transforming a Linear Equation into Standard Form',
+        'Questions': [
+            {
+            'Type': 'SortCards',
+            'Template': 'SortCards.html',
+            'ParameterSetVariants': [
+                {
+                    'shuffle': [0 ,1 ,2 ,3 ,10,10,4 ,
+                                10,10,10,10,10,10,10,
+                                1 ,5 ,1 ,2 ,3 ,3 ,5 ,
+                                10,10,10,10,10,10,4 ,
+                                5 ,6 ,7 ,6 ,6 ,8 ,9],
+                    'solutions': [[0, 1, 2, 3, 10, 10, 4, 5, 10, 10, 10, 5, 10, 10, 10, 10, 2, 3, 5, 1, 4, 10, 10, 6, 10, 6, 10, 6, 10, 10, 7, 3, 8, 1, 9]],
+                    'cards': ['<img src="/static/deck10/card0.png"/>','<img src="/static/deck10/card1.png"/>', '<img src="/static/deck10/card2.png"/>', '<img src="/static/deck10/card3.png"/>', '<img src="/static/deck10/card4.png"/>', '<img src="/static/deck10/card5.png"/>', '<img src="/static/deck10/card6.png"/>', '<img src="/static/deck10/card7.png"/>', '<img src="/static/deck10/card8.png"/>', '<img src="/static/deck10/card9.png"/>', '<img src="/static/deck10/card10.png"/>']
+                    },
+                {
+                    'question': 'Change the equation $2x+3y = 6$ into slope-intercept form. Place the cards below in the correct order to show the steps.',
+                    'shuffle': [0 ,4 ,2 ,5 ,10,10,3 ,
+                                10,10,10,10,10,10,10,
+                                1 ,1 ,1 ,2 ,3 ,4 ,5 ,
+                                10,10,10,10,10,10,4 ,
+                                5 ,6 ,7 ,7 ,7 ,8 ,9],
+                    'solutions': [[0,4,2,5,10,10,3,1,10,10,10,1,10,10,10,10,2,5,1,4,3,10,10,7,10,7,10,7,10,10,6,5,9,4,8]],
+                    'cards': ['<img src="/static/deck4/card0.png"/>','<img src="/static/deck4/card1.png"/>', '<img src="/static/deck4/card2.png"/>', '<img src="/static/deck4/card3.png"/>', '<img src="/static/deck4/card4.png"/>', '<img src="/static/deck4/card5.png"/>', '<img src="/static/deck4/card6.png"/>', '<img src="/static/deck4/card7.png"/>', '<img src="/static/deck4/card8.png"/>', '<img src="/static/deck4/card9.png"/>', '<img src="/static/deck4/card10.png"/>']
+                    },
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'SetOfCoordinatePairs',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'Find the $x$-intercept of the graph. (Tap or click on the point to select it.)', 'a': [0,2], 'b': [3,4], 'variables': ['a','b'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'x': [0,2],
+                    'y': [3,4],
+                    'set_of_coordinate_pairs': {(-6,0)},
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(1),
+                    }
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'GraphingLinearEquationsSkillsExtra': {
         'ProvideImmediateFeedback': True,
         'Title': 'December 9: Graphing Linear Equations',
