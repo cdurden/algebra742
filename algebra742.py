@@ -678,7 +678,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             card_order = [shuffle[i] for i in input_order]
             Parameters['input_order'] = json.dumps(input_order)
             correct = card_order in Parameters['solutions']
-            app.logger.error(input_order)
+            app.logger.error(card_order)
             app.logger.error(correct)
         except:
             correct = False
