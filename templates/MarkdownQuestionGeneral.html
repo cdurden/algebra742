@@ -392,7 +392,7 @@ Explanation:
 {% endif %}
 {% if QuestionData['Type'] in ['Tarsia','SortCards'] %}
 <p>
-{{ form.answers(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
+{{ form.answers(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; display: none;") }}
 </p>
 {% endif %}
 {% if QuestionData['Type'] in ['GenericEquality', 'Numerical','Simplify', 'Expression','OpenResponse'] %}
