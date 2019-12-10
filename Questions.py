@@ -395,7 +395,7 @@ QuestionSets = {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'Write the equation $y=3x+4$ in standard form. Fill in the $x$ and $y$-intercepts in the the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                {'question': r'Write the equation $y=3x+6$ in standard form. Fill in the $x$ and $y$-intercepts in the the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
                     'N': json.dumps(2),
