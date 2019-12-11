@@ -26,8 +26,8 @@ QuestionSets = {
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'Question': r'Write the equation $y=2x+8$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-1,10,-1,10,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-1,10,-1,10,1,1)]),
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
