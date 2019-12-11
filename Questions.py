@@ -58,6 +58,12 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+        ]
+    },
+    'MeaningOfXandYIntercepts': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 11: Meaning of x and y-intercepts',
+        'Questions': [
             {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
@@ -78,7 +84,7 @@ QuestionSets = {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': r'An amusement part charges \$50 for admission before 6 PM, and \$20 for admission after 6 PM. On Saturday, the park took in a total of \$20,000. Let $x$ be the admissions sold before 6 PM, and let $y$ be the admissions sold after 6 PM. Fill in the table with possible numbers of admissions, and graph the relationship. Then explain what the $x$ and $y$-intercepts mean.', 'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
+                {'question': r'An amusement park charges \$50 for admission before 6 PM, and \$20 for admission after 6 PM. On Saturday, the park took in a total of \$20,000. Let $x$ be the admissions sold before 6 PM, and let $y$ be the admissions sold after 6 PM. Fill in the table with possible numbers of admissions, and graph the relationship. Then explain what the $x$ and $y$-intercepts mean.', 'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,14,-1,14,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,14,-1,14,1,1)]),
                     'N': json.dumps(2),
