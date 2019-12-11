@@ -81,7 +81,7 @@ div#content {
     font-size: 18pt;
 }
 #myDiv {}
-#drawing { width: 25%; overflow: auto width; position: absolute; left: 65%;}
+#drawing { overflow: auto width;}
 #container { position: relative; }
 #imageView { border: 1px solid #000; position: absolute; top: 10px; left: 10px; touch-action: none; }
 #imageTemp { position: absolute; top: 10px; left: 10px; touch-action: none;}
