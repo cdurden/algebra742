@@ -33,7 +33,7 @@ QuestionSets = {
                     'dticky': json.dumps(1),
                     'equation': 'y=2x+8',
                     'draw': True,
-                    'html': '<p>Watch the video for help with this problem. <b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play.</p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/CM55FCJJFv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
+                    'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play.</p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/CM55FCJJFv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
                  },
                 ],
             'SpaceAfter': '4cm',
