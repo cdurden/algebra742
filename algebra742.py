@@ -601,7 +601,8 @@ def scatterplot():
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>', methods=['GET', 'POST'])
-@templated('MarkdownQuestionGeneral.html')
+#@templated('MarkdownQuestionGeneral.html')
+@templated('MarkdownQuestionGeneralAJAX.html')
 @lti(request='session', error=error, app=app)
 def Assignment(lti=lti, assignment=None,q=None,i=None):
 #def Assignment(assignment=None,q=None,i=None):
