@@ -403,7 +403,10 @@ Explanation:
         </div>
 </div>
 {% endfor %}
-<!--{{ form.other }}-->
+{% if 'other' in Parameters %}
+<label>{{ Parameters['other'] }}</label>
+{{ form.other }}
+{% endif %}
 </div>
 {% endif %}
 {% if QuestionData['Type'] in ['Tarsia','SortCards'] %}
