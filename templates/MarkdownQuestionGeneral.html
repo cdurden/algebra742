@@ -451,7 +451,7 @@ Explanation:
     {% endif %}
     {% endif %}
 </div>
-{% if draw in Parameters and Parameters['draw'] %}
+{% if 'draw' in Parameters and Parameters['draw'] %}
 <script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ElementQueries.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/draw.js') }}"></script>
