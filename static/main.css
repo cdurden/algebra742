@@ -81,7 +81,7 @@ div#content {
     font-size: 18pt;
 }
 #myDiv {}
-#drawing { overflow: auto width;}
+#drawing { width: 100%; overflow: auto width;}
 #container { position: relative; }
 #imageView { border: 1px solid #000; position: absolute; top: 10px; left: 10px; touch-action: none; }
 #imageTemp { position: absolute; top: 10px; left: 10px; touch-action: none;}
@@ -92,8 +92,8 @@ div#canvas_container
   resize: both;
   position: relative;
 
-  height: 400px; 
-  width:300px; margin:10px;padding:10px;
+  height: 500px; 
+  width:100%; margin:10px;padding:10px;
   touch-action: none;
   
 }
