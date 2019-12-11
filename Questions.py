@@ -8,8 +8,8 @@ def gen_grid(xmin,xmax,ymin,ymax,dx,dy):
     grid = numpy.array(numpy.meshgrid(numpy.linspace(xmin,xmax,num=(xmax-xmin)/dx+1),numpy.linspace(ymin,ymax,num=(ymax-ymin)/dy+1))).T.reshape(-1,2)
     return(grid)
 def gen_axis_grid(xmin,xmax,ymin,ymax,dx,dy):
-    grid_x = numpy.linspace(xmin,xmax,num=(xmax-xmin)/dx+1).tolist()+[0]*((ymax-ymin)/dy+1)
-    grid_y = [0]*((xmax-xmin)/dx+1)+numpy.linspace(ymin,ymax,num=(ymax-ymin)/dy+1).tolist()
+    grid_x = numpy.linspace(xmin,xmax,num=(xmax-xmin)/dx+1).tolist()+[0]*int((ymax-ymin)/dy+1)
+    grid_y = [0]*int((xmax-xmin)/dx+1)+numpy.linspace(ymin,ymax,num=(ymax-ymin)/dy+1).tolist()
     grid = numpy.array([grid_x,grid_y]).T.reshape(-1,2)
     return(grid)
 def frange(x, y, jump):
