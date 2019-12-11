@@ -159,6 +159,10 @@ $('.card img').click(rotateCard);
 
         {% endif %}
 
+{% if html is not none %}
+{{ html | safe }}
+{% endif %}
+
 {% if 'draw' in Parameters and Parameters['draw'] %}
 <script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ElementQueries.js') }}"></script>
