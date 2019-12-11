@@ -159,8 +159,8 @@ $('.card img').click(rotateCard);
 
         {% endif %}
 
-{% if html is not none %}
-{{ html | safe }}
+{% if 'html' in Parameters and Parameters['html'] is not none %}
+{{ Parameters['html'] | safe }}
 {% endif %}
 
 {% if 'draw' in Parameters and Parameters['draw'] %}
