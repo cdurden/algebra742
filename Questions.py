@@ -22,6 +22,17 @@ QuestionSets = {
         'Title': 'December 11: Flexible Learning Simulation',
         'Questions': [
             {
+            'Type': 'MC',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': '<b>Directions:</b> Click the button below to be marked present for today\'s Algebra flexible learning day simulation. Then answer questions 2-4 in this assignment and submit your answers. <b>Note:</b> Questions 2 and 4 contain videos that you can use to get help on those questions. You will need to close this Schoology window and then re-open Algebra742 a second time in order to access the videos.',
+                    'Choices': [('Present', 'I am present, and I have read the instructions above.')],
+                    'CorrectAnswer': 'Present'
+                },
+            ],
+            'SpaceAfter': '2cm',
+            },
+            {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
