@@ -41,7 +41,7 @@ $("#answer_form").submit(function(e) {
     var form = $(this);
     var url = form.attr('action');
     var data = form.serialize();
-    var canvas = $("imageView");
+    var canvas = document.getElementById("imageView");
     var dataURL = canvas.toDataURL();
     data.imgBase64 = dataURL;
 
