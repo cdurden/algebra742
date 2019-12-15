@@ -48,7 +48,7 @@ $("#answer_form").submit(function(e) {
            success: function(data)
            {
                //alert(data); // show response from the php script.
-               $(document).html(data);
+               $("html").html(data);
            }
          });
 
