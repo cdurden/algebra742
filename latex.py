@@ -1,4 +1,4 @@
-from pylatex import Document, Section, Enumerate, Package, NoEscape
+from pylatex import Document, Section, Enumerate, Itemize, Package, NoEscape
 from pylatex.utils import escape_latex
 from Questions import QuestionSets
 import jinja2
@@ -26,30 +26,38 @@ latex_jinja_env = jinja2.Environment(
 
 def GenerateAssignmentPdf(assignment, filepath=None):
     doc = Document()
-    doc.packages.append(Package('geometry', options=['tmargin=1cm',
-                                                     'lmargin=1cm']))
+    #doc.packages.append(Package('geometry'))
+    #doc.packages.append(Package('geometry', options=['tmargin=3cm',
+    #                                                 'lmargin=2cm']))
+    doc.packages.append(Package('geometry', options=['tmargin=1cm', 'bmargin=2cm', 'lmargin=1cm']))
     doc.packages.append(Package('multicol'))
     doc.packages.append(Package('graphicx'))
+    doc.packages.append(Package('adjustbox'))
+    #doc.packages.append(Package('tikz'))
+    doc.packages.append(NoEscape('\usepackage{tkz-euclide}'))
     doc.packages.append(Package('amsmath'))
+    doc.append(NoEscape('\setlength\itemsep{-2cm}'))
     QuestionData = QuestionSets[assignment]['Questions'] 
     with doc.create(Section(QuestionSets[assignment]['Title'])):
-        doc.append(NoEscape(r'''
-    \begin{center}
-    \fbox{\fbox{\parbox{5.5in}{\centering
-    \begin{enumerate}
-    \item Using regular graph paper, create a table for each equation, and then graph each of the lines.
-    \item Draw the lines to the edges of your graph paper.
-    \item Bold each line with a black marker.
-    \item Color each section a different color.
-    \end{enumerate}
-%    Answer the questions in the spaces provided on the
-%    question sheets. If there is no solution, write no solution. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.
-}}}
-    \end{center}
-%    \vspace{0.1in}
-%    \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
+#        doc.append(NoEscape(r'''
+#    \begin{center}
+#    \fbox{\fbox{\parbox{5.5in}{\centering
+#    \begin{enumerate}
+#    \item Using regular graph paper, create a table for each equation, and then graph each of the lines.
+#    \item Draw the lines to the edges of your graph paper.
+#    \item Bold each line with a black marker.
+#    \item Color each section a different color.
+#    \end{enumerate}
+#%    Answer the questions in the spaces provided on the
+#%    question sheets. If there is no solution, write no solution. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.
+#}}}
+#    \end{center}
+#%    \vspace{0.1in}
+#%    \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
         doc.append(NoEscape(r'\begin{multicols}{2}'))
-        with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 1})) as enum:
+        #doc.append(NoEscape(r'    \begin{table}[htb] \begin{tabular}{|*{2}{>{\centering\arraybackslash}p{0.5\textwidth}|}}'))
+        with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 2})) as enum:
+        #with doc.create(Itemize(options={'start': 1})) as enum:
             for Question in QuestionData:
                 for Parameters in Question['ParameterSetVariants']:
                     if 'equation' in Parameters.keys():
@@ -59,9 +67,11 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                     template = jenv.get_template(Question['Template'])
                     Parameters['tex'] = True
                     out = template.render(**Parameters)
-                    enum.add_item(NoEscape(out))
+                    #enum.add_item(NoEscape(out))
+                    #doc.append(NoEscape(out))
+                    doc.append(NoEscape(r'\item\adjustbox{valign=t}{'+out+'}'))
                     #enum.add_item(NoEscape(Question['Question']))
-                    doc.append("\n\n")
+                    #doc.append("\n\n")
                     letters = ['a','b','c','d']
 #                    if 'Choices' in Parameters:
 #                        for i,Choice in enumerate(Parameters['Choices']):
@@ -69,6 +79,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
 #                                doc.append(letters[i]+')')
 #                                doc.append(NoEscape(r'\includegraphics[width=0.2\columnwidth]{'+Choice['path']+'}'))
                     doc.append(NoEscape(r'\vspace{'+Question['SpaceAfter']+r'}'))
+    #doc.append(NoEscape(r'    \end{tabular}\end{table}'))
     doc.append(NoEscape(r'\end{multicols}'))
     if filepath is None:
         doc.generate_pdf(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
@@ -150,6 +161,9 @@ assignment = "UsingZeroPairsAndReciprocalPairs"
 assignment = "LinearEquationsInStandardFormB"
 assignment = "LinearEquationsInStandardFormPart2"
 assignment = "StainedGlassGraphs"
+assignment = "GraphingLinearEquationsSpeedDating"
+assignment = "GraphingLinearEquationsSpeedDatingQuestions"
+assignment = "GraphingLinearEquationsTest"
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')

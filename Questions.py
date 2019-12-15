@@ -17,6 +17,149 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'GraphingLinearEquationsSpeedDatingQuestions': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 12: Graphing Linear Equations',
+        'Questions': [
+#            {
+#            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+#            #'Template': 'PlotQuestion.html',
+#            #'Template': 'Grid.tex',
+#            'Template': 'Question.html',
+#            'ParameterSetVariants': [
+#                {'question': r'Write the equation $y=2x+8$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+#                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+#                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+#                    'N': json.dumps(2),
+#                    'dtickx': json.dumps(1),
+#                    'dticky': json.dumps(1),
+#                    'equation': 'y=2x+8',
+#                    'draw': True,
+#                },
+#                {'question': r'Write the equation $y=-3x+9$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+#                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+#                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+#                    'N': json.dumps(2),
+#                    'dtickx': json.dumps(1),
+#                    'dticky': json.dumps(1),
+#                    'equation': 'y=-3x+9',
+#                    'draw': True,
+#                },
+#                {'question': r'Write the equation $2y-3=4x+9$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+#                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+#                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+#                    'N': json.dumps(2),
+#                    'dtickx': json.dumps(1),
+#                    'dticky': json.dumps(1),
+#                    'equation': '2y-3=4x+9',
+#                    'draw': True,
+#                },
+#                {'question': r'Write the equation $2y-3=4x+9$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+#                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+#                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+#                    'N': json.dumps(2),
+#                    'dtickx': json.dumps(1),
+#                    'dticky': json.dumps(1),
+#                    'equation': '2y-3=4x+9',
+#                    'draw': True,
+#                },
+#                ],
+#            'SpaceAfter': '0cm',
+#            },
+        ]
+    },
+    'GraphingLinearEquationsTest': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 13: Graphing Linear Equations Test',
+        'Questions': [
+            {
+            'Type': 'SetOfCoordinatePairsEquation',
+            #'Template': 'PlotQuestion.html',
+            'Template': 'Grid.tex',
+            'ParameterSetVariants': [
+                {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                 'Question': 'Graph the equation ${:s}$.'.format('y=4'),
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=4',
+                    'draw': True,
+                },
+                {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                 'Question': 'Graph the equation ${:s}$.'.format('2x-8=2'),
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '2x-8=2',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            #'Template': 'PlotQuestion.html',
+            'Template': 'Grid.tex',
+            'ParameterSetVariants': [
+                {'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
+                    'Question': 'Make a table of coordinate pairs and graph the equation ${:s}$.'.format('y=-3x'),
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=-3x',
+                    'draw': True,
+                },
+                {'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
+                    'Question': 'Make a table of coordinate pairs and graph the equation ${:s}$.'.format('2y=x+2'),
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '2y=x+2',
+                    'draw': True,
+                },
+                {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                 'Question': 'Graph the equation ${:s}$ using the $x$ and $y$-interecepts.'.format('3x+2y=12'),
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '3x+2y=12',
+                    'draw': True,
+                },
+            #['y+2x=8', 'y-6=-2x', '2y=4x+8', '3y=x-6', 'x+2y=8', 'x-6=-2y', '2x=4y+8', '3x=y-6',]
+                {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                 'Question': 'Convert the equation ${:s}$ to standard form. Then find the $x$ and $y$-interecepts, and graph the line.'.format('3x=-2y+6'),
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '3x=-2y+6',
+                    'draw': True,
+                },
+                {'Question': r'Write the equation $2y-3=4x+9$ in standard form. Find the $x$ and $y$-intercepts, and then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '2y-3=4x+9',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+        ]
+    },
     'FlexibleLearningSimulation': {
         'ProvideImmediateFeedback': True,
         'Title': 'December 11: Flexible Learning Simulation',
@@ -648,7 +791,7 @@ QuestionSets = {
                     'html': '<iframe id="vzvd-18185520" name="vzvd-18185520" title="video player" class="video-player d-block" type="text/html" width="918" height="516" frameborder="0" allowFullScreen="" allowTransparency="true" src="https://view.vzaar.com/18185520/player">',
                     'no_answer': json.dumps(True),
                 },
-                {'question': 'New York and Los Angeles are two of the largest cities in the United States. They’re also two of the most expensive. As more people move there, the cost of renting an apartment goes up...as does the number of people experiencing homelessness on any given night. Between 2011 and 2017, in which city would you say the homeless population grew by more? Explain.',
+                {'question': 'New York and Los Angeles are two of the largest cities in the United States. They\'re also two of the most expensive. As more people move there, the cost of renting an apartment goes up...as does the number of people experiencing homelessness on any given night. Between 2011 and 2017, in which city would you say the homeless population grew by more? Explain.',
                     'image': '/static/HomelessnessQuestion1.png',
                     #'html': '<iframe class="interactive-iframe" frameborder="no" height="520" scrolling="no" src="https://mathalicious-production.s3.amazonaws.com/interactives/lessons/SeekingShelter/Q1.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIACU7RQ26H7DPBYQ%2F20191206%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20191206T124450Z&amp;X-Amz-Expires=900&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=215d0d51a3ab5ff26aaa1ec4fcfe4799e85d1e76a16c54eac7a86bf0a1ebae37" width="100%" id="iFrameResizer1" style="overflow: hidden; height: 639px;"></iframe>',
                     'no_answer': json.dumps(True),
@@ -660,7 +803,7 @@ QuestionSets = {
             'Type': 'SetOfCoordinatePairsEquationAndPrediction',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
-                {'question': 'Let’s assume the homeless population increases by a constant amount each year. If we round the data to the nearest thousand, the equation for the line in the NYC graph is $y = 50,000 + 4,000x$, where $y$ is the total number of homeless people and $x$ is the number of years since 2011. Project how many people you expect will be homeless in NYC in ten years.',
+                {'question': 'Let\'s assume the homeless population increases by a constant amount each year. If we round the data to the nearest thousand, the equation for the line in the NYC graph is $y = 50,000 + 4,000x$, where $y$ is the total number of homeless people and $x$ is the number of years since 2011. Project how many people you expect will be homeless in NYC in ten years.',
                     'image': '/static/HomelessnessQuestion1.png',
                     'equation': 'y = 50000 + 4000x',
                     'grid_x': json.dumps([x[0] for x in homelessness_grid]),
@@ -673,7 +816,7 @@ QuestionSets = {
                     'explanation': True,
                     'no_answer': json.dumps(True),
                 },
-                {'question': 'Let’s assume the homeless population increases by a constant amount each year. If we round the data to the nearest thousand, the equation for the line in the LA graph is $y = 35,000 + 3,000x$, where $y$ is the total number of homeless people and $x$ is the number of years since 2011. Project how many people you expect will be homeless in LA in ten years.',
+                {'question': 'Let\'s assume the homeless population increases by a constant amount each year. If we round the data to the nearest thousand, the equation for the line in the LA graph is $y = 35,000 + 3,000x$, where $y$ is the total number of homeless people and $x$ is the number of years since 2011. Project how many people you expect will be homeless in LA in ten years.',
                     'image': '/static/HomelessnessQuestion1.png',
                     'equation': 'y =  35000 + 3000x',
                     'grid_x': json.dumps([x[0] for x in homelessness_grid]),
@@ -3172,3 +3315,66 @@ BalanceQuestionData = [
             },
         ]
 
+ParameterSetVariants = []
+question = 'Graph the equation ${:s}$.'
+question = 'Make a table of coordinate pairs and graph the equation ${:s}$.'
+question = 'Convert the equation ${:s}$ to standard form. Then find the $x$ and $y$-interecepts, and graph the line.'
+for equation in ['2x = 5y-10', 'y-3=-2x+1', '3y = 6x-12', '5x = -5y+25', '2y = 5x-10', 'x-3=-2y+1', '3x = 6y-12', '5y = -5x-25',]:
+    ParameterSetVariants.append({'question': question.format(equation),
+        'equation': equation, 
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+        })
+
+QuestionSets['GraphingLinearEquationsSpeedDatingQuestions']['Questions'].append({
+    'Type': 'SetOfCoordinatePairsEquation',
+    #'Template': 'PlotQuestion.html',
+    'Template': 'PlotQuestion.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
+ParameterSetVariants = []
+question = 'Make a table of coordinate pairs and graph the equation ${:s}$.'
+for equation in ['y+2x=8', 'y-6=-2x', '2y=4x+8', '3y=x-6', 'x+2y=8', 'x-6=-2y', '2x=4y+8', '3x=y-6',]:
+    ParameterSetVariants.append({'question': question.format(equation),
+        'equation': equation, 
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+        })
+
+QuestionSets['GraphingLinearEquationsSpeedDatingQuestions']['Questions'].append({
+    'Type': 'SetOfCoordinatePairsEquation',
+    #'Template': 'PlotQuestion.tex',
+    'Template': 'PlotQuestion.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
+
+ParameterSetVariants = []
+question = 'Graph the equation ${:s}$.'
+for equation in ['3-3x=-6', '2y-2=8', '4-y=3', '2x-2=10', '3-3y=-6', '2x-2=8', '4-x=3', '2y-2=10',]:
+    ParameterSetVariants.append({'question': question.format(equation),
+        'equation': equation, 
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+        })
+
+QuestionSets['GraphingLinearEquationsSpeedDatingQuestions']['Questions'].append({
+    'Type': 'SetOfCoordinatePairsEquation',
+    #'Template': 'PlotQuestion.html',
+    'Template': 'PlotQuestion.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
+question = 'Graph the equation ${:s}$.'
+question = 'Make a table of coordinate pairs and graph the equation ${:s}$.'
+question = 'Convert the equation ${:s}$ to standard form. Then find the $x$ and $y$-interecepts, and graph the line.'
