@@ -844,8 +844,6 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         n = len(Parameters['variables'])
         variables = Parameters['variables']
         if request.method == 'POST':
-            imgBase64 = request.form['imgBase64']
-            app.logger.error(imgBase64)
             correct = True
         for it,answer_form in enumerate(form.answers.entries):
             try:
@@ -1330,6 +1328,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         # Answers array
     content = render_template(QuestionData['Template'], form=form, **Parameters)
     if request.method == 'POST':
+        imgBase64 = request.form['imgBase64']
+        app.logger.error(imgBase64)
         question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
         db.session.commit()
         if QuestionData['Type'] in ['Matching', 'RubricScore']:
