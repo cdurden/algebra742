@@ -1328,8 +1328,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         # Answers array
     content = render_template(QuestionData['Template'], form=form, **Parameters)
     if request.method == 'POST':
-        imgBase64 = request.form['imgBase64']
-        app.logger.error(imgBase64)
+        imageData = request.form['imageData']
+        app.logger.error(imageData)
         question = get_or_create(db.session, Question, assignment=assignment, number=q, variant_index=i)
         db.session.commit()
         if QuestionData['Type'] in ['Matching', 'RubricScore']:
