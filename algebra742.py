@@ -654,6 +654,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
     if request.method != 'POST':
         try:
+            imgBase64 = request.json('imgBase64')
+            app.logger.error(imgBase64)
+        except:
+            pass
+        try:
             statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment==assignment,Question.__table__.c.number==q, Question.__table__.c.variant_index==i)).order_by(desc('datetime'))
             results = db.session.execute(statement).first()
             formdata = json.loads(results.answer)
