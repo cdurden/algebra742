@@ -46,6 +46,22 @@ var myPlot = document.getElementById('myDiv'),
         datarevision: 0,
         title:'{{ graph_title }}',
         shapes: [],
+        {% if background_image is defined %}
+        images: [
+      {
+        "source": "{{ background_image }}",
+        "xref": "x",
+        "yref": "y",
+        "x": Math.min(...grid_x),
+        "y": Math.min(...grid_y),
+        "sizex": Math.max(...grid_x)-Math.min(...grid_x),
+        "sizey": Math.max(...grid_y)-Math.min(...grid_y),
+        "sizing": "stretch",
+        "opacity": 1,
+        "layer": "below"
+      },
+            ],
+        {% endif %}
   margin: {
     l: 50,
     r: 50,
