@@ -223,9 +223,6 @@ $('.card img').click(rotateCard);
 
 <div class="answer_form">
 <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
-{% if 'draw' in Parameters and Parameters['draw'] %}
-<input type="hidden" name="imageData" id="imageData" />
-{% endif %}
     {% if QuestionData['Type'] in ['SetUpAndSolveEquationGuided'] %}
     <p>
     <b>Fill in the blanks below to choose your units and define your variables:</b>
@@ -289,6 +286,9 @@ $('.card img').click(rotateCard);
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
+{% if 'draw' in Parameters and Parameters['draw'] %}
+<input type="hidden" name="imageData" id="imageData" />
+{% endif %}
 {% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation','InputOutputTableAndSetOfCoordinatePairsEquation'] %}
 <div>
     <table>
