@@ -34,6 +34,17 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
       <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
       <script>
     $(function() {
+        {% if imageDate is defined %}
+
+        var canvas = document.getElementById("imageView");
+        var ctx = canvas.getContext('2d');
+        var img = new Image;
+        img.onload = function(){
+              ctx.drawImage(img,0,0); // Or at whatever offset you like
+        };
+        img.src = {{ imageData }};
+        {% endif %}
+
 $("#answer_form").submit(function(e) {
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
