@@ -265,6 +265,7 @@ class SetOfCoordinatePairsForm(Form):
     """
     #operation = RadioField('operation', choices=[('+','$+$'),('-','$-$'),('*',r'$\times$'),('/',r'$\div$')])
     set_of_coordinate_pairs = StringField('set_of_coordinate_pairs')
+    imageData = StringField('imageData')
 
 class SetOfCoordinatePairsAndPredictionForm(Form):
     """ Add data from Form
