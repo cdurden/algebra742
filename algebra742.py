@@ -654,7 +654,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
 
     if request.method != 'POST':
         try:
-            imgBase64 = request.form('imgBase64')
+            imgBase64 = request.form['imgBase64']
             app.logger.error(imgBase64)
         except:
             pass
