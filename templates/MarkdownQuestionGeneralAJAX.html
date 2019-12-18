@@ -33,9 +33,8 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
       <script>
-    $(function() {
+    function updateImageData() {
         {% if form.imageData.data %}
-
         var canvas = document.getElementById("imageView");
         var ctx = canvas.getContext('2d');
         var img = new Image;
@@ -44,6 +43,9 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
         };
         img.src = "{{ form.imageData.data }}";
         {% endif %}
+    }
+    $(function() {
+        updateImageData()
 
 $("#answer_form").submit(function(e) {
 
@@ -63,6 +65,7 @@ $("#answer_form").submit(function(e) {
         {
             //alert(data); // show response from the php script.
             $("html").html(data);
+            updateImageData();
         }
     });
     // Inject our CSRF token into our AJAX request.
