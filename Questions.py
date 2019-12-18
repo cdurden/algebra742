@@ -126,8 +126,8 @@ QuestionSets = {
         'Questions': [
             {
             'Type': 'SetOfCoordinatePairsEquation',
-            #'Template': 'PlotQuestion.html',
-            'Template': 'Grid.tex',
+            'Template': 'PlotQuestion.html',
+            #'Template': 'Grid.tex',
             'ParameterSetVariants': [
                 {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
                  'Question': 'Graph the equation ${:s}$.'.format('y=4'),
@@ -154,8 +154,8 @@ QuestionSets = {
             },
             {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
-            #'Template': 'PlotQuestion.html',
-            'Template': 'Grid.tex',
+            'Template': 'PlotQuestion.html',
+            #'Template': 'Grid.tex',
             'ParameterSetVariants': [
                 {'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
                     'Question': 'Make a table of coordinate pairs and graph the equation ${:s}$.'.format('y=-3x'),
