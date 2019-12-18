@@ -3418,8 +3418,8 @@ ParameterSetVariants = []
 question = 'Find the slope of the direct variation in the graph.'
 for (y,x) in [(6,1), (-4,2), (2,3), (-3,2), (4,5), (-3,4),(-1,1),]:
     ParameterSetVariants.append({'question': question.format(equation),
-                'x': [0,1],
-                'y': [0,m],
+                'x': [0,x],
+                'y': [0,y],
                 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
