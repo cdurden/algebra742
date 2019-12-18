@@ -3403,7 +3403,7 @@ for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x'
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
-                    'draw': True,
+#                    'draw': True,
         })
 
 QuestionSets['DirectVariation']['Questions'].append({
