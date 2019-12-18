@@ -34,7 +34,7 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
       <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
       <script id="updateImageDataScript">
     function updateImageData() {
-        {% if form.imageData.data %}
+        {% if form.imageData is defined and form.imageData.data %}
         var canvas = document.getElementById("imageView");
         var ctx = canvas.getContext('2d');
         var img = new Image;
