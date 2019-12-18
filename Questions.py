@@ -69,55 +69,16 @@ QuestionSets = {
             },
         ]
     },
+    'DirectVariation': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 12: Graphing Linear Equations',
+        'Questions': [
+        ]
+    },
     'GraphingLinearEquationsSpeedDatingQuestions': {
         'ProvideImmediateFeedback': True,
         'Title': 'December 12: Graphing Linear Equations',
         'Questions': [
-#            {
-#            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
-#            #'Template': 'PlotQuestion.html',
-#            #'Template': 'Grid.tex',
-#            'Template': 'Question.html',
-#            'ParameterSetVariants': [
-#                {'question': r'Write the equation $y=2x+8$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-#                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
-#                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
-#                    'N': json.dumps(2),
-#                    'dtickx': json.dumps(1),
-#                    'dticky': json.dumps(1),
-#                    'equation': 'y=2x+8',
-#                    'draw': True,
-#                },
-#                {'question': r'Write the equation $y=-3x+9$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-#                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
-#                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
-#                    'N': json.dumps(2),
-#                    'dtickx': json.dumps(1),
-#                    'dticky': json.dumps(1),
-#                    'equation': 'y=-3x+9',
-#                    'draw': True,
-#                },
-#                {'question': r'Write the equation $2y-3=4x+9$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-#                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
-#                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
-#                    'N': json.dumps(2),
-#                    'dtickx': json.dumps(1),
-#                    'dticky': json.dumps(1),
-#                    'equation': '2y-3=4x+9',
-#                    'draw': True,
-#                },
-#                {'question': r'Write the equation $2y-3=4x+9$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-#                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
-#                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
-#                    'N': json.dumps(2),
-#                    'dtickx': json.dumps(1),
-#                    'dticky': json.dumps(1),
-#                    'equation': '2y-3=4x+9',
-#                    'draw': True,
-#                },
-#                ],
-#            'SpaceAfter': '0cm',
-#            },
         ]
     },
     'GraphingLinearEquationsTest': {
@@ -3430,3 +3391,47 @@ QuestionSets['GraphingLinearEquationsSpeedDatingQuestions']['Questions'].append(
 question = 'Graph the equation ${:s}$.'
 question = 'Make a table of coordinate pairs and graph the equation ${:s}$.'
 question = 'Convert the equation ${:s}$ to standard form. Then find the $x$ and $y$-interecepts, and graph the line.'
+# Direct Variation
+ParameterSetVariants = []
+question = 'Graph the equation ${:s}$.'
+for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x', '-y=x',]:
+    ParameterSetVariants.append({'question': question.format(equation),
+        'equation': equation, 
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+        })
+
+QuestionSets['DirectVariation']['Questions'].append({
+    'Type': 'SetOfCoordinatePairsEquation',
+    #'Template': 'PlotQuestion.html',
+    'Template': 'PlotQuestion.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
+
+ParameterSetVariants = []
+question = 'Find the slope of the direct variation in the graph.'
+for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x', '-y=x',]:
+    ParameterSetVariants.append({'question': question.format(equation),
+                'x': [0,2],
+                'y': [0,4],
+                'variables': ['y','x'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'set_of_coordinate_pairs': {},
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(0),
+                    'equation': 'y = 2x',
+                    'x0': '1',
+        })
+QuestionSets['DirectVariation']['Questions'].append({
+            'Type': 'SetOfCoordinatePairsEquationAndPrediction',
+            'Template': 'PlotQuestion.html',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
