@@ -3406,8 +3406,8 @@ for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x'
 
 QuestionSets['DirectVariation']['Questions'].append({
     'Type': 'SetOfCoordinatePairsEquation',
-    #'Template': 'PlotQuestion.html',
-    'Template': 'PlotQuestion.tex',
+    'Template': 'PlotQuestion.html',
+    #'Template': 'PlotQuestion.tex',
     'ParameterSetVariants': ParameterSetVariants,
     'SpaceAfter': '0cm',
 })
