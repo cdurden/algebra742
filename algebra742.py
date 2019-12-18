@@ -999,6 +999,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     correct = False
                     message = "The points you entered are not on the line."
             if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
+                message = "You entered {:d} coordinate pairs.".format(len(input_set_of_coordinate_pairs))
                 correct = False
             if QuestionData['Type'] in ['SetOfCoordinatePairsEquationAndPrediction']:
                 x0 = Parameters['x0']
