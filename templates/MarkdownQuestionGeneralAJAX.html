@@ -66,11 +66,14 @@ $("#answer_form").submit(function(e) {
         success: function(data)
         {
             //alert(data); // show response from the php script.
+                        window.location.reload(true);
+                        /*
             $("html").html(data);
             eval(document.getElementById('updateImageDataScript').innerHTML);
             updateImageData();
             eval(document.getElementById('loadPlotlyScript').innerHTML);
             loadPlotly();
+            */
         }
     });
     // Inject our CSRF token into our AJAX request.
