@@ -382,12 +382,12 @@ Explanation:
     <div id="myDiv"></div>
     {% endif %}
     {% endif %}
-    {{ form.set_of_coordinate_pairs(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
+    {{ form.set_of_coordinate_pairs(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; display: none;") }}
     {% if QuestionData['Type'] in ['SetOfCoordinatePairsEquationAndPrediction'] %}
-        <p>
-        Enter your prediction for $y$ when $x={{ Parameters['x0'] }}$.
-        </p>
-        y = {{ form.answer(style="font-size: 18pt; height: 40px; width:640px; ") }}
+        <label>
+        {{ Parameters['prediction_question'] }}
+        {{ form.answer(style="font-size: 18pt; height: 40px; width:640px; ") }}
+        </label>
         {% if 'explanation' in Parameters and Parameters['explanation']%}
         <p>
             Explanation:
