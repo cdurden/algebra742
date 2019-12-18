@@ -3418,7 +3418,7 @@ for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x'
     ParameterSetVariants.append({'question': question.format(equation),
                 'x': [0,2],
                 'y': [0,4],
-                'variables': ['y','x'],
+                'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
                     'set_of_coordinate_pairs': {},
