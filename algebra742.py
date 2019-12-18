@@ -1015,6 +1015,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             message = "Coordinate pairs could not be read."
             correct = False
+        app.logger.error(correct)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['InputOutputTable']:
         form = CoordinatePairsForm(data=formdata)
