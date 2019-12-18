@@ -1020,7 +1020,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
                     message += "Your prediction is incorrect."
-        except KeyError:
+        except ValueError:
             message = "Coordinate pairs could not be read."
             correct = False
         app.logger.error(correct)
