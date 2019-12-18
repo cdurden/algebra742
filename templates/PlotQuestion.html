@@ -138,6 +138,7 @@ function get_boundary_points(x0,y0,x1,y1) {
     return(boundary_points)
 }
 function plot_data(data){
+    if (N==0) { return; }
     for(var i=0; i < data.points.length; i++){
         if (pts_array.length > j) {
             pts_x[j] = data.points[i].x;
