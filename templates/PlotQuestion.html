@@ -113,6 +113,9 @@ function get_boundary_points(x0,y0,x1,y1) {
     //m = (y1-y0)/(x1-x0);
     m = dy/dx;
     boundary_points = []
+    if (x0 == x1) {
+       return([[x0,y_min],[x0,y_max]]);
+    }
     if( dy*(x_max - x0) >= dx*(y_min - y0) && dy*(x_max - x0) <= dx*(y_max - y0) ) {
         boundary_points.push([x_max, y0 + m*(x_max - x0)]);
     }
