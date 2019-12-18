@@ -3421,7 +3421,7 @@ QuestionSets['DirectVariation']['Questions'].append({
 # Type 2
 ParameterSetVariants = []
 question = 'Graph the equation ${:s}$.'
-for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x', '-y=x',]:
+for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', 'y=2/3x', 'y=-4/3x', 'y=-x', '5y=4x',]:
     ParameterSetVariants.append({'question': question.format(equation),
         'equation': equation, 
                 'variables': ['x','y'],
