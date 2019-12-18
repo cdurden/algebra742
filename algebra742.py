@@ -275,6 +275,7 @@ class SetOfCoordinatePairsAndPredictionForm(Form):
     set_of_coordinate_pairs = StringField('set_of_coordinate_pairs')
     answer = StringField('answer')
     explanation = TextAreaField('explanation')
+    imageData = StringField('imageData')
 
 class CoordinatePairsForm(Form):
     """ Add data from Form
