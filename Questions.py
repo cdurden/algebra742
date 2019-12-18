@@ -3416,10 +3416,10 @@ QuestionSets['DirectVariation']['Questions'].append({
 
 ParameterSetVariants = []
 question = 'Find the slope of the direct variation in the graph.'
-for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x', '-y=x',]:
+for (y,x) in [(6,1), (-4,2), (2,3), (-3,2), (4,5), (-3,4),(-1,1),]:
     ParameterSetVariants.append({'question': question.format(equation),
-                'x': [0,2],
-                'y': [0,4],
+                'x': [0,1],
+                'y': [0,m],
                 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
@@ -3428,7 +3428,7 @@ for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x'
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
                     'N': json.dumps(0),
-                    'equation': 'y = 2x',
+                    'equation': 'y = {:d}/{:d}x'.format(y,x),
                     'prediction_question': 'm=',
                     'x0': '1',
 #                    'draw': True,
