@@ -501,6 +501,9 @@ Explanation:
 </p>
 {% endif %}
 {% if QuestionData['Type'] in ['GenericEquality', 'Numerical','Simplify', 'Expression','OpenResponse', 'Equation'] %}
+    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    <div id="myDiv"></div>
+    {% endif %}
 <p>
 {{ form.answer(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; ") }}
 </p>
