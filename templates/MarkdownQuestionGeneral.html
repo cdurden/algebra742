@@ -250,6 +250,9 @@ $('.card img').click(rotateCard);
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
+    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    <div id="myDiv"></div>
+    {% endif %}
 {% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation','InputOutputTableAndSetOfCoordinatePairsEquation'] %}
 <div>
     <table>
