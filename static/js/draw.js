@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
       canvaso.width  = rect.width-20;
       canvaso.height = rect.height-20;
       contexto = canvaso.getContext('2d');
-		  contexto.drawImage(canvas, 0, 0, canvaso.width, canvaso.height);
+		  context.drawImage(canvaso, 0, 0, canvas.width, canvas.height);
       canvas.width  = rect.width-20;
       canvas.height = rect.height-20;
       context = canvas.getContext('2d');
