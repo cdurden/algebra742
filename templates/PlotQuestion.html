@@ -6,6 +6,7 @@ window.PlotlyConfig = {MathJaxConfig: 'local'}
 <!--<script src="{{ url_for('static', filename='js/plotly_ex1.js') }}"></script>-->
 <script id="loadPlotlyScript">
 function mod(n, m) {
+      if (m==0) { return(0) };
       return ((n % m) + m) % m;
 }
 String.prototype.myTrimLeft = function(charlist) {
