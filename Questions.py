@@ -3344,8 +3344,8 @@ for equation in ['2x = 5y-10', 'y-3=-2x+1', '3y = 6x-12', '5x = -5y+25', '2y = 5
 
 QuestionSets['GraphingLinearEquationsSpeedDatingQuestions']['Questions'].append({
     'Type': 'SetOfCoordinatePairsEquation',
-    #'Template': 'PlotQuestion.html',
-    'Template': 'PlotQuestion.tex',
+    'Template': 'PlotQuestion.html',
+    #'Template': 'PlotQuestion.tex',
     'ParameterSetVariants': ParameterSetVariants,
     'SpaceAfter': '0cm',
 })
@@ -3364,7 +3364,7 @@ for equation in ['y+2x=8', 'y-6=-2x', '2y=4x+8', '3y=x-6', 'x+2y=8', 'x-6=-2y', 
 QuestionSets['GraphingLinearEquationsSpeedDatingQuestions']['Questions'].append({
     'Type': 'SetOfCoordinatePairsEquation',
     #'Template': 'PlotQuestion.tex',
-    'Template': 'PlotQuestion.tex',
+    'Template': 'PlotQuestion.html',
     'ParameterSetVariants': ParameterSetVariants,
     'SpaceAfter': '0cm',
 })
@@ -3383,8 +3383,8 @@ for equation in ['3-3x=-6', '2y-2=8', '4-y=3', '2x-2=10', '3-3y=-6', '2x-2=8', '
 
 QuestionSets['GraphingLinearEquationsSpeedDatingQuestions']['Questions'].append({
     'Type': 'SetOfCoordinatePairsEquation',
-    #'Template': 'PlotQuestion.html',
-    'Template': 'PlotQuestion.tex',
+    'Template': 'PlotQuestion.html',
+    #'Template': 'PlotQuestion.tex',
     'ParameterSetVariants': ParameterSetVariants,
     'SpaceAfter': '0cm',
 })
