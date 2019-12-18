@@ -320,6 +320,15 @@ class EquationForm(Form):
     quantities = FieldList(StringField('quantities'))
     lhs = TextField('lhs')
     rhs = TextField('rhs')
+
+class SingleEquationForm(Form):
+    """ Add data from Form
+
+    :param Form:
+    """
+    variables = FieldList(StringField('variable'))
+    quantities = FieldList(StringField('quantities'))
+    answer = TextField('answer')
     
 class SetUpAndSolveEquationGuidedForm(Form):
     """ Add data from Form
@@ -1103,6 +1112,15 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             if len(form.coordinate_pair_forms.entries) < it+1:
                 form.coordinate_pair_forms.append_entry()
             form.coordinate_pair_forms[it].object_.choices = choices
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['Equation']:
+        try:
+            form = SingleEquationForm(data=formdata)
+        except:
+            form = SingleEquationForm()
+        lhs,rhs = Parameters['equation'].split("=")
+        input_lhs, input_rhs = form.answer.data.split("=")
+        correct = simplify(parse_expr(lhs, transformations=transformations)-parse_expr(input_lhs, transformations=transformations))==0 and simplify(parse_expr(rhs, transformations=transformations)-parse_expr(input_rhs, transformations=transformations))==0 
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':

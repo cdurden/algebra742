@@ -3391,29 +3391,8 @@ QuestionSets['GraphingLinearEquationsSpeedDatingQuestions']['Questions'].append(
 question = 'Graph the equation ${:s}$.'
 question = 'Make a table of coordinate pairs and graph the equation ${:s}$.'
 question = 'Convert the equation ${:s}$ to standard form. Then find the $x$ and $y$-interecepts, and graph the line.'
+
 # Direct Variation
-ParameterSetVariants = []
-question = 'Graph the equation ${:s}$.'
-for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x', '-y=x',]:
-    ParameterSetVariants.append({'question': question.format(equation),
-        'equation': equation, 
-                'variables': ['x','y'],
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-6,6,-6,6,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-6,6,-6,6,1,1)]),
-                    'N': json.dumps(2),
-                    'dtickx': json.dumps(1),
-                    'dticky': json.dumps(1),
-#                    'draw': True,
-        })
-
-QuestionSets['DirectVariation']['Questions'].append({
-    'Type': 'SetOfCoordinatePairsEquation',
-    'Template': 'PlotQuestion.html',
-    #'Template': 'PlotQuestion.tex',
-    'ParameterSetVariants': ParameterSetVariants,
-    'SpaceAfter': '0cm',
-})
-
 ParameterSetVariants = []
 question = 'Find the slope of the direct variation in the graph.'
 for (y,x) in [(6,1), (-4,2), (2,3), (-3,2), (4,5), (-3,4),(-1,1),]:
@@ -3439,3 +3418,49 @@ QuestionSets['DirectVariation']['Questions'].append({
     'ParameterSetVariants': ParameterSetVariants,
     'SpaceAfter': '0cm',
 })
+# Type 2
+ParameterSetVariants = []
+question = 'Graph the equation ${:s}$.'
+for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', '3y=2x', '-3y=4x', 'y=-x', '-y=x',]:
+    ParameterSetVariants.append({'question': question.format(equation),
+        'equation': equation, 
+                'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-6,6,-6,6,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-6,6,-6,6,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+#                    'draw': True,
+        })
+
+QuestionSets['DirectVariation']['Questions'].append({
+    'Type': 'SetOfCoordinatePairsEquation',
+    'Template': 'PlotQuestion.html',
+    #'Template': 'PlotQuestion.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
+
+# Type 3
+ParameterSetVariants = []
+question = 'Write the equation of the direct variation that relates $x$ and $y$: $y={:s}$ when $x={:s}$ .'
+for (x,y) in [(12,15), (6,-11),]:
+    ParameterSetVariants.append({'question': question.format(y,x),
+        'equation': 'y={:s}/{:s}x'.format(y,x), 
+                'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-6,6,-6,6,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-6,6,-6,6,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+#                    'draw': True,
+        })
+
+QuestionSets['DirectVariation']['Questions'].append({
+    'Type': 'Equation',
+    'Template': 'PlotQuestion.html',
+    #'Template': 'PlotQuestion.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
+
