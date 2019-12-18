@@ -56,8 +56,10 @@ $("#answer_form").submit(function(e) {
     var form = $(this);
     var url = form.attr('action');
     var canvas = document.getElementById("imageView");
-    var imageData = canvas.toDataURL("image/png");
-    $("#imageData").val(imageData);
+    if (canvas != null ) {
+        var imageData = canvas.toDataURL("image/png");
+        $("#imageData").val(imageData);
+    }
 
     $.ajax({
         type: "POST",
