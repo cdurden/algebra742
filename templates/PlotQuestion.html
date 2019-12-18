@@ -4,7 +4,7 @@ window.PlotlyConfig = {MathJaxConfig: 'local'}
 </script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!--<script src="{{ url_for('static', filename='js/plotly_ex1.js') }}"></script>-->
-<script>
+<script id="loadPlotly">
 function mod(n, m) {
       return ((n % m) + m) % m;
 }
@@ -23,7 +23,7 @@ String.prototype.myTrimRight = function(charlist) {
 String.prototype.myTrim = function(charlist) {
       return this.myTrimLeft(charlist).myTrimRight(charlist);
 };
-window.onload = function () {
+function loadPlotly() {
 var myPlot = document.getElementById('myDiv'),
     d3 = Plotly.d3,
     N = {{ N|safe }},
@@ -191,6 +191,9 @@ function plot_data(data){
         pts_data = { 'points': pts_list.map(xy_str => { xy = xy_str.split(","); return({'x': parseFloat(xy[0]), 'y': parseFloat(xy[1])})}) };
         plot_data(pts_data);
     }
+}
+window.onload = function () {
+    loadPlotly();
 }
 </script>
 {% endif %}

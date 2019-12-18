@@ -69,6 +69,8 @@ $("#answer_form").submit(function(e) {
             $("html").html(data);
             eval(document.getElementById('updateImageDataScript').innerHTML);
             updateImageData();
+            eval(document.getElementById('loadPlotlyScript').innerHTML);
+            loadPlotly();
         }
     });
     // Inject our CSRF token into our AJAX request.
