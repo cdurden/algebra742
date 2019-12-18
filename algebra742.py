@@ -982,13 +982,17 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             form = SetOfCoordinatePairsAndPredictionForm()
         #form = CoordinatePairsForm()
         input_coordinates = set()
+        try:
+            variables = Parameters['variables']
+        except:
+            variables = ['x','y']
         lhs,rhs = Parameters['equation'].split("=")
         if request.method == 'POST':
             correct = True
         try:
             input_coordinate_pairs = re.split("\)\s*,\s*\(",form.set_of_coordinate_pairs.data)
             input_set_of_coordinate_pairs = set()
-            variables = Parameters['variables']
+        #    variables = Parameters['variables']
             for input_coordinate_pair_string in input_coordinate_pairs:
                 try:
                     input_coordinate_pair = tuple(float(x.strip("{()} ")) for x in input_coordinate_pair_string.split(","))
