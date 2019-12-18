@@ -18,10 +18,11 @@ window.addEventListener('load', function () {
       //canvas.width  = canvaso.width;
       //canvas.height = canvaso.height;
       var rect = canvas_container.getBoundingClientRect();
+		  context.drawImage(canvaso, 0, 0, canvaso.width, canvaso.height);
       canvaso.width  = rect.width-20;
       canvaso.height = rect.height-20;
       contexto = canvaso.getContext('2d');
-		  context.drawImage(canvaso, 0, 0, canvas.width, canvas.height);
+		  contexto.drawImage(canvas, 0, 0, canvas.width, canvas.height);
       canvas.width  = rect.width-20;
       canvas.height = rect.height-20;
       context = canvas.getContext('2d');
