@@ -293,6 +293,7 @@ class InputOutputTableAndSetOfCoordinatePairsForm(Form):
     set_of_coordinate_pairs = StringField('set_of_coordinate_pairs')
     coordinate_pair_forms = FieldList(FormField(CoordinatePairForm))
     explanation = TextAreaField('explanation')
+    imageData = StringField('imageData')
 
 class NumericalForm(Form):
     """ Add data from Form
