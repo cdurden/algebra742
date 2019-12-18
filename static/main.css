@@ -104,7 +104,7 @@ div#canvas_container
 .imageCanvas {
 
   border: green 1px solid;
-  height: 500px;
-  width: 100%;
+  max-height: 560px;
+  max-width: 760px;
   
 }
