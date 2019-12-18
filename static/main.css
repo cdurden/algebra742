@@ -93,6 +93,8 @@ div#canvas_container
   resize: both;
   position: relative;
 
+  max-height: 600px;
+  max-width: 800px;
   height: 500px; 
   width:100%; margin:10px;padding:10px;
   touch-action: none;
