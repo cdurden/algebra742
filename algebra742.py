@@ -1119,8 +1119,11 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             form = SingleEquationForm()
         lhs,rhs = Parameters['equation'].split("=")
-        input_lhs, input_rhs = form.answer.data.split("=")
-        correct = simplify(parse_expr(lhs, transformations=transformations)-parse_expr(input_lhs, transformations=transformations))==0 and simplify(parse_expr(rhs, transformations=transformations)-parse_expr(input_rhs, transformations=transformations))==0 
+        try:
+            input_lhs, input_rhs = form.answer.data.split("=")
+            correct = simplify(parse_expr(lhs, transformations=transformations)-parse_expr(input_lhs, transformations=transformations))==0 and simplify(parse_expr(rhs, transformations=transformations)-parse_expr(input_rhs, transformations=transformations))==0 
+        except:
+            correct = False
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
