@@ -113,25 +113,15 @@ function get_boundary_points(x0,y0,x1,y1) {
     //m = (y1-y0)/(x1-x0);
     m = dy/dx;
     boundary_points = []
+    if (x0 == x1 && y0 == y1) {
+       return([[x0,x0],[y0,y0]]);
+    }
     if (x0 == x1 && y0 != y1) {
        return([[x0,y_min],[x0,y_max]]);
     }
     if (y0 == y1 && x0 != x1) {
        return([[x_min,y0],[x_max,y0]]);
     }
-    if( dy*(x_max - x0) >= dx*(y_min - y0) && dy*(x_max - x0) <= dx*(y_max - y0) ) {
-        boundary_points.push([x_max, y0 + m*(x_max - x0)]);
-    }
-    if( dx*(y_max - y0) > dy*(x_min - x0) && dx*(y_max - y0) < dy*(x_max - x0) ) {
-        boundary_points.push([x0 + 1/m*(y_max - y0),y_max]);
-    }
-    if( dy*(x_min - x0) >= dx*(y_min - y0) && dy*(x_min - x0) <= dx*(y_max - y0) ) {
-        boundary_points.push([x_min, y0 + m*(x_min - x0)]);
-    }
-    if (dx*(y_min - y0) > dy*(x_min - x0) && dx*(y_min - y0) < dy*(x_max - x0) ) {
-        boundary_points.push([x0 + 1/m*(y_min - y0),y_min]);
-    }
-/*
     if( m*(x_max - x0) >= y_min - y0 && m*(x_max - x0) <= y_max - y0 ) {
         boundary_points.push([x_max, y0 + m*(x_max - x0)]);
     }
@@ -144,7 +134,6 @@ function get_boundary_points(x0,y0,x1,y1) {
     if( 1/m*(y_min - y0) > x_min - x0 && 1/m*(y_min - y0) < x_max - x0 ) {
         boundary_points.push([x0 + 1/m*(y_min - y0),y_min]);
     }
-*/
     return(boundary_points)
 }
 function plot_data(data){
