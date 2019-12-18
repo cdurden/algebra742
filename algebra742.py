@@ -910,7 +910,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     if QuestionData['Type'] in ['InputOutputTableAndSetOfCoordinatePairsEquation']:
         form = InputOutputTableAndSetOfCoordinatePairsForm(data=formdata)
         #form = CoordinatePairsForm()
-        variables = Parameters['variables']
+        try:
+            variables = Parameters['variables']
+        except:
+            variables = ['x','y']
         if 'n' in Parameters:
             n = Parameters['n']
         else:
@@ -1020,7 +1023,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                 if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
                     correct = False
                     message += "Your prediction is incorrect."
-        except ValueError:
+        except:
             message = "Coordinate pairs could not be read."
             correct = False
         app.logger.error(correct)
