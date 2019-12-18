@@ -990,20 +990,21 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     input_coordinate_pair = tuple(float(x.strip("{()} ")) for x in input_coordinate_pair_string.split(","))
                 except:
                     next
-                input_set_of_coordinate_pairs.add(input_coordinate_pair)
-                x = input_coordinate_pair[0]
-                y = input_coordinate_pair[1]
-                variables = Parameters['variables']
-                lhs0 = lhs.replace(variables[0], "({:s})".format(str(x)))
-                rhs0 = rhs.replace(variables[0], "({:s})".format(str(x)))
-                lhs0 = lhs0.replace(variables[1], "({:s})".format(str(y)))
-                rhs0 = rhs0.replace(variables[1], "({:s})".format(str(y)))
-                app.logger.error(lhs0)
-                app.logger.error(rhs0)
-
-                if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
-                    correct = False
-                    message = "The points you entered are not on the line."
+                finally:
+                    input_set_of_coordinate_pairs.add(input_coordinate_pair)
+                    x = input_coordinate_pair[0]
+                    y = input_coordinate_pair[1]
+                    variables = Parameters['variables']
+                    lhs0 = lhs.replace(variables[0], "({:s})".format(str(x)))
+                    rhs0 = rhs.replace(variables[0], "({:s})".format(str(x)))
+                    lhs0 = lhs0.replace(variables[1], "({:s})".format(str(y)))
+                    rhs0 = rhs0.replace(variables[1], "({:s})".format(str(y)))
+                    app.logger.error(lhs0)
+                    app.logger.error(rhs0)
+    
+                    if simplify(parse_expr(lhs0, transformations=transformations)-parse_expr(rhs0, transformations=transformations))!=0:
+                        correct = False
+                        message = "The points you entered are not on the line."
             if len(input_set_of_coordinate_pairs) < int(json.loads(Parameters['N'])):
                 message = "You entered {:d} coordinate pairs.".format(len(input_set_of_coordinate_pairs))
                 correct = False
