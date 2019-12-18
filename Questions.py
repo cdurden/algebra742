@@ -3443,9 +3443,9 @@ QuestionSets['DirectVariation']['Questions'].append({
 
 # Type 3
 ParameterSetVariants = []
-question = 'Write the equation of the direct variation that relates $x$ and $y$: $y={:d}$ when $x={:d}$ .'
+question = 'Write the equation of the direct variation that relates $x$ and $y$: <br/> If $x={:d}$, then $y={:d}$.'
 for (x,y) in [(12,15), (6,-12), (3,21), (18,12)]:
-    ParameterSetVariants.append({'question': question.format(y,x),
+    ParameterSetVariants.append({'question': question.format(x,y),
         'equation': 'y={:d}/{:d}x'.format(y,x), 
                 'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-21,21,-21,21,3,3)]),
