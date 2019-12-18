@@ -66,7 +66,8 @@ $("#answer_form").submit(function(e) {
         success: function(data)
         {
             //alert(data); // show response from the php script.
-                        window.location.reload(true);
+            window.location.href = url;
+                        //window.location.reload(true);
                         /*
             $("html").html(data);
             eval(document.getElementById('updateImageDataScript').innerHTML);
