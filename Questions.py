@@ -3477,7 +3477,7 @@ question = 'Convert the equation ${:s}$ to standard form. Then find the $x$ and 
 # Direct Variation
 ParameterSetVariants = []
 question = 'Find the slope of the direct variation in the graph.'
-for (y,x) in [(6,1), (-4,2), (2,3), (-3,2), (4,5), (-3,4),(-1,1),]:
+for (y,x) in [(6,1), (-4,2), (2,3), (-3,2),]:
     ParameterSetVariants.append({'question': question.format(equation),
                 'x': [0,x],
                 'y': [0,y],
@@ -3503,7 +3503,7 @@ QuestionSets['DirectVariation']['Questions'].append({
 # Type 2
 ParameterSetVariants = []
 question = 'Graph the equation ${:s}$.'
-for equation in ['y=6x', 'y=-3x', 'y=4/3x', 'y=-1/2x', 'y=2/3x', 'y=-4/3x', 'y=-x', '5y=4x',]:
+for equation in ['y=6x', 'y=-3x', 'y=2/3x', 'y=-4/3x', 'y=-x', '5y=4x',]:
     ParameterSetVariants.append({'question': question.format(equation),
         'equation': equation, 
                 'variables': ['x','y'],
