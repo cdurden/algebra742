@@ -17,6 +17,73 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'FlexibleLearningSimulation': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 19: Graphing Linear Equations Help',
+        'Questions': [
+            {
+            'Type': 'SetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            #'Template': 'Grid.tex',
+            'ParameterSetVariants': [
+                {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                 'Question': 'Graph the equation ${:s}$.'.format('3x+5=-10'),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '3x+5=-10',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            #'Template': 'Grid.tex',
+            'ParameterSetVariants': [
+                {'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
+                    'Question': 'Make a table of coordinate pairs and graph the equation ${:s}$.'.format('4y=2x+2'),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-5,5,-5,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-5,5,-5,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '4y=2x+2',
+                    'draw': True,
+                    #'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a href="https://youtu.be/CM55FCJJFv4">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/CM55FCJJFv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
+                },
+            {
+            'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'Question': r'Write the equation $y=2x+8$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=2x+8',
+                    'draw': True,
+                    'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a href="https://youtu.be/CM55FCJJFv4">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/CM55FCJJFv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
+                },
+                {'Question': r'Write the equation $2y-3=4x+9$ in standard form. Fill in the $x$ and $y$-intercepts in the table. Then graph the relationship.', 'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-5,5,-1,10,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': '2y-3=4x+9',
+                    'draw': True,
+                    'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a href="https://youtu.be/nnmzjEJM-tA">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/nnmzjEJM-tA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
+                },
+                ],
+            'SpaceAfter': '4cm',
+            },
+        ]
+    },
     'SlopeOnMap': {
         'ProvideImmediateFeedback': True,
         'Title': 'December 16: Slopes on a map',
