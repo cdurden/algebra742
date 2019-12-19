@@ -55,6 +55,9 @@ QuestionSets = {
                     'draw': True,
                     #'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a href="https://youtu.be/CM55FCJJFv4">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/CM55FCJJFv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
                 },
+                ],
+            'SpaceAfter': '4cm',
+            },
             {
             'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
