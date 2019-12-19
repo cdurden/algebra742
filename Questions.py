@@ -191,8 +191,8 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'x': [None,None], 'y': [None,None], 'variables': ['x','y'],
                     'Question': 'Make a table of coordinate pairs and graph the equation ${:s}$.'.format('y=-3x'),
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-5,5,-1,10,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-5,5,-1,10,1,1)]),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-5,5,-6,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-5,5,-6,10,1,1)]),
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
