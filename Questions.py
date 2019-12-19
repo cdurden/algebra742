@@ -17,7 +17,7 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
-    'FlexibleLearningSimulation': {
+    'GraphingLinearEquationsHelp': {
         'ProvideImmediateFeedback': True,
         'Title': 'December 19: Graphing Linear Equations Help',
         'Questions': [
@@ -1875,6 +1875,17 @@ QuestionSets = {
     'SolvingEquationsTestCorrections': {
         'ProvideImmediateFeedback': True,
         'Questions': [
+            {
+            'Type': 'MC',
+            'Template': 'Question.html',
+            'ParameterSetVariants': [
+                {'question': '<b>Directions:</b> If you received below a 75% (37.5 out of 50) on the on the Chapter 3.1: Graphing Linear Equations, then you may raise your grade up to a 75% by completing corrections to your work. This assignment will show you whether or not you got the answer correct. If you get the answer correct, you must also show your work in the work area on each problem, or on a separate sheet of paper, and submit it. There were three types of problems on the test. If you need help with any of these problems, you may open the assignment titled "Graphing Linear Equations Help," where you will find a video explanation of each problem type.',
+                    'Choices': [('Present', 'I understand the directions above.')],
+                    'CorrectAnswer': 'Present'
+                },
+            ],
+            'SpaceAfter': '2cm',
+            },
         {
             #'Type': 'SolveEquation',
             'Type': 'SolveEquationGuided',
