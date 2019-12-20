@@ -17,6 +17,25 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'TheManWhoKnewInfinityPrereflection': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'December 20: The Man Who Knew Infinity',
+        'Questions': [
+            {
+            'Type': 'OpenResponse',
+            'Template': 'OpenResponse.html',
+            #'Template': 'Grid.tex',
+            'ParameterSetVariants': [
+                {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                 'question': 'Do you think it is important to show your work when doing math? Why or why not?',
+                    'draw': True,
+                    'no_answer': json.dumps(True),
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+        ]
+    },
     'GraphingLinearEquationsHelp': {
         'ProvideImmediateFeedback': True,
         'Title': 'December 19: Graphing Linear Equations Help',
