@@ -28,7 +28,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
                  'question': 'Do you think it is important to show your work when doing math? Why or why not?',
-                    'draw': True,
+                    #'draw': True,
                     'no_answer': json.dumps(True),
                 },
                 ],
