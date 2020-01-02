@@ -26,8 +26,11 @@ QuestionSets = {
             'Template': 'PlotQuestion.html',
             'LatexTemplate': 'GridWithLine.tex',
             'ParameterSetVariants': [
-                {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                {
                  'Question': 'What is the slope of the graph below?',
+                'x': [0,6],
+                'y': [4,0],
+                'variables': ['x','y'],
                     'x1': 0,
                     'y1': 4,
                     'x2': 6,
@@ -41,6 +44,7 @@ QuestionSets = {
                     'draw': True,
                     'prediction_question': 'm=',
                     'x0': '7',
+                    'CorrectAnswer': '-2/3',
                 },
                 ],
             'SpaceAfter': '0cm',
