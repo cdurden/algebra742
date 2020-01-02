@@ -38,6 +38,8 @@ QuestionSets = {
                     'grid_x': json.dumps([x[0] for x in gen_grid(-5,5,-1,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-5,5,-1,10,1,1)]),
                     'N': json.dumps(0),
+                    'set_of_coordinate_pairs': {},
+                    'show_points': True,
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
                     'equation': 'y=-2/3x+4',
