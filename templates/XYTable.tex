@@ -1,0 +1,12 @@
+\begin{minipage}{\linewidth}
+{{ Question }}\\
+
+    \begin{tabular}{ | c | c |}
+    \hline
+    {{ variables[0] }} & {{ variables[1] }} \\ \hline
+    {% for x_ in x %}
+        {{ x[loop.index0] }} & {{ y[loop.index0] }} \\
+    {% endfor %}
+    \hline
+    \end{tabular}
+\end{minipage}

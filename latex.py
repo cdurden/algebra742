@@ -64,7 +64,10 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                         equation = Parameters['equation']
                         lhs, rhs = equation.split("=")
                         #Parameters['equation_latex'] = "{:s}={:s}".format(latex(parse_expr(lhs,transformations=transformations, evaluate=False)),latex(parse_expr(rhs,transformations=transformations, evaluate=False)))
-                    template = jenv.get_template(Question['Template'])
+                    try:
+                        template = jenv.get_template(Question['LatexTemplate'])
+                    except:
+                        template = jenv.get_template(Question['Template'])
                     Parameters['tex'] = True
                     out = template.render(**Parameters)
                     #enum.add_item(NoEscape(out))
@@ -164,6 +167,7 @@ assignment = "StainedGlassGraphs"
 assignment = "GraphingLinearEquationsSpeedDating"
 assignment = "GraphingLinearEquationsSpeedDatingQuestions"
 assignment = "GraphingLinearEquationsTest"
+assignment = "LinearEquationsTest2"
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
