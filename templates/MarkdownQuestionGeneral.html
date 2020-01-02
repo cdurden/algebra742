@@ -452,6 +452,7 @@ Explanation:
     {% if not test %}
     <b>{{ message }}</b>
     {% endif %}
+
     {% if NextQuestion %}
     <a href="{{ url_for('Assignment', assignment=assignment, q=NextQuestion['q'], i=NextQuestion['i']) }}" class="button">Next question</a>
     {% else %}
