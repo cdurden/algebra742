@@ -94,7 +94,7 @@ QuestionSets = {
                 { 'question': 'What is the slope of the line given by the equation $y=2x$?',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-5,5,-1,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-5,5,-1,10,1,1)]),
-                    'N': json.dumps(0),
+                    'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
                     'CorrectAnswer': '2',
