@@ -332,6 +332,9 @@ function loadPhoto() {
 </div>
 {% else %}
 <div class="input">
+    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    <div id="myDiv"></div>
+    {% endif %}
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
@@ -367,9 +370,6 @@ Explanation:
 {{ form.explanation(autofocus=true, style="font-size: 18pt; height: 80px; width:640px; ") }}
 </p>
 {% endif %}
-    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
-    <div id="myDiv"></div>
-    {% endif %}
 
 {% if not test %}
 <b>{{ message }}</b>
