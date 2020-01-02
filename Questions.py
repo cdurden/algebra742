@@ -75,8 +75,8 @@ QuestionSets = {
             #'Template': 'Grid.tex',
             'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
-                { 'question': 'What is the slope of the line through the points $(1,4)$ and $(5,2)$?',
-                    'CorrectAnswer': '-1/2',
+                { 'question': 'What is the slope of the line through the points $(2,3)$ and $(7,1)$?',
+                    'CorrectAnswer': '-1/3',
                     'draw': True,
                 },
                 { 'question': 'What is the slope of the line given by the equation $y=2x$?',
