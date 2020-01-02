@@ -62,7 +62,7 @@ QuestionSets = {
                 {'x': [-2,0,4], 'y': [-4,1,11], 'variables': ['x','y'],
                  'Question': 'What is the rate of change of the relationship represented by the table?',
                     'equation': 'y=5/2x+1',
-                    'CorrectAnswer': '1',
+                    'CorrectAnswer': '5/2',
                     'draw': True,
                 },
                 ],
