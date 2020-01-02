@@ -1,0 +1,12 @@
+{{ Question }}\\
+
+<table>
+    <tr>
+        <th>{{ variables[0] }}</th><th>{{ variables[1] }}</th>
+    </tr>
+    {% for x_ in x %}
+    <tr>
+        <td> {{ x[loop.index0] }} </td><td> {{ y[loop.index0] }} </td>
+    </tr>
+    {% endfor %}
+</table>
