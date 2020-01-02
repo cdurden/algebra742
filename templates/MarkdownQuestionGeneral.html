@@ -155,9 +155,10 @@ $('.card img').click(rotateCard);
     </div>
     <div id="content">
         {% if question_number is not none %}
-        {{ question_number }}. {{ QuestionData['Question'] }} {{ Parameters['Question'] }}
+        {{ question_number }}. {{ QuestionData['Question'] }} {{ Parameters['Question'] }} 
 
         {% endif %}
+        {{ content | safe}}
 
 {% if 'html' in Parameters and Parameters['html'] is not none %}
 {{ Parameters['html'] | safe }}
@@ -173,7 +174,6 @@ $('.card img').click(rotateCard);
 </div>
 {% endif %}
 
-        {{ content | safe}}
     </div>
 </section>
 
