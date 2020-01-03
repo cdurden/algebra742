@@ -29,8 +29,8 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {
                  'Question': 'What is the slope of the graph below?',
-                'x': [0,0],
-                'y': [6,4],
+                'x': [0,6],
+                'y': [0,4],
                 'variables': ['x','y'],
                     'x1': 0,
                     'y1': 0,
@@ -50,8 +50,8 @@ QuestionSets = {
                 },
                 {
                  'Question': 'What is the slope of the graph below?',
-                'x': [-2,12],
-                'y': [4,0],
+                'x': [-2,4],
+                'y': [12,0],
                 'variables': ['x','y'],
                     'x1': -2,
                     'y1': 12,
