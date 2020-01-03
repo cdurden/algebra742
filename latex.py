@@ -36,6 +36,7 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     #doc.packages.append(Package('tikz'))
     doc.packages.append(NoEscape('\usepackage{tkz-euclide}'))
     doc.packages.append(Package('amsmath'))
+    doc.packages.append(Package('scalefnt'))
     doc.append(NoEscape('\setlength\itemsep{-2cm}'))
     QuestionData = QuestionSets[assignment]['Questions'] 
     with doc.create(Section(QuestionSets[assignment]['Title'])):
@@ -54,9 +55,10 @@ def GenerateAssignmentPdf(assignment, filepath=None):
 #    \end{center}
 #%    \vspace{0.1in}
 #%    \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
+        doc.append(NoEscape(r'\textbf{Learning Goal: }'+QuestionSets[assignment]['LearningGoal']+''))
         doc.append(NoEscape(r'\begin{multicols}{2}'))
         #doc.append(NoEscape(r'    \begin{table}[htb] \begin{tabular}{|*{2}{>{\centering\arraybackslash}p{0.5\textwidth}|}}'))
-        with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 2})) as enum:
+        with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 1})) as enum:
         #with doc.create(Itemize(options={'start': 1})) as enum:
             for Question in QuestionData:
                 for Parameters in Question['ParameterSetVariants']:
@@ -168,6 +170,7 @@ assignment = "GraphingLinearEquationsSpeedDating"
 assignment = "GraphingLinearEquationsSpeedDatingQuestions"
 assignment = "GraphingLinearEquationsTest"
 assignment = "LinearEquationsTest2"
+assignment = "CalculatingSlopeClasswork"
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
