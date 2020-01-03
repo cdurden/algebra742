@@ -43,10 +43,10 @@ QuestionSets = {
                     'show_points': True,
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
-                    'equation': 'y=3/2x',
+                    'equation': 'y=2/3x',
                     'draw': True,
                     'AnswerLabel': 'm=',
-                    'CorrectAnswer': '3/2',
+                    'CorrectAnswer': '2/3',
                 },
                 {
                  'Question': 'What is the slope of the graph below?',
