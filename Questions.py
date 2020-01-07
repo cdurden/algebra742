@@ -85,36 +85,6 @@ QuestionSets = {
             'SpaceAfter': '0cm',
             },
             {
-            'Type': 'Matching',
-            'Template': 'Matching.html',
-            'LatexTemplate': 'GridWithLines.tex',
-            'ParameterSetVariants': [
-                {
-                    'Question': 'Match each line with the description of its slope',
-                    'lines': [
-                        ((-5,0),(0,5)),
-                        ((0,4),(1,-1)),
-                        ((5,-2),(5,4)),
-                        ((-5,-4),(2,-4)),
-                        ],
-                        'labels': [['A','B'],['C','D'],['E','F'],['G','H']],
-                    'prompts': [
-                    'AB \hfill positive',
-                    'CD \hfill negative',
-                    'EF \hfill zero',
-                    'GH \hfill undefined',
-                    ], 
-                    'answers': {
-                        'z':'Zero',
-                        'p':'Positive',
-                        'u':'Undefined',
-                        'n':'Negative',
-                        },
-                    'CorrectAnswers': ['u','p','z','n']}, 
-                ],
-            'SpaceAfter': '2cm',
-            },
-            {
             #'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
             'Type': 'GenericEquality',
             'Template': 'PlotQuestion.html',
@@ -134,6 +104,26 @@ QuestionSets = {
                 },
                 ],
             'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'MC',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'What type of slope does the line in the graph have?', 'a': [0,2], 'b': [3,4], 'variables': ['a','b'],
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'x': [1,2],
+                    'y': [4,3],
+                    'set_of_coordinate_pairs': {(5,0)},
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(1),
+                    'Choices': [('Positive', 'Positive'),('Negative','Negative'),('Zero','Zero'),('Undefined','Undefined')],
+                    'CorrectAnswer': 'Negative'
+                    },
+                ],
+            'SpaceAfter': '4cm',
             },
             {
             'Type': 'SetOfCoordinatePairs',
