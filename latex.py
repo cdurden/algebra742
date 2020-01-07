@@ -77,6 +77,11 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                     doc.append(NoEscape(r'\item\adjustbox{valign=t}{'+out+'}'))
                     #enum.add_item(NoEscape(Question['Question']))
                     #doc.append("\n\n")
+                    if Question['Type'] == 'Matching':
+                        with doc.create(Enumerate(enumeration_symbol=r"\alph*)")) as enumb:
+                            for prompt in Parameters['prompts']:
+                                doc.append(NoEscape(r'\item '+prompt))
+                                #enumb.add_item(prompt)
                     letters = ['a','b','c','d']
 #                    if 'Choices' in Parameters:
 #                        for i,Choice in enumerate(Parameters['Choices']):
@@ -171,6 +176,7 @@ assignment = "GraphingLinearEquationsSpeedDatingQuestions"
 assignment = "GraphingLinearEquationsTest"
 assignment = "LinearEquationsTest2"
 assignment = "CalculatingSlopeClasswork"
+assignment = "TypesOfSlopeClasswork"
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')

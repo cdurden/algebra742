@@ -1,12 +1,14 @@
 \begin{minipage}{\linewidth}
 {{ Question }}\\
 
-\begin{tikzpicture}[scale=0.50]
+\begin{tikzpicture}[scale=0.45]
    \tkzInit[xmax=6,ymax=6,xmin=-6,ymin=-6]
    \tkzGrid
    \tkzAxeXY
     {% for line in lines %}
-        \draw[ thick,latex-latex] ({{ line[0][0] }},{{ line[0][1] }}) -- ({{ line[1][0] }},{{ line[1][1] }}) node[anchor=south west] {${{ labels[loop.index0] }}$}; % two points for drawing 2x+y=2
+        \node[anchor=south west](p{{ loop.index0 }}00) at ({{ line[0][0] }},{{ line[0][1] }}){ {{labels[loop.index0][0]}} };
+        \node[anchor=south west](p{{ loop.index0 }}00) at ({{ line[1][0] }},{{ line[1][1] }}){ {{labels[loop.index0][1]}} };
+        \draw[ thick,latex-latex] ({{ line[0][0] }},{{ line[0][1] }}) -- ({{ line[1][0] }},{{ line[1][1] }});% node[anchor=south west] {${{ labels[loop.index0] }}$}; % two points for drawing 2x+y=2
     {% endfor %}
   \end{tikzpicture}
 \end{minipage}
