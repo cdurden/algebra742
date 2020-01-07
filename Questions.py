@@ -17,6 +17,62 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'SlopeBellringerJanuary7': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'Bellringer: Calculate slope from a graph or set of points', 
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+            {
+            'Type': 'GenericEquality',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': 'What is the slope of the graph below?',
+                'x': [-5,5],
+                'y': [0,4],
+                'variables': ['x','y'],
+                    'x1': -5,
+                    'y1': 0,
+                    'x2': 5,
+                    'y2': 4,
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,6,-1,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,6,-1,10,1,1)]),
+                    'N': json.dumps(0),
+                    'set_of_coordinate_pairs': {},
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'draw': True,
+                    'AnswerLabel': 'm=',
+                    'CorrectAnswer': '2/5',
+                },
+                {
+                 'question': 'What is the slope of the line through the points $(0,6)$ and $(4,-2)$?',
+                    #'draw': True,
+                    'AnswerLabel': 'm=',
+                    'CorrectAnswer': '-2',
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            #'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Type': 'GenericEquality',
+            'Template': 'XYTable.html',
+            #'Template': 'Grid.tex',
+            'LatexTemplate': 'XYTable.tex',
+            'ParameterSetVariants': [
+                {'x': [5,7,9,11], 'y': [5,3,1,-1], 'variables': ['x','y'],
+                 'Question': 'What is the rate of change of the relationship represented by the table?',
+                    'CorrectAnswer': '-1',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+        ]
+    },
     'GraphLineGivenPointAndSlope': {
         'ProvideImmediateFeedback': True,
         'Title': 'Graph a line given a point and its slope', 
