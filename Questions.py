@@ -100,8 +100,6 @@ QuestionSets = {
             'SpaceAfter': '4cm',
             },
             {
-            'Type': 'SetOfCoordinatePairs',
-            {
             'Type': 'MC',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
@@ -120,6 +118,8 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            {
+            'Type': 'SetOfCoordinatePairs',
             'Template': 'PlotQuestion.html',
             'ParameterSetVariants': [
                 {'question': r'Find the $x$-intercept of the graph. (Tap or click on the point to select it.)',
