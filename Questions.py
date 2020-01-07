@@ -86,7 +86,7 @@ QuestionSets = {
             },
             {
             'Type': 'Matching',
-            #'Template': 'Matching.html',
+            'Template': 'Matching.html',
             'LatexTemplate': 'GridWithLines.tex',
             'ParameterSetVariants': [
                 {
