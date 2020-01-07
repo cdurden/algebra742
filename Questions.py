@@ -17,7 +17,7 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
-    'IdentifyGraphFeaturesGuidedPractice2': {
+    'TypesOfSlopeGuidedPractice': {
         'ProvideImmediateFeedback': True,
         'Title': 'Calculate slope from a graph, table, set of points, or direct variation', 
         'Questions': [
