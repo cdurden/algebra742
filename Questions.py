@@ -193,7 +193,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'x': [-7,-3,1], 'y': [-5,-2,1], 'variables': ['x','y'],
                  'Question': 'What is the rate of change of the relationship represented by the table?',
-                    'CorrectAnswer': '-3/4',
+                    'CorrectAnswer': '3/4',
                     'draw': True,
                     'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('us0Bj6dkLRU'),
                 },
