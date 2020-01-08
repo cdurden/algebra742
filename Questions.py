@@ -383,7 +383,7 @@ QuestionSets = {
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
                     'equation': 'y=-1/5x-1',
-                    'draw': True,
+                    #'draw': True,
                     'AnswerLabel': 'm=',
                     'CorrectAnswer': '-1/5',
                 },
