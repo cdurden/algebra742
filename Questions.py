@@ -348,7 +348,7 @@ QuestionSets = {
                     'draw': True,
                 },
                 {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-                 'question': 'Graph the line with x-intercept at $(-1,0)$ and y-intercept $(4,0)$.',
+                 'question': 'Graph the line with x-intercept at $(-1,0)$ and y-intercept $(0,4)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'N': json.dumps(2),
