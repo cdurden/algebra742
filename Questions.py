@@ -169,7 +169,7 @@ QuestionSets = {
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-2,8,1,1)]),
                     'x': [-6,6],
                     'y': [1,-5],
-                    'set_of_coordinate_pairs': {(-3,0)},
+                    'set_of_coordinate_pairs': {(-4,0)},
                     'show_points': True,
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
