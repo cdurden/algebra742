@@ -376,7 +376,7 @@ QuestionSets = {
             'LatexTemplate': 'GridWithLine.tex',
             'ParameterSetVariants': [
                 {
-                 'question': 'Graph the line with y-intercept at $(-1,0)$ and x-intercept $(-5,0)$. What is its slope?',
+                 'question': 'Graph the line with y-intercept at $(0,-1)$ and x-intercept $(-5,0)$. What is its slope?',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'N': json.dumps(2),
@@ -385,7 +385,7 @@ QuestionSets = {
                     'equation': 'y=-1/5x-1',
                     'draw': True,
                     'AnswerLabel': 'm=',
-                    'CorrectAnswer': '-3/4',
+                    'CorrectAnswer': '-1/5',
                 },
                 ],
             'SpaceAfter': '0cm',
