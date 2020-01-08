@@ -258,7 +258,7 @@ QuestionSets = {
             'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-                 'question': 'Graph the line with y-intercept at $(4,0)$ and zero slope.',
+                 'question': 'Graph the line with y-intercept at $(0,4)$ and zero slope.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-6,6,-6,6,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-6,6,-6,6,1,1)]),
                     'N': json.dumps(2),
