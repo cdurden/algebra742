@@ -90,6 +90,13 @@ QuestionSets = {
                 ],
             'SpaceAfter': '0cm',
             },
+        ],
+    },
+    'DirectVariationClassworkJanuary9B': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'Write the equation of a direct variation given key features of the graph', 
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
