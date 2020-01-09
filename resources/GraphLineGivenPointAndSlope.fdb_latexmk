@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1578579460 "GraphLineGivenPointAndSlope.tex" "GraphLineGivenPointAndSlope.pdf" "GraphLineGivenPointAndSlope" 1578579460
+["pdflatex"] 1578579573 "GraphLineGivenPointAndSlope.tex" "GraphLineGivenPointAndSlope.pdf" "GraphLineGivenPointAndSlope" 1578579573
   "/etc/texmf/web2c/texmf.cnf" 1551554635 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
@@ -215,9 +215,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1488610416 31340 0f53f8665296bf8fe6c697f9505e31d8 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1570850547 1703609 0ecba8ef9153643a2dadeaa5b73f268f ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1552833664 719476 118b71312c55a28cf5db7965617cbc14 ""
-  "GraphLineGivenPointAndSlope.aux" 1578579460 8 a94a2480d3289e625eea47cd1b285758 ""
-  "GraphLineGivenPointAndSlope.tex" 1578579460 6466 2377169d92f39b1bb8771903efc45770 ""
+  "GraphLineGivenPointAndSlope.aux" 1578579471 285 fed834a97d46474075bca5c588812af1 ""
+  "GraphLineGivenPointAndSlope.tex" 1578579572 6466 2377169d92f39b1bb8771903efc45770 ""
   (generated)
-  "GraphLineGivenPointAndSlope.aux"
-  "GraphLineGivenPointAndSlope.pdf"
   "GraphLineGivenPointAndSlope.log"
+  "GraphLineGivenPointAndSlope.pdf"
+  "GraphLineGivenPointAndSlope.aux"
