@@ -90,7 +90,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
-                    'equation': 'y=5x-5',
+                    'equation': 'y=5x+5',
                     #'draw': True,
                 },
                 ],
