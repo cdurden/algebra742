@@ -54,7 +54,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
-                    'equation': 'y=-1/5x-1',
+                    'equation': 'y=-1/2x+2',
                     #'draw': True,
                 },
                 ],
