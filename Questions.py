@@ -116,6 +116,7 @@ QuestionSets = {
                 ],
             'SpaceAfter': '0cm',
             },
+            {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
             'LatexTemplate': 'GridWithLine.tex',
