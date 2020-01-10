@@ -75,7 +75,7 @@ QuestionSets = {
                     'equation': 'y=-2x+4',
                     #'draw': True,
                     'AnswerLabel': 'm=',
-                    'CorrectAnswer': '(0,2)',
+                    'CorrectAnswer': '(2,0)',
                 },
                 ],
             'SpaceAfter': '0cm',
