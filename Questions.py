@@ -137,6 +137,42 @@ QuestionSets = {
                 ],
             'SpaceAfter': '0cm',
             },
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': 'Write the equation of the line with y-intercept $(0,-4)$ and slope $2$.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(2),
+                    'equation': 'y=2x-4',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': r'Write the equation of the line with y-intercept $(0,1)$ and slope $\frac{1}{2}$.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-1,8,1,1)]),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(2),
+                    'equation': 'y=1/2x+1',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
         ],
     },
     'DirectVariationClassworkJanuary9': {
