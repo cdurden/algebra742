@@ -17,6 +17,71 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+    'SlopeInterceptClassworkJanuary10': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'Write the equation of a line given the slope and y-intercept', 
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+            {
+            'Type': 'GenericEquality',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'question': 'Graph the line with y-intercept at $(0,-2)$ and x-intercept $(-3,0)$. What is its slope?',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=-2/3x-2',
+                    #'draw': True,
+                    'AnswerLabel': 'm=',
+                    'CorrectAnswer': '-2/3',
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'SetOfCoordinatePairsEquation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'Grid.tex',
+            'ParameterSetVariants': [
+                {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
+                 'question': r'Graph the line with y-intercept at $(0,2)$ and slope $-\frac{1}{2}$.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=-1/5x-1',
+                    #'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'GenericEquality',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'question': 'Graph the line with y-intercept at $(0,4)$ and slope $-2$. What is its x-intercept?',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=-2x+4',
+                    #'draw': True,
+                    'AnswerLabel': 'm=',
+                    'CorrectAnswer': '(0,2)',
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+        ],
+    },
     'DirectVariationClassworkJanuary9': {
         'ProvideImmediateFeedback': True,
         'Title': 'Write the equation of a direct variation given key features of the graph', 
