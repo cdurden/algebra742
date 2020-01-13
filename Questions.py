@@ -359,7 +359,7 @@ QuestionSets = {
             #'Template': 'Grid.tex',
             'LatexTemplate': 'XYTable.tex',
             'ParameterSetVariants': [
-                {'x': [-2,0,6,12], 'y': [-5,2,23,43], 'variables': ['x','y'],
+                {'x': [-2,0,6], 'y': [-5,2,23], 'variables': ['x','y'],
                  'Question': 'What is the rate of change of the relationship represented by the table?',
                     'CorrectAnswer': '7/2',
                     'draw': True,
