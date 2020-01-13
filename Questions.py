@@ -87,7 +87,7 @@ QuestionSets = {
                 {
                     'Question': 'Match each line with the description of its slope',
                     'lines': [
-                        ((-2,3),(2,3)),
+                        ((-2,3),(1,3)),
                         ((-5,0),(0,-5)),
                         ((0,-4),(1,-1)),
                         ((2,-1),(2,3)),
