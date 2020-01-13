@@ -69,6 +69,26 @@ QuestionSets = {
             'SpaceAfter': '0cm',
             },
             {
+            'Type': 'GenericEquality',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': 'Graph the equation of the line with y-intercept $(0,-40)$ and slope $2$. What is the x-intercept?',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'dtickx': json.dumps(10),
+                    'dticky': json.dumps(10),
+                    'N': json.dumps(2),
+                    'equation': 'y=2x-40',
+                    'draw': True,
+                    'CorrectAnswer': '(20,0)',
+                    'AnswerLabel': 'x-intercept: ',
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
             'LatexTemplate': 'GridWithLine.tex',
