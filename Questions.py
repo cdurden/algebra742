@@ -68,7 +68,7 @@ QuestionSets = {
                         'O':'-6',
                         'P':'-7',
                         },
-                    'CorrectAnswers': ['+','-','u','0'], 
+                    'CorrectAnswers': ['C','E','O','I'], 
                     'N': json.dumps(0),
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
@@ -87,10 +87,10 @@ QuestionSets = {
                 {
                     'Question': 'Match each line with the description of its slope',
                     'lines': [
-                        ((-5,0),(0,5)),
-                        ((0,4),(1,-1)),
-                        ((5,-2),(5,4)),
-                        ((-5,-4),(2,-4)),
+                        ((-2,3),(2,3)),
+                        ((-5,0),(0,-5)),
+                        ((0,-4),(1,-1)),
+                        ((2,-1),(2,3)),
                         ],
                         'labels': [['A','B'],['C','D'],['E','F'],['G','H']],
                     'prompts': [
@@ -105,7 +105,7 @@ QuestionSets = {
                         'u':'Undefined',
                         '0':'Zero',
                         },
-                    'CorrectAnswers': ['+','-','u','0'], 
+                    'CorrectAnswers': ['0','-','+','u'], 
                     'N': json.dumps(0),
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
