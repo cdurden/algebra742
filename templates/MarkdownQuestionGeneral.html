@@ -250,7 +250,7 @@ $('.card img').click(rotateCard);
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
-    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    {% if QuestionData['Template'] in ['PlotQuestion.html', 'PlotLines.html'] %}
     <div id="myDiv"></div>
     {% endif %}
 {% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation','InputOutputTableAndSetOfCoordinatePairsEquation'] %}
@@ -284,7 +284,7 @@ Explanation:
 {{ form.explanation(autofocus=true, style="font-size: 18pt; height: 80px; width:640px; ") }}
 </p>
 {% endif %}
-    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    {% if QuestionData['Template'] in ['PlotQuestion.html', 'PlotLines.html'] %}
     <div id="myDiv"></div>
     {% endif %}
 
@@ -294,7 +294,7 @@ Explanation:
 
 {% endif %}
 {% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation','SetOfCoordinatePairsEquationAndPrediction', 'InputOutputTableAndSetOfCoordinatePairsEquation'] %}
-    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    {% if QuestionData['Template'] in ['PlotQuestion.html', 'PlotLines.html'] %}
     {% if QuestionData['Type'] not in ['InputOutputTableAndSetOfCoordinatePairsEquation'] %}
     <div id="myDiv"></div>
     {% endif %}
