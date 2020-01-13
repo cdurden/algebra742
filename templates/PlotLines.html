@@ -34,7 +34,7 @@ var myPlot = document.getElementById('myDiv'),
     no_answer = {% if no_answer is defined %}{{ no_answer | safe }}{% else %}false{% endif %},
     //point_data = [ { x:grid_x, y:grid_y, type:'scatter',
     //        mode:'markers', marker:{size:1}, showlegend: false } ],
-    var linedata = [];
+    linedata = [];
     {% for pair in lines %}
     linedata.push({
         x: [{{ pair[0][0] | safe }}, {{ pair[1][0] | safe }}],
