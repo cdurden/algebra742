@@ -107,7 +107,7 @@ QuestionSets = {
             'SpaceAfter': '0cm',
             },
             {
-            'Type': 'GenericEquality',
+            'Type': 'Equation',
             'Template': 'PlotQuestion.html',
             'LatexTemplate': 'GridWithLine.tex',
             'ParameterSetVariants': [
