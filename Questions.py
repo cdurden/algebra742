@@ -119,12 +119,14 @@ QuestionSets = {
             'SpaceAfter': '0cm',
             },
             {
-            'Type': 'GenericEquality',
+            #'Type': 'GenericEquality',
+            'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
             'LatexTemplate': 'GridWithLine.tex',
             'ParameterSetVariants': [
                 {
-                 'question': 'Graph the line through the point $(2,4)$ and slope $-1$. What is its x-intercept?',
+                 'question': 'Graph the line through the point $(2,4)$ and slope $-1$.',
+                    'variables': ['x','y'],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'N': json.dumps(2),
@@ -132,8 +134,8 @@ QuestionSets = {
                     'dticky': json.dumps(1),
                     'equation': 'y=-x+6',
                     #'draw': True,
-                    'AnswerLabel': 'm=',
-                    'CorrectAnswer': '(2,0)',
+                    #'AnswerLabel': 'm=',
+                    #'CorrectAnswer': '(2,0)',
                 },
                 ],
             'SpaceAfter': '0cm',
