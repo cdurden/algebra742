@@ -402,7 +402,7 @@ Explanation:
 <p style="font-size: 16pt; line-height: 1.5;">
 <div class="prompts">
 {% for prompt in Parameters['prompts'] %}
-{{ loop.index }} {{ form.answers[loop.index0]() }} {{ prompt | safe}} <br/>
+{{ loop.index }}. {{ prompt | safe}} {{ form.answers[loop.index0]() }} <br/>
 {% endfor %}
 </div>
 <div class="answers">
