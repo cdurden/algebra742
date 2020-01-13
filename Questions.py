@@ -36,12 +36,12 @@ QuestionSets = {
             'LatexTemplate': 'GridWithLines.tex',
             'ParameterSetVariants': [
                 {
-                    'Question': 'Match each line with the description of its slope',
+                    'Question': 'Match each line with its slope',
                     'lines': [
-                        ((-5,0),(0,5)),
-                        ((0,4),(1,-1)),
-                        ((5,-2),(5,4)),
-                        ((-5,-4),(2,-4)),
+                        ((-5,0),(-3,5)),
+                        ((0,4),(4,5)),
+                        ((5,-2),(4,4)),
+                        ((-5,-3),(2,-4)),
                         ],
                         'labels': [['A','B'],['C','D'],['E','F'],['G','H']],
                     'prompts': [
