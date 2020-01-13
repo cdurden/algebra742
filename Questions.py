@@ -36,19 +36,23 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {
                  'Question': 'Write the equation of the line shown in the graph.',
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,10)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'x1': 0,
+                    'x2': -2,
+                    'y1': 3,
+                    'y2': 0,
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,5)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,5)]),
                     'x': [0,-20],
                     'y': [30,0],
                     'show_points': True,
                     'dtickx': json.dumps(10),
-                    'dticky': json.dumps(10),
+                    'dticky': json.dumps(5),
                     'N': json.dumps(1),
                     'equation': 'y=3/2x+30',
                     'draw': True,
                 },
                 ],
-            'SpaceAfter': '0cm',
+            'SpaceAfter': '3cm',
             },
             {
             'Type': 'Equation',
@@ -57,10 +61,10 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {
                  'Question': 'Write the equation of the line with y-intercept $(0,-40)$ and slope $2$.',
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,10)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,5)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,5)]),
                     'dtickx': json.dumps(10),
-                    'dticky': json.dumps(10),
+                    'dticky': json.dumps(5),
                     'N': json.dumps(2),
                     'equation': 'y=2x-40',
                     'draw': True,
@@ -71,14 +75,14 @@ QuestionSets = {
             {
             'Type': 'GenericEquality',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                  'Question': 'Graph the equation of the line with y-intercept $(0,-40)$ and slope $2$. What is the x-intercept?',
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,10)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,5)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,5)]),
                     'dtickx': json.dumps(10),
-                    'dticky': json.dumps(10),
+                    'dticky': json.dumps(5),
                     'N': json.dumps(2),
                     'equation': 'y=2x-40',
                     'draw': True,
@@ -91,14 +95,14 @@ QuestionSets = {
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                  'Question': r'Write the equation of the line passing through $(40,10)$ with slope $\frac{1}{2}$.',
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,10)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,5)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,5)]),
                     'dtickx': json.dumps(10),
-                    'dticky': json.dumps(10),
+                    'dticky': json.dumps(5),
                     'N': json.dumps(2),
                     'equation': 'y=1/2x-10',
                     'draw': True,
@@ -109,7 +113,7 @@ QuestionSets = {
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                  'Question': r'Write the equation of the line with y-intercept $(0,2)$ and slope $-\frac{1}{100}$.',
@@ -124,6 +128,36 @@ QuestionSets = {
                 ],
             'SpaceAfter': '0cm',
             },
+            {
+            'Type': 'GenericEquality',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'Grid.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': r'What is the x-intercept of the line with y-intercept $(0,2)$ and slope $-\frac{1}{100}$?',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-4,4,-4,4,0.01,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-4,4,-4,4,0.01,1)]),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(0.1),
+                    'N': json.dumps(2),
+                    'equation': 'y=-1/100x+2',
+                    'draw': True,
+                    'CorrectAnswer': '200',
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'Equation',
+            'Template': 'XYTable.html',
+            'LatexTemplate': 'XYTable.tex',
+            'ParameterSetVariants': [
+                {'Question': r'Write an equation to represent the table below.',
+                'x': [-1,0,2,4], 'y': [-5,-2,4,10], 'variables': ['x','y'],
+                'equation': 'y=3x-2',}
+                ],
+            'SpaceAfter': '6cm',
+            },
         ],
     },
     'MixedPracticeHWJanuary13': {
@@ -135,10 +169,10 @@ QuestionSets = {
             'Type': 'Matching',
             #'Template': 'Matching.html',
             'Template': 'Question.html',
-            'LatexTemplate': 'GridWithLines.tex',
+            'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                    'Question': 'Find the slope between each pair of lines',
+                    'question': 'Find the slope between each pair of lines',
                     'prompts': [
                     '$(-5,0),(-3,5)$',
                     '$(0,4),(4,10)$',
@@ -371,7 +405,7 @@ QuestionSets = {
             #'Type': 'GenericEquality',
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                  'question': 'Graph the line through the point $(2,4)$ and slope $-1$.',
@@ -425,7 +459,7 @@ QuestionSets = {
             #'Type': 'GenericEquality',
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                     'question': 'Graph the line of the equation ${:s}$.'.format('y=-2x+4'),
@@ -443,10 +477,10 @@ QuestionSets = {
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                 'Question': 'Write the equation of the line shown in the graph.',
+                 'question': 'Write the equation of the line shown in the graph.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'x': [0,-2],
@@ -459,13 +493,14 @@ QuestionSets = {
                     'draw': True,
                 },
                 ],
-            'SpaceAfter': '0cm',
+            'SpaceAfter': '2cm',
             },
             {
             #'Type': 'GenericEquality',
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                     'question': r'Graph the line of the equation ${:s}$.'.format(r'y=\frac{2}{3}x-6'),
@@ -483,10 +518,11 @@ QuestionSets = {
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                 'Question': 'Write the equation of the line with y-intercept $(0,-4)$ and slope $2$.',
+                 'question': 'Write the equation of the line with y-intercept $(0,-4)$ and slope $2$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'dtickx': json.dumps(1),
@@ -496,13 +532,13 @@ QuestionSets = {
                     'draw': True,
                 },
                 ],
-            'SpaceAfter': '0cm',
+            'SpaceAfter': '2cm',
             },
             {
             #'Type': 'GenericEquality',
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                     'question': r'Graph the line of the equation ${:s}$.'.format(r'y=\frac{3}{4}x+3'),
@@ -520,10 +556,11 @@ QuestionSets = {
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                 'Question': r'Write the equation of the line with y-intercept $(0,1)$ and slope $\frac{1}{2}$.',
+                 'question': r'Write the equation of the line with y-intercept $(0,1)$ and slope $\frac{1}{2}$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'dtickx': json.dumps(1),
@@ -533,13 +570,14 @@ QuestionSets = {
                     'draw': True,
                 },
                 ],
-            'SpaceAfter': '0cm',
+            'SpaceAfter': '2cm',
             },
             {
             #'Type': 'GenericEquality',
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                     'question': r'Graph the line of the equation ${:s}$.'.format(r'y=5x+1'),
@@ -558,7 +596,8 @@ QuestionSets = {
             #'Type': 'GenericEquality',
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                     'question': r'Graph the line of the equation ${:s}$.'.format(r'y=\frac{2}{3}x+2'),
@@ -576,10 +615,11 @@ QuestionSets = {
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                 'Question': r'Write the equation of the line with y-intercept $(0,2)$ and slope $-\frac{1}{2}$.',
+                 'question': r'Write the equation of the line with y-intercept $(0,2)$ and slope $-\frac{1}{2}$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'dtickx': json.dumps(1),
@@ -589,13 +629,14 @@ QuestionSets = {
                     'draw': True,
                 },
                 ],
-            'SpaceAfter': '0cm',
+            'SpaceAfter': '2cm',
             },
             {
             #'Type': 'GenericEquality',
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                     'question': r'Graph the line of the equation ${:s}$.'.format(r'y=-\frac{3}{4}x+3'),
@@ -613,10 +654,11 @@ QuestionSets = {
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                 'Question': r'Write the equation of the line with y-intercept $(0,-2)$ and slope $4$.',
+                 'question': r'Write the equation of the line with y-intercept $(0,-2)$ and slope $4$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'dtickx': json.dumps(1),
@@ -626,13 +668,14 @@ QuestionSets = {
                     'draw': True,
                 },
                 ],
-            'SpaceAfter': '0cm',
+            'SpaceAfter': '2cm',
             },
             {
             #'Type': 'GenericEquality',
             'Type': 'SetOfCoordinatePairsEquation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'GridWithLine.tex',
+            #'LatexTemplate': 'GridWithLine.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
                     'question': r'Graph the line of the equation ${:s}$.'.format(r'y=\frac{1}{3}x+2'),
@@ -672,7 +715,7 @@ QuestionSets = {
                     'CorrectAnswer': '-2/3',
                 },
                 ],
-            'SpaceAfter': '0cm',
+            'SpaceAfter': '2cm',
             },
             {
             'Type': 'SetOfCoordinatePairsEquation',
@@ -1897,10 +1940,10 @@ QuestionSets = {
                         ],
                         'labels': [['A','B'],['C','D'],['E','F'],['G','H']],
                     'prompts': [
-                    r'AB \hfill positive',
-                    r'CD \hfill negative',
-                    r'EF \hfill zero',
-                    r'GH \hfill undefined',
+                    r'\overline{AB} \hfill positive',
+                    r'\overline{CD} \hfill negative',
+                    r'\overline{EF} \hfill zero',
+                    r'\overline{GH} \hfill undefined',
                     ], 
                     'answers': {
                         'z':'Zero',

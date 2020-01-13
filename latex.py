@@ -178,6 +178,9 @@ assignment = "LinearEquationsTest2"
 assignment = "CalculatingSlopeClasswork"
 assignment = "TypesOfSlopeClasswork"
 assignment = 'GraphLineGivenPointAndSlope'
+assignment = 'SlopeInterceptClassworkJanuary13'
+assignment = 'MixedPracticeJanuary13'
+assignment = 'SlopeInterceptChallengeJanuary13'
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
