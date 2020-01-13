@@ -222,7 +222,7 @@ $('.card img').click(rotateCard);
 
         {{ content | safe}}
 
-    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    {% if QuestionData['Template'] in ['PlotQuestion.html', 'PlotLines.html'] %}
     <div id="myDiv"></div>
     {% endif %}
 
@@ -376,7 +376,7 @@ Explanation:
 
 {% endif %}
 {% if QuestionData['Type'] in ['SetOfCoordinatePairs','SetOfCoordinatePairsEquation','SetOfCoordinatePairsEquationAndPrediction', 'InputOutputTableAndSetOfCoordinatePairsEquation'] %}
-    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    {% if QuestionData['Template'] in ['PlotQuestion.html', 'PlotLines.html'] %}
     {% if QuestionData['Type'] not in ['InputOutputTableAndSetOfCoordinatePairsEquation'] %}
     <div id="myDiv"></div>
     {% endif %}
@@ -500,7 +500,7 @@ Explanation:
 </p>
 {% endif %}
 {% if QuestionData['Type'] in ['GenericEquality', 'Numerical','Simplify', 'Expression','OpenResponse', 'Equation'] %}
-    {% if QuestionData['Template'] in ['PlotQuestion.html'] %}
+    {% if QuestionData['Template'] in ['PlotQuestion.html', 'PlotLines.html'] %}
     <div id="myDiv"></div>
     {% endif %}
 <p>
