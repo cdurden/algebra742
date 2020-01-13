@@ -42,7 +42,7 @@ var myPlot = document.getElementById('myDiv'),
         mode: 'lines+text',
         text: {{ labels[loop.index0] | safe }},
         textposition: 'top',
-        type: scatter
+        type: 'scatter'
     });
     {% endfor %}
     layout = {
