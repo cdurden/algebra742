@@ -24,6 +24,88 @@ QuestionSets = {
 #        'Questions': [
 #        ],
 #    },
+    'SlopeInterceptChallengeJanuary13': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'Write the equation of a line given the slope and y-intercept (Challenge)', 
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': 'Write the equation of the line shown in the graph.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'x': [0,-20],
+                    'y': [30,0],
+                    'show_points': True,
+                    'dtickx': json.dumps(10),
+                    'dticky': json.dumps(10),
+                    'N': json.dumps(1),
+                    'equation': 'y=3/2x+30',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': 'Write the equation of the line with y-intercept $(0,-40)$ and slope $2$.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'dtickx': json.dumps(10),
+                    'dticky': json.dumps(10),
+                    'N': json.dumps(2),
+                    'equation': 'y=2x-40',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': r'Write the equation of the line passing through $(40,10)$ with slope $\frac{1}{2}$.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-80,80,-80,80,10,10)]),
+                    'dtickx': json.dumps(10),
+                    'dticky': json.dumps(10),
+                    'N': json.dumps(2),
+                    'equation': 'y=1/2x-10',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'GenericEquality',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': r'Write the equation of the line with y-intercept $(0,2)$ and slope $-\frac{1}{100}$.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-4,4,-4,4,0.01,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-4,4,-4,4,0.01,1)]),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(0.1),
+                    'N': json.dumps(2),
+                    'equation': 'y=-1/100x+2',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+        ],
+    },
     'MixedPracticeJanuary13': {
         'ProvideImmediateFeedback': True,
         'Title': 'Intro to slope and slope-intercept form, mixed practice', 
