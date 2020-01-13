@@ -17,6 +17,53 @@ def frange(x, y, jump):
         yield x
         x += jump
 QuestionSets = {
+#    'MixedPracticeJanuary13': {
+#        'ProvideImmediateFeedback': True,
+#        'Title': 'Intro to slope and slope-intercept form, mixed practice', 
+#        'LearningGoal': r'\hrulefill \\ \hrulefill',
+#        'Questions': [
+#        ],
+#    },
+    'MixedPracticeJanuary13': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'Intro to slope and slope-intercept form, mixed practice', 
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+            {
+            #'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Type': 'GenericEquality',
+            'Template': 'XYTable.html',
+            #'Template': 'Grid.tex',
+            'LatexTemplate': 'XYTable.tex',
+            'ParameterSetVariants': [
+                {'x': [-2,0,6,12], 'y': [-5,2,23,43], 'variables': ['x','y'],
+                 'Question': 'What is the rate of change of the relationship represented by the table?',
+                    'CorrectAnswer': '7/2',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': r'Write the equation of the line with y-intercept $(0,3)$ and slope $\frac{1}{2}$.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(2),
+                    'equation': 'y=1/2x+3',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '0cm',
+            },
+        ],
+    },
     'SlopeInterceptClassworkJanuary13': {
         'ProvideImmediateFeedback': True,
         'Title': 'Write the equation of a line given the slope and y-intercept', 
@@ -1272,6 +1319,7 @@ QuestionSets = {
             {
             'Type': 'Matching',
             #'Template': 'Matching.html',
+            'Template': 'PlotQuestion.html',
             'LatexTemplate': 'GridWithLines.tex',
             'ParameterSetVariants': [
                 {
