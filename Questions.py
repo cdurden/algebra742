@@ -1347,6 +1347,8 @@ QuestionSets = {
                     'N': json.dumps(0),
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
                     },
                 ],
             'SpaceAfter': '2cm',
