@@ -1,0 +1,238 @@
+{% if tex is not defined%}
+<script>
+window.PlotlyConfig = {MathJaxConfig: 'local'}
+</script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!--<script src="{{ url_for('static', filename='js/plotly_ex1.js') }}"></script>-->
+<script id="loadPlotlyScript">
+function mod(n, m) {
+      if (m==0) { return(0) };
+      return ((n % m) + m) % m;
+}
+String.prototype.myTrimLeft = function(charlist) {
+      if (charlist === undefined)
+              charlist = "\s";
+
+        return this.replace(new RegExp("^[" + charlist + "]+"), "");
+};
+String.prototype.myTrimRight = function(charlist) {
+      if (charlist === undefined)
+              charlist = "\s";
+
+        return this.replace(new RegExp("[" + charlist + "]+$"), "");
+};
+String.prototype.myTrim = function(charlist) {
+      return this.myTrimLeft(charlist).myTrimRight(charlist);
+};
+function loadPlotly() {
+var myPlot = document.getElementById('myDiv'),
+    d3 = Plotly.d3,
+    N = {{ N|safe }},
+    grid_x = {{ grid_x|safe }},
+    grid_y = {{ grid_y|safe }},
+    shapes = [],
+    no_answer = {% if no_answer is defined %}{{ no_answer | safe }}{% else %}false{% endif %},
+    //point_data = [ { x:grid_x, y:grid_y, type:'scatter',
+    //        mode:'markers', marker:{size:1}, showlegend: false } ],
+    var linedata = [];
+    {% for pair in lines %}
+    linedata.push({
+        x: [{{ pair[0][0] | safe }}, {{ pair[1][0] | safe }}],
+        y: [{{ pair[0][1] | safe }}, {{ pair[1][1] | safe }}],
+        mode: 'lines+text',
+        text: {{ labels[loop.index0] | safe }},
+        textposition: 'top',
+        type: scatter
+    });
+    {% endfor %}
+    layout = {
+        hovermode:'closest',
+        height: 700,
+        datarevision: 0,
+        title:'{{ graph_title }}',
+        shapes: [],
+        {% if background_image is defined %}
+        images: [
+      {
+        "source": "{{ background_image }}",
+        "xref": "x",
+        "yref": "y",
+        "x": Math.min(...grid_x),
+        "y": Math.max(...grid_y),
+        "sizex": Math.max(...grid_x)-Math.min(...grid_x),
+        "sizey": Math.max(...grid_y)-Math.min(...grid_y),
+        "sizing": "stretch",
+        "opacity": 1,
+        "layer": "below"
+      },
+            ],
+        {% endif %}
+  margin: {
+    l: 50,
+    r: 50,
+    b: 50,
+    t: 50,
+    pad: 4
+  },
+        xaxis: {
+            dtick: {{ dtickx |safe }},
+        },
+        yaxis: {
+            dtick: {{ dticky | safe }},
+        },
+     };
+    {% if x is defined and y is defined and show_points%}
+    if (x.length > 1 && y.length > 1) {
+      bdry_pts = get_boundary_points(x[0],y[0],x[1],y[1]);
+      shapes = [{
+        type: 'line',
+        x0: bdry_pts[0][0],
+        y0: bdry_pts[0][1],
+        x1: bdry_pts[1][0],
+        y1: bdry_pts[1][1],
+        line: {
+          color: 'rgb(55, 128, 191)',
+          width: 3
+        }
+      }];
+      layout.shapes = shapes;
+    }
+    {% endif %}
+
+Plotly.react('myDiv', linedata, layout);
+var j = 0;
+var pts = '';
+var pts_array = [];
+var pts_x = [];
+var pts_y = [];
+myPlot.on('plotly_click', plot_data);
+function get_boundary_points(x0,y0,x1,y1) {
+    x_min = Math.min(...grid_x);
+    x_max = Math.max(...grid_x);
+    y_min = Math.min(...grid_y);
+    y_max = Math.max(...grid_y);
+    dy = (y1-y0);
+    dx = (x1-x0);
+    //m = (y1-y0)/(x1-x0);
+    m = dy/dx;
+    boundary_points = []
+    if (x0 == x1 && y0 == y1) {
+       return([[x0,x0],[y0,y0]]);
+    }
+    if (x0 == x1 && y0 != y1) {
+       return([[x0,y_min],[x0,y_max]]);
+    }
+    if (y0 == y1 && x0 != x1) {
+       return([[x_min,y0],[x_max,y0]]);
+    }
+    if( m*(x_max - x0) >= y_min - y0 && m*(x_max - x0) <= y_max - y0 ) {
+        boundary_points.push([x_max, y0 + m*(x_max - x0)]);
+    }
+    if( 1/m*(y_max - y0) > x_min - x0 && 1/m*(y_max - y0) < x_max - x0 ) {
+        boundary_points.push([x0 + 1/m*(y_max - y0),y_max]);
+    }
+    if( m*(x_min - x0) >= y_min - y0 && m*(x_min - x0) <= y_max - y0 ) {
+        boundary_points.push([x_min, y0 + m*(x_min - x0)]);
+    }
+    if( 1/m*(y_min - y0) > x_min - x0 && 1/m*(y_min - y0) < x_max - x0 ) {
+        boundary_points.push([x0 + 1/m*(y_min - y0),y_min]);
+    }
+    return(boundary_points)
+}
+function plot_data(data){
+    if (N==0) { return; }
+    for(var i=0; i < data.points.length; i++){
+        if (pts_array.length > j) {
+            pts_x[j] = data.points[i].x;
+            pts_y[j] = data.points[i].y;
+            pts_array[j] = '('+data.points[i].x +','+
+                        data.points[i].y+')';
+        } else {
+            pts_x.push(data.points[i].x);
+            pts_y.push(data.points[i].y);
+            pts_array.push('('+data.points[i].x +','+
+                        data.points[i].y+')');
+        }
+        //pts = pts+'('+data.points[i].x +','+
+        //    data.points[i].y.toPrecision(4)+')';
+        j=(j+1)%N;
+    }
+    //point_data0 = [ { x:pts_x, y:pts_y, type:'scatter',
+    //        mode:'markers', marker:{size:10}, showlegend: false } ];
+    var j1 = mod(j-1,N);
+    var j2 = mod(j-2,N);
+    if (N>1 && pts_array.length > j1 && pts_array.length > j2) {
+      //bdry_pts = get_boundary_points(pts_x[0],pts_y[0],pts_x[1],pts_y[1]);
+      bdry_pts = get_boundary_points(pts_x[j1],pts_y[j1],pts_x[j2],pts_y[j2]);
+      layout.shapes = shapes.concat([{
+        type: 'line',
+//        x0: pts_x[0],
+//        y0: pts_y[0],
+//        x1: pts_x[1],
+//        y1: pts_y[1],
+        x0: bdry_pts[0][0],
+        y0: bdry_pts[0][1],
+        x1: bdry_pts[1][0],
+        y1: bdry_pts[1][1],
+        line: {
+          color: 'rgb(55, 128, 191)',
+          width: 3
+        }
+      }]);
+    }
+    layout.datarevision += 1;
+    //Plotly.react('myDiv', point_data0.concat(point_data), layout);
+    pts = '{'+pts_array.join()+'}';
+    //$("#answer").val(pts);
+    //alert('Closest point clicked:\n\n'+pts);
+    if (!no_answer) {
+        if (pts_array.length > 0) {
+            if (answer_input != null) {
+                answer_input.value = pts;
+            }
+        }
+    }
+}
+    if (!no_answer) {
+      var answer_input = document.getElementById('set_of_coordinate_pairs');
+      if (answer_input != null) {
+          pts = answer_input.value;
+      }
+    }
+    pts = pts.myTrim("{()}");
+    if (pts.length > 0) {
+        pts_list = pts.split("),(");
+        pts_data = { 'points': pts_list.map(xy_str => { xy = xy_str.split(","); return({'x': parseFloat(xy[0]), 'y': parseFloat(xy[1])})}) };
+        plot_data(pts_data);
+    }
+}
+window.onload = function () {
+    loadPlotly();
+}
+</script>
+{% endif %}
+
+{{ question}}
+
+<p>
+{% if image is not none %}
+<img src="{{ image }}" style="max-height: 400px; max-width: 600px;"/>
+</p>
+
+{% endif %}
+
+{% if tex is not defined%}
+<!--
+<div id="myDiv">
+</div>
+-->
+<!--
+<script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ElementQueries.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/draw.js') }}"></script>
+<div id="drawing">
+    <p><label>Drawing tool: <select id="dtool"><option value="pencil">Pencil</option><option value="eraser">Eraser</option><option value="line">Line</option><option value="rect">Rectangle</option></select></label></p>
+<div id="canvas_container"><canvas class="imageCanvas" id="imageView"><p>Unfortunately, your browser is currently unsupported by our web application. We are sorry for the inconvenience. Please use one of the supported browsers listed below, or draw the image you want using an offline tool.</p><p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a href="http://www.mozilla.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a>, and <a href="http://www.konqueror.org">Konqueror</a>.</p></canvas></div>
+</div>
+-->
+{% endif %}

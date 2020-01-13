@@ -1319,7 +1319,7 @@ QuestionSets = {
             {
             'Type': 'Matching',
             #'Template': 'Matching.html',
-            'Template': 'PlotQuestion.html',
+            'Template': 'PlotLines.html',
             'LatexTemplate': 'GridWithLines.tex',
             'ParameterSetVariants': [
                 {
