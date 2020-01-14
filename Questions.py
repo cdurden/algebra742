@@ -27,7 +27,7 @@ QuestionSets = {
 #        ],
 #    },
     'LinearEquationsPart2Review': {
-        'ProvideImmediateFeedback': True,
+        'ProvideImmediateFeedback': False,
         'Title': 'January 14: Linear Equations and Slope Review',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
