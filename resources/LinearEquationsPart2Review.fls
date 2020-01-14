@@ -335,3 +335,6 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/lmmi9.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/lmmi6.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy9.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy6.tfm
+OUTPUT LinearEquationsPart2Review.pdf
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr5.tfm

@@ -6634,7 +6634,7 @@ for (x1,x2,y1,y2) in [(randint(-6,-1),0,randint(-6,6),randint(-6,6)) for i in ra
     b = y2
     ParameterSetVariants.append(
                 {
-                 'Question': 'What is the slope of the graph below?',
+                 'Question': question,
                 'x': [x1,x2],
                 'y': [y1,y2],
                 'variables': ['x','y'],
