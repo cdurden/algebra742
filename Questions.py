@@ -6583,7 +6583,7 @@ for i in range(24):
         x2 = x1+randint(1,6)
         y1 = randint(-6,6)
         y2 = y1+randint(1,6)
-    elif slope_type == 'Positive':
+    elif slope_type == 'Negative':
         x1 = randint(-6,6)
         x2 = x1+randint(1,6)
         y1 = randint(-6,6)
