@@ -6656,7 +6656,7 @@ for (x1,x2,y1,y2) in [(randint(-6,-1),0,randint(-6,6),randint(-6,6)) for i in ra
 QuestionSets['LinearEquationsPart2Review']['Questions'].append(
 {
             'Type': 'Equation',
-            'Template': 'Question.html',
+            'Template': 'PlotQuestion.html',
             #'Template': 'Grid.tex',
             'LatexTemplate': 'GridWithLine.tex',
     'ParameterSetVariants': ParameterSetVariants,
