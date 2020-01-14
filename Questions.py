@@ -6538,8 +6538,8 @@ question = 'Graph the equation ${:s}$.'
 for equation in ['y=2/5x+2', 'y=-2x+4', 'y = 6x-9', 'y=-x+5', 'y = 5/2x-5', 'y=-1/2x+2', 'y=1/2x+6', 'y = -x-5',]:
     ParameterSetVariants.append({'question': question.format(equation),
         'equation': equation, 
-                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-6,6,-6,6,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-6,6,-6,6,1,1)]),
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
