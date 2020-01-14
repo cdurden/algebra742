@@ -6675,7 +6675,7 @@ for i in range(20):
                     'dticky': json.dumps(1),
                     'N': json.dumps(1),
                     'Choices': [('Positive', 'Positive'),('Negative','Negative'),('Zero','Zero'),('Undefined','Undefined')],
-                    'CorrectAnswer': 'Undefined'
+                    'CorrectAnswer': slope_type
                     })
 QuestionSets['LinearEquationsPart2Review']['Questions'].append(
             {
