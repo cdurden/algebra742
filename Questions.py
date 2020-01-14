@@ -33,6 +33,41 @@ QuestionSets = {
         'Questions': [
         ]
     },
+    'LinearEquationsPart2ReviewPart1': {
+        'ProvideImmediateFeedback': False,
+        'Title': 'January 14: Linear Equations and Slope Review',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+        ]
+    },
+    'LinearEquationsPart2ReviewPart2': {
+        'ProvideImmediateFeedback': False,
+        'Title': 'January 14: Linear Equations and Slope Review',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+        ]
+    },
+    'LinearEquationsPart2ReviewPart3': {
+        'ProvideImmediateFeedback': False,
+        'Title': 'January 14: Linear Equations and Slope Review',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+        ]
+    },
+    'LinearEquationsPart2ReviewPart4': {
+        'ProvideImmediateFeedback': False,
+        'Title': 'January 14: Linear Equations and Slope Review',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+        ]
+    },
+    'LinearEquationsPart2ReviewPart5': {
+        'ProvideImmediateFeedback': False,
+        'Title': 'January 14: Linear Equations and Slope Review',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+        ]
+    },
     'SlopeInterceptChallengeJanuary13': {
         'ProvideImmediateFeedback': True,
         'Title': 'Write the equation of a line given the slope and y-intercept (Challenge)', 
@@ -6538,8 +6573,8 @@ question = 'Graph the equation ${:s}$.'
 for equation in ['y=2/5x+2', 'y=-2x+4', 'y = 6x-9', 'y=-x+5', 'y = 5/2x-5', 'y=-1/2x+2', 'y=1/2x+6', 'y = -x-5',]:
     ParameterSetVariants.append({'question': question.format(equation),
         'equation': equation, 
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-6,6,-6,6,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-6,6,-6,6,1,1)]),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-12,12,-12,12,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-12,12,-12,12,1,1)]),
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
@@ -6592,6 +6627,41 @@ QuestionSets['LinearEquationsPart2Review']['Questions'].append(
 })
 question = 'Find the $x$ and $y$-intercepts of the line.'
 question = 'Write the equation of the line in the graph.'
+ParameterSetVariants = []
+for (x1,x2,y1,y2) in [(randint(-6,-1),0,randint(-6,6),randint(-6,6)) for i in range(8)]:
+    rise = y2-y1
+    run = x2-x1
+    b = y2
+    ParameterSetVariants.append(
+                {
+                 'Question': 'What is the slope of the graph below?',
+                'x': [x1,x2],
+                'y': [y1,y2],
+                'variables': ['x','y'],
+                    'x1': x1+run,
+                    'y1': y1+rise,
+                    'x2': x2,
+                    'y2': y2,
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'N': json.dumps(0),
+                    'set_of_coordinate_pairs': {},
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'draw': True,
+                    'equation': 'y={:d}/{:d}x+{:d}'.format(rise,run,b),
+
+                })
+QuestionSets['LinearEquationsPart2Review']['Questions'].append(
+{
+            'Type': 'Equation',
+            'Template': 'Question.html',
+            #'Template': 'Grid.tex',
+            'LatexTemplate': 'GridWithLine.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+            'SpaceAfter': '1.75cm',
+})
 
 
 question = 'Find the slope of the line through $({:d},{:d})$ and $({:d},{:d})$.'
