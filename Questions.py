@@ -528,12 +528,17 @@ QuestionSets = {
             {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'Question.tex',
+            #'LatexTemplate': 'Question.tex',
+            'LatexTemplate': 'GridWithLine.tex',
             'ParameterSetVariants': [
                 {
-                 'question': 'Write the equation of the line shown in the graph.',
+                 'Question': 'Write the equation of the line shown in the graph.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'x1': 0,
+                    'x2': -2,
+                    'y1': 3,
+                    'y2': 0,
                     'x': [0,-2],
                     'y': [3,0],
                     'show_points': True,
