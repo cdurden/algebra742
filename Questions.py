@@ -1,5 +1,7 @@
 import json
 import numpy
+import random
+from random import randint, sample
 numpy.linspace(0, 10, num=4)
 grid = numpy.array(numpy.meshgrid(numpy.linspace(-12,12,num=25),numpy.linspace(-12,12,num=25))).T.reshape(-1,2)
 grid36x36 = numpy.array(numpy.meshgrid(numpy.linspace(-4,36,num=41),numpy.linspace(-4,36,num=41))).T.reshape(-1,2)
@@ -24,6 +26,13 @@ QuestionSets = {
 #        'Questions': [
 #        ],
 #    },
+    'LinearEquationsPart2Review': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'January 14: Linear Equations and Slope Review',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+        ]
+    },
     'SlopeInterceptChallengeJanuary13': {
         'ProvideImmediateFeedback': True,
         'Title': 'Write the equation of a line given the slope and y-intercept (Challenge)', 
@@ -6521,3 +6530,158 @@ QuestionSets['DirectVariation']['Questions'].append({
     'SpaceAfter': '0cm',
 })
 
+random.seed(30)
+# Linear Equations Part 2 Review
+# Type 1
+ParameterSetVariants = []
+question = 'Graph the equation ${:s}$.'
+for equation in ['y=2/5x+2', 'y=-2x+4', 'y = 6x-9', 'y=-x+5', 'y = 5/2x-5', 'y=-1/2x+2', 'y=1/2x+6', 'y = -x-5',]:
+    ParameterSetVariants.append({'question': question.format(equation),
+        'equation': equation, 
+                    'grid_x': json.dumps([x[0] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_axis_grid(-6,6,-6,6,1,1)]),
+                    'N': json.dumps(2),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+        })
+
+QuestionSets['LinearEquationsPart2Review']['Questions'].append({
+    'Type': 'SetOfCoordinatePairsEquation',
+    'Template': 'PlotQuestion.html',
+    #'Template': 'PlotQuestion.tex',
+    'LatexTemplate': 'Grid.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
+# Type 2
+question = 'Find the slope of the graph.'
+ParameterSetVariants = []
+for (rise,run) in [(randint(-6,6),randint(1,6)) for i in range(8)]:
+    run = run*sample([1,-1],1)[0]
+    x1 = randint(-6,6)
+    y1 = randint(-6,6)
+    x2 = x1+run
+    y2 = y1+rise
+    ParameterSetVariants.append(
+                {
+                 'Question': 'What is the slope of the graph below?',
+                'x': [x1,x2],
+                'y': [y1,y2],
+                'variables': ['x','y'],
+                    'x1': x1,
+                    'y1': y1,
+                    'x2': x2,
+                    'y2': y2,
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'N': json.dumps(0),
+                    'set_of_coordinate_pairs': {},
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'draw': True,
+                    'CorrectAnswer': '{:d}/{:d}'.format(rise,run),
+                })
+QuestionSets['LinearEquationsPart2Review']['Questions'].append(
+{
+    'Type': 'GenericEquality',
+    'Template': 'PlotQuestion.html',
+    'LatexTemplate': 'GridWithLine.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+    'SpaceAfter': '0cm',
+})
+question = 'Find the $x$ and $y$-intercepts of the line.'
+question = 'Write the equation of the line in the graph.'
+
+
+question = 'Find the slope of the line through $({:d},{:d})$ and $({:d},{:d})$.'
+ParameterSetVariants = []
+for (x1,x2,y1,y2) in [(randint(-6,6),randint(-6,6),randint(-6,6),randint(-6,6)) for i in range(8)]:
+    ParameterSetVariants.append(
+                {
+                 'question': question.format(x1,y1,x2,y2),
+                    'draw': True,
+                    'AnswerLabel': 'm=',
+                    'CorrectAnswer': '(y2-y1)/(x2-x1)',
+                })
+QuestionSets['LinearEquationsPart2Review']['Questions'].append(
+{
+            'Type': 'GenericEquality',
+            'Template': 'Question.html',
+            #'Template': 'Grid.tex',
+            'LatexTemplate': 'Question.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+            'SpaceAfter': '1.75cm',
+})
+ParameterSetVariants = []
+question = 'Find the rate of change of the relationship in the table.'
+for (rise,run) in [(randint(-6,6),randint(1,6)) for i in range(8)]:
+    multipliers = sample(range(1,8),2)
+    x1 = randint(-6,6)
+    y1 = randint(-6,6)
+    x = [x1+run*m for m in [0]+multipliers]
+    y = [y1+rise*m for m in [0]+multipliers]
+    ParameterSetVariants.append(
+                {'x': x, 'y': y, 'variables': ['x','y'],
+                 'Question': 'What is the rate of change of the relationship represented by the table?',
+                 'CorrectAnswer': '{:d}/{:d}'.format(rise,run),
+                    'draw': True,
+                })
+QuestionSets['LinearEquationsPart2Review']['Questions'].append(
+            {
+            #'Type': 'InputOutputTableAndSetOfCoordinatePairsEquation',
+            'Type': 'GenericEquality',
+            'Template': 'XYTable.html',
+            #'Template': 'Grid.tex',
+            'LatexTemplate': 'XYTable.tex',
+            'ParameterSetVariants': ParameterSetVariants,
+            'SpaceAfter': '0cm',
+            })
+ParameterSetVariants = []
+for i in range(20):
+    slope_type = sample(['Positive','Negative','Zero','Undefined'],1)[0]
+    if slope_type == 'Positive':
+        x1 = randint(-6,6)
+        x2 = x1+randint(1,6)
+        y1 = randint(-6,6)
+        y2 = y1+randint(1,6)
+    elif slope_type == 'Positive':
+        x1 = randint(-6,6)
+        x2 = x1+randint(1,6)
+        y1 = randint(-6,6)
+        y2 = y1-randint(1,6)
+    elif slope_type == 'Zero':
+        x1 = randint(-6,6)
+        x2 = x1+randint(2,6)
+        y1 = randint(-6,6)
+        y2 = y1
+    elif slope_type == 'Undefined':
+        x1 = randint(-6,6)
+        x2 = x1
+        y1 = randint(-6,6)
+        y2 = y1-randint(2,6)
+    ParameterSetVariants.append(
+                {'Question': r'What type of slope does the line in the graph have?',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-8,8,-8,8,1,1)]),
+                    'x1': x1,
+                    'x2': x2,
+                    'y1': y1,
+                    'y2': y2,
+                    'x': [x1,x2],
+                    'y': [y1,y2],
+                    'show_points': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(1),
+                    'Choices': [('Positive', 'Positive'),('Negative','Negative'),('Zero','Zero'),('Undefined','Undefined')],
+                    'CorrectAnswer': 'Undefined'
+                    })
+QuestionSets['LinearEquationsPart2Review']['Questions'].append(
+            {
+            'Type': 'MC',
+            'Template': 'PlotQuestion.html',
+    'LatexTemplate': 'GridWithLine.tex',
+    'ParameterSetVariants': ParameterSetVariants,
+            'SpaceAfter': '4cm',
+            })
