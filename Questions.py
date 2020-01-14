@@ -6602,7 +6602,7 @@ for (x1,x2,y1,y2) in [(randint(-6,6),randint(-6,6),randint(-6,6),randint(-6,6)) 
                  'question': question.format(x1,y1,x2,y2),
                     'draw': True,
                     'AnswerLabel': 'm=',
-                    'CorrectAnswer': '(y2-y1)/(x2-x1)',
+                    'CorrectAnswer': '({:d}-{:d})/({:d}-{:d})'.format(y2,y1,x2,x1),
                 })
 QuestionSets['LinearEquationsPart2Review']['Questions'].append(
 {
