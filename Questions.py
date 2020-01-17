@@ -127,7 +127,7 @@ QuestionSets = {
                 {'question': r'State whether the table represents a proportional or non-proportional relationship, and identify its rate of change',
                 'x': [-1,0,1], 'y': [5,10,15], 'variables': ['x','y'],
                     'Choices': [('A', r'Proportional with rate of change $\frac{1}{5}$'),('B',r'Proportional with rate of change $5$'),('C',r'Non-proportional with rate of change $5$'),('D',r'Non-proportional with rate of change $\frac{1}{5}$')],
-                    'CorrectAnswer': 'D'
+                    'CorrectAnswer': 'C'
                     },
                 ],
             'SpaceAfter': '6cm',
