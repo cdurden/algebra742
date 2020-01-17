@@ -39,23 +39,17 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     doc.packages.append(Package('scalefnt'))
     doc.append(NoEscape('\setlength\itemsep{-2cm}'))
     QuestionData = QuestionSets[assignment]['Questions'] 
-    with doc.create(Section(QuestionSets[assignment]['Title'])):
-#        doc.append(NoEscape(r'''
-#    \begin{center}
-#    \fbox{\fbox{\parbox{5.5in}{\centering
-#    \begin{enumerate}
-#    \item Using regular graph paper, create a table for each equation, and then graph each of the lines.
-#    \item Draw the lines to the edges of your graph paper.
-#    \item Bold each line with a black marker.
-#    \item Color each section a different color.
-#    \end{enumerate}
-#%    Answer the questions in the spaces provided on the
-#%    question sheets. If there is no solution, write no solution. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.
-#}}}
-#    \end{center}
-#%    \vspace{0.1in}
-#%    \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
-        doc.append(NoEscape(r'\textbf{Learning Goal: }'+QuestionSets[assignment]['LearningGoal']+''))
+    with doc.create(Section(QuestionSets[assignment]['Title'],numbering=False)):
+        doc.append(NoEscape(r'''
+    \begin{center}
+    \fbox{\fbox{\parbox{5.5in}{\centering
+    Answer the questions in the spaces provided on the
+    question sheets. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.
+}}}
+    \end{center}
+    \vspace{0.1in}
+    \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
+        #doc.append(NoEscape(r'\textbf{Learning Goal: }'+QuestionSets[assignment]['LearningGoal']+''))
         doc.append(NoEscape(r'\begin{multicols}{2}'))
         #doc.append(NoEscape(r'    \begin{table}[htb] \begin{tabular}{|*{2}{>{\centering\arraybackslash}p{0.5\textwidth}|}}'))
         with doc.create(Enumerate(enumeration_symbol=r"\arabic*)", options={'start': 1})) as enum:
@@ -80,8 +74,8 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                     if Question['Type'] == 'Matching':
                         with doc.create(Enumerate(enumeration_symbol=r"\alph*)")) as enumb:
                             for prompt in Parameters['prompts']:
-                                doc.append(NoEscape(r'\item '+prompt))
-                                #enumb.add_item(prompt)
+                                #doc.append(NoEscape(r'\item '+prompt))
+                                enumb.add_item(NoEscape(prompt))
                     letters = ['a','b','c','d']
 #                    if 'Choices' in Parameters:
 #                        for i,Choice in enumerate(Parameters['Choices']):
@@ -174,7 +168,6 @@ assignment = "StainedGlassGraphs"
 assignment = "GraphingLinearEquationsSpeedDating"
 assignment = "GraphingLinearEquationsSpeedDatingQuestions"
 assignment = "GraphingLinearEquationsTest"
-assignment = "LinearEquationsTest2"
 assignment = "CalculatingSlopeClasswork"
 assignment = 'GraphLineGivenPointAndSlope'
 assignment = 'MixedPracticeJanuary13'
@@ -182,6 +175,7 @@ assignment = 'SlopeInterceptChallengeJanuary13'
 assignment = "TypesOfSlopeClasswork"
 assignment = 'LinearEquationsPart2Review'
 assignment = 'SlopeInterceptClassworkJanuary13'
+assignment = "LinearEquationsTest2"
 GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
