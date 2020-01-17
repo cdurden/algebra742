@@ -194,6 +194,7 @@ QuestionSets = {
                     'N': json.dumps(5),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
+                    'hide_line': True,
                     'equation': 'y=2x-1',
                     #'draw': True,
                 },
