@@ -39,7 +39,7 @@ $(function() {
     $('#answer_form').submit(function(){
         answer = sortable_blanks.toArray();
         alert(answer);
-        $('#answer').val(answer);
+        $('#answer').val(answer.forEach);
         return true;
     }); 
 });
@@ -57,7 +57,7 @@ $(function() {
         </ul>
         <ul class="sortable" id="sortable-items" style='width: 800px'>
             {% for i in shuffle %}
-                <li id="card_{{ loop.index0 }}" class="card ui-state-default" style='{{ cards[i].style }}'>
+            <li id="card_{{ loop.index0 }}" class="card ui-state-default" style='{{ cards[i].style }}' data-id='{{ i }}'>
                     <div class="card">
                         {{ cards[i].html | safe }}
                     </div>
