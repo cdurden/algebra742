@@ -49,7 +49,7 @@ def create_app():
         #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
         #    questions.append(question)
         params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params': 
-            {'background_style': "background-image: url('/static/deck12/bg.png'); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
+            {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
              'layout_style': 'padding: 310px 0px 0px 0px',
              'shuffle': [0 ,3 ,1 ,2],
              'solutions': [0, 1, 2, 3],
