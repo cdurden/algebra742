@@ -4,6 +4,9 @@ li.card {
     height: 150px;
     float: left;
 }
+li.card img {
+    height: 100%;
+}
 html {
 	box-sizing: border-box;
 }
