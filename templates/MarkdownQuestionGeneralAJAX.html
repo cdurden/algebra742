@@ -55,6 +55,9 @@ $("#answer_form").submit(function(e) {
 
     var form = $(this);
     var url = form.attr('action');
+    if (url == 'undefined') {
+        url = window.location.href;
+    }
     var canvas = document.getElementById("imageView");
     if (canvas != null ) {
         var imageData = canvas.toDataURL("image/png");
