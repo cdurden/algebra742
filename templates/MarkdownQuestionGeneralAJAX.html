@@ -176,6 +176,9 @@ $('.card img').click(rotateCard);
         //answer_input.focus();
     }
     </script>
+    {% for script in scripts %}
+    <script src='{{ script }}'></script>
+    {% endfor %}
 </head>
 <body>
 {% block nav %}
