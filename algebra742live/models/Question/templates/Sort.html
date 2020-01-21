@@ -10,7 +10,7 @@
         <ul class="sortable" id="sortable-blanks" style='width: 100%'>
             {% for i in shuffle %}
                 <li id="card_{{ loop.index0 }}" class="card ui-state-default" style='{{ cards[i].style }}'>
-                    <div class="card" style='{{ cards[i].style }}'>
+                    <div class="card">
                         {{ cards[i].blank_html | safe }}
                     </div>
                 </li>
@@ -19,7 +19,7 @@
         <ul class="sortable" id="sortable-items" style='width: 800px'>
             {% for i in shuffle %}
                 <li id="card_{{ loop.index0 }}" class="card ui-state-default" style='{{ cards[i].style }}'>
-                    <div class="card" style='{{ cards[i].style }}'>
+                    <div class="card">
                         {{ cards[i].html | safe }}
                     </div>
                 </li>
