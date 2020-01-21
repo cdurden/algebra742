@@ -1,3 +1,9 @@
+li.card {
+    list-style-type: none;
+    width: 150px;
+    height: 150px;
+    float: left;
+}
 div.lhs {
     width: 40%;
     float: left;
