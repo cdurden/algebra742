@@ -34,10 +34,10 @@ options['onAdd'] = function(evt) {
     }
 }
 $(function() {
-    var sortable_blanks = $("#sortable-blanks").sortable(options);
+    $("#sortable-blanks").sortable(options);
     $("#sortable-items").sortable(options);
     $('#answer_form').submit(function(){
-        answer = sortable_blanks.toArray();
+        answer = $("#sortable-blanks").sortable('widget').toArray();
         alert(answer);
         $('#answer').val(answer.join(','));
         return true;
