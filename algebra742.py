@@ -23,7 +23,7 @@ from flask import Response, make_response, after_this_request
 from functools import wraps
 from Questions import *
 from werkzeug.datastructures import MultiDict
-from Question import MultiPartQuestion
+from models.Question import MultiPartQuestion
 
 import io
 import numpy as np
