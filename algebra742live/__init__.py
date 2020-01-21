@@ -6,6 +6,7 @@ from flask_socketio import SocketIO
 from flask_redis import FlaskRedis
 from . import default_config
 from . import config
+from models import db
 import json
 
 from sqlalchemy_utils import create_database, database_exists
@@ -18,7 +19,7 @@ ROOMS = [] # dict to track active rooms
 #DATA = {}
 #ROOM = None
 socketio = SocketIO()
-db = SQLAlchemy()
+#db = SQLAlchemy()
 r = FlaskRedis()
 #db = SQLAlchemy(app)
 

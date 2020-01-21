@@ -1,8 +1,10 @@
-from .. import db
+#from .. import db
 import random
 import string
 from datetime import datetime
 import json
+
+db = SQLAlchemy()
 
 class Player(object):
     def __init__(self, session_id, user):
