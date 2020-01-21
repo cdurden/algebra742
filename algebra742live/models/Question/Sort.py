@@ -8,7 +8,6 @@ class Sort(Question):
     def check_answer(self):
         params = self.params()
         shuffle = params['shuffle']
-        print(self.form.answer.data)
         try:
             input_order = [int(re.split("=",x)[1]) for x in re.split("&",self.form.answer.data)]
         except:
