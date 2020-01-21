@@ -1,0 +1,29 @@
+<div id="myDiv" style:width: 100%>
+</div>
+
+<!--
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+-->
+<div class='SortBackground' style='{{ background_style }}'>
+    <div class='SortLayout' style='{{ layout_style }}'>
+        <ul class="sortable" id="sortable-blanks" style='width: 100%'>
+            {% for i in shuffle %}
+                <li id="card_{{ loop.index0 }}" class="card ui-state-default" style='{{ cards[i].style }}'>
+                    <div class="card" style='{{ cards[i].style }}'>
+                        {{ cards[i].blank_html | safe }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <ul class="sortable" id="sortable-items" style='width: 800px'>
+            {% for i in shuffle %}
+                <li id="card_{{ loop.index0 }}" class="card ui-state-default" style='{{ cards[i].style }}'>
+                    <div class="card" style='{{ cards[i].style }}'>
+                        {{ cards[i].html | safe }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

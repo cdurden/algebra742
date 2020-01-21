@@ -48,7 +48,17 @@ def create_app():
         #for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
         #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
         #    questions.append(question)
-        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}]}
+        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params': 
+            {'background_style': "background-image: url('slide-bg.png'); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
+             'layout_style': 'padding: 310px 0px 0px 0px',
+             'shuffle': [0 ,3 ,1 ,2],
+             'solutions': [0, 1, 2, 3],
+             'cards': [{'html': '<img src="/static/tile1.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+                       {'html': '<img src="/static/tile2.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+                       {'html': '<img src="/static/tile3.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+                       {'html': '<img src="/static/tile4.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'}]
+                    },
+}]}
         question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
         questions.append(question)
         ROOMS += [QuestionGame(questions)]
