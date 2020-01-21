@@ -4,6 +4,10 @@ li.card {
     height: 150px;
     float: left;
 }
+div.card {
+    height: 100%;
+    width: fit-content;
+}
 div.lhs {
     width: 40%;
     float: left;
