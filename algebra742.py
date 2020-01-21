@@ -692,6 +692,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         scripts = question.scripts()
         app.logger.error(scripts)
         content = question.render_html()
+        if request.method == 'POST':
+            correct = question.check_answer()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
     if QuestionData['Type'] == 'SortCards':
