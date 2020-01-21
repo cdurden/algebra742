@@ -14,10 +14,10 @@ class Sort(Question):
         shuffle = params['shuffle']
         print(self.form.answer.data)
         try:
-            input_order = re.split(",",self.form.answer.data)
+            input_order = [int(i) for i in re.split(",",self.form.answer.data)]
         except:
             return(False)
-        card_order = [shuffle[int(i)] for i in input_order]
+        card_order = [shuffle[i] for i in input_order]
         print(input_order)
         print(params['solutions'])
         correct = input_order in params['solutions']
