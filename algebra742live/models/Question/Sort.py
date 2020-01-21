@@ -17,6 +17,6 @@ class Sort(Question):
             input_order = re.split(",",self.form.answer.data)
         except:
             return(False)
-        card_order = [shuffle[i] for i in input_order]
+        card_order = [shuffle[int(i)] for i in input_order]
         return(card_order in params['solutions'])
 
