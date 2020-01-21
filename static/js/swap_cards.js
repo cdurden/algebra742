@@ -1,5 +1,5 @@
 var options = {
-      group: 'share',
+      group: 'sortable',
       animation: 100
 };
 options['onAdd'] = function(evt) {
