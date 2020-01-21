@@ -32,18 +32,20 @@ QuestionSets = {
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
-            'Type': 'SortCards',
-            'Template': 'SortCards.html',
+            'Type': 'NewQuestionModel',
+            'Template': 'NewQuestionModel.html',
             'ParameterSetVariants': [
-                {
-                    'shuffle': [0 ,1 ,2 ,3 ,10,10,4 ,
-                                10,10,10,10,10,10,10,
-                                1 ,5 ,1 ,2 ,3 ,3 ,5 ,
-                                10,10,10,10,10,10,4 ,
-                                5 ,6 ,7 ,6 ,6 ,8 ,9],
-                    'solutions': [[0, 1, 2, 3, 10, 10, 4, 5, 10, 10, 10, 5, 10, 10, 10, 10, 2, 3, 5, 1, 4, 10, 10, 6, 10, 6, 10, 6, 10, 10, 7, 3, 8, 1, 9]],
-                    'cards': ['<img src="/static/deck5/card0.png"/>','<img src="/static/deck5/card1.png"/>', '<img src="/static/deck5/card2.png"/>', '<img src="/static/deck5/card3.png"/>', '<img src="/static/deck5/card4.png"/>', '<img src="/static/deck5/card5.png"/>', '<img src="/static/deck5/card6.png"/>', '<img src="/static/deck5/card7.png"/>', '<img src="/static/deck5/card8.png"/>', '<img src="/static/deck5/card9.png"/>', '<img src="/static/deck5/card10.png"/>']
-                    },
+                {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params':
+                    {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
+                     'layout_style': 'padding: 310px 0px 0px 0px',
+                     'shuffle': [0 ,3 ,1 ,2],
+                     'solutions': [0, 1, 2, 3],
+                     'cards': [{'html': '<img src="/static/deck12/tile1.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+                               {'html': '<img src="/static/deck12/tile2.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+                               {'html': '<img src="/static/deck12/tile3.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+                               {'html': '<img src="/static/deck12/tile4.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'}]
+                            },
+                    }]}
                 ],
             'SpaceAfter': '4cm',
             },

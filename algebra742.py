@@ -23,6 +23,7 @@ from flask import Response, make_response, after_this_request
 from functools import wraps
 from Questions import *
 from werkzeug.datastructures import MultiDict
+from algebra742.models.Question import MultiPartQuestion
 
 import io
 import numpy as np
@@ -678,6 +679,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     app.logger.error(formdata)
     #if user.id == 86:
     #    formdata = {}
+    if QuestionData['Type'] == 'MultiPartQuestion':
+        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
+        form = question.build_form()
+        content = question.render_html()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
     if QuestionData['Type'] == 'SortCards':
