@@ -1,18 +1,80 @@
 <html>
 <head>
-    <title>Algebra742 - Representing Balance Scales with Equations</title>
+    <title>Algebra742</title>
 </head>
 <body>
-<h1>Hello {{ user.username }}.</h1>
-
+<h1>Welcome, {{ user.firstname }}!</h1>
+<!--
+Nov 8: <a href="{{ url_for('Assignment', assignment='Nov8Examples') }}">Solving equations examples</a><br/>-->
 <h3>Current assignments</h3>
 <p style="font-size: 16pt; line-height: 1.5;">
-October 30: <a href="{{ url_for('Assignment', assignment='ClassworkOct30B') }}">Solving Equations with Variables on Both Sides</a><br/>
-October 26: <a href="{{ url_for('Assignment', assignment='BalancingCandy') }}">Balancing Candy</a><br/>
+<!--December 11: <a href="{{ url_for('Assignment', assignment='MeaningOfXandYIntercepts') }}">Explain the Meanings of x and y-intercepts in Word Problems</a><br/>
+Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2ReviewPart1') }}">Slope Olympics Round 1</a><br/>
+Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2ReviewPart2A') }}">Slope Olympics Round 2</a><br/>
+Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2ReviewPart2B') }}">Slope Olympics Round 3</a><br/>
+Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2ReviewPart3') }}">Slope Olympics Round 4</a><br/>
+Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2ReviewPart4') }}">Slope Olympics Round 5</a><br/>
+Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2ReviewPart5') }}">Slope Olympics Round 6</a><br/>
+-->
+Jan 17 CW: <a href="{{ url_for('Assignment', assignment='ProportionalRelationshipsPracticeJanuary17') }}">Proportional and non-proportional relationships practice</a><br/>
+Jan 13 BR: <a href="{{ url_for('Assignment', assignment='MixedPracticeJanuary13') }}">Mixed practice</a><br/>
+<!--Jan 13 CW 2: <a href="{{ url_for('Assignment', assignment='GraphSlopeInterceptFormClassworkJanuary13') }}">Graph an equation from slope-intercept form</a><br/>-->
+Jan 13 CW: <a href="{{ url_for('Assignment', assignment='SlopeInterceptClassworkJanuary13') }}">Slope intercept form practice</a><br/>
+Jan 13 HW: <a href="{{ url_for('Assignment', assignment='MixedPracticeHWJanuary13') }}">More slope intercept form practice</a><br/>
+Jan 13 Challenge: <a href="{{ url_for('Assignment', assignment='SlopeInterceptChallengeJanuary13') }}">Slope-intercept form challenge</a><br/>
+Jan 10 BR: <a href="{{ url_for('Assignment', assignment='SlopeInterceptClassworkJanuary10') }}">Slope intercept form</a><br/>
+Jan 9 BR: <a href="{{ url_for('Assignment', assignment='DirectVariationClassworkJanuary9') }}">Graph a line given a point and its slope </a><br/>
+Jan 8 BR: <a href="{{ url_for('Assignment', assignment='FindSlopeInterceptsBellringerJanuary8') }}">Find slope and intercepts of a graph</a><br/>
+Jan 8 CW: <a href="{{ url_for('Assignment', assignment='GraphLineGivenPointAndSlope') }}">Graph a line given a point and its slope</a><br/>
+Jan 7 BR: <a href="{{ url_for('Assignment', assignment='SlopeBellringerJanuary7') }}">Bellringer: Slope from a graph, table, ordered pairs</a><br/>
+Jan 7 HW: <a href="{{ url_for('Assignment', assignment='TypesOfSlopeGuidedPractice') }}">Types of slope guided practice</a><br/>
+Jan 3: <a href="{{ url_for('Assignment', assignment='SlopeBellringerJanuary3') }}">Bellringer: Calculating slope from a graph or a set of coordinate pairs</a><br/>
+Jan 2 HW: <a href="{{ url_for('Assignment', assignment='CalculatingSlopeGuidedPractice') }}">Calculating slope guided practice</a><br/>
 </p>
 
 <h3>Past assignments</h3>
 <p style="font-size: 16pt; line-height: 1.5;">
+December 20: <a href="{{ url_for('Assignment', assignment='TheManWhoKnewInfinityPrereflection') }}">The Man Who Knew Infinity Pre-movie Reflection</a><br/>
+December 19: <a href="{{ url_for('Assignment', assignment='GraphingLinearEquationsHelp') }}">Graphing Linear Equations Help</a><br/>
+December 19: <a href="{{ url_for('Assignment', assignment='GraphingLinearEquationsTest') }}">Graphing Linear Equations Test Corrections</a><br/>
+December 18: <a href="{{ url_for('Assignment', assignment='DirectVariation') }}">Direct Variation Practice</a><br/>
+<!--December 17: <a href="{{ url_for('Assignment', assignment='SlopeOnMap') }}">Slope on a map</a><br/>-->
+December 11: <a href="{{ url_for('Assignment', assignment='FlexibleLearningSimulation') }}">Flexible Learning Simulation</a><br/>
+December 10: <a href="{{ url_for('Assignment', assignment='TransformIntoStandardForm') }}">Transforming a Linear Equation into Standard Form</a><br/>
+December 9: <a href="{{ url_for('Assignment', assignment='GraphingLinearEquationsSkills') }}">Graphing Linear Equations</a><br/>
+December 6: <a href="{{ url_for('Assignment', assignment='SeekingShelterB') }}">Seeking shelter</a><br/>
+December 5: <a href="{{ url_for('Assignment', assignment='FindXAndYInterceptsAndPredict') }}">Graph a linear equation and predict the output</a><br/>
+December 4: <a href="{{ url_for('Assignment', assignment='StainedGlassGraphs') }}">Stained Glass Graphs</a><br/>
+December 4: <a href="{{ url_for('Assignment', assignment='XAndYInterceptsPractice') }}">x- and y-intercepts</a><br/>
+December 3: <a href="{{ url_for('Assignment', assignment='LinearEquationsInStandardFormPart3') }}">Linear Equations in Standard Form 3</a><br/>
+December 2: <a href="{{ url_for('Assignment', assignment='LinearEquationsInStandardFormPart2') }}">Linear Equations in Standard Form 2</a><br/>
+</p>
+
+<h3>Homework</h3>
+<p style="font-size: 16pt; line-height: 1.5;">
+December 3: <a href="{{ url_for('Assignment', assignment='HomeworkDec3') }}">160 #23-25</a><br/>
+</p>
+
+<h3>Past assignments</h3>
+<p style="font-size: 16pt; line-height: 1.5;">
+November 26: <a href="{{ url_for('Assignment', assignment='LinearEquationsInStandardFormB') }}">Linear Equations in Standard Form</a><br/>
+November 26: <a href="{{ url_for('Assignment', assignment='SolvingEquationsTestCorrections') }}">Chapter 2 Test Corrections Guided Problems</a><br/>
+November 26: <a href="{{ url_for('Assignment', assignment='UsingZeroPairsAndReciprocalPairs') }}">Using Zero Pairs and Reciprocal Pairs to Solve Equations</a><br/>
+November 21: <a href="{{ url_for('Assignment', assignment='FunctionNotationTarsia') }}">Function Notation Puzzle</a><br/>
+November 20: <a href="{{ url_for('Assignment', assignment='RepresentRelations') }}">Represent relations</a><br/>
+November 19: <a href="{{ url_for('Assignment', assignment='EvaluateFunctions') }}">Evaluating functions using function notations</a><br/>
+November 15: <a href="{{ url_for('Assignment', assignment='WhatIsAFunction') }}">What is a function?</a><br/>
+November 15: <a href="{{ url_for('Assignment', assignment='CoordinatePairs') }}">Write a set of coordinate pairs</a><br/>
+November 15: <a href="{{ url_for('Assignment', assignment='WODBFunctions') }}">Which one does not belong: Functions?</a><br/>
+Choose one of the following sets to practice for the test
+</p>
+<p style="font-size: 16pt; line-height: 1.5;">
+Level 1: <a href="{{ url_for('Assignment', assignment='ClassworkNov8A') }}">Solving equations with a variable in one place, a constant, and a coefficient</a><br/>
+Level 2: <a href="{{ url_for('Assignment', assignment='ClassworkNov8B') }}">Solving equations with variables in more than one place on the same side of the equals sign</a><br/>
+Level 3: <a href="{{ url_for('Assignment', assignment='ClassworkOct30B') }}">Solving equations with variables on both sides of the equals sign</a><br/>
+
+October 26: <a href="{{ url_for('Assignment', assignment='BalancingCandy') }}">Balancing Candy</a><br/>
+October 30: <a href="{{ url_for('Assignment', assignment='ClassworkOct30') }}">Solving equations with variables on both sides of the equals sign</a><br/>
 October 29: <a href="{{ url_for('Assignment', assignment='DifferenceBetweenZeroPairAndReciprocalPair') }}">Reflection Question #8: How is a reciprocal pair similar to and different from a zero pair?</a><br/>
 October 29: <a href="{{ url_for('Assignment', assignment='ClassworkOct29Advanced') }}">Solving Equations with Variables on Both Sides</a><br/>
 <!--
@@ -30,8 +92,6 @@ October 16: <a href="{{ url_for('Assignment', assignment='DifferenceBetweenTermA
 October 16: <a href="{{ url_for('Assignment', assignment='SolveEquationsGuided') }}">Solving Equations Guided</a><br/>
 </p>
 <!--
-<a href="{{ url_for('Assignment', assignment='IntegerEquationsTest') }}">Integer Equations Quiz</a><br/>
-<a href="{{ url_for('Assignment', assignment='CommunicatingReasoning') }}">Communicating My Reasoning</a><br/>
 <a href="{{ url_for('Assignment', assignment='DifferenceBetweenTermAndFactor') }}">Difference between Term and Factor</a><br/>
 <a href="{{ url_for('Assignment', assignment='TwoStepEquations') }}">Solving Two-step Equations</a><br/>
 <a href="{{ url_for('Assignment', assignment='AlgebraicAndVerbalExpressions') }}">Algebraic and Verbal Expressions</a><br/>
@@ -40,6 +100,26 @@ October 16: <a href="{{ url_for('Assignment', assignment='SolveEquationsGuided')
 <a href="{{ url_for('Assignment', assignment='PracticeZeroPairsAndReciprocalPairs') }}">Using Zero Pairs and Reciprocal Pairs</a><br/>
 <a href="{{ url_for('Assignment', assignment='PracticeTest') }}">Practice for Integers and Equations Quiz</a>
 -->
+
+<h3>Rubrics</h3>
+<p style="font-size: 16pt; line-height: 1.5;">
+<!--<a href="{{ url_for('static', filename='SolvingEquationsTest.pdf') }}">Chapter 2 Test: Solving Equations</a><br/>-->
+<a href="{{ url_for('rubric', username=user.username, assignment='SolvingEquationsTest') }}">Chapter 2 Test: Solving Equations</a><br/>
+<a href="{{ url_for('rubric', username=user.username, assignment='IntegerEquationsQuiz') }}">Integer Equations Test</a><br/>
+</p>
+
+<!--
+<p style="font-size: 16pt; line-height: 1.5;">
+<a href="{{ url_for('Assignment', assignment='BalancingCandiesRubric') }}">Balancing Candies</a><br/>
+</p>
+-->
+<h3>Assessment</h3>
+<a href="{{ url_for('Assignment', assignment='SolvingEquationsTest') }}">Solving Equations Test</a><br/>
+<p style="font-size: 16pt; line-height: 1.5;">
+November 22: <a href="{{ url_for('Assignment', assignment='FunctionsTest') }}">Functions Test</a><br/>
+<a href="{{ url_for('Assignment', assignment='IntegerEquationsTest') }}">Integer Equations Quiz</a><br/>
+<a href="{{ url_for('Assignment', assignment='CommunicatingReasoning') }}">Communicating My Reasoning</a><br/>
+</p>
 
 </body>
 </html>
