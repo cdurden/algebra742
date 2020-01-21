@@ -37,7 +37,9 @@ $(function() {
     const sortable_blanks = $("#sortable-blanks").sortable(options);
     $("#sortable-items").sortable(options);
     $('#answer_form').submit(function(){
-        $('#answer').val(sortable_blanks.toArray());
+        answer = sortable_blanks.toArray();
+        console.log(answer);
+        $('#answer').val(answer);
         return true;
     }); 
 });
