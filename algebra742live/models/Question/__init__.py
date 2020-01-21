@@ -64,6 +64,7 @@ class Question(db.Model):
 
     def render_html(self):
         import inspect
+        print("Rendering question html")
         if self.form is None:
             self.build_form()
         for base_class in inspect.getmro(self.__class__):
