@@ -26,7 +26,7 @@ from Questions import *
 from werkzeug.datastructures import MultiDict
 from models.Question import MultiPartQuestion
 from models.Question.Sort import Sort
-from flask_wtf.csrf import CSRFError
+#from flask_wtf.csrf import CSRFError
 
 NewQuestionModelTypes = {
         'MultiPartQuestion': MultiPartQuestion,
@@ -108,9 +108,9 @@ question_scores = db.Table('question_scores',
 #        return '<Post %r>' % self.title
 #
 
-@app.errorhandler(CSRFError)
-def handle_csrf_error(e):
-    return render_template('csrf_error.html', reason=e.description), 400
+#@app.errorhandler(CSRFError)
+#def handle_csrf_error(e):
+#    return render_template('csrf_error.html', reason=e.description), 400
 
 def returns_html(f):
     @wraps(f)
