@@ -37,10 +37,9 @@ $(function() {
     $("#sortable-blanks").sortable(options);
     $("#sortable-items").sortable(options);
     $('#answer_form').submit(function(e){
-        e.preventDefault();
         answer = $("#sortable-blanks").sortable('widget').toArray();
         $('#answer').val(answer.join(','));
-        return true;
+        return false;
     }); 
 });
 </script>
