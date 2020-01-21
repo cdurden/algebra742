@@ -69,7 +69,7 @@ class Question(db.Model):
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(self.params(), form=self.form)
+                return template.render(self.params(), form=self.form, url_for=url_for)
             except TemplateNotFound:
                 next 
 
