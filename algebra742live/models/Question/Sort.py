@@ -13,7 +13,7 @@ class Sort(Question):
         params = self.params()
         shuffle = params['shuffle']
         try:
-            input_order = [int(re.split("=",x)[1]) for x in re.split("&",self.form.answer.data)]
+            input_order = re.split(",",self.form.answer.data)
         except:
             return(False)
         card_order = [shuffle[i] for i in input_order]
