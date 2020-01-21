@@ -5,6 +5,16 @@
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 -->
+<script>
+$( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+    $('#answer_form').submit(function(){
+        $('#answers').val($( "#sortable" ).sortable("serialize"));
+        return true;
+    }); 
+});
+</script>
 <div class='SortBackground' style='{{ background_style }}'>
     <div class='SortLayout' style='{{ layout_style }}'>
         <ul class="sortable" id="sortable-blanks" style='width: 100%'>
