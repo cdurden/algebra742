@@ -18,5 +18,8 @@ class Sort(Question):
         except:
             return(False)
         card_order = [shuffle[int(i)] for i in input_order]
-        return(input_order in params['solutions'])
-
+        print(input_order)
+        print(params['solutions'])
+        correct = input_order in params['solutions']
+        print(correct)
+        return(correct)
