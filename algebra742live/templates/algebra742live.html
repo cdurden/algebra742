@@ -20,7 +20,7 @@
             //script.id = scriptId; // e.g., googleMaps or stripe
             script.id = url; // e.g., googleMaps or stripe
             script.defer = true;
-            document.head.appendChild(script);
+            document.body.appendChild(script);
         
             script.onload = () => {
               if (callback) callback();
