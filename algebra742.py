@@ -680,6 +680,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     #if user.id == 86:
     #    formdata = {}
     if QuestionData['Type'] == 'MultiPartQuestion':
+        params = Parameters
         question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
         form = question.build_form()
         content = question.render_html()
