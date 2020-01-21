@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+        <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+        <link href="main.css" rel="stylesheet"></link>
+        <!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+    <script>
+var options = {
+  group: 'share',
+  animation: 100
+};
+/*
+events = [
+  'onChoose',
+  'onStart',
+  'onEnd',
+  'onAdd',
+  'onUpdate',
+  'onSort',
+  'onRemove',
+  'onChange',
+  'onUnchoose'
+].forEach(function (name) {
+  options[name] = function (evt) {
+    console.log({
+      'event': name,
+      'this': this,
+      'item': evt.item,
+      'from': evt.from,
+      'to': evt.to,
+      'oldIndex': evt.oldIndex,
+      'newIndex': evt.newIndex
+    });
+  };
+});
+*/
+options['onAdd'] = function(evt) {
+    var returnItem = $("li",evt.to).eq(evt.newIndex+1);
+    var returnItems = $("li",evt.to);
+    var swapTarget = $(evt.from).children().eq(evt.oldIndex);
+    console.log({
+      'event': name,
+      'this': this,
+      'item': evt.item,
+      'from': evt.from,
+      'to': evt.to,
+      'oldIndex': evt.oldIndex,
+      'newIndex': evt.newIndex,
+      'returnItem': returnItem,
+      'returnItems': returnItems,
+      'swapTarget': swapTarget,
+    });
+    $(returnItem).remove();
+    if (swapTarget.length != 0) {
+        $(swapTarget).before(returnItem);
+        console.log(swapTarget);
+    } else {
+        $(evt.from).append(returnItem);
+        console.log(swapTarget);
+    }
+}
+
+    $(function() {
+        $("#sortable-b").sortable(options);
+        $("#sortable-a").sortable(options);
+/*
+        $("#sortable-b").sortable({
+            placeholder: "sortable-placeholder",
+            start: function(e, ui){
+                ui.placeholder.height(ui.item.height());
+                ui.placeholder.width(ui.item.width());
+            },
+            receive: function (event, ui) {
+                alert(ui.item.index());
+                var returnItem = $("li",event.target).eq(ui.item.index()+1);
+                $(".sortable").not(this).append(returnItem);
+//                if (ui.sender != null) {
+//                    ui.sender.append(returnItem);
+//                }
+            }
+        });
+        $("#sortable-a").sortable({
+            connectWith: "#sortable-b",
+        }).disableSelection();
+        //$("#sortable-a").disableSelection();
+        //$("#sortable-b").disableSelection();
+*/
+    });
+    </script>
+    </head>
+    <body>
+        <div class='slide'>
+            <div class='tile_layout' style='padding: 310px 0px 0px 0px;'>
+        <ul class="sortable" id="sortable-b" style='width: 800px'>
+            <!-- blank tiles -->
+            <li id="card_5" style='padding: 10px 50px 10px 75px; height: 80px; width: fit-content;' class="card ui-state-default">
+            <div class='tile' style='width: 250px; height: 80px; margin-left: 0px; '></div>
+            </li>
+            <li id="card_6" style='padding: 10px 50px 10px 75px; height: 80px; width: fit-content;' class="card ui-state-default">
+
+            <div class='tile' style='width: 250px; height: 80px; margin-left: 0px; '></div>
+            </li>
+            <li id="card_7" style='padding: 10px 50px 10px 75px; height: 80px; width: fit-content;' class="card ui-state-default">
+            <div class='tile' style='width: 250px; height: 80px; margin-left: 0px; '></div>
+            </li>
+            <li id="card_8" style='padding: 10px 50px 10px 75px; height: 80px; width: fit-content;' class="card ui-state-default">
+
+            <div class='tile' style='width: 250px; height: 80px; margin-left: 0px; '></div>
+            </li>
+        </ul>
+        <ul class="sortable" id="sortable-a" style='width: 800px'>
+            <!-- answer tiles -->
+            <li id="card_1" style='padding: 10px 50px 10px 75px; height: 80px; width: fit-content;' class="card ui-state-default">
+            <div class='tile' style='width: 250px; height: 80px; margin-left: 0px; background-image: url("tile1.png");'></div>
+            </li>
+            <li id="card_2" style='padding: 10px 50px 10px 75px; height: 80px; width: fit-content;' class="card ui-state-default">
+
+            <div class='tile' style='width: 250px; height: 80px; margin-left: 0px; background-image: url("tile2.png");'></div>
+            </li>
+            <li id="card_3" style='padding: 10px 50px 10px 75px; height: 80px; width: fit-content;' class="card ui-state-default">
+            <div class='tile' style='width: 250px; height: 80px; margin-left: 0px; background-image: url("tile3.png");'></div>
+            </li>
+            <li id="card_4" style='padding: 10px 50px 10px 75px; height: 80px; width: fit-content;' class="card ui-state-default">
+
+            <div class='tile' style='width: 250px; height: 80px; margin-left: 0px; background-image: url("tile4.png");'></div>
+            </li>
+        </ul>
+            </div>
+        </div>
+    </body>
+</html>

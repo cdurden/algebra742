@@ -5,14 +5,39 @@ div.west { background: none; position: absolute; width:160px; left: -170px; }
 div.mid { background: none; position: absolute; top: 0px; left: 0px; }
 div.frame { background: none; margin: 20px 20px 20px 20px; position: relative; overflow: visible; height: 160px;}
 div.frame0 { background: none; margin: 0px; position: relative; overflow: visible;}
+div.tile {
+    background-position:left;
+    background-repeat:no-repeat;
+    background-size: contain;
+    float: left;
+}
+div.tile_layout {
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+.tile_layout ul {
+    float: left;
+}
+div.slide {
+    background-image: url('slide-bg.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size: contain;
+    width: 800px;
+    height: 600px;
+    position: relative;
+}
 div.video_iframe { clear: both; }
 .east input { position: absolute; transform: rotate(-90deg); top: 70px; text-align: center;}
 .west input { position: absolute; transform: rotate(90deg); top: 70px; text-align: center;}
 .south input { position: absolute; text-align: center;}
 .north input { position: absolute; transform: rotate(180deg); text-align: center;}
 li.card {
+    list-style-type: none;
     width: 150px;
     height: 150px;
+    float: left;
 }
 table.iotable {
     border: 1px solid black;
