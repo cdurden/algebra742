@@ -85,11 +85,14 @@ function reset_game(data) {
     //for (var scriptId in data.scripts) {
     //    createScriptLoader(scriptId, data.scripts[scriptId])( () => {});
     //}
-    data.scripts.forEach( function(script_url, index) {
+    var previousScriptLoader = (() => {});
+    for (var i=data.scripts.length-1; i>=0; i--) {
+    //data.scripts.forEach( function(script_url, index) {
     //for (var script_url in data.scripts) {
-        createScriptLoader(script_url)( () => {});
+        previousScriptLoader = createScriptLoader(script_url)( previousScriptLoader );
     //}
-    });
+    }
+    //});
     update_game(data);
 }
 function update_game(data) {
