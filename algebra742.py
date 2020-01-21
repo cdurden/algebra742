@@ -693,7 +693,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(scripts)
         content = question.render_html()
         if request.method == 'POST':
-            question.build_form()
+            question.build_form(request.POST)
             correct = question.check_answer()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
