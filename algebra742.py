@@ -698,6 +698,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             question.build_form(request.form)
             question.build_form()
             app.logger.error(question.form.validate_on_submit())
+            for fieldName, errorMessages in question.form.errors.items():
+                for err in errorMessages:
+                    app.logger.error(err)
             app.logger.error(question.form.data)
             correct = question.check_answer()
     if QuestionData['Type'] == 'SubmitAssignment':
