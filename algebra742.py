@@ -1412,7 +1412,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         title = QuestionSets[assignment]['Title']
     except:
         title = None
-    return dict(title=title, content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message,Parameters=Parameters, scores=scores, test=test)
+    return dict(title=title, content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message,Parameters=Parameters, scores=scores, test=test, scripts=scripts)
 
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
