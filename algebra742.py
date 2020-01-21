@@ -679,10 +679,12 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     app.logger.error(formdata)
     #if user.id == 86:
     #    formdata = {}
+    scripts = []
     if QuestionData['Type'] == 'MultiPartQuestion':
         params = Parameters
         question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
         form = question.build_form()
+        scripts = question.scripts()
         content = question.render_html()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
@@ -1484,7 +1486,7 @@ def RepresentBalances(lti=lti, q=None):
         NextQuestion = q+1
     else:
         NextQuestion = None
-    return dict(title='Representing balance scales', content='', form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[q-1])
+    return dict(title='Representing balance scales', content='', form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[q-1], scripts=scripts)
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
