@@ -85,9 +85,11 @@ function reset_game(data) {
     //for (var scriptId in data.scripts) {
     //    createScriptLoader(scriptId, data.scripts[scriptId])( () => {});
     //}
-    for (var script_url in data.scripts) {
+    data.script.forEach( function(script_url, index) {
+    //for (var script_url in data.scripts) {
         createScriptLoader(script_url)( () => {});
-    }
+    //}
+    });
     update_game(data);
 }
 function update_game(data) {
