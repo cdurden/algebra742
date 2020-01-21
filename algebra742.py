@@ -24,6 +24,11 @@ from functools import wraps
 from Questions import *
 from werkzeug.datastructures import MultiDict
 from models.Question import MultiPartQuestion
+from models.Question.Sort import Sort
+NewQuestionModelTypes = {
+        'MultiPartQuestion': MultiPartQuestion,
+        'Sort': Sort
+        }
 
 import io
 import numpy as np
@@ -680,9 +685,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     #if user.id == 86:
     #    formdata = {}
     scripts = []
-    if QuestionData['Type'] == 'MultiPartQuestion':
+    if QuestionData['Type'] in NewQuestionModelTypes.keys():
         params = Parameters
-        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
+        question = get_or_create(db.session, NewQuestionModelTypes[QuestionData['Type']], params_json=json.dumps(params))
         form = question.build_form()
         scripts = question.scripts()
         app.logger.error(scripts)
