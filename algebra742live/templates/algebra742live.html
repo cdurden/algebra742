@@ -12,12 +12,13 @@
     //function createScriptLoader(scriptId, url) {
     function createScriptLoader(url) {
         const loadDynamicScript = (callback) => {
-          const existingScript = document.getElementById(scriptId);
+          const existingScript = document.getElementById(url);
         
           if (!existingScript) {
             const script = document.createElement('script');
             script.src = url; // URL for the third-party library being loaded.
             //script.id = scriptId; // e.g., googleMaps or stripe
+            script.id = url; // e.g., googleMaps or stripe
             document.body.appendChild(script);
         
             script.onload = () => {
