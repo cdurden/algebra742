@@ -1,4 +1,5 @@
 #from .. import db
+from flask_sqlalchemy import SQLAlchemy
 import random
 import string
 from datetime import datetime
