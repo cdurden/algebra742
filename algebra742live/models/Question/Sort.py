@@ -8,7 +8,7 @@ class Sort(Question):
     def check_answer(self):
         params = self.params()
         shuffle = params['shuffle']
-        input_order = [int(re.split("=",x)[1]) for x in re.split("&",self.form.answers.data)]
+        input_order = [int(re.split("=",x)[1]) for x in re.split("&",self.form.answer.data)]
         card_order = [shuffle[i] for i in input_order]
         return(card_order in params['solutions'])
 
