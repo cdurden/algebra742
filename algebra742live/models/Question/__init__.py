@@ -3,7 +3,7 @@ from .. import db
 import jinja2
 import json
 import os
-from flask_wtf import FlaskForm
+from flask_wtf import Form
 from wtforms import StringField, FormField
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
@@ -12,7 +12,7 @@ from werkzeug.datastructures import MultiDict
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
 
-class AnswerForm(FlaskForm):
+class AnswerForm(Form):
     answer = StringField('answer')
 
 #    def __init__(self, **kwargs):
@@ -27,7 +27,7 @@ class AnswerForm(FlaskForm):
             except TemplateNotFound:
                 next 
 
-class MultiPartAnswerForm(FlaskForm):
+class MultiPartAnswerForm(Form):
     pass
 #    def render_html(self):
 #        import inspect
