@@ -1,3 +1,7 @@
+var options = {
+      group: 'share',
+      animation: 100
+};
 options['onAdd'] = function(evt) {
     var returnItem = $("li",evt.to).eq(evt.newIndex+1);
     var swapTarget = $(evt.from).children().eq(evt.oldIndex);
