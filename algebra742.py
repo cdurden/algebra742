@@ -685,6 +685,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
         form = question.build_form()
         scripts = question.scripts()
+        app.logger.error(scripts)
         content = question.render_html()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
