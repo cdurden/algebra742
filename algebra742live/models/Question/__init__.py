@@ -59,7 +59,8 @@ class Question(db.Model):
         return(json.loads(self.params_json))
 
     def scripts(self):
-        return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
+        #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
+        return(['/static/js/socket.io.wtforms.js'])
 
     def render_html(self):
         import inspect
@@ -78,11 +79,13 @@ class MultiPartQuestion(Question):
 
     def scripts(self):
         params = self.params()
-        scripts = {}
+        #scripts = {}
+        scripts = []
         class F(MultiPartAnswerForm):
             pass
         for i,part in enumerate(params['parts']):
-            scripts.update(part['question'].scripts())
+            #scripts.update(part['question'].scripts())
+            scripts += part['question'].scripts()
         return(scripts)
 
 
