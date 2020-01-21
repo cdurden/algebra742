@@ -7,8 +7,6 @@
 -->
 <script>
 $( function() {
-    $("#sortable").sortable();
-    $("#sortable").disableSelection();
     $('#answer_form').submit(function(){
         $('#answer').val($( "#sortable" ).sortable("serialize"));
         return true;
