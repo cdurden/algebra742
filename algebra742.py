@@ -42,6 +42,7 @@ app = Flask(__name__)
 csrf = CsrfProtect()
 csrf.init_app(app)
 app.config.from_object('config')
+app.debug = True
 #logging.basicConfig(level=logging.INFO)
 #root = logging.getLogger()
 #logger = root
