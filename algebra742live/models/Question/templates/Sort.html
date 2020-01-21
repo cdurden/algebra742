@@ -7,10 +7,10 @@
 -->
 <script>
 $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
+    $("#sortable").sortable();
+    $("#sortable").disableSelection();
     $('#answer_form').submit(function(){
-        $('#answers').val($( "#sortable" ).sortable("serialize"));
+        $('#answer').val($( "#sortable" ).sortable("serialize"));
         return true;
     }); 
 });
@@ -37,5 +37,6 @@ $( function() {
         </ul>
     </div>
 </div>
-
+<form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
 {{ form.render_html() }}
+</form>
