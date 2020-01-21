@@ -2,7 +2,7 @@ import os
 import sys
 import json
 import re
-from flask_wtf.csrf import CsrfProtect
+#from flask_wtf.csrf import CsrfProtect
 from flask import Flask, url_for, redirect
 from flask import send_from_directory
 from flask_sqlalchemy import SQLAlchemy
@@ -39,8 +39,8 @@ from matplotlib.figure import Figure
 from matplotlib.patches import Ellipse
 VERSION = '0.0.1'
 app = Flask(__name__)
-csrf = CsrfProtect()
-csrf.init_app(app)
+#csrf = CsrfProtect()
+#csrf.init_app(app)
 app.config.from_object('config')
 app.debug = True
 #logging.basicConfig(level=logging.INFO)
