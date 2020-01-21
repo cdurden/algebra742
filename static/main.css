@@ -8,6 +8,9 @@ div.card {
     height: 100%;
     width: fit-content;
 }
+div.card img {
+    height: 100%;
+}
 div.lhs {
     width: 40%;
     float: left;
