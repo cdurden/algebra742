@@ -10,6 +10,22 @@
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script>
     //function createScriptLoader(scriptId, url) {
+    function createScriptTags(scripts) {
+        function createScriptTag() {
+            let script = scripts.shift();
+            // all scripts were loaded
+            if (!script) return;
+            let js = document.createElement('script');
+            js.type = 'text/javascript';
+            js.src = script;
+            js.onload = (event) => {
+              // loads the next script
+              createScriptTag();
+            };
+            let s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(js, s);
+        }
+    }
     function createScriptLoader(url) {
         const loadDynamicScript = (callback) => {
           const existingScript = document.getElementById(url);
