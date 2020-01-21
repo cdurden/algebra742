@@ -19,7 +19,7 @@
             script.src = url; // URL for the third-party library being loaded.
             //script.id = scriptId; // e.g., googleMaps or stripe
             script.id = url; // e.g., googleMaps or stripe
-            document.body.appendChild(script);
+            document.head.appendChild(script);
         
             script.onload = () => {
               if (callback) callback();
