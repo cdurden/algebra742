@@ -12,6 +12,7 @@ class Sort(Question):
     def check_answer(self):
         params = self.params()
         shuffle = params['shuffle']
+        print(self.form.answer.data)
         try:
             input_order = re.split(",",self.form.answer.data)
         except:
