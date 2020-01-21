@@ -32,7 +32,7 @@ QuestionSets = {
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
-            'Type': 'MultiParQuestion',
+            'Type': 'MultiPartQuestion',
             'Template': 'NewQuestionModel.html',
             'ParameterSetVariants': [
                 {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params':
