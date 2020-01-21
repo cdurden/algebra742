@@ -685,7 +685,9 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     #if user.id == 86:
     #    formdata = {}
     scripts = []
+    new_question_type = False
     if QuestionData['Type'] in NewQuestionModelTypes.keys():
+        new_question_type = True
         params = Parameters
         question = get_or_create(db.session, NewQuestionModelTypes[QuestionData['Type']], params_json=json.dumps(params))
         form = question.build_form()
@@ -1421,7 +1423,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         title = QuestionSets[assignment]['Title']
     except:
         title = None
-    return dict(title=title, content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message,Parameters=Parameters, scores=scores, test=test, scripts=scripts)
+    return dict(title=title, content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message,Parameters=Parameters, scores=scores, test=test, scripts=scripts, new_question_type=new_question_type)
 
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])

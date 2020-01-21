@@ -336,6 +336,7 @@ function loadPhoto() {
 </form>
 </div>
 {% else %}
+    {% if not new_question_type %}
 <div class="input">
 <div class="answer_form">
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
@@ -520,6 +521,7 @@ Explanation:
     <p><input type="submit" value="Submit"></p>
 </form>
 </div>
+{% endif %}
 {% endif %}
 {% endif %}
 
