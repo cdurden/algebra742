@@ -693,7 +693,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         new_question_type = True
         params = Parameters
         question = get_or_create(db.session, NewQuestionModelTypes[QuestionData['Type']], params_json=json.dumps(params))
-        form = question.build_form(request.form)
+        question.build_form(request.form)
+        form = question.form
         scripts = question.scripts()
         app.logger.error(scripts)
         content = question.render_html()
