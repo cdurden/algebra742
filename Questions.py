@@ -33,7 +33,7 @@ QuestionSets = {
         'Questions': [
             {
             'Type': 'MultiPartQuestion',
-            'Template': 'NewQuestionModel.html',
+#            'Template': 'NewQuestionModel.html',
             'ParameterSetVariants': [
                 {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params':
                     {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",

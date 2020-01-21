@@ -1372,7 +1372,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             pass
         # Check answers
         # Answers array
-    content = render_template(QuestionData['Template'], form=form, **Parameters)
+    if 'Template' in QuestionData:
+        content = render_template(QuestionData['Template'], form=form, **Parameters)
     if request.method == 'POST':
         imageData = request.form['imageData']
         app.logger.error(imageData)
