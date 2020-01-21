@@ -39,7 +39,6 @@ $(function() {
     $('#answer_form').submit(function(e){
         answer = $("#sortable-blanks").sortable('widget').toArray();
         $('#answer').val(answer.join(','));
-        return false;
     }); 
 });
 </script>
