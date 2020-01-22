@@ -220,7 +220,7 @@ $('.card img').click(rotateCard);
         </ul>
     </div>
 {% if QuestionData['Type'] in ['Sort'] %}
-<form action="{{ url_for('Assignment', assignment=assignment, q='submit') }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
+<form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     <div id="content">
         {{ content | safe}}
     </div>
