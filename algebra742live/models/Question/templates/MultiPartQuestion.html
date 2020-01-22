@@ -1,0 +1,4 @@
+{{ form.hidden_tag() }}
+{% for part in parts %}
+{{ part.question.render_html() }}
+{% endfor %}

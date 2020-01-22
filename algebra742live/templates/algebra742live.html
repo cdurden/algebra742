@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Have you met your match?</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/keypress-2.1.5.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+    //function createScriptLoader(scriptId, url) {
+    function createScriptTags(scripts) {
+        function createScriptTag() {
+            let script = scripts.shift();
+            // all scripts were loaded
+            if (!script) return;
+            let js = document.createElement('script');
+            js.type = 'text/javascript';
+            js.src = script;
+            js.onload = (event) => {
+              // loads the next script
+              createScriptTag();
+            };
+            let s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(js, s);
+        }
+        createScriptTag();
+    }
+    function createScriptLoader(url) {
+        const loadDynamicScript = (callback) => {
+          const existingScript = document.getElementById(url);
+        
+          if (!existingScript) {
+            const script = document.createElement('script');
+            script.src = url; // URL for the third-party library being loaded.
+            //script.id = scriptId; // e.g., googleMaps or stripe
+            script.id = url; // e.g., googleMaps or stripe
+            script.defer = true;
+            document.body.appendChild(script);
+        
+            script.onload = () => {
+              if (callback) callback();
+            };
+          }
+        
+          if (existingScript && callback) callback();
+        };
+        return(loadDynamicScript);
+    };
+    </script>
+<!--
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.js", "AMSsymbols.js"] } });
+    </script>
+-->
+<script type="text/javascript">
+  window.MathJax = {
+    AuthorInit: function () {
+      MathJax.Hub.Register.StartupHook("Begin",function () {
+        MathJax.Hub.Queue(function () {
+            /*
+          var math = document.getElementById("rescale");
+          var w = math.offsetWidth, W = math.parentNode.offsetWidth-40;
+          if (w > W) {
+            math.style.fontSize = (95*W/w)+"%";
+            MathJax.Hub.getAllJax(math)[0].Rerender();
+          }
+          */
+        });
+      });
+    },
+    jax: ["input/TeX","output/HTML-CSS","output/NativeMML"],
+    tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+    extensions: ["tex2jax.js"],
+  };
+</script>
+    <script type="text/javascript" src="/static/js/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script src="/static/js/algebra742live.js"></script>
+    <script type="text/javascript" src="/static/js/socket.io.min.js"></script>
+    <script>
+    var socket = io.connect('https://' + document.domain + ':' + location.port);
+    //var flip_card;
+    var input_callback;
+    var player_id;
+    socket.on('connect', function() {
+        console.log('Websocket connected!');
+    });
+    socket.on('reset_game', function(data) {
+        console.log(data);
+        reset_game(data)
+    });
+    socket.on('update_game', function(data) {
+        console.log(data);
+        update_game(data)
+    });
+    document.onreadystatechange = function() {
+        if (document.readyState == "complete") {
+            function showMessage(message) {
+                var i = document.createElement('li');
+                i.textContent = message;
+                document.getElementById('messages').appendChild(i);
+            }
+            if (!window.WebSocket) {
+                if (window.MozWebSocket) {
+                    window.WebSocket = window.MozWebSocket;
+                } else {
+                    showMessage("Your browser doesn't support WebSockets")
+                }
+            }
+            /*
+            document.getElementById('create').addEventListener('click', function(event) {
+                socket.emit('create', data={});
+            }, false);
+            document.getElementById('join').addEventListener('click', function(event) {
+                data = { 
+                    room: document.getElementById('room').value,
+                }
+                socket.emit('join', data);
+            }, false);
+            */
+        }
+    }
+
+    </script>
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!--
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" >
+    -->
+    <link rel="stylesheet" href="/static/css/memory.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <form>
+        <div id="screen" class='gameboard'>
+        </div>
+        <input type="submit" value="Submit"/>
+        </form>
+        <ul id="players-dashboard" class="players-dashboard">
+        </ul>
+        <li id="player-dashboard-template" class="player-dashboard template">
+            <div class="player-identifiers">
+                <span class="player-nick"></span>
+            </div>
+            <div class="player-stats">
+                <ul>
+                    <li class="correct">Correct: <span>0</span></li>
+                    <li class="matches">Matches: <span>0</span></li>
+                    <li class="incorrect">Incorrect: <span>0</span></li>
+                </ul>
+            </div>
+            <div class="player-input">
+                <div class="player-input-prompt"></div>
+                <button class="yes-button">=</button>
+                <button class="no-button">≠</button>
+            </div>
+        </li>
+
+        <div id="advance-prompt" class="overlay">
+            <div class="popup">
+                <h2>Level complete</h2>
+                <a class="close" href=# >×</a>
+                <div class="content-1">
+                    That was pretty good. Are you ready to take it to another level?
+                </div>
+                <button id="next-level" onclick="window.location.href='../level2/1029384756.html';">
+                    Level 2 😄</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<body>

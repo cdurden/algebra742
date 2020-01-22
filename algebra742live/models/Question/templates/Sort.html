@@ -1,0 +1,72 @@
+<div id="myDiv" style:width: 100%>
+</div>
+
+<!--
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+-->
+<script>
+var options = {
+      group: 'sortable',
+      animation: 100
+};
+options['onAdd'] = function(evt) {
+    var returnItem = $("li",evt.to).eq(evt.newIndex+1);
+    var swapTarget = $(evt.from).children().eq(evt.oldIndex);
+    console.log({
+      'event': name,
+      'this': this,
+      'item': evt.item,
+      'from': evt.from,
+      'to': evt.to,
+      'oldIndex': evt.oldIndex,
+      'newIndex': evt.newIndex,
+      'returnItem': returnItem,
+      'swapTarget': swapTarget,
+    });
+    $(returnItem).remove();
+    if (swapTarget.length != 0) {
+        $(swapTarget).before(returnItem);
+        console.log(swapTarget);
+    } else {
+        $(evt.from).append(returnItem);
+        console.log(swapTarget);
+    }
+}
+$(function() {
+    $("#sortable-blanks").sortable(options);
+    $("#sortable-items").sortable(options);
+    $('#answer_form').submit(function(e){
+        answer = $("#sortable-blanks").sortable('widget').toArray();
+        $('#answer').val(answer.join(','));
+    }); 
+});
+</script>
+<div class='SortBackground' style='{{ background_style }}'>
+    <div class='SortLayout' style='{{ layout_style }}'>
+        <ul class="sortable" id="sortable-blanks" style='width: 100%'>
+            {% for i in shuffle %}
+                <li id="card_{{ loop.index0 }}" class="card ui-state-default" style='{{ cards[i].style }}'>
+                    <div class="card">
+                        {{ cards[i].blank_html | safe }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <ul class="sortable" id="sortable-items" style='width: 800px'>
+            {% for i in shuffle %}
+            <li id="card_{{ loop.index0 }}" class="card ui-state-default" style='{{ cards[i].style }}' data-id='{{ i }}'>
+                    <div class="card">
+                        {{ cards[i].html | safe }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{{ form.render_html() }}
+<!--
+<form action="" method="post" id="answer_form" name="answer_form" autocomplete="off">
+<p><input type="submit" value="Submit"></p>
+</form>
+-->
