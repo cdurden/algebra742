@@ -199,7 +199,7 @@ QuestionSets = {
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
                     'hide_line': True,
-                    'equation': 'y=2^(x-1)',
+                    'equation': 'y=4(x-2)',
                     #'draw': True,
                 },
                 {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
