@@ -48,13 +48,16 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
       <script>
     $(function() {
         updateImageData()
-
+/*
 $("#answer_form").submit(function(e) {
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
 
     var form = $(this);
     var url = form.attr('action');
+    if (typeof(url) == 'undefined') {
+        url = window.location.href;
+    }
     var canvas = document.getElementById("imageView");
     if (canvas != null ) {
         var imageData = canvas.toDataURL("image/png");
@@ -70,13 +73,11 @@ $("#answer_form").submit(function(e) {
             //alert(data); // show response from the php script.
             window.location.href = url;
                         //window.location.reload(true);
-                        /*
-            $("html").html(data);
-            eval(document.getElementById('updateImageDataScript').innerHTML);
-            updateImageData();
-            eval(document.getElementById('loadPlotlyScript').innerHTML);
-            loadPlotly();
-            */
+            //$("html").html(data);
+            //eval(document.getElementById('updateImageDataScript').innerHTML);
+            //updateImageData();
+            //eval(document.getElementById('loadPlotlyScript').innerHTML);
+            //loadPlotly();
         }
     });
     // Inject our CSRF token into our AJAX request.
@@ -91,6 +92,7 @@ $("#answer_form").submit(function(e) {
 
 
 });
+*/
 });
 </script>
     {% if QuestionData['Type'] in ['Tarsia'] %}
@@ -176,6 +178,9 @@ $('.card img').click(rotateCard);
         //answer_input.focus();
     }
     </script>
+    {% for script in scripts %}
+    <script src='{{ script }}'></script>
+    {% endfor %}
 </head>
 <body>
 {% block nav %}
@@ -214,6 +219,17 @@ $('.card img').click(rotateCard);
             {% endfor %}
         </ul>
     </div>
+{% if QuestionData['Type'] in ['Sort', 'MultiPartQuestion'] %}
+<form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
+    <div id="content">
+        {{ content | safe}}
+    </div>
+    {{ form.hidden_tag() }}
+<input type="hidden" name="imageData" id="imageData" />
+
+    <p><input type="submit" value="Submit"></p>
+</form>
+{% else %}
     <div id="content">
         {% if question_number is not none %}
         {{ question_number }}. {{ QuestionData['Question'] }} {{ Parameters['Question'] }}
@@ -338,6 +354,7 @@ function loadPhoto() {
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
 <input type="hidden" name="imageData" id="imageData" />
+{% endif %}
 {% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation','InputOutputTableAndSetOfCoordinatePairsEquation'] %}
 <div>
     <table>
@@ -518,7 +535,6 @@ Explanation:
 </form>
 </div>
 {% endif %}
-{% endif %}
 
 <div>
     {% if correct %}
@@ -559,6 +575,7 @@ Explanation:
     {% endif %}
 </div>
 </div>
+{% endif %}
 </main>
 <footer>
 </footer>

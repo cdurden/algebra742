@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import re
+#from flask_wtf.csrf import CsrfProtect
 from flask import Flask, url_for, redirect
 from flask import send_from_directory
 from flask_sqlalchemy import SQLAlchemy
@@ -23,6 +24,14 @@ from flask import Response, make_response, after_this_request
 from functools import wraps
 from Questions import *
 from werkzeug.datastructures import MultiDict
+from models.Question import MultiPartQuestion
+from models.Question.Sort import Sort
+#from flask_wtf.csrf import CSRFError
+
+NewQuestionModelTypes = {
+        'MultiPartQuestion': MultiPartQuestion,
+        'Sort': Sort
+        }
 
 import io
 import numpy as np
@@ -32,7 +41,10 @@ from matplotlib.figure import Figure
 from matplotlib.patches import Ellipse
 VERSION = '0.0.1'
 app = Flask(__name__)
+#csrf = CsrfProtect()
+#csrf.init_app(app)
 app.config.from_object('config')
+app.debug = True
 #logging.basicConfig(level=logging.INFO)
 #root = logging.getLogger()
 #logger = root
@@ -96,6 +108,9 @@ question_scores = db.Table('question_scores',
 #        return '<Post %r>' % self.title
 #
 
+#@app.errorhandler(CSRFError)
+#def handle_csrf_error(e):
+#    return render_template('csrf_error.html', reason=e.description), 400
 
 def returns_html(f):
     @wraps(f)
@@ -678,6 +693,28 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
     app.logger.error(formdata)
     #if user.id == 86:
     #    formdata = {}
+    scripts = []
+    new_question_type = False
+    if QuestionData['Type'] in NewQuestionModelTypes.keys():
+        new_question_type = True
+        params = Parameters
+        question = get_or_create(db.session, NewQuestionModelTypes[QuestionData['Type']], params_json=json.dumps(params))
+        question.build_form(request.form)
+        #question.build_form()
+        form = question.form
+        #form = NumericalForm()
+        scripts = question.scripts()
+        app.logger.error(scripts)
+        content = question.render_html()
+        if request.method == 'POST':
+            #question.build_form(request.form)
+            #question.build_form()
+            app.logger.error(form.validate())
+            for fieldName, errorMessages in question.form.errors.items():
+                for err in errorMessages:
+                    app.logger.error(err)
+            app.logger.error(question.form.data)
+            correct = question.check_answer()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
     if QuestionData['Type'] == 'SortCards':
@@ -1366,7 +1403,8 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             pass
         # Check answers
         # Answers array
-    content = render_template(QuestionData['Template'], form=form, **Parameters)
+    if 'Template' in QuestionData:
+        content = render_template(QuestionData['Template'], form=form, **Parameters)
     if request.method == 'POST':
         imageData = request.form['imageData']
         app.logger.error(imageData)
@@ -1402,7 +1440,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         title = QuestionSets[assignment]['Title']
     except:
         title = None
-    return dict(title=title, content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message,Parameters=Parameters, scores=scores, test=test)
+    return dict(title=title, content=content, assignment=assignment, answer=answer, form=form, q=q, i=i, NextQuestion=NextQuestion, correct=correct, QuestionData=QuestionData, question_indices=question_indices, question_number=question_number, message=message,Parameters=Parameters, scores=scores, test=test, scripts=scripts, new_question_type=new_question_type)
 
 
 @app.route('/RepresentBalances/<q>', methods=['GET', 'POST'])
@@ -1477,7 +1515,7 @@ def RepresentBalances(lti=lti, q=None):
         NextQuestion = q+1
     else:
         NextQuestion = None
-    return dict(title='Representing balance scales', content='', form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[q-1])
+    return dict(title='Representing balance scales', content='', form=form, q=q, NextQuestion=NextQuestion, lhs=lhs, rhs=rhs, correct=correct, QuestionData=BalanceQuestionData[q-1], scripts=scripts)
 
 @app.route('/markdown/<filename>')
 @templated('markdown.html')
