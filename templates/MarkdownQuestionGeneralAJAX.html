@@ -219,6 +219,16 @@ $('.card img').click(rotateCard);
             {% endfor %}
         </ul>
     </div>
+{% if QuestionData['Type'] in ['Sort'] %}
+<form action="{{ url_for('Assignment', assignment=assignment, q='submit') }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
+    <div id="content">
+        {{ content | safe}}
+    </div>
+    {{ form.hidden_tag() }}
+
+    <p><input type="submit" value="Submit"></p>
+</form>
+{% else %}
     <div id="content">
         {% if question_number is not none %}
         {{ question_number }}. {{ QuestionData['Question'] }} {{ Parameters['Question'] }}
@@ -343,7 +353,6 @@ function loadPhoto() {
     <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     {{ form.hidden_tag() }}
 <input type="hidden" name="imageData" id="imageData" />
-{% if QuestionData['Type'] in ['Sort'] %}
     {{ form.answer(style="font-size: 18pt; height: 40px; width:640px; ") }}
 {% endif %}
 {% if QuestionData['Type'] in ['InputOutputTable', 'InputOutputTableEquation','InputOutputTableAndSetOfCoordinatePairsEquation'] %}
@@ -567,6 +576,7 @@ Explanation:
     {% endif %}
 </div>
 </div>
+{% endif %}
 </main>
 <footer>
 </footer>
