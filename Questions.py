@@ -243,7 +243,7 @@ QuestionSets = {
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
                     'hide_line': True,
-                    'equation': 'y=2(x-2)',
+                    'equation': 'y=x-5/2)',
                     #'draw': True,
                 },
                 ],
