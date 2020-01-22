@@ -47,6 +47,8 @@ QuestionSets = {
                     'equation': 'y=2x+1',
                     #'draw': True,
                 },
+                ],
+            },
             {
             'Type': 'MC',
             'Template': 'PlotQuestion.html',
