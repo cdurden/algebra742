@@ -117,12 +117,32 @@ QuestionSets = {
             'SpaceAfter': '0cm',
             },
             {
+            'Type': 'MC',
+            'Template': 'PlotQuestion.html',
+            'ParameterSetVariants': [
+                {'question': r'Is the sequence $(-2,2,6,10,\ldots)$ an arithmetic sequence?',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-1,8,1,1)]),
+                    'x': [1,2,3,4],
+                    'y': [-2,2,6,10],
+                    'show_points': True,
+                    'hide_line': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(1),
+                    'Choices': [('Y', r'Yes'),('N',r'No')],
+                    'CorrectAnswer': 'Y'
+                    },
+                ],
+            'SpaceAfter': '0cm',
+            },
+            {
             'Type': 'Equation',
             'Template': 'PlotQuestion.html',
             'LatexTemplate': 'GridWithLine.tex',
             'ParameterSetVariants': [
                 {
-                 'Question': 'Write the equation of the sequence shown in the graph.',
+                 'Question': 'Write the equation of the arithmetic sequence shown in the graph.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
