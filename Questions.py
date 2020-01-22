@@ -26,9 +26,9 @@ QuestionSets = {
 #        'Questions': [
 #        ],
 #    },
-    'ProportionalRelationshipsPracticeJanuary17': {
+    'HomeworkJanuary22': {
         'ProvideImmediateFeedback': False,
-        'Title': 'January 17: Proportional and non-proportional relationships practice',
+        'Title': 'January 22: Homework',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
@@ -71,6 +71,8 @@ QuestionSets = {
                     'Choices': [('A', r'Proportional with rate of change $1$'),('B',r'Proportional with rate of change $\frac{1}{2}$'),('C',r'Non-proportional with rate of change $1$'),('D',r'Non-proportional with rate of change $\frac{1}{2}$')],
                     'CorrectAnswer': 'D'
                     },
+                ],
+            },
             {
             'Type': 'MC',
             'Template': 'XYTable.html',
