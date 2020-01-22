@@ -236,7 +236,7 @@ QuestionSets = {
                     #'draw': True,
                 },
                 {'x': [None,0], 'y': [0,None], 'variables': ['x','y'],
-                 'question': r'Graph the first 5 terms of the sequence $(-\frac{3}{2}, -frac{1}{2}, \frac{1}{2}, \frac{3}{2}, \frac{5}{2}, \ldots)$',
+                 'question': r'Graph the first 5 terms of the sequence $(-\frac{3}{2}, -\frac{1}{2}, \frac{1}{2}, \frac{3}{2}, \frac{5}{2}, \ldots)$',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-10,10,-10,10,1,0.5)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-10,10,-10,10,1,0.5)]),
                     'N': json.dumps(5),
