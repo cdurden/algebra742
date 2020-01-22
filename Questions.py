@@ -116,6 +116,28 @@ QuestionSets = {
                 ],
             'SpaceAfter': '0cm',
             },
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {
+                 'Question': 'Write the equation of the sequence shown in the graph.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
+                    'x': [1,2,3,4],
+                    'y': [3,5,7,9],
+                    'show_points': True,
+                    'hide_line': True,
+                    'dtickx': json.dumps(10),
+                    'dticky': json.dumps(5),
+                    'N': json.dumps(1),
+                    'equation': 'y=2x+1',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '3cm',
+            },
         ]
     },
     'MultiplicationByFractionsPart1': {
