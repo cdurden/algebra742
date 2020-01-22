@@ -77,7 +77,7 @@ var myPlot = document.getElementById('myDiv'),
             dtick: {{ dticky | safe }},
         },
      };
-    {% if x is defined and y is defined and show_points%}
+    {% if x is defined and y is defined and show_points and not hide_line%}
     if (x.length > 1 && y.length > 1) {
       bdry_pts = get_boundary_points(x[0],y[0],x[1],y[1]);
       shapes = [{
