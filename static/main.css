@@ -8,6 +8,9 @@ div.card {
     height: 100%;
     width: fit-content;
 }
+div#content {
+    clear: left;
+}
 div.card img {
     height: 100%;
 }
