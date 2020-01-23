@@ -37,7 +37,7 @@ QuestionSets = {
             'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
-                 'question': 'Find the 100th term of the arithmetic sequence $(2,4,6,8)$.',
+                 'question': 'Find the 100th term of the arithmetic sequence $(2,4,6,8, \ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
@@ -82,7 +82,7 @@ QuestionSets = {
                     'CorrectAnswer': '114',
                 },
                 {
-                 'question': 'Find the 20th term of the arithmetic sequence $(-5,-1,3,7)$.',
+                 'question': 'Find the 20th term of the arithmetic sequence $(-5,-1,3,7,\ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
@@ -97,7 +97,7 @@ QuestionSets = {
                     'CorrectAnswer': '71',
                 },
                 {
-                 'question': 'Find the 200th term of the arithmetic sequence $(3,0,-3,-6)$.',
+                 'question': 'Find the 200th term of the arithmetic sequence $(3,0,-3,-6, \ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
@@ -112,7 +112,7 @@ QuestionSets = {
                     'CorrectAnswer': '-594',
                 },
                 {
-                 'question': 'Find the 100th term of the arithmetic sequence $(10,5,0,-5,-10)$.',
+                 'question': 'Find the 100th term of the arithmetic sequence $(10,5,0,-5,-10, \ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4,5],
@@ -127,7 +127,7 @@ QuestionSets = {
                     'CorrectAnswer': '-485',
                 },
                 {
-                 'question': r'Find the 100th term of the arithmetic sequence $(\frac{3}{2},\frac{1}{2},-\frac{1}{2},-\frac{3}{2},-\frac{5}{2})$.',
+                 'question': r'Find the 100th term of the arithmetic sequence $(\frac{3}{2},\frac{1}{2},-\frac{1}{2},-\frac{3}{2},-\frac{5}{2}, \ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,0.5,0.5)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,0.5,0.5)]),
                     'x': [1,2,3,4,5],
