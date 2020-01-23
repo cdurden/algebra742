@@ -158,6 +158,7 @@ QuestionSets = {
                 {'question': r'State whether the equation ${:s}$ represents a proportional or non-proportional relationship, and identify its rate of change'.format(r'y=\frac{1}{5}x+5'),
                     'Choices': [('A', r'Proportional with rate of change $5$'),('B',r'Proportional with rate of change $\frac{1}{5}$'),('C',r'Non-proportional with rate of change $1$'),('D',r'Non-proportional with rate of change $\frac{1}{5}$')],
                     'CorrectAnswer': 'D'
+                    'draw': True,
                     },
                 ],
             },
@@ -170,6 +171,7 @@ QuestionSets = {
                 'x': [0,1,3,5], 'y': [-6,-3,5,11], 'variables': ['x','y'],
                     'Choices': [('A', r'Proportional with rate of change $\frac{1}{3}$'),('B',r'Proportional with rate of change $3$'),('C',r'Non-proportional with rate of change $\frac{1}{3}$'),('D',r'Non-proportional with rate of change $3$')],
                     'CorrectAnswer': 'D'
+                    'draw': True,
                     },
                 ],
             'SpaceAfter': '6cm',
@@ -216,15 +218,46 @@ QuestionSets = {
             'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                'question': r'Find the 100th term of the arithmetic sequence $(8,11,14,17,\ldots)$.',
-                'CorrectAnswer': '305'
+                 'question': 'Find the 100th term of the arithmetic sequence $(-5,-1,3,7)$.',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
+                    'x': [1,2,3,4],
+                    'y': [-5,-1,3,7],
+                    'show_points': False,
+                    'hide_line': True,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'N': json.dumps(4),
+                    'equation': 'y=4x-9',
+                    'draw': True,
+                    'CorrectAnswer': '391',
                 },
                 {
                 'question': r'Find the 100th term of the arithmetic sequence $(14,9,4,-1,-6,\ldots)$.',
                 'CorrectAnswer': '-481'
+                    'draw': True,
                 },
                 ],
             },
+            {
+            'Type': 'GenericEquality',
+            'Template': 'Question.html',
+            'LatexTemplate': 'Question.tex',
+            'ParameterSetVariants': [
+                {
+                'Question': r'',
+                'CorrectAnswer': '(6830-5545)/4',
+                    'explanation': True,
+                    'html': '<p><img src="/static/SelfAssessmentJanuary23/Q7.png"/></p><p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('BiYy3bSLG3M'),
+                },
+                {
+                'Question': r'The average retail price in the spring of 2009 for a used car is shown in the table at the right. Find the rate of change. Explain the meaning of the rate of change.',
+                'CorrectAnswer': '1221',
+                    'explanation': True,
+                    'html': '<p><img src="/static/SelfAssessmentJanuary23/Q8.png"/></p><p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('BiYy3bSLG3M'),
+                },
+                ],
+            }
             {
             'Type': 'Equation',
             'Template': 'Question.html',
