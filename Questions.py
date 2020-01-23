@@ -259,7 +259,7 @@ QuestionSets = {
                     'html': '<p><img src="/static/SelfAssessmentJanuary23/Q8.png"/></p><p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('BiYy3bSLG3M'),
                 },
                 ],
-            }
+            },
             {
             'Type': 'Equation',
             'Template': 'Question.html',
