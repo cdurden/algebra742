@@ -234,7 +234,7 @@ QuestionSets = {
                 },
                 {
                 'question': r'Find the 100th term of the arithmetic sequence $(14,9,4,-1,-6,\ldots)$.',
-                'CorrectAnswer': '-481'
+                'CorrectAnswer': '-481',
                     'draw': True,
                 },
                 ],
@@ -248,12 +248,14 @@ QuestionSets = {
                 'Question': r'',
                 'CorrectAnswer': '(6830-5545)/4',
                     'explanation': True,
+                    'draw': True,
                     'html': '<p><img src="/static/SelfAssessmentJanuary23/Q7.png"/></p><p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('BiYy3bSLG3M'),
                 },
                 {
                 'Question': r'The average retail price in the spring of 2009 for a used car is shown in the table at the right. Find the rate of change. Explain the meaning of the rate of change.',
                 'CorrectAnswer': '1221',
                     'explanation': True,
+                    'draw': True,
                     'html': '<p><img src="/static/SelfAssessmentJanuary23/Q8.png"/></p><p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('BiYy3bSLG3M'),
                 },
                 ],
@@ -266,10 +268,12 @@ QuestionSets = {
                 {
                 'Question': r'A machine salesperson earns a base salary of $40,000 plus a commission of $300 for every machine he sells. Write an equation that shows the total amount of income the salesperson earns, if he sells $x$ machines in a year. Let $y$ stand for his income.',
                 'equation': 'y=40000+300x',
+                    'draw': True,
                 },
                 {
                 'Question': r'Lin is tracking the progress of her plant’s growth. Today the plant is 5 cm high. The plant grows 1.5 cm per day.  Write a linear model that represents the height of the plant after $x$ days. Let $y$ stand for the height of the plant.',
                 'equation': 'y=5+1.5x',
+                    'draw': True,
                 },
                 ],
             }
