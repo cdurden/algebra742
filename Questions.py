@@ -266,7 +266,7 @@ QuestionSets = {
             'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                'Question': r'A machine salesperson earns a base salary of $40,000 plus a commission of $300 for every machine he sells. Write an equation that shows the total amount of income the salesperson earns, if he sells $x$ machines in a year. Let $y$ stand for his income.',
+                'Question': r'A machine salesperson earns a base salary of \$40,000 plus a commission of \$300 for every machine he sells. Write an equation that shows the total amount of income the salesperson earns, if he sells $x$ machines in a year. Let $y$ stand for his income.',
                 'equation': 'y=40000+300x',
                     'draw': True,
                 },
