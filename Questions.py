@@ -221,7 +221,7 @@ QuestionSets = {
                 },
                 {
                 'question': r'Find the 100th term of the arithmetic sequence $(14,9,4,-1,-6,\ldots)$.',
-                'CorrectAnswer': '-81'
+                'CorrectAnswer': '-481'
                 },
                 ],
             },
