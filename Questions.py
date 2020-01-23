@@ -157,7 +157,7 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {'question': r'State whether the equation ${:s}$ represents a proportional or non-proportional relationship, and identify its rate of change'.format(r'y=\frac{1}{5}x+5'),
                     'Choices': [('A', r'Proportional with rate of change $5$'),('B',r'Proportional with rate of change $\frac{1}{5}$'),('C',r'Non-proportional with rate of change $1$'),('D',r'Non-proportional with rate of change $\frac{1}{5}$')],
-                    'CorrectAnswer': 'D'
+                    'CorrectAnswer': 'D',
                     'draw': True,
                     },
                 ],
@@ -170,7 +170,7 @@ QuestionSets = {
                 {'question': r'State whether the table represents a proportional or non-proportional relationship, and identify its rate of change',
                 'x': [0,1,3,5], 'y': [-6,-3,5,11], 'variables': ['x','y'],
                     'Choices': [('A', r'Proportional with rate of change $\frac{1}{3}$'),('B',r'Proportional with rate of change $3$'),('C',r'Non-proportional with rate of change $\frac{1}{3}$'),('D',r'Non-proportional with rate of change $3$')],
-                    'CorrectAnswer': 'D'
+                    'CorrectAnswer': 'D',
                     'draw': True,
                     },
                 ],
