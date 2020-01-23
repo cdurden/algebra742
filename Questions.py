@@ -214,7 +214,7 @@ QuestionSets = {
             },
             {
             'Type': 'GenericEquality',
-            'Template': 'Question.html',
+            'Template': 'PlotQuestion.html',
             'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
