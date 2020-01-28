@@ -37,12 +37,12 @@ QuestionSets = {
             'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
-                'Question': r'A machine salesperson earns a base salary of \$40,000 plus a commission of \$300 for every machine he sells. Write an equation that shows the total amount of income the salesperson earns, if he sells $x$ machines in a year. Let $y$ stand for his income.',
+                'Question': r'A machine salesperson earns a base salary of \$40,000 plus a commission of \$6000 for every machine he sells. Write an equation that shows the total amount of income the salesperson earns, if he sells $x$ machines in a year. Let $y$ stand for his income.',
                 'equation': 'y=40000+300x',
                     'draw': True,
                     'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('Q5o7YFHAnmU'),
-                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-4,14,1,1)]),
-                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-4,14,1,1)]),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(0,8,0,60000,1,2000)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(0,8,0,60000,1,2000)]),
                     'show_points': False,
                     'hide_line': False,
                     'dtickx': json.dumps(1),
