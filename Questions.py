@@ -26,9 +26,9 @@ QuestionSets = {
 #        'Questions': [
 #        ],
 #    },
-    'ModelingPracticeJanuary27': {
+    'ModelingPracticeJanuary28': {
         'ProvideImmediateFeedback': False,
-        'Title': 'January 27: Self-assessment',
+        'Title': 'January 28: Modeling with a graph and linear equation',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
