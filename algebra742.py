@@ -714,6 +714,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     app.logger.error(err)
             app.logger.error(question.form.data)
             correct = question.check_answer()
+            answer = json.dumps(form.data)
         else:
             print(formdata)
             question.build_form(formdata)
