@@ -62,7 +62,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                 },
                 {
-                'Question': r'Paul opens a savings account with $350. He saves $150 per month.  Assume that he does not withdraw money or make any additional deposits. Write a linear equation that represents the total amount of money Paul deposits into his account after $x$ months. Let $y$ stand for the amount of money.',
+                'Question': r'Paul opens a savings account with \$350. He saves \$150 per month.  Assume that he does not withdraw money or make any additional deposits. Write a linear equation that represents the total amount of money Paul deposits into his account after $x$ months. Let $y$ stand for the amount of money.',
                 'equation': 'y=350+150x',
                     'draw': True,
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,12,0,1000,1,50)]),
@@ -132,7 +132,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                 },
                 {
-                'Question': r'Paul opens a savings account with $350. He saves $150 per month.  Assume that he does not withdraw money or make any additional deposits. After how many months will Paul have more than \$2,000?',
+                'Question': r'Paul opens a savings account with \$350. He saves \$150 per month.  Assume that he does not withdraw money or make any additional deposits. After how many months will Paul have more than \$2,000?',
                 'equation': '1650/150',
                     'draw': True,
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,12,0,1000,1,50)]),
