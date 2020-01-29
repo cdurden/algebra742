@@ -112,6 +112,7 @@ class MultiPartQuestion(Question):
             #getattr(self.form, 'part_{:d}'.format(i)).process(MultiDict(formdata['part_{:d}'.format(i)]))
             subform_field = getattr(F, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i))
             subform_field.process(MultiDict(formdata['part_{:d}'.format(i)]))
+            print(MultiDict(formdata['part_{:d}'.format(i)]))
             print(subform_field.data)
             #self.form['part_{:d}'.format(i)].process(formdata=MultiDict(formdata['part_{:d}'.format(i)]))
         #self.form = F(MultiDict(formdata))
