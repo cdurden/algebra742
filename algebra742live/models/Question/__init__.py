@@ -101,6 +101,7 @@ class MultiPartQuestion(Question):
         #form = F(prefix='test')
         print(formdata)
         #self.form.process(MultiDict(formdata))
+        self.form = F()
         for i,part in enumerate(params['parts']):
 #            subform = part['question'].form_class(formdata['part_{:d}'.format(i)])
 #            subform(formdata['part_{:d}'.format(i)])
