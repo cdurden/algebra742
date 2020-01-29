@@ -1,6 +1,7 @@
 from . import Question
 from sympy.parsing.sympy_parser import parse_expr
 from sympy.parsing.sympy_parser import standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
+transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
 class EquationQuestion(Question):
     def scripts(self):
         return([])
