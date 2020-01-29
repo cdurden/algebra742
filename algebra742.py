@@ -699,14 +699,12 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         new_question_type = True
         params = Parameters
         question = get_or_create(db.session, NewQuestionModelTypes[QuestionData['Type']], params_json=json.dumps(params))
-        question.build_form(request.form)
         #question.build_form()
-        form = question.form
         #form = NumericalForm()
         scripts = question.scripts()
         app.logger.error(scripts)
-        content = question.render_html()
         if request.method == 'POST':
+            question.build_form(request.form)
             #question.build_form(request.form)
             #question.build_form()
             app.logger.error(form.validate())
@@ -715,6 +713,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     app.logger.error(err)
             app.logger.error(question.form.data)
             correct = question.check_answer()
+        else:
+            question.build_form(formdata)
+        form = question.form
+        content = question.render_html()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
     if QuestionData['Type'] == 'SortCards':
