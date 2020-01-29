@@ -9,5 +9,6 @@ class EquationQuestion(Question):
         params = self.params()
         input_lhs, input_rhs = [parse_expr(_hs, transformations=transformations) for _hs in self.form.answer.data.split("=")]
         lhs,rhs = [parse_expr(_hs, transformations=transformations) for _hs in params['equation'].split("=")]
+        print(simplify(lhs-rhs+input_lhs-input_rhs))
         correct = simplify(lhs-rhs+input_lhs-input_rhs)==0
         return(correct)
