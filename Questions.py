@@ -34,7 +34,7 @@ QuestionSets = {
             {
             'Type': 'MultiPartQuestion',
             'ParameterSetVariants': [
-                {'parts': [{'class': 'Question.EquationQuestion', 'params': {"question": "The population of Bay Village is 35,000 today. Every year the population of Bay Village increases by 750 people. Write a linear model that represents the population of Bay Village x years from today.", "equation": "y=35000+750x"}},
+                {'parts': [{'class': 'Question.EquationQuestion.EquationQuestion', 'params': {"question": "The population of Bay Village is 35,000 today. Every year the population of Bay Village increases by 750 people. Write a linear model that represents the population of Bay Village x years from today.", "equation": "y=35000+750x"}},
                     ]}
                 ],
             'SpaceAfter': '4cm',
