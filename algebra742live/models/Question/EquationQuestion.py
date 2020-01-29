@@ -2,9 +2,10 @@ from . import Question
 from sympy import simplify, groebner, symbols
 from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
 #from sympy.polys.groebnertools import groebner
-from sympy.polys.rings import ring
-from sympy.polys.domains import ZZ
-from sympy.polys.orderings import lex
+#from sympy.polys.rings import ring
+#from sympy.polys.domains import ZZ
+#from sympy.polys.orderings import lex
+from sympy.polys.polytools import is_zero_dimensional
 transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
 class EquationQuestion(Question):
     def scripts(self):
@@ -16,6 +17,8 @@ class EquationQuestion(Question):
         #print(simplify(lhs-rhs+input_lhs-input_rhs))
         #R = ring("x,y", ZZ, lex)
         x,y = symbols('x,y')
-        print(groebner([lhs-rhs,input_lhs-input_rhs], x, y, order='lex'))
-        correct = simplify(lhs-rhs+input_lhs-input_rhs)==0
+        F = groebner([lhs-rhs,input_lhs-input_rhs], x, y, order='lex')
+        correct = is_zero_dimensional(F)
+        print(F)
+        #correct = simplify(lhs-rhs+input_lhs-input_rhs)==0
         return(correct)
