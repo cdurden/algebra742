@@ -99,6 +99,7 @@ class MultiPartQuestion(Question):
             #setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class,_name='part_{:d}'.format(i)))
             #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
         #form = F(prefix='test')
+        print(formdata)
         self.form = F(MultiDict(formdata))
         self.form.process(MultiDict(formdata))
 #        for i,part in enumerate(params['parts']):
