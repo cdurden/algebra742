@@ -110,7 +110,7 @@ class MultiPartQuestion(Question):
             print(formdata['part_{:d}'.format(i)])
             #getattr(self.form, 'part_{:d}'.format(i)).process(MultiDict(formdata['part_{:d}'.format(i)]))
             #getattr(F, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i)).process(MultiDict(formdata['part_{:d}'.format(i)]))
-            self.form['part_{:d}'.format(i)].process(MultiDict(formdata['part_{:d}'.format(i)]))
+            self.form['part_{:d}'.format(i)].process(formdata=MultiDict(formdata['part_{:d}'.format(i)]))
         #self.form = F(MultiDict(formdata))
         #self.form.process(MultiDict(formdata))
         print(formdata)
