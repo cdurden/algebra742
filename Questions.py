@@ -31,6 +31,11 @@ QuestionSets = {
         'Title': 'January 28: Modeling with a graph and linear equation',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'Grid.tex',
+            'ParameterSetVariants': [
 #            {
 #            'Type': 'MultiPartQuestion',
 #            'ParameterSetVariants': [
