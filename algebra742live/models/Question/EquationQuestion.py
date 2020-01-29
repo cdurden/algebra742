@@ -15,6 +15,7 @@ class EquationQuestion(Question):
         lhs,rhs = [parse_expr(_hs, transformations=transformations) for _hs in params['equation'].split("=")]
         #print(simplify(lhs-rhs+input_lhs-input_rhs))
         #R = ring("x,y", ZZ, lex)
+        x,y = symbols('x,y')
         print(groebner([lhs-rhs,input_lhs-input_rhs], x, y, order='lex'))
         correct = simplify(lhs-rhs+input_lhs-input_rhs)==0
         return(correct)
