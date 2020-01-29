@@ -26,6 +26,65 @@ QuestionSets = {
 #        'Questions': [
 #        ],
 #    },
+    'ModelingPracticeJanuary29': {
+        'ProvideImmediateFeedback': False,
+        'Title': 'January 28: Modeling with a graph and linear equation',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+            {
+            'Type': 'MultiPartQuestion',
+            'ParameterSetVariants': [
+                {'parts': [{'class': 'Question.EquationQuestion', 'params': {"question": "The population of Bay Village is 35,000 today. Every year the population of Bay Village increases by 750 people. Write a linear model that represents the population of Bay Village x years from today.", "equation": "y=35000+750x"}},
+                    ]}
+                ],
+            'SpaceAfter': '4cm',
+            },
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'Grid.tex',
+            'ParameterSetVariants': [
+                {
+                'Question': r'A machine salesperson earns a base salary of \$40,000 plus a commission of \$6000 for every machine he sells. Write an equation that shows the total amount of income the salesperson earns, if he sells $x$ machines in a year. Let $y$ stand for his income.',
+                'equation': 'y=40000+6000x',
+                    'draw': True,
+                    'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('Q5o7YFHAnmU'),
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,0,60000,1,2000)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,0,60000,1,2000)]),
+                    'show_points': False,
+                    'hide_line': False,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(2000),
+                    'N': json.dumps(2),
+                },
+                {
+                'Question': r'Mr. Thompson is on a diet. He currently weighs 260 pounds. He loses 4 pounds per month. Write an equation that represents Mr. Thompson\'s weight after $x$ months. Let $y$ stand for his weight.',
+                'equation': 'y=260-4x',
+                    'draw': True,
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,0,300,1,4)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,0,300,1,4)]),
+                    'show_points': False,
+                    'hide_line': False,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(4),
+                    'N': json.dumps(2),
+                },
+                {
+                'Question': r'Paul opens a savings account with $350. He saves $150 per month.  Assume that he does not withdraw money or make any additional deposits. Write a linear equation that represents the total amount of money Paul deposits into his account after $x$ months. Let $y$ stand for the amount of money.',
+                'equation': 'y=350+150x',
+                    'draw': True,
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-1,12,0,1000,1,50)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-1,12,0,1000,1,50)]),
+                    'show_points': False,
+                    'hide_line': False,
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(50),
+                    'N': json.dumps(2),
+                },
+                ],
+            }
+        ]
+    },
     'ModelingPracticeJanuary28': {
         'ProvideImmediateFeedback': False,
         'Title': 'January 28: Modeling with a graph and linear equation',
@@ -50,7 +109,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                 },
                 {
-                'Question': r'Mr. Thompson is on a diet. He currently weighs 260 pounds. He loses 4 pounds per month. Write an equation that represents Mr. Thompson’s weight after $x$ months. Let $y$ stand for his weight.',
+                'Question': r'Mr. Thompson is on a diet. He currently weighs 260 pounds. He loses 4 pounds per month. Write an equation that represents Mr. Thompson\'s weight after $x$ months. Let $y$ stand for his weight.',
                 'equation': 'y=260-4x',
                     'draw': True,
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,0,300,1,4)]),
@@ -438,7 +497,7 @@ QuestionSets = {
                     'html': '<p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('Q5o7YFHAnmU'),
                 },
                 {
-                'Question': r'Lin is tracking the progress of her plant’s growth. Today the plant is 5 cm high. The plant grows 1.5 cm per day.  Write a linear model that represents the height of the plant after $x$ days. Let $y$ stand for the height of the plant.',
+                'Question': r'Lin is tracking the progress of her plant\'s growth. Today the plant is 5 cm high. The plant grows 1.5 cm per day.  Write a linear model that represents the height of the plant after $x$ days. Let $y$ stand for the height of the plant.',
                 'equation': 'y=5+1.5x',
                     'draw': True,
                 },
