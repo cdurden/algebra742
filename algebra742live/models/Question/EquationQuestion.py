@@ -18,7 +18,7 @@ class EquationQuestion(Question):
         #R = ring("x,y", ZZ, lex)
         x,y = symbols('x,y')
         F = groebner([lhs-rhs,input_lhs-input_rhs], x, y, order='lex')
-        correct = is_zero_dimensional(F)
+        correct = not is_zero_dimensional(F)
         print(F)
         #correct = simplify(lhs-rhs+input_lhs-input_rhs)==0
         return(correct)
