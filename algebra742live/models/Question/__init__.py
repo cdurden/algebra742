@@ -105,7 +105,8 @@ class MultiPartQuestion(Question):
         for i,part in enumerate(params['parts']):
 #            subform = part['question'].form_class(formdata['part_{:d}'.format(i)])
 #            subform(formdata['part_{:d}'.format(i)])
-            getattr(F, 'part_{:d}'.format(i)).bind(formdata=formdata['part_{:d}'.format(i)])
+            getattr(F, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i))
+            getattr(F, 'part_{:d}'.format(i))(formdata['part_{:d}'.format(i)])
         print(formdata)
         print('building MultiPartQuestion form')
         print(self.form.data)
