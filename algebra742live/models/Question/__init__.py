@@ -104,13 +104,14 @@ class MultiPartQuestion(Question):
         #self.form = F()
         self.form = F(MultiDict(formdata))
         for i,part in enumerate(params['parts']):
-#            subform = part['question'].form_class(formdata['part_{:d}'.format(i)])
-#            subform(formdata['part_{:d}'.format(i)])
+            subform = part['question'].form_class(formdata['part_{:d}'.format(i)])
+            subform(MultiDict(formdata['part_{:d}'.format(i)]))
+            self.form['part_{:d}'] = subform
             #getattr(self.form, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i))
-            print(formdata['part_{:d}'.format(i)])
+            #print(formdata['part_{:d}'.format(i)])
             #getattr(self.form, 'part_{:d}'.format(i)).process(MultiDict(formdata['part_{:d}'.format(i)]))
             #getattr(F, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i)).process(MultiDict(formdata['part_{:d}'.format(i)]))
-            self.form['part_{:d}'.format(i)].process(formdata=MultiDict(formdata['part_{:d}'.format(i)]))
+            #self.form['part_{:d}'.format(i)].process(formdata=MultiDict(formdata['part_{:d}'.format(i)]))
         #self.form = F(MultiDict(formdata))
         #self.form.process(MultiDict(formdata))
         print(formdata)
