@@ -6,7 +6,7 @@ class EquationQuestion(Question):
         return([])
     def check_answer(self):
         params = self.params()
-        input_lhs, input_rhs = [parse_expr(_hs, transformations=transformations) for _hs in form.answer.data.split("=")]
+        input_lhs, input_rhs = [parse_expr(_hs, transformations=transformations) for _hs in self.form.answer.data.split("=")]
         lhs,rhs = [parse_expr(_hs, transformations=transformations) for _hs in params['equation'].split("=")]
         correct = simplify(lhs-rhs+input_lhs-input_rhs)==0
         return(correct)
