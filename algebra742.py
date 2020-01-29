@@ -705,6 +705,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(scripts)
         if request.method == 'POST':
             question.build_form(request.form)
+            form = question.form
             #question.build_form(request.form)
             #question.build_form()
             app.logger.error(form.validate())
@@ -715,7 +716,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             correct = question.check_answer()
         else:
             question.build_form(formdata)
-        form = question.form
+            form = question.form
         content = question.render_html()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
