@@ -98,6 +98,8 @@ def GenerateProblemsInFourQuadrants(assignment, filepath=None):
     doc.packages.append(Package('environ'))
     doc.packages.append(Package('tikz'))
     doc.packages.append(Package('graphicx'))
+    #doc.packages.append(NoEscape('\usepackage{tkz-euclide}'))
+    #doc.packages.append(Package('scalefnt'))
     doc.append(NoEscape(r'\usetikzlibrary{positioning}'))
     newenv = r"""
     \makeatletter
@@ -116,19 +118,22 @@ def GenerateProblemsInFourQuadrants(assignment, filepath=None):
     doc.append(NoEscape(newenv))
     #doc.packages.append(Package('multicol'))
     #doc.append(NoEscape(r'\begin{multicols}{2}'))
-    QuestionData = QuestionSets[assignment] 
+    #QuestionData = QuestionSets[assignment] 
+    QuestionData = QuestionSets[assignment]['Questions']
     for Question in QuestionData:
         ex = []
         for Parameters in Question['ParameterSetVariants']:
-            template = jenv.get_template(Question['Template'])
+            template = jenv.get_template(Question['LatexTemplate'])
             ex.append(template.render(**Parameters))
         template = latex_jinja_env.get_template('ProblemsInFourQuadrants.tex')
         out = template.render(ex1 = ex[0], ex2 = ex[1], ex3 = ex[2], ex4 = ex[3])
         doc.append(NoEscape(out))
     if filepath is None:
-        doc.generate_tex(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
+        #doc.generate_tex(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
+        doc.generate_pdf(filepath=os.path.abspath(os.path.join(os.path.dirname(__file__),'resources',assignment)))
     else:
-        doc.generate_tex(filepath=filepath)
+        #doc.generate_tex(filepath=filepath)
+        doc.generate_pdf(filepath=filepath)
 
 
 def GenerateArrowDiagram(filepath, Parameters):
@@ -177,11 +182,12 @@ assignment = 'LinearEquationsPart2Review'
 assignment = 'SlopeInterceptClassworkJanuary13'
 assignment = "LinearEquationsTest2"
 assignment = "ArithmeticSequencesJanuary22"
-GenerateAssignmentPdf(assignment)
+#GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
 #GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')
 #GenerateProblemsInFourQuadrants('AddEmUpIntegersAndEquations')
+GenerateProblemsInFourQuadrants('AddEmUpLinearEquations2')
 #letters = ['a','b','c','d']
 #signs = [('',''),('','-'),('-',''),('-','-')]
 #for q,Question in enumerate(QuestionSets[assignment]['Questions']):
