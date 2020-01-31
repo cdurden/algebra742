@@ -181,15 +181,15 @@ assignment = "TypesOfSlopeClasswork"
 assignment = 'LinearEquationsPart2Review'
 assignment = 'SlopeInterceptClassworkJanuary13'
 assignment = "ArithmeticSequencesJanuary22"
-assignment = "AddEmUpLinearEquations2"
 assignment = "LinearEquationsTest3"
 assignment = "LinearEquationsTest2Retry"
 assignment = "LinearEquationsTest2RetryLG1"
+assignment = "AddEmUpLinearEquations2"
 GenerateAssignmentPdf(assignment)
-assignment = "LinearEquationsTest2RetryLG4"
-GenerateAssignmentPdf(assignment)
-assignment = "LinearEquationsTest2RetryLG5"
-GenerateAssignmentPdf(assignment)
+#assignment = "LinearEquationsTest2RetryLG4"
+#GenerateAssignmentPdf(assignment)
+#assignment = "LinearEquationsTest2RetryLG5"
+#GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
 #GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')

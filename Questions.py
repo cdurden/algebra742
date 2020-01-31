@@ -127,7 +127,7 @@ QuestionSets = {
     },
     'AddEmUpLinearEquations2': {
         'ProvideImmediateFeedback': True,
-        'Title': 'January 28: Modeling with a graph and linear equation',
+        'Title': 'January 30: Modeling with a graph, table, and linear equation',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
