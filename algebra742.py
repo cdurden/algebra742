@@ -627,7 +627,7 @@ def scatterplot():
 
 @app.route('/Pdf/<assignment>', methods=['GET', 'POST'])
 def Pdf(lti=lti, assignment=None,q=None,i=None):
-    return send_file(os.path.join(app.config['RESOURCES_DIR'],assignment,".pdf"))
+    return send_file(os.path.join(app.config['RESOURCES_DIR'],"{:s}.pdf".format(assignment)))
 
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
