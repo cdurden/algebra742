@@ -180,14 +180,21 @@ assignment = 'SlopeInterceptChallengeJanuary13'
 assignment = "TypesOfSlopeClasswork"
 assignment = 'LinearEquationsPart2Review'
 assignment = 'SlopeInterceptClassworkJanuary13'
-assignment = "LinearEquationsTest2"
 assignment = "ArithmeticSequencesJanuary22"
-#GenerateAssignmentPdf(assignment)
+assignment = "AddEmUpLinearEquations2"
+assignment = "LinearEquationsTest3"
+assignment = "LinearEquationsTest2Retry"
+assignment = "LinearEquationsTest2RetryLG1"
+GenerateAssignmentPdf(assignment)
+assignment = "LinearEquationsTest2RetryLG4"
+GenerateAssignmentPdf(assignment)
+assignment = "LinearEquationsTest2RetryLG5"
+GenerateAssignmentPdf(assignment)
 #assignment = 'PracticeTest'
 #GenerateAssignmentPdf('PracticeTest')
 #GenerateAssignmentPdf('PracticeZeroPairsAndReciprocalPairs')
 #GenerateProblemsInFourQuadrants('AddEmUpIntegersAndEquations')
-GenerateProblemsInFourQuadrants('AddEmUpLinearEquations2')
+#GenerateProblemsInFourQuadrants('AddEmUpLinearEquations2')
 #letters = ['a','b','c','d']
 #signs = [('',''),('','-'),('-',''),('-','-')]
 #for q,Question in enumerate(QuestionSets[assignment]['Questions']):

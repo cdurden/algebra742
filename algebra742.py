@@ -4,7 +4,7 @@ import json
 import re
 #from flask_wtf.csrf import CsrfProtect
 from flask import Flask, url_for, redirect
-from flask import send_from_directory
+from flask import send_from_directory, send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
@@ -624,6 +624,10 @@ def scatterplot():
     FigureCanvasSVG(fig).print_svg(output)
     return Response(output.getvalue(), mimetype="image/svg+xml")
 
+
+@app.route('/Pdf/<assignment>', methods=['GET', 'POST'])
+def Pdf(lti=lti, assignment=None,q=None,i=None):
+    return send_file(os.path.join(app.config['RESOURCES_DIR'],assignment,".pdf"))
 
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
