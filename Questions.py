@@ -26,6 +26,31 @@ QuestionSets = {
 #        'Questions': [
 #        ],
 #    },
+    'Feb3CW': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'Feb 3 CW: Write equations of lines given 2 points',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+            {
+            'Type': 'Equation',
+            'Template': 'PlotQuestion.html',
+            'LatexTemplate': 'GridWithLine.tex',
+            'ParameterSetVariants': [
+                {'variables': ['x','y'],
+                 'Question': 'Write an equation of the line through the points (0,8) and (-1,10).',
+                    'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
+                    'grid_y': json.dumps([x[1] for x in gen_grid(-5,10,-5,10,1,1)]),
+                    'N': json.dumps(0),
+                    'dtickx': json.dumps(1),
+                    'dticky': json.dumps(1),
+                    'equation': 'y=2x+8',
+                    'draw': True,
+                },
+                ],
+            'SpaceAfter': '1.75cm',
+            },
+        ]
+    },
     'LinearEquationsTest3': {
         'ProvideImmediateFeedback': True,
         'Title': 'Linear Equations Test 3',
