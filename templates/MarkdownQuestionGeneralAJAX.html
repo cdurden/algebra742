@@ -229,6 +229,11 @@ $('.card img').click(rotateCard);
 
     <p><input type="submit" value="Submit"></p>
 </form>
+    {% if correct %}
+    <b>Your answer is correct!</b>
+    {% else %}
+    <b>Your answer is incorrect! Try again!</b>
+    {% endif %}
 {% if 'draw' in Parameters and Parameters['draw'] %}
 <script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ElementQueries.js') }}"></script>
