@@ -26,11 +26,13 @@ from Questions import *
 from werkzeug.datastructures import MultiDict
 from models.Question import MultiPartQuestion
 from models.Question.Sort import Sort
+from models.Question.EquationQuestion import EquationQuestion
 #from flask_wtf.csrf import CSRFError
 
 NewQuestionModelTypes = {
         'MultiPartQuestion': MultiPartQuestion,
         'Sort': Sort
+        'EquationQuestion': EquationQuestion
         }
 
 import io
