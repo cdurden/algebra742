@@ -178,7 +178,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
-                    'equation': 'y=-2x+8',
+                    'equation': 'y=-x+1',
                     'draw': True,
                 },
                 {'variables': ['x','y'],
