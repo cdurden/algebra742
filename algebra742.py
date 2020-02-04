@@ -31,8 +31,8 @@ from models.Question.EquationQuestion import EquationQuestion
 
 NewQuestionModelTypes = {
         'MultiPartQuestion': MultiPartQuestion,
-        'Sort': Sort
-        'EquationQuestion': EquationQuestion
+        'Sort': Sort,
+        'EquationQuestion': EquationQuestion,
         }
 
 import io
