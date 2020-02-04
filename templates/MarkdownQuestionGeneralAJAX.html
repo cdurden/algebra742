@@ -222,6 +222,9 @@ $('.card img').click(rotateCard);
 {% if QuestionData['Type'] in ['Sort', 'MultiPartQuestion', 'EquationQuestion'] %}
 <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     <div id="content">
+        {% if question_number is not none %}
+        {{ question_number }}.
+        {% endif %}
         {{ content | safe}}
     </div>
     {{ form.hidden_tag() }}
