@@ -28,13 +28,13 @@ QuestionSets = {
 #    },
     'Feb4CW': {
         'ProvideImmediateFeedback': True,
-        'Title': 'Feb 3 CW: Write equations of lines given 2 points',
+        'Title': 'Feb 4 CW: Write equations of lines given 2 points',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
             'Type': 'EquationQuestion',
-            'Template': 'Question.html',
-            'LatexTemplate': 'Grid.tex',
+         #   'Template': 'Question.html',
+         #   'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {'variables': ['x','y'],
                  'Question': 'Write an equation of the line through the points (0,8) and (-1,10).',
