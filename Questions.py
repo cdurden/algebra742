@@ -33,7 +33,7 @@ QuestionSets = {
         'Questions': [
             {
             'Type': 'EquationQuestion',
-            'Template': 'PlotQuestion.html',
+            'Template': 'Question.html',
             'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {'variables': ['x','y'],
