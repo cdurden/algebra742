@@ -219,7 +219,7 @@ $('.card img').click(rotateCard);
             {% endfor %}
         </ul>
     </div>
-{% if QuestionData['Type'] in ['Sort', 'MultiPartQuestion'] %}
+{% if QuestionData['Type'] in ['Sort', 'MultiPartQuestion', 'EquationQuestion'] %}
 <form action="{{ url_for('Assignment', assignment=assignment, q=q, i=i) }}" method="post" id="answer_form" name="answer_form" autocomplete="off">
     <div id="content">
         {{ content | safe}}
