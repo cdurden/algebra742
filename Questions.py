@@ -28,13 +28,13 @@ QuestionSets = {
 #    },
     'Feb4CW': {
         'ProvideImmediateFeedback': True,
-        'Title': 'Feb 4 CW: Write equations of lines given 2 points',
+        'Title': 'Feb 4 CW: Write equations using point-slope form',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
             'Type': 'EquationQuestion',
          #   'Template': 'Question.html',
-         #   'LatexTemplate': 'Grid.tex',
+            'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {'variables': ['x','y'],
                  'Question': 'Write an equation of the line through the points (0,8) and (-1,10).',
@@ -77,7 +77,7 @@ QuestionSets = {
                     'draw': True,
                 },
                 {'variables': ['x','y'],
-                 'Question': r'Write an equation of the line through the point (-3,-2) with slope \frac{1}{4}.',
+                 'Question': r'Write an equation of the line through the point (-3,-2) with slope $\frac{1}{4}$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-5,10,-5,10,1,1)]),
                     'N': json.dumps(2),
@@ -107,7 +107,7 @@ QuestionSets = {
                     'draw': True,
                 },
                 {'variables': ['x','y'],
-                 'Question': r'Write an equation of the line through the points (-\frac{1}{2},\frac{1}{2}) and (\frac{1}{4},\frac{3}{4}).',
+                 'Question': r'Write an equation of the line through the points $(-\frac{1}{2},\frac{1}{2})$ and $(\frac{1}{4},\frac{3}{4})$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-5,10,-5,10,1,1)]),
                     'N': json.dumps(2),
@@ -218,7 +218,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
-                    'equation': 'y=-2x+8',
+                    'equation': 'y=2x+4',
                     'draw': True,
                 },
                 {'variables': ['x','y'],
