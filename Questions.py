@@ -127,8 +127,8 @@ QuestionSets = {
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
-            'Type': 'Equation',
-            'Template': 'PlotQuestion.html',
+            'Type': 'EquationQuestion',
+            #'Template': 'PlotQuestion.html',
             'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {'variables': ['x','y'],
