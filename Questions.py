@@ -151,14 +151,6 @@ QuestionSets = {
                     'equation': 'y=-3/7(x-4)+5',
                     'draw': True,
                 },
-                ],
-            'SpaceAfter': '1.75cm',
-            },
-            {
-            'Type': 'Equation',
-            'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'Grid.tex',
-            'ParameterSetVariants': [
                 {'variables': ['x','y'],
                  'Question': 'Write an equation of the line through the points (-6,8) and (4,8).',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-8,10,-5,10,1,1)]),
@@ -169,14 +161,6 @@ QuestionSets = {
                     'equation': 'y=8',
                     'draw': True,
                 },
-                ],
-            'SpaceAfter': '1.75cm',
-            },
-            {
-            'Type': 'EquationQuestion',
-            #'Template': 'PlotQuestion.html',
-            'LatexTemplate': 'Grid.tex',
-            'ParameterSetVariants': [
                 {'variables': ['x','y'],
                  'Question': 'Write an equation of the line through the points (0,9) and (2,0).',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
