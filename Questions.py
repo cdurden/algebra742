@@ -1186,14 +1186,14 @@ QuestionSets = {
             'ParameterSetVariants': [
                 {
                 'Question': r'Find the rate of change in the table below',
-                'CorrectAnswer': '-1221',
+                'CorrectAnswer': '(6830-5545)/4',
                     'explanation': True,
                     'draw': True,
-                    'html': '<p><img src="/static/SelfAssessmentJanuary23/Q8.png"/></p><p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('1hS20Jn6esQ'),
+                    'html': '<p><img src="/static/SelfAssessmentJanuary23/Q7.png"/></p><p>Watch the video for help with this problem. <br/><b>Important Note:</b>You will need to close this window in Schoology and re-open Algebra742 a second time to get the video to play. If you cannot get the video to work in this page, use this <a target="_blank" href="https://youtu.be/{0:s}">link.</a></p><div class="video_iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/{0:s}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'.format('1hS20Jn6esQ'),
                 },
                 {
                 'Question': r'The average retail price in the spring of 2009 for a used car is shown in the table at the right. Find the rate of change. Explain the meaning of the rate of change.',
-                'CorrectAnswer': '(6830-5545)/4',
+                'CorrectAnswer': '-1221',
                     'explanation': True,
                     'draw': True,
                     'html': '<p><img src="/static/SelfAssessmentJanuary23/Q8.png"/></p>',
