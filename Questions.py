@@ -28,6 +28,41 @@ QuestionSets = {
 #    },
     'Feb4CW': {
         'ProvideImmediateFeedback': True,
+        'Title': 'Feb 6 CW: Rewrite equations in slope-intercept form',
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+            {
+                'Type': 'Equation',
+                'Template': 'Question.html',
+                'LatexTemplate': 'Grid.tex',
+                'ParameterSetVariants': [
+                    {'variables': ['x','y'],
+                     'Question': 'Rewrite the equation $y-5=x-2$ in slope-intercept form.',
+                        'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
+                        'grid_y': json.dumps([x[1] for x in gen_grid(-5,10,-5,10,1,1)]),
+                        'N': json.dumps(2),
+                        'dtickx': json.dumps(1),
+                        'dticky': json.dumps(1),
+                        'equation': 'y=x+3',
+                        'draw': True,
+                    },
+                    {'variables': ['x','y'],
+                     'Question': 'Rewrite the equation $y-4=x-2$ in standard form.',
+                        'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
+                        'grid_y': json.dumps([x[1] for x in gen_grid(-5,10,-5,10,1,1)]),
+                        'N': json.dumps(2),
+                        'dtickx': json.dumps(1),
+                        'dticky': json.dumps(1),
+                        'equation': 'x-y=-3',
+                        'draw': True,
+                    },
+                ],
+                'SpaceAfter': '1.75cm',
+            },
+        ]
+    },
+    'Feb4CW': {
+        'ProvideImmediateFeedback': True,
         'Title': 'Feb 4 CW: Write equations using point-slope form',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
@@ -939,7 +974,7 @@ QuestionSets = {
             'LatexTemplate': 'Grid.tex',
             'ParameterSetVariants': [
                 {
-                 'question': 'Find the 100th term of the arithmetic sequence $(2,4,6,8, \ldots)$.',
+                 'Question': 'Find the 100th term of the arithmetic sequence $(2,4,6,8, \ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
@@ -954,7 +989,7 @@ QuestionSets = {
                     'CorrectAnswer': '200',
                 },
                 {
-                 'question': 'Find the 50th term of the arithmetic sequence shown in the graph.',
+                 'Question': 'Find the 50th term of the arithmetic sequence shown in the graph.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
@@ -969,7 +1004,7 @@ QuestionSets = {
                     'CorrectAnswer': '101',
                 },
                 {
-                 'question': 'Find the 30th term of the arithmetic sequence shown in the graph.',
+                 'Question': 'Find the 30th term of the arithmetic sequence shown in the graph.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
@@ -984,7 +1019,7 @@ QuestionSets = {
                     'CorrectAnswer': '114',
                 },
                 {
-                 'question': 'Find the 20th term of the arithmetic sequence $(-5,-1,3,7,\ldots)$.',
+                 'Question': 'Find the 20th term of the arithmetic sequence $(-5,-1,3,7,\ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
@@ -999,7 +1034,7 @@ QuestionSets = {
                     'CorrectAnswer': '71',
                 },
                 {
-                 'question': 'Find the 200th term of the arithmetic sequence $(3,0,-3,-6, \ldots)$.',
+                 'Question': 'Find the 200th term of the arithmetic sequence $(3,0,-3,-6, \ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4],
@@ -1014,7 +1049,7 @@ QuestionSets = {
                     'CorrectAnswer': '-594',
                 },
                 {
-                 'question': 'Find the 100th term of the arithmetic sequence $(10,5,0,-5,-10, \ldots)$.',
+                 'Question': 'Find the 100th term of the arithmetic sequence $(10,5,0,-5,-10, \ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,1,1)]),
                     'x': [1,2,3,4,5],
@@ -1029,7 +1064,7 @@ QuestionSets = {
                     'CorrectAnswer': '-485',
                 },
                 {
-                 'question': r'Find the 100th term of the arithmetic sequence $(\frac{3}{2},\frac{1}{2},-\frac{1}{2},-\frac{3}{2},-\frac{5}{2}, \ldots)$.',
+                 'Question': r'Find the 100th term of the arithmetic sequence $(\frac{3}{2},\frac{1}{2},-\frac{1}{2},-\frac{3}{2},-\frac{5}{2}, \ldots)$.',
                     'grid_x': json.dumps([x[0] for x in gen_grid(-1,8,-10,10,0.5,0.5)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-1,8,-10,10,0.5,0.5)]),
                     'x': [1,2,3,4,5],
