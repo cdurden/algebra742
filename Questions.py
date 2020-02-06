@@ -1185,7 +1185,7 @@ QuestionSets = {
             'LatexTemplate': 'Question.tex',
             'ParameterSetVariants': [
                 {
-                'Question': r'',
+                'Question': r'Find the rate of change in the table below',
                 'CorrectAnswer': '(6830-5545)/4',
                     'explanation': True,
                     'draw': True,
@@ -1193,7 +1193,7 @@ QuestionSets = {
                 },
                 {
                 'Question': r'The average retail price in the spring of 2009 for a used car is shown in the table at the right. Find the rate of change. Explain the meaning of the rate of change.',
-                'CorrectAnswer': '1221',
+                'CorrectAnswer': '-1221',
                     'explanation': True,
                     'draw': True,
                     'html': '<p><img src="/static/SelfAssessmentJanuary23/Q8.png"/></p>',
