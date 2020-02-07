@@ -187,6 +187,7 @@ assignment = "LinearEquationsTest2RetryLG1"
 assignment = "AddEmUpLinearEquations2"
 assignment = "Feb3CW"
 assignment = "Feb4CW"
+assignment = "Feb7HW"
 GenerateAssignmentPdf(assignment)
 #assignment = "LinearEquationsTest2RetryLG4"
 #GenerateAssignmentPdf(assignment)

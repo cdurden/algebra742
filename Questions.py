@@ -26,9 +26,9 @@ QuestionSets = {
 #        'Questions': [
 #        ],
 #    },
-    'Feb4CW': {
+    'Feb7HW': {
         'ProvideImmediateFeedback': True,
-        'Title': 'Feb 6 CW: Rewrite equations in slope-intercept form',
+        'Title': 'Feb 7 HW: Rewrite equations in slope-intercept form',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
@@ -47,13 +47,23 @@ QuestionSets = {
                         'draw': True,
                     },
                     {'variables': ['x','y'],
-                     'Question': 'Rewrite the equation $y-4=x-2$ in standard form.',
+                     'Question': 'Rewrite the equation $y-4=2(x-3)$ in slope-intercept form.',
                         'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
                         'grid_y': json.dumps([x[1] for x in gen_grid(-5,10,-5,10,1,1)]),
                         'N': json.dumps(2),
                         'dtickx': json.dumps(1),
                         'dticky': json.dumps(1),
-                        'equation': 'x-y=-3',
+                        'equation': 'y=2x-2',
+                        'draw': True,
+                    },
+                    {'variables': ['x','y'],
+                     'Question': r'Rewrite the equation $y-3=\frac{1}{2}(x-4)$ in slope-intercept form.',
+                        'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
+                        'grid_y': json.dumps([x[1] for x in gen_grid(-5,10,-5,10,1,1)]),
+                        'N': json.dumps(2),
+                        'dtickx': json.dumps(1),
+                        'dticky': json.dumps(1),
+                        'equation': 'y=1/2x+1',
                         'draw': True,
                     },
                 ],
