@@ -257,7 +257,7 @@ QuestionSets = {
                             ('i', 'Divide both sides by the GCF of the coefficients'),
                             ('j', 'Multiply/divide both sides by -1'),
                         ],
-                        'CorrectAnswer': {'a','b','h'},
+                        'CorrectAnswer': {'a','b','e','h','j'},
                     },
                     {
                         'Question': "What steps would you take to rewrite the equation $-2x+5y = 2$ in standard form? Select all that apply.",
