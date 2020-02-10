@@ -33,10 +33,10 @@ QuestionSets = {
         'Questions': [
             {
                 'Type': 'SelectMultiple',
-                'Template': 'Empty.html',
+                'Template': 'Question.html',
                 'ParameterSetVariants': [
                     {
-                        'question': "What steps would you take to rewrite the equation $y-5 = 3(x-2)$ in point-slope form? Select all that apply.",
+                        'Question': "What steps would you take to rewrite the equation $y-5 = 3(x-2)$ in point-slope form? Select all that apply.",
                         'image': None,
                         'choices': [
                             ('a', 'Distribute.'),
