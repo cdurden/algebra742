@@ -48,7 +48,7 @@ QuestionSets = {
                             ('g', 'Eliminate a term containing $y$ from the RHS'),
                             ('h', 'Combine like terms.'),
                         ],
-                        'CorrectAnswer': None,
+                        'CorrectAnswer': ['a','b','h'],
                     },
                 ],
                 'SpaceAfter': '4cm',
