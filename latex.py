@@ -71,6 +71,11 @@ def GenerateAssignmentPdf(assignment, filepath=None):
                     doc.append(NoEscape(r'\item\adjustbox{valign=t}{'+out+'}'))
                     #enum.add_item(NoEscape(Question['Question']))
                     #doc.append("\n\n")
+                    if Question['Type'] == 'SelectMultiple':
+                        with doc.create(Enumerate(enumeration_symbol=r"\alph*)")) as enumb:
+                            for choice in Parameters['choices']:
+                                #doc.append(NoEscape(r'\item '+prompt))
+                                enumb.add_item(NoEscape(choice[1]))
                     if Question['Type'] == 'Matching':
                         with doc.create(Enumerate(enumeration_symbol=r"\alph*)")) as enumb:
                             for prompt in Parameters['prompts']:
@@ -188,6 +193,7 @@ assignment = "AddEmUpLinearEquations2"
 assignment = "Feb3CW"
 assignment = "Feb4CW"
 assignment = "Feb7HW"
+assignment = "Feb10CW"
 GenerateAssignmentPdf(assignment)
 #assignment = "LinearEquationsTest2RetryLG4"
 #GenerateAssignmentPdf(assignment)

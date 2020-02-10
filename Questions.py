@@ -77,8 +77,32 @@ QuestionSets = {
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
+                'Type': 'Equation',
+                'Template': 'Question.html',
+                'LatexTemplate': 'Question.tex',
+                'ParameterSetVariants': [
+                    {'variables': ['x','y'],
+                     'Question': 'Solve the equation $x+5=15$.',
+                        'equation': 'x=10',
+                        'draw': True,
+                    },
+                    {'variables': ['x','y'],
+                     'Question': 'Solve the equation $2x-5=25$.',
+                        'equation': 'x=15',
+                        'draw': True,
+                    },
+                    {'variables': ['x','y'],
+                     'Question': 'Solve the equation $2(x+3)=14$.',
+                        'equation': 'x=4',
+                        'draw': True,
+                    },
+                ],
+                'SpaceAfter': '2.75cm',
+            },
+            {
                 'Type': 'SelectMultiple',
                 'Template': 'Question.html',
+                'LatexTemplate': 'Question.tex',
                 'ParameterSetVariants': [
                     {
                         'Question': "What steps would you take to rewrite the equation $y = 2x+5+6$ in point-slope form? Select all that apply.",
@@ -149,12 +173,12 @@ QuestionSets = {
                         'CorrectAnswer': {'i'},
                     },
                 ],
-                'SpaceAfter': '4cm',
+                'SpaceAfter': '1cm',
             },
             {
                 'Type': 'Equation',
                 'Template': 'Question.html',
-                'LatexTemplate': 'Grid.tex',
+                'LatexTemplate': 'Question.tex',
                 'ParameterSetVariants': [
                     {'variables': ['x','y'],
                      'Question': 'Rewrite the equation $y-1=3(x+5)$ in slope-intercept form.',
@@ -177,11 +201,12 @@ QuestionSets = {
                         'draw': True,
                     },
                 ],
-                'SpaceAfter': '1.75cm',
+                'SpaceAfter': '2.75cm',
             },
             {
                 'Type': 'SelectMultiple',
                 'Template': 'Question.html',
+                'LatexTemplate': 'Question.tex',
                 'ParameterSetVariants': [
                     {
                         'Question': "What steps would you take to rewrite the equation $y+2+3 = 2x$ in point-slope form? Select all that apply.",
@@ -252,12 +277,12 @@ QuestionSets = {
                         'CorrectAnswer': {'j'},
                     },
                 ],
-                'SpaceAfter': '4cm',
+                'SpaceAfter': '1cm',
             },
             {
                 'Type': 'Equation',
                 'Template': 'Question.html',
-                'LatexTemplate': 'Grid.tex',
+                'LatexTemplate': 'Question.tex',
                 'ParameterSetVariants': [
                     {'variables': ['x','y'],
                      'Question': 'Rewrite the equation $y-6=2x-1$ in slope-intercept form.',
@@ -290,7 +315,7 @@ QuestionSets = {
                         'draw': True,
                     },
                 ],
-                'SpaceAfter': '1.75cm',
+                'SpaceAfter': '2.75cm',
             },
         ],
     },
