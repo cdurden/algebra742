@@ -105,7 +105,7 @@ QuestionSets = {
                 'LatexTemplate': 'Question.tex',
                 'ParameterSetVariants': [
                     {
-                        'Question': "What steps would you take to rewrite the equation $y = 2x+5+6$ in point-slope form? Select all that apply.",
+                        'Question': "What steps would you take to rewrite the equation $y = 2x+5+6$ in slope-intercept form? Select all that apply.",
                         'image': None,
                         'choices': [
                             ('a', 'Distribute.'),
@@ -122,7 +122,7 @@ QuestionSets = {
                         'CorrectAnswer': {'h'},
                     },
                     {
-                        'Question': "What steps would you take to rewrite the equation $y-5 = 3(x-2)$ in point-slope form? Select all that apply.",
+                        'Question': "What steps would you take to rewrite the equation $y-5 = 3(x-2)$ in slope-intercept form? Select all that apply.",
                         'image': None,
                         'choices': [
                             ('a', 'Distribute.'),
@@ -209,7 +209,7 @@ QuestionSets = {
                 'LatexTemplate': 'Question.tex',
                 'ParameterSetVariants': [
                     {
-                        'Question': "What steps would you take to rewrite the equation $y+2+3 = 2x$ in point-slope form? Select all that apply.",
+                        'Question': "What steps would you take to rewrite the equation $y+2+3 = 2x$ in slope-intercept form? Select all that apply.",
                         'image': None,
                         'choices': [
                             ('a', 'Distribute.'),
@@ -226,7 +226,7 @@ QuestionSets = {
                         'CorrectAnswer': {'b','h'},
                     },
                     {
-                        'Question': "What steps would you take to rewrite the equation $y = 3(x-2)$ in point-slope form? Select all that apply.",
+                        'Question': "What steps would you take to rewrite the equation $y = 3(x-2)$ in slope-intercept form? Select all that apply.",
                         'image': None,
                         'choices': [
                             ('a', 'Distribute.'),
