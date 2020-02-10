@@ -153,7 +153,7 @@ QuestionSets = {
                             ('i', 'Divide both sides by the GCF of the coefficients'),
                             ('j', 'Multiply/divide both sides by -1'),
                         ],
-                        'CorrectAnswer': {'b','g'},
+                        'CorrectAnswer': {'b','g','h'},
                     },
                     {
                         'Question': "What steps would you take to rewrite the equation $2x-6y = 2$ in standard form? Select all that apply.",
