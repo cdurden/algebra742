@@ -17,6 +17,8 @@ Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2Review
 Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2ReviewPart5') }}">Slope Olympics Round 6</a><br/>
 Jan 29 CW: <a href="{{ url_for('Assignment', assignment='ModelingPracticeJanuary29') }}">Modeling with a graph and linear equation</a><br/>
 -->
+{% set assignment='Feb10HW' %}
+Feb 10 HW: <a href="{{ url_for('Assignment', assignment=assignment) }}">Rewrite an equation in slope-intercept and standard form</a> (<a href="{{ url_for('Pdf', assignment=assignment) }}">pdf</a>)<br/>
 {% set assignment='Feb10CW' %}
 Feb 10 CW: <a href="{{ url_for('Assignment', assignment=assignment) }}">Rewrite an equation in slope-intercept and standard form</a> (<a href="{{ url_for('Pdf', assignment=assignment) }}">pdf</a>)<br/>
 {% set assignment='Feb7HW' %}
