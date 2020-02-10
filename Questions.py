@@ -26,6 +26,35 @@ QuestionSets = {
 #        'Questions': [
 #        ],
 #    },
+    'Feb10CW': {
+        'ProvideImmediateFeedback': True,
+        'Title': 'Feb 10 CW: Rewrite an equation in slope-intercept or standard form', 
+        'LearningGoal': r'\hrulefill \\ \hrulefill',
+        'Questions': [
+            {
+                'Type': 'SelectMultiple',
+                'Template': 'Empty.html',
+                'ParameterSetVariants': [
+                    {
+                        'question': "What steps would you take to rewrite the equation $y-5 = 3(x-2)$ in point-slope form? Select all that apply.",
+                        'image': None,
+                        'choices': [
+                            ('a', 'Distribute.'),
+                            ('b', 'Eliminate a constant term from the LHS'),
+                            ('c', 'Eliminate a constant term from the RHS'),
+                            ('d', 'Eliminate a term containing $x$ from the LHS'),
+                            ('e', 'Eliminate a term containing $x$ from the RHS'),
+                            ('f', 'Eliminate a term containing $y$ from the LHS'),
+                            ('g', 'Eliminate a term containing $y$ from the RHS'),
+                            ('h', 'Combine like terms.'),
+                        ],
+                        'CorrectAnswer': None,
+                    },
+                ],
+                'SpaceAfter': '4cm',
+            },
+        ],
+    },
     'Feb7HW': {
         'ProvideImmediateFeedback': True,
         'Title': 'Feb 7 HW: Rewrite equations in slope-intercept form',
