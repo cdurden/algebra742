@@ -173,7 +173,7 @@ QuestionSets = {
                         'CorrectAnswer': {'i'},
                     },
                 ],
-                'SpaceAfter': '1cm',
+                'SpaceAfter': '0cm',
             },
             {
                 'Type': 'Equation',
@@ -277,7 +277,7 @@ QuestionSets = {
                         'CorrectAnswer': {'j'},
                     },
                 ],
-                'SpaceAfter': '1cm',
+                'SpaceAfter': '0cm',
             },
             {
                 'Type': 'Equation',
