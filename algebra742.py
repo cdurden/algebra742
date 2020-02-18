@@ -1190,7 +1190,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             F = groebner([lhs-rhs,input_lhs-input_rhs], x, y, order='lex')
             correct = not is_zero_dimensional(F)
             print(F)
-        except IOError:
+        except AttributeError:
             correct = False
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
