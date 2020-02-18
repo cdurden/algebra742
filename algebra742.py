@@ -1176,6 +1176,19 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             correct = False
         answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['EquivalentEquation']:
+        from sympy import simplify, groebner, symbols
+        from sympy.polys.polytools import is_zero_dimensional
+        try:
+            input_lhs, input_rhs = [parse_expr(_hs, transformations=transformations) for _hs in self.form.answer.data.split("=")]
+            lhs,rhs = [parse_expr(_hs, transformations=transformations) for _hs in Parameters['equation'].split("=")]
+            x,y = symbols('x,y')
+            F = groebner([lhs-rhs,input_lhs-input_rhs], x, y, order='lex')
+            correct = not is_zero_dimensional(F)
+            print(F)
+        except:
+            correct = False
+        answer = json.dumps(form.data)
     if QuestionData['Type'] in ['SolveEquationGuided', 'SetUpAndSolveEquationGuided']:
         if QuestionData['Type'] == 'SetUpAndSolveEquationGuided':
             written = False
