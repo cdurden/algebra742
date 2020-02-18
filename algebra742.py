@@ -1180,6 +1180,10 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         from sympy import simplify, groebner, symbols
         from sympy.polys.polytools import is_zero_dimensional
         try:
+            form = SingleEquationForm(data=formdata)
+        except:
+            form = SingleEquationForm()
+        try:
             input_lhs, input_rhs = [parse_expr(_hs, transformations=transformations) for _hs in self.form.answer.data.split("=")]
             lhs,rhs = [parse_expr(_hs, transformations=transformations) for _hs in Parameters['equation'].split("=")]
             x,y = symbols('x,y')
