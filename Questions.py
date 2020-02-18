@@ -32,29 +32,6 @@ QuestionSets = {
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
             {
-                'Type': 'SelectMultiple',
-                'Template': 'Question.html',
-                'LatexTemplate': 'Question.tex',
-                'ParameterSetVariants': [
-                    {
-                        'Question': "Which of the following ordered pairs are solutions to the equation $y=3x+2$? Select all that apply.",
-                        'image': None,
-                        'choices': [
-                            ('a', '$(0,2)$'),
-                            ('b', '$(2,0)$'),
-                            ('c', '$(1,5)$'),
-                            ('d', '$(5,1)$'),
-                            ('e', '$(2,8)$'),
-                            ('f', '$(8,2)$'),
-                            ('g', '$(6,20)$'),
-                            ('h', '$(10,40)$'),
-                        ],
-                        'CorrectAnswer': {'a','c','e','g'},
-                    },
-                ],
-                'SpaceAfter': '0cm',
-            },
-            {
                 'Type': 'Equation',
                 'Template': 'Question.html',
                 'LatexTemplate': 'Grid.tex',
@@ -120,6 +97,29 @@ QuestionSets = {
         'Title': 'Feb 18 CW: Write the equation of a line that is parallel or perpendicular to a given line',
         'LearningGoal': r'\hrulefill \\ \hrulefill',
         'Questions': [
+            {
+                'Type': 'SelectMultiple',
+                'Template': 'PlotQuestion.html',
+                'LatexTemplate': 'Question.tex',
+                'ParameterSetVariants': [
+                    {
+                        'Question': "Which of the following ordered pairs are solutions to the equation $y=3x+2$? Select all that apply.",
+                        'image': None,
+                        'choices': [
+                            ('a', '$(0,2)$'),
+                            ('b', '$(2,0)$'),
+                            ('c', '$(1,5)$'),
+                            ('d', '$(5,1)$'),
+                            ('e', '$(2,8)$'),
+                            ('f', '$(8,2)$'),
+                            ('g', '$(6,20)$'),
+                            ('h', '$(10,40)$'),
+                        ],
+                        'CorrectAnswer': {'a','c','e','g'},
+                    },
+                ],
+                'SpaceAfter': '0cm',
+            },
             {
             'Type': 'EquivalentEquation',
             'Template': 'PlotQuestion.html',
