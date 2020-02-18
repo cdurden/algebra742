@@ -1184,7 +1184,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             form = SingleEquationForm()
         try:
-            input_lhs, input_rhs = [parse_expr(_hs, transformations=transformations) for _hs in self.form.answer.data.split("=")]
+            input_lhs, input_rhs = [parse_expr(_hs, transformations=transformations) for _hs in form.answer.data.split("=")]
             lhs,rhs = [parse_expr(_hs, transformations=transformations) for _hs in Parameters['equation'].split("=")]
             x,y = symbols('x,y')
             F = groebner([lhs-rhs,input_lhs-input_rhs], x, y, order='lex')
