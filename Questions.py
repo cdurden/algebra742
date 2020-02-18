@@ -131,6 +131,8 @@ QuestionSets = {
                     'y': [8,10],
                     'grid_x': json.dumps([x[0] for x in gen_grid(-5,10,-5,10,1,1)]),
                     'grid_y': json.dumps([x[1] for x in gen_grid(-5,10,-5,10,1,1)]),
+                    'show_points': True,
+                    'hide_line': False,
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
