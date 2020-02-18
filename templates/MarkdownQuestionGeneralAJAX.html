@@ -555,7 +555,7 @@ Explanation:
 {{ form.answers(autofocus=true, style="font-size: 18pt; height: 40px; width:640px; display: none;") }}
 </p>
 {% endif %}
-{% if QuestionData['Type'] in ['GenericEquality', 'Numerical','Simplify', 'Expression','OpenResponse', 'Equation'] %}
+{% if QuestionData['Type'] in ['GenericEquality', 'Numerical','Simplify', 'Expression','OpenResponse', 'Equation', 'EquivalentEquation'] %}
     {% if QuestionData['Template'] in ['PlotQuestion.html', 'PlotLines.html'] %}
     <div id="myDiv"></div>
     {% endif %}
