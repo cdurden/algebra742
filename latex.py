@@ -40,14 +40,14 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     doc.append(NoEscape('\setlength\itemsep{-2cm}'))
     QuestionData = QuestionSets[assignment]['Questions'] 
     with doc.create(Section(QuestionSets[assignment]['Title'],numbering=False)):
+#    \begin{center}
+#    \fbox{\fbox{\parbox{5.5in}{\centering
+#    Answer the questions in the spaces provided on the
+#    question sheets. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.
+#}}}
+#    \end{center}
+#    \vspace{0.1in}
         doc.append(NoEscape(r'''
-    \begin{center}
-    \fbox{\fbox{\parbox{5.5in}{\centering
-    Answer the questions in the spaces provided on the
-    question sheets. Be sure to \textbf{show your work to earn full credit.} You \textbf{MAY} use a calculator to help you. If you run out of room for an answer, raise your hand to ask for an extra piece of paper.
-}}}
-    \end{center}
-    \vspace{0.1in}
     \makebox[\textwidth]{Name and period:\enspace\hrulefill} '''))
         #doc.append(NoEscape(r'\textbf{Learning Goal: }'+QuestionSets[assignment]['LearningGoal']+''))
         doc.append(NoEscape(r'\begin{multicols}{2}'))
@@ -196,6 +196,7 @@ assignment = "Feb7HW"
 assignment = "Feb10CW"
 assignment = "Feb12HW"
 assignment = "Feb18CW"
+assignment = "Feb19CW"
 #assignment = "Feb10HW"
 GenerateAssignmentPdf(assignment)
 #assignment = "LinearEquationsTest2RetryLG4"
