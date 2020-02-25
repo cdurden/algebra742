@@ -166,6 +166,16 @@ class TarsiaForm(Form):
     #answers = FieldList(SelectField('answers'))
     answers = StringField('answers')
 
+class CarChoiceForm(Form):
+
+    """ Add data from Form
+
+    :param Form:
+    """
+    #answers = FieldList(SelectField('answers'))
+    answers = StringField('answers')
+
+
 class SortableForm(Form):
 
     """ Add data from Form

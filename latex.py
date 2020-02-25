@@ -35,6 +35,8 @@ def GenerateAssignmentPdf(assignment, filepath=None):
     doc.packages.append(Package('adjustbox'))
     #doc.packages.append(Package('tikz'))
     doc.packages.append(NoEscape('\usepackage{tkz-euclide}'))
+    doc.packages.append(NoEscape('\usepackage{pgfplots}'))
+    doc.append(NoEscape(r'\usetikzlibrary{arrows.meta}'))
     doc.packages.append(Package('amsmath'))
     doc.packages.append(Package('scalefnt'))
     doc.append(NoEscape('\setlength\itemsep{-2cm}'))
@@ -197,6 +199,7 @@ assignment = "Feb10CW"
 assignment = "Feb12HW"
 assignment = "Feb18CW"
 assignment = "Feb19CW"
+assignment = "LinearEquationsTest4"
 #assignment = "Feb10HW"
 GenerateAssignmentPdf(assignment)
 #assignment = "LinearEquationsTest2RetryLG4"

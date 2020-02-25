@@ -17,6 +17,8 @@ Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2Review
 Jan 14: <a href="{{ url_for('Assignment', assignment='LinearEquationsPart2ReviewPart5') }}">Slope Olympics Round 6</a><br/>
 Jan 29 CW: <a href="{{ url_for('Assignment', assignment='ModelingPracticeJanuary29') }}">Modeling with a graph and linear equation</a><br/>
 -->
+{% set assignment='LinearEquationsTest4RetryPractice' %}
+Feb 25 CW: <a href="{{ url_for('Assignment', assignment=assignment) }}">Linear Equations Test 4 Retry Practice</a> (<a href="{{ url_for('Pdf', assignment=assignment) }}">pdf</a>)<br/>
 {% set assignment='FlagProject' %}
 Flag Project: <a href="{{ url_for('Assignment', assignment=assignment) }}">Submit your flag project here</a> (<a href="{{ url_for('Pdf', assignment=assignment) }}">pdf</a>)<br/>
 {% set assignment='Feb18HW' %}

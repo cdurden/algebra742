@@ -2,12 +2,28 @@
 {{ Question }}\\
 
 %\vspace{4cm}
-\begin{tikzpicture}[font=\small,scale=0.35]
-   \tikzstyle{every node}=[font=\small]
-   \tkzInit[xmax=10,ymax=10,xmin=-10,ymin=-10]
-   \tkzGrid
-   \tkzAxeXY
-%   \draw[ thick,latex-latex] (-1,4) -- (4,-6) node[anchor=south west] {$a$}; % two points for drawing 2x+y=2
-%  \tkzText[above](0,6.75){Desired Output}
-  \end{tikzpicture}
+%\begin{tikzpicture}
+\begin{tikzpicture}[font=\small,scale=0.75]
+\begin{axis}[
+  axis lines=middle,
+  axis line style={Stealth-Stealth,very thick},
+  xmin=-8,xmax=8,ymin=-8,ymax=8,
+  xtick distance=1,
+  ytick distance=1,
+%  xlabel=$x$,
+%  ylabel=$y$,
+%  title={Wonderful plot},
+  grid=major,
+  grid style={thin,densely dotted,black!20}]
+%\addplot [Latex-Latex,domain=-5:3,samples=2] {x*2/3} node[right]{$a$};
+\end{axis}
+\end{tikzpicture}
+%\begin{tikzpicture}[font=\small,scale=0.25]
+%   \tikzstyle{every node}=[font=\small]
+%   \tkzInit[xmax=8,ymax=8,xmin=-8,ymin=-8,minor tick num=2]
+%   \tkzGrid
+%   \tkzAxeXY
+%%   \draw[ thick,latex-latex] (-1,4) -- (4,-6) node[anchor=south west] {$a$}; % two points for drawing 2x+y=2
+%%  \tkzText[above](0,6.75){Desired Output}
+%  \end{tikzpicture}
 \end{minipage}
