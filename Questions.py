@@ -116,7 +116,7 @@ QuestionSets = {
                     'N': json.dumps(2),
                     'dtickx': json.dumps(1),
                     'dticky': json.dumps(1),
-                    'equation': 'y=6/4*(x-1)',
+                    'equation': 'y-3=6/4*(x-1)',
                     'rhs': '6/4*(x-1)',
                     'draw': True,
                 },
