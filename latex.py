@@ -200,6 +200,7 @@ assignment = "Feb12HW"
 assignment = "Feb18CW"
 assignment = "Feb19CW"
 assignment = "LinearEquationsTest4"
+assignment = "LinearEquationsTest4RetryPractice"
 #assignment = "Feb10HW"
 GenerateAssignmentPdf(assignment)
 #assignment = "LinearEquationsTest2RetryLG4"
