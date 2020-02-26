@@ -67,7 +67,7 @@ QuestionSets = {
                     'draw': True,
                 },
                 {'variables': ['x','y'],
-                    'Question': 'Write an equation of the line through the point $(5,4)$ with slope $0$. Write the equation in slope-intercept form, and simplify it completely.',
+                    'Question': 'Write an equation of the line through the point $(5,4)$ with slope $0$. Write the equation in slope-intercept form, and simplify it completely. (This problem will tell you that your answer is incorrect. The correct answer is $y=4$)',
                     'x': [-8,8],
                     'y': [4,4],
                     'labels': ['A','B'],
