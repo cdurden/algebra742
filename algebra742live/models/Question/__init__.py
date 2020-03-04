@@ -8,7 +8,7 @@ from wtforms import StringField, FormField
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
 from .. import SinglyLinkedList, get_or_create
-from werkzeug.datastructures import MultiDict
+from werkzeug.datastructures import MultiDict, ImmutableMultiDict
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
 
@@ -103,7 +103,8 @@ class MultiPartQuestion(Question):
         print(formdata)
         #self.form.process(MultiDict(formdata))
         #self.form = F()
-        self.form = F(MultiDict(formdata))
+        #self.form = F(MultiDict(formdata))
+        self.form = F(data=MultiDict(formdata))
         print(self.form.data)
         self.form.validate()
         print(self.form.errors)
