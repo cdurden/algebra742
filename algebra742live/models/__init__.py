@@ -188,7 +188,7 @@ class QuestionDigraphGame(Game):
         return(self.active_question.render_html())
 
     def next(self):
-        self.active_node = self.question_digraph.successors(self.active_node)[0]
+        self.active_node = self.question_digraph.successors_iter(self.active_node).next()
         self.active_question = question_digraph.nodes[self.active_node]['_question_obj']
 
     def input(self, player, data, update_game_callback):
