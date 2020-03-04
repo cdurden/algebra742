@@ -722,6 +722,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         app.logger.error(scripts)
         if request.method == 'POST':
             print(request.form)
+            print(type(request.form))
             question.build_form(request.form)
             form = question.form
             #question.build_form(request.form)
@@ -735,6 +736,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
             answer = json.dumps(form.data)
         else:
             print(formdata)
+            print(type(formdata))
             question.build_form(formdata)
             form = question.form
         content = question.render_html()
