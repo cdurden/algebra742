@@ -9,6 +9,7 @@ from . import config
 from models import db
 import json
 from networkx.drawing.nx_pydot import read_dot
+import os
 
 from sqlalchemy_utils import create_database, database_exists
 
