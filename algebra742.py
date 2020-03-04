@@ -720,6 +720,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         scripts = question.scripts()
         app.logger.error(scripts)
         if request.method == 'POST':
+            print(request.form)
             question.build_form(request.form)
             form = question.form
             #question.build_form(request.form)
