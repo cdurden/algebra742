@@ -49,12 +49,6 @@ class Game(object):
         #random.shuffle(self.deck)
         #for position,card in enumerate(self.deck):
         #    card.position = position
-    def matched_cards(self):
-        matched_cards = []
-        for player in self.players:
-            matched_cards += player.matched_cards
-        return(matched_cards)
-
     def get_player(self, session_id):
         for player in self.players:
             if player.session_id == session_id:
@@ -66,14 +60,6 @@ class Game(object):
 
     def activate_next_player(self):
         self.active_player = (self.active_player+1)%len(self.players)
-
-    def match_is_flipped(self):
-        if len(set(self.flipped_cards)) != 2:
-            return(False)
-        else:
-            print(self.flipped_cards[0]);
-            print(self.flipped_cards[1]);
-            return(self.matches[self.flipped_cards[0].i]==self.matches[self.flipped_cards[1].i])
 
     def input(self, player, data, update_game_callback):
         if player not in self.players:
@@ -99,25 +85,6 @@ class Game(object):
                 else:
                     player.incorrect += 1
 
-    def flip_card(self, player, card_position, input_callback):
-        try:
-            card = self.deck[card_position]
-        except IndexError:
-            raise RequestDenied("There is no card at that position in the deck")
-        if player not in self.players:
-            raise KeyError("player is not in the game.")
-        #if type(player) != int:
-        #    raise TypeError("player must be an integer. Got type {:s}.".format(type(player)))
-        if card not in self.deck:
-            raise TypeError("card must in the deck.")
-        """Assign color to card in solution dict"""
-        if self.player_is_active(player) and len(self.flipped_cards) < 2 and card not in self.matched_cards() and card not in self.flipped_cards: 
-            self.flipped_cards.append(card)
-            if len(self.flipped_cards) == 2:
-                input_callback()
-        else:
-            raise RequestDenied("Player {:s} tried to flip a{:s} card when player {:s} was active and {:d} cards were already flipped".format(player.session_id, ' matched' if card in self.matched_cards() else (' flipped' if card in self.flipped_cards else ''), self.players[self.active_player].session_id, len(self.flipped_cards)))
-
     def add_player(self, session_id, user):
         """Add playername to player array"""
         player = Player(session_id, user)
@@ -138,10 +105,6 @@ class Game(object):
         id_length = 5
         return ''.join(random.SystemRandom().choice(
             string.ascii_uppercase) for _ in range(id_length))
-
-#    def __load_deck(self):
-#        with open(os.path.join(DECKS_ROOT,self.deck_name), 'r') as deck_file:
-#            self.deck = [Card(i,info=elem) for i,elem in enumerate(deck_file.read().split('\n')) if len(elem.strip()) > 0]
 
     # Not sure if anything below is necessary
     def to_json(self):
@@ -167,6 +130,43 @@ class Game(object):
             #},
 
         }
+
+class CardGame(Game):
+    def matched_cards(self):
+        matched_cards = []
+        for player in self.players:
+            matched_cards += player.matched_cards
+        return(matched_cards)
+
+    def match_is_flipped(self):
+        if len(set(self.flipped_cards)) != 2:
+            return(False)
+        else:
+            print(self.flipped_cards[0]);
+            print(self.flipped_cards[1]);
+            return(self.matches[self.flipped_cards[0].i]==self.matches[self.flipped_cards[1].i])
+
+    def flip_card(self, player, card_position, input_callback):
+        try:
+            card = self.deck[card_position]
+        except IndexError:
+            raise RequestDenied("There is no card at that position in the deck")
+        if player not in self.players:
+            raise KeyError("player is not in the game.")
+        #if type(player) != int:
+        #    raise TypeError("player must be an integer. Got type {:s}.".format(type(player)))
+        if card not in self.deck:
+            raise TypeError("card must in the deck.")
+        """Assign color to card in solution dict"""
+        if self.player_is_active(player) and len(self.flipped_cards) < 2 and card not in self.matched_cards() and card not in self.flipped_cards: 
+            self.flipped_cards.append(card)
+            if len(self.flipped_cards) == 2:
+                input_callback()
+        else:
+            raise RequestDenied("Player {:s} tried to flip a{:s} card when player {:s} was active and {:d} cards were already flipped".format(player.session_id, ' matched' if card in self.matched_cards() else (' flipped' if card in self.flipped_cards else ''), self.players[self.active_player].session_id, len(self.flipped_cards)))
+#    def __load_deck(self):
+#        with open(os.path.join(DECKS_ROOT,self.deck_name), 'r') as deck_file:
+#            self.deck = [Card(i,info=elem) for i,elem in enumerate(deck_file.read().split('\n')) if len(elem.strip()) > 0]
 
 
 class Node:
