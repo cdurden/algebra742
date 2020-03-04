@@ -23,7 +23,7 @@ from flask import request, render_template
 from flask import Response, make_response, after_this_request
 from functools import wraps
 from Questions import *
-from werkzeug.datastructures import MultiDict
+from werkzeug.datastructures import MultiDict,ImmutableMultiDict
 from models.Question import MultiPartQuestion
 from models.Question.Sort import Sort
 from models.Question.EquationQuestion import EquationQuestion
