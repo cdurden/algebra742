@@ -43,8 +43,8 @@ def create_app():
         from .models import QuestionGame, Node, SinglyLinkedList, get_or_create
         from .models.Question import QuestionOnePlusOne, MultiPartQuestion
         QuestionClasses = {
-            'MultiPartQuestion': MultiPartQuestion,
-            'QuestionOnePlusOne': QuestionOnePlusOne,
+            'Question.MultiPartQuestion': MultiPartQuestion,
+            'Question.QuestionOnePlusOne': QuestionOnePlusOne,
         }
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
