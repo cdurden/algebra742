@@ -4,7 +4,7 @@ import json
 import re
 #from flask_wtf.csrf import CsrfProtect
 from flask import Flask, url_for, redirect
-from flask import send_from_directory
+from flask import send_from_directory, send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
@@ -23,14 +23,16 @@ from flask import request, render_template
 from flask import Response, make_response, after_this_request
 from functools import wraps
 from Questions import *
-from werkzeug.datastructures import MultiDict
+from werkzeug.datastructures import MultiDict,ImmutableMultiDict
 from models.Question import MultiPartQuestion
 from models.Question.Sort import Sort
+from models.Question.EquationQuestion import EquationQuestion
 #from flask_wtf.csrf import CSRFError
 
 NewQuestionModelTypes = {
         'MultiPartQuestion': MultiPartQuestion,
-        'Sort': Sort
+        'Sort': Sort,
+        'EquationQuestion': EquationQuestion,
         }
 
 import io
@@ -163,6 +165,16 @@ class TarsiaForm(Form):
     """
     #answers = FieldList(SelectField('answers'))
     answers = StringField('answers')
+
+class CarChoiceForm(Form):
+
+    """ Add data from Form
+
+    :param Form:
+    """
+    #answers = FieldList(SelectField('answers'))
+    answers = StringField('answers')
+
 
 class SortableForm(Form):
 
@@ -625,6 +637,10 @@ def scatterplot():
     return Response(output.getvalue(), mimetype="image/svg+xml")
 
 
+@app.route('/Pdf/<assignment>', methods=['GET', 'POST'])
+def Pdf(lti=lti, assignment=None,q=None,i=None):
+    return send_file(os.path.join(app.config['RESOURCES_DIR'],"{:s}.pdf".format(assignment)))
+
 @app.route('/Assignment/<assignment>/<q>/<i>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>/<q>', methods=['GET', 'POST'])
 @app.route('/Assignment/<assignment>', methods=['GET', 'POST'])
@@ -690,23 +706,25 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             formdata = {}
             pass
+    app.logger.error("formdata checkpoint 1")
     app.logger.error(formdata)
-    #if user.id == 86:
-    #    formdata = {}
+#    if user.id == 86:
+#        formdata = {}
     scripts = []
     new_question_type = False
     if QuestionData['Type'] in NewQuestionModelTypes.keys():
         new_question_type = True
         params = Parameters
         question = get_or_create(db.session, NewQuestionModelTypes[QuestionData['Type']], params_json=json.dumps(params))
-        question.build_form(request.form)
         #question.build_form()
-        form = question.form
         #form = NumericalForm()
         scripts = question.scripts()
         app.logger.error(scripts)
-        content = question.render_html()
         if request.method == 'POST':
+            print(request.form)
+            print(type(request.form))
+            question.build_form(request.form)
+            form = question.form
             #question.build_form(request.form)
             #question.build_form()
             app.logger.error(form.validate())
@@ -715,6 +733,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
                     app.logger.error(err)
             app.logger.error(question.form.data)
             correct = question.check_answer()
+            answer = json.dumps(form.data)
+        else:
+            print(formdata)
+            print(type(formdata))
+            question.build_form(formdata)
+            form = question.form
+        content = question.render_html()
     if QuestionData['Type'] == 'SubmitAssignment':
         form = SubmitForm()
     if QuestionData['Type'] == 'SortCards':
@@ -790,10 +815,13 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         for choice,value in Parameters['choices']:
             choices.append((choice,value))
         form.answers.choices = choices
-        if Parameters['CorrectAnswer'] is None:
+        try:
+            if Parameters['CorrectAnswer'] is None:
+                correct = False
+            else:
+                correct = Parameters['CorrectAnswer'] == set(form.answers.data)
+        except:
             correct = False
-        else:
-            correct = Parameters['CorrectAnswer'] == set(form.answers.data)
         answer = json.dumps(form.data)
     if QuestionData['Type'] in ['Matching']:
         try:
@@ -1159,6 +1187,23 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         try:
             input_lhs, input_rhs = form.answer.data.split("=")
             correct = simplify(parse_expr(lhs, transformations=transformations)-parse_expr(input_lhs, transformations=transformations))==0 and simplify(parse_expr(rhs, transformations=transformations)-parse_expr(input_rhs, transformations=transformations))==0 
+        except:
+            correct = False
+        answer = json.dumps(form.data)
+    if QuestionData['Type'] in ['EquivalentEquation']:
+        from sympy import simplify, groebner, symbols
+        from sympy.polys.polytools import is_zero_dimensional
+        try:
+            form = SingleEquationForm(data=formdata)
+        except:
+            form = SingleEquationForm()
+        try:
+            input_lhs, input_rhs = [parse_expr(_hs, transformations=transformations) for _hs in form.answer.data.split("=")]
+            lhs,rhs = [parse_expr(_hs, transformations=transformations) for _hs in Parameters['equation'].split("=")]
+            x,y = symbols('x,y')
+            F = groebner([lhs-rhs,input_lhs-input_rhs], x, y, order='lex')
+            correct = not is_zero_dimensional(F)
+            print(F)
         except:
             correct = False
         answer = json.dumps(form.data)

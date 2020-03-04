@@ -1,0 +1,16 @@
+<ul id="sortable">
+    {% for card in cards %}
+    <li id="card_{{ loop.index0 }}" class="card ui-state-default">
+      <div class="frame">
+          <div class="north"><input class="north" type="text" name="card_{{ loop.index0 }}_north"></input></div>
+        <div class="east"><input class="east" type="text" name="card_{{ loop.index0 }}_east"></input></div>
+        <div class="mid">
+          {{ cards[shuffle[loop.index0]] | safe }}
+        </div>
+        <div class="south"><input class="south" type="text" name="card_{{ loop.index0 }}_south"></input></div>
+        <div class="west"><input class="west" type="text" name="card_{{ loop.index0 }}_west"></input></div>
+      </div>
+    </li>
+    {% endfor %}
+</ul>
+ 

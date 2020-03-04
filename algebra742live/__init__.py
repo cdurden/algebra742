@@ -8,6 +8,7 @@ from . import default_config
 from . import config
 from models import db
 import json
+from networkx.drawing.nx_pydot import read_dot
 
 from sqlalchemy_utils import create_database, database_exists
 
@@ -22,7 +23,6 @@ socketio = SocketIO()
 #db = SQLAlchemy()
 r = FlaskRedis()
 #db = SQLAlchemy(app)
-
 def create_app():
     """Initialize the core application."""
     app = Flask(__name__, instance_relative_config=False)
@@ -41,6 +41,10 @@ def create_app():
         from . import routes
         from .models import QuestionGame, Node, SinglyLinkedList, get_or_create
         from .models.Question import QuestionOnePlusOne, MultiPartQuestion
+        QuestionClasses = {
+            'MultiPartQuestion': MultiPartQuestion,
+            'QuestionOnePlusOne': QuestionOnePlusOne,
+        }
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
@@ -49,19 +53,23 @@ def create_app():
         #for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
         #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
         #    questions.append(question)
-        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params': 
-            {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
-             'layout_style': 'padding: 310px 0px 0px 0px',
-             'shuffle': [0 ,3 ,1 ,2],
-             'solutions': [0, 1, 2, 3],
-             'cards': [{'html': '<img src="/static/deck12/tile1.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
-                       {'html': '<img src="/static/deck12/tile2.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
-                       {'html': '<img src="/static/deck12/tile3.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
-                       {'html': '<img src="/static/deck12/tile4.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'}]
-                    },
-}]}
-        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
-        questions.append(question)
+        task1_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
+        for node in task1_digraph.nodes():
+            question = get_or_create(db.session, QuestionClasses[node['class']], params_json=node['params'])
+            questions.append(question)
+#        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params': 
+#            {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
+#             'layout_style': 'padding: 310px 0px 0px 0px',
+#             'shuffle': [0 ,3 ,1 ,2],
+#             'solutions': [0, 1, 2, 3],
+#             'cards': [{'html': '<img src="/static/deck12/tile1.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+#                       {'html': '<img src="/static/deck12/tile2.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+#                       {'html': '<img src="/static/deck12/tile3.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'},
+#                       {'html': '<img src="/static/deck12/tile4.png"/>', 'blank_html': '', 'style': 'padding: 10px 50px 10px 75px; height: 80px; width: fit-content;'}]
+#                    },
+#}]}
+#        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
+#        questions.append(question)
         ROOMS += [QuestionGame(questions)]
         print(ROOMS[0].active_question)
 

@@ -50,3 +50,4 @@ PYLTI_URL_FIX = {
 RESOURCES_DIR = os.path.join(os.path.dirname(__file__), 'resources')
 
 MARKDOWN_INCLUDE_PATH = os.path.join(os.path.dirname(__file__), 'resources', 'include')
+PRIVATE_DATA_PATH = os.path.join(os.path.dirname(__file__), 'private')

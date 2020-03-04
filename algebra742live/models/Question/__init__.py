@@ -8,7 +8,7 @@ from wtforms import StringField, FormField
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
 from .. import SinglyLinkedList, get_or_create
-from werkzeug.datastructures import MultiDict
+from werkzeug.datastructures import MultiDict, ImmutableMultiDict
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
 
@@ -99,7 +99,29 @@ class MultiPartQuestion(Question):
             #setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class,_name='part_{:d}'.format(i)))
             #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
         #form = F(prefix='test')
-        self.form = F(MultiDict(formdata))
+        print("build_form formdata checkpoint")
+        print(formdata)
+        #self.form.process(MultiDict(formdata))
+        #self.form = F()
+        #self.form = F(MultiDict(formdata))
+        self.form = F(data=MultiDict(formdata))
+        print(self.form.data)
+        self.form.validate()
+        print(self.form.errors)
+#        for i,part in enumerate(params['parts']):
+#            #subform = part['question'].form_class(MultiDict(formdata['part_{:d}'.format(i)]))
+#            #subform(MultiDict(formdata['part_{:d}'.format(i)]))
+#            self.form['part_{:d}'.format(i)].object_data = formdata['part_{:d}'.format(i)]
+#            #getattr(self.form, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i))
+#            #print(formdata['part_{:d}'.format(i)])
+#            #getattr(self.form, 'part_{:d}'.format(i)).process(MultiDict(formdata['part_{:d}'.format(i)]))
+#            #subform_field = getattr(F, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i))
+#            #subform_field.process_formdata(MultiDict(formdata['part_{:d}'.format(i)]))
+#            #print(MultiDict(formdata['part_{:d}'.format(i)]))
+#            #print(subform_field.data)
+#            #self.form['part_{:d}'.format(i)].process(formdata=MultiDict(formdata['part_{:d}'.format(i)]))
+#        #self.form = F(MultiDict(formdata))
+#        #self.form.process(MultiDict(formdata))
         print(formdata)
         print('building MultiPartQuestion form')
         print(self.form.data)

@@ -1,0 +1,11 @@
+{{ question }}
+<br/>
+{% if set_of_coordinate_pairs is defined or (x is defined and y is defined)%}
+<img src="{{ url_for('scatterplot', x=x, y=y) }}"
+         alt="random points as svg"
+    >
+{% else %}
+<img src="/random_scatterplot-{{ n }}-{{ seed }}.svg"
+         alt="random points as svg"
+    >
+{% endif %}

@@ -1,0 +1,35 @@
+\begin{minipage}{\linewidth}
+{{ Question }}\\
+
+\begin{tikzpicture}[font=\small,scale=0.75]
+\begin{axis}[
+  axis lines=middle,
+  axis line style={Stealth-Stealth,very thick},
+  xmin=-8,xmax=8,ymin=-8,ymax=8,
+%  xmin={{ x[0] }},xmax={{ x[1] }},ymin={{ y[0] }},ymax={{ y[1] }},
+  xtick distance=1,
+  ytick distance=1,
+%  xlabel=$x$,
+%  ylabel=$y$,
+%  title={Wonderful plot},
+  grid=major,
+  grid style={thin,densely dotted,black!20}]
+%\addplot [Latex-Latex,domain=-5:3,samples=2] {x*2/3} node[right]{$a$};
+\addplot [Latex-Latex,domain=-8:8,samples=2] { {{ rhs }} } node[right]{};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+%\begin{tikzpicture}[font=\tiny,scale=0.25]
+%   %\tikzstyle{every node}=[font=\small]
+%   \tkzInit[xmax=8,ymax=8,xmin=-8,ymin=-8]
+%   \tkzGrid
+%   \tkzAxeXY
+%%   \node[style={draw=black,circle,fill=black}](p1) at ({{ x[0] }},{{ y[0] }});
+%%   \node[south west of=p1]{ {{ labels[0] }} };
+%%   \node[anchor=south west,style={draw=black,circle,fill=black}] at ({{ x[1] }},{{ y[1] }}){ {{ labels[1] }} };
+%   \draw[ thick,latex-latex] ({{ x[0] }},{{ y[0] }}) -- ({{ x[1] }},{{ y[1] }});% node[anchor=south west] {$a$}; % two points for drawing 2x+y=2
+%   \draw[ thick,latex-latex] ({{ x[0] }},{{ y[0] }}) -- ({{ x[1] }},{{ y[1] }});% node[anchor=south west] {$a$}; % two points for drawing 2x+y=2
+%%  \tkzText[above](0,6.75){Desired Output}
+%  \end{tikzpicture}
+%\end{minipage}
+

@@ -1,0 +1,12 @@
+\begin{minipage}{\linewidth}
+{{ Question }}\\
+
+    \begin{tabular}{ | c | c |}
+    \hline
+    {{ variables[0] }} & {{ variables[1] }} \\ \hline
+    {% for x_ in x %}
+        {% if x[loop.index0] is not none %} {{ x[loop.index0] }} {% else %} \hspace{1cm} {% endif %} & {% if y[loop.index0] is not none %} {{ y[loop.index0] }}  {% else %} \hspace{1cm}  {% endif %}\\
+    {% endfor %}
+    \hline
+    \end{tabular}
+\end{minipage}

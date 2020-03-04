@@ -1,0 +1,11 @@
+{{ question }}
+
+{% if image is not none %}
+{{ html | safe }}
+{% endif %}
+
+{% if image is not none %}
+<br/>
+<img src="{{ image }}" style="max-height: 400px; max-width: 600px;"/>
+{% endif %}
+
