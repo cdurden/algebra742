@@ -174,6 +174,28 @@ class Node:
         self.val = val
         self.next = None # the pointer initially points to nothing
 
+class QuestionDigraphGame(Game):
+    def __init__(self, question_digraph, **kwargs):
+        Game.__init__(self, kwargs)
+        self.question_digraph = question_digraph
+        self.active_question = question_digraph.node[question_digraph.graph['start']]['_question_obj']
+        self.scripts = self.active_question.scripts()
+
+    def screen_html(self):
+        print(self)
+        print(self.questions)
+        print(self.questions.head)
+        print(self.active_question)
+        self.active_question.data.build_form()
+        return(self.active_question.data.render_html())
+
+    def input(self, player, data, update_game_callback):
+        self.active_question.data.build_form(data)
+        if self.active_question.data.check_answer():
+            self.active_question = self.active_question.next
+            self.screen_html()
+            update_game_callback()
+
 class QuestionGame(Game):
     def __init__(self, questions, **kwargs):
         Game.__init__(self, kwargs)

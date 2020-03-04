@@ -40,7 +40,7 @@ def create_app():
     with app.app_context():
         # Include our Routes
         from . import routes
-        from .models import QuestionGame, Node, SinglyLinkedList, get_or_create
+        from .models import QuestionDigraphGame, Node, SinglyLinkedList, get_or_create
         from .models.Question import QuestionOnePlusOne, MultiPartQuestion
         QuestionClasses = {
             'Question.MultiPartQuestion': MultiPartQuestion,
@@ -50,17 +50,14 @@ def create_app():
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
         global ROOMS
-        questions = SinglyLinkedList()
-        #for json_data in ['{"question": "What is $1+1$?"}', '{"question": "What is 2+1?"}']:
-        #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
-        #    questions.append(question)
-        task1_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
-        for node,data in task1_digraph.nodes(data=True):
+        #questions = SinglyLinkedList()
+        questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
+        for node,data in questions_digraph.nodes(data=True):
             for k,v in data.items():
                 data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
             print(data)
             question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'])
-            questions.append(question)
+            node['_question_obj'] = question
 #        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params': 
 #            {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
 #             'layout_style': 'padding: 310px 0px 0px 0px',
@@ -74,7 +71,7 @@ def create_app():
 #}]}
 #        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
 #        questions.append(question)
-        ROOMS += [QuestionGame(questions)]
+        ROOMS += [QuestionDigraphGame(questions_digraph)]
         print(ROOMS[0].active_question)
 
         # Register Blueprints
