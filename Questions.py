@@ -39,6 +39,13 @@ QuestionSets = {
                 ],
             'SpaceAfter': '4cm',
             },
+            {
+            'Type': 'MultiPartQuestion',
+            'ParameterSetVariants': [
+                {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}} ]}
+                ],
+            'SpaceAfter': '4cm',
+            },
         ],
     },
     'LinearEquationsTest4Retry': {
