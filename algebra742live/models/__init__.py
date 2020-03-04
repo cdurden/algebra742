@@ -178,7 +178,7 @@ class QuestionDigraphGame(Game):
     def __init__(self, question_digraph, **kwargs):
         Game.__init__(self, kwargs)
         self.question_digraph = question_digraph
-        self.active_question = question_digraph.nodes[question_digraph.graph['start']]['_question_obj']
+        self.active_question = question_digraph.nodes[question_digraph.graph['graph']['start']]['_question_obj']
         self.scripts = self.active_question.scripts()
 
     def screen_html(self):
