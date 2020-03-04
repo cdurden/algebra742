@@ -1,3 +1,3 @@
 digraph task1 {
-  question1 [class="Question.QuestionOnePlusOne",params="{'question': 'What is $1+1$?'}"]
+  question1 [class="Question.QuestionOnePlusOne",params="{\"question\": \"What is $1+1$?\"}"]
 }
