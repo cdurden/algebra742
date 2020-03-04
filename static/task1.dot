@@ -1,4 +1,4 @@
 digraph task1 {
-  graph [start=question1];
+  start=question1;
   question1 [class="Question.QuestionOnePlusOne",params="{\"Question\": \"What is $1+1$?\"}"];
 }
