@@ -57,7 +57,7 @@ def create_app():
                 data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
             print(data)
             question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'])
-            node['_question_obj'] = question
+            data['_question_obj'] = question
 #        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params': 
 #            {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
 #             'layout_style': 'padding: 310px 0px 0px 0px',
