@@ -178,18 +178,23 @@ class QuestionDigraphGame(Game):
     def __init__(self, question_digraph, **kwargs):
         Game.__init__(self, kwargs)
         self.question_digraph = question_digraph
-        self.active_question = question_digraph.nodes[question_digraph.graph['graph']['start']]['_question_obj']
+        self.active_node = question_digraph.graph['graph']['start']
+        self.active_question = question_digraph.nodes[self.active_node]['_question_obj']
         self.scripts = self.active_question.scripts()
 
     def screen_html(self):
         print(self.active_question)
-        self.active_question.data.build_form()
-        return(self.active_question.data.render_html())
+        self.active_question.build_form()
+        return(self.active_question.render_html())
+
+    def next(self):
+        self.active_node = self.question_digraph.successors(self.active_node)[0]
+        self.active_question = question_digraph.nodes[self.active_node]['_question_obj']
 
     def input(self, player, data, update_game_callback):
-        self.active_question.data.build_form(data)
-        if self.active_question.data.check_answer():
-            self.active_question = self.active_question.next
+        self.active_question.build_form(data)
+        if self.active_question.check_answer():
+            self.next()
             self.screen_html()
             update_game_callback()
 

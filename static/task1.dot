@@ -1,4 +1,6 @@
 digraph task1 {
   start=question1;
   question1 [class="Question.QuestionOnePlusOne",params="{\"Question\": \"What is $1+1$?\"}"];
+  question2 [class="Question.QuestionOnePlusOne",params="{\"Question\": \"What is one plus one?\"}"];
+  question1 -> question2;
 }
