@@ -56,6 +56,8 @@ def create_app():
         #    questions.append(question)
         task1_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
         for node,data in task1_digraph.nodes(data=True):
+            for k,v in data.items():
+                data[k.strip("\"")] = data.pop(k).strip("\"")
             print(data)
             question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'])
             questions.append(question)
