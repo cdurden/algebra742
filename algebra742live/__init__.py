@@ -52,6 +52,7 @@ def create_app():
         global ROOMS
         #questions = SinglyLinkedList()
         questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
+        print(questions_digraph.graph)
         for node,data in questions_digraph.nodes(data=True):
             for k,v in data.items():
                 data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
