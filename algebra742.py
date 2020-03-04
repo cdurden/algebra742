@@ -706,6 +706,7 @@ def Assignment(lti=lti, assignment=None,q=None,i=None):
         except:
             formdata = {}
             pass
+    app.logger.error("formdata checkpoint 1")
     app.logger.error(formdata)
 #    if user.id == 86:
 #        formdata = {}
