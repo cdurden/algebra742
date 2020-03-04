@@ -189,7 +189,7 @@ class QuestionDigraphGame(Game):
 
     def next(self):
         self.active_node = next(self.question_digraph.successors(self.active_node))
-        self.active_question = question_digraph.nodes[self.active_node]['_question_obj']
+        self.active_question = self.question_digraph.nodes[self.active_node]['_question_obj']
 
     def input(self, player, data, update_game_callback):
         self.active_question.build_form(data)
