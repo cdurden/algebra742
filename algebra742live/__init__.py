@@ -55,8 +55,8 @@ def create_app():
         #    question = get_or_create(db.session, QuestionOnePlusOne, params_json=json_data)
         #    questions.append(question)
         task1_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
-        for node in task1_digraph.nodes():
-            question = get_or_create(db.session, QuestionClasses[node['class']], params_json=node['params'])
+        for node,data in task1_digraph.nodes(data=True):
+            question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'])
             questions.append(question)
 #        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params': 
 #            {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
