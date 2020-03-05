@@ -6,6 +6,7 @@
     <title>{% block title %}{% endblock %} - My Webpage</title>
     <script type="text/javascript" src="/static/js/algebra742live.js"></script>
     <script type="text/javascript" src="/static/js/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--the following script uses jquery to set up form submission via socket-->
     <script type="text/javascript" src="/static/js/socket.io.wtforms.js"></script>
     <script>
       var socket = io.connect('https://' + document.domain + ':' + location.port);
