@@ -39,11 +39,6 @@ class MultiPartAnswerForm(Form):
 #            except TemplateNotFound:
 #                next 
 
-QuestionClasses = {
-    'Question.MultiPartQuestion': MultiPartQuestion,
-    'Question.QuestionOnePlusOne': QuestionOnePlusOne,
-}
-
 def get_question_from_digraph_node(graph, node):
     questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],graph+'.dot'))
     node_data = questions_digraph.nodes[node]
@@ -191,6 +186,10 @@ class QuestionOnePlusOne(Question):
         print(self.form.answer.data)
         return(self.form.answer.data=='2')
 
+QuestionClasses = {
+    'Question.MultiPartQuestion': MultiPartQuestion,
+    'Question.QuestionOnePlusOne': QuestionOnePlusOne,
+}
 
 question_scores = db.Table('question_scores',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
