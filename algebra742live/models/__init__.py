@@ -110,25 +110,10 @@ class Game(object):
     def to_json(self):
         """Serialize object to JSON"""
         return {
-            #"game_id": self.game_id,
-            "screen_html": self.screen_html(),
+            #"screen_html": self.screen_html(),
             "scripts": self.scripts,
             "active_player": self.active_player,
-            #"active_question": self.active_question,
             "players": [player.to_json() for player in self.players],
-            #"date_created": str(self.date_created),
-            #"date_modified": str(self.date_modified),
-            #"playtime": self.__playtime(),
-            #"board": self.board,
-            #"solution": self.solution,
-            #"options": {
-            #    "dictionary": self.dictionary,
-            #    "size": self.size,
-            #    "teams": self.teams,
-            #    "mix": self.mix,
-            #    "custom": self.wordbank
-            #},
-
         }
 
 class CardGame(Game):
@@ -203,6 +188,14 @@ class QuestionDigraphGame(Game):
             self.next()
             self.screen_html()
             update_game_callback()
+
+    def to_json(self):
+        """Serialize object to JSON"""
+        gamedata = Game.to_json(self)
+        gamedata.update({
+            "screen_html": self.screen_html(),
+        })
+        return(gamedata)
 
 class QuestionGame(Game):
     def __init__(self, questions, **kwargs):
