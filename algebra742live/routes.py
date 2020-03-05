@@ -85,7 +85,7 @@ def input(data, lti=lti):
 @lti(request='session', error=error)
 def get_question_data(data, lti=lti):
     questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],data['graph']+'.dot'))
-    node_data = questions_digraph.nodes[data['node']]:
+    node_data = questions_digraph.nodes[data['node']]
     for k,v in node_data.items():
         node_data[k.strip("\"")] = node_data.pop(k).strip("\"").replace("\\","")
         question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'])
