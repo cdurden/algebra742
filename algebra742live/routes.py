@@ -92,7 +92,8 @@ def get_question_data(data, lti=lti):
     for k,v in node_data.items():
         node_data[k.strip("\"")] = node_data.pop(k).strip("\"").replace("\\","")
         question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'])
-    emit('question_data', question.render_html(), broadcast=True)
+    data['html'] = question.render_html()
+    emit('question_data', data, broadcast=True)
 
 @socketio.on('form_submit')
 @lti(request='session', error=error)
