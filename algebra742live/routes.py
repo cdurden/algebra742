@@ -3,7 +3,7 @@ from flask import render_template, request
 from flask_socketio import emit
 from pylti.flask import lti
 from .models import db, User, Player, Game, RequestDenied
-from .models import get_or_create, get_question_from_digraph_node
+from .models.Question import get_question_from_digraph_node
 from . import socketio, ROOMS
 
 from flask_wtf import Form

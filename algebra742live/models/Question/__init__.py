@@ -11,6 +11,7 @@ from .. import SinglyLinkedList, get_or_create
 from werkzeug.datastructures import MultiDict, ImmutableMultiDict
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
+from networkx.drawing.nx_pydot import read_dot
 
 class AnswerForm(Form):
     answer = StringField('answer')
@@ -37,6 +38,19 @@ class MultiPartAnswerForm(Form):
 #                return template.render(json.loads(self.params_json), form=form)
 #            except TemplateNotFound:
 #                next 
+
+QuestionClasses = {
+    'Question.MultiPartQuestion': MultiPartQuestion,
+    'Question.QuestionOnePlusOne': QuestionOnePlusOne,
+}
+
+def get_question_from_digraph_node(graph, node):
+    questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],graph+'.dot'))
+    node_data = questions_digraph.nodes[node]
+    for k,v in node_data.items():
+        node_data[k.strip("\"")] = node_data.pop(k).strip("\"").replace("\\","")
+        question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'])
+    return(question)
 
 
 class Question(db.Model):
@@ -177,10 +191,6 @@ class QuestionOnePlusOne(Question):
         print(self.form.answer.data)
         return(self.form.answer.data=='2')
 
-QuestionClasses = {
-    'Question.MultiPartQuestion': MultiPartQuestion,
-    'Question.QuestionOnePlusOne': QuestionOnePlusOne,
-}
 
 question_scores = db.Table('question_scores',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
