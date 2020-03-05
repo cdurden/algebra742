@@ -49,6 +49,9 @@ class Game(object):
         #random.shuffle(self.deck)
         #for position,card in enumerate(self.deck):
         #    card.position = position
+    def input(self, player, data, output_callback):
+        pass
+
     def get_player(self, session_id):
         for player in self.players:
             if player.session_id == session_id:
@@ -60,30 +63,6 @@ class Game(object):
 
     def activate_next_player(self):
         self.active_player = (self.active_player+1)%len(self.players)
-
-    def input(self, player, data, update_game_callback):
-        if player not in self.players:
-            raise KeyError("player is not in the game.")
-        if len(self.flipped_cards) == 2:
-            data_to_bool = {'y': True, 'n': False}
-            if self.player_is_active(player): # player is active
-                if self.match_is_flipped() and data_to_bool[data]:
-                    #self.matched_cards[player] += self.flipped_cards
-                    player.matched_cards += self.flipped_cards
-                    player.correct += 1
-                else: # cycle to the next player
-                    if not self.match_is_flipped() and not data_to_bool[data]:
-                        player.correct += 1
-                    else:
-                        player.incorrect += 1
-                    self.activate_next_player()
-                self.flipped_cards = []
-                update_game_callback()
-            else: # player is not active
-                if self.match_is_flipped() == data_to_bool[data]:
-                    player.correct += 1
-                else:
-                    player.incorrect += 1
 
     def add_player(self, session_id, user):
         """Add playername to player array"""
@@ -117,6 +96,30 @@ class Game(object):
         }
 
 class CardGame(Game):
+    def input(self, player, data, output_callback):
+        if player not in self.players:
+            raise KeyError("player is not in the game.")
+        if len(self.flipped_cards) == 2:
+            data_to_bool = {'y': True, 'n': False}
+            if self.player_is_active(player): # player is active
+                if self.match_is_flipped() and data_to_bool[data]:
+                    #self.matched_cards[player] += self.flipped_cards
+                    player.matched_cards += self.flipped_cards
+                    player.correct += 1
+                else: # cycle to the next player
+                    if not self.match_is_flipped() and not data_to_bool[data]:
+                        player.correct += 1
+                    else:
+                        player.incorrect += 1
+                    self.activate_next_player()
+                self.flipped_cards = []
+                output_callback()
+            else: # player is not active
+                if self.match_is_flipped() == data_to_bool[data]:
+                    player.correct += 1
+                else:
+                    player.incorrect += 1
+
     def matched_cards(self):
         matched_cards = []
         for player in self.players:
@@ -182,12 +185,18 @@ class QuestionDigraphGame(Game):
         self.active_node = next(self.question_digraph.successors(self.active_node))
         self.active_question = self.question_digraph.nodes[self.active_node]['_question_obj']
 
-    def input(self, player, data, update_game_callback):
-        self.active_question.build_form(data)
-        if self.active_question.check_answer():
+    def input(self, player, data, output_callback):
+        node = data['node']
+        graph = data['graph']
+        assert(graph == self.question_digraph.graph['name'])
+        question = self.question_digraph.nodes[node]['_question_obj']
+        question.build_form(data)
+        if question.check_answer():
             self.next()
             self.screen_html()
-            update_game_callback()
+            output_callback({'correct': True, 'message': None, 'graph': graph, 'node': node})
+        else:
+            output_callback({'correct': False, 'message': None, 'graph': graph, 'node': node})
 
     def to_json(self):
         """Serialize object to JSON"""

@@ -107,7 +107,8 @@ def form_submit(data, lti=lti):
     except RequestDenied as err:
         print(err.message) 
 
-
+def output(data):
+    emit('output', data)
 
 def update_game():
     print("updating game")

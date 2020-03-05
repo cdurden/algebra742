@@ -95,6 +95,10 @@ MathJax.Hub.Config({ "HTML-CSS": { scale: 200 }, TeX: { extensions: ["autobold.j
         console.log(data);
         reset_game(data)
     });
+    socket.on('output', function(data) {
+        console.log(data);
+        output(data)
+    });
     socket.on('update_game', function(data) {
         console.log(data);
         update_game(data)
