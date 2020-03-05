@@ -177,6 +177,11 @@ class QuestionOnePlusOne(Question):
         print(self.form.answer.data)
         return(self.form.answer.data=='2')
 
+QuestionClasses = {
+    'Question.MultiPartQuestion': MultiPartQuestion,
+    'Question.QuestionOnePlusOne': QuestionOnePlusOne,
+}
+
 question_scores = db.Table('question_scores',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('question_id', db.Integer, db.ForeignKey('question.id')),
@@ -185,7 +190,3 @@ question_scores = db.Table('question_scores',
     db.Column('datetime', db.DateTime, nullable=False,
         default=datetime.utcnow)
 )
-        QuestionClasses = {
-            'Question.MultiPartQuestion': MultiPartQuestion,
-            'Question.QuestionOnePlusOne': QuestionOnePlusOne,
-        }
