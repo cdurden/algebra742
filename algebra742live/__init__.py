@@ -40,8 +40,8 @@ def create_app():
     with app.app_context():
         # Include our Routes
         from . import routes
-        from .models import QuestionDigraphGame, RevealJSPresentationGame, Node, SinglyLinkedList, get_or_create
-        from .models.Question import QuestionOnePlusOne, MultiPartQuestion, QuestionClasses
+        from .models.Game import QuestionDigraphGame, RevealJSPresentationGame
+        from .models.Question import QuestionClasses
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
