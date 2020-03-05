@@ -17,7 +17,7 @@ socket.on('question_data', function(data) {
 			<div class="slides">
 				<section>Slide 1</section>
 				<section>Slide 2</section>
-				<section>Slide 3<div class="question"><!-- { "min": 1, "max": 6 } --></div></section>
+				<section>Slide 3<div class="question"><!-- { "graph": "task1", "node": "question1" } --></div></section>
 			</div>
 		</div>
 {% endblock %}
@@ -35,7 +35,7 @@ Reveal.initialize({
         {
           className: "question", 
           initialize: (function(container, options){ 
-              socket.emit('get_question_data', data={ graph: options.graph, node: options.node });
+              socket.emit('get_question_data', { graph: options.graph, node: options.node });
               container.id = "question_"+options.graph+"_"+options.node;
             }) 
         },
