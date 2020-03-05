@@ -166,6 +166,17 @@ class RevealJSPresentationGame(Game):
     def __init__(self, **kwargs):
         Game.__init__(self, kwargs)
         self.template = "reveal.html"
+    def input(self, player, data, output_callback):
+        node = data['node']
+        graph = data['graph']
+        assert(graph == self.question_digraph.graph['name'])
+        question = self.question_digraph.nodes[node]['_question_obj']
+        question.build_form(data)
+        if question.check_answer():
+            output_callback({'correct': True, 'message': None, 'graph': graph, 'node': node})
+        else:
+            output_callback({'correct': False, 'message': None, 'graph': graph, 'node': node})
+
 
 class QuestionDigraphGame(Game):
     def __init__(self, question_digraph, **kwargs):
@@ -186,12 +197,8 @@ class QuestionDigraphGame(Game):
         self.active_question = self.question_digraph.nodes[self.active_node]['_question_obj']
 
     def input(self, player, data, output_callback):
-        node = data['node']
-        graph = data['graph']
-        assert(graph == self.question_digraph.graph['name'])
-        question = self.question_digraph.nodes[node]['_question_obj']
-        question.build_form(data)
-        if question.check_answer():
+        self.active_question.build_form(data)
+        if self.active_question.check_answer():
             self.next()
             self.screen_html()
             output_callback({'correct': True, 'message': None, 'graph': graph, 'node': node})
