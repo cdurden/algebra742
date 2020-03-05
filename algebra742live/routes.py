@@ -89,6 +89,7 @@ def get_question_data(data, lti=lti):
     emit('question_data', data, broadcast=True)
 
 def output(data):
+    print("emitting output")
     emit('output', data)
 
 def update_game():

@@ -169,8 +169,10 @@ class RevealJSPresentationGame(Game):
         #question = self.question_digraph.nodes[node]['_question_obj']
         question.build_form(data)
         if question.check_answer():
+            print("answer is correct")
             output_callback({'correct': True, 'message': None, 'graph': graph, 'node': node})
         else:
+            print("answer is incorrect")
             output_callback({'correct': False, 'message': None, 'graph': graph, 'node': node})
 
 
