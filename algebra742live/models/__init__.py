@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import random
 import string
 from datetime import datetime
-from .models.Question import get_question_from_digraph_node
+from .Question import get_question_from_digraph_node
 import json
 
 db = SQLAlchemy()
