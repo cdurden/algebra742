@@ -25,6 +25,10 @@ class UserInfoForm(Form):
     firstname = StringField('firstname')
     lastname = StringField('lastname')
 
+@app.route('/reveal/', methods=['GET', 'POST'])
+def reveal():
+    return render_template("reveal.html")
+
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
 def algebra742live_lti(lti=lti):
