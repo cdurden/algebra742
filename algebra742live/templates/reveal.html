@@ -6,6 +6,7 @@
   <script>
 socket.on('question_data', function(data) {
   container = document.getElementById('question_'+data.graph+"_"+data.node);
+  console.log(data);
   $(container).find('span[class="question_view"]').innerHTML = data.html; 
   $(container).find('input[name="graph"]').val(data.graph);
   $(container).find('input[name="node"]').val(data.node);
