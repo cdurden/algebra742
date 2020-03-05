@@ -175,11 +175,14 @@ class Node:
         self.next = None # the pointer initially points to nothing
 
 class RevealJSPresentationGame(Game):
-    pass
+    def __init__(self, **kwargs):
+        Game.__init__(self, kwargs)
+        self.template = "reveal.html"
 
 class QuestionDigraphGame(Game):
     def __init__(self, question_digraph, **kwargs):
         Game.__init__(self, kwargs)
+        self.template = "memory.html"
         self.question_digraph = question_digraph
         self.active_node = question_digraph.graph['graph']['start']
         self.active_question = question_digraph.nodes[self.active_node]['_question_obj']
