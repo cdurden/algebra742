@@ -95,6 +95,13 @@ def get_question_data(data, lti=lti):
     data['html'] = question.render_html()
     emit('question_data', data, broadcast=True)
 
+def output(data):
+    emit('output', data)
+
+def update_game():
+    print("updating game")
+    emit('update_game', ROOMS[0].to_json(), broadcast=True)
+
 @socketio.on('form_submit')
 @lti(request='session', error=error)
 def form_submit(data, lti=lti):
@@ -103,16 +110,9 @@ def form_submit(data, lti=lti):
     print(data)
     player = ROOMS[0].get_player(request.sid)
     try:
-        ROOMS[0].input(player, data, update_game)
+        ROOMS[0].input(player, data, output)
     except RequestDenied as err:
         print(err.message) 
-
-def output(data):
-    emit('output', data)
-
-def update_game():
-    print("updating game")
-    emit('update_game', ROOMS[0].to_json(), broadcast=True)
 
 def reset_game():
     print("reseting game")
