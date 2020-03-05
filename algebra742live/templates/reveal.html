@@ -26,13 +26,14 @@ Reveal.initialize({
 		//src: "chalkboard.json",
 	},
 	anything: [ 
-	{
-	  className: "question", 
-	  defaults: {min: 0, max: 9}, 
-	  initialize: (function(container, options){ 
-	    container.innerHTML = Math.trunc( options.min + Math.random()*(options.max-options.min + 1) ); 
-	    }) 
-	},
+        {
+          className: "question", 
+          defaults: {min: 0, max: 9}, 
+          initialize: (function(container, options){ 
+            container.innerHTML = Math.trunc( options.min + Math.random()*(options.max-options.min + 1) ); 
+            }) 
+        },
+    ],
 	dependencies: [
 		// ...
 		{ src: '/static/reveal.js-plugins/chalkboard/chalkboard.js' },
