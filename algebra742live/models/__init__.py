@@ -196,14 +196,13 @@ class QuestionDigraphGame(Game):
         self.active_node = next(self.question_digraph.successors(self.active_node))
         self.active_question = self.question_digraph.nodes[self.active_node]['_question_obj']
 
+    # FIXME: This input function is now broken. It does not respond in any sensible way. Need to clarify how this game works. Originally the output was to update the screen with the new question.
     def input(self, player, data, output_callback):
         self.active_question.build_form(data)
         if self.active_question.check_answer():
             self.next()
             self.screen_html()
-            output_callback({'correct': True, 'message': None, 'graph': graph, 'node': node})
-        else:
-            output_callback({'correct': False, 'message': None, 'graph': graph, 'node': node})
+            output_callback()
 
     def to_json(self):
         """Serialize object to JSON"""
