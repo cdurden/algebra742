@@ -11,6 +11,7 @@
 			<div class="slides">
 				<section>Slide 1</section>
 				<section>Slide 2</section>
+				<section>Slide 3<div class="question"><!-- { "min": 1, "max": 6 } --></div></section>
 			</div>
 		</div>
 {% endblock %}
@@ -24,9 +25,18 @@ Reveal.initialize({
 		// optionally load pre-recorded chalkboard drawing from file
 		//src: "chalkboard.json",
 	},
+	anything: [ 
+	{
+	  className: "question", 
+	  defaults: {min: 0, max: 9}, 
+	  initialize: (function(container, options){ 
+	    container.innerHTML = Math.trunc( options.min + Math.random()*(options.max-options.min + 1) ); 
+	    }) 
+	},
 	dependencies: [
 		// ...
 		{ src: '/static/reveal.js-plugins/chalkboard/chalkboard.js' },
+        { src: '/static/reveal.js-plugins/anything/anything.js' },
 		// ...
 	],
 	keyboard: {
