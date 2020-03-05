@@ -7,7 +7,7 @@ from flask_redis import FlaskRedis
 from . import default_config
 from . import config
 from models import db
-from models.Question import question_digraph_factory
+from models.Question import questions_digraph_factory
 import json
 from networkx.drawing.nx_pydot import read_dot
 import os
