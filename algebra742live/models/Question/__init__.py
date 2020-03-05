@@ -1,3 +1,4 @@
+from flask import current_app as app
 from datetime import datetime
 from .. import db
 import jinja2
