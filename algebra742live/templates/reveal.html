@@ -6,15 +6,6 @@
 {% block content %}
 		<div class="reveal">
 			<div class="slides">
-<section data-markdown>
-	<textarea data-template>
-        ## Use the symbols $<$, $>$, and $=$ to compare each pair of numbers.
-
-        $4 \hspace{2cm} 5 \hspace{4cm} -6 \hspace{2cm} 3 \hspace{4cm} -100 \hspace{2cm} 0$
-
-        $\frac{1}{2} \hspace{2cm} 0.5 \hspace{4cm} -6 \hspace{2cm} -6.0 \hspace{4cm} 10^2 \hspace{2cm} 100$
-	</textarea>
-</section>
 				<section>Slide 1</section>
 				<section>Slide 2</section>
 			</div>
@@ -23,17 +14,6 @@
 		<script src="/static/reveal.js/plugin/markdown/marked.js"></script>
 		<script src="/static/reveal.js/plugin/markdown/markdown.js"></script>
 		<script>
-			Reveal.initialize({
-	math: {
-		mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-		config: 'TeX-AMS_HTML-full', // See http://docs.mathjax.org/en/latest/config-files.html
-		// pass other options into `MathJax.Hub.Config()`
-		TeX: { Macros: { RR: "{\\bf R}" } }
-	},
-
-//	dependencies: [
-//		{ src: '/static/reveal.js/plugin/math/math.js', async: true }
-//	]
-                    });
+	//		Reveal.initialize();
 		</script>
 {% endblock %}
