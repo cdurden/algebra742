@@ -74,7 +74,6 @@ def create_app():
 #        questions.append(question)
         #ROOMS += [QuestionDigraphGame(questions_digraph)]
         ROOMS += [RevealJSPresentationGame()]
-        print(ROOMS[0].active_question)
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
