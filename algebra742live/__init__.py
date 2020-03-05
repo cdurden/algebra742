@@ -40,7 +40,7 @@ def create_app():
     with app.app_context():
         # Include our Routes
         from . import routes
-        from .models import QuestionDigraphGame, Node, SinglyLinkedList, get_or_create
+        from .models import QuestionDigraphGame, RevealJSPresentationGame, Node, SinglyLinkedList, get_or_create
         from .models.Question import QuestionOnePlusOne, MultiPartQuestion
         QuestionClasses = {
             'Question.MultiPartQuestion': MultiPartQuestion,
@@ -72,7 +72,8 @@ def create_app():
 #}]}
 #        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
 #        questions.append(question)
-        ROOMS += [QuestionDigraphGame(questions_digraph)]
+        #ROOMS += [QuestionDigraphGame(questions_digraph)]
+        ROOMS += [RevealJSPresentationGame()]
         print(ROOMS[0].active_question)
 
         # Register Blueprints
