@@ -86,6 +86,7 @@ def input(data, lti=lti):
 @socketio.on('get_question_data')
 @lti(request='session', error=error)
 def get_question_data(data, lti=lti):
+    print(data)
     questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],data['graph']+'.dot'))
     node_data = questions_digraph.nodes[data['node']]
     for k,v in node_data.items():
