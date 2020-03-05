@@ -82,19 +82,21 @@ function loadGame(flip_card_callback) {
 }
 
 function reset_game(data) {
-    //for (var scriptId in data.scripts) {
-    //    createScriptLoader(scriptId, data.scripts[scriptId])( () => {});
-    //}
-    //var previousScriptLoader = (() => {});
-    //for (var i=data.scripts.length-1; i>=0; i--) {
-    //data.scripts.forEach( function(script_url, index) {
-    //for (var script_url in data.scripts) {
-    //    createScriptLoader(script_url)( () => {});
-    //    previousScriptLoader = createScriptLoader(script_url)( previousScriptLoader );
-    //}
-    //}
-    //});
-    createScriptTags(data.scripts);
+    /*
+    for (var scriptId in data.scripts) {
+        createScriptLoader(scriptId, data.scripts[scriptId])( () => {});
+    }
+    var previousScriptLoader = (() => {});
+    for (var i=data.scripts.length-1; i>=0; i--) {
+    data.scripts.forEach( function(script_url, index) {
+    for (var script_url in data.scripts) {
+        createScriptLoader(script_url)( () => {});
+        previousScriptLoader = createScriptLoader(script_url)( previousScriptLoader );
+    }
+    }
+    });
+    */
+    //createScriptTags(data.scripts);
     update_game(data);
 }
 function update_game(data) {
