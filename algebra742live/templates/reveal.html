@@ -6,7 +6,7 @@
   <script>
 socket.on('question_data', function(data) {
   container = document.getElementById('question_'+data.graph+"_"+data.node);
-  container.innerHTML = data; 
+  container.innerHTML = data.html; 
 });
   </script>
   <link rel="stylesheet" href="/static/reveal.js/css/reveal.css">
