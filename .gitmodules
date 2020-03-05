@@ -1,3 +1,6 @@
 [submodule "static/reveal.js"]
 	path = static/reveal.js
 	url = https://github.com/hakimel/reveal.js.git
+[submodule "static/reveal.js-plugins"]
+	path = static/reveal.js-plugins
+	url = https://github.com/rajgoel/reveal.js-plugins.git

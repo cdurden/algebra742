@@ -10,3 +10,4 @@ Features
   f. How can I integrate reveal.js? 
     i. Create a RevealJSMultiPartTask question type which would have a presentation associated with it containing placeholders for question parts.
     ii. Create a RevealJSPresentationGame
+  g. Add questions to RevealJSPresentationGame. Insert question markup into 
