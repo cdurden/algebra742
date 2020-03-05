@@ -38,6 +38,12 @@ socket.on('question_data', function(data) {
 		<script src="/static/reveal.js/plugin/markdown/markdown.js"></script>
 		<script>
 Reveal.initialize({
+    math: {
+        mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+        config: 'TeX-AMS_HTML-full', // See http://docs.mathjax.org/en/latest/config-files.html
+        // pass other options into `MathJax.Hub.Config()`
+        TeX: { Macros: { RR: "{\\bf R}" } }
+    },
 	chalkboard: {
 		// optionally load pre-recorded chalkboard drawing from file
 		//src: "chalkboard.json",
@@ -55,6 +61,7 @@ Reveal.initialize({
 		// ...
 		{ src: '/static/reveal.js-plugins/chalkboard/chalkboard.js' },
         { src: '/static/reveal.js-plugins/anything/anything.js' },
+        { src: '/static/reveal.js/plugin/math/math.js', async: true },
 		// ...
 	],
 	keyboard: {
