@@ -47,14 +47,15 @@ def create_app():
         db.create_all()
         global ROOMS
         #questions = SinglyLinkedList()
-        questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
-        print(questions_digraph.graph)
-        for node,data in questions_digraph.nodes(data=True):
-            for k,v in data.items():
-                data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
-            print(data)
-            question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'])
-            data['_question_obj'] = question
+        questions_digraph = questions_digraph_factory("task1")
+#        questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
+#        print(questions_digraph.graph)
+#        for node,data in questions_digraph.nodes(data=True):
+#            for k,v in data.items():
+#                data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
+#            print(data)
+#            question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'])
+#            data['_question_obj'] = question
 #        params = {'parts': [{'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is $1+1$?"}}, {'class': 'Question.QuestionOnePlusOne', 'params': {"question": "What is 2+1?"}},{'class': 'Question.PlotQuestion.PlotQuestion', 'params': {'question': 'test'}}, {'class': 'Question.Sort.Sort', 'params': 
 #            {'background_style': "background-image: url(\"/static/deck12/bg.png\"); background-position:center; background-repeat:no-repeat; background-size: contain; width: 800px; height: 600px; position: relative;",
 #             'layout_style': 'padding: 310px 0px 0px 0px',

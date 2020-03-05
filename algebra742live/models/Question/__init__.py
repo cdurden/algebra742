@@ -47,6 +47,14 @@ def get_question_from_digraph_node(graph, node):
         question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'])
     return(question)
 
+def questions_digraph_factory(graph):
+    questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],graph+'.dot'))
+    for node,data in questions_digraph.nodes(data=True):
+        for k,v in data.items():
+            data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
+        question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'])
+        data['_question_obj'] = question
+    return(questions_digraph)
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
