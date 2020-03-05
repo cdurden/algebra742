@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block head %}
-		<link rel="stylesheet" href="/static/reveal.js/css/reveal.css">
-		<link rel="stylesheet" href="/static/reveal.js/css/theme/white.css">
+  {{ super() }}
+  <link rel="stylesheet" href="/static/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/static/reveal.js/css/theme/white.css">
 {% endblock %}
 {% block content %}
 		<div class="reveal">
