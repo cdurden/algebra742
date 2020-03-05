@@ -3,6 +3,12 @@
 {% block head %}
   <script type="text/javascript" src="/static/js/games/reveal.js"></script>
   {{ super() }}
+  <script>
+socket.on('question_data', function(data) {
+  container = document.getElementById('question_'+data.graph+"_"+data.node);
+  container.innerHTML = data; 
+});
+  </script>
   <link rel="stylesheet" href="/static/reveal.js/css/reveal.css">
   <link rel="stylesheet" href="/static/reveal.js/css/theme/white.css">
 {% endblock %}
@@ -28,9 +34,9 @@ Reveal.initialize({
 	anything: [ 
         {
           className: "question", 
-          defaults: {min: 0, max: 9}, 
           initialize: (function(container, options){ 
-            container.innerHTML = Math.trunc( options.min + Math.random()*(options.max-options.min + 1) ); 
+              socket.emit('get_question_data', data={ graph: options.graph, node: options.node });
+              container.id = "question_"+options.graph+"_"+options.node;
             }) 
         },
     ],
