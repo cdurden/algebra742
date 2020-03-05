@@ -185,3 +185,7 @@ question_scores = db.Table('question_scores',
     db.Column('datetime', db.DateTime, nullable=False,
         default=datetime.utcnow)
 )
+        QuestionClasses = {
+            'Question.MultiPartQuestion': MultiPartQuestion,
+            'Question.QuestionOnePlusOne': QuestionOnePlusOne,
+        }
