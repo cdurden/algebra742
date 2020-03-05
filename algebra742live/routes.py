@@ -2,7 +2,7 @@ from flask import current_app as app
 from flask import render_template, request
 from flask_socketio import emit
 from pylti.flask import lti
-from .models import db, User, Player, Game, RequestDenied
+from .models import db, User, RequestDenied
 from .models.Question import get_question_from_digraph_node
 from . import socketio, ROOMS
 
