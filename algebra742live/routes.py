@@ -5,6 +5,7 @@ from pylti.flask import lti
 from .models import db, User, Player, Game, RequestDenied
 from .models import get_or_create
 from .models.Question import QuestionClasses
+from networkx.drawing.nx_pydot import read_dot
 from . import socketio, ROOMS
 
 from flask_wtf import Form
