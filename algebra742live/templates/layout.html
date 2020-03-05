@@ -4,7 +4,7 @@
     {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>{% block title %}{% endblock %} - My Webpage</title>
-    <script src="/static/js/algebra742live.js"></script>
+    <script type="text/javascript" src="/static/js/algebra742live.js"></script>
     <script type="text/javascript" src="/static/js/socket.io.min.js"></script>
     <script>
       var socket = io.connect('https://' + document.domain + ':' + location.port);
