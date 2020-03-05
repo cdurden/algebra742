@@ -36,7 +36,7 @@ def algebra742live_lti(lti=lti):
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user:
-        return render_template('algebra742live.html')
+        return render_template('memory.html')
         #return render_template('index.html', user=user)
     else:
         form = UserInfoForm()
@@ -46,7 +46,7 @@ def algebra742live_lti(lti=lti):
 @lti(request='session', error=error)
 def algebra742live():
     """Serve the index HTML"""
-    return render_template('algebra742live.html')
+    return render_template('memory.html')
 
 @socketio.on('connect')
 @lti(request='session', error=error)
@@ -109,5 +109,5 @@ def SetUserInfo(lti=lti):
         user = User(lti_user_id=lti.name, username=form.username.data, firstname=form.firstname.data, lastname=form.lastname.data)
         db.session.add(user)
     db.session.commit()
-    return render_template('algebra742live.html', user=user)
+    return render_template('memory.html', user=user)
 

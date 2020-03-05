@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    <script src="/static/js/algebra742live.js"></script>
+    <script type="text/javascript" src="/static/js/socket.io.min.js"></script>
+    <script>
+      var socket = io.connect('https://' + document.domain + ':' + location.port);
+      socket.on('connect', function() {
+          console.log('Websocket connected!');
+      });
+      socket.on('reset_game', function(data) {
+          console.log(data);
+          reset_game(data)
+      });
+      socket.on('update_game', function(data) {
+          console.log(data);
+          update_game(data)
+      });
+/*
+      document.onreadystatechange = function() {
+          if (document.readyState == "complete") {
+              function showMessage(message) {
+                  var i = document.createElement('li');
+                  i.textContent = message;
+                  document.getElementById('messages').appendChild(i);
+              }
+              if (!window.WebSocket) {
+                  if (window.MozWebSocket) {
+                      window.WebSocket = window.MozWebSocket;
+                  } else {
+                      showMessage("Your browser doesn't support WebSockets") 
+                  }
+              }
+          }
+      }
+*/
+    </script>
+    {% endblock %}
+  </head>
+  <body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}
+      &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
+      {% endblock %}
+    </div>
+  </body>
+</html>

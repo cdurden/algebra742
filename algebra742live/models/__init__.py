@@ -174,6 +174,9 @@ class Node:
         self.val = val
         self.next = None # the pointer initially points to nothing
 
+class RevealJSPresentationGame(Game):
+    pass
+
 class QuestionDigraphGame(Game):
     def __init__(self, question_digraph, **kwargs):
         Game.__init__(self, kwargs)
