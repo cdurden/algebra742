@@ -3,10 +3,8 @@ from flask import render_template, request
 from flask_socketio import emit
 from pylti.flask import lti
 from .models import db, User, Player, Game, RequestDenied
-from .models import get_or_create
+from .models import get_or_create, get_question_from_digraph_node
 from .models.Question import QuestionClasses
-import os
-from networkx.drawing.nx_pydot import read_dot
 from . import socketio, ROOMS
 
 from flask_wtf import Form
@@ -87,11 +85,7 @@ def input(data, lti=lti):
 @lti(request='session', error=error)
 def get_question_data(data, lti=lti):
     print(data)
-    questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],data['graph']+'.dot'))
-    node_data = questions_digraph.nodes[data['node']]
-    for k,v in node_data.items():
-        node_data[k.strip("\"")] = node_data.pop(k).strip("\"").replace("\\","")
-        question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'])
+    question = get_question_from_digraph_node(data['graph'],data['node'])
     data['html'] = question.render_html()
     emit('question_data', data, broadcast=True)
 
