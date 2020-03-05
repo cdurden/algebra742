@@ -1,4 +1,5 @@
 #from .. import db
+from flask import current_app as app
 from flask_sqlalchemy import SQLAlchemy
 import random
 import string
