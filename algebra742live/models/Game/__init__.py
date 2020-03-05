@@ -207,3 +207,25 @@ class QuestionGame(Game):
             self.active_question = self.active_question.next
             self.screen_html()
             update_game_callback()
+class Player(object):
+    def __init__(self, session_id, user):
+        self.session_id = session_id
+        self.user = user
+        self.correct = 0
+        self.incorrect = 0
+        self.matched_cards = []
+        self.color = "yellow"
+    def __eq__(self, other):
+        return self.session_id == other.session_id
+    def __repr__(self):
+        return json.dumps(self.to_json())
+    def to_json(self):
+        return({ 
+                'session_id': self.session_id,
+                'user': self.user.to_json(),
+                'correct': self.correct,
+                'incorrect': self.incorrect,
+                'matched_cards': [card.to_json() for card in self.matched_cards],
+                'color': self.color,
+                })
+

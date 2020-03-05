@@ -7,28 +7,6 @@ import json
 
 db = SQLAlchemy()
 
-class Player(object):
-    def __init__(self, session_id, user):
-        self.session_id = session_id
-        self.user = user
-        self.correct = 0
-        self.incorrect = 0
-        self.matched_cards = []
-        self.color = "yellow"
-    def __eq__(self, other):
-        return self.session_id == other.session_id
-    def __repr__(self):
-        return json.dumps(self.to_json())
-    def to_json(self):
-        return({ 
-                'session_id': self.session_id,
-                'user': self.user.to_json(),
-                'correct': self.correct,
-                'incorrect': self.incorrect,
-                'matched_cards': [card.to_json() for card in self.matched_cards],
-                'color': self.color,
-                })
-
 class RequestDenied(Exception):
     def __init__(self, message):
         self.message = message
