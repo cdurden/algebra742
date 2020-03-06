@@ -4,7 +4,7 @@ from .. import db
 import jinja2
 import json
 import os
-from flask_wtf import Form
+from flask_wtf import Form as FlaskForm
 from wtforms import StringField, FormField
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
@@ -14,12 +14,7 @@ loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__
 jinja_env = jinja2.Environment(loader=loader)
 from networkx.drawing.nx_pydot import read_dot
 
-class AnswerForm(Form):
-    answer = StringField('answer')
-
-#    def __init__(self, **kwargs):
-#        super().__init__(self, **kwargs)
-
+class Form(FlaskForm):
     def render_html(self):
         import inspect
         for base_class in inspect.getmro(self.__class__):
@@ -29,7 +24,12 @@ class AnswerForm(Form):
             except TemplateNotFound:
                 next 
 
-class MultiPartAnswerForm(Form):
+class AnswerForm(Form):
+    answer = StringField('answer')
+#    def __init__(self, **kwargs):
+#        super().__init__(self, **kwargs)
+
+class MultiPartAnswerForm(FlaskForm):
     pass
 #    def render_html(self):
 #        import inspect
@@ -109,9 +109,8 @@ class Question(db.Model):
         db.session.commit()
 
 class DrawingQuestion(Question):
-    form_class = DrawingForm
+    form_class = AnswerForm
     form = None
-
 
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
