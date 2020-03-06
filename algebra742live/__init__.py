@@ -79,6 +79,7 @@ def create_app():
         #template = app.extensions['redis'].get('template').decode('utf-8')
         game = GameClasses[app.extensions['redis'].get('game').decode('utf-8')]
         params = app.extensions['redis'].get('params').decode('utf-8')
+        print(params)
         ROOMS += [game(**json.loads(params))]
 
         # Register Blueprints
