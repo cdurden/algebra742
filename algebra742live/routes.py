@@ -4,6 +4,7 @@ from flask_socketio import emit
 from pylti.flask import lti
 from .models import db, User, RequestDenied
 from .models.Question import get_question_from_digraph_node
+from .models.Game import GameClasses
 from . import socketio, ROOMS
 
 from flask_wtf import Form
@@ -60,7 +61,7 @@ def algebra742live(lti=lti):
         return render_template('GetUserInfo.html', lti=lti, form=form)
 
 @app.route('/admin/', methods=['GET', 'POST'])
-@lti(request='session', error=error)
+@lti(request='session', role='staff', error=error)
 def admin(lti=lti):
     """ initial access page to the lti provider.  This page provides
     authorization for the user.
@@ -70,10 +71,15 @@ def admin(lti=lti):
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user.id==86:
-        return render_template(ROOMS[0].template)
-        #return render_template('index.html', user=user)
+        return render_template("admin.html", GameClasses=GameClasses)
     else:
         raise RequestDenied
+
+@socketio.on('set_game')
+@lti(request='session', role='staff', error=error)
+def set_game(data, lti=lti):
+    ROOMS[0] = GameClasses[data['game']](**json.loads(data['params']))
+    emit('update_game', {}, broadcast=True)
 
 @socketio.on('connect')
 @lti(request='session', error=error)

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}Algebra742Live Administration Dashboard{% endblock %}
+{% block head %}
+  {{ super() }}
+  <script type="text/javascript" src="/static/js/admin.js"></script>
+  <script>
+socket.on('admin_state', function(data) {
+    return;
+});
+  </script>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="https://kit.fontawesome.com/4cc21f3326.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+{% endblock %}
+{% block content %}
+                <div class="question" data-role="page">
+                	<div data-role="header">
+                        <!--<span class="ui-title" />
+                        <a data-icon="alert" class="question_completed ui-btn-right">Question</a>-->
+                    </div>
+                	<div role="main" class="ui-content">
+                        <form>
+                            <div class="ui-field-contain">
+                                <label for="select-game">Game:</label>
+                                <select name="game" id="select-game">
+                                    {% for game in GameClasses.keys() %}
+                                    <option value="{{ game }}">{{ game }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <label for="params">Parameters:</label>
+                            <input type="text" name="params">
+                            <input type="submit" value="Submit"></form>
+                    </div>
+                	<div data-role="footer"></div>
+                </div>
+{% endblock %}
+{% block more %}
+{% endblock %}

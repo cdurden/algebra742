@@ -74,7 +74,7 @@ def create_app():
         app.extensions['redis'].set('template',"reveal.html".encode('utf-8'))
         template = app.extensions['redis'].get('template').decode('utf-8')
         print(template)
-        ROOMS += [RevealJSPresentationGame(template)]
+        ROOMS += [RevealJSPresentationGame(template=template)]
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)

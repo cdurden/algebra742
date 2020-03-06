@@ -96,9 +96,9 @@ class Game(object):
         }
 
 class RevealJSPresentationGame(Game):
-    def __init__(self, template, **kwargs):
+    def __init__(self, **kwargs):
         Game.__init__(self, kwargs)
-        self.template = template
+        self.template = kwargs['template']
     def input(self, player, data, output_callback):
         node = data['node']
         graph = data['graph']
@@ -233,3 +233,7 @@ class QuestionGame(Game):
             self.active_question = self.active_question.next
             self.screen_html()
             update_game_callback()
+
+GameClasses = {
+        'RevealJSPresentationGame': RevealJSPresentationGame,
+        }
