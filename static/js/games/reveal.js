@@ -1,7 +1,7 @@
 function output(data) {
     container = document.getElementById('question_'+data.graph+"_"+data.node);
     for (field in data.question.marked_correct) {
-      $(container).find('input[name='+field+']').after('<i class="fas fa-check"></i>');
+      $(container).find("input[name='"+field+"']").after('<i class="fas fa-check"></i>');
     }
     if (data.correct) {
       $(container).find('a.question_completed').attr('data-icon',"check");
