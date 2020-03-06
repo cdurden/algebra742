@@ -20,7 +20,7 @@ class Form(FlaskForm):
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(form=self)
+                return template.render(form=self, url_for=url_for)
             except TemplateNotFound:
                 next 
 
