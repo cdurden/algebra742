@@ -9,6 +9,7 @@ from . import socketio, ROOMS
 
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
+import json
 
 def error(exception=None):
     """ render error page
@@ -71,7 +72,9 @@ def admin(lti=lti):
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user.id==86:
-        return render_template("admin.html", GameClasses=GameClasses)
+        game = app.extensions['redis'].get('game').decode('utf-8')
+        params = app.extensions['redis'].get('params').decode('utf-8')
+        return render_template("admin.html", GameClasses=GameClasses, game, params)
     else:
         raise RequestDenied
 

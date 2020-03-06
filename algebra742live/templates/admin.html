@@ -24,13 +24,13 @@ socket.on('admin_state', function(data) {
                             <div class="ui-field-contain">
                                 <label for="select-game">Game:</label>
                                 <select name="game" id="select-game">
-                                    {% for game in GameClasses.keys() %}
-                                    <option value="{{ game }}">{{ game }}</option>
+                                    {% for game_option in GameClasses.keys() %}
+                                            <option value="{{ game_option }}" {% if game == game_option %}selected="selected"{% endif %}>{{ game }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <label for="params">Parameters:</label>
-                            <input type="text" name="params">
+                            <input type="text" name="params" value="{{ params }}">
                             <input type="submit" value="Submit"></form>
                     </div>
                 	<div data-role="footer"></div>
