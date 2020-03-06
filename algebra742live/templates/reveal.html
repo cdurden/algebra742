@@ -5,14 +5,7 @@
   <script type="text/javascript" src="/static/js/games/reveal.js"></script>
   {{ super() }}
   <script>
-socket.on('question_data', function(data) {
-  container = document.getElementById('question_'+data.graph+"_"+data.node);
-  console.log(data);
-  $(container).find('span[class="question_view"]').html(data.html); 
-  $(container).find('input[name="graph"]').val(data.graph);
-  $(container).find('input[name="node"]').val(data.node);
-  $(container).find('input[type="text"]').after('<span class="answer_marker"></span>');
-});
+socket.on('question_data', update_question_data);
   </script>
   <link rel="stylesheet" href="/static/js/reveal.js/css/reveal.css">
   <link rel="stylesheet" href="/static/js/reveal.js/css/theme/white.css">

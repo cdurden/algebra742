@@ -18,3 +18,11 @@ function output(data) {
     }
     */
 }
+function update_question_data(data) {
+  container = document.getElementById('question_'+data.graph+"_"+data.node);
+  console.log(data);
+  $(container).find('span[class="question_view"]').html(data.html); 
+  $(container).find('input[name="graph"]').val(data.graph);
+  $(container).find('input[name="node"]').val(data.node);
+  $(container).find('input[type="text"]').after('<span class="answer_marker"></span>');
+}
