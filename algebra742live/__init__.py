@@ -73,7 +73,7 @@ def create_app():
         #ROOMS += [QuestionDigraphGame(questions_digraph)]
         app.extensions['redis']['template'] = "reveal.html"
         template = app.extensions['redis']['template']
-        ROOMS += [RevealJSPresentationGame("reveal2.html")]
+        ROOMS += [RevealJSPresentationGame(template)]
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
