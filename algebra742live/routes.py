@@ -117,6 +117,7 @@ def get_question_data(data, lti=lti):
     print(data)
     question = get_question_from_digraph_node(data['graph'],data['node'])
     data['html'] = question.render_html()
+    data['question_id'] = question.id
     emit('question_data', data, broadcast=True)
 
 def output(data):

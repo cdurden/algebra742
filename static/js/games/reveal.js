@@ -1,5 +1,6 @@
 function output(data) {
-    container = document.getElementById('question_'+data.graph+"_"+data.node);
+    //container = document.getElementById('question_'+data.graph+"_"+data.node);
+    container = $('div.question[source="digraph_question:'+data.graph+":"+data.node+'"]');
     for (let field of data.question.marked_correct) {
       //$(container).find("input[name='"+field+"']").after('<i class="fas fa-check"></i>');
       $(container).find("input[name='"+field+"']").next("span.answer_marker").html('<i class="fas fa-check"></i>');
@@ -19,7 +20,8 @@ function output(data) {
     */
 }
 function update_question_data(data) {
-  container = document.getElementById('digraph_question_'+data.graph+"_"+data.node);
+  //container = document.getElementById('digraph_question_'+data.graph+"_"+data.node);
+  container = $('div.question[source="digraph_question:'+data.graph+":"+data.node+'"]');
   console.log(data);
   $(container).find('span[class="question_view"]').html(data.html); 
   $(container).find('input[name="graph"]').val(data.graph);
