@@ -33,8 +33,8 @@ class UserInfoForm(Form):
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
 def algebra742live_lti(lti=lti):
-    """ initial access page to the lti provider.  This page provides
-    authorization for the user.
+    """ initial access page to the lti provider.
+    This page provides authorization for the user.
 
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
@@ -52,6 +52,7 @@ def algebra742live_lti(lti=lti):
 @lti(request='session', error=error)
 def algebra742live(lti=lti):
     """Serve the index HTML"""
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user:
         return render_template(ROOMS[0].template)
     else:
