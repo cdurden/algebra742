@@ -62,7 +62,8 @@ Reveal.initialize({
           className: "question", 
           initialize: (function(container, options){ 
               socket.emit('get_question_data', { graph: options.graph, node: options.node });
-              container.id = "question_"+options.graph+"_"+options.node;
+              //setting the id of the question div is now handled by the template macro
+              //container.id = "question_"+options.graph+"_"+options.node;
             }) 
         },
     ],
