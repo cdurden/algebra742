@@ -14,7 +14,13 @@ socket.on('question_data', update_question_data);
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script>
-      $.mobile.ajaxEnabled = false;
+      $(document).on("mobileinit",function() {
+              $.mobile.autoInitializePage = false;
+      }); 
+$(document).ready(function() {            
+    window.location.hash = 'question_digraph_task1_question3';
+    $.mobile.initializePage();
+});
     </script>
 {% endblock %}
 {% block content %}
