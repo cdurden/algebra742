@@ -73,6 +73,7 @@ def create_app():
         #ROOMS += [QuestionDigraphGame(questions_digraph)]
         app.extensions['redis'].set('template',"reveal.html")
         template = app.extensions['redis'].get('template')
+        print(template)
         ROOMS += [RevealJSPresentationGame(template)]
 
         # Register Blueprints
