@@ -29,6 +29,9 @@ class AnswerForm(Form):
 #    def __init__(self, **kwargs):
 #        super().__init__(self, **kwargs)
 
+DrawingForm = AnswerForm
+DrawingForm.__name__ = 'DrawingForm'
+
 class MultiPartAnswerForm(FlaskForm):
     pass
 #    def render_html(self):
@@ -109,7 +112,7 @@ class Question(db.Model):
         db.session.commit()
 
 class DrawingQuestion(Question):
-    form_class = AnswerForm
+    form_class = DrawingForm
     form = None
 
 class MultiPartQuestion(Question):
