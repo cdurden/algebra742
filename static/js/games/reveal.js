@@ -18,6 +18,3 @@ function output(data) {
     }
     */
 }
-function update_game(data) {
-    return
-}

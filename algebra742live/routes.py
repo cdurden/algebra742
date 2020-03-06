@@ -26,9 +26,9 @@ class UserInfoForm(Form):
     firstname = StringField('firstname')
     lastname = StringField('lastname')
 
-@app.route('/reveal/', methods=['GET', 'POST'])
-def reveal():
-    return render_template("reveal.html")
+#@app.route('/reveal/', methods=['GET', 'POST'])
+#def reveal():
+#    return render_template("reveal.html")
 
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
@@ -41,7 +41,8 @@ def algebra742live_lti(lti=lti):
     """
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user:
-        return render_template(ROOMS[0].template)
+        return(redirect(url_for('algebra742live')))
+        #return render_template(ROOMS[0].template)
         #return render_template('index.html', user=user)
     else:
         form = UserInfoForm()
@@ -51,7 +52,27 @@ def algebra742live_lti(lti=lti):
 @lti(request='session', error=error)
 def algebra742live():
     """Serve the index HTML"""
-    return render_template(ROOMS[0].template)
+    if user:
+        return render_template(ROOMS[0].template)
+    else:
+        form = UserInfoForm()
+        return render_template('GetUserInfo.html', lti=lti, form=form)
+
+@app.route('/admin/', methods=['GET', 'POST'])
+@lti(request='session', error=error)
+def admin(lti=lti):
+    """ initial access page to the lti provider.  This page provides
+    authorization for the user.
+
+    :param lti: the `lti` object from `pylti`
+    :return: index page for lti provider
+    """
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if user.id==86:
+        return render_template(ROOMS[0].template)
+        #return render_template('index.html', user=user)
+    else:
+        raise RequestDenied
 
 @socketio.on('connect')
 @lti(request='session', error=error)
