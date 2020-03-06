@@ -21,6 +21,9 @@ SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "you-will-never-guess")
 
 SQLALCHEMY_DATABASE_URI = 'mysql://www-data:password@localhost/algebra742live'
 #SQLALCHEMY_DATABASE_URI = 'sqlite:///{:s}'.format(os.path.abspath(os.path.join(os.path.dirname(__file__),'algebra742.db')))
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
 
 CONSUMER_KEY_PEM_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__),'consumer_key.pem'))
 with open(CONSUMER_KEY_PEM_FILE, 'w') as wfile:
@@ -50,3 +53,7 @@ PYLTI_URL_FIX = {
 RESOURCES_DIR = os.path.join(os.path.dirname(__file__), 'resources')
 
 MARKDOWN_INCLUDE_PATH = os.path.join(os.path.dirname(__file__), 'resources', 'include')
+
+QUESTION_DIGRAPHS_PATH = os.path.join(os.path.dirname(__file__), 'resources', 'question_digraphs')
+
+PRIVATE_DATA_PATH = os.path.join(os.path.dirname(__file__), 'private')

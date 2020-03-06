@@ -96,9 +96,9 @@ class Game(object):
         }
 
 class RevealJSPresentationGame(Game):
-    def __init__(self, **kwargs):
+    def __init__(self, template, **kwargs):
         Game.__init__(self, kwargs)
-        self.template = "reveal.html"
+        self.template = template
     def input(self, player, data, output_callback):
         node = data['node']
         graph = data['graph']

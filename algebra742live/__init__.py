@@ -71,7 +71,9 @@ def create_app():
 #        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
 #        questions.append(question)
         #ROOMS += [QuestionDigraphGame(questions_digraph)]
-        ROOMS += [RevealJSPresentationGame()]
+        app.extensions['redis']['template'] = "reveal.html"
+        template = app.extensions['redis']['template']
+        ROOMS += [RevealJSPresentationGame("reveal.html")]
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
