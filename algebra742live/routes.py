@@ -50,7 +50,7 @@ def algebra742live_lti(lti=lti):
 
 @app.route('/')
 @lti(request='session', error=error)
-def algebra742live():
+def algebra742live(lti=lti):
     """Serve the index HTML"""
     if user:
         return render_template(ROOMS[0].template)
