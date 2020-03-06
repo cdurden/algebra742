@@ -71,8 +71,8 @@ def create_app():
 #        question = get_or_create(db.session, MultiPartQuestion, params_json=json.dumps(params))
 #        questions.append(question)
         #ROOMS += [QuestionDigraphGame(questions_digraph)]
-        app.extensions['redis'].set('template',"reveal.html")
-        template = app.extensions['redis'].get('template')
+        app.extensions['redis'].set('template',"reveal.html".encode('utf-8'))
+        template = app.extensions['redis'].get('template').decode('utf-8')
         print(template)
         ROOMS += [RevealJSPresentationGame(template)]
 
