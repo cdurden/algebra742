@@ -63,6 +63,7 @@ class Question(db.Model):
     params_json = db.Column(db.Text)
     form_class = AnswerForm
     form = None
+    marked_correct = []
 
 #    def __init__(self, **kwargs):
 #        self.params_json = json.dumps(kwargs['params'])
@@ -91,6 +92,11 @@ class Question(db.Model):
                 return template.render(self.params(), form=self.form, url_for=url_for)
             except TemplateNotFound:
                 next 
+
+    def to_json(self):
+        return({
+            'marked_correct': self.marked_correct,
+            })
 
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
@@ -193,7 +199,11 @@ class QuestionOnePlusOne(Question):
 
     def check_answer(self):
         print(self.form.answer.data)
-        return(self.form.answer.data=='2')
+        if self.form.answer.data=='2':
+            self.marked_correct.append('answer')
+            return True
+        else:
+            return False
 
 QuestionClasses = {
     'Question.MultiPartQuestion': MultiPartQuestion,
