@@ -8,6 +8,7 @@ from . import default_config
 from . import config
 from models import db
 from models.Question import questions_digraph_factory
+from models.Game import GameClasses
 import json
 from networkx.drawing.nx_pydot import read_dot
 import os
