@@ -10,6 +10,7 @@ socket.on('question_data', function(data) {
   $(container).find('span[class="question_view"]').html(data.html); 
   $(container).find('input[name="graph"]').val(data.graph);
   $(container).find('input[name="node"]').val(data.node);
+  $(container).find('input[type="text"]').after('<span class="answer_marker"></span>');
 });
   </script>
   <link rel="stylesheet" href="/static/reveal.js/css/reveal.css">
@@ -25,8 +26,8 @@ socket.on('question_data', function(data) {
 				<section>
                 <div class="question" data-role="page">
                 	<div data-role="header">
-                        <span class="ui-title" />
-                        <a data-icon="alert" class="question_completed ui-btn-right">Incomplete</a>
+                        <!--<span class="ui-title" />
+                        <a data-icon="alert" class="question_completed ui-btn-right">Question</a>-->
                     </div>
                 	<div role="main" class="ui-content">
                         <form><input type="hidden" name="graph"><input type="hidden" name="node"><span class="question_view"><!-- { "graph": "task1", "node": "question1" } --></span><input type="submit" value="Submit"></form>
