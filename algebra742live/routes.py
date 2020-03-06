@@ -74,7 +74,7 @@ def admin(lti=lti):
     if user.id==86:
         game = app.extensions['redis'].get('game').decode('utf-8')
         params = app.extensions['redis'].get('params').decode('utf-8')
-        return render_template("admin.html", GameClasses=GameClasses, game, params)
+        return render_template("admin.html", GameClasses=GameClasses, game=game, params=params)
     else:
         raise RequestDenied
 
