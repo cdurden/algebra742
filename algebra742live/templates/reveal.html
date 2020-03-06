@@ -17,10 +17,12 @@ socket.on('question_data', update_question_data);
       $(document).on("mobileinit",function() {
               $.mobile.autoInitializePage = false;
       }); 
+/*
 $(document).ready(function() {            
     window.location.hash = 'question_digraph_task1_question3';
     $.mobile.initializePage();
 });
+*/
     </script>
 {% endblock %}
 {% block content %}
@@ -31,11 +33,11 @@ $(document).ready(function() {
   <countdown time="300" autostart="yes" />
 </section>
 				<section>
-                    {{ digraph_question("task1", "question1") }}
-                    <a href="#digraph_question_task1_question3">Next</a>
+                    {{ digraph_question("task1", "question3") }}
                 </section>
 				<section>
-                    {{ digraph_question("task1", "question3") }}
+                    {{ digraph_question("task1", "question1") }}
+                    <a href="#digraph_question_task1_question3">Next</a>
                 </section>
                 <section>
                     <a href="?print-pdf#/">Print PDF</a>
