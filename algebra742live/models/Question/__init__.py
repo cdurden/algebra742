@@ -108,6 +108,11 @@ class Question(db.Model):
         db.session.execute(statement)
         db.session.commit()
 
+class DrawingQuestion(Question):
+    form_class = DrawingForm
+    form = None
+
+
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
     form = None
@@ -221,6 +226,7 @@ class QuestionOnePlusOne(Question):
 QuestionClasses = {
     'Question.MultiPartQuestion': MultiPartQuestion,
     'Question.QuestionOnePlusOne': QuestionOnePlusOne,
+    'Question.DrawingQuestion': DrawingQuestion,
 }
 
 question_scores = db.Table('question_scores',
