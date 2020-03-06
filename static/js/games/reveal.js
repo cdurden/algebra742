@@ -1,6 +1,7 @@
 function output(data) {
     container = document.getElementById('question_'+data.graph+"_"+data.node);
     for (field in data.question.marked_correct) {
+      selector = "input[name='"+field+"']";
       $(container).find("input[name='"+field+"']").after('<i class="fas fa-check"></i>');
     }
     for (field in data.question.marked_incorrect) {
