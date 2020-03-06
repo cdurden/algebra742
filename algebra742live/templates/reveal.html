@@ -13,8 +13,8 @@ socket.on('question_data', function(data) {
   $(container).find('input[type="text"]').after('<span class="answer_marker"></span>');
 });
   </script>
-  <link rel="stylesheet" href="/static/reveal.js/css/reveal.css">
-  <link rel="stylesheet" href="/static/reveal.js/css/theme/white.css">
+  <link rel="stylesheet" href="/static/js/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/static/js/reveal.js/css/theme/white.css">
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <script src="https://kit.fontawesome.com/4cc21f3326.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -39,9 +39,9 @@ socket.on('question_data', function(data) {
 		</div>
 {% endblock %}
 {% block more %}
-		<script src="/static/reveal.js/js/reveal.js"></script>
-		<script src="/static/reveal.js/plugin/markdown/marked.js"></script>
-		<script src="/static/reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="/static/js/reveal.js/js/reveal.js"></script>
+		<script src="/static/js/reveal.js/plugin/markdown/marked.js"></script>
+		<script src="/static/js/reveal.js/plugin/markdown/markdown.js"></script>
 		<script>
 Reveal.initialize({
     math: {
@@ -65,11 +65,13 @@ Reveal.initialize({
     ],
 	dependencies: [
 		// ...
-		{ src: '/static/reveal.js-plugins/chalkboard/chalkboard.js' },
-        { src: '/static/reveal.js-plugins/anything/anything.js' },
-        { src: '/static/reveal.js/plugin/math/math.js', async: true },
+		{ src: '/static/js/reveal.js-plugins/chalkboard/chalkboard.js' },
+        { src: '/static/js/reveal.js-plugins/anything/anything.js' },
+        { src: '/static/js/reveal.js/plugin/math/math.js', async: true },
+        { src: '/static/js/reveal_countdown/countdown/countdown.js' },
 		// ...
 	],
+    countdown: { defaultTime: 600, autostart: "no" },
 	keyboard: {
 	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
 	    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
