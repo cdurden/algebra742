@@ -11,3 +11,4 @@ Features
     i. Create a RevealJSMultiPartTask question type which would have a presentation associated with it containing placeholders for question parts.
     ii. Create a RevealJSPresentationGame
   g. Add questions to RevealJSPresentationGame. Insert question markup into 
+  h. jquery-mobile only allows one page to be displayed at a time. this prevents me from being able to add jquery-mobile pages to reveal.js slides, and simply transitioning between slides to display the different questions. An alternative solution would be to have one page, and to have a slidechange event detect whether a page contains a question. If so it would move the single jquery-mobile page to the active slide and trigger a question update on that page.
