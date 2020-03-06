@@ -65,7 +65,7 @@ window.addEventListener('load', function () {
     context = canvas.getContext('2d');
 
     // Get the tool select input.
-    var tool_select = $(drawing).find('select.dtool').get(0);
+    var tool_select = $(drawing).find('.dtool').get(0);
     if (!tool_select) {
       alert('Error: failed to get the dtool element!');
       return;
