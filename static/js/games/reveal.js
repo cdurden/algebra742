@@ -8,6 +8,7 @@ function output(data) {
       //$(container).find("input[name='"+field+"']").after('<i class="fas fa-times"></i>');
       $(container).find("input[name='"+field+"']").next("span.answer_marker").html('<i class="fas fa-times"></i>');
     }
+    /*
     if (data.correct) {
       $(container).find('a.question_completed').attr('data-icon',"check");
       $(container).find('a.question_completed').html("Completed");
@@ -15,6 +16,7 @@ function output(data) {
       $(container).find('a.question_completed').attr('data-icon',"alert");
       $(container).find('a.question_completed').html("Incomplete");
     }
+    */
 }
 function update_game(data) {
     return

@@ -95,6 +95,26 @@ class Game(object):
             "players": [player.to_json() for player in self.players],
         }
 
+class RevealJSPresentationGame(Game):
+    def __init__(self, **kwargs):
+        Game.__init__(self, kwargs)
+        self.template = "reveal.html"
+    def input(self, player, data, output_callback):
+        node = data['node']
+        graph = data['graph']
+        question = get_question_from_digraph_node(graph, node)
+        #assert(graph == self.question_digraph.graph['name'])
+        #question = self.question_digraph.nodes[node]['_question_obj']
+        question.build_form(data)
+        if question.check_answer():
+            print("answer is correct")
+            output_callback({'correct': True, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
+        else:
+            print("answer is incorrect")
+            output_callback({'correct': False, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
+        question.record_answer(player.user, question.score_answer())
+
+
 class CardGame(Game):
     def input(self, player, data, output_callback):
         if player not in self.players:
@@ -156,24 +176,6 @@ class CardGame(Game):
 #        with open(os.path.join(DECKS_ROOT,self.deck_name), 'r') as deck_file:
 #            self.deck = [Card(i,info=elem) for i,elem in enumerate(deck_file.read().split('\n')) if len(elem.strip()) > 0]
 
-
-class RevealJSPresentationGame(Game):
-    def __init__(self, **kwargs):
-        Game.__init__(self, kwargs)
-        self.template = "reveal.html"
-    def input(self, player, data, output_callback):
-        node = data['node']
-        graph = data['graph']
-        question = get_question_from_digraph_node(graph, node)
-        #assert(graph == self.question_digraph.graph['name'])
-        #question = self.question_digraph.nodes[node]['_question_obj']
-        question.build_form(data)
-        if question.check_answer():
-            print("answer is correct")
-            output_callback({'correct': True, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
-        else:
-            print("answer is incorrect")
-            output_callback({'correct': False, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
 
 
 class QuestionDigraphGame(Game):
