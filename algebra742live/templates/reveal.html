@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% from "macros.html" import digraph_question %}.
 {% block title %}Sample presentation{% endblock %}
 {% block head %}
   <script type="text/javascript" src="/static/js/games/reveal.js"></script>
@@ -28,16 +29,7 @@ socket.on('question_data', function(data) {
   <countdown time="300" autostart="yes" />
 </section>
 				<section>
-                <div class="question" data-role="page">
-                	<div data-role="header">
-                        <!--<span class="ui-title" />
-                        <a data-icon="alert" class="question_completed ui-btn-right">Question</a>-->
-                    </div>
-                	<div role="main" class="ui-content">
-                        <form><input type="hidden" name="graph"><input type="hidden" name="node"><span class="question_view"><!-- { "graph": "task1", "node": "question1" } --></span><input type="submit" value="Submit"></form>
-                    </div>
-                	<div data-role="footer"></div>
-                </div>
+                    {{ digraph_question("task1", "question1") }}
                 </section>
                 <section>
                     <a href="?print-pdf#/">Print PDF</a>
