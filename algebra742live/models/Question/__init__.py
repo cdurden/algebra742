@@ -201,6 +201,8 @@ class QuestionOnePlusOne(Question):
 
     def check_answer(self):
         print(self.form.answer.data)
+        self.marked_correct = set()
+        self.marked_incorrect = set()
         if self.form.answer.data=='2':
             self.marked_correct.add('answer')
             return True
