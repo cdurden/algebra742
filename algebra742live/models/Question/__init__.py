@@ -64,6 +64,7 @@ class Question(db.Model):
     form_class = AnswerForm
     form = None
     marked_correct = set() 
+    marked_incorrect = set() 
 
 #    def __init__(self, **kwargs):
 #        self.params_json = json.dumps(kwargs['params'])
@@ -96,6 +97,7 @@ class Question(db.Model):
     def to_json(self):
         return({
             'marked_correct': list(self.marked_correct),
+            'marked_incorrect': list(self.marked_incorrect),
             })
 
 class MultiPartQuestion(Question):
@@ -203,6 +205,7 @@ class QuestionOnePlusOne(Question):
             self.marked_correct.add('answer')
             return True
         else:
+            self.marked_incorrect.add('answer')
             return False
 
 QuestionClasses = {

@@ -3,6 +3,9 @@ function output(data) {
     for (field in data.question.marked_correct) {
       $(container).find("input[name='"+field+"']").after('<i class="fas fa-check"></i>');
     }
+    for (field in data.question.marked_incorrect) {
+      $(container).find("input[name='"+field+"']").after('<i class="fas fa-times"></i>');
+    }
     if (data.correct) {
       $(container).find('a.question_completed').attr('data-icon',"check");
       $(container).find('a.question_completed').html("Completed");
