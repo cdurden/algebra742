@@ -4,3 +4,6 @@
 [submodule "static/reveal.js-plugins"]
 	path = static/js/reveal.js-plugins
 	url = https://github.com/rajgoel/reveal.js-plugins.git
+[submodule "algebra742live/reveal_countdown"]
+	path = algebra742live/reveal_countdown
+	url = https://github.com/cdurden/reveal_countdown.git
