@@ -15,6 +15,71 @@ window.addEventListener('load', function () {
     var canvas, context, canvaso, contexto;
     // The general-purpose event handler. This function just determines the 
     // mouse position relative to the canvas element.
+    //drawing = document.getElementById('drawing');
+    new ResizeSensor(drawing, function(){ 
+      var rect = drawing.getBoundingClientRect();
+		  context.drawImage(canvaso, 0, 0, canvaso.width, canvaso.height);
+      canvaso.width  = rect.width-20;
+      canvaso.height = rect.height-20;
+      contexto = canvaso.getContext('2d');
+		  contexto.drawImage(canvas, 0, 0, canvas.width, canvas.height);
+      canvas.width  = rect.width-20;
+      canvas.height = rect.height-20;
+      context = canvas.getContext('2d');
+		  context.clearRect(0, 0, canvas.width, canvas.height);
+    });
+    // Find the canvas element.
+    canvaso = $(drawing).find('canvas.drawing_canvas').get(0);
+    if (!canvaso) {
+      alert('Error: I cannot find the canvas element!');
+      return;
+    }
+    var rect = canvaso.getBoundingClientRect();
+    canvaso.width  = rect.width-20;
+    canvaso.height = rect.height-20;
+
+    if (!canvaso.getContext) {
+      alert('Error: no canvas.getContext!');
+      return;
+    }
+
+    // Get the 2D canvas context.
+    contexto = canvaso.getContext('2d');
+    if (!contexto) {
+      alert('Error: failed to getContext!');
+      return;
+    }
+
+    // Add the temporary canvas.
+    var container = canvaso.parentNode;
+    canvas = document.createElement('canvas');
+    if (!canvas) {
+      alert('Error: I cannot create a new canvas element!');
+      return;
+    }
+
+    //canvas.id     = 'imageTemp';
+    canvas.width  = canvaso.width;
+    canvas.height = canvaso.height;
+    //canvas.class = 'imageCanvas';
+    container.appendChild(canvas);
+
+    context = canvas.getContext('2d');
+
+    // Get the tool select input.
+    var tool_select = $(drawing).find('.dtool').get(0);
+    if (!tool_select) {
+      alert('Error: failed to get the dtool element!');
+      return;
+    }
+    tool_select.addEventListener('change', ev_tool_change, false);
+
+    // Activate the default tool.
+    if (tools[tool_default]) {
+      tool = new tools[tool_default]();
+      tool_select.value = tool_default;
+    }
+
     function ev_canvas (ev) {
       if (ev.layerX || ev.layerX == 0) { // Firefox
         ev._x = ev.layerX;
@@ -265,70 +330,6 @@ window.addEventListener('load', function () {
       this.touchmove = this.mousemove;
     };
 
-    //drawing = document.getElementById('drawing');
-    new ResizeSensor(drawing, function(){ 
-      var rect = drawing.getBoundingClientRect();
-		  context.drawImage(canvaso, 0, 0, canvaso.width, canvaso.height);
-      canvaso.width  = rect.width-20;
-      canvaso.height = rect.height-20;
-      contexto = canvaso.getContext('2d');
-		  contexto.drawImage(canvas, 0, 0, canvas.width, canvas.height);
-      canvas.width  = rect.width-20;
-      canvas.height = rect.height-20;
-      context = canvas.getContext('2d');
-		  context.clearRect(0, 0, canvas.width, canvas.height);
-    });
-    // Find the canvas element.
-    canvaso = $(drawing).find('canvas').get(0);
-    if (!canvaso) {
-      alert('Error: I cannot find the canvas element!');
-      return;
-    }
-    var rect = canvaso.getBoundingClientRect();
-    canvaso.width  = rect.width-20;
-    canvaso.height = rect.height-20;
-
-    if (!canvaso.getContext) {
-      alert('Error: no canvas.getContext!');
-      return;
-    }
-
-    // Get the 2D canvas context.
-    contexto = canvaso.getContext('2d');
-    if (!contexto) {
-      alert('Error: failed to getContext!');
-      return;
-    }
-
-    // Add the temporary canvas.
-    var container = canvaso.parentNode;
-    canvas = document.createElement('canvas');
-    if (!canvas) {
-      alert('Error: I cannot create a new canvas element!');
-      return;
-    }
-
-    //canvas.id     = 'imageTemp';
-    canvas.width  = canvaso.width;
-    canvas.height = canvaso.height;
-    //canvas.class = 'imageCanvas';
-    container.appendChild(canvas);
-
-    context = canvas.getContext('2d');
-
-    // Get the tool select input.
-    var tool_select = $(drawing).find('.dtool').get(0);
-    if (!tool_select) {
-      alert('Error: failed to get the dtool element!');
-      return;
-    }
-    tool_select.addEventListener('change', ev_tool_change, false);
-
-    // Activate the default tool.
-    if (tools[tool_default]) {
-      tool = new tools[tool_default]();
-      tool_select.value = tool_default;
-    }
 
     // Attach the mousedown, mousemove and mouseup event listeners.
     canvas.addEventListener('mousedown', ev_canvas, { passive: false});
