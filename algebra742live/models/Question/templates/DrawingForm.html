@@ -1,8 +1,8 @@
 <div class="literally"></div>
 <div class="tools">
-  <a id="tool-pencil">pencil</a>
+  <a class="tool-pencil">pencil</a>
   |
-  <a id="tool-eraser">eraser</a>
+  <a class="tool-eraser">eraser</a>
 </div>
 
 <!-- replace window.LC with core build version -->
@@ -10,69 +10,69 @@
 <script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
 
 <script>
-  function resizeCanvasToDisplaySize(canvas) {
-     console.log(canvas);
-     // look up the size the canvas is being displayed
-     const width = canvas.clientWidth;
-     const height = canvas.clientHeight;
-  
-     // If it's resolution does not match change it
-     if (canvas.width !== width || canvas.height !== height) {
-       canvas.width = width;
-       canvas.height = height;
-       return true;
-     }
-  
-     return false;
-  }
-  $(document).ready(function(){
-      $('.literally').each(function () {
-          var container = this;
-          var lc = LC.init(container);
-          $(container).find('canvas').each(function() {
-              new ResizeSensor(this, function(){ 
-                  LC.util.matchElementSize(container, this, LC.util.getBackingScale());
-                  //resizeCanvasToDisplaySize(canvas); 
-                  console.log('content dimension changed');
-              });
-              LC.util.matchElementSize(container, $(container).find('canvas'), LC.util.getBackingScale());
-          });
-          //resizeCanvasToDisplaySize(this) 
-      });
+function resizeCanvasToDisplaySize(canvas) {
+   console.log(canvas);
+   // look up the size the canvas is being displayed
+   const width = canvas.clientWidth;
+   const height = canvas.clientHeight;
 
-    <!-- custom UI example... -->
-    var tools = [
-      {
-        name: 'pencil',
-        el: document.getElementById('tool-pencil'),
-        tool: new LC.tools.Pencil(lc)
-      },
-      {
-        name: 'eraser',
-        el: document.getElementById('tool-eraser'),
-        tool: new LC.tools.Eraser(lc)
-      }
-    ];
+   // If it's resolution does not match change it
+   if (canvas.width !== width || canvas.height !== height) {
+     canvas.width = width;
+     canvas.height = height;
+     return true;
+   }
 
-    var activateTool = function(t) {
-        lc.setTool(t.tool);
-
-        tools.forEach(function(t2) {
-          if (t == t2) {
-            t2.el.style.backgroundColor = 'yellow';
-          } else {
-            t2.el.style.backgroundColor = 'transparent';
-          }
+   return false;
+}
+$(document).ready(function(){
+    $('.literally').each(function () {
+        var container = this;
+        var lc = LC.init(container);
+        $(container).find('canvas').each(function() {
+            new ResizeSensor(this, function(){ 
+                LC.util.matchElementSize(container, this, LC.util.getBackingScale());
+                //resizeCanvasToDisplaySize(canvas); 
+                console.log('content dimension changed');
+            });
+            LC.util.matchElementSize(container, $(container).find('canvas'), LC.util.getBackingScale());
         });
-    }
-
-    tools.forEach(function(t) {
-      t.el.style.cursor = "pointer";
-      t.el.onclick = function(e) {
-        e.preventDefault();
-        activateTool(t);
-      };
+        //resizeCanvasToDisplaySize(this) 
+        <!-- custom UI example... -->
+        var tools = [
+          {
+            name: 'pencil',
+            el: document.getElementById('tool-pencil'),
+            tool: new LC.tools.Pencil(lc)
+          },
+          {
+            name: 'eraser',
+            el: document.getElementById('tool-eraser'),
+            tool: new LC.tools.Eraser(lc)
+          }
+        ];
+    
+        var activateTool = function(t) {
+            lc.setTool(t.tool);
+    
+            tools.forEach(function(t2) {
+              if (t == t2) {
+                t2.el.style.backgroundColor = 'yellow';
+              } else {
+                t2.el.style.backgroundColor = 'transparent';
+              }
+            });
+        }
+    
+        tools.forEach(function(t) {
+          t.el.style.cursor = "pointer";
+          t.el.onclick = function(e) {
+            e.preventDefault();
+            activateTool(t);
+          };
+        });
+        activateTool(tools[0]);
     });
-    activateTool(tools[0]);
-  });
+});
+
 </script>
