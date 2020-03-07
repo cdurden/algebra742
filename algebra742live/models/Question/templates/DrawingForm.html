@@ -11,7 +11,7 @@
 <script>
   $(document).ready(function(){
       var lc = LC.init(document.getElementsByClassName('literally')[0]);
-      containerRect = $('.lc-drawing').get(0).getBoundingClientRect();
+      rect = $('.lc-drawing').get(0).getBoundingClientRect();
       $('.lc-drawing').find('canvas').attr('width', rect.width).attr('height', rect.height);
       lc.setImageSize(600, 400);
       lc.respondToSizeChange();
