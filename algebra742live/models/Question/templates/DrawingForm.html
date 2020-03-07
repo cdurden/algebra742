@@ -7,26 +7,30 @@
 
 <!-- replace window.LC with core build version -->
 <script src="{{ url_for('static',filename='js/literallycanvas-0.4.14/js/literallycanvas-core.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
 
 <script>
+  function resizeCanvasToDisplaySize(canvas) {
+     // look up the size the canvas is being displayed
+     const width = canvas.clientWidth;
+     const height = canvas.clientHeight;
+  
+     // If it's resolution does not match change it
+     if (canvas.width !== width || canvas.height !== height) {
+       canvas.width = width;
+       canvas.height = height;
+       return true;
+     }
+  
+     return false;
+  }
   $(document).ready(function(){
       var lc = LC.init(document.getElementsByClassName('literally')[0]);
-      //lc.setImageSize(600, 400);
-      //lc.respondToSizeChange();
-      function resize() {
-          rect = $('.lc-drawing').get(0).getBoundingClientRect();
-          //var width = $('.lc-drawing').find('canvas').get(0).clientWidth;
-          //var height = $('.lc-drawing').find('canvas').get(0).clientHeight;
-          var width = rect.width;
-          var height = rect.height;
-          $('.lc-drawing').find('canvas').attr('clientWidth',width);
-          $('.lc-drawing').find('canvas').attr('clientHeight',height);
-          $('.lc-drawing').find('canvas').attr('width',width);
-          $('.lc-drawing').find('canvas').attr('height',height);
-      }
-      resize();
-      $(window).on('resize', resize);
-
+      var canvas = $('.lc-drawing').find('canvas').get(0);
+      new ResizeSensor(canvas, function(){ 
+          resizeCanvasToDisplaySize(canvas) }
+          console.log('content dimension changed');
+      });
 
     <!-- custom UI example... -->
     var tools = [
