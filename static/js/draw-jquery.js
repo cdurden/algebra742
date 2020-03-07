@@ -8,12 +8,13 @@ window.addEventListener('load', function () {
 
   // The active tool instance.
 
-  var init = function(drawing) {
+  var init = function(container) {
     var tool;
     var tool_default = 'pencil';
     var lastX, lastY;
     var canvas, context, canvaso, contexto;
-    canvaso = $(drawing).find('canvas.drawing_canvas').get(0);
+    var container = $(drawing).find('div.drawing_canvas_container');
+    canvaso = $(container).find('canvas.drawing_canvas').get(0);
     if (!canvaso.getContext) {
       alert('Error: no canvas.getContext!');
       return;
@@ -25,7 +26,7 @@ window.addEventListener('load', function () {
       alert('Error: failed to getContext!');
       return;
     }
-    var container = canvaso.parentNode;
+    //var container = canvaso.parentNode;
     canvas = document.createElement('canvas');
     if (!canvas) {
       alert('Error: I cannot create a new canvas element!');
@@ -38,8 +39,8 @@ window.addEventListener('load', function () {
     // The general-purpose event handler. This function just determines the 
     // mouse position relative to the canvas element.
     //drawing = document.getElementById('drawing');
-    new ResizeSensor(drawing, function(){ 
-      var rect = drawing.getBoundingClientRect();
+    new ResizeSensor(container, function(){ 
+      var rect = container.getBoundingClientRect();
 		  context.drawImage(canvaso, 0, 0, canvaso.width, canvaso.height);
       canvaso.width  = rect.width-20;
       canvaso.height = rect.height-20;
@@ -352,7 +353,7 @@ window.addEventListener('load', function () {
   }
 
 
-  $('.drawing').each(function() {
+  $('.drawing_canvas_container').each(function() {
     console.log(this);
     init(this); 
   });
