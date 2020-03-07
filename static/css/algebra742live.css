@@ -1,0 +1,15 @@
+div.drawing {
+  border: red 1px solid;
+  overflow: hidden;
+  resize: both;
+  position: relative;
+
+  max-height: 600px;
+  max-width: 800px;
+  height: 500px;
+  width:100%; margin:10px;padding:10px;
+  touch-action: none;
+}
+.drawing canvas {
+  position: absolute; top: 10px; left: 10px; touch-action: none;
+}
