@@ -66,12 +66,12 @@ window.addEventListener('load', function () {
     // Add the temporary canvas.
 
     function ev_canvas (ev) {
-      if (ev.layerX || ev.layerX == 0) { // Firefox
-        ev._x = ev.layerX;
-        ev._y = ev.layerY;
-      } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+      if (ev.offsetX || ev.offsetX == 0) { // Opera
         ev._x = ev.offsetX;
         ev._y = ev.offsetY;
+      } else if (ev.layerX || ev.layerX == 0) { // Firefox
+        ev._x = ev.layerX;
+        ev._y = ev.layerY;
       } else if (ev.targetTouches && ev.targetTouches[0]) {
         ev.preventDefault();
         //var rect = ev.target.getBoundingClientRect();
