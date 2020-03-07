@@ -1,0 +1,27 @@
+{% extends "reveal.html" %}
+{% from "macros.html" import digraph_question %}.
+{% block title %}Sample presentation{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block slides %}
+<section>
+  <h1>5 minutes timer</h1>
+  <countdown time="300" autostart="yes" />
+</section>
+				<section>
+                    {{ digraph_question("task1", "question3") }}
+                </section>
+				<section>
+                    {{ digraph_question("task1", "question1") }}
+                    <a href="#digraph_question_task1_question3">Next</a>
+                </section>
+                <section>
+                    <a href="?print-pdf#/">Print PDF</a>
+                </section>
+			</div>
+		</div>
+{% endblock %}
+{% block more %}
+  {{ super() }}
+{% endblock %}
