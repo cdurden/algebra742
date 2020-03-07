@@ -8,7 +8,7 @@ window.addEventListener('load', function () {
 
   // The active tool instance.
 
-  var init = function(container) {
+  var init = function(drawing) {
     var tool;
     var tool_default = 'pencil';
     var lastX, lastY;
