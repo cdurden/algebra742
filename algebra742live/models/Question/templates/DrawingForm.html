@@ -14,11 +14,14 @@
       rect = $('.lc-drawing').get(0).getBoundingClientRect();
       lc.setImageSize(600, 400);
       lc.respondToSizeChange();
-      var width = $('.lc-drawing').find('canvas').get(0).clientWidth;
-      var height = $('.lc-drawing').find('canvas').get(0).clientHeight;
-
-      $('.lc-drawing').find('canvas').attr('width',width);
-      $('.lc-drawing').find('canvas').attr('height',height);
+      function resize() {
+          var width = $('.lc-drawing').find('canvas').get(0).clientWidth;
+          var height = $('.lc-drawing').find('canvas').get(0).clientHeight;
+    
+          $('.lc-drawing').find('canvas').attr('width',width);
+          $('.lc-drawing').find('canvas').attr('height',height);
+      }
+      $('.lc-drawing').resize(resize);
 
     <!-- custom UI example... -->
     var tools = [
