@@ -12,6 +12,259 @@ window.addEventListener('load', function () {
   var lastX, lastY;
 
   function init (drawing) {
+
+  // The general-purpose event handler. This function just determines the mouse 
+    // position relative to the canvas element.
+    function ev_canvas (ev) {
+      if (ev.layerX || ev.layerX == 0) { // Firefox
+        ev._x = ev.layerX;
+        ev._y = ev.layerY;
+      } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+        ev._x = ev.offsetX;
+        ev._y = ev.offsetY;
+      } else if (ev.targetTouches && ev.targetTouches[0]) {
+        ev.preventDefault();
+        //var rect = ev.target.getBoundingClientRect();
+        //var rect = document.getElementById("imageView").getBoundingClientRect();
+        //var rect = $(drawing).find('canvas').getBoundingClientRect();
+        var rect = canvaso.getBoundingClientRect();
+        ev._x = ev.targetTouches[0].clientX - rect.left;
+        ev._y = ev.targetTouches[0].clientY - rect.top;
+      } else if (ev.changedTouches && ev.changedTouches[0]) {
+        ev.preventDefault();
+        //var rect = ev.target.getBoundingClientRect();
+        //var rect = document.getElementById("imageView").getBoundingClientRect();
+        var rect = canvaso.getBoundingClientRect();
+        ev._x = ev.changedTouches[0].clientX - rect.left;
+        ev._y = ev.changedTouches[0].clientY - rect.top;
+      }
+  
+      // Call the event handler of the tool.
+      var func = tool[ev.type];
+      if (func) {
+        func(ev);
+      }
+      ev.preventDefault();
+      return false;
+    }
+  
+    // The event handler for any changes made to the tool selector.
+    function ev_tool_change (ev) {
+      if (tools[this.value]) {
+        tool = new tools[this.value]();
+      }
+    }
+  
+    // This function draws the #imageTemp canvas on top of #imageView, after which 
+    // #imageTemp is cleared. This function is called each time when the user 
+    // completes a drawing operation.
+    function img_update () {
+  		contexto.drawImage(canvas, 0, 0);
+  		context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  
+    // This object holds the implementation of each drawing tool.
+    var tools = {};
+  
+    // The drawing pencil.
+    tools.pencil = function () {
+      var tool = this;
+      this.started = false;
+  
+      // This is called when you start holding down the mouse button.
+      // This starts the pencil drawing.
+      this.mousedown = function (ev) {
+          context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
+          context.globalCompositeOperation="source-over";
+          context.beginPath();
+          context.moveTo(ev._x, ev._y);
+          context.lineWidth = 1;
+          tool.started = true;
+      };
+  
+      // This function is called every time you move the mouse. Obviously, it only 
+      // draws if the tool.started state is set to true (when you are holding down 
+      // the mouse button).
+      this.mousemove = function (ev) {
+        if (tool.started) {
+          context.lineTo(ev._x, ev._y);
+          context.stroke();
+        }
+      };
+  
+      // This is called when you release the mouse button.
+      this.mouseup = function (ev) {
+        if (tool.started) {
+          tool.mousemove(ev);
+          tool.started = false;
+          img_update();
+        }
+      };
+      this.touchend = function (ev) {
+        if (tool.started) {
+          tool.touchmove(ev);
+          tool.started = false;
+          img_update();
+        }
+      };
+      this.touchstart = this.mousedown;
+      this.touchmove = this.mousemove;
+    };
+    // The eraser.
+    tools.eraser = function () {
+      var tool = this;
+      this.started = false;
+  
+      // This is called when you start holding down the mouse button.
+      // This starts the erasing.
+      this.mousedown = function (ev) {
+          context.strokeStyle = "#FFFFFF"; //rgba(0,0,0,1)";
+          context.globalCompositeOperation="source-over";
+          context.beginPath();
+          context.moveTo(ev._x, ev._y);
+          context.lineWidth = 10;
+          /*context.beginPath();
+          context.globalCompositeOperation="destination-out";
+          context.lineWidth = 10;
+          //context.strokeStyle = "rgba(0,0,0,1)";
+          context.moveTo(ev._x, ev._y);
+          */
+          tool.started = true;
+          lastX = ev._x;
+          lastY = ev._y;
+      };
+  
+      // This function is called every time you move the mouse. Obviously, it only 
+      // draws if the tool.started state is set to true (when you are holding down 
+      // the mouse button).
+      this.mousemove = function (ev) {
+        if (tool.started) {
+          //context.globalCompositeOperation="destination-out";
+          //context.strokeStyle = "rgba(1,1,1,1)";
+          //context.moveTo(lastX, lastY);
+          context.lineTo(ev._x, ev._y);
+          //context.closePath();
+          //context.lineJoin = context.lineCap = 'round';
+          context.stroke();
+          //lastX = ev._x;
+          //lastY = ev._y;
+          //context.arc(ev._x,ev._y,8,0,Math.PI*2,false);
+          //context.fill();
+        }
+      };
+  
+      // This is called when you release the mouse button.
+      this.mouseup = function (ev) {
+        if (tool.started) {
+          tool.mousemove(ev);
+          tool.started = false;
+          img_update();
+        }
+      };
+      this.touchend = function (ev) {
+        if (tool.started) {
+          tool.touchmove(ev);
+          tool.started = false;
+          img_update();
+        }
+      };
+      this.touchstart = this.mousedown;
+      this.touchmove = this.mousemove;
+    };
+  
+  
+    // The rectangle tool.
+    tools.rect = function () {
+      var tool = this;
+      this.started = false;
+  
+      this.mousedown = function (ev) {
+        context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
+        tool.started = true;
+        tool.x0 = ev._x;
+        tool.y0 = ev._y;
+      };
+  
+      this.mousemove = function (ev) {
+        if (!tool.started) {
+          return;
+        }
+  
+        var x = Math.min(ev._x,  tool.x0),
+            y = Math.min(ev._y,  tool.y0),
+            w = Math.abs(ev._x - tool.x0),
+            h = Math.abs(ev._y - tool.y0);
+  
+        context.clearRect(0, 0, canvas.width, canvas.height);
+  
+        if (!w || !h) {
+          return;
+        }
+  
+        context.strokeRect(x, y, w, h);
+      };
+  
+      this.mouseup = function (ev) {
+        if (tool.started) {
+          tool.mousemove(ev);
+          tool.started = false;
+          img_update();
+        }
+      };
+      this.touchend = function (ev) {
+        if (tool.started) {
+          tool.touchmove(ev);
+          tool.started = false;
+          img_update();
+        }
+      };
+      this.touchstart = this.mousedown;
+      this.touchmove = this.mousemove;
+    };
+  
+    // The line tool.
+    tools.line = function () {
+      var tool = this;
+      this.started = false;
+  
+      this.mousedown = function (ev) {
+        context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
+        tool.started = true;
+        tool.x0 = ev._x;
+        tool.y0 = ev._y;
+      };
+  
+      this.mousemove = function (ev) {
+        if (!tool.started) {
+          return;
+        }
+  
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+        context.moveTo(tool.x0, tool.y0);
+        context.lineTo(ev._x,   ev._y);
+        context.stroke();
+        context.closePath();
+      };
+  
+      this.mouseup = function (ev) {
+        if (tool.started) {
+          tool.mousemove(ev);
+          tool.started = false;
+          img_update();
+        }
+      };
+      this.touchend = function (ev) {
+        if (tool.started) {
+          tool.touchmove(ev);
+          tool.started = false;
+          img_update();
+        }
+      };
+      this.touchstart = this.mousedown;
+      this.touchmove = this.mousemove;
+    };
+
     var canvas, context, canvaso, contexto;
     //drawing = document.getElementById('drawing');
     new ResizeSensor(drawing, function(){ 
@@ -98,261 +351,10 @@ window.addEventListener('load', function () {
     update_drawing_form_data(drawing);
   }
 
-  // The general-purpose event handler. This function just determines the mouse 
-  // position relative to the canvas element.
-  function ev_canvas (ev) {
-    if (ev.layerX || ev.layerX == 0) { // Firefox
-      ev._x = ev.layerX;
-      ev._y = ev.layerY;
-    } else if (ev.offsetX || ev.offsetX == 0) { // Opera
-      ev._x = ev.offsetX;
-      ev._y = ev.offsetY;
-    } else if (ev.targetTouches && ev.targetTouches[0]) {
-      ev.preventDefault();
-      //var rect = ev.target.getBoundingClientRect();
-      //var rect = document.getElementById("imageView").getBoundingClientRect();
-      //var rect = $(drawing).find('canvas').getBoundingClientRect();
-      var rect = canvaso.getBoundingClientRect();
-      ev._x = ev.targetTouches[0].clientX - rect.left;
-      ev._y = ev.targetTouches[0].clientY - rect.top;
-    } else if (ev.changedTouches && ev.changedTouches[0]) {
-      ev.preventDefault();
-      //var rect = ev.target.getBoundingClientRect();
-      //var rect = document.getElementById("imageView").getBoundingClientRect();
-      var rect = canvaso.getBoundingClientRect();
-      ev._x = ev.changedTouches[0].clientX - rect.left;
-      ev._y = ev.changedTouches[0].clientY - rect.top;
-    }
-
-    // Call the event handler of the tool.
-    var func = tool[ev.type];
-    if (func) {
-      func(ev);
-    }
-    ev.preventDefault();
-    return false;
-  }
-
-  // The event handler for any changes made to the tool selector.
-  function ev_tool_change (ev) {
-    if (tools[this.value]) {
-      tool = new tools[this.value]();
-    }
-  }
-
-  // This function draws the #imageTemp canvas on top of #imageView, after which 
-  // #imageTemp is cleared. This function is called each time when the user 
-  // completes a drawing operation.
-  function img_update () {
-		contexto.drawImage(canvas, 0, 0);
-		context.clearRect(0, 0, canvas.width, canvas.height);
-  }
-
-  // This object holds the implementation of each drawing tool.
-  var tools = {};
-
-  // The drawing pencil.
-  tools.pencil = function () {
-    var tool = this;
-    this.started = false;
-
-    // This is called when you start holding down the mouse button.
-    // This starts the pencil drawing.
-    this.mousedown = function (ev) {
-        context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
-        context.globalCompositeOperation="source-over";
-        context.beginPath();
-        context.moveTo(ev._x, ev._y);
-        context.lineWidth = 1;
-        tool.started = true;
-    };
-
-    // This function is called every time you move the mouse. Obviously, it only 
-    // draws if the tool.started state is set to true (when you are holding down 
-    // the mouse button).
-    this.mousemove = function (ev) {
-      if (tool.started) {
-        context.lineTo(ev._x, ev._y);
-        context.stroke();
-      }
-    };
-
-    // This is called when you release the mouse button.
-    this.mouseup = function (ev) {
-      if (tool.started) {
-        tool.mousemove(ev);
-        tool.started = false;
-        img_update();
-      }
-    };
-    this.touchend = function (ev) {
-      if (tool.started) {
-        tool.touchmove(ev);
-        tool.started = false;
-        img_update();
-      }
-    };
-    this.touchstart = this.mousedown;
-    this.touchmove = this.mousemove;
-  };
-  // The eraser.
-  tools.eraser = function () {
-    var tool = this;
-    this.started = false;
-
-    // This is called when you start holding down the mouse button.
-    // This starts the erasing.
-    this.mousedown = function (ev) {
-        context.strokeStyle = "#FFFFFF"; //rgba(0,0,0,1)";
-        context.globalCompositeOperation="source-over";
-        context.beginPath();
-        context.moveTo(ev._x, ev._y);
-        context.lineWidth = 10;
-        /*context.beginPath();
-        context.globalCompositeOperation="destination-out";
-        context.lineWidth = 10;
-        //context.strokeStyle = "rgba(0,0,0,1)";
-        context.moveTo(ev._x, ev._y);
-        */
-        tool.started = true;
-        lastX = ev._x;
-        lastY = ev._y;
-    };
-
-    // This function is called every time you move the mouse. Obviously, it only 
-    // draws if the tool.started state is set to true (when you are holding down 
-    // the mouse button).
-    this.mousemove = function (ev) {
-      if (tool.started) {
-        //context.globalCompositeOperation="destination-out";
-        //context.strokeStyle = "rgba(1,1,1,1)";
-        //context.moveTo(lastX, lastY);
-        context.lineTo(ev._x, ev._y);
-        //context.closePath();
-        //context.lineJoin = context.lineCap = 'round';
-        context.stroke();
-        //lastX = ev._x;
-        //lastY = ev._y;
-        //context.arc(ev._x,ev._y,8,0,Math.PI*2,false);
-        //context.fill();
-      }
-    };
-
-    // This is called when you release the mouse button.
-    this.mouseup = function (ev) {
-      if (tool.started) {
-        tool.mousemove(ev);
-        tool.started = false;
-        img_update();
-      }
-    };
-    this.touchend = function (ev) {
-      if (tool.started) {
-        tool.touchmove(ev);
-        tool.started = false;
-        img_update();
-      }
-    };
-    this.touchstart = this.mousedown;
-    this.touchmove = this.mousemove;
-  };
-
-
-  // The rectangle tool.
-  tools.rect = function () {
-    var tool = this;
-    this.started = false;
-
-    this.mousedown = function (ev) {
-      context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
-      tool.started = true;
-      tool.x0 = ev._x;
-      tool.y0 = ev._y;
-    };
-
-    this.mousemove = function (ev) {
-      if (!tool.started) {
-        return;
-      }
-
-      var x = Math.min(ev._x,  tool.x0),
-          y = Math.min(ev._y,  tool.y0),
-          w = Math.abs(ev._x - tool.x0),
-          h = Math.abs(ev._y - tool.y0);
-
-      context.clearRect(0, 0, canvas.width, canvas.height);
-
-      if (!w || !h) {
-        return;
-      }
-
-      context.strokeRect(x, y, w, h);
-    };
-
-    this.mouseup = function (ev) {
-      if (tool.started) {
-        tool.mousemove(ev);
-        tool.started = false;
-        img_update();
-      }
-    };
-    this.touchend = function (ev) {
-      if (tool.started) {
-        tool.touchmove(ev);
-        tool.started = false;
-        img_update();
-      }
-    };
-    this.touchstart = this.mousedown;
-    this.touchmove = this.mousemove;
-  };
-
-  // The line tool.
-  tools.line = function () {
-    var tool = this;
-    this.started = false;
-
-    this.mousedown = function (ev) {
-      context.strokeStyle = "#0000FF"; //rgba(0,0,0,1)";
-      tool.started = true;
-      tool.x0 = ev._x;
-      tool.y0 = ev._y;
-    };
-
-    this.mousemove = function (ev) {
-      if (!tool.started) {
-        return;
-      }
-
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.beginPath();
-      context.moveTo(tool.x0, tool.y0);
-      context.lineTo(ev._x,   ev._y);
-      context.stroke();
-      context.closePath();
-    };
-
-    this.mouseup = function (ev) {
-      if (tool.started) {
-        tool.mousemove(ev);
-        tool.started = false;
-        img_update();
-      }
-    };
-    this.touchend = function (ev) {
-      if (tool.started) {
-        tool.touchmove(ev);
-        tool.started = false;
-        img_update();
-      }
-    };
-    this.touchstart = this.mousedown;
-    this.touchmove = this.mousemove;
-  };
 
   $('.drawing').each(function() {
-    console.log($(this).get(0));
-    init($(this).get(0)); 
+    console.log(this);
+    init(this); 
   });
 
 }, false); }
