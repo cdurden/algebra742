@@ -66,20 +66,6 @@ window.addEventListener('load', function () {
 
     context = canvas.getContext('2d');
 
-    // Get the tool select input.
-    var tool_select = $(drawing).find('.dtool').get(0);
-    if (!tool_select) {
-      alert('Error: failed to get the dtool element!');
-      return;
-    }
-    tool_select.addEventListener('change', ev_tool_change, false);
-
-    // Activate the default tool.
-    if (tools[tool_default]) {
-      tool = new tools[tool_default]();
-      tool_select.value = tool_default;
-    }
-
     function ev_canvas (ev) {
       if (ev.layerX || ev.layerX == 0) { // Firefox
         ev._x = ev.layerX;
@@ -329,6 +315,20 @@ window.addEventListener('load', function () {
       this.touchstart = this.mousedown;
       this.touchmove = this.mousemove;
     };
+
+    // Get the tool select input.
+    var tool_select = $(drawing).find('.dtool').get(0);
+    if (!tool_select) {
+      alert('Error: failed to get the dtool element!');
+      return;
+    }
+    tool_select.addEventListener('change', ev_tool_change, false);
+
+    // Activate the default tool.
+    if (tools[tool_default]) {
+      tool = new tools[tool_default]();
+      tool_select.value = tool_default;
+    }
 
 
     // Attach the mousedown, mousemove and mouseup event listeners.
