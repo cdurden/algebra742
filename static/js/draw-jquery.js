@@ -351,8 +351,8 @@ window.addEventListener('load', function () {
   };
 
   $('.drawing').each(function() {
-    console.log(this);
-    init(this); 
+    console.log($(this).get(0));
+    init($(this).get(0)); 
   });
 
 }, false); }
