@@ -14,8 +14,8 @@ div.drawing_canvas_container {
   position: absolute; top: 10px; left: 10px; touch-action: none;
 }
 div.literally {
-  width: 600px;
-  height: 400px;
+  width: 100%;
+  height: auto;
   position: relative;
   margin-bottom: 8px;
 }
