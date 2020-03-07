@@ -13,7 +13,7 @@ div.drawing_canvas_container {
 .drawing_canvas_container canvas {
   position: absolute; top: 10px; left: 10px; touch-action: none;
 }
-.literally {
+div.literally {
   width: 600px;
   height: 400px;
   position: relative;
@@ -27,7 +27,5 @@ div.drawing_canvas_container {
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 100%;
-  height: auto;
 }
 button { background-color: rgb(199, 199, 199); margin-bottom: 8px; }
