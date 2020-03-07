@@ -12,13 +12,13 @@
   $(document).ready(function(){
       var lc = LC.init(document.getElementsByClassName('literally')[0]);
       rect = $('.lc-drawing').get(0).getBoundingClientRect();
+      lc.setImageSize(600, 400);
+      lc.respondToSizeChange();
       var width = $('.lc-drawing').find('canvas').get(0).clientWidth;
       var height = $('.lc-drawing').find('canvas').get(0).clientHeight;
 
       $('.lc-drawing').find('canvas').attr('width',width);
       $('.lc-drawing').find('canvas').attr('height',height);
-      lc.setImageSize(600, 400);
-      lc.respondToSizeChange();
 
     <!-- custom UI example... -->
     var tools = [
