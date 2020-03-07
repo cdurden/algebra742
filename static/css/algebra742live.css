@@ -19,7 +19,7 @@ div.drawing_canvas_container {
   position: relative;
   margin-bottom: 8px;
 }
-.lc_drawing {
+.lc-drawing {
     width: 100%;
     height: 100%;
 }
