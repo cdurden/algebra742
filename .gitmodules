@@ -10,3 +10,6 @@
 [submodule "static/js/literallycanvas"]
 	path = static/js/literallycanvas
 	url = https://github.com/literallycanvas/literallycanvas.git
+[submodule "static/js/literallycanvas-core"]
+	path = static/js/literallycanvas-core
+	url = https://github.com/literallycanvas/literallycanvas-core.git
