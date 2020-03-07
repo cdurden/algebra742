@@ -1,17 +1,21 @@
-<div class="literally core"></div>
+<script src="{{ url_for('static',filename='js/literallycanvas-core/src/LiterallyCanvas.js')}}"></script>
 <div class="tools">
   <a id="tool-pencil">pencil</a>
   |
   <a id="tool-eraser">eraser</a>
 </div>
 
-<!-- replace window.LC with core build version -->
-<script src="{{ url_for('static',filename='js/literallycanvas-0.4.14/js/literallycanvas-core.js') }}"></script>
-
+<div class="literally"></div>
+<script type="text/javascript">
+  const drawingEl = document.querySelector('.literally');
+  const lc = new LiterallyCanvas(drawingEl, {
+    ...LiterallyCanvas.defaultOptions,
+    defaultStrokeWidth: 10,
+    backgroundColor: '#FFF',
+  });
+</script>
 <script>
   $(document).ready(function(){
-    var lc = LC.init(document.getElementsByClassName('literally core')[0]);
-
     <!-- custom UI example... -->
     var tools = [
       {
