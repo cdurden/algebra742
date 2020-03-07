@@ -29,8 +29,9 @@ class AnswerForm(Form):
 #    def __init__(self, **kwargs):
 #        super().__init__(self, **kwargs)
 
-DrawingForm = AnswerForm
-DrawingForm.__name__ = 'DrawingForm'
+class DrawingForm(AnswerForm):
+    pass
+
 
 class MultiPartAnswerForm(FlaskForm):
     pass
