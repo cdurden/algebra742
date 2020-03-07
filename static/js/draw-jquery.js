@@ -353,7 +353,7 @@ window.addEventListener('load', function () {
   }
 
 
-  $('.drawing_canvas_container').each(function() {
+  $('.drawing').each(function() {
     console.log(this);
     init(this); 
   });
