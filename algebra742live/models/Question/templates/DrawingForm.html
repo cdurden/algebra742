@@ -27,8 +27,8 @@
   }
   $(document).ready(function(){
       var lc = LC.init(document.getElementsByClassName('literally')[0]);
-      var canvas = $('.lc-drawing').find('canvas').get(0);
-      resizeCanvasToDisplaySize(canvas);
+      var canvas = $('.lc-drawing').find('canvas');
+      canvas.each(function() { resizeCanvasToDisplaySize(this) });
       new ResizeSensor(canvas, function(){ 
           resizeCanvasToDisplaySize(canvas); 
           console.log('content dimension changed');
