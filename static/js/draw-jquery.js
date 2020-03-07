@@ -102,6 +102,7 @@ window.addEventListener('load', function () {
   
     // The event handler for any changes made to the tool selector.
     function ev_tool_change (ev) {
+      console.log(canvas);
       if (tools[this.value]) {
         tool = new tools[this.value]();
       }
