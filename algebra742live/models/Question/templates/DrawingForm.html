@@ -26,12 +26,18 @@
      return false;
   }
   $(document).ready(function(){
-      var lc = LC.init(document.getElementsByClassName('literally')[0]);
-      var canvas = $('.lc-drawing').find('canvas');
-      canvas.each(function() { resizeCanvasToDisplaySize(this) });
-      new ResizeSensor(canvas, function(){ 
-          resizeCanvasToDisplaySize(canvas); 
-          console.log('content dimension changed');
+      $('.literally').each(function () {
+          var container = this;
+          var lc = LC.init(container);
+          $(container).find('canvas').each(function() {
+              new ResizeSensor(this, function(){ 
+                  LC.util.matchElementSize(container, this, LC.util.getBackingScale());
+                  //resizeCanvasToDisplaySize(canvas); 
+                  console.log('content dimension changed');
+              });
+              LC.util.matchElementSize(container, $(container).find('canvas'), LC.util.getBackingScale());
+          }
+          //resizeCanvasToDisplaySize(this) 
       });
 
     <!-- custom UI example... -->
