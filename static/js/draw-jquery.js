@@ -7,14 +7,14 @@ if(window.addEventListener) {
 window.addEventListener('load', function () {
 
   // The active tool instance.
-  var tool;
-  var tool_default = 'pencil';
-  var lastX, lastY;
 
   function init (drawing) {
-
-  // The general-purpose event handler. This function just determines the mouse 
-    // position relative to the canvas element.
+    var tool;
+    var tool_default = 'pencil';
+    var lastX, lastY;
+    var canvas, context, canvaso, contexto;
+    // The general-purpose event handler. This function just determines the 
+    // mouse position relative to the canvas element.
     function ev_canvas (ev) {
       if (ev.layerX || ev.layerX == 0) { // Firefox
         ev._x = ev.layerX;
@@ -265,7 +265,6 @@ window.addEventListener('load', function () {
       this.touchmove = this.mousemove;
     };
 
-    var canvas, context, canvaso, contexto;
     //drawing = document.getElementById('drawing');
     new ResizeSensor(drawing, function(){ 
       var rect = drawing.getBoundingClientRect();
