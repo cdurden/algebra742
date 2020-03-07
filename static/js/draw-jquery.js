@@ -350,7 +350,10 @@ window.addEventListener('load', function () {
     this.touchmove = this.mousemove;
   };
 
-  $('.drawing').each(function() { init(this); });
+  $('.drawing').each(function() {
+    console.log(this);
+    init(this); 
+  });
 
 }, false); }
 
