@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
     var tool_default = 'pencil';
     var lastX, lastY;
     var canvas, context, canvaso, contexto;
-    var container = $(drawing).find('div.drawing_canvas_container');
+    var container = $(drawing).find('div.drawing_canvas_container').get(0);
     canvaso = $(container).find('canvas.drawing_canvas').get(0);
     if (!canvaso.getContext) {
       alert('Error: no canvas.getContext!');
