@@ -8,11 +8,33 @@ window.addEventListener('load', function () {
 
   // The active tool instance.
 
-  function init (drawing) {
+  var init = function(drawing) {
     var tool;
     var tool_default = 'pencil';
     var lastX, lastY;
     var canvas, context, canvaso, contexto;
+    canvaso = $(drawing).find('canvas.drawing_canvas').get(0);
+    if (!canvaso.getContext) {
+      alert('Error: no canvas.getContext!');
+      return;
+    }
+
+    // Get the 2D canvas context.
+    contexto = canvaso.getContext('2d');
+    if (!contexto) {
+      alert('Error: failed to getContext!');
+      return;
+    }
+    var container = canvaso.parentNode;
+    canvas = document.createElement('canvas');
+    if (!canvas) {
+      alert('Error: I cannot create a new canvas element!');
+      return;
+    }
+
+    container.appendChild(canvas);
+
+    context = canvas.getContext('2d');
     // The general-purpose event handler. This function just determines the 
     // mouse position relative to the canvas element.
     //drawing = document.getElementById('drawing');
@@ -28,43 +50,19 @@ window.addEventListener('load', function () {
       context = canvas.getContext('2d');
 		  context.clearRect(0, 0, canvas.width, canvas.height);
     });
-    // Find the canvas element.
-    canvaso = $(drawing).find('canvas.drawing_canvas').get(0);
     if (!canvaso) {
       alert('Error: I cannot find the canvas element!');
       return;
     }
+
     var rect = canvaso.getBoundingClientRect();
     canvaso.width  = rect.width-20;
     canvaso.height = rect.height-20;
-
-    if (!canvaso.getContext) {
-      alert('Error: no canvas.getContext!');
-      return;
-    }
-
-    // Get the 2D canvas context.
-    contexto = canvaso.getContext('2d');
-    if (!contexto) {
-      alert('Error: failed to getContext!');
-      return;
-    }
-
-    // Add the temporary canvas.
-    var container = canvaso.parentNode;
-    canvas = document.createElement('canvas');
-    if (!canvas) {
-      alert('Error: I cannot create a new canvas element!');
-      return;
-    }
-
-    //canvas.id     = 'imageTemp';
     canvas.width  = canvaso.width;
     canvas.height = canvaso.height;
-    //canvas.class = 'imageCanvas';
-    container.appendChild(canvas);
 
-    context = canvas.getContext('2d');
+
+    // Add the temporary canvas.
 
     function ev_canvas (ev) {
       if (ev.layerX || ev.layerX == 0) { // Firefox
@@ -99,6 +97,9 @@ window.addEventListener('load', function () {
       return false;
     }
   
+    // This object holds the implementation of each drawing tool.
+    var tools = {};
+  
     // The event handler for any changes made to the tool selector.
     function ev_tool_change (ev) {
       if (tools[this.value]) {
@@ -106,16 +107,13 @@ window.addEventListener('load', function () {
       }
     }
   
-    // This function draws the #imageTemp canvas on top of #imageView, after which 
-    // #imageTemp is cleared. This function is called each time when the user 
-    // completes a drawing operation.
+    // This function draws the canvas on top of canvaso, after which canvas is 
+    // cleared. This function is called each time when the user completes 
+    // a drawing operation.
     function img_update () {
   		contexto.drawImage(canvas, 0, 0);
   		context.clearRect(0, 0, canvas.width, canvas.height);
     }
-  
-    // This object holds the implementation of each drawing tool.
-    var tools = {};
   
     // The drawing pencil.
     tools.pencil = function () {
