@@ -10,7 +10,8 @@
 
 <script>
   $(document).ready(function(){
-      var lc = LC.init(document.getElementsByClassName('literally')[0], {imageSize: {width: 600, height: 600}});
+      var lc = LC.init(document.getElementsByClassName('literally')[0]);
+      lc.setImageSize(600, 400);
       lc.respondToSizeChange();
 
     <!-- custom UI example... -->
