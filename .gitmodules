@@ -7,3 +7,6 @@
 [submodule "static/js/reveal_countdown"]
 	path = static/js/reveal_countdown
 	url = https://github.com/cdurden/reveal_countdown.git
+[submodule "static/js/literallycanvas"]
+	path = static/js/literallycanvas
+	url = https://github.com/literallycanvas/literallycanvas.git

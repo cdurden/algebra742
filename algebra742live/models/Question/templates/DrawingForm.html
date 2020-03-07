@@ -1,42 +1,49 @@
-<script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
-<script src="{{ url_for('static', filename='js/ElementQueries.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/draw-jquery.js') }}"></script>
-<script id="update_drawing_form_script">
-    function update_drawing_form_data(drawing) {
-        {% if form.answer is defined and form.answer.data %}
-        var canvas = $(drawing).find('canvas');
-        var ctx = canvas.getContext('2d');
-        var img = new Image;
-        img.onload = function(){
-              ctx.drawImage(img,0,0); // Or at whatever offset you like
-        };
-        img.src = "{{ form.answer.data }}";
-        {% endif %}
-    }
-</script>
+<div class="literally core"></div>
+<div class="tools">
+  <a id="tool-pencil">pencil</a>
+  |
+  <a id="tool-eraser">eraser</a>
+</div>
+<!-- replace window.LC with core build version -->
+<script src="{{ url_for('static',filename='js/literallycanvas/lib/js/literallycanvas-core.js'}}"></script>
 
 <script>
-function loadPhoto() {
-  var canvas = document.getElementById('imageView');
-  var file    = document.querySelector('input[type=file]').files[0];
-  var reader  = new FileReader();
+  $(document).ready(function(){
+    var lc = LC.init(document.getElementsByClassName('literally core')[0]);
 
-  reader.addEventListener("load", function () {
-        var ctx = canvas.getContext('2d');
-        var img = new Image;
-        img.onload = function(){
-              ctx.drawImage(img,0,0); // Or at whatever offset you like
-        };
-        img.src = reader.result;
-  }, false);
+    <!-- custom UI example... -->
+    var tools = [
+      {
+        name: 'pencil',
+        el: document.getElementById('tool-pencil'),
+        tool: new LC.tools.Pencil(lc)
+      },
+      {
+        name: 'eraser',
+        el: document.getElementById('tool-eraser'),
+        tool: new LC.tools.Eraser(lc)
+      }
+    ];
 
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-}
+    var activateTool = function(t) {
+        lc.setTool(t.tool);
+
+        tools.forEach(function(t2) {
+          if (t == t2) {
+            t2.el.style.backgroundColor = 'yellow';
+          } else {
+            t2.el.style.backgroundColor = 'transparent';
+          }
+        });
+    }
+
+    tools.forEach(function(t) {
+      t.el.style.cursor = "pointer";
+      t.el.onclick = function(e) {
+        e.preventDefault();
+        activateTool(t);
+      };
+    });
+    activateTool(tools[0]);
+  });
 </script>
-<div class="drawing">
-<label><b>Drawing tool: </b><select class="dtool"><option value="pencil">Pencil</option><option value="eraser">Eraser</option><option value="line">Line</option><option value="rect">Rectangle</option></select></label>
-<div class="drawing_canvas_container"><canvas class="drawing_canvas"><p>Unfortunately, your browser is currently unsupported by our web application. We are sorry for the inconvenience. Please use one of the supported browsers listed below, or draw the image you want using an offline tool.</p><p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a href="http://www.mozilla.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a>, and <a href="http://www.konqueror.org">Konqueror</a>.</p></canvas></div>
-<input type="hidden" name="answer">
-</div>

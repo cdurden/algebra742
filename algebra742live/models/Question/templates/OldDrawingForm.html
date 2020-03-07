@@ -1,0 +1,69 @@
+    <div id="zwibbler" style="margin-left:auto;margin-right:auto;border:2px solid red;width:800px;height:600px;"></div>
+    <input type="button" onclick="onSave()" value="Save"/>
+    <input id="loadButton" type="button" onclick="onLoad()" disabled="disabled" value="Load"/>
+    <input type="button" onclick="onImage()" value="Open as image"/>
+    <input type="button" onclick="zwibbler.onResize()" value="Open as image"/>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="zwibbler2.js"></script>
+    <script type="text/javascript">
+        var zwibbler = Zwibbler.create("zwibbler", {
+
+        });
+
+        var saved = null;
+        function onSave() {
+            saved = zwibbler.save("zwibbler3");
+            $("#loadButton").removeAttr("disabled");
+        }
+
+        function onLoad() {
+            zwibbler.load("zwibbler3", saved);
+        }
+
+        function onImage() {
+            var dataUrl = zwibbler.save("png");
+            window.open(dataUrl, "other");
+        }
+    </script>
+<script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ElementQueries.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/draw-jquery.js') }}"></script>
+<script id="update_drawing_form_script">
+    function update_drawing_form_data(drawing) {
+        {% if form.answer is defined and form.answer.data %}
+        var canvas = $(drawing).find('canvas');
+        var ctx = canvas.getContext('2d');
+        var img = new Image;
+        img.onload = function(){
+              ctx.drawImage(img,0,0); // Or at whatever offset you like
+        };
+        img.src = "{{ form.answer.data }}";
+        {% endif %}
+    }
+</script>
+
+<script>
+function loadPhoto() {
+  var canvas = document.getElementById('imageView');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+        var ctx = canvas.getContext('2d');
+        var img = new Image;
+        img.onload = function(){
+              ctx.drawImage(img,0,0); // Or at whatever offset you like
+        };
+        img.src = reader.result;
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
+</script>
+<div class="drawing">
+<label><b>Drawing tool: </b><select class="dtool"><option value="pencil">Pencil</option><option value="eraser">Eraser</option><option value="line">Line</option><option value="rect">Rectangle</option></select></label>
+<div class="drawing_canvas_container"><canvas class="drawing_canvas"><p>Unfortunately, your browser is currently unsupported by our web application. We are sorry for the inconvenience. Please use one of the supported browsers listed below, or draw the image you want using an offline tool.</p><p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a href="http://www.mozilla.com">Firefox</a>, <a href="http://www.apple.com/safari">Safari</a>, and <a href="http://www.konqueror.org">Konqueror</a>.</p></canvas></div>
+<input type="hidden" name="answer">
+</div>
