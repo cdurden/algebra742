@@ -4,7 +4,7 @@
 <script id="update_drawing_form_script">
     function update_drawing_form_data(drawing) {
         {% if form.answer is defined and form.answer.data %}
-        var canvas = document.getElementById("imageView");
+        var canvas = $(drawing).find('canvas');
         var ctx = canvas.getContext('2d');
         var img = new Image;
         img.onload = function(){

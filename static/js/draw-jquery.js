@@ -32,7 +32,7 @@ window.addEventListener('load', function () {
       alert('Error: I cannot find the canvas element!');
       return;
     }
-    var rect = drawing.getBoundingClientRect();
+    var rect = canvaso.getBoundingClientRect();
     canvaso.width  = rect.width-20;
     canvaso.height = rect.height-20;
 
@@ -110,13 +110,16 @@ window.addEventListener('load', function () {
     } else if (ev.targetTouches && ev.targetTouches[0]) {
       ev.preventDefault();
       //var rect = ev.target.getBoundingClientRect();
-      var rect = document.getElementById("imageView").getBoundingClientRect();
+      //var rect = document.getElementById("imageView").getBoundingClientRect();
+      //var rect = $(drawing).find('canvas').getBoundingClientRect();
+      var rect = canvaso.getBoundingClientRect();
       ev._x = ev.targetTouches[0].clientX - rect.left;
       ev._y = ev.targetTouches[0].clientY - rect.top;
     } else if (ev.changedTouches && ev.changedTouches[0]) {
       ev.preventDefault();
       //var rect = ev.target.getBoundingClientRect();
-      var rect = document.getElementById("imageView").getBoundingClientRect();
+      //var rect = document.getElementById("imageView").getBoundingClientRect();
+      var rect = canvaso.getBoundingClientRect();
       ev._x = ev.changedTouches[0].clientX - rect.left;
       ev._y = ev.changedTouches[0].clientY - rect.top;
     }
