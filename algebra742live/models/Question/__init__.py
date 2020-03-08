@@ -94,7 +94,7 @@ class Question(db.Model):
         #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
         return(['/static/js/socket.io.wtforms.js'])
 
-    def render_html(self):
+    def render_html(self, **kwargs):
         import inspect
         print("Rendering question html")
         if self.form is None:
@@ -102,7 +102,7 @@ class Question(db.Model):
         for base_class in inspect.getmro(self.__class__):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(self.params(), form=self.form, url_for=url_for)
+                return template.render(self.params(), form=self.form, url_for=url_for, **kwargs)
             except TemplateNotFound:
                 next 
 
@@ -128,8 +128,10 @@ class AsyGraphicsQuestion(Question):
     form_class = AnswerForm
     form = None
 
-    def params(self):
-        asy_params_hash_lookup(self.params())
+    def render_html(self):
+        params = self.params()
+        asy_params_hash = asy_params_hash_lookup(params)
+        super().render_html(self, template=params['template'], asy_params_hash=asy_params_hash)
 
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
