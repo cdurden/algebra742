@@ -130,7 +130,7 @@ class AsyGraphicsQuestion(Question):
 
     def render_html(self):
         params = self.params()
-        asy_params_hash = asy_params_hash_lookup(param_json)
+        asy_params_hash = asy_params_hash_lookup(self.param_json)
         return Question.render_html(self, template=params['template'], asy_params_hash=asy_params_hash)
 
 class MultiPartQuestion(Question):
