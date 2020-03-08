@@ -5,6 +5,13 @@
   <script type="text/javascript" src="/static/js/games/reveal.js"></script>
   {{ super() }}
   <script>
+	var link = document.createElement( 'link' );
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = window.location.search.match( /print-pdf/gi ) ? '/static/js/reveal.js/css/print/pdf.css' : '/static/js/reveal.js/css/print/paper.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <script>
 socket.on('question_data', update_question_data);
   </script>
   <link rel="stylesheet" href="/static/js/reveal.js/css/reveal.css">
