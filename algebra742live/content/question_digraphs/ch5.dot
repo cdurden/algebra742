@@ -1,6 +1,6 @@
 digraph ch5 {
   start=q1;
-  q1 [class="Question.AsyGraphicsDrawingQuestion",params="{'template': 'NumberLine.asy', 'min':'-8', 'max':'8', 'Question': 'What is $1+1$?'}"];
+  q1 [class="Question.AsyGraphicsDrawingQuestion",params="{'template': 'NumberLine.asy', 'min':'-8', 'max':'8', 'Question': 'Where are $-5$ and $2$ relative to each other?'}"];
   q2 [class="Question.QuestionOnePlusOne",params="{'Question': 'What is $1+1?'}"];
   q3 [class="Question.DrawingQuestion",params="{'Question': 'What is one plus one?'}"];
   q4 [class="Question.DotGraphicsQuestion",params="{'template': 'ch5.dot'}"];
