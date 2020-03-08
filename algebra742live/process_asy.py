@@ -12,6 +12,7 @@ from networkx.drawing import nx_agraph
 from models.util import asy_params_hash_lookup, asy_graphics_path, process_quotes_for_json
 app = Flask(__name__)
 app.config.from_object('default_config')
+print(process_quotes_for_json('"{\\"Question\\": \\"What is one plus one?\\"}"'))
 
 loader = jinja2.FileSystemLoader(app.config['ASY_TEMPLATE_DIR'])
 jinja_env = jinja2.Environment(loader=loader)

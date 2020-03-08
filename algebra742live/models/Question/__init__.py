@@ -64,7 +64,6 @@ def questions_digraph_factory(graph):
         for k,v in data.items():
         #    data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
             data[k.strip("\"")] = process_quotes_for_json(data.pop(k).strip("\"")).strip("\"")
-        print(data)
         question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'], source="question_digraph:{:s}:{:s}".format(graph,node))
         data['_question_obj'] = question
     return(questions_digraph)
