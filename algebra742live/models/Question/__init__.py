@@ -50,7 +50,7 @@ def get_question_from_digraph_node(graph, node):
     node_data = questions_digraph.nodes[node]
     for k,v in node_data.items():
     #    node_data[k.strip("\"")] = node_data.pop(k).strip("\"").replace("\\","")
-        node_data[k.strip("\"")] = process_quotes_for_json(node_data.pop(k).strip("\""))
+        node_data[k.strip("\"")] = process_quotes_for_json(node_data.pop(k).strip("\"")).strip("\"")
         question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'], source="question_digraph:{:s}:{:s}".format(graph,node))
     return(question)
 
@@ -59,7 +59,7 @@ def questions_digraph_factory(graph):
     for node,data in questions_digraph.nodes(data=True):
         for k,v in data.items():
         #    data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
-            data[k.strip("\"")] = process_quotes_for_json(data.pop(k).strip("\""))
+            data[k.strip("\"")] = process_quotes_for_json(data.pop(k).strip("\"")).strip("\"")
         print(data)
         question = get_or_create(db.session, QuestionClasses[data['class']], params_json=data['params'], source="question_digraph:{:s}:{:s}".format(graph,node))
         data['_question_obj'] = question
