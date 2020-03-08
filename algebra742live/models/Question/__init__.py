@@ -129,7 +129,7 @@ class AsyGraphicsQuestion(Question):
     form = None
 
     def params(self):
-        asy_params_hash_lookup(self.params)
+        asy_params_hash_lookup(self.params())
 
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
