@@ -150,7 +150,7 @@ def reset_game():
 
 @app.route('/graphics/<engine>/<template>/<params_hash>', methods=['GET','POST'])
 @lti(request='session', error=error)
-def graphics(template=None, params_hash=None, lti=lti):
+def graphics(template=None, engine=None, params_hash=None, lti=lti):
     return send_file(graphics_path(app,engine,template,params_hash))
 
 @app.route('/userinfo', methods=['GET','POST'])
