@@ -55,7 +55,7 @@ def get_question_from_digraph_node(graph, node):
         node_data[k.strip("\"")] = new_val
         print(old_val)
         print(new_val)
-        question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'], source="question_digraph:{:s}:{:s}".format(graph,node))
+    question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'], source="question_digraph:{:s}:{:s}".format(graph,node))
     return(question)
 
 def questions_digraph_factory(graph):
