@@ -1,6 +1,6 @@
 digraph ch5 {
   start=q1;
-  q1 [class="Question.AsyGraphicsQuestion",params="{'template': 'SolutionToInequality.asy', 'Question': 'What is $1+1$?'}"];
+  q1 [class="Question.AsyGraphicsQuestion",params="{'template': 'NumberLine.asy', 'min':'-8', 'max':'8', 'Question': 'What is $1+1$?'}"];
   q2 [class="Question.QuestionOnePlusOne",params="{'Question': 'What is one plus one?'}"];
   q3 [class="Question.DrawingQuestion",params="{'Question': 'What is one plus one?'}"];
   q1 -> q2 -> q3;
