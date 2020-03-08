@@ -88,7 +88,8 @@ class Question(db.Model):
 
     def params(self):
         print(self.params_json)
-        return(json.loads(process_quotes_for_json(self.params_json)))
+        #return(json.loads(process_quotes_for_json(self.params_json)))
+        return(json.loads(self.params_json))
 
     def scripts(self):
         #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
@@ -130,7 +131,7 @@ class AsyGraphicsQuestion(Question):
 
     def render_html(self):
         params = self.params()
-        asy_params_hash = asy_params_hash_lookup(self.param_json)
+        asy_params_hash = asy_params_hash_lookup(self.params_json)
         return Question.render_html(self, template=params['template'], asy_params_hash=asy_params_hash)
 
 class MultiPartQuestion(Question):
@@ -187,7 +188,8 @@ class MultiPartQuestion(Question):
         return(self.form)
 
     def params(self):
-        params = json.loads(process_quotes_for_json(self.params_json))
+        #params = json.loads(process_quotes_for_json(self.params_json))
+        params = json.loads(self.params_json)
         import importlib
         for i,part in enumerate(params['parts']):
             module_class_string = part['class']
