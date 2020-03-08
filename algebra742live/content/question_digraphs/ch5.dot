@@ -3,5 +3,5 @@ digraph ch5 {
   q1 [class="Question.AsyGraphicsQuestion",params="{'template': 'SolutionToInequality.asy', 'Question': 'What is $1+1$?'}"];
   q2 [class="Question.QuestionOnePlusOne",params="{\"Question\": \"What is one plus one?\"}"];
   q3 [class="Question.DrawingQuestion",params="{\"Question\": \"What is one plus one?\"}"];
-  question1 -> question2;
+  q1 -> q2 -> q3;
 }
