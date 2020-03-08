@@ -131,7 +131,7 @@ class AsyGraphicsQuestion(Question):
     def render_html(self):
         params = self.params()
         asy_params_hash = asy_params_hash_lookup(params)
-        super().render_html(self, template=params['template'], asy_params_hash=asy_params_hash)
+        Question.render_html(self, template=params['template'], asy_params_hash=asy_params_hash)
 
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
