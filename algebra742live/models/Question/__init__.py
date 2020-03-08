@@ -4,7 +4,7 @@ from .. import db
 import jinja2
 import json
 import os
-from flask_wtf import Form as FlaskForm
+from flask_wtf import FlaskForm
 from wtforms import StringField, FormField
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
@@ -30,7 +30,7 @@ class AnswerForm(Form):
 #    def __init__(self, **kwargs):
 #        super().__init__(self, **kwargs)
 
-class DrawingForm(AnswerForm):
+class DrawingForm(Form):
     pass
 
 
