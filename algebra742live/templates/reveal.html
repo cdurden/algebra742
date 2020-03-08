@@ -17,10 +17,15 @@ Document.prototype.getElementsByRegex = function (attr, reg) {
     });
   }
 };
-	var link = document.getElementsByRegex( 'href', /paper.css\b/ );
+	var link = document.createElement( 'link' );
 	link.rel = 'stylesheet';
 	link.type = 'text/css';
-	link.href = window.location.search.match( /print-pdf/gi ) ? link.href.replace('paper.css','pdf.css') : link.href;
+	link.href = window.location.search.match( /print-pdf/gi ) ? '/static/js/reveal.js/css/print/pdf.css' : '/static/js/reveal.js/css/print/paper.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( l
+	var links = document.getElementsByRegex( 'href', /paper.css\b/ );
+    for (var link of links) {
+	  link.href = window.location.search.match( /print-pdf/gi ) ? link.href.replace('paper.css','pdf.css') : link.href;
+    }
   </script>
   <script>
 socket.on('question_data', update_question_data);
