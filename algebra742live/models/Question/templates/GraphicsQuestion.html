@@ -1,5 +1,7 @@
 {% extends "Question.html" %}
 {% block form_content %}
-<img src="{{ url_for('graphics', engine=engine, template=template, params_hash=params_hash) }}" height="500"/>
+<iframe src="{{ url_for('graphics', engine=engine, template=template, params_hash=params_hash) }}" height="500" sandbox>
+    <img src="{{ url_for('graphics', engine=engine, template=template, params_hash=params_hash) }}" height="500"/>
+</iframe>
 
 {% endblock %}
