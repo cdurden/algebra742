@@ -1,0 +1,9 @@
+{% extends "AsyGraphicsQuestion.html %}
+{% block head %}
+{{ super() }}
+<script>
+var img = new Image;
+img.onload = function(){ $(get_question_container()).find('.literally').find('canvas').each(function() { this.getContext('2d').drawImage(img,0,0); }) };
+img.src = "{{ url_for('asy_graphics', template=template, asy_params_hash=asy_params_hash) }}";
+</script>
+{% endblock %}

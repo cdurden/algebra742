@@ -1,5 +1,14 @@
+{% block head %}
+<script>
+function get_question_container() {
+    return($('#question_{{ id }}').get(0));
+}
+</script>
+{% endblock %}
 {% block form_content %}
+<div id="question_{{ id }}">
 {{ Question }}
 
 {{ form.render_html() }}
+</div>
 {% endblock %}
