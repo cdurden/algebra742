@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, send_file
 from flask_socketio import emit
 from pylti.flask import lti
 from .models import db, User, RequestDenied
