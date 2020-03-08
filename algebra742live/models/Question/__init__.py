@@ -138,7 +138,7 @@ class AsyGraphicsQuestion(GraphicsQuestion):
     def render_html(self, **kwargs):
         GraphicsQuestion.render_html(self, engine="asy")
 
-class AsyGraphicsDrawingQuestion(DrawingQuestion):
+class AsyGraphicsDrawingQuestion(GraphicsQuestion, DrawingQuestion):
     def render_html(self, **kwargs):
         GraphicsQuestion.render_html(self, engine="asy")
 
