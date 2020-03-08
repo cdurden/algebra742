@@ -240,6 +240,7 @@ QuestionClasses = {
     'Question.MultiPartQuestion': MultiPartQuestion,
     'Question.QuestionOnePlusOne': QuestionOnePlusOne,
     'Question.DrawingQuestion': DrawingQuestion,
+    'Question.AsyGraphicsQuestion': AsyGraphicsQuestion,
 }
 
 question_scores = db.Table('question_scores',
