@@ -1,3 +1,4 @@
+import sys
 from flask import Flask
 import subprocess
 import hashlib
@@ -8,7 +9,7 @@ import json
 import jinja2
 import pygraphviz
 from networkx.drawing import nx_agraph
-from util import asy_params_hash_lookup, asy_graphics_path, process_quotes_for_json
+from models.util import asy_params_hash_lookup, asy_graphics_path, process_quotes_for_json
 app = Flask(__name__)
 app.config.from_object('default_config')
 
