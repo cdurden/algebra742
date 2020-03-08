@@ -88,6 +88,7 @@ class Question(db.Model):
         return(self.form)
 
     def params(self):
+        print(self.params_json)
         return(json.loads(process_quotes_for_json(self.params_json)))
 
     def scripts(self):
