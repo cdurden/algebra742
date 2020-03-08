@@ -149,7 +149,7 @@ def reset_game():
 
 @app.route('/asy_graphics/<template>/<asy_params_hash>', methods=['GET','POST'])
 @lti(request='session', error=error)
-def asy_graphics(template=None, asy_params_hash=asy_params_hash, lti=lti):
+def asy_graphics(template=None, asy_params_hash=None, lti=lti):
     return send_file(asy_graphics_path(template,asy_params_hash))
 
 @app.route('/userinfo', methods=['GET','POST'])
