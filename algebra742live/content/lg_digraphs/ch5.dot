@@ -1,0 +1,74 @@
+graph ch5 {
+  splines=false
+  node [shape=box]
+  //algebra [label="Algebra", tooltip="I can simplify expressions, and use the properties of equality to gather terms together, form zero pairs and reciprocal pairs, and isolate a variable.", ordering="in"]
+  subgraph cluster_algebra {
+    splines=none
+    tooltip="I can simplify expressions, and use the properties of equality to gather terms together, form zero pairs and reciprocal pairs, and isolate a variable."
+    subgraph cluster_ape {
+      style=filled;
+      color=lightgrey;
+      node [style=filled,color=white];
+      zp [label="ZP", tooltip="I know that a number and its opposite add to make zero, and I can use this fact to eliminate terms"]
+      ape [label="APE", tooltip="When solving equations, I know that, to get a new equation that is valid, I must add or subtract the same thing to both sides of my original equation"]
+      term [label="Term", tooltip="I can identify a term, tell when two terms are like terms, and combine like terms."]
+      {term zp} -- ape [constraint=false]
+      label = "Making zeros";
+    }
+    subgraph cluster_mpe {
+      label = "Making ones";
+      style=filled;
+      color=lightgrey;
+      node [style=filled,color=white];
+    rp [label="RP", tooltip="I know that a number and its reciprocal multiply to make one, and I can use this fact to get a coefficient 1"]
+    mpe [label="MPE", tooltip="When solving equations, I know that, to get a new equation that is valid, I must multiply or divide by the same thing on both sides of my original equation"]
+    coefficient [label="Coefficient", tooltip="I can identify a coefficient"]
+      { coefficient rp } -- mpe [constraint=false]
+    }
+    subgraph cluster_simplifying {
+      subgraph cluster_ip {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        aip [label="Additive\nIdentity", tooltip="I can simplify an expression with a term that is zero."]
+        mip [label="Multiplicative\nIdentity", tooltip="I can simplify an expression with a coefficient that is one."]
+        label="Getting rid of zeros and ones"
+      }
+      subgraph cluster_dp {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        dp [label="Distributive", tooltip="I can use the distributive property to simplify an expression containing a sum or difference inside parentheses"]
+        label="Dealing with parentheses"
+      }
+      subgraph cluster_cap {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        cp [label="Commutative", tooltip="I can use the commutative properties to change the order or addition or multiplication"]
+        ap [label="Associative", tooltip="I can use the associative properties to regroup terms or factors"]
+        label="Regrouping and reordering"
+        ap -- cp [constraint=false, style=invis]
+      }
+      label="Simplifying expressions"
+    }
+    ape -- mpe [weight=100,style=invis]
+    ap -- dp -- mip [weight=100,style=invis]
+    label="Algebra"
+  }
+  lg1 [label="1. Inequality",tooltip="Learning Goal 1: I understand that an inequality is a statement about the relative position of numbers on a number line"]
+  lg2 [label="2. Solution to an inequality",tooltip="Learning Goal 2: I can use the concept of a solution set to describe and represent inequalities"]
+  lg3 [label="3. Addition property of inequality",tooltip="Learning Goal 2: I can use the addition and subtraction properties to solve inequalities"]
+  lg4 [label="4. Multiplication property of inequality",tooltip="Learning Goal 3: I can use the multiplication and division properties to solve inequalities"]
+  lg5 [label="5. Algebra of inequalities",tooltip="Learning Goal 4: I can combine the addition and multiplication properties to solve inequalities"]
+  lg6 [label="6. Inequality constraints",tooltip="Learning Goal 5: I can write inequalities that represent constraints in a situation"]
+  lg7 [label="7. Solving problems",tooltip="Learning Goal 6: I can write and solve inequalities and interpret the solutions to answer questions about a situation"]
+  lg1 -- lg2
+  lg2 -- lg3
+  lg2 -- lg4
+  lg3 -- lg5
+  lg4 -- lg5
+  lg5 -- lg7
+  lg6 -- lg7
+  ape -- lg5 [style=invis]
+}

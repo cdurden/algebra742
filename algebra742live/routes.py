@@ -10,6 +10,7 @@ from . import socketio, ROOMS
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 import json
+from util import asy_params_hash_lookup
 
 def error(exception=None):
     """ render error page
@@ -81,6 +82,8 @@ def admin(lti=lti):
 @socketio.on('set_game')
 @lti(request='session', role='staff', error=error)
 def set_game(data, lti=lti):
+    app.extensions['redis'].set('game',data['game'])
+    app.extensions['redis'].set('params',data['params'])
     ROOMS[0] = GameClasses[data['game']](**json.loads(data['params']))
     emit('update_game', {}, broadcast=True)
 
@@ -143,6 +146,11 @@ def form_submit(data, lti=lti):
 def reset_game():
     print("reseting game")
     emit('reset_game', ROOMS[0].to_json(), broadcast=True)
+
+@app.route('/asy_graphics/<template>/<asy_params_hash>', methods=['GET','POST'])
+@lti(request='session', error=error)
+def asy_graphics(template=None, asy_params_hash=asy_params_hash, lti=lti):
+    return send_file(asy_graphics_path(template,asy_params_hash))
 
 @app.route('/userinfo', methods=['GET','POST'])
 @lti(request='session', error=error)
