@@ -14,5 +14,5 @@ def process_quotes_for_json(s):
     lexer = shlex.shlex(s)
     out = ''
     for token in lexer:
-        out += "{:s}".format(token.replace("'","\""))
+        out += "{:s}".format(token.replace("'","\"").replace("\\\"","\""))
     return(out)
