@@ -101,6 +101,7 @@ class Question(db.Model):
         if self.form is None:
             self.build_form()
         for base_class in inspect.getmro(self.__class__):
+            print("Trying to render question using {:s} template".format(base_class.__name__))
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
                 return template.render(self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)

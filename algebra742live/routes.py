@@ -117,6 +117,7 @@ def input(data, lti=lti):
 @socketio.on('get_question_data')
 @lti(request='session', error=error)
 def get_question_data(data, lti=lti):
+    print('getting question data')
     print(data)
     question = get_question_from_digraph_node(data['graph'],data['node'])
     data['html'] = question.render_html()
