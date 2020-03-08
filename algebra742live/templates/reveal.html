@@ -21,7 +21,7 @@ Document.prototype.getElementsByRegex = function (attr, reg) {
 	link.rel = 'stylesheet';
 	link.type = 'text/css';
 	link.href = window.location.search.match( /print-pdf/gi ) ? '/static/js/reveal.js/css/print/pdf.css' : '/static/js/reveal.js/css/print/paper.css';
-	document.getElementsByTagName( 'head' )[0].appendChild( l
+	document.getElementsByTagName( 'head' )[0].appendChild( link)
 	var links = document.getElementsByRegex( 'href', /paper.css\b/ );
     for (var link of links) {
 	  link.href = window.location.search.match( /print-pdf/gi ) ? link.href.replace('paper.css','pdf.css') : link.href;
