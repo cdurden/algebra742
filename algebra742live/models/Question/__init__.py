@@ -138,9 +138,11 @@ class AsyGraphicsQuestion(GraphicsQuestion):
     def render_html(self, **kwargs):
         GraphicsQuestion.render_html(self, engine="asy")
 
-class AsyGraphicsDrawingQuestion(GraphicsQuestion, DrawingQuestion):
+class AsyGraphicsDrawingQuestion(DrawingQuestion):
     def render_html(self, **kwargs):
-        GraphicsQuestion.render_html(self, engine="asy")
+        params = self.params()
+        params_hash = params_hash_lookup(self.params_json)
+        return Question.render_html(self, template=params['template'], params_hash=params_hash, **kwargs)
 
 class DotGraphicsQuestion(GraphicsQuestion):
     def render_html(self, **kwargs):
