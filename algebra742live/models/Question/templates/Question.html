@@ -5,10 +5,10 @@ function get_question_container() {
 }
 </script>
 {% endblock %}
-{% block form_content %}
 <div id="question_{{ id }}">
+{% block form_content %}
 {{ Question }}
 
 {{ form.render_html() }}
-</div>
 {% endblock %}
+</div>
