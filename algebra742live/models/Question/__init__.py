@@ -138,7 +138,7 @@ class GraphicsQuestion(Question):
 
 class AsyGraphicsQuestion(GraphicsQuestion):
     def render_html(self, **kwargs):
-        GraphicsQuestion.render_html(self, engine="asy")
+        return GraphicsQuestion.render_html(self, engine="asy")
 
 class AsyGraphicsDrawingQuestion(DrawingQuestion):
     def render_html(self, **kwargs):
@@ -148,7 +148,7 @@ class AsyGraphicsDrawingQuestion(DrawingQuestion):
 
 class DotGraphicsQuestion(GraphicsQuestion):
     def render_html(self, **kwargs):
-        GraphicsQuestion.render_html(self, engine="dot")
+        return GraphicsQuestion.render_html(self, engine="dot")
 
 
 class MultiPartQuestion(Question):
