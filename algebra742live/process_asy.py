@@ -12,7 +12,6 @@ from networkx.drawing import nx_agraph
 from models.util import asy_params_hash_lookup, asy_graphics_path, process_quotes_for_json
 app = Flask(__name__)
 app.config.from_object('default_config')
-print(process_quotes_for_json('"{\\"Question\\": \\"What is one plus one?\\"}"'))
 
 loader = jinja2.FileSystemLoader(app.config['ASY_TEMPLATE_DIR'])
 jinja_env = jinja2.Environment(loader=loader)
@@ -49,8 +48,8 @@ questions_digraph = nx_agraph.from_agraph(pygraphviz.AGraph(src))
 for node,data in questions_digraph.nodes(data=True):
     if 'class' in data and data['class'] == 'Question.AsyGraphicsQuestion':
         params = json.loads(process_quotes_for_json(data['params']))
-        print(params)
-        output_filename = asy_graphics_path(params['template'],asy_params_hash_lookup(params))
+        #print(params)
+        output_filename = asy_graphics_path(app,params['template'],asy_params_hash_lookup(params))
         template = jinja_env.get_template(params['template'])
         src = template.render(**params).encode('utf-8')
         try:
