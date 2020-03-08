@@ -47,9 +47,10 @@ with open(os.path.join(app.config["QUESTION_DIGRAPHS_DIR"],"ch5.dot"),"r") as f:
 questions_digraph = nx_agraph.from_agraph(pygraphviz.AGraph(src))
 for node,data in questions_digraph.nodes(data=True):
     if 'class' in data and data['class'] == 'Question.AsyGraphicsQuestion':
-        params = json.loads(process_quotes_for_json(data['params']))
+        params_json = process_quotes_for_json(data['params'])
+        params = json.loads(params_json)
         #print(params)
-        output_filename = asy_graphics_path(app,params['template'],asy_params_hash_lookup(params))
+        output_filename = asy_graphics_path(app,params['template'],asy_params_hash_lookup(params_json))
         template = jinja_env.get_template(params['template'])
         src = template.render(**params).encode('utf-8')
         try:
