@@ -22,7 +22,6 @@ class Form(FlaskForm):
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
                 html = template.render(form=self, url_for=url_for)
-                print(html)
                 return(html)
             except TemplateNotFound:
                 next 
@@ -106,7 +105,9 @@ class Question(db.Model):
             print("Trying to render question using {:s} template".format(base_class.__name__))
             try:
                 template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)
+                html = template.render(self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)
+                print(html)
+                return html
             except TemplateNotFound:
                 next 
 
