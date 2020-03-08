@@ -10,7 +10,7 @@ from . import socketio, ROOMS
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 import json
-from util import asy_params_hash_lookup
+from .models.util import asy_params_hash_lookup
 
 def error(exception=None):
     """ render error page
