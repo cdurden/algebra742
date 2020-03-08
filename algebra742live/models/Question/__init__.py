@@ -46,7 +46,7 @@ class MultiPartAnswerForm(FlaskForm):
 #                next 
 
 def get_question_from_digraph_node(graph, node):
-    questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],graph+'.dot'))
+    questions_digraph = read_dot(os.path.join(app.config["QUESTION_DIGRAPHS_PATH"],graph+'.dot'))
     node_data = questions_digraph.nodes[node]
     for k,v in node_data.items():
     #    node_data[k.strip("\"")] = node_data.pop(k).strip("\"").replace("\\","")
@@ -55,7 +55,7 @@ def get_question_from_digraph_node(graph, node):
     return(question)
 
 def questions_digraph_factory(graph):
-    questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],graph+'.dot'))
+    questions_digraph = read_dot(os.path.join(app.config["QUESTION_DIGRAPHS_PATH"],graph+'.dot'))
     for node,data in questions_digraph.nodes(data=True):
         for k,v in data.items():
         #    data[k.strip("\"")] = data.pop(k).strip("\"").replace("\\","")
