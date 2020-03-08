@@ -260,6 +260,7 @@ QuestionClasses = {
     'Question.QuestionOnePlusOne': QuestionOnePlusOne,
     'Question.DrawingQuestion': DrawingQuestion,
     'Question.AsyGraphicsQuestion': AsyGraphicsQuestion,
+    'Question.AsyGraphicsDrawingQuestion': AsyGraphicsDrawingQuestion,
 }
 
 question_scores = db.Table('question_scores',
