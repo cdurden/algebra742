@@ -13,7 +13,7 @@ from werkzeug.datastructures import MultiDict, ImmutableMultiDict
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
 from networkx.drawing.nx_pydot import read_dot
-from ..util import asy_params_hash_lookup, process_quotes_for_json
+from ..util import params_hash_lookup, process_quotes_for_json
 
 class Form(FlaskForm):
     def render_html(self):
@@ -125,23 +125,26 @@ class DrawingQuestion(Question):
     form_class = DrawingForm
     form = None
 
-class AsyGraphicsQuestion(Question):
+class GraphicsQuestion(Question):
     form_class = AnswerForm
     form = None
 
-    def render_html(self):
+    def render_html(self, **kwargs):
         params = self.params()
-        asy_params_hash = asy_params_hash_lookup(self.params_json)
-        return Question.render_html(self, template=params['template'], asy_params_hash=asy_params_hash)
+        params_hash = params_hash_lookup(self.params_json)
+        return Question.render_html(self, template=params['template'], params_hash=params_hash, **kwargs)
 
-class AsyGraphicsDrawingQuestion(Question):
-    form_class = DrawingForm
-    form = None
+class AsyGraphicsQuestion(GraphicsQuestion):
+    def render_html(self, **kwargs):
+        GraphicsQuestion.render_html(self, engine="asy")
 
-    def render_html(self):
-        params = self.params()
-        asy_params_hash = asy_params_hash_lookup(self.params_json)
-        return Question.render_html(self, template=params['template'], asy_params_hash=asy_params_hash)
+class AsyGraphicsDrawingQuestion(DrawingQuestion):
+    def render_html(self, **kwargs):
+        GraphicsQuestion.render_html(self, engine="asy")
+
+class DotGraphicsQuestion(GraphicsQuestion):
+    def render_html(self, **kwargs):
+        GraphicsQuestion.render_html(self, engine="dot")
 
 
 class MultiPartQuestion(Question):
@@ -260,6 +263,7 @@ QuestionClasses = {
     'Question.QuestionOnePlusOne': QuestionOnePlusOne,
     'Question.DrawingQuestion': DrawingQuestion,
     'Question.AsyGraphicsQuestion': AsyGraphicsQuestion,
+    'Question.DotGraphicsQuestion': DotGraphicsQuestion,
     'Question.AsyGraphicsDrawingQuestion': AsyGraphicsDrawingQuestion,
 }
 

@@ -9,11 +9,11 @@ import json
 import jinja2
 import pygraphviz
 from networkx.drawing import nx_agraph
-from models.util import asy_params_hash_lookup, asy_graphics_path, process_quotes_for_json
+from models.util import params_hash_lookup, graphics_path, process_quotes_for_json
 app = Flask(__name__)
 app.config.from_object('default_config')
 
-loader = jinja2.FileSystemLoader(app.config['ASY_TEMPLATE_DIR'])
+loader = jinja2.FileSystemLoader(app.config['GRAPHICS_TEMPLATE_DIR'])
 jinja_env = jinja2.Environment(loader=loader)
 #def process_quotes(string):
 #    """Generate parenthesized contents in string as pairs (level, contents)."""
@@ -44,21 +44,28 @@ with open(os.path.join(app.config["QUESTION_DIGRAPHS_DIR"],"ch5.dot"),"r") as f:
 #def asy_params_hash_lookup(params):
 #    return(hashlib.sha224(json.dumps(params).encode('utf-8')).hexdigest())
 
+engines = {'Question.AsyGraphicsQuestion': ('asy',['asy','-f','svg','-o','{{ output_filename }}','-']),
+'Question.DotGraphicsQuestion': ('dot',['dot','-Tsvg','-o','{{ output_filename }}'])}
+
 questions_digraph = nx_agraph.from_agraph(pygraphviz.AGraph(src))
 for node,data in questions_digraph.nodes(data=True):
-    if 'class' in data and data['class'] == 'Question.AsyGraphicsQuestion':
+    print(data)
+    if 'class' in data and data['class'].endswith('GraphicsQuestion'):
         params_json = process_quotes_for_json(data['params'])
+        print(params_json)
         params = json.loads(params_json)
         #print(params)
-        output_filename = asy_graphics_path(app,params['template'],asy_params_hash_lookup(params_json))
-        template = jinja_env.get_template(params['template'])
+        engine = engines[data['class']][0]
+        output_filename = graphics_path(app,engine,params['template'],params_hash_lookup(params_json))
+        args = [jinja2.Template(arg).render(output_filename=output_filename) for arg in engines[data['class']][1]]
+        template = jinja_env.get_template(os.path.join(engine,params['template']))
         src = template.render(**params).encode('utf-8')
         try:
             result = subprocess.run(
-                    ['asy','-f','svg','-o',output_filename,'-'],
+                    args,
                 input=src,
                 check=True,
-                cwd=app.config['ASY_OUTPUT_DIR'],
+                cwd="/tmp",
         #        stdin=subprocess.PIPE, 
                 stdout=subprocess.PIPE,
                 timeout=10,

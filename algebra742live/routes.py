@@ -10,7 +10,7 @@ from . import socketio, ROOMS
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 import json
-from .models.util import asy_params_hash_lookup, asy_graphics_path
+from .models.util import params_hash_lookup, graphics_path
 
 def error(exception=None):
     """ render error page
@@ -147,10 +147,10 @@ def reset_game():
     print("reseting game")
     emit('reset_game', ROOMS[0].to_json(), broadcast=True)
 
-@app.route('/asy_graphics/<template>/<asy_params_hash>', methods=['GET','POST'])
+@app.route('/graphics/<engine>/<template>/<params_hash>', methods=['GET','POST'])
 @lti(request='session', error=error)
-def asy_graphics(template=None, asy_params_hash=None, lti=lti):
-    return send_file(asy_graphics_path(app,template,asy_params_hash))
+def graphics(template=None, params_hash=None, lti=lti):
+    return send_file(graphics_path(app,engine,template,params_hash))
 
 @app.route('/userinfo', methods=['GET','POST'])
 @lti(request='session', error=error)

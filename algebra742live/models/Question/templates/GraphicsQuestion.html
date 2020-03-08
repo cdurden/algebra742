@@ -1,0 +1,5 @@
+{% extends "Question.html" %}
+{% block form_content %}
+<img src="{{ url_for('graphics', engine=engine, template=template, asy_params_hash=asy_params_hash) }}" height="500"/>
+
+{% endblock %}

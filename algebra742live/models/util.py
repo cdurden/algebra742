@@ -3,10 +3,10 @@ import json
 import shlex
 import os
 
-def asy_graphics_path(app, template, asy_params_hash):
-    return(os.path.join(app.config['ASY_OUTPUT_DIR'],'{:s}_{:s}.svg'.format(os.path.splitext(template)[0],asy_params_hash)))
+def graphics_path(app, engine, template, asy_params_hash):
+    return(os.path.join(app.config['GRAPHICS_OUTPUT_DIR'],engine,'{:s}_{:s}.svg'.format(os.path.splitext(template)[0],asy_params_hash)))
 
-def asy_params_hash_lookup(params_json):
+def params_hash_lookup(params_json):
     print(params_json)
     return(hashlib.sha224(params_json.encode('utf-8')).hexdigest())
 
