@@ -11,7 +11,7 @@ def asy_params_hash_lookup(params):
     return(hashlib.sha224(json.dumps(params).encode('utf-8')).hexdigest())
 
 def process_quotes_for_json(s):
-    lexer = shlex.shlex(s)
+    lexer = shlex.shlex(s, posix=True)
     out = ''
     for token in lexer:
         out += "{:s}".format(token.replace("'","\"").replace("\\\"","\""))
