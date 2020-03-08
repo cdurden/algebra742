@@ -125,7 +125,7 @@ class DrawingQuestion(Question):
     form = None
 
 class AsyGraphicsQuestion(Question):
-    form_class = Form
+    form_class = AnswerForm
     form = None
 
     def params(self):
