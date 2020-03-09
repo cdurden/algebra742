@@ -72,6 +72,14 @@ Reveal.initialize({
             }) 
         },
     ],
+  broadcast: {
+    // Set master password to "123456"
+    secret: '$2a$05$hhgakVn1DWBfgfSwMihABeYToIBEiQGJ.ONa.HWEiNGNI6mxFCy8S', 
+    // Configure RTCMultiConnection
+    connection: {
+      socketURL: 'https://revealjs-broadcast.herokuapp.com/'
+    },
+  },
 	dependencies: [
 		// ...
 		{ src: '/static/js/reveal.js-plugins/chalkboard/chalkboard.js' },
