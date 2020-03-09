@@ -265,7 +265,8 @@ class SolutionQuestion(Question):
     def scripts(self):
         return([])
     def render_html(self, **kwargs):
-        return Question.render_html(self, Question="${:s}$".format(self.params['statement']), **kwargs)
+        params = self.params()
+        return Question.render_html(self, Question="${:s}$".format(params['statement']), **kwargs)
     def check_answer(self):
         from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
         from sympy import symbols
