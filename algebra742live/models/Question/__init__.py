@@ -31,6 +31,9 @@ class AnswerForm(Form):
 #    def __init__(self, **kwargs):
 #        super().__init__(self, **kwargs)
 
+class WrittenResponseForm(Form):
+    answer = TextAreaField('answer')
+
 class DrawingForm(Form):
     pass
 
@@ -267,9 +270,8 @@ class QuestionOnePlusOne(Question):
         else:
             self.marked_incorrect.add('answer')
             return False
+
 class SolutionQuestion(Question):
-    def scripts(self):
-        return([])
     def render_html(self, **kwargs):
         params = self.params()
         return Question.render_html(self, Question="${:s}$".format(params['statement']), **kwargs)
@@ -292,7 +294,39 @@ class SolutionQuestion(Question):
             self.marked_incorrect.add('answer')
         return(correct)
 
+class NonSolutionQuestion(Question):
+    def render_html(self, **kwargs):
+        params = self.params()
+        return Question.render_html(self, Question="${:s}$".format(params['statement']), **kwargs)
+    def check_answer(self):
+        from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
+        from sympy import symbols
+        transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
+        x = symbols("x")
+        params = self.params()
+        try:
+            expr = parse_expr(params['statement']).subs(x,parse_expr(self.form.answer.data))
+            correct = not bool(expr)
+        except:
+            correct = False
+        self.marked_correct = set()
+        self.marked_incorrect = set()
+        if correct:
+            self.marked_correct.add('answer')
+        else:
+            self.marked_incorrect.add('answer')
+        return(correct)
+
+class OpenEndedQuestion(Question):
+    form_class = WrittenResponseForm
+    form = None
+
+    def check_answer(self):
+        self.marked_correct = set('answer')
+        return(True)
+
 QuestionClasses = {
+    'Question.OpenEndedQuestion': OpenEndedQuestion,
     'Question.SolutionQuestion': SolutionQuestion,
     'Question.MultiPartQuestion': MultiPartQuestion,
     'Question.QuestionOnePlusOne': QuestionOnePlusOne,

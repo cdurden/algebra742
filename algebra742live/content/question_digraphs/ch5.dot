@@ -1,14 +1,17 @@
 digraph ch5 {
   start=q1;
-  q1 [class="Question.AsyGraphicsDrawingQuestion",params="{'template': 'NumberLine.asy', 'min':'-8', 'max':'8', 'Question': 'Where are $-5$ and $2$ relative to each other?'}"];
-  q2 [class="Question.QuestionOnePlusOne",params="{'Question': 'What is $1+1?'}"];
-  q3 [class="Question.DrawingQuestion",params="{'Question': 'What is one plus one?'}"];
-  q4 [class="Question.DotGraphicsQuestion",params="{'template': 'ch5.dot'}"];
-  q5 [class="Question.SolutionQuestion",params="{'statement': 'x+3>70'}"];
-  q6 [class="Question.MultiPartQuestion",params="{'parts': [{'class':'Question.SolutionQuestion', 'params': {'statement': 'x+3>70'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': 'x+3<70'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': '5x<2'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': '-5x<2'}}]}"];
-  q7 [class="Question.MultiPartQuestion",params="{'parts': [{'class':'Question.SolutionQuestion', 'params': {'statement': 'x+3>70'}}]}"];
-  q8 [class="Question.SolutionQuestion",params="{'statement': 'x+3<70'}"];
-  q9 [class="Question.SolutionQuestion",params="{'statement': '5x<2'}"];
-  q10 [class="Question.SolutionQuestion",params="{'statement': '-5x<2'}"];
+  q1 [class="Question.SolutionQuestion",params="{'statement': 'x+3>70'}"];
+  q2 [class="Question.SolutionQuestion",params="{'statement': 'x+3<70'}"];
+  q3 [class="Question.SolutionQuestion",params="{'statement': '5x<2'}"];
+  q4 [class="Question.SolutionQuestion",params="{'statement': '-5x<2'}"];
+  q5 [class="Question.NonSolutionQuestion",params="{'statement': 'x+3>70'}"];
+  q6 [class="Question.NonSolutionQuestion",params="{'statement': 'x+3<70'}"];
+  q7 [class="Question.NonSolutionQuestion",params="{'statement': '5x<2'}"];
+  q8 [class="Question.NonSolutionQuestion",params="{'statement': '-5x<2'}"];
+  q9 [class="Question.SolutionQuestion",params="{'statement': '-3x>18'}"];
+  q10 [class="Question.OpenEndedQuestion",params="{'Question': 'How are the solutions to the inequality $-3x \ge 18$ different from the solutions to $-3x>18$? Explain your reasoning.'}"];
+  q11 [class="Question.AsyGraphicsDrawingQuestion",params="{'template': 'NumberLine.asy', 'min':'-8', 'max':'8', 'Question': 'Where are $-5$ and $2$ relative to each other?'}"];
+  q12 [class="Question.DotGraphicsQuestion",params="{'template': 'ch5.dot'}"];
+  q13 [class="Question.MultiPartQuestion",params="{'parts': [{'class':'Question.SolutionQuestion', 'params': {'statement': 'x+3>70'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': 'x+3<70'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': '5x<2'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': '-5x<2'}}]}"];
   q1 -> q2 -> q3;
 }
