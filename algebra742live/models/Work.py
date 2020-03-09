@@ -6,4 +6,4 @@ class Work(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     template = db.Column(db.Text)
     data = db.Column(db.Text)
-    user = db.relationship("User", back_populates="works")
+    user = db.relationship("User")
