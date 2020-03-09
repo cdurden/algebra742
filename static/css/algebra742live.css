@@ -6,11 +6,12 @@ ol.alpha {list-style-type: lower-alpha;}
 	opacity: 1;
 	display: inline; }
 html.dim .backgrounds {
-   -webkit-filter: blur(4px) saturate(.5) brightness(.8);
-   -moz-filter: blur(4px) saturate(.7) brightness(.9);
-   -o-filter: blur(4px) saturate(.7) brightness(.9);
-   -ms-filter: blur(4px) saturate(.7) brightness(.9);
-   filter: blur(4px) saturate(.7) brightness(.9);
+   -webkit-filter: blur(4px) saturate(1) brightness(1.2);
+   -moz-filter: blur(4px) saturate(1) brightness(1.1);
+   -o-filter: blur(4px) saturate(1) brightness(1.1);
+   -ms-filter: blur(4px) saturate(1) brightness(1.1);
+   filter: blur(4px) saturate(1) brightness(1.1);
+   opacity: 0.5;
 }
 div.drawing_canvas_container {
   border: red 1px solid;
