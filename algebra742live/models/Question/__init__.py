@@ -14,8 +14,6 @@ loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__
 jinja_env = jinja2.Environment(loader=loader)
 from networkx.drawing.nx_pydot import read_dot
 from ..util import params_hash_lookup, process_quotes_for_json
-from SolutionQuestion import SolutionQuestion
-from common import *
 
 class Form(FlaskForm):
     def render_html(self):
