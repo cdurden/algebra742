@@ -86,9 +86,9 @@ def admin(lti=lti):
 def save_work(data, lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     game = app.extensions['redis'].get('game').decode('utf-8')
-    params = app.extensions['redis'].get('params').decode('utf-8')
+    params = json.loads(app.extensions['redis'].get('params').decode('utf-8'))
     work = get_or_create(db.session, Work, user_id=user.id, template=params['template'])
-    work.data = data
+    work.data = json.dumps(data)
     db.session.commit()
 
 @app.route('/load_work', methods=['GET','POST'])
