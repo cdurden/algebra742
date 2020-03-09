@@ -1,0 +1,3 @@
+ImmutableMultiDict([('csrf_token', '1583740213.363143##600557c2d8c4ce648cc4540a522de4fca73fb347'), ('csrf_token', '1583740213.363143##600557c2d8c4ce648cc4540a522de4fca73fb347'), ('part_0-answer', 'test'), ('part_1-answer', 'asdf'), ('imageData', '')])
+
+ImmutableMultiDict([(u'node', u'q6'), (u'csrf_token', u'IjZlMWY5NDBiZjI1NDY1OTM4MzZjMzk5MjQzNDdiYTU2OWJjY2MyYzAi.EUd2dg.Jbp599fDld41qSJ6Z6zXuShJM9M'), (u'part_1-answer', u'10'), (u'part_3-answer', u'1'), (u'part_0-answer', u'70'), (u'graph', u'ch5'), (u'part_2-answer', u'0.1')])

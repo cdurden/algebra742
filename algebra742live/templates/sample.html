@@ -5,6 +5,12 @@
   {{ super() }}
 {% endblock %}
 {% block slides %}
+				<section>
+                    {{ digraph_question("ch5", "q5") }}
+                </section>
+				<section>
+                    {{ digraph_question("ch5", "q6") }}
+                </section>
 <section>
     <a id="save_work_link" href="#" onclick="save_work();return false;">Save</a>
 </section>
@@ -108,9 +114,6 @@ The table shows four inequalities and four possible values for x. Decide whether
 test<!-- .element: class="fragment step-fade-in-then-out" -->
 </script>
 </section>
-				<section>
-                    {{ digraph_question("ch5", "q6") }}
-                </section>
 			</div>
 		</div>
 {% endblock %}
