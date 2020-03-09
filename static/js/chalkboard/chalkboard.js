@@ -1494,6 +1494,7 @@ console.log( 'Create printout for slide ' + storage[1].data[i].slide.h + "." + s
 	this.reset = resetSlide;
 	this.resetAll = resetStorage;
 	this.download = downloadData;
+    this.loadData = loadData;
 	this.configure = configure;
     this.storage = storage;
 
