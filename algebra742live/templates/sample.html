@@ -15,30 +15,6 @@ socket.on('question_data', update_question_data);
   </script>
 {% endblock %}
 {% block slides %}
-				<section>
-                    For each inequality, enter one value for $x$ that makes the inequality true.
-                    <ol>
-                    <li>{{ digraph_question("ch5", "q1") }}</li>
-                    <li>{{ digraph_question("ch5", "q2") }}</li>
-                    <li>{{ digraph_question("ch5", "q3") }}</li>
-                    <li>{{ digraph_question("ch5", "q4") }}</li>
-                    </ol>
-                </section>
-				<section>
-                    For each inequality, enter one value for $x$ that makes the inequality false.
-                    <ol start="5">
-                    <li>{{ digraph_question("ch5", "q5") }}</li>
-                    <li>{{ digraph_question("ch5", "q6") }}</li>
-                    <li>{{ digraph_question("ch5", "q7") }}</li>
-                    <li>{{ digraph_question("ch5", "q8") }}</li>
-                    </ol>
-                </section>
-				<section>
-                    <ol start="9">
-                    <li>{{ digraph_question("ch5", "q9") }}</li>
-                    <li>{{ digraph_question("ch5", "q10") }}</li>
-                    </ol>
-                </section>
 <section>
     <a id="save_work_link" href="#" onclick="save_work();return false;">Save</a>
 </section>
@@ -137,9 +113,33 @@ The table shows four inequalities and four possible values for x. Decide whether
 </script>
 
 </section>
+				<section>
+                    For each inequality, enter one value for $x$ that makes the inequality true.
+                    <ol>
+                    <li>{{ digraph_question("ch5", "q1") }}</li>
+                    <li>{{ digraph_question("ch5", "q2") }}</li>
+                    <li>{{ digraph_question("ch5", "q3") }}</li>
+                    <li>{{ digraph_question("ch5", "q4") }}</li>
+                    </ol>
+                </section>
+				<section>
+                    For each inequality, enter one value for $x$ that makes the inequality false.
+                    <ol start="5">
+                    <li>{{ digraph_question("ch5", "q5") }}</li>
+                    <li>{{ digraph_question("ch5", "q6") }}</li>
+                    <li>{{ digraph_question("ch5", "q7") }}</li>
+                    <li>{{ digraph_question("ch5", "q8") }}</li>
+                    </ol>
+                </section>
+				<section>
+                    <ol start="9">
+                    <li>{{ digraph_question("ch5", "q9") }}</li>
+                    <li>{{ digraph_question("ch5", "q10") }}</li>
+                    </ol>
+                </section>
 <section data-markdown>
 <script type="text/template">
-test<!-- .element: class="fragment step-fade-in-then-out" -->
+The End<!-- .element: class="fragment step-fade-in-then-out" -->
 </script>
 </section>
 {% endblock %}
