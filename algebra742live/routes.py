@@ -45,7 +45,9 @@ def algebra742live_lti(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
+    print("starting lti auth")
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    print(user)
     if user:
         return(redirect(url_for('algebra742live')))
         #return render_template(ROOMS[0].template)
