@@ -80,6 +80,7 @@ class Question(db.Model):
 #        self.params_json = json.dumps(kwargs['params'])
 #        super().__init__(self, **kwargs)
     def build_form(self, formdata=None):
+        print(formdata)
         self.form = self.form_class(MultiDict(formdata))
         print('building Question form')
         print(self.form.data)
