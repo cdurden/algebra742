@@ -266,6 +266,7 @@ class SolutionQuestion(Question):
         return([])
     def check_answer(self):
         from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
+        from sympy import symbols
         transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
         x = symbols("x")
         params = self.params()
