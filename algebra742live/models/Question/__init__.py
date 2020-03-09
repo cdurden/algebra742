@@ -236,8 +236,13 @@ class MultiPartQuestion(Question):
         params = self.params()
         #return all([part['question'].check_answer(getattr(form,'part_'+str(i))) for i,part in enumerate(params['parts'])])
         print(self.form.data)
+        self.marked_correct = set()
+        self.marked_incorrect = set()
         for i,part in enumerate(params['parts']):
             part['question'].build_form(getattr(self.form,'part_{:d}'.format(i)).data)
+            part['question'].check_answer()
+            self.marked_correct = self.marked_correct.union(set(["part_0"+field for field in part['question'].marked_correct]))
+            self.marked_incorrect = self.marked_incorrect.union(set(["part_0"+field for field in part['question'].marked_incorrect]))
         return all([part['question'].check_answer() for i,part in enumerate(params['parts'])])
 
 
