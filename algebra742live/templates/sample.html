@@ -211,6 +211,7 @@ Reveal.initialize({
     embedded: false,
 });
 function save_work () {
+    console.log('saving work');
     socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage));
 }
 Reveal.addEventListener( 'input', save_work() );
