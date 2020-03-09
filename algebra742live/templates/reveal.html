@@ -5,6 +5,9 @@
   <script type="text/javascript" src="/static/js/games/reveal_game.js"></script>
   {{ super() }}
   <script>
+    var broadcastid = "asdfjvahsduhqw68";
+  </script>
+  <script>
 // adding a method to the Document.prototype:
 Document.prototype.getElementsByRegex = function (attr, reg) {
   var superSet = document.querySelectorAll('[' + attr + ']');
@@ -73,7 +76,6 @@ Reveal.initialize({
         },
     ],
   broadcast: {
-    // Set master password to "123456"
     secret: '$2a$05$hhgakVn1DWBfgfSwMihABeYToIBEiQGJ.ONa.HWEiNGNI6mxFCy8S', 
     // Configure RTCMultiConnection
     connection: {
@@ -101,7 +103,14 @@ Reveal.initialize({
     countdown: { defaultTime: 600, autostart: "no" },
 	keyboard: {
 	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-	    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+	    //66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+	    83: function() {
+            var pw = prompt("Please enter broadcast password", "");
+            RevealBroadcast.start( { id: broadcastid, password: document.getElementById('password').value } ); return false;
+        },	// create broadcast when 's' is pressed
+	    65: function() {
+            RevealBroadcast.connect( { id: broadcastid } ); return false;
+        },	// connect to broadcast when 'a' is pressed
 	    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
 	     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
 	    68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
@@ -113,3 +122,4 @@ Reveal.initialize({
 });
 		</script>
 {% endblock %}
+<a href="#" onclick="RevealBroadcast.connect( { id: document.getElementById('broadcastid').value } ); return false;">Join broadcast</a>
