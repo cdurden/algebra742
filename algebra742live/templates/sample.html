@@ -215,5 +215,5 @@ function save_work () {
 Reveal.addEventListener( 'ready', function( event ) {
     RevealChalkboard.loadData('/load_work');
 });
-Reveal.addEventListener( 'slidechanged', save_work() );
+Reveal.addEventListener( 'slidechanged', save_work );
 {% endblock %}
