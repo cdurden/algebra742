@@ -1,3 +1,9 @@
+.reveal .slides section .fragment.step-fade-in-then-out {
+	opacity: 0;
+	display: none; }
+.reveal .slides section .fragment.step-fade-in-then-out.current-fragment {
+	opacity: 1;
+	display: inline; }
 html.dim .backgrounds {
    -webkit-filter: blur(4px) saturate(.5) brightness(.8);
    -moz-filter: blur(4px) saturate(.7) brightness(.9);
