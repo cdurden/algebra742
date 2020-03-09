@@ -1,12 +1,5 @@
 {% macro digraph_question(graph, node) %}
 <div class="question" data-role="page" id="digraph_question_{{ graph }}_{{ node }}" source="digraph_question:{{ graph }}:{{ node }}">
-    <div data-role="header">
-        <!--<span class="ui-title" />
-        <a data-icon="alert" class="question_completed ui-btn-right">Question</a>-->
-    </div>
-    <div role="main" class="ui-content">
         <form><input type="hidden" name="graph"><input type="hidden" name="node"><span class="question_view"><!-- { "graph": "{{ graph }}", "node": "{{ node }}" } --></span><input type="submit" value="Submit"></form>
-    </div>
-    <div data-role="footer"></div>
 </div>
 {% endmacro %}
