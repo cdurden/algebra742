@@ -264,6 +264,11 @@ class QuestionOnePlusOne(Question):
 class SolutionQuestion(Question):
     def scripts(self):
         return([])
+    def __init__(self, **kwargs):
+        super().__init__(self, **kwargs)
+        params = self.params()
+        params['Question'] = "${:s}$".format(self.params['statement'])
+        self.params_json = json.dumps(params)
     def check_answer(self):
         from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
         from sympy import symbols
