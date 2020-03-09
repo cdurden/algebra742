@@ -98,7 +98,12 @@ def load_work(lti=lti):
     game = app.extensions['redis'].get('game').decode('utf-8')
     params = json.loads(app.extensions['redis'].get('params').decode('utf-8'))
     work = get_or_create(db.session, Work, user_id=user.id, template=params['template'])
-    return(work.data)
+    response = app.response_class(
+        response=work.data,
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 @socketio.on('set_game')
 @lti(request='session', role='staff', error=error)
