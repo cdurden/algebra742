@@ -328,6 +328,7 @@ class OpenEndedQuestion(Question):
 QuestionClasses = {
     'Question.OpenEndedQuestion': OpenEndedQuestion,
     'Question.SolutionQuestion': SolutionQuestion,
+    'Question.NonSolutionQuestion': NonSolutionQuestion,
     'Question.MultiPartQuestion': MultiPartQuestion,
     'Question.QuestionOnePlusOne': QuestionOnePlusOne,
     'Question.DrawingQuestion': DrawingQuestion,
