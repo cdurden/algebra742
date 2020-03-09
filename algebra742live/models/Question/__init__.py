@@ -278,6 +278,8 @@ class SolutionQuestion(Question):
             correct = bool(expr)
         except:
             correct = False
+        self.marked_correct = set()
+        self.marked_incorrect = set()
         if correct:
             self.marked_correct.add('answer')
         else:
