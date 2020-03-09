@@ -101,8 +101,8 @@ class RevealJSPresentationGame(Game):
         Game.__init__(self, kwargs)
         self.template = kwargs['template']
     def input(self, player, data, output_callback):
-        node = data['node']
-        graph = data['graph']
+        node = data.pop('node')
+        graph = data.pop('graph')
         question = get_question_from_digraph_node(graph, node)
         #assert(graph == self.question_digraph.graph['name'])
         #question = self.question_digraph.nodes[node]['_question_obj']
