@@ -1483,6 +1483,18 @@ console.log( 'Create printout for slide ' + storage[1].data[i].slide.h + "." + s
 		}
 	};
 	function getStorage() {
+		try {
+			// cleanup slide data without events
+			for (var id = 0; id < 2; id++) {
+				for (var i = storage[id].data.length-1; i >= 0; i--) {
+					if (storage[id].data[i].events.length == 0) {
+						storage[id].data.splice(i, 1);
+					}
+				}
+			}
+		} catch( error ) {
+			console.log(error);
+		}
         return(storage)
     }
 

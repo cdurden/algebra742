@@ -210,7 +210,7 @@ Reveal.initialize({
 });
 function save_work () {
     console.log('saving work');
-    socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage));
+    socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage()));
 }
 Reveal.addEventListener( 'ready', function( event ) {
     RevealChalkboard.loadData('/load_work');
