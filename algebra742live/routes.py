@@ -5,6 +5,8 @@ from pylti.flask import lti
 from .models import db, User, RequestDenied
 from .models.Question import get_question_from_digraph_node
 from .models.Game import GameClasses
+from .models.Work import Work
+from .models import get_or_create
 from . import socketio, ROOMS
 
 from flask_wtf import Form
@@ -82,13 +84,21 @@ def admin(lti=lti):
 @socketio.on('save_work')
 @lti(request='session', error=error)
 def save_work(data, lti=lti):
-    print(data)
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    game = app.extensions['redis'].get('game').decode('utf-8')
+    params = app.extensions['redis'].get('params').decode('utf-8')
+    work = get_or_create(db.session, Work, user_id=user.id, template=params['template'])
+    work.data = data
+    db.session.commit()
 
 @socketio.on('load_work')
 @lti(request='session', error=error)
 def load_work(data, lti=lti):
-    print(data)
-
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    game = app.extensions['redis'].get('game').decode('utf-8')
+    params = app.extensions['redis'].get('params').decode('utf-8')
+    work = get_or_create(db.session, Work, user_id=user.id, template=params['template'])
+    return(work.data)
 
 @socketio.on('set_game')
 @lti(request='session', role='staff', error=error)
