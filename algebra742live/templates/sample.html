@@ -214,5 +214,8 @@ function save_work () {
     console.log('saving work');
     socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage));
 }
-Reveal.addEventListener( 'input', save_work() );
+Reveal.addEventListener( 'ready', function( event ) {
+    RevealChalkboard.loadData('/load_work');
+});
+Reveal.addEventListener( 'slidechanged', save_work() );
 {% endblock %}
