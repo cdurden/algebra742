@@ -1482,6 +1482,9 @@ console.log( 'Create printout for slide ' + storage[1].data[i].slide.h + "." + s
 			document.dispatchEvent( message );
 		}
 	};
+	function getStorage() {
+        return(storage)
+    }
 
 	this.drawWithBoardmarker = drawWithBoardmarker;
 	this.drawWithChalk = drawWithChalk;
@@ -1495,8 +1498,8 @@ console.log( 'Create printout for slide ' + storage[1].data[i].slide.h + "." + s
 	this.resetAll = resetStorage;
 	this.download = downloadData;
     this.loadData = loadData;
+    this.storage = getStorage;
 	this.configure = configure;
-    this.storage = storage;
 
 	return this;
 })();
