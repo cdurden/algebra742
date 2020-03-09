@@ -4,5 +4,6 @@ digraph ch5 {
   q2 [class="Question.QuestionOnePlusOne",params="{'Question': 'What is $1+1?'}"];
   q3 [class="Question.DrawingQuestion",params="{'Question': 'What is one plus one?'}"];
   q4 [class="Question.DotGraphicsQuestion",params="{'template': 'ch5.dot'}"];
+  q5 [class="Question.SolutionQuestion",params="{'statement': 'x+3>70'}"];
   q1 -> q2 -> q3;
 }
