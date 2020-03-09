@@ -15,6 +15,7 @@ jinja_env = jinja2.Environment(loader=loader)
 from networkx.drawing.nx_pydot import read_dot
 from ..util import params_hash_lookup, process_quotes_for_json
 from SolutionQuestion import SolutionQuestion
+from common import *
 
 class Form(FlaskForm):
     def render_html(self):
@@ -262,6 +263,20 @@ class QuestionOnePlusOne(Question):
         else:
             self.marked_incorrect.add('answer')
             return False
+class SolutionQuestion(Question):
+    def scripts(self):
+        return([])
+    def check_answer(self):
+        from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
+        transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
+        x = symbols("x")
+        params = self.params()
+        try:
+            expr = parse_expr(params['statement']).subs(x,parse_expr(self.form.answer.data))
+            correct = bool(expr)
+        except:
+            correct = False
+        return(correct)
 
 QuestionClasses = {
     'Question.SolutionQuestion': SolutionQuestion,

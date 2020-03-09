@@ -1,4 +1,4 @@
-from . import Question
+import common
 from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
 transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
 class SolutionQuestion(Question):
@@ -14,3 +14,4 @@ class SolutionQuestion(Question):
         except:
             correct = False
         return(correct)
+common.QuestionClasses['Question.SolutionQuestion'] = SolutionQuestion
