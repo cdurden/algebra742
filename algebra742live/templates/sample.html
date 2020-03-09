@@ -6,9 +6,6 @@
   <script type="text/javascript" src="/static/js/games/reveal_game.js"></script>
   <script>
     var broadcastid = "asdfjvahsduhqw68";
-    function save_work () {
-        socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage));
-    }
   </script>
   <script>
 socket.on('question_data', update_question_data);
@@ -213,5 +210,8 @@ Reveal.initialize({
 	// ...
     embedded: false,
 });
+function save_work () {
+    socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage));
+}
 Reveal.addEventListener( 'input', save_work() );
 {% endblock %}
