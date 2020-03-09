@@ -9,7 +9,7 @@
     function save_work () {
         socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage));
     }
-    Reveal.addEventListener( 'stats', save_work() );
+    Reveal.addEventListener( 'input', save_work() );
   </script>
   <script>
 socket.on('question_data', update_question_data);
@@ -139,7 +139,6 @@ The table shows four inequalities and four possible values for x. Decide whether
 <section>
     <a id="save_work_link" href="#" onclick="save_work();return false;">Save</a><!-- .element: class="fragment step-fade-in-then-out" -->
 </section>
--->
 {% endblock %}
 {% block more %}
   {{ super() }}
