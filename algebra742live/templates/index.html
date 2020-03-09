@@ -1,6 +1,9 @@
+{% extends "layout.html" %}
 <!doctype html>
 <html>
 	<head>
+        {% block head %}
+        {{ super() }}
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -8,7 +11,7 @@
 
 		<link rel="stylesheet" href="/static/js/reveal.js/css/reset.css">
 		<link rel="stylesheet" href="/static/js/reveal.js/css/reveal.css">
-		<link rel="stylesheet" href="/static/js/reveal.js/css/theme/black.css">
+		<link rel="stylesheet" href="/static/js/reveal.js/css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -21,12 +24,16 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? '/static/js/reveal.js/css/print/pdf.css' : '/static/js/reveal.js/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+        {% endblock %}
 	</head>
 	<body>
+        {% block content %}
 		<div class="reveal">
 			<div class="slides">
+                {% block slides %}
 				<section>Slide 1</section>
 				<section>Slide 2</section>
+                {% endblock %}
 			</div>
 		</div>
 
@@ -46,5 +53,6 @@
 				]
 			});
 		</script>
+        {% endblock %}
 	</body>
 </html>
