@@ -4,6 +4,9 @@
 {% block head %}
   {{ super() }}
   <script type="text/javascript" src="/static/js/games/reveal_game.js"></script>
+  <script>
+socket.on('question_data', update_question_data);
+  </script>
 {% endblock %}
 {% block slides %}
 				<section>
