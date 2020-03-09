@@ -278,6 +278,10 @@ class SolutionQuestion(Question):
             correct = bool(expr)
         except:
             correct = False
+        if correct:
+            self.marked_correct.add('answer')
+        else:
+            self.marked_incorrect.add('answer')
         return(correct)
 
 QuestionClasses = {
