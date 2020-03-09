@@ -7,5 +7,8 @@ digraph ch5 {
   q5 [class="Question.SolutionQuestion",params="{'statement': 'x+3>70'}"];
   q6 [class="Question.MultiPartQuestion",params="{'parts': [{'class':'Question.SolutionQuestion', 'params': {'statement': 'x+3>70'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': 'x+3<70'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': '5x<2'}}, {'class':'Question.SolutionQuestion', 'params': {'statement': '-5x<2'}}]}"];
   q7 [class="Question.MultiPartQuestion",params="{'parts': [{'class':'Question.SolutionQuestion', 'params': {'statement': 'x+3>70'}}]}"];
+  q8 [class="Question.SolutionQuestion",params="{'statement': 'x+3<70'}"];
+  q9 [class="Question.SolutionQuestion",params="{'statement': '5x<2'}"];
+  q10 [class="Question.SolutionQuestion",params="{'statement': '-5x<2'}"];
   q1 -> q2 -> q3;
 }
