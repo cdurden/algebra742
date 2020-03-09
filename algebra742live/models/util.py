@@ -15,4 +15,5 @@ def process_quotes_for_json(s):
     out = ''
     for token in lexer:
         out += "{:s}".format(token.replace("'","\""))
+    print(out)
     return(out)
