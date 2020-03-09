@@ -105,8 +105,8 @@ Reveal.initialize({
 	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
 	    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
 	    83: function() {
-            var pw = prompt("Please enter broadcast password", "");
-            RevealBroadcast.start( { id: broadcastid, password: document.getElementById('password').value } );
+            var password = prompt("Please enter broadcast password", "");
+            RevealBroadcast.start( { id: broadcastid, password: password } );
         },	// create broadcast when 's' is pressed
 	    65: function() {
             RevealBroadcast.connect( { id: broadcastid } );
