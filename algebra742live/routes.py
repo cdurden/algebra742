@@ -90,6 +90,7 @@ def save_work(data, lti=lti):
     work = get_or_create(db.session, Work, user_id=user.id, template=params['template'])
     #work.data = json.dumps(data)
     work.data = data
+    print(data)
     db.session.commit()
 
 @app.route('/load_work', methods=['GET','POST'])
