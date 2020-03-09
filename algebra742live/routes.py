@@ -93,7 +93,7 @@ def save_work(data, lti=lti):
 
 @app.route('/load_work', methods=['GET','POST'])
 @lti(request='session', error=error)
-def load_work(data, lti=lti):
+def load_work(lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     game = app.extensions['redis'].get('game').decode('utf-8')
     params = app.extensions['redis'].get('params').decode('utf-8')
