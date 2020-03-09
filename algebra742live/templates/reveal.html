@@ -103,7 +103,7 @@ Reveal.initialize({
     countdown: { defaultTime: 600, autostart: "no" },
 	keyboard: {
 	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-	    //66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+	    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
 	    83: function() {
             var pw = prompt("Please enter broadcast password", "");
             RevealBroadcast.start( { id: broadcastid, password: document.getElementById('password').value } ); return false;
