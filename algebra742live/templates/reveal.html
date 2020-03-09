@@ -75,14 +75,14 @@ Reveal.initialize({
   broadcast: {
     // Set master password to "123456"
     secret: '$2a$05$hhgakVn1DWBfgfSwMihABeYToIBEiQGJ.ONa.HWEiNGNI6mxFCy8S', 
-    session: {
-        		audio: false,
-        		video: false,
-        		oneway: true
-    },
     // Configure RTCMultiConnection
     connection: {
       socketURL: 'https://revealjs-broadcast.herokuapp.com/'
+      session: {
+		audio: false,
+		video: false,
+		oneway: true
+      },
     },
   },
 	dependencies: [
