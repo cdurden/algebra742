@@ -20,6 +20,7 @@ def error(exception=None):
     :param exception: optional exception
     :return: the error.html template rendered
     """
+    print(exception)
     return render_template('error.html')
 
 class UserInfoForm(Form):
