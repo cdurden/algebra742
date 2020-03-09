@@ -6,6 +6,9 @@
   {{ super() }}
   <script>
     var broadcastid = "asdfjvahsduhqw68";
+    function save_work () {
+        socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage));
+    }
   </script>
   <script>
 // adding a method to the Document.prototype:

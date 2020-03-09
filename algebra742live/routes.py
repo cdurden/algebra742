@@ -79,6 +79,11 @@ def admin(lti=lti):
     else:
         raise RequestDenied
 
+@socketio.on('save_work')
+@lti(request='session', error=error)
+def save_work(data, lti=lti):
+    print(data)
+
 @socketio.on('set_game')
 @lti(request='session', role='staff', error=error)
 def set_game(data, lti=lti):
