@@ -87,7 +87,10 @@ Reveal.initialize({
         { src: '/static/js/reveal.js/plugin/math/math.js', async: true },
         { src: '/static/js/reveal_countdown/countdown.js' },
         { src: '/static/js/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: '/static/js/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: '../reveal.js-plugins/broadcast/RTCMultiConnection.min.js'},
+    { src: '../reveal.js-plugins/broadcast/socket.io.js'},
+    { src: '../reveal.js-plugins/broadcast/bCrypt.js'},
+    { src: '../reveal.js-plugins/broadcast/broadcast.js'},
 		// ...
 	],
     countdown: { defaultTime: 600, autostart: "no" },
