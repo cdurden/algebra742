@@ -39,6 +39,7 @@
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
+            {% block reveal_init %}
 			Reveal.initialize({
 				hash: true,
 				dependencies: [
@@ -48,5 +49,6 @@
 					{ src: '/static/js/reveal.js/plugin/notes/notes.js', async: true }
 				]
 			});
+            {% endblock %}
 		</script>
         {% endblock %}
