@@ -106,10 +106,10 @@ Reveal.initialize({
 	    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
 	    83: function() {
             var pw = prompt("Please enter broadcast password", "");
-            RevealBroadcast.start( { id: broadcastid, password: document.getElementById('password').value } ); return false;
+            RevealBroadcast.start( { id: broadcastid, password: document.getElementById('password').value } );
         },	// create broadcast when 's' is pressed
 	    65: function() {
-            RevealBroadcast.connect( { id: broadcastid } ); return false;
+            RevealBroadcast.connect( { id: broadcastid } );
         },	// connect to broadcast when 'a' is pressed
 	    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
 	     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
