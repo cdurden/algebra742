@@ -91,7 +91,7 @@ def save_work(data, lti=lti):
     work.data = data
     db.session.commit()
 
-@socketio.on('load_work')
+@app.route('/load_work', methods=['GET','POST'])
 @lti(request='session', error=error)
 def load_work(data, lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
