@@ -17,6 +17,7 @@ Reveal.initialize({
         {
           className: "question", 
           initialize: (function(container, options){ 
+              // use setInterval to send the emit message, and then clearInterval once the response is received
               socket.emit('get_question_data', { graph: options.graph, node: options.node });
               //setting the id of the question div is now handled by the template macro
               //container.id = "question_"+options.graph+"_"+options.node;
@@ -77,5 +78,6 @@ function save_work () {
 Reveal.addEventListener( 'ready', function( event ) {
     RevealChalkboard.loadData('/load_work');
 });
-Reveal.addEventListener( 'slidechanged', save_work );
+//Reveal.addEventListener( 'slidechanged', save_work );
+setInterval(save_work,60000);
 {% endblock %}
