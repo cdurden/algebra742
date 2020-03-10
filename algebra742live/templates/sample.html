@@ -1,15 +1,8 @@
-{% extends "index.html" %}
+{% extends "reveal_markdown_mathjax_chalkboard_broadcast.html" %}
 {% from "macros.html" import digraph_question %}.
-{% block title %}Sample presentation{% endblock %}
+{% block title %}Reintroducing Inequalities{% endblock %}
 {% block head %}
   {{ super() }}
-  <script type="text/javascript" src="/static/js/games/reveal_game.js"></script>
-  <script>
-    var broadcastid = "asdfjvahsduhqw68";
-  </script>
-  <script>
-socket.on('question_data', update_question_data);
-  </script>
 {% endblock %}
 {% block slides %}
 <section data-state="input" data-markdown data-separator="---">
@@ -156,84 +149,4 @@ The table shows four inequalities and four possible values for x. Decide whether
 {% endblock %}
 {% block more %}
   {{ super() }}
-{% endblock %}
-{% block reveal_init %}
-Reveal.initialize({
-    center: false,
-    math: {
-        mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-        config: 'TeX-AMS_HTML-full', // See http://docs.mathjax.org/en/latest/config-files.html
-        // pass other options into `MathJax.Hub.Config()`
-        TeX: { Macros: { RR: "{\\bf R}" } }
-    },
-	chalkboard: {
-		// optionally load pre-recorded chalkboard drawing from file
-		//src: "chalkboard.json",
-        readOnly: false,
-	},
-	anything: [ 
-        {
-          className: "question", 
-          initialize: (function(container, options){ 
-              socket.emit('get_question_data', { graph: options.graph, node: options.node });
-              //setting the id of the question div is now handled by the template macro
-              //container.id = "question_"+options.graph+"_"+options.node;
-            }) 
-        },
-    ],
-  broadcast: {
-    secret: '$2a$05$hhgakVn1DWBfgfSwMihABeYToIBEiQGJ.ONa.HWEiNGNI6mxFCy8S', 
-    // Configure RTCMultiConnection
-    connection: {
-      socketURL: 'https://revealjs-broadcast.herokuapp.com/',
-      session: {
-		audio: false,
-		video: false,
-		oneway: true
-      },
-    },
-  },
-	dependencies: [
-		// ...
-		//{ src: '/static/js/reveal.js-plugins/chalkboard/chalkboard.js' },
-		{ src: '/static/js/chalkboard/chalkboard.js' },
-        { src: '/static/js/reveal.js-plugins/anything/anything.js' },
-        { src: '/static/js/reveal.js/plugin/math/math.js', async: true },
-        { src: '/static/js/reveal_countdown/countdown.js' },
-        { src: '/static/js/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: '/static/js/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: '/static/js/reveal.js-plugins/broadcast/RTCMultiConnection.min.js'},
-    { src: '/static/js/reveal.js-plugins/broadcast/socket.io.js'},
-    { src: '/static/js/reveal.js-plugins/broadcast/bCrypt.js'},
-    { src: '/static/js/reveal.js-plugins/broadcast/broadcast.js'},
-		// ...
-	],
-    countdown: { defaultTime: 600, autostart: "no" },
-	keyboard: {
-	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-	    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
-	    83: function() {
-            var password = prompt("Please enter broadcast password", "");
-            RevealBroadcast.start( { id: broadcastid, password: password } );
-        },	// create broadcast when 's' is pressed
-	    65: function() {
-            RevealBroadcast.connect( { id: broadcastid } );
-        },	// connect to broadcast when 'a' is pressed
-	    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
-	     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
-	    68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
-	    88: function() { RevealChalkboard.colorNext() },	// cycle colors forward when 'x' is pressed
-	    89: function() { RevealChalkboard.colorPrev() },	// cycle colors backward when 'y' is pressed
-	},
-	// ...
-    embedded: false,
-});
-function save_work () {
-    console.log('saving work');
-    socket.emit('save_work', data=JSON.stringify(RevealChalkboard.storage()));
-}
-Reveal.addEventListener( 'ready', function( event ) {
-    RevealChalkboard.loadData('/load_work');
-});
-Reveal.addEventListener( 'slidechanged', save_work );
 {% endblock %}
