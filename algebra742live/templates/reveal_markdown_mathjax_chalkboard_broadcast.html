@@ -59,7 +59,9 @@ Reveal.initialize({
   },
 	dependencies: [
 		// ...
-		//{ src: '/static/js/reveal.js-plugins/chalkboard/chalkboard.js' },
+        {% if include_chalkboard %}
+		{ src: '/static/js/reveal.js-plugins/chalkboard/chalkboard.js' },
+        {% endif %}
 		{ src: '/static/js/chalkboard/chalkboard.js' },
         { src: '/static/js/reveal.js-plugins/anything/anything.js' },
         { src: '/static/js/reveal.js/plugin/math/math.js', async: true },
