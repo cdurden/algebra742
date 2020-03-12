@@ -1,6 +1,10 @@
 .reveal section img {
     padding: 10px;
 }
+img.noborder {
+    border: 0;
+    box-shadow: none
+}
 ol.alpha {list-style-type: lower-alpha;}
 .reveal .slides section .fragment.step-fade-in-then-out {
 	opacity: 0;
