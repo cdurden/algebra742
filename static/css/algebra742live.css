@@ -6,7 +6,7 @@
 }
 img.noborder {
     border: 0;
-    box-shadow: none
+    box-shadow: none;
 }
 ol.alpha {list-style-type: lower-alpha;}
 .reveal .slides section .fragment.step-fade-in-then-out {
