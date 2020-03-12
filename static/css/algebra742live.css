@@ -1,6 +1,9 @@
 .reveal section img {
     padding: 10px;
 }
+.reveal section {
+    font-size; 24pt;
+}
 img.noborder {
     border: 0;
     box-shadow: none
