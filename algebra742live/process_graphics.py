@@ -49,7 +49,7 @@ engines = {'Question.AsyGraphicsQuestion': ('asy',['asy','-f','svg','-o','{{ out
 
 questions_digraph = nx_agraph.from_agraph(pygraphviz.AGraph(src))
 for node,data in questions_digraph.nodes(data=True):
-    print(data)
+    #print(data)
     if 'class' in data and data['class'].endswith('GraphicsQuestion'):
         params_json = process_quotes_for_json(data['params'])
         print(params_json)
@@ -57,6 +57,7 @@ for node,data in questions_digraph.nodes(data=True):
         #print(params)
         engine = engines[data['class']][0]
         output_filename = graphics_path(app,engine,params['template'],params_hash_lookup(params_json))
+        print(output_filename)
         args = [jinja2.Template(arg).render(output_filename=output_filename) for arg in engines[data['class']][1]]
         template = jinja_env.get_template(os.path.join(engine,params['template']))
         src = template.render(**params).encode('utf-8')
