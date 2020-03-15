@@ -13,8 +13,7 @@
 .decimal_leading_zero+ol, .decimal_leading_zero+ul {list-style-type:decimal-leading-zero;}
 
 .reveal section table td {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
+    border: 1px solid #000;
 }
 .reveal section div.top-right {
     position: absolute;
