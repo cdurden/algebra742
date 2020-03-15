@@ -39,6 +39,7 @@ $(document).ready(function(){
                 console.log('content dimension changed');
             });
             matchMedia(mqString).addListener(function() {
+                console.log('content dimension changed');
                 LC.util.matchElementSize(container, this, LC.util.getBackingScale());
             });
             //LC.util.matchElementSize(container, $(container).find('canvas'), LC.util.getBackingScale());
