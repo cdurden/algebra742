@@ -223,6 +223,14 @@ $x<52$
 </script>
 </section>
 {% endblock %}
+{% block reveal_options %}
+  {{ super() }}
+	chalkboard: {
+		// optionally load pre-recorded chalkboard drawing from file
+		src: "/static/EfficientlySolvingInequalities/chalkboard.json",
+        readOnly: false,
+	},
+{% endblock %}
 {% block more %}
   {{ super() }}
 {% endblock %}
