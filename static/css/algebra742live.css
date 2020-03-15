@@ -12,8 +12,19 @@
 .decimal+ol, .decimal+ul {list-style-type:decimal;}
 .decimal_leading_zero+ol, .decimal_leading_zero+ul {list-style-type:decimal-leading-zero;}
 
-.reveal section table td {
+.reveal section table {
+    table-layout: fixed;
+}
+.reveal section table tbody tr td:first-child {
+    width: fit-content;
+}
+.reveal section table tbody tr td {
     border: 1px solid #000;
+    padding: 10px 25px 10px 25px;
+    width: 100px;
+}
+.reveal section table tbody tr:last-child td {
+    border-bottom: 1px solid #000;
 }
 .reveal section div.top-right {
     position: absolute;
