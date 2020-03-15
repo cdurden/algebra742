@@ -1,3 +1,6 @@
+.reveal section.medium-font {
+    font-size: 24pt;
+}
 .reveal section img {
     padding: 10px;
 }
