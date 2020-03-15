@@ -130,6 +130,9 @@ class Question(db.Model):
 class DrawingQuestion(Question):
     form_class = DrawingForm
     form = None
+    def render_html(self, **kwargs):
+        params = self.params()
+        return Question.render_html(self, image_url=params['image_url'], **kwargs)
 
 class GraphicsQuestion(Question):
     form_class = AnswerForm

@@ -16,5 +16,6 @@ digraph ch5 {
   q14 [class="Question.AsyGraphicsQuestion",params="{'template': 'NumberLine.asy', 'min':'-3', 'max':'8', 'Question': ''}"];
   q15 [class="Question.AsyGraphicsQuestion",params="{'template': 'NumberLine.asy', 'min':'-3', 'max':'20', 'Question': ''}"];
   q16 [class="Question.AsyGraphicsQuestion",params="{'template': 'NumberLine.asy', 'min':'-3', 'max':'10', 'Question': ''}"];
+  q17 [class="Question.DrawingQuestion",params="{'image_url': '/static/images/NumberLineNoLabels.png','Question': ''}"];
   q1 -> q2 -> q3;
 }
