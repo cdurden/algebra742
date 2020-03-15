@@ -54,11 +54,15 @@ socket.on('question_data', update_question_data);
 			Reveal.initialize({
 				hash: true,
 				dependencies: [
+                    {% block reveal_dependencies %}
 					{ src: '/static/js/reveal.js/plugin/markdown/marked.js' },
 					{ src: '/static/js/reveal.js/plugin/markdown/markdown.js' },
 					{ src: '/static/js/reveal.js/plugin/highlight/highlight.js' },
-					{ src: '/static/js/reveal.js/plugin/notes/notes.js', async: true }
+					{ src: '/static/js/reveal.js/plugin/notes/notes.js', async: true },
+                    {% endblock %}
 				]
+                {% block reveal_options %}
+                {% endblock %}
 			});
             {% endblock %}
 		</script>
