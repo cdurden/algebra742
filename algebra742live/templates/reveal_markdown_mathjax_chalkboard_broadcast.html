@@ -74,7 +74,12 @@ Reveal.initialize({
     { src: '/static/js/reveal.js-plugins/broadcast/broadcast.js'},
 		// ...
 	],
-    countdown: { defaultTime: 600, autostart: "no" },
+    countdown: {
+        defaultTime: 600,
+        autostart: "no",
+        tickSound: "http://soundbible.com/grab.php?id=2044&type=mp3",
+        timeIsUpSound: "http://soundbible.com/grab.php?id=1746&type=mp3"
+    },
 	keyboard: {
 	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
 	    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
