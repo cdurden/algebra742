@@ -52,7 +52,6 @@ socket.on('question_data', update_question_data);
 			// - https://github.com/hakimel/reveal.js#dependencies
             {% block reveal_init %}
 			Reveal.initialize({
-				hash: true,
 				dependencies: [
                     {% block reveal_dependencies %}
 					{ src: '/static/js/reveal.js/plugin/markdown/marked.js' },
@@ -60,8 +59,9 @@ socket.on('question_data', update_question_data);
 					{ src: '/static/js/reveal.js/plugin/highlight/highlight.js' },
 					{ src: '/static/js/reveal.js/plugin/notes/notes.js', async: true },
                     {% endblock %}
-				]
+				],
                 {% block reveal_options %}
+				hash: true,
                 {% endblock %}
 			});
             {% endblock %}
