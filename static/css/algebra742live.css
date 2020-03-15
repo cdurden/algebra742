@@ -4,7 +4,7 @@
 .reveal section {
     font-size; 24pt;
 }
-img.noborder {
+.reveal section img.noborder {
     border: 0;
     box-shadow: none;
 }
