@@ -12,6 +12,12 @@
 .decimal+ol, .decimal+ul {list-style-type:decimal;}
 .decimal_leading_zero+ol, .decimal_leading_zero+ul {list-style-type:decimal-leading-zero;}
 
+.reveal section div.top-right {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
 .reveal section.medium-font {
     font-size: 24pt;
 }
