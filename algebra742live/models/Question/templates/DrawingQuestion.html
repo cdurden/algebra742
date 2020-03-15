@@ -1,3 +1,4 @@
+{% extends "Question.html" %}
 <script>
 var img = new Image;
 img.onload = function(){ $("#question_{{ id }}").find('.literally').find('canvas').each(function() { this.getContext('2d').drawImage(img,0,0); }) };
