@@ -29,6 +29,9 @@
         { src: '/static/js/reveal.js-plugins/broadcast/socket.io.js'},
         { src: '/static/js/reveal.js-plugins/broadcast/bCrypt.js'},
         { src: '/static/js/reveal.js-plugins/broadcast/broadcast.js'},
+		{ src: '/static/js/reveal.js-plugins/audio-slideshow/RecordRTC.js', condition: function( ) { return !!document.body.classList; } },				
+		{ src: '/static/js/reveal.js-plugins/audio-slideshow/slideshow-recorder.js', condition: function( ) { return !!document.body.classList; } },				
+		{ src: '/static/js/reveal.js-plugins/audio-slideshow/audio-slideshow.js', condition: function( ) { return !!document.body.classList; } },
 {% endblock %}
 {% block reveal_options %}
 {{ super() }}
