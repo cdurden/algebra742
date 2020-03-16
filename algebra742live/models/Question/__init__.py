@@ -110,7 +110,7 @@ class Question(db.Model):
     def render_html(self, **kwargs):
         import inspect
         print("Rendering question html")
-        if self.form is None:
+        if self.form is None and self.form_class is not None:
             self.build_form()
         for base_class in inspect.getmro(self.__class__):
             print("Trying to render question using {:s} template".format(base_class.__name__))
@@ -148,10 +148,12 @@ class CompleteTableQuestion(Question):
         self.df = pd.read_csv(s)
 
     def render_html(self, **kwargs):
-        self.load_csv()
+        if self.df is None:
+            self.load_csv()
         return Question.render_html(self, df=self.df, **kwargs)
     def build_form(self, formdata=None):
-        self.load_csv()
+        if self.df is None:
+            self.load_csv()
         missing_entries = []
         import re
         Question.build_form(self, formdata)
@@ -167,7 +169,8 @@ class CompleteTableQuestion(Question):
         from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
         from sympy import symbols
         transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
-        self.load_csv()
+        if self.df is None:
+            self.load_csv()
         missing_entries = []
         self.marked_correct = set()
         self.marked_incorrect = set()
