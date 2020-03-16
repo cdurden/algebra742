@@ -28,7 +28,7 @@ function resizeCanvasToDisplaySize(canvas) {
 }
 $(document).ready(function(){
     let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
-    {{ question_selector(question) -}}.$('.literally').each(function () {
+    {{ question_selector() -}}.$('.literally').each(function () {
         var container = this;
         var lc = LC.init(container);
         var scale = window.devicePixelRatio;
