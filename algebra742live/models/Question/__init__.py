@@ -146,6 +146,12 @@ class CompleteTableQuestion(Question):
         params = self.params()
         s = StringIO(params['csv'])
         self.df = pd.read_csv(s)
+        self.missing_entries = []
+        for column in self.df.columns:
+            for i,entry in enumerate(self.df[column]):
+                if re.match("^\[.+\]$",str(entry)):
+                    print(str(entry))
+                    self.missing_entries.append((column,i))
 
     def render_html(self, **kwargs):
         if self.df is None:
@@ -154,16 +160,11 @@ class CompleteTableQuestion(Question):
     def build_form(self, formdata=None):
         if self.df is None:
             self.load_csv()
-        missing_entries = []
         import re
         Question.build_form(self, formdata)
-        for column in self.df.columns:
-            for i,entry in enumerate(self.df[column]):
-                if re.match("^\[.+\]$",str(entry)):
-                    print(str(entry))
-                    missing_entries.append((column,i))
-                    self.form.entries.append_entry()
-                    self.df.loc[i,column] = self.form.entries.entries[missing_entries.index((column,i))]
+        for (column,i) in self.missing_entries:
+            if len(self.form.entries) < len(self.missing_entries):
+                self.form.entries.append_entry()
         return(self.form)
     def check_answer(self):
         import re
@@ -172,23 +173,19 @@ class CompleteTableQuestion(Question):
         transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
         if self.df is None:
             self.load_csv()
-        missing_entries = []
         self.marked_correct = set()
         self.marked_incorrect = set()
         print("checking answers")
         print(self.form.data)
-        for column in self.df.columns:
-            for i,entry in enumerate(self.df[column]):
-                if re.match("^\[.+\]$",str(entry)):
-                    missing_entries.append((column,i))
-                    answer = parse_expr(str(entry).strip("[]"),transformations=transformations)
-                    answer_input = parse_expr(self.form.entries.entries[missing_entries.index((column,i))].data, transformations=transformations)
-                    correct = bool(answer-answer_input==0)
-                    if correct:
-                        self.marked_correct.add(self.form.entries.entries[missing_entries.index((column,i))].name)
-                    else:
-                        self.marked_incorrect.add(self.form.entries.entries[missing_entries.index((column,i))].name)
-        return len(self.marked_correct)==len(missing_entries)
+        for (column,i) in self.missing_entries:
+            answer = parse_expr(str(entry).strip("[]"),transformations=transformations)
+            answer_input = parse_expr(self.form.entries.entries[missing_entries.index((column,i))].data, transformations=transformations)
+            correct = bool(answer-answer_input==0)
+            if correct:
+                self.marked_correct.add(self.form.entries.entries[self.missing_entries.index((column,i))].name)
+            else:
+                self.marked_incorrect.add(self.form.entries.entries[self.missing_entries.index((column,i))].name)
+        return len(self.marked_correct)==len(self.missing_entries)
 
 
 #import pandas as pd
