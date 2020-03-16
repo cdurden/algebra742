@@ -384,6 +384,7 @@ class OpenEndedQuestion(Question):
         return(True)
 
 QuestionClasses = {
+    'Question.CompleteTableQuestion': CompleteTableQuestion,
     'Question.OpenEndedQuestion': OpenEndedQuestion,
     'Question.SolutionQuestion': SolutionQuestion,
     'Question.NonSolutionQuestion': NonSolutionQuestion,
