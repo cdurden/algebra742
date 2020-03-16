@@ -155,7 +155,7 @@ class CompleteTableQuestion(Question):
             for i,entry in enumerate(self.df[column]):
                 if re.match("^\[.+\]$",str(entry)):
                     missing_entries.append((column,i))
-                    self.form.entries.append()
+                    self.form.entries.append_entry()
                     self.df[column][i] = self.form.entries.entries[missing_entries.index((column,i))]
         return(self.form)
 
