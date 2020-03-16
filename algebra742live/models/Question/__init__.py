@@ -158,6 +158,29 @@ class CompleteTableQuestion(Question):
                     self.form.entries.append_entry()
                     self.df[column][i] = self.form.entries.entries[missing_entries.index((column,i))]
         return(self.form)
+    def check_answer(self):
+        from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
+        from sympy import symbols
+        transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
+        missing_entries = []
+        params = self.params()
+        self.marked_correct = set()
+        self.marked_incorrect = set()
+        print("checking answers")
+        print(self.form.data)
+        for column in self.df.columns:
+            for i,entry in enumerate(self.df[column]):
+                if re.match("^\[.+\]$",str(entry)):
+                    missing_entries.append((column,i))
+                    answer = parse_expr(str(entry).strip("[]"),transformations=transformations)
+                    answer_input = parse_expr(self.form.entries.entries[missing_entries.index((column,i))].data, transformations=transformations)
+                    correct = bool(answer-answer_input==0)
+                    if correct:
+                        self.marked_correct.add(self.form.entries.entries[missing_entries.index((column,i))].name)
+                    else:
+                        self.marked_incorrect.add(self.form.entries.entries[missing_entries.index((column,i))].name)
+        return len(marked_correct)==len(mising_entries)
+
 
 #import pandas as pd
 #from io import StringIO
