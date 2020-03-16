@@ -194,7 +194,7 @@ class CompleteTableQuestion(Question):
 class CompleteTableDraggableQuestion(CompleteTableQuestion):
     def render_html(self, **kwargs):
         params = self.params()
-        CompleteTableQuestion.render_html(self, blocks=params['blocks'], **kwargs)
+        return CompleteTableQuestion.render_html(self, blocks=params['blocks'], **kwargs)
 
 
 #import pandas as pd
