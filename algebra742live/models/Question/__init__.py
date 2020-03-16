@@ -151,7 +151,7 @@ class CompleteTableQuestion(Question):
     def build_form(self, formdata=None):
         Question.build_form(self, formdata)
         for column in self.df.columns:
-            for i,entry in enumerate(df[column]):
+            for i,entry in enumerate(self.df[column]):
                 if re.match("^\[.+\]$",str(entry)):
                     missing_entries.append((column,i))
                     self.form.entries.append()
