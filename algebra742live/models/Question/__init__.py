@@ -148,6 +148,7 @@ class CompleteTableQuestion(Question):
         self.df = pd.read_csv(s)
         return Question.render_html(self, df=self.df, **kwargs)
     def build_form(self, formdata=None):
+        missing_entries = []
         import re
         Question.build_form(self, formdata)
         for column in self.df.columns:
