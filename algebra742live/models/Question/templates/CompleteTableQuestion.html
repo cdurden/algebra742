@@ -8,6 +8,20 @@ const draggable = new Draggable(document.querySelectorAll('ul'), {
 <table>
     <tbody>
     <tr>
+{% if transpose_display %}
+{% for column in df.columns %}
+    <tr>
+        <th>{{ df[column][0] }}</th>
+    {% for row in df.transpose().columns %}
+        {% if (row,column) in missing_entries %}
+            <td>{{ form.entries[missing_entries.index((row,column))] }}</td>
+        {% else %}
+            <td>{{ df[column][row] }}</td>
+        {% endif %}
+    {% endfor %}
+    </tr>
+{% endfor %}
+{% else %}
 {% for column in df.columns %}
         <th>{{ column }}</th>
 {% endfor %}
@@ -23,5 +37,6 @@ const draggable = new Draggable(document.querySelectorAll('ul'), {
     {% endfor %}
     </tr>
 {% endfor %}
+{% endif %}
     </tbody>
 </table>
