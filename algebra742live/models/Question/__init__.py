@@ -140,14 +140,18 @@ class CompleteTableQuestion(Question):
     form_class = TableForm
     form = None
     df = None
-    def render_html(self, **kwargs):
+    def load_csv(self):
         import pandas as pd
         from io import StringIO
         params = self.params()
         s = StringIO(params['csv'])
         self.df = pd.read_csv(s)
+
+    def render_html(self, **kwargs):
+        self.load_csv()
         return Question.render_html(self, df=self.df, **kwargs)
     def build_form(self, formdata=None):
+        self.load_csv()
         missing_entries = []
         import re
         Question.build_form(self, formdata)
@@ -159,16 +163,11 @@ class CompleteTableQuestion(Question):
                     self.df[column][i] = self.form.entries.entries[missing_entries.index((column,i))]
         return(self.form)
     def check_answer(self):
-        import pandas as pd
-        from io import StringIO
         from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
         from sympy import symbols
         transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
-        params = self.params()
-        s = StringIO(params['csv'])
-        self.df = pd.read_csv(s)
+        self.load_csv()
         missing_entries = []
-        params = self.params()
         self.marked_correct = set()
         self.marked_incorrect = set()
         print("checking answers")
