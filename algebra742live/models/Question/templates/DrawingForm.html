@@ -56,42 +56,42 @@ $(document).ready(function(){
                 var ctx = this.getContext('2d');
                 ctx.scale(scale, scale);
             });
+            var tools = [
+              {
+                name: 'pencil',
+                el: {{ question_selector() -}}.find('.literally').find('.tool-pencil').get(0),
+                tool: new LC.tools.Pencil(lc)
+              },
+              {
+                name: 'eraser',
+                el: {{ question_selector() -}}.find('.literally').find('.tool-eraser').get(0),
+                tool: new LC.tools.Eraser(lc)
+              }
+            ];
+        
+            var activateTool = function(t) {
+                lc.setTool(t.tool);
+        
+                tools.forEach(function(t2) {
+                  if (t == t2) {
+                    t2.el.style.backgroundColor = 'yellow';
+                  } else {
+                    t2.el.style.backgroundColor = 'transparent';
+                  }
+                });
+            }
+        
+            tools.forEach(function(t) {
+              t.el.style.cursor = "pointer";
+              t.el.onclick = function(e) {
+                e.preventDefault();
+                activateTool(t);
+              };
+            });
+            activateTool(tools[0]);
         };
         //resizeCanvasToDisplaySize(this) 
         <!-- custom UI example... -->
-        var tools = [
-          {
-            name: 'pencil',
-            el: {{ question_selector() -}}.find('.literally').find('.tool-pencil').get(0),
-            tool: new LC.tools.Pencil(lc)
-          },
-          {
-            name: 'eraser',
-            el: {{ question_selector() -}}.find('.literally').find('.tool-eraser').get(0),
-            tool: new LC.tools.Eraser(lc)
-          }
-        ];
-    
-        var activateTool = function(t) {
-            lc.setTool(t.tool);
-    
-            tools.forEach(function(t2) {
-              if (t == t2) {
-                t2.el.style.backgroundColor = 'yellow';
-              } else {
-                t2.el.style.backgroundColor = 'transparent';
-              }
-            });
-        }
-    
-        tools.forEach(function(t) {
-          t.el.style.cursor = "pointer";
-          t.el.onclick = function(e) {
-            e.preventDefault();
-            activateTool(t);
-          };
-        });
-        activateTool(tools[0]);
     });
 });
 
