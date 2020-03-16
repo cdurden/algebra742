@@ -28,6 +28,36 @@ function resizeCanvasToDisplaySize(canvas) {
 
    return false;
 }
+function matchElementSize(elementToMatch, elementsToResize, scale, callback) {
+    var resize;
+    if (scale == null) {
+      scale = LC.util.getBackingScale();
+    }
+    if (callback == null) {
+      callback = function() {};
+    }
+    resize = (function(_this) {
+      return function() {
+        var el, i, len;
+        for (i = 0, len = elementsToResize.length; i < len; i++) {
+          el = elementsToResize[i];
+          el.style.width = elementToMatch.offsetWidth + "px";
+          el.style.height = elementToMatch.offsetHeight + "px";
+          if (el.width != null) {
+            el.setAttribute('width', el.getBoundingClientRect().width * scale);
+            el.setAttribute('height', el.getBoundingClientRect().height * scale);
+          }
+        }
+        return callback();
+      };
+    })(this);
+    elementToMatch.addEventListener('resize', resize);
+    window.addEventListener('resize', resize);
+    window.addEventListener('orientationchange', resize);
+    resize();
+    return resize;
+}
+LC.util.matchElementSize = matchElementSize;
 $(document).ready(function(){
     let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
     {{ question_selector() -}}.find('.literally').each(function () {
@@ -40,38 +70,9 @@ $(document).ready(function(){
         LC.util.addImageOnload(backgroundImage, function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
             lc = LC.init(container, {backgroundShapes: [backgroundShape]});
+            LC.util.matchElementSize(container, $(container).find('canvas'));
+            /*
             $(container).find('canvas').each(function() {
-                function matchElementSize(elementToMatch, elementsToResize, scale, callback) {
-                    var resize;
-                    if (scale == null) {
-                      scale = LC.util.getBackingScale();
-                    }
-                    if (callback == null) {
-                      callback = function() {};
-                    }
-                    resize = (function(_this) {
-                      return function() {
-                        var el, i, len;
-                        for (i = 0, len = elementsToResize.length; i < len; i++) {
-                          el = elementsToResize[i];
-                          el.style.width = elementToMatch.offsetWidth + "px";
-                          el.style.height = elementToMatch.offsetHeight + "px";
-                          if (el.width != null) {
-                            el.setAttribute('width', el.getBoundingClientRect().width * scale);
-                            el.setAttribute('height', el.getBoundingClientRect().height * scale);
-                          }
-                        }
-                        return callback();
-                      };
-                    })(this);
-                    elementToMatch.addEventListener('resize', resize);
-                    window.addEventListener('resize', resize);
-                    window.addEventListener('orientationchange', resize);
-                    resize();
-                    return resize;
-                }
-                matchElementSize(container, $(this),null, lc.repaintAllLayers);
-                /*
                 var canvas = this;
                 new ResizeSensor($(container), function(){ 
                     var scale = LC.util.getBackingScale();
@@ -95,8 +96,8 @@ $(document).ready(function(){
                 ctx.scale(scale, scale);
                 //LC.util.matchElementSize(container, this, scale);
                 console.log('content dimension changed');
-                */
             });
+            */
             var tools = [
               {
                 name: 'pencil',
