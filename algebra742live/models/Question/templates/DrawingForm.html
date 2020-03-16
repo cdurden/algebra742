@@ -28,7 +28,7 @@ function resizeCanvasToDisplaySize(canvas) {
 
    return false;
 }
-function matchElementSize(elementToMatch, elementsToResize, scale, callback) {
+LC.util.matchElementSize = function(elementToMatch, elementsToResize, scale, callback) {
     var resize;
     if (scale == null) {
       scale = LC.util.getBackingScale();
@@ -57,7 +57,6 @@ function matchElementSize(elementToMatch, elementsToResize, scale, callback) {
     resize();
     return resize;
 }
-LC.util.matchElementSize = matchElementSize;
 $(document).ready(function(){
     let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
     {{ question_selector() -}}.find('.literally').each(function () {
