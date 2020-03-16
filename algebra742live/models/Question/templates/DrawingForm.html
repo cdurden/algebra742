@@ -4,6 +4,8 @@
   <a class="tool-pencil">pencil</a>
   |
   <a class="tool-eraser">eraser</a>
+  |
+  <a class="tool-text">text</a>
 </div>
 
 <!-- replace window.LC with core build version -->
@@ -66,7 +68,12 @@ $(document).ready(function(){
                 name: 'eraser',
                 el: $(container).next().find('.tool-eraser').get(0),
                 tool: new LC.tools.Eraser(lc)
-              }
+              },
+              {
+                name: 'text',
+                el: $(container).next().find('.tool-text').get(0),
+                tool: new LC.tools.Text(lc)
+              },
             ];
         
             var activateTool = function(t) {
