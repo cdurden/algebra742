@@ -16,7 +16,7 @@
     touch-action: none;
 }
 .reveal section table tbody td input {
-    max-width: 100px;
+    max-width: 75px;
 }
 .reveal section table {
     table-layout: fixed;
