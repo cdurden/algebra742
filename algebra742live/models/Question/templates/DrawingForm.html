@@ -42,14 +42,12 @@ $(document).ready(function(){
             lc = LC.init(container, {backgroundShapes: [backgroundShape]});
             $(container).find('canvas').each(function() {
                 var canvas = this;
-                /*
-                new ResizeSensor(this, function(){ 
-                    LC.util.matchElementSize(container, this, LC.util.getBackingScale());
-                    //LC.util.matchElementSize(container, this, scale);
-                    //resizeCanvasToDisplaySize(canvas); 
+                new ResizeSensor($(container), function(){ 
+                    var scale = LC.util.getBackingScale();
+                    //LC.util.matchElementSize(container, canvas, LC.util.getBackingScale());
+                    LC.util.matchElementSize(container, canvas, scale);
                     console.log('content dimension changed');
                 });
-                */
                 matchMedia(mqString).addListener(function() {
                     var scale = LC.util.getBackingScale();
                     console.log('content dimension changed');
