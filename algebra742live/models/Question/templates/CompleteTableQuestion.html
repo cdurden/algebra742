@@ -13,8 +13,8 @@ const draggable = new Draggable(document.querySelectorAll('ul'), {
     </tr>
 {% for column in df.columns %}
     <tr>
-    {% for i,entry in enumerate(df[column]) %}
-        <td>{{ df[column][i] }}</td>
+    {% for entry in df[column] %}
+        <td>{{ entry }}</td>
     {% endfor %}
     </tr>
 {% endfor %}
