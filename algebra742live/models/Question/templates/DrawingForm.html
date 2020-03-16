@@ -59,12 +59,12 @@ $(document).ready(function(){
             var tools = [
               {
                 name: 'pencil',
-                el: {{ question_selector() -}}.find('.literally').find('.tool-pencil').get(0),
+                el: $(container).next().find('.tool-pencil').get(0),
                 tool: new LC.tools.Pencil(lc)
               },
               {
                 name: 'eraser',
-                el: {{ question_selector() -}}.find('.literally').find('.tool-eraser').get(0),
+                el: $(container).next().find('.tool-eraser').get(0),
                 tool: new LC.tools.Eraser(lc)
               }
             ];
