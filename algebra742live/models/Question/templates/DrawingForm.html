@@ -66,7 +66,7 @@ $(document).ready(function(){
         var lc;
         container.setAttribute("data-prevent-swipe", "");
         backgroundImage.src = "{{ background_image_url }}";
-        backgroundImage.onload = function () {
+        LC.addImageOnLoad(backgroundImage, function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
             lc = LC.init(container, {backgroundShapes: [backgroundShape]});
             matchElementSize(container, $(container).find('canvas'));
@@ -135,7 +135,7 @@ $(document).ready(function(){
               };
             });
             activateTool(tools[0]);
-        };
+        });
         //resizeCanvasToDisplaySize(this) 
         <!-- custom UI example... -->
     });
