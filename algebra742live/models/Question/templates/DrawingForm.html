@@ -30,12 +30,13 @@ $(document).ready(function(){
     let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
     {{ question_selector() -}}.find('.literally').each(function () {
         var container = this;
-        var lc = LC.init(container);
         var scale = window.devicePixelRatio;
         var backgroundImage = new Image();
+        var lc;
         backgroundImage.src = "{{ background_image_url }}";
         backgroundImage.onload = function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
+            lc = LC.init(container, {backgroundShapes: [backgroundShape]});
             $(container).find('canvas').each(function() {
                 new ResizeSensor(this, function(){ 
                     LC.util.matchElementSize(container, this, LC.util.getBackingScale());
