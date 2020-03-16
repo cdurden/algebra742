@@ -162,9 +162,8 @@ class CompleteTableQuestion(Question):
         if self.df is None:
             self.load_csv()
         Question.build_form(self, formdata)
-        for (column,i) in self.missing_entries:
-            if len(self.form.entries) < len(self.missing_entries):
-                self.form.entries.append_entry()
+        while len(self.form.entries) < len(self.missing_entries):
+            self.form.entries.append_entry()
         return(self.form)
     def check_answer(self):
         from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
