@@ -17,7 +17,7 @@ const draggable = new Draggable(document.querySelectorAll('ul'), {
         {% if (column,loop.index) in missing_entries %}
         <td>{{ entry }}</td>
         {% else %}
-        <td>{{ form.entries[missing_entries.index((column,loop.index))] }}</td>
+        <td>{{ form.entries[missing_entries.index((column,loop.index0))] }}</td>
         {% endif %}
     {% endfor %}
     </tr>
