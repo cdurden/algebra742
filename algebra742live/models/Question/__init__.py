@@ -143,6 +143,7 @@ class CompleteTableQuestion(Question):
     def load_csv(self):
         import pandas as pd
         from io import StringIO
+        import re
         params = self.params()
         s = StringIO(params['csv'])
         self.df = pd.read_csv(s)
@@ -160,14 +161,12 @@ class CompleteTableQuestion(Question):
     def build_form(self, formdata=None):
         if self.df is None:
             self.load_csv()
-        import re
         Question.build_form(self, formdata)
         for (column,i) in self.missing_entries:
             if len(self.form.entries) < len(self.missing_entries):
                 self.form.entries.append_entry()
         return(self.form)
     def check_answer(self):
-        import re
         from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
         from sympy import symbols
         transformations = (standard_transformations + (implicit_multiplication_application, convert_xor, split_symbols, ))
