@@ -1,9 +1,9 @@
 {% from "macros.html" import question_selector with context%}
 <div class="literally"></div>
 <div class="tools">
-  <a id="tool-pencil">pencil</a>
+  <a class="tool-pencil">pencil</a>
   |
-  <a id="tool-eraser">eraser</a>
+  <a class="tool-eraser">eraser</a>
 </div>
 
 <!-- replace window.LC with core build version -->
@@ -62,12 +62,12 @@ $(document).ready(function(){
         var tools = [
           {
             name: 'pencil',
-            el: document.getElementById('tool-pencil'),
+            el: {{ question_selector() -}}.find('.literally').find('.tool-pencil').get(0),
             tool: new LC.tools.Pencil(lc)
           },
           {
             name: 'eraser',
-            el: document.getElementById('tool-eraser'),
+            el: {{ question_selector() -}}.find('.literally').find('.tool-eraser').get(0),
             tool: new LC.tools.Eraser(lc)
           }
         ];
