@@ -33,7 +33,7 @@ $(document).ready(function(){
         var lc = LC.init(container);
         var scale = window.devicePixelRatio;
         var backgroundImage = new Image();
-        backgroundImage.src = {{ background_image_url }};
+        backgroundImage.src = "{{ background_image_url }}";
         backgroundImage.onload = function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
             $(container).find('canvas').each(function() {
