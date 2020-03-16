@@ -149,10 +149,10 @@ class CompleteTableQuestion(Question):
         self.df = pd.read_csv(s)
         self.missing_entries = []
         for column in self.df.columns:
-            for i,entry in enumerate(self.df[column]):
+            for row,entry in enumerate(self.df[column]):
                 if re.match("^\[.+\]$",str(entry)):
                     print(str(entry))
-                    self.missing_entries.append((column,i))
+                    self.missing_entries.append((row,column))
 
     def render_html(self, **kwargs):
         if self.df is None:
@@ -175,14 +175,14 @@ class CompleteTableQuestion(Question):
         self.marked_incorrect = set()
         print("checking answers")
         print(self.form.data)
-        for (column,i) in self.missing_entries:
-            answer = parse_expr(str(entry).strip("[]"),transformations=transformations)
-            answer_input = parse_expr(self.form.entries.entries[self.missing_entries.index((column,i))].data, transformations=transformations)
+        for (row,column) in self.missing_entries:
+            answer = parse_expr(str(df.loc[i,column]).strip("[]"),transformations=transformations)
+            answer_input = parse_expr(self.form.entries.entries[self.missing_entries.index((row,column))].data, transformations=transformations)
             correct = bool(answer-answer_input==0)
             if correct:
-                self.marked_correct.add(self.form.entries.entries[self.missing_entries.index((column,i))].name)
+                self.marked_correct.add(self.form.entries.entries[self.missing_entries.index((row,column))].name)
             else:
-                self.marked_incorrect.add(self.form.entries.entries[self.missing_entries.index((column,i))].name)
+                self.marked_incorrect.add(self.form.entries.entries[self.missing_entries.index((row,column))].name)
         return len(self.marked_correct)==len(self.missing_entries)
 
 
@@ -196,8 +196,8 @@ class CompleteTableQuestion(Question):
 #for column in df.columns:
 #    for i,entry in enumerate(df[column]):
 #        if re.match("^\[.+\]$",str(entry)):
-#            missing_entries.append((column,i))
-#            df[column][i] = self.form.entries.entries[missing_entries.index((column,i))]
+#            missing_entries.append((row,column))
+#            df[column][i] = self.form.entries.entries[missing_entries.index((row,column))]
 #        
 #for label, content in df.items():
 #    for entry in content:
