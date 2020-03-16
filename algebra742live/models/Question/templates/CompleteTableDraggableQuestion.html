@@ -6,7 +6,10 @@ var draggable;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
     draggable = new Draggable.Draggable(document.querySelectorAll('ul'), {
       draggable: 'li'
-    });
+    })
+  .on('drag:start', () => console.log('drag:start'))
+  .on('drag:move',  () => console.log('drag:move'))
+  .on('drag:stop',  () => console.log('drag:stop'));
 });
 </script>
 {% endblock %}
