@@ -68,8 +68,8 @@ $(document).ready(function(){
         backgroundImage.src = "{{ background_image_url }}";
         backgroundImage.onload = function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
-            matchElementSize(container, $(container).find('canvas'));
             lc = LC.init(container, {backgroundShapes: [backgroundShape]});
+            matchElementSize(container, $(container).find('canvas'));
             /*
             $(container).find('canvas').each(function() {
                 var canvas = this;
