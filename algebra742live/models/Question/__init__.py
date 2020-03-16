@@ -178,7 +178,7 @@ class CompleteTableQuestion(Question):
         print(self.form.data)
         for (column,i) in self.missing_entries:
             answer = parse_expr(str(entry).strip("[]"),transformations=transformations)
-            answer_input = parse_expr(self.form.entries.entries[missing_entries.index((column,i))].data, transformations=transformations)
+            answer_input = parse_expr(self.form.entries.entries[self.missing_entries.index((column,i))].data, transformations=transformations)
             correct = bool(answer-answer_input==0)
             if correct:
                 self.marked_correct.add(self.form.entries.entries[self.missing_entries.index((column,i))].name)
