@@ -27,4 +27,7 @@ function update_question_data(data) {
   $(container).find('input[name="graph"]').val(data.graph);
   $(container).find('input[name="node"]').val(data.node);
   $(container).find('input[type="text"]').after('<span class="answer_marker"></span>');
+  $(container).find('form').submit(function (e) {
+              socket.emit('form_submit', data=getFormData( $(this) ));
+  });
 }
