@@ -179,9 +179,12 @@ class CompleteTableQuestion(Question):
         print("checking answers")
         print(self.form.data)
         for (row,column) in self.missing_entries:
-            answer = parse_expr(str(self.df.loc[row,column]).strip("[]"),transformations=transformations)
-            answer_input = parse_expr(self.form.entries.entries[self.missing_entries.index((row,column))].data, transformations=transformations)
-            correct = bool(answer-answer_input==0)
+            try:
+                answer = parse_expr(str(self.df.loc[row,column]).strip("[]"),transformations=transformations)
+                answer_input = parse_expr(self.form.entries.entries[self.missing_entries.index((row,column))].data, transformations=transformations)
+                correct = bool(answer-answer_input==0)
+            except:
+                correct = False
             if correct:
                 self.marked_correct.add(self.form.entries.entries[self.missing_entries.index((row,column))].name)
             else:
