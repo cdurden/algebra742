@@ -188,7 +188,7 @@ class CompleteTableQuestion(Question):
                         self.marked_correct.add(self.form.entries.entries[missing_entries.index((column,i))].name)
                     else:
                         self.marked_incorrect.add(self.form.entries.entries[missing_entries.index((column,i))].name)
-        return len(marked_correct)==len(mising_entries)
+        return len(self.marked_correct)==len(missing_entries)
 
 
 #import pandas as pd
