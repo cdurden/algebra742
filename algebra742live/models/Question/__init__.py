@@ -161,7 +161,7 @@ class CompleteTableQuestion(Question):
                     print(str(entry))
                     missing_entries.append((column,i))
                     self.form.entries.append_entry()
-                    self.df.loc[:,(column,i)] = self.form.entries.entries[missing_entries.index((column,i))]
+                    self.df.loc[i,column] = self.form.entries.entries[missing_entries.index((column,i))]
         return(self.form)
     def check_answer(self):
         from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor, split_symbols
