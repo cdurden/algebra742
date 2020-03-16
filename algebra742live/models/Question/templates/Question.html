@@ -9,5 +9,5 @@ function get_question_container() {
 {% block form_content %}
 {{ Question }}
 {% endblock %}
-{% include question.form_class.__name__ ~ '.html' %}
+{% include form.__class__.__name__ ~ '.html' %}
 </div>
