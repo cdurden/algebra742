@@ -89,6 +89,7 @@ class Question(db.Model):
     def build_form(self, formdata=None):
         print(formdata)
         self.form = self.form_class(MultiDict(formdata))
+        self.form.question = self
         #self.form.jinja_env = jinja2.Environment(loader=loader)
         print('building Question form')
         print(self.form.data)
