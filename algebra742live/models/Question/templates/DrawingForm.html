@@ -86,7 +86,7 @@ $(document).ready(function(){
                 var scale = LC.util.getBackingScale();
                 //LC.util.matchElementSize(container, $(container).find('canvas'), LC.util.getBackingScale());
                 //LC.util.matchElementSize(container, this, scale);
-                matchElementSize(container, this, scale);
+                matchElementSize(container, $(container).find('canvas'), scale);
                 var ctx = this.getContext('2d');
                 ctx.scale(scale, scale);
                 //LC.util.matchElementSize(container, this, scale);
