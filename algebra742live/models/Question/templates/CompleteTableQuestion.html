@@ -4,11 +4,11 @@ const draggable = new Draggable(document.querySelectorAll('ul'), {
       draggable: 'li'
 });
 </script>
-{{ missing_entries }}
 <table>
     <tbody>
     <tr>
 {% if transpose_display %}
+transpose_display
 {% for column in df.columns %}
     <tr>
         <th>{{ df[column][0] }}</th>

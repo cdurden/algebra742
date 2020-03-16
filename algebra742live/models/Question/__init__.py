@@ -158,7 +158,7 @@ class CompleteTableQuestion(Question):
         if self.df is None:
             self.load_csv()
         params = self.params()
-        transpose_display = 'transpose_display' in params and params['transpose_display'] in ("true","True",True)
+        transpose_display = 'transpose_display' in params and params['transpose_display'] in ["true","True",True]
         return Question.render_html(self, df=self.df, missing_entries=self.missing_entries, transpose_display=transpose_display, **kwargs)
     def build_form(self, formdata=None):
         if self.df is None:
