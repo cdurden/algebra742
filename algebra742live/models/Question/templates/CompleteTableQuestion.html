@@ -14,7 +14,7 @@ const draggable = new Draggable(document.querySelectorAll('ul'), {
 {% for column in df.transpose().columns %}
     <tr>
     {% for entry in df.transpose()[column] %}
-        {% if (column,loop.index) in missing_entries %}
+        {% if (column,loop.index0) in missing_entries %}
         <td>{{ entry }}</td>
         {% else %}
         <td>{{ form.entries[missing_entries.index((column,loop.index0))] }}</td>
