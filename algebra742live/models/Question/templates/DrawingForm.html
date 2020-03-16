@@ -69,7 +69,7 @@ $(document).ready(function(){
         LC.util.addImageOnload(backgroundImage, function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
             lc = LC.init(container, {backgroundShapes: [backgroundShape]});
-            LC.util.matchElementSize(container, $(container).find('canvas'));
+            LC.util.matchElementSize(container, $(container).find('canvas'),null,LC.repaintAllLayers);
             /*
             $(container).find('canvas').each(function() {
                 var canvas = this;
