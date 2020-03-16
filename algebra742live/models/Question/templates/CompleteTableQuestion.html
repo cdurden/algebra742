@@ -12,11 +12,11 @@ const draggable = new Draggable(document.querySelectorAll('ul'), {
         <th>{{ column }}</th>
 {% endfor %}
     </tr>
-{% for column in df.transpose().columns %}
+{% for row in df.transpose().columns %}
     <tr>
-    {% for entry in df.transpose()[column] %}
-        {% if (column,loop.index0) in missing_entries %}
-            <td>{{ form.entries[missing_entries.index((column,loop.index0))] }}</td>
+    {% for column in df.columns %}
+        {% if (column,row) in missing_entries %}
+            <td>{{ form.entries[missing_entries.index((column,row))] }}</td>
         {% else %}
             <td>{{ entry }}</td>
         {% endif %}
