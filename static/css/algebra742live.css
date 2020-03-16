@@ -12,6 +12,9 @@
 .decimal+ol, .decimal+ul {list-style-type:decimal;}
 .decimal_leading_zero+ol, .decimal_leading_zero+ul {list-style-type:decimal-leading-zero;}
 
+.literally {
+    touch-action: none;
+}
 .reveal section table {
     table-layout: fixed;
 }
