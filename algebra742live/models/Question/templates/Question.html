@@ -6,8 +6,10 @@ function get_question_container() {
 </script>
 {% endblock %}
 <div id="question_{{ id }}">
+{% block body %}
 {% block form_content %}
 {{ Question }}
-{% endblock %}
 {% include form.__class__.__name__ ~ '.html' %}
+{% endblock %}
+{% endblock %}
 </div>

@@ -191,6 +191,11 @@ class CompleteTableQuestion(Question):
                 self.marked_incorrect.add(self.form.entries.entries[self.missing_entries.index((row,column))].name)
         return len(self.marked_correct)==len(self.missing_entries)
 
+class CompleteTableDraggableQuestion(CompleteTableQuestion):
+    def render_html(self, **kwargs):
+        params = self.params()
+        CompleteTableQuestion.render_html(self, blocks=params['blocks'], **kwargs)
+
 
 #import pandas as pd
 #from io import StringIO
@@ -419,6 +424,7 @@ class OpenEndedQuestion(Question):
 
 QuestionClasses = {
     'Question.CompleteTableQuestion': CompleteTableQuestion,
+    'Question.CompleteTableDraggableQuestion': CompleteTableDraggableQuestion,
     'Question.OpenEndedQuestion': OpenEndedQuestion,
     'Question.SolutionQuestion': SolutionQuestion,
     'Question.NonSolutionQuestion': NonSolutionQuestion,
