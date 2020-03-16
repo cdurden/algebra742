@@ -13,7 +13,7 @@ const draggable = new Draggable(document.querySelectorAll('ul'), {
     </tr>
 {% for column in df.transpose().columns %}
     <tr>
-    {% for entry in df[column] %}
+    {% for entry in df.transpose()[column] %}
         <td>{{ entry }}</td>
     {% endfor %}
     </tr>
