@@ -142,13 +142,13 @@ class CompleteTableQuestion(Question):
     df = None
     def render_html(self, **kwargs):
         import pandas as pd
-        import re
         from io import StringIO
         params = self.params()
         s = StringIO(params['csv'])
         self.df = pd.read_csv(s)
         return Question.render_html(self, df=self.df, **kwargs)
     def build_form(self, formdata=None):
+        import re
         Question.build_form(self, formdata)
         for column in self.df.columns:
             for i,entry in enumerate(self.df[column]):
