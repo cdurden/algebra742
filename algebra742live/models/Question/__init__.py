@@ -36,9 +36,10 @@ class WrittenResponseForm(Form):
     answer = TextAreaField('answer')
 
 class DrawingForm(Form):
-    background_image_url = None
-    def render_html(self, **kwargs):
-        return Form.render_html(self, background_image_url=self.background_image_url, **kwargs)
+    pass
+#    background_image_url = None
+#    def render_html(self, **kwargs):
+#        return Form.render_html(self, background_image_url=self.background_image_url, **kwargs)
 
 
 class MultiPartAnswerForm(FlaskForm):
@@ -196,7 +197,7 @@ class MultiPartQuestion(Question):
         #self.form = F()
         #self.form = F(MultiDict(formdata))
         self.form = F(data=MultiDict(formdata))
-        self.form.jinja_env = jinja2.Environment(loader=loader, question=self)
+        #self.form.jinja_env = jinja2.Environment(loader=loader)
         print(self.form.data)
         self.form.validate()
         print(self.form.errors)
