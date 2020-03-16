@@ -40,6 +40,7 @@ $(document).ready(function(){
         backgroundImage.onload = function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
             lc = LC.init(container, {backgroundShapes: [backgroundShape]});
+                /*
             $(container).find('canvas').each(function() {
                 new ResizeSensor(this, function(){ 
                     LC.util.matchElementSize(container, this, LC.util.getBackingScale());
@@ -58,6 +59,7 @@ $(document).ready(function(){
                 var ctx = this.getContext('2d');
                 ctx.scale(scale, scale);
             });
+                */
             var tools = [
               {
                 name: 'pencil',
