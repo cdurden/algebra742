@@ -1,18 +1,19 @@
 {% extends "CompleteTableQuestion.html" %}
 {% block head %}
 {{ super() }}
-<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
 <script>
-const draggable = new Draggable(document.querySelectorAll('ul'), {
+loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
+    const window.draggable = new Draggable(document.querySelectorAll('ul'), {
       draggable: 'li'
+    });
 });
 </script>
 {% endblock %}
 {% block body %}
 {{ super() }}
-<ol>
+<ul>
     {% for block in blocks %}
         <li>{{ block }}</li>
     {% endfor %}
-</ol>
+</ul>
 {% endblock %}
