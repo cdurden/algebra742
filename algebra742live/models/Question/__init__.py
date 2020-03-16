@@ -16,12 +16,13 @@ from networkx.drawing.nx_pydot import read_dot
 from ..util import params_hash_lookup, process_quotes_for_json
 
 class Form(FlaskForm):
-    def render_html(self):
+    jinja_env = None
+    def render_html(self, **kwargs):
         import inspect
         for base_class in inspect.getmro(self.__class__):
             try:
-                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                html = template.render(form=self, url_for=url_for)
+                template = self.jinja_env.get_template("{:s}.html".format(base_class.__name__))
+                html = template.render(form=self, url_for=url_for, **kwargs)
                 return(html)
             except TemplateNotFound:
                 next 
@@ -35,7 +36,9 @@ class WrittenResponseForm(Form):
     answer = TextAreaField('answer')
 
 class DrawingForm(Form):
-    pass
+    background_image_url = None
+    def render_html(self, **kwargs):
+        return Form.render_html(self, background_image_url=self.background_image_url, **kwargs)
 
 
 class MultiPartAnswerForm(FlaskForm):
@@ -85,6 +88,7 @@ class Question(db.Model):
     def build_form(self, formdata=None):
         print(formdata)
         self.form = self.form_class(MultiDict(formdata))
+        self.form.jinja_env = jinja2.Environment(loader=loader, question=self)
         print('building Question form')
         print(self.form.data)
         return(self.form)
@@ -132,7 +136,10 @@ class DrawingQuestion(Question):
     form = None
     def render_html(self, **kwargs):
         params = self.params()
-        return Question.render_html(self, image_url=params['image_url'], **kwargs)
+        return Question.render_html(self, background_image_url=params['background_image_url'], **kwargs)
+    def build_form(self, formdata=None):
+        Question.build_form(self, formdata)
+        return(self.form)
 
 class GraphicsQuestion(Question):
     form_class = AnswerForm
@@ -189,6 +196,7 @@ class MultiPartQuestion(Question):
         #self.form = F()
         #self.form = F(MultiDict(formdata))
         self.form = F(data=MultiDict(formdata))
+        self.form.jinja_env = jinja2.Environment(loader=loader, question=self)
         print(self.form.data)
         self.form.validate()
         print(self.form.errors)
