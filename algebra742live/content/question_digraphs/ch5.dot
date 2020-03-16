@@ -17,6 +17,6 @@ digraph ch5 {
   q15 [class="Question.AsyGraphicsQuestion",params="{'template': 'NumberLine.asy', 'min':'-3', 'max':'20', 'Question': ''}"];
   q16 [class="Question.AsyGraphicsQuestion",params="{'template': 'NumberLine.asy', 'min':'-3', 'max':'10', 'Question': ''}"];
   q17 [class="Question.DrawingQuestion",params="{'background_image_url': '/static/images/NumberLineNoLabels.png','Question': 'Graph the solutions to the inequality $-x \\geq -4$ on the number line:'}"];
-  q18 [class="Question.CompleteTableQuestion",params="{'csv': 'a,b,c\n1,[2],3\n4,[5],6\n','Question': 'Complete the table'}"];
+  q18 [class="Question.CompleteTableQuestion",params="{'csv': 'a,b,c\n1,[2],3\n4,[5],6\n','Question': 'Complete the table'}",transpose_display="True"];
   q1 -> q2 -> q3;
 }
