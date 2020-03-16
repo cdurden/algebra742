@@ -5,7 +5,7 @@ import jinja2
 import json
 import os
 from flask_wtf import FlaskForm
-from wtforms import StringField, FormField, TextAreaField
+from wtforms import StringField, FormField, TextAreaField, FieldList
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
 from .. import SinglyLinkedList, get_or_create
@@ -31,6 +31,9 @@ class AnswerForm(Form):
     answer = StringField('answer')
 #    def __init__(self, **kwargs):
 #        super().__init__(self, **kwargs)
+
+class TableForm(Form):
+    entries = FieldList(StringField('entry'))
 
 class WrittenResponseForm(Form):
     answer = TextAreaField('answer')
@@ -132,6 +135,48 @@ class Question(db.Model):
         statement = question_scores.insert().values(user_id=user.id, question_id=self.id, answer=json.dumps(self.form.data), score=score)
         db.session.execute(statement)
         db.session.commit()
+
+class CompleteTableQuestion(Question):
+    form_class = TableForm
+    form = None
+    df = None
+    def render_html(self, **kwargs):
+        import pandas as pd
+        import re
+        from io import StringIO
+        params = self.params()
+        s = StringIO(params['csv'])
+        self.df = pd.read_csv(s)
+        return Question.render_html(self, df=self.df, **kwargs)
+    def build_form(self, formdata=None):
+        Question.build_form(self, formdata)
+        for column in self.df.columns:
+            for i,entry in enumerate(df[column]):
+                if re.match("^\[.+\]$",str(entry)):
+                    missing_entries.append((column,i))
+                    self.form.entries.append()
+                    self.df[column][i] = self.form.entries.entries[missing_entries.index((column,i))]
+        return(self.form)
+
+#import pandas as pd
+#from io import StringIO
+#import re
+#s = StringIO("a,b,c\n1,[2],3\n4,[5],6\n")
+#df = pd.read_csv(s)
+#missing_entries = []
+#df = df.transpose()
+#for column in df.columns:
+#    for i,entry in enumerate(df[column]):
+#        if re.match("^\[.+\]$",str(entry)):
+#            missing_entries.append((column,i))
+#            df[column][i] = self.form.entries.entries[missing_entries.index((column,i))]
+#        
+#for label, content in df.items():
+#    for entry in content:
+#        if re.match("^\[.+\]$",str(entry)):
+#            missing_entries.append(entry)
+#        Question.build_form(self, formdata)
+#        return(self.form)
 
 class DrawingQuestion(Question):
     form_class = DrawingForm
