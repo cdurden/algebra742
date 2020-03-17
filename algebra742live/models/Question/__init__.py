@@ -10,6 +10,7 @@ from flask import url_for
 from jinja2.exceptions import TemplateNotFound
 from .. import SinglyLinkedList, get_or_create
 from werkzeug.datastructures import MultiDict, ImmutableMultiDict
+import inspect
 
 from networkx.drawing.nx_pydot import read_dot
 from ..util import params_hash_lookup, process_quotes_for_json
@@ -21,13 +22,9 @@ class Form(FlaskForm):
     jinja_env = None
     def render_html(self, **kwargs):
         import inspect
-        for base_class in inspect.getmro(self.__class__):
-            try:
-                template = self.jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                html = template.render(form=self, url_for=url_for, **kwargs)
-                return(html)
-            except TemplateNotFound:
-                next 
+        template = self.jinja_env.get_template(self.traverse_templates())
+        html = template.render(form=self, url_for=url_for, **kwargs)
+        return(html)
     def traverse_templates(self):
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
