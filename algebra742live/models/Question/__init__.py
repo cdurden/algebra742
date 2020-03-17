@@ -21,6 +21,21 @@ from ..util import params_hash_lookup, process_quotes_for_json
 
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader,extensions=['jinja2.ext.with_'])
+def traverse_templates(obj, suffix=''):
+    if isinstance(obj, FormField):
+        class_ = obj.form_class
+    else:
+        class_ = obj.__class__
+    for base_class in inspect.getmro(class_):
+        template = "{:s}_{:s}.html".format(base_class.__name__,suffix)
+        path = os.path.join(loader.searchpath[0], template)
+        if os.path.exists(path):
+            obj.template = template 
+            return(obj.template)
+        else:
+            next
+    obj.template = None 
+    return(obj.template)
 
 class FormField(FormField_):
     def process(self, formdata, data=unset_value):
@@ -62,7 +77,7 @@ class Form(Form_):
     jinja_env = None
     def render_html(self, **kwargs):
         import inspect
-        template = self.jinja_env.get_template(self.traverse_templates())
+        template = self.jinja_env.get_template(traverse_templates(self))
         html = template.render(form=self, url_for=url_for, **kwargs)
         return(html)
     def traverse_templates(self):
@@ -106,20 +121,11 @@ class DrawingForm(Form):
 
 class MultiPartAnswerForm(Form):
     pass
-#    def render_html(self):
-#        import inspect
-#        for base_class in inspect.getmro(self.__class__):
-#            try:
-#                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-#                return template.render(json.loads(self.params_json), form=form)
-#            except TemplateNotFound:
-#                next 
 
 def get_question_from_digraph_node(graph, node):
     questions_digraph = read_dot(os.path.join(app.config["QUESTION_DIGRAPHS_DIR"],graph+'.dot'))
     node_data = questions_digraph.nodes[node]
     for k,v in node_data.items():
-    #    node_data[k.strip("\"")] = node_data.pop(k).strip("\"").replace("\\","")
         old_val = node_data.pop(k)
         new_val = process_quotes_for_json(old_val.strip("\"")).strip("\"")
         node_data[k.strip("\"")] = new_val
@@ -151,8 +157,10 @@ class Question(db.Model):
     def build_form(self, formdata=None):
         print(formdata)
         self.form = self.form_class(MultiDict(formdata))
-        self.form.traverse_templates()
-        self.form.traverse_macros_templates()
+        #self.form.traverse_templates()
+        #self.form.traverse_macros_templates()
+        traverse_templates(self.form)
+        traverse_templates(self.form,suffix='macros')
         #self.form.question = self
         #self.form.jinja_env = jinja2.Environment(loader=loader)
         print('building Question form')
@@ -192,7 +200,9 @@ class Question(db.Model):
         print("Rendering question html")
         if self.form is None and self.form_class is not None:
             self.build_form()
-        self.traverse_templates()
+        #self.traverse_templates()
+        traverse_templates(self)
+        traverse_templates(self,suffix='macros')
         print("Question template: {:s}".format(self.template))
         print("Form template: {:s}".format(self.form.template))
         print("Form macros template: {:s}".format(self.form.macros_template))
@@ -271,30 +281,6 @@ class CompleteTableQuestion(Question):
 
 class CompleteTableDraggableQuestion(CompleteTableQuestion):
     pass
-#    def render_html(self, **kwargs):
-#        params = self.params()
-#        return CompleteTableQuestion.render_html(self, blocks=params['blocks'], **kwargs)
-
-
-#import pandas as pd
-#from io import StringIO
-#import re
-#s = StringIO("a,b,c\n1,[2],3\n4,[5],6\n")
-#df = pd.read_csv(s)
-#missing_entries = []
-#df = df.transpose()
-#for column in df.columns:
-#    for i,entry in enumerate(df[column]):
-#        if re.match("^\[.+\]$",str(entry)):
-#            missing_entries.append((row,column))
-#            df[column][i] = self.form.entries.entries[missing_entries.index((row,column))]
-#        
-#for label, content in df.items():
-#    for entry in content:
-#        if re.match("^\[.+\]$",str(entry)):
-#            missing_entries.append(entry)
-#        Question.build_form(self, formdata)
-#        return(self.form)
 
 class DrawingQuestion(Question):
     form_class = DrawingForm
@@ -353,10 +339,8 @@ class MultiPartQuestion(Question):
 
     def scripts(self):
         params = self.params()
-        #scripts = {}
         scripts = []
         for i,part in enumerate(params['parts']):
-            #scripts.update(part['question'].scripts())
             scripts += part['question'].scripts()
         return(scripts)
 
@@ -370,14 +354,18 @@ class MultiPartQuestion(Question):
         print("build_form formdata checkpoint")
         print(formdata)
         self.form = self.form_class(formdata=formdata)
-        self.form.traverse_templates()
-        self.form.traverse_macros_templates()
+        #self.form.traverse_templates()
+        #self.form.traverse_macros_templates()
+        traverse_templates(self.form)
+        traverse_templates(self.form,suffix='macros')
         self.form.question = self
         self.form.validate()
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
-            part.form.traverse_templates()
-            part.form.traverse_macros_templates()
+            #part.form.traverse_templates()
+            #part.form.traverse_macros_templates()
+            traverse_templates(part.form)
+            traverse_templates(part.form,suffix='macros')
             print(part.form.data)
         return(self.form)
 
