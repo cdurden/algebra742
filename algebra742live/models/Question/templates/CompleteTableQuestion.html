@@ -4,30 +4,30 @@
     <tbody>
     <tr>
 {% if params.transpose_display %}
-{% for column in params.df.columns %}
+{% for column in question.df.columns %}
     <tr>
         <th>{{ column }}</th>
-    {% for row in params.df.transpose().columns %}
-        {% if (row,column) in params.missing_entries %}
-            <td>{{ form.entries[params.missing_entries.index((row,column))] }}</td>
+    {% for row in question.df.transpose().columns %}
+        {% if (row,column) in question.missing_entries %}
+            <td>{{ form.entries[question.missing_entries.index((row,column))] }}</td>
         {% else %}
-            <td>{{ params.df[column][row] }}</td>
+            <td>{{ question.df[column][row] }}</td>
         {% endif %}
     {% endfor %}
     </tr>
 {% endfor %}
 {% else %}
-{% for column in params.df.columns %}
+{% for column in question.df.columns %}
         <th>{{ column }}</th>
 {% endfor %}
     </tr>
-{% for row in params.df.transpose().columns %}
+{% for row in question.df.transpose().columns %}
     <tr>
-    {% for column in params.df.columns %}
-        {% if (row,column) in params.missing_entries %}
-            <td>{{ form.entries[params.missing_entries.index((row,column))] }}</td>
+    {% for column in question.df.columns %}
+        {% if (row,column) in question.missing_entries %}
+            <td>{{ form.entries[question.missing_entries.index((row,column))] }}</td>
         {% else %}
-            <td>{{ params.df[column][row] }}</td>
+            <td>{{ question.df[column][row] }}</td>
         {% endif %}
     {% endfor %}
     </tr>
