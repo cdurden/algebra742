@@ -1,4 +1,4 @@
-{% from "macros.html" import question_container_selector with context%}
+{% from "macros.html" import question_container_selector without context%}
 <div class="literally"></div>
 <div class="tools">
   <a class="tool-pencil">pencil</a>
@@ -59,7 +59,7 @@ LC.util.matchElementSize = function(elementToMatch, elementsToResize, scale, cal
 }
 $(document).ready(function(){
     let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
-    $('{{- question_container_selector() -}}').find('.literally').each(function () {
+    $('{{- question_container_selector(question) -}}').find('.literally').each(function () {
         var container = this;
         var scale = window.devicePixelRatio;
         var backgroundImage = new Image();

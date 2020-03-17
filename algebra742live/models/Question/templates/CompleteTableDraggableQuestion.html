@@ -1,5 +1,5 @@
 {% extends "CompleteTableQuestion.html" %}
-{% from "macros.html" import question_container_selector with context%}
+{% from "macros.html" import question_container_selector without context%}
 {% block head %}
 {{ super() }}
 <script>
@@ -8,7 +8,7 @@ var droppable;
 var lastDropzoneTarget;
 var rect1;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
-    draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector() }} .container'), {
+    draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector(question) }} .container'), {
       delay: 5,
       //sensors: [Draggable.Sensors.DragSensor],
       mirror: {
@@ -53,7 +53,7 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
             payload = e.originalSource.getAttribute("data-payload");
             lastDropzoneTarget.value=payload;
         } else {
-            $('{{- question_container_selector() -}}').find('.dropzone').each(function() {
+            $('{{- question_container_selector(question) -}}').find('.dropzone').each(function() {
                 rect2 = this.getBoundingClientRect();
                 var overlap_area = Math.max(Math.min(rect1.right,rect2.right)-Math.max(rect1.left,rect2.left),0)*Math.max(Math.min(rect1.bottom,rect2.bottom)-Math.max(rect1.top,rect2.top),0);
                 if (overlap_area > max_overlap_area) {
@@ -70,12 +70,12 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         dropzoneTarget = null;
         e.cancel();
     });
-    //sensor = new Draggable.Sensors.DragSensor(document.querySelectorAll('{{- question_container_selector() -}}'),{});
+    //sensor = new Draggable.Sensors.DragSensor(document.querySelectorAll('{{- question_container_selector(question) -}}'),{});
   /*
   .on('drag:start', () => console.log('drag:start'))
   .on('drag:move',  () => console.log('drag:move'))
   .on('drag:stop',  () => console.log('drag:stop'));
-    droppable = new Draggable.Droppable(document.querySelectorAll('{{- question_container_selector() -}}'), {
+    droppable = new Draggable.Droppable(document.querySelectorAll('{{- question_container_selector(question) -}}'), {
   draggable: '.item',
   dropzone: '.dropzone'
 });
@@ -90,7 +90,7 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
     });
     droppable.on('droppable:returned', () => console.log('droppable:returned'));
 */
-    $('{{- question_container_selector() -}}').find('input').addClass('dropzone');
+    $('{{- question_container_selector(question) -}}').find('input').addClass('dropzone');
 });
 </script>
 {% endblock %}
