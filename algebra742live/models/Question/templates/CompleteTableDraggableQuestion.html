@@ -10,7 +10,7 @@ var rect1;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
     draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector() }} .container'), {
       delay: 5,
-      sensors: [Draggable.Sensors.DragSensor,Draggable.Sensors.TouchSensor],
+      //sensors: [Draggable.Sensors.DragSensor],
       mirror: {
         constrainDimensions: true,
         cursorOffsetX: 0,
