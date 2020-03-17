@@ -1,1 +1,4 @@
-{% from "Question_macros.html" import content %}
+{% from "Question_macros.html" import content as _content %}
+{% macro content(question) %}
+{{ _content(question) }}
+{% endmacro %}
