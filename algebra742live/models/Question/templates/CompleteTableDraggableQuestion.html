@@ -5,18 +5,32 @@
 <script>
 var draggable;
 var droppable;
+var lastDropzoneTarget;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
     draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector() -}}'), {
       sensors: [Draggable.Sensors.DragSensor],
       draggable: '.item'
     })
+    .on('drag:start',  function(e) {
+        console.log('drag:start');
+        lastDropzoneTarget = null;
+    })
     .on('drag:move',  function(e) {
-        console.log(e);
+        //console.log(e);
         console.log('drag:move');
+        if (e.sensorEvent.target.classList.contains('dropzone')) {
+            lastDropzoneTarget = e.sensorEvent.target;
+        } else {
+            lastDropzoneTarget = null;
+        }
     })
     .on('drag:stop',  function(e) {
         console.log(e);
         console.log('drag:stop');
+        if (lastDropzoneTarget != null) {
+            payload = e.originalSource.getAttribute("data-payload");
+            lastDropzoneTarget.setAttribute("value",payload);
+        }
     });
     //sensor = new Draggable.Sensors.DragSensor(document.querySelectorAll('{{- question_container_selector() -}}'),{});
   /*
