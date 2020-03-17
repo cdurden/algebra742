@@ -311,6 +311,7 @@ class MultiPartQuestion(Question):
             question_class = getattr(module, class_name)
             part['params_json'] = json.dumps(part['params'])
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
+            question.params = part['params']
             self.parts.append(question)
         for part in self.parts:
             part.macros_template = part.traverse_macros_templates()
@@ -391,7 +392,7 @@ class MultiPartQuestion(Question):
             part.check_answer()
             self.marked_correct = self.marked_correct.union(set(["part_{:d}-{:s}".format(i,field) for field in part.marked_correct]))
             self.marked_incorrect = self.marked_incorrect.union(set(["part_{:d}-{:s}".format(i,field) for field in part['question'].marked_incorrect]))
-        return all([part.check_answer() for i,part in enumerate(self.parts)])
+        return all([part.check_answer() for i,part in enumerate(self.parts])])
 
 
 class QuestionOnePlusOne(Question):
