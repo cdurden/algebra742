@@ -119,7 +119,8 @@ class Question(db.Model):
                 html = template.render(self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)
                 print(html)
                 return html
-            except TemplateNotFound:
+            except TemplateNotFound as e:
+                print(e)
                 next 
 
     def to_json(self):
