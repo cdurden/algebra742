@@ -10,11 +10,15 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
       sensors: [Draggable.Sensors.DragSensor],
       draggable: '.item'
     })
+    .on('drag:move',  function(e) {
+        console.log(e);
+        console.log('drag:move');
+    })
     .on('drag:stop',  function(e) {
         console.log(e);
         console.log('drag:stop');
     });
-    //sensor = new Draggable.DragSensor(document.querySelectorAll('{{- question_container_selector() -}}'),{});
+    //sensor = new Draggable.Sensors.DragSensor(document.querySelectorAll('{{- question_container_selector() -}}'),{});
   /*
   .on('drag:start', () => console.log('drag:start'))
   .on('drag:move',  () => console.log('drag:move'))
