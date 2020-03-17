@@ -226,6 +226,7 @@ class CompleteTableQuestion(Question):
         return len(self.marked_correct)==len(self.missing_entries)
 
 class CompleteTableDraggableQuestion(CompleteTableQuestion):
+    pass
 #    def render_html(self, **kwargs):
 #        params = self.params()
 #        return CompleteTableQuestion.render_html(self, blocks=params['blocks'], **kwargs)
