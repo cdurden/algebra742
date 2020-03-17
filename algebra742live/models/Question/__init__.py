@@ -347,7 +347,7 @@ class MultiPartQuestion(Question):
             part['params_json'] = json.dumps(part['params'])
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
             self.parts.append(question)
-        for part in self.parts:
+        for i,part in enumerate(self.parts):
             part.macros_template = part.traverse_macros_templates()
             print("Part macros template: {:s}".format(part.macros_template))
 
@@ -381,8 +381,6 @@ class MultiPartQuestion(Question):
         self.form.traverse_templates()
         self.form.traverse_macros_templates()
         self.form.question = self
-        for i,part in enumerate(self.parts):
-            part.form = getattr(self.form, 'part_{:d}'.format(i))
         #self.form.jinja_env = jinja2.Environment(loader=loader)
         print(self.form.data)
         self.form.validate()
@@ -404,6 +402,8 @@ class MultiPartQuestion(Question):
         print(formdata)
         print('building MultiPartQuestion form')
         print(self.form.data)
+        for i,part in enumerate(self.parts):
+            part.form = getattr(self.form, 'part_{:d}'.format(i))
         return(self.form)
 
     def render_html(self, **kwargs):
