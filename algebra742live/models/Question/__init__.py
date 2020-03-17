@@ -161,7 +161,7 @@ class Question(db.Model, TemplateBased):
         self.form = self.form_class(MultiDict(formdata))
         #self.form.traverse_templates()
         #self.form.traverse_macros_templates()
-        traverse_templates(self.form)
+        self.form.traverse_templates()
         #self.form.question = self
         #self.form.jinja_env = jinja2.Environment(loader=loader)
         print('building Question form')
@@ -201,8 +201,8 @@ class Question(db.Model, TemplateBased):
         print("Rendering question html")
         if self.form is None and self.form_class is not None:
             self.build_form()
-        #self.traverse_templates()
-        traverse_templates(self)
+        self.traverse_templates()
+        #traverse_templates(self)
         print("Question template: {:s}".format(self.template))
         print("Form template: {:s}".format(self.form.template))
         print("Form macros template: {:s}".format(self.form.macros_template))
@@ -334,7 +334,7 @@ class MultiPartQuestion(Question):
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
             self.parts.append(question)
         for i,part in enumerate(self.parts):
-            traverse_templates(part)
+            part.traverse_templates()
             #part.macros_template = part.traverse_macros_templates()
             print("Part macros template: {:s}".format(part.macros_template))
 
@@ -355,16 +355,16 @@ class MultiPartQuestion(Question):
         print("build_form formdata checkpoint")
         print(formdata)
         self.form = self.form_class(formdata=formdata)
-        #self.form.traverse_templates()
+        self.form.traverse_templates()
         #self.form.traverse_macros_templates()
-        traverse_templates(self.form)
+        #traverse_templates(self.form)
         self.form.question = self
         self.form.validate()
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
-            #part.form.traverse_templates()
+            part.form.traverse_templates()
             #part.form.traverse_macros_templates()
-            traverse_templates(part.form)
+            #traverse_templates(part.form)
             print(part.form.data)
         return(self.form)
 
