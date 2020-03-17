@@ -361,7 +361,10 @@ class MultiPartQuestion(Question):
         #self.form = F(MultiDict(formdata))
         #self.form = DynamicMultiPartAnswerForm(data=MultiDict(formdata))
         self.form = self.form_class(data=MultiDict(formdata))
-        Question.build_form(self)
+        #Question.build_form(self)
+        self.form.traverse_templates()
+        self.form.traverse_macros_templates()
+        self.form.question = self
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
         #self.form.jinja_env = jinja2.Environment(loader=loader)
