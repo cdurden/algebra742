@@ -360,7 +360,7 @@ class MultiPartQuestion(Question):
         #self.form = F()
         #self.form = F(MultiDict(formdata))
         #self.form = DynamicMultiPartAnswerForm(data=MultiDict(formdata))
-        self.form = self.form_class(data=MultiDict(formdata))
+        self.form = self.form_class(data=MultiDict(formdata),csrf_enabled=False)
         #Question.build_form(self)
         self.form.traverse_templates()
         self.form.traverse_macros_templates()
