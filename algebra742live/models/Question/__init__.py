@@ -21,24 +21,25 @@ from ..util import params_hash_lookup, process_quotes_for_json
 
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader,extensions=['jinja2.ext.with_'])
-def traverse_templates(obj):
-    obj.template = None 
-    obj.macros_template = None 
-    if isinstance(obj, FormField):
-        class_ = obj.form_class
-    else:
-        class_ = obj.__class__
-    for base_class in inspect.getmro(class_):
-        template = "{:s}.html".format(base_class.__name__)
-        template_path = os.path.join(loader.searchpath[0], template)
-        if os.path.exists(template_path):
-            obj.template = template 
-        macros_template = "{:s}_macros.html".format(base_class.__name__)
-        macros_template_path = os.path.join(loader.searchpath[0], macros_template)
-        if os.path.exists(macros_template_path):
-            obj.macros_template = macros_template
+class TemplateBased(object):
+    def traverse_templates(self):
+        self.template = None 
+        self.macros_template = None 
+        if isinstance(self, FormField):
+            class_ = self.form_class
+        else:
+            class_ = self.__class__
+        for base_class in inspect.getmro(class_):
+            template = "{:s}.html".format(base_class.__name__)
+            template_path = os.path.join(loader.searchpath[0], template)
+            if os.path.exists(template_path):
+                self.template = template 
+            macros_template = "{:s}_macros.html".format(base_class.__name__)
+            macros_template_path = os.path.join(loader.searchpath[0], macros_template)
+            if os.path.exists(macros_template_path):
+                self.macros_template = macros_template
 
-class FormField(FormField_):
+class FormField(FormField_,TemplateBased):
     def process(self, formdata, data=unset_value):
         if data is unset_value:
             try:
@@ -74,7 +75,7 @@ class FormField(FormField_):
         self.macros_template = None 
         return(self.macros_template)
 
-class Form(Form_):
+class Form(Form_,TemplateBased):
     jinja_env = None
     def render_html(self, **kwargs):
         import inspect
@@ -143,7 +144,7 @@ def questions_digraph_factory(graph):
         data['_question_obj'] = question
     return(questions_digraph)
 
-class Question(db.Model):
+class Question(db.Model, TemplateBased):
     id = db.Column(db.Integer, primary_key=True)
     source = db.Column(db.Text)
     params_json = db.Column(db.Text)
