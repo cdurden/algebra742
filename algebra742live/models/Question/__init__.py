@@ -28,6 +28,22 @@ class Form(FlaskForm):
                 return(html)
             except TemplateNotFound:
                 next 
+    def traverse_templates(self):
+        for base_class in inspect.getmro(self.__class__):
+            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
+            if os.path.exists(path):
+                return("{:s}_macros.html".format(base_class.__name__))
+            else:
+                next
+        return(None)
+    def traverse_macro_templates(self):
+        for base_class in inspect.getmro(self.__class__):
+            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
+            if os.path.exists(path):
+                return("{:s}_macros.html".format(base_class.__name__))
+            else:
+                next
+        return(None)
 
 class AnswerForm(Form):
     answer = StringField('answer')
@@ -108,24 +124,28 @@ class Question(db.Model):
     def scripts(self):
         #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
         return(['/static/js/socket.io.wtforms.js'])
+    def traverse_templates(self):
+        for base_class in inspect.getmro(self.__class__):
+            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
+            if os.path.exists(path):
+                return("{:s}_macros.html".format(base_class.__name__))
+            else:
+                next
+        return(None)
+    def traverse_macro_templates(self):
+        for base_class in inspect.getmro(self.__class__):
+            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
+            if os.path.exists(path):
+                return("{:s}_macros.html".format(base_class.__name__))
+            else:
+                next
+        return(None)
 
     def render_html(self, **kwargs):
         import inspect
         print("Rendering question html")
         if self.form is None and self.form_class is not None:
             self.build_form()
-        for base_class in inspect.getmro(self.__class__):
-            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
-            if os.path.exists(path):
-                break
-            else:
-                next
-        for form_class in inspect.getmro(self.form.__class__):
-            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(form_class.__name__))
-            if os.path.exists(path):
-                break
-            else:
-                next
         template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
         html = template.render(self.params(), form=self.form, form_class=form_class, id=self.id, url_for=url_for, **kwargs)
         return html
