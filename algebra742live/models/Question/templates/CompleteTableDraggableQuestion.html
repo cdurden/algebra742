@@ -44,7 +44,7 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         console.log('drag:stop');
         if (lastDropzoneTarget != null) {
             payload = e.originalSource.getAttribute("data-payload");
-            lastDropzoneTarget.setAttribute("value",payload);
+            lastDropzoneTarget.value=payload;
         } else {
             $('{{- question_container_selector() -}}').find('.dropzone').each(function() {
                 rect2 = this.getBoundingClientRect();
@@ -56,7 +56,7 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
             });
             if (dropzoneTarget != null) {
                 payload = e.originalSource.getAttribute("data-payload");
-                dropzoneTarget.setAttribute("value",payload);
+                dropzoneTarget.value=payload;
             }
         }
     });
