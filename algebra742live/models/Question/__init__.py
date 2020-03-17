@@ -5,7 +5,9 @@ import jinja2
 import json
 import os
 from flask_wtf import FlaskForm
-from wtforms import StringField, FormField, TextAreaField, FieldList
+from wtforms import StringField, TextAreaField, FieldList
+from wtforms import FormField as FormField_
+
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
 from .. import SinglyLinkedList, get_or_create
@@ -17,6 +19,9 @@ from ..util import params_hash_lookup, process_quotes_for_json
 
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader,extensions=['jinja2.ext.with_'])
+
+class FormField(FormField_):
+    macros_template = "FormField_macros.html"
 
 class Form(FlaskForm):
     jinja_env = None
