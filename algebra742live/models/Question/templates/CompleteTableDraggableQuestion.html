@@ -21,6 +21,11 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         console.log('drag:start');
         lastDropzoneTarget = null;
     })
+    .on('mirror:move',  function(e) {
+        console.log(e);
+        console.log('mirror:move');
+        rect1 = e.sensorEvent.target.getBoundingClientRect();
+    })
     .on('drag:move',  function(e) {
         //console.log(e);
         console.log('drag:move');
