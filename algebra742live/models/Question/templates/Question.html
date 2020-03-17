@@ -1,3 +1,4 @@
+{% extends "Form.html" %}
 {% block head %}
 <script>
 function get_question_container() {
@@ -6,10 +7,9 @@ function get_question_container() {
 </script>
 {% endblock %}
 <div id="question_{{ id }}">
-{% block body %}
-{% block form_content %}
+{% block content %}
 {{ Question }}
-{% include form.__class__.__name__ ~ '.html' %}
-{% endblock %}
+{% from form.__class__.__name__ ~ '_macros.html' import content %}
+{{ content(form) }}
 {% endblock %}
 </div>

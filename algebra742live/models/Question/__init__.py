@@ -45,7 +45,7 @@ class DrawingForm(Form):
 #        return Form.render_html(self, background_image_url=self.background_image_url, **kwargs)
 
 
-class MultiPartAnswerForm(FlaskForm):
+class MultiPartAnswerForm(Form):
     pass
 #    def render_html(self):
 #        import inspect

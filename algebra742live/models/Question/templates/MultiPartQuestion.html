@@ -1,4 +1,7 @@
-{{ form.hidden_tag() }}
+{% extends "Form.html" %}
+{% block content %}
 {% for part in parts %}
-{{ part.question.render_html() }}
+{% from part.question.__class__.__name__ ~ '_macros.html' import content %}
+{{ content(part.question) }}
 {% endfor %}
+{% endblock %}

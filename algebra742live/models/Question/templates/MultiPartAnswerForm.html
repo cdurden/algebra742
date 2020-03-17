@@ -1,4 +1,7 @@
 Test
 {% for subform in form.parts %}
-  {{ subform.render_html() }}
+    {% with form=subform %}
+        {% include subform.__class__.__name__ ~ '.html' %}
+    {% endwith %}
+    <!--{{ subform.render_html() }}-->
 {% endfor %}

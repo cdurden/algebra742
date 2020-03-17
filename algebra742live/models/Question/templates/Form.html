@@ -1,5 +1,8 @@
+{% block head %}
+{% endblock %}
 <form>
-{% block form_content %}
+{{ form.hidden_tag() }}
+{% block content %}
 {% endblock %}
 <input type="submit" value="Submit"/>
 </form>
