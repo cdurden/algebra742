@@ -335,7 +335,8 @@ class MultiPartQuestion(Question):
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
             self.parts.append(question)
         for i,part in enumerate(self.parts):
-            part.macros_template = part.traverse_macros_templates()
+            traverse_templates(part)
+            #part.macros_template = part.traverse_macros_templates()
             print("Part macros template: {:s}".format(part.macros_template))
 
     def scripts(self):
