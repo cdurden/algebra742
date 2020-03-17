@@ -274,7 +274,7 @@ class MultiPartQuestion(Question):
             module = importlib.import_module('..' + module_name, package=__name__)
             question_class = getattr(module, class_name)
             part['params_json'] = json.dumps(part['params'])
-            question = get_or_create(db.session, class_, params_json=part['params_json'])
+            question = get_or_create(db.session, question_class, params_json=part['params_json'])
             parts.append(question)
 
     def scripts(self):
