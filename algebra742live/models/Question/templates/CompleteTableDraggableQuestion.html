@@ -24,13 +24,13 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
     .on('mirror:move',  function(e) {
         console.log(e);
         console.log('mirror:move');
-        rect1 = e.sensorEvent.target.getBoundingClientRect();
+        rect1 = e.data.mirror.getBoundingClientRect();
     })
     .on('drag:move',  function(e) {
         //console.log(e);
         console.log('drag:move');
         //rect1 = e.originalSource.getBoundingClientRect();
-        rect1 = e.sensorEvent.target.getBoundingClientRect();
+        //rect1 = e.sensorEvent.target.getBoundingClientRect();
         if (e.sensorEvent.target.classList.contains('dropzone')) {
             lastDropzoneTarget = e.sensorEvent.target;
         } else {
