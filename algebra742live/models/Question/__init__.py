@@ -153,7 +153,7 @@ class Question(db.Model):
         if self.form is None and self.form_class is not None:
             self.build_form()
         template = jinja_env.get_template(self.traverse_templates())
-        html = template.render(self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)
+        html = template.render(params=self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)
         return html
 
     def to_json(self):
@@ -226,9 +226,9 @@ class CompleteTableQuestion(Question):
         return len(self.marked_correct)==len(self.missing_entries)
 
 class CompleteTableDraggableQuestion(CompleteTableQuestion):
-    def render_html(self, **kwargs):
-        params = self.params()
-        return CompleteTableQuestion.render_html(self, blocks=params['blocks'], **kwargs)
+#    def render_html(self, **kwargs):
+#        params = self.params()
+#        return CompleteTableQuestion.render_html(self, blocks=params['blocks'], **kwargs)
 
 
 #import pandas as pd
@@ -254,9 +254,9 @@ class CompleteTableDraggableQuestion(CompleteTableQuestion):
 class DrawingQuestion(Question):
     form_class = DrawingForm
     form = None
-    def render_html(self, **kwargs):
-        params = self.params()
-        return Question.render_html(self, background_image_url=params['background_image_url'], **kwargs)
+#    def render_html(self, **kwargs):
+#        params = self.params()
+#        return Question.render_html(self, background_image_url=params['background_image_url'], **kwargs)
     def build_form(self, formdata=None):
         Question.build_form(self, formdata)
         return(self.form)

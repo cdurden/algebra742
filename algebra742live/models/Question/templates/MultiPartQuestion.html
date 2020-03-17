@@ -1,11 +1,11 @@
 {% extends "Form.html" %}
 {% block content %}
 {% for part in parts %}
-{% with form=part.form %}
-{% with id=part.id %}
+{% with %}
+{% set id=part.id %}
+{% set params=part.params %}
 {% from part.macros_template import content with context %}
 {{ content() }}
-{% endwith %}
 {% endwith %}
 {% endfor %}
 {% endblock %}
