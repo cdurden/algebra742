@@ -9,7 +9,8 @@ var lastDropzoneTarget;
 var rect1;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
     draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector() -}}'), {
-      sensors: [Draggable.Sensors.DragSensor],
+      delay: 0,
+      sensors: [Draggable.Sensors.DragSensor,Draggable.Sensors.TouchSensor],
       mirror: {
         constrainDimensions: true,
         cursorOffsetX: 0,
@@ -17,6 +18,10 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         appendTo: 'div.reveal',
       },
       draggable: '.item'
+    })
+    .on('touchstart',  function(e) {
+        console.log('touchstart');
+        console.log(e);
     })
     .on('drag:start',  function(e) {
         console.log('drag:start');
