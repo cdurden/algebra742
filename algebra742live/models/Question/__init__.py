@@ -21,21 +21,24 @@ from ..util import params_hash_lookup, process_quotes_for_json
 
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader,extensions=['jinja2.ext.with_'])
-def traverse_templates(obj, suffix=''):
+def traverse_templates(obj):
+    obj.template = None 
+    obj.macros_template = None 
     if isinstance(obj, FormField):
         class_ = obj.form_class
     else:
         class_ = obj.__class__
     for base_class in inspect.getmro(class_):
-        template = "{:s}_{:s}.html".format(base_class.__name__,suffix)
-        path = os.path.join(loader.searchpath[0], template)
-        if os.path.exists(path):
+        template = "{:s}.html".format(base_class.__name__)
+        template_path = os.path.join(loader.searchpath[0], template)
+        if os.path.exists(template_path):
             obj.template = template 
-            return(obj.template)
+        macros_template = "{:s}_macros.html".format(base_class.__name__)
+        macros_template_path = os.path.join(loader.searchpath[0], macros_template)
+        if os.path.exists(macros_template_path):
+            obj.macros_template = macros_template
         else:
             next
-    obj.template = None 
-    return(obj.template)
 
 class FormField(FormField_):
     def process(self, formdata, data=unset_value):
@@ -160,7 +163,6 @@ class Question(db.Model):
         #self.form.traverse_templates()
         #self.form.traverse_macros_templates()
         traverse_templates(self.form)
-        traverse_templates(self.form,suffix='macros')
         #self.form.question = self
         #self.form.jinja_env = jinja2.Environment(loader=loader)
         print('building Question form')
@@ -202,7 +204,6 @@ class Question(db.Model):
             self.build_form()
         #self.traverse_templates()
         traverse_templates(self)
-        traverse_templates(self,suffix='macros')
         print("Question template: {:s}".format(self.template))
         print("Form template: {:s}".format(self.form.template))
         print("Form macros template: {:s}".format(self.form.macros_template))
@@ -357,7 +358,6 @@ class MultiPartQuestion(Question):
         #self.form.traverse_templates()
         #self.form.traverse_macros_templates()
         traverse_templates(self.form)
-        traverse_templates(self.form,suffix='macros')
         self.form.question = self
         self.form.validate()
         for i,part in enumerate(self.parts):
@@ -365,7 +365,6 @@ class MultiPartQuestion(Question):
             #part.form.traverse_templates()
             #part.form.traverse_macros_templates()
             traverse_templates(part.form)
-            traverse_templates(part.form,suffix='macros')
             print(part.form.data)
         return(self.form)
 
