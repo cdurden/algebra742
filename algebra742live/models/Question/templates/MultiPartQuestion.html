@@ -1,7 +1,7 @@
 {% extends "Form.html" %}
 {% block content %}
 {% for part in parts %}
-{% from part.macros_template import content %}
+{% from part.macros_template import content with context %}
 {{ content(part) }}
 {% endfor %}
 {% endblock %}
