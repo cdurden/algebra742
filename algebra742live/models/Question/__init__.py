@@ -14,12 +14,7 @@ from werkzeug.datastructures import MultiDict, ImmutableMultiDict
 from networkx.drawing.nx_pydot import read_dot
 from ..util import params_hash_lookup, process_quotes_for_json
 
-class MyLoader(jinja2.FileSystemLoader):
-    def __init__(self, path):
-        self.path = path
-        jinja2.FileSystemLoader(self, path)
-
-loader = MyLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
+loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
 
 class Form(FlaskForm):
@@ -120,13 +115,13 @@ class Question(db.Model):
         if self.form is None and self.form_class is not None:
             self.build_form()
         for base_class in inspect.getmro(self.__class__):
-            path = os.path.join(loader.path, "{:s}_macros.html".format(base_class.__name__))
+            path = os.path.join(loader.searchpath, "{:s}_macros.html".format(base_class.__name__))
             if exists(path):
                 break
             else:
                 next
         for form_class in inspect.getmro(self.form.__class__):
-            path = os.path.join(loader.path, "{:s}_macros.html".format(form_class.__name__))
+            path = os.path.join(loader.searchpath, "{:s}_macros.html".format(form_class.__name__))
             if exists(path):
                 break
             else:
