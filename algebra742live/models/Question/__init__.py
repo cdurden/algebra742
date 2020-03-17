@@ -36,7 +36,7 @@ class Form(FlaskForm):
             else:
                 next
         return(None)
-    def traverse_macro_templates(self):
+    def traverse_macros_templates(self):
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
             if os.path.exists(path):
@@ -132,7 +132,7 @@ class Question(db.Model):
             else:
                 next
         return(None)
-    def traverse_macro_templates(self):
+    def traverse_macros_templates(self):
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
             if os.path.exists(path):
@@ -146,8 +146,8 @@ class Question(db.Model):
         print("Rendering question html")
         if self.form is None and self.form_class is not None:
             self.build_form()
-        template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-        html = template.render(self.params(), form=self.form, form_class=form_class, id=self.id, url_for=url_for, **kwargs)
+        template = jinja_env.get_template(self.traverse_templates())
+        html = template.render(self.params(), form=self.form, form_macros_template=self.form.traverse_macros_templates(), id=self.id, url_for=url_for, **kwargs)
         return html
 
     def to_json(self):
@@ -294,6 +294,7 @@ class MultiPartQuestion(Question):
             module = importlib.import_module('..' + module_name, package=__name__)
             question_class = getattr(module, class_name)
             part['params_json'] = json.dumps(part['params'])
+            part.macros_template = part.traverse_macros_templates()
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
             self.parts.append(question)
 
