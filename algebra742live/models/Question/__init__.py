@@ -4,9 +4,10 @@ from .. import db
 import jinja2
 import json
 import os
-from flask_wtf import FlaskForm
+#from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FieldList
 from wtforms import FormField as FormField_
+from wtforms import Form as Form_
 from wtforms.utils import unset_value
 
 from flask import url_for
@@ -33,7 +34,7 @@ class FormField(FormField_):
         prefix = self.name + self.separator
         print("prefix: {:s}".format(prefix))
         if isinstance(data, dict):
-            self.form = self.form_class(formdata=data, prefix=prefix, csrf_enabled=False, data=data)
+            self.form = self.form_class(formdata=formdata, prefix=prefix, csrf_enabled=False, **data)
         else:
             self.form = self.form_class(formdata=formdata, obj=data, prefix=prefix, csrf_enabled=False)
     def traverse_templates(self):
@@ -57,7 +58,7 @@ class FormField(FormField_):
         self.macros_template = None 
         return(self.macros_template)
 
-class Form(FlaskForm):
+class Form(Form_):
     jinja_env = None
     def render_html(self, **kwargs):
         import inspect
@@ -375,7 +376,7 @@ class MultiPartQuestion(Question):
         #self.form = F()
         #self.form = F(MultiDict(formdata))
         #self.form = DynamicMultiPartAnswerForm(data=MultiDict(formdata))
-        self.form = self.form_class(data=formdata, csrf_enabled=False)
+        self.form = self.form_class(formdata=formdata, csrf_enabled=False)
         #Question.build_form(self)
         self.form.traverse_templates()
         self.form.traverse_macros_templates()
