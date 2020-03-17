@@ -37,8 +37,6 @@ def traverse_templates(obj):
         macros_template_path = os.path.join(loader.searchpath[0], macros_template)
         if os.path.exists(macros_template_path):
             obj.macros_template = macros_template
-        else:
-            next
 
 class FormField(FormField_):
     def process(self, formdata, data=unset_value):
