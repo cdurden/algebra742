@@ -1,7 +1,7 @@
 {% macro content(question, form, params) %}
 <div id="question_{{ question.id }}">
-    {{ params }}
 Give a solution to the following: {{ params.statement }}
-{{ form() }}
+{% from form.macros_template import content without context %}
+{{ content() }}
 </div>
 {% endmacro %}
