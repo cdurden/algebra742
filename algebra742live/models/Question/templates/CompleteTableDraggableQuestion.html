@@ -98,7 +98,7 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
 {{ super() }}
 <center>
 <div class="container" data-prevent-swipe="true">
-    {% for block in blocks %}
+    {% for block in params.blocks %}
     <div class="item" data-payload="{{ block }}">{{ block }}</div>
     {% endfor %}
 </div>

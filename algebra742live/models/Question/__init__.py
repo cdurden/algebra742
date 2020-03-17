@@ -41,8 +41,6 @@ class TemplateBased(object):
             if os.path.exists(macros_template_path):
                 self.macros_template = macros_template
                 break
-        print(self.macros_template)
-        print(self.template)
 
 class FormField(FormField_,TemplateBased):
     def process(self, formdata, data=unset_value):
