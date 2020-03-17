@@ -2,7 +2,7 @@
 {% block content %}
 {% for part in parts %}
 {% with %}
-{% set id=part.id %}
+{% set question=part %}
 {% set params=part.params %}
 {% from part.macros_template import content with context %}
 {{ content() }}
