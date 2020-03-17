@@ -33,7 +33,7 @@ class FormField(FormField_):
         prefix = self.name + self.separator
         print("prefix: {:s}".format(prefix))
         if isinstance(data, dict):
-            self.form = self.form_class(formdata=formdata, prefix=prefix, csrf_enabled=False, data=data)
+            self.form = self.form_class(formdata=data, prefix=prefix, csrf_enabled=False, data=data)
         else:
             self.form = self.form_class(formdata=formdata, obj=data, prefix=prefix, csrf_enabled=False)
     def traverse_templates(self):
