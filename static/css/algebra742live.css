@@ -13,10 +13,9 @@
 .decimal_leading_zero+ol, .decimal_leading_zero+ul {list-style-type:decimal-leading-zero;}
 
 .container {
-    touch-action: none;
+    width: fit-content;
 }
 .item {
-    touch-action: none;
     border: 1px solid #000;
     padding: 10px;
     margin: 5px;
