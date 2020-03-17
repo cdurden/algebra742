@@ -153,7 +153,7 @@ class Question(db.Model):
         self.form = self.form_class(MultiDict(formdata))
         self.form.traverse_templates()
         self.form.traverse_macros_templates()
-        self.form.question = self
+        #self.form.question = self
         #self.form.jinja_env = jinja2.Environment(loader=loader)
         print('building Question form')
         print(self.form.data)
@@ -404,7 +404,7 @@ class MultiPartQuestion(Question):
         print(self.form.data)
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
-            print(part.form)
+            print(part.form.data)
         return(self.form)
 
     def render_html(self, **kwargs):
