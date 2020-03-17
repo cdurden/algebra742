@@ -319,19 +319,20 @@ class MultiPartQuestion(Question):
             part['question'] = question
         return(params)
 
-    def render_html(self):
+    def render_html(self, **kwargs):
         import inspect
         params = self.params()
         if self.form is None:
             self.build_form()
         for i,part in enumerate(params['parts']):
             part['question'].form = getattr(self.form, 'part_{:d}'.format(i))
-        for base_class in inspect.getmro(self.__class__):
-            try:
-                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                return template.render(params, form=self.form)
-            except TemplateNotFound:
-                next 
+        return Question.render_html(params, form=self.form, **kwargs)
+#        for base_class in inspect.getmro(self.__class__):
+#            try:
+#                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
+#                return template.render(params, form=self.form)
+#            except TemplateNotFound:
+#                next 
     
     def check_answer(self):
         params = self.params()
