@@ -465,6 +465,7 @@ class SolutionQuestion(Question):
         x = symbols("x")
         params = self.params()
         try:
+            print(self.form.data)
             expr = parse_expr(params['statement'],transformations=transformations).subs(x,parse_expr(self.form.answer.data))
             print(expr)
             correct = bool(expr)
