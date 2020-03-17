@@ -7,6 +7,7 @@ import os
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FieldList
 from wtforms import FormField as FormField_
+from wtforms.utils import unset_value
 
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
