@@ -1,12 +1,4 @@
 {% extends "Question.html" %}
 {% block head %}
 {{ super() }}
-<script>
-var img = new Image;
-img.onload = function(){
-    backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: this});
-    $("#question_{{ id }}").find('.literally').literallycanvas({backgroundShapes: [backgroundShape]});
-};
-img.src = "{{ image_url }}";
-</script>
 {% endblock %}
