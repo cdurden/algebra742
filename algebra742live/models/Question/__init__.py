@@ -80,7 +80,7 @@ class Form(Form_):
     jinja_env = None
     def render_html(self, **kwargs):
         import inspect
-        template = self.jinja_env.get_template(traverse_templates(self))
+        template = self.jinja_env.get_template(self.template)
         html = template.render(form=self, url_for=url_for, **kwargs)
         return(html)
     def traverse_templates(self):
