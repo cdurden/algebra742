@@ -4,6 +4,7 @@
 {% with %}
 {% set question=part %}
 {% set params=part.params %}
+{% set form=part.form %}
 {% from part.macros_template import content with context %}
 {{ content() }}
 {% endwith %}
