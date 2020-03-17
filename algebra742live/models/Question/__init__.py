@@ -54,26 +54,26 @@ class FormField(FormField_,TemplateBased):
             self.form = self.form_class(formdata=formdata, prefix=prefix, csrf_enabled=False, **data)
         else:
             self.form = self.form_class(formdata=formdata, obj=data, prefix=prefix, csrf_enabled=False)
-    def traverse_templates(self):
-        for base_class in inspect.getmro(self.form_class):
-            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
-            if os.path.exists(path):
-                self.template = "{:s}.html".format(base_class.__name__)
-                return(self.template)
-            else:
-                next
-        self.template = None 
-        return(self.template)
-    def traverse_macros_templates(self):
-        for base_class in inspect.getmro(self.form_class):
-            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
-            if os.path.exists(path):
-                self.macros_template = "{:s}_macros.html".format(base_class.__name__)
-                return(self.macros_template)
-            else:
-                next
-        self.macros_template = None 
-        return(self.macros_template)
+#    def traverse_templates(self):
+#        for base_class in inspect.getmro(self.form_class):
+#            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
+#            if os.path.exists(path):
+#                self.template = "{:s}.html".format(base_class.__name__)
+#                return(self.template)
+#            else:
+#                next
+#        self.template = None 
+#        return(self.template)
+#    def traverse_macros_templates(self):
+#        for base_class in inspect.getmro(self.form_class):
+#            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
+#            if os.path.exists(path):
+#                self.macros_template = "{:s}_macros.html".format(base_class.__name__)
+#                return(self.macros_template)
+#            else:
+#                next
+#        self.macros_template = None 
+#        return(self.macros_template)
 
 class Form(Form_,TemplateBased):
     jinja_env = None
@@ -82,26 +82,26 @@ class Form(Form_,TemplateBased):
         template = self.jinja_env.get_template(self.template)
         html = template.render(form=self, url_for=url_for, **kwargs)
         return(html)
-    def traverse_templates(self):
-        for base_class in inspect.getmro(self.__class__):
-            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
-            if os.path.exists(path):
-                self.template = "{:s}.html".format(base_class.__name__)
-                return(self.template)
-            else:
-                next
-        self.template = None 
-        return(self.template)
-    def traverse_macros_templates(self):
-        for base_class in inspect.getmro(self.__class__):
-            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
-            if os.path.exists(path):
-                self.macros_template = "{:s}_macros.html".format(base_class.__name__)
-                return(self.macros_template)
-            else:
-                next
-        self.macros_template = None 
-        return(self.macros_template)
+#    def traverse_templates(self):
+#        for base_class in inspect.getmro(self.__class__):
+#            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
+#            if os.path.exists(path):
+#                self.template = "{:s}.html".format(base_class.__name__)
+#                return(self.template)
+#            else:
+#                next
+#        self.template = None 
+#        return(self.template)
+#    def traverse_macros_templates(self):
+#        for base_class in inspect.getmro(self.__class__):
+#            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
+#            if os.path.exists(path):
+#                self.macros_template = "{:s}_macros.html".format(base_class.__name__)
+#                return(self.macros_template)
+#            else:
+#                next
+#        self.macros_template = None 
+#        return(self.macros_template)
 
 class AnswerForm(Form):
     answer = StringField('answer')
@@ -176,26 +176,26 @@ class Question(db.Model, TemplateBased):
     def scripts(self):
         #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
         return(['/static/js/socket.io.wtforms.js'])
-    def traverse_templates(self):
-        for base_class in inspect.getmro(self.__class__):
-            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
-            if os.path.exists(path):
-                self.template = "{:s}.html".format(base_class.__name__)
-                return(self.template)
-            else:
-                next
-        self.template = None 
-        return(self.template)
-    def traverse_macros_templates(self):
-        for base_class in inspect.getmro(self.__class__):
-            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
-            if os.path.exists(path):
-                self.macros_template = "{:s}_macros.html".format(base_class.__name__)
-                return(self.macros_template)
-            else:
-                next
-        self.macros_template = None 
-        return(self.macros_template)
+#    def traverse_templates(self):
+#        for base_class in inspect.getmro(self.__class__):
+#            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
+#            if os.path.exists(path):
+#                self.template = "{:s}.html".format(base_class.__name__)
+#                return(self.template)
+#            else:
+#                next
+#        self.template = None 
+#        return(self.template)
+#    def traverse_macros_templates(self):
+#        for base_class in inspect.getmro(self.__class__):
+#            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
+#            if os.path.exists(path):
+#                self.macros_template = "{:s}_macros.html".format(base_class.__name__)
+#                return(self.macros_template)
+#            else:
+#                next
+#        self.macros_template = None 
+#        return(self.macros_template)
 
     def render_html(self, **kwargs):
         print("Rendering question html")
