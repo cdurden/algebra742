@@ -367,41 +367,13 @@ class MultiPartQuestion(Question):
         self.form_class = DynamicMultiPartAnswerForm
         for i,part in enumerate(self.parts):
             setattr(self.form_class, 'part_{:d}'.format(i), FormField(part.form_class))
-            #setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class,_name='part_{:d}'.format(i)))
-            #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
-        #form = F(prefix='test')
         print("build_form formdata checkpoint")
         print(formdata)
-        #self.form.process(MultiDict(formdata))
-        #self.form = F()
-        #self.form = F(MultiDict(formdata))
-        #self.form = DynamicMultiPartAnswerForm(data=MultiDict(formdata))
         self.form = self.form_class(formdata=formdata)
-        #Question.build_form(self)
         self.form.traverse_templates()
         self.form.traverse_macros_templates()
         self.form.question = self
-        #self.form.jinja_env = jinja2.Environment(loader=loader)
-        print(self.form.data)
         self.form.validate()
-        print(self.form.errors)
-#        for i,part in enumerate(params['parts']):
-#            #subform = part['question'].form_class(MultiDict(formdata['part_{:d}'.format(i)]))
-#            #subform(MultiDict(formdata['part_{:d}'.format(i)]))
-#            self.form['part_{:d}'.format(i)].object_data = formdata['part_{:d}'.format(i)]
-#            #getattr(self.form, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i))
-#            #print(formdata['part_{:d}'.format(i)])
-#            #getattr(self.form, 'part_{:d}'.format(i)).process(MultiDict(formdata['part_{:d}'.format(i)]))
-#            #subform_field = getattr(F, 'part_{:d}'.format(i)).bind(self.form, 'part_{:d}'.format(i))
-#            #subform_field.process_formdata(MultiDict(formdata['part_{:d}'.format(i)]))
-#            #print(MultiDict(formdata['part_{:d}'.format(i)]))
-#            #print(subform_field.data)
-#            #self.form['part_{:d}'.format(i)].process(formdata=MultiDict(formdata['part_{:d}'.format(i)]))
-#        #self.form = F(MultiDict(formdata))
-#        #self.form.process(MultiDict(formdata))
-        print(formdata)
-        print('building MultiPartQuestion form')
-        print(self.form.data)
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
             part.form.traverse_templates()
@@ -415,17 +387,8 @@ class MultiPartQuestion(Question):
         for part in self.parts:
             print(part.__class__.__name__)
         return Question.render_html(self, parts=self.parts, **kwargs)
-#        for base_class in inspect.getmro(self.__class__):
-#            try:
-#                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-#                return template.render(params, form=self.form)
-#            except TemplateNotFound:
-#                next 
     
     def check_answer(self):
-        #params = self.params()
-        #self.build_parts()
-        #return all([part['question'].check_answer(getattr(form,'part_'+str(i))) for i,part in enumerate(params['parts'])])
         print(self.form.data)
         self.marked_correct = set()
         self.marked_incorrect = set()
