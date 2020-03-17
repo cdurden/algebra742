@@ -17,7 +17,7 @@ from ..util import params_hash_lookup, process_quotes_for_json
 class MyLoader(jinja2.FileSystemLoader):
     def __init__(self, path):
         self.path = path
-        return(jinja2.FileSystemLoader(path))
+        jinja2.FileSystemLoader(self, path)
 
 loader = MyLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
 jinja_env = jinja2.Environment(loader=loader)
