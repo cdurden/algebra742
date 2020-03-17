@@ -109,6 +109,8 @@ class Question(db.Model):
     def build_form(self, formdata=None):
         print(formdata)
         self.form = self.form_class(MultiDict(formdata))
+        self.form.traverse_templates()
+        self.form.traverse_macros_templates()
         self.form.question = self
         #self.form.jinja_env = jinja2.Environment(loader=loader)
         print('building Question form')
@@ -147,7 +149,7 @@ class Question(db.Model):
         if self.form is None and self.form_class is not None:
             self.build_form()
         template = jinja_env.get_template(self.traverse_templates())
-        html = template.render(self.params(), form=self.form, form_macros_template=self.form.traverse_macros_templates(), id=self.id, url_for=url_for, **kwargs)
+        html = template.render(self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)
         return html
 
     def to_json(self):
@@ -303,8 +305,6 @@ class MultiPartQuestion(Question):
         params = self.params()
         #scripts = {}
         scripts = []
-        class DynamicMultiPartAnswerForm(MultiPartAnswerForm):
-            pass
         for i,part in enumerate(params['parts']):
             #scripts.update(part['question'].scripts())
             scripts += part['question'].scripts()
