@@ -116,13 +116,13 @@ class Question(db.Model):
             self.build_form()
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
-            if exists(path):
+            if os.path.exists(path):
                 break
             else:
                 next
         for form_class in inspect.getmro(self.form.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(form_class.__name__))
-            if exists(path):
+            if os.path.exists(path):
                 break
             else:
                 next
