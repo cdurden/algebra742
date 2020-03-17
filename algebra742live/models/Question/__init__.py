@@ -115,7 +115,7 @@ class Question(db.Model):
         if self.form is None and self.form_class is not None:
             self.build_form()
         for base_class in inspect.getmro(self.__class__):
-            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
+            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
             if os.path.exists(path):
                 break
             else:
@@ -126,7 +126,7 @@ class Question(db.Model):
                 break
             else:
                 next
-        template = jinja_env.get_template("{:s}_macros.html".format(base_class.__name__))
+        template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
         html = template.render(self.params(), form=self.form, form_class=form_class, id=self.id, url_for=url_for, **kwargs)
         return html
 
