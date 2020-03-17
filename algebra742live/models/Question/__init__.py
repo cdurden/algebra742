@@ -311,7 +311,6 @@ class MultiPartQuestion(Question):
             question_class = getattr(module, class_name)
             part['params_json'] = json.dumps(part['params'])
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
-            question.params = part['params']
             self.parts.append(question)
         for part in self.parts:
             part.macros_template = part.traverse_macros_templates()
