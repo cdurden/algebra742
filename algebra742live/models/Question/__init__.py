@@ -295,7 +295,6 @@ class MultiPartQuestion(Question):
             pass
         for i,part in enumerate(self.parts):
             setattr(F, 'part_{:d}'.format(i), FormField(part.form_class))
-            part.form = getattr(self.form, 'part_{:d}'.format(i))
             #setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class,_name='part_{:d}'.format(i)))
             #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
         #form = F(prefix='test')
@@ -305,6 +304,8 @@ class MultiPartQuestion(Question):
         #self.form = F()
         #self.form = F(MultiDict(formdata))
         self.form = F(data=MultiDict(formdata))
+        for i,part in enumerate(self.parts):
+            part.form = getattr(self.form, 'part_{:d}'.format(i))
         #self.form.jinja_env = jinja2.Environment(loader=loader)
         print(self.form.data)
         self.form.validate()
