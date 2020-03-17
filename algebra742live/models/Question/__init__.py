@@ -310,6 +310,7 @@ class MultiPartQuestion(Question):
             self.parts.append(question)
         for part in self.parts:
             part.macros_template = part.traverse_macros_templates()
+            print("Part macros template: {:s}".format(part.macros_template))
 
     def scripts(self):
         params = self.params()
