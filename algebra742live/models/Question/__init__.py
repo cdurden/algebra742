@@ -139,7 +139,6 @@ class Question(db.Model):
         return(None)
 
     def render_html(self, **kwargs):
-        import inspect
         print("Rendering question html")
         if self.form is None and self.form_class is not None:
             self.build_form()
