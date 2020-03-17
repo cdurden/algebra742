@@ -1,5 +1,5 @@
 {% extends "CompleteTableQuestion.html" %}
-{% from "macros.html" import question_selector with context%}
+{% from "macros.html" import question_container_selector with context%}
 {% block head %}
 {{ super() }}
 <script>
@@ -14,13 +14,13 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
   .on('drag:move',  () => console.log('drag:move'))
   .on('drag:stop',  () => console.log('drag:stop'));
 */
-droppable = new Draggable.Droppable(document.querySelectorAll('.container'), {
+    droppable = new Draggable.Droppable(document.querySelectorAll('{{- question_container_selector() -}}'), {
   draggable: '.item',
   dropzone: '.dropzone'
 });
 droppable.on('droppable:dropped', () => console.log('droppable:dropped'));
 droppable.on('droppable:returned', () => console.log('droppable:returned'));
-{{ question_selector() -}}.find('input').addClass('dropzone');
+$('{{- question_container_selector() -}}').find('input').addClass('dropzone');
 });
 </script>
 {% endblock %}
