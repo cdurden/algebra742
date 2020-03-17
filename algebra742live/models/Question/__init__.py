@@ -263,9 +263,10 @@ class DotGraphicsQuestion(GraphicsQuestion):
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
     form = None
-    parts = []
+    parts = None
 
     def build_parts(self):
+        self.parts = []
         import importlib
         params = self.params()
         for i,part in enumerate(params['parts']):
@@ -275,7 +276,7 @@ class MultiPartQuestion(Question):
             question_class = getattr(module, class_name)
             part['params_json'] = json.dumps(part['params'])
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
-            parts.append(question)
+            self.parts.append(question)
 
     def scripts(self):
         params = self.params()
