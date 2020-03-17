@@ -28,9 +28,7 @@ class FormField(FormField_):
             except TypeError:
                 data = self.default
             self._obj = data
-
         self.object_data = data
-
         prefix = self.name + self.separator
         if isinstance(data, dict):
             self.form = self.form_class(formdata=formdata, prefix=prefix, **data, csrf_enabled=False)
