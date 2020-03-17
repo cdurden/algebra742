@@ -465,10 +465,10 @@ class SolutionQuestion(Question):
         x = symbols("x")
         params = self.params()
         try:
-            expr = parse_expr(params['statement']).subs(x,parse_expr(self.form.answer.data))
+            expr = parse_expr(params['statement'],transformations=transformations).subs(x,parse_expr(self.form.answer.data))
             print(expr)
             correct = bool(expr)
-        except:
+        except SyntaxError:
             correct = False
         self.marked_correct = set()
         self.marked_incorrect = set()
