@@ -152,7 +152,11 @@ class Question(db.Model):
         print("Rendering question html")
         if self.form is None and self.form_class is not None:
             self.build_form()
-        template = jinja_env.get_template(self.traverse_templates())
+        self.traverse_templates()
+        print("Question template: {:s}".format(self.template))
+        print("Form template: {:s}".format(self.form.template))
+        print("Form macros template: {:s}".format(self.form.macros_template))
+        template = jinja_env.get_template(self.template)
         html = template.render(params=self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)
         return html
 
