@@ -16,7 +16,7 @@ from networkx.drawing.nx_pydot import read_dot
 from ..util import params_hash_lookup, process_quotes_for_json
 
 loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__file__)),"templates"))
-jinja_env = jinja2.Environment(loader=loader)
+jinja_env = jinja2.Environment(loader=loader,extensions=['jinja2.ext.with_'])
 
 class Form(FlaskForm):
     jinja_env = None
