@@ -38,7 +38,7 @@ class FormField(FormField_):
         else:
             self.form = self.form_class(formdata=formdata, obj=data, prefix=prefix, csrf_enabled=False)
     def traverse_templates(self):
-        for base_class in inspect.getmro(self.__class__):
+        for base_class in inspect.getmro(self.form_class):
             path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
             if os.path.exists(path):
                 self.template = "{:s}.html".format(base_class.__name__)
@@ -48,7 +48,7 @@ class FormField(FormField_):
         self.template = None 
         return(self.template)
     def traverse_macros_templates(self):
-        for base_class in inspect.getmro(self.__class__):
+        for base_class in inspect.getmro(self.form_class):
             path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
             if os.path.exists(path):
                 self.macros_template = "{:s}_macros.html".format(base_class.__name__)
@@ -404,6 +404,8 @@ class MultiPartQuestion(Question):
         print(self.form.data)
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
+            part.form.traverse_templates()
+            part.form.traverse_macros_templates()
             print(part.form.data)
         return(self.form)
 
