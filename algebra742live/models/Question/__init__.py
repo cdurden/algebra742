@@ -34,10 +34,13 @@ class TemplateBased(object):
             template_path = os.path.join(loader.searchpath[0], template)
             if os.path.exists(template_path):
                 self.template = template 
+                break
+        for base_class in inspect.getmro(class_):
             macros_template = "{:s}_macros.html".format(base_class.__name__)
             macros_template_path = os.path.join(loader.searchpath[0], macros_template)
             if os.path.exists(macros_template_path):
                 self.macros_template = macros_template
+                break
         print(self.macros_template)
         print(self.template)
 
