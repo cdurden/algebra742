@@ -1,7 +1,7 @@
 {% extends "Form.html" %}
 {% block content %}
 {% for part in parts %}
-{% from part['question'].__class__.__name__ ~ '_macros.html' import content %}
+{% from part.question.class ~ '_macros.html' import content %}
 {{ content(part.question) }}
 {% endfor %}
 {% endblock %}
