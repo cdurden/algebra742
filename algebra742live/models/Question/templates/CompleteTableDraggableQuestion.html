@@ -6,14 +6,19 @@
 var draggable;
 var droppable;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
-/*
     draggable = new Draggable.Draggable(document.querySelectorAll('ul'), {
-      draggable: 'li'
+      sensors: [Draggable.Sensors.DragSensor],
+      draggable: '.item'
     })
+    .on('drag:stop',  function(e) {
+        console.log(e);
+        console.log('drag:stop');
+    });
+    //sensor = new Draggable.DragSensor(document.querySelectorAll('{{- question_container_selector() -}}'),{});
+  /*
   .on('drag:start', () => console.log('drag:start'))
   .on('drag:move',  () => console.log('drag:move'))
   .on('drag:stop',  () => console.log('drag:stop'));
-*/
     droppable = new Draggable.Droppable(document.querySelectorAll('{{- question_container_selector() -}}'), {
   draggable: '.item',
   dropzone: '.dropzone'
@@ -27,8 +32,9 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         e.dropzone.setAttribute("value",payload);
         e.cancel();
     });
-droppable.on('droppable:returned', () => console.log('droppable:returned'));
-$('{{- question_container_selector() -}}').find('input').addClass('dropzone');
+    droppable.on('droppable:returned', () => console.log('droppable:returned'));
+*/
+    $('{{- question_container_selector() -}}').find('input').addClass('dropzone');
 });
 </script>
 {% endblock %}
