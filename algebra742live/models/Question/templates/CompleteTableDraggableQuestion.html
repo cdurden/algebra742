@@ -23,6 +23,8 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         console.log(e);
         //console.log(e.dragEvent.originalSource);
         console.log(e.dragEvent.originalSource.getAttribute("data-payload"));
+        payload = e.dragEvent.originalSource.getAttribute("data-payload");
+        e.dropzone.setAttribute("value",payload);
         e.cancel();
     });
 droppable.on('droppable:returned', () => console.log('droppable:returned'));
