@@ -26,9 +26,9 @@ $('{{- question_container_selector() -}}').find('input').addClass('dropzone');
 {% endblock %}
 {% block body %}
 {{ super() }}
-<ul>
+<div class="container">
     {% for block in blocks %}
-        <li class="item">{{ block }}</li>
+    <div class="dropzone draggable-dropzone--occupied"><div class="item">{{ block }}</div></div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}
