@@ -466,6 +466,7 @@ class SolutionQuestion(Question):
         params = self.params()
         try:
             expr = parse_expr(params['statement']).subs(x,parse_expr(self.form.answer.data))
+            print(expr)
             correct = bool(expr)
         except:
             correct = False
