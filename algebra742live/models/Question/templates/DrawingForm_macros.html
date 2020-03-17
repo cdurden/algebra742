@@ -51,7 +51,7 @@ $(document).ready(function(){
         var backgroundImage = new Image();
         var lc;
         container.setAttribute("data-prevent-swipe", "");
-        backgroundImage.src = "{{ background_image_url }}";
+        backgroundImage.src = "{{ params.background_image_url }}";
         LC.util.addImageOnload(backgroundImage, function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
             lc = LC.init(container, {backgroundShapes: [backgroundShape]});
