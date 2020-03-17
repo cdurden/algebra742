@@ -9,7 +9,7 @@ var lastDropzoneTarget;
 var rect1;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
     draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector() -}}'), {
-      delay: 0,
+      delay: 5,
       sensors: [Draggable.Sensors.DragSensor,Draggable.Sensors.TouchSensor],
       mirror: {
         constrainDimensions: true,
