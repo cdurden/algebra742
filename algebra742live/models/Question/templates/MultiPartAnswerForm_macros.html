@@ -1,0 +1,7 @@
+{% macro content(question, form, params) %}
+{% for part in question.parts %}
+    {% with form=subform %}
+        {% include subform.__class__.__name__ ~ '.html' %}
+    {% endwith %}
+    <!--{{ subform.render_html() }}-->
+{% endfor %}

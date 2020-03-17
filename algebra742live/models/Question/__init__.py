@@ -21,7 +21,26 @@ loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__
 jinja_env = jinja2.Environment(loader=loader,extensions=['jinja2.ext.with_'])
 
 class FormField(FormField_):
-    macros_template = "FormField_macros.html"
+    def traverse_templates(self):
+        for base_class in inspect.getmro(self.__class__):
+            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
+            if os.path.exists(path):
+                self.template = "{:s}.html".format(base_class.__name__)
+                return(self.template)
+            else:
+                next
+        self.template = None 
+        return(self.template)
+    def traverse_macros_templates(self):
+        for base_class in inspect.getmro(self.__class__):
+            path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
+            if os.path.exists(path):
+                self.macros_template = "{:s}_macros.html".format(base_class.__name__)
+                return(self.macros_template)
+            else:
+                next
+        self.macros_template = None 
+        return(self.macros_template)
 
 class Form(FlaskForm):
     jinja_env = None
@@ -341,6 +360,7 @@ class MultiPartQuestion(Question):
         #self.form = F()
         #self.form = F(MultiDict(formdata))
         #self.form = DynamicMultiPartAnswerForm(data=MultiDict(formdata))
+        self.form = self.form_class(data=MultiDict(formdata))
         Question.build_form(self)
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
