@@ -263,6 +263,19 @@ class DotGraphicsQuestion(GraphicsQuestion):
 class MultiPartQuestion(Question):
     form_class = MultiPartAnswerForm
     form = None
+    parts = []
+
+    def build_parts(self):
+        import importlib
+        params = self.params()
+        for i,part in enumerate(params['parts']):
+            module_class_string = part['class']
+            module_name, class_name = module_class_string.rsplit(".", 1)
+            module = importlib.import_module('..' + module_name, package=__name__)
+            question_class = getattr(module, class_name)
+            part['params_json'] = json.dumps(part['params'])
+            question = get_or_create(db.session, class_, params_json=part['params_json'])
+            parts.append(question)
 
     def scripts(self):
         params = self.params()
@@ -275,13 +288,13 @@ class MultiPartQuestion(Question):
             scripts += part['question'].scripts()
         return(scripts)
 
-
     def build_form(self, formdata=None):
-        params = self.params()
+        self.build_parts()
         class F(MultiPartAnswerForm):
             pass
-        for i,part in enumerate(params['parts']):
-            setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class))
+        for i,part in enumerate(self.parts):
+            setattr(F, 'part_{:d}'.format(i), FormField(part.form_class))
+            part.form = getattr(self.form, 'part_{:d}'.format(i))
             #setattr(F, 'part_{:d}'.format(i), FormField(part['question'].form_class,_name='part_{:d}'.format(i)))
             #setattr(getattr(F, 'part_{:d}'.format(i)),'name','part_{:d}'.format(i))
         #form = F(prefix='test')
@@ -314,28 +327,10 @@ class MultiPartQuestion(Question):
         print(self.form.data)
         return(self.form)
 
-    def params(self):
-        #params = json.loads(process_quotes_for_json(self.params_json))
-        params = json.loads(self.params_json)
-        import importlib
-        for i,part in enumerate(params['parts']):
-            module_class_string = part['class']
-            module_name, class_name = module_class_string.rsplit(".", 1)
-            module = importlib.import_module('..' + module_name, package=__name__)
-            class_ = getattr(module, class_name)
-            part['params_json'] = json.dumps(part['params'])
-            question = get_or_create(db.session, class_, params_json=part['params_json'])
-            part['question'] = question
-        return(params)
-
     def render_html(self, **kwargs):
-        import inspect
-        params = self.params()
         if self.form is None:
             self.build_form()
-        for i,part in enumerate(params['parts']):
-            part['question'].form = getattr(self.form, 'part_{:d}'.format(i))
-        return Question.render_html(self, **kwargs)
+        return Question.render_html(self, parts=self.parts, **kwargs)
 #        for base_class in inspect.getmro(self.__class__):
 #            try:
 #                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
