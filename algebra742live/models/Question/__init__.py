@@ -326,7 +326,7 @@ class MultiPartQuestion(Question):
             self.build_form()
         for i,part in enumerate(params['parts']):
             part['question'].form = getattr(self.form, 'part_{:d}'.format(i))
-        return Question.render_html(params, form=self.form, **kwargs)
+        return Question.render_html(self, form=self.form, **kwargs)
 #        for base_class in inspect.getmro(self.__class__):
 #            try:
 #                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
