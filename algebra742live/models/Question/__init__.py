@@ -15,7 +15,7 @@ from networkx.drawing.nx_pydot import read_dot
 from ..util import params_hash_lookup, process_quotes_for_json
 
 class MyLoader(jinja2.FileSystemLoader):
-    def __init__(path):
+    def __init__(self, path):
         self.path = path
         return(jinja2.FileSystemLoader(path))
 
