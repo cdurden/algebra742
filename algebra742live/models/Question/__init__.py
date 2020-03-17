@@ -422,7 +422,7 @@ class MultiPartQuestion(Question):
     
     def check_answer(self):
         #params = self.params()
-        self.build_parts()
+        #self.build_parts()
         #return all([part['question'].check_answer(getattr(form,'part_'+str(i))) for i,part in enumerate(params['parts'])])
         print(self.form.data)
         self.marked_correct = set()
