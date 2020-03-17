@@ -290,9 +290,10 @@ class MultiPartQuestion(Question):
             module = importlib.import_module('..' + module_name, package=__name__)
             question_class = getattr(module, class_name)
             part['params_json'] = json.dumps(part['params'])
-            part.macros_template = part.traverse_macros_templates()
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
             self.parts.append(question)
+        for part in self.parts:
+            part.macros_template = part.traverse_macros_templates()
 
     def scripts(self):
         params = self.params()
