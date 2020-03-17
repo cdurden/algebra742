@@ -113,23 +113,21 @@ class Question(db.Model):
         if self.form is None and self.form_class is not None:
             self.build_form()
         for base_class in inspect.getmro(self.__class__):
-            print("Trying to get question macros from {:s}_macros template".format(base_class.__name__))
-            try:
-                template = jinja_env.get_template("{:s}_macros.html".format(base_class.__name__))
-                content = template.module.content
-            except TemplateNotFound as e:
-                print(e)
-                next 
-        for base_class in inspect.getmro(self.__class__):
-            print("Trying to render question using {:s} template".format(base_class.__name__))
-            try:
-                template = jinja_env.get_template("{:s}.html".format(base_class.__name__))
-                html = template.render(self.params(), form=self.form, id=self.id, url_for=url_for, content=content, **kwargs)
-                print(html)
-                return html
-            except TemplateNotFound as e:
-                print(e)
-                next 
+            path = join(loader.path, "{:s}_macros.html".format(base_class.__name__))
+            if exists(path):
+                break
+            else:
+                next
+        for form_class in inspect.getmro(self.form.__class__):
+            path = join(loader.path, "{:s}_macros.html".format(base_class.__name__))
+            if exists(path):
+                break
+            else:
+                next
+        try:
+            template = jinja_env.get_template("{:s}_macros.html".format(base_class.__name__))
+            html = template.render(self.params(), form=self.form, form_class=form_class, id=self.id, url_for=url_for, content=content, **kwargs)
+            return html
 
     def to_json(self):
         return({
