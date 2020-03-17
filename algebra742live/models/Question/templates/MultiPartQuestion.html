@@ -3,7 +3,7 @@
 {% for part in parts %}
 {% from part.macros_template import content with context %}
 {% with form=part.form %}
-{{ content(part) }}
+{{ content() }}
 {% endwith %}
 {% endfor %}
 {% endblock %}
