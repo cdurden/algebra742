@@ -13,7 +13,7 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
   .on('drag:move',  () => console.log('drag:move'))
   .on('drag:stop',  () => console.log('drag:stop'));
 */
-const droppable = new Droppable.Droppable(document.querySelectorAll('.container'), {
+const droppable = new Draggable.Droppable(document.querySelectorAll('.container'), {
   draggable: '.item',
   dropzone: '.dropzone'
 });
