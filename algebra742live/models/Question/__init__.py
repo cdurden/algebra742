@@ -29,7 +29,7 @@ class Form(FlaskForm):
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
             if os.path.exists(path):
-                return("{:s}_macros.html".format(base_class.__name__))
+                return("{:s}.html".format(base_class.__name__))
             else:
                 next
         return(None)
@@ -125,7 +125,7 @@ class Question(db.Model):
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
             if os.path.exists(path):
-                return("{:s}_macros.html".format(base_class.__name__))
+                return("{:s}.html".format(base_class.__name__))
             else:
                 next
         return(None)
