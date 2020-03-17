@@ -6,6 +6,7 @@
 var draggable;
 var droppable;
 var lastDropzoneTarget;
+var rect1;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
     draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector() -}}'), {
       sensors: [Draggable.Sensors.DragSensor],
@@ -23,6 +24,7 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
     .on('drag:move',  function(e) {
         //console.log(e);
         console.log('drag:move');
+        rect1 = e.originalSource.getBoundingClientRect();
         if (e.sensorEvent.target.classList.contains('dropzone')) {
             lastDropzoneTarget = e.sensorEvent.target;
         } else {
@@ -30,11 +32,26 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         }
     })
     .on('drag:stop',  function(e) {
+        var max_overlap_area = 0;
+        var dropzoneTarget = null;
         console.log(e);
         console.log('drag:stop');
         if (lastDropzoneTarget != null) {
             payload = e.originalSource.getAttribute("data-payload");
             lastDropzoneTarget.setAttribute("value",payload);
+        } else {
+            $('{{- question_container_selector() -}}').find('.dropzone').each(function() {
+                rect2 = this.getBoundingClientRect();
+                var overlap_area = Math.max(Math.min(rect1.right,rect2.right)-Math.max(rect1.left,rect2.left),0)*Math.max(Math.min(rect1.top,rect2.top)-Math.max(rect1.bottom,rect2.bottom),0);
+                if (overlap_area > max_overlap_area) {
+                    max_overlap_area = overlap_area;
+                    dropzoneTarget = this;
+                }
+            });
+            if (dropzoneTarget != null) {
+                payload = e.originalSource.getAttribute("data-payload");
+                dropzoneTarget.setAttribute("value",payload);
+            }
         }
     });
     //sensor = new Draggable.Sensors.DragSensor(document.querySelectorAll('{{- question_container_selector() -}}'),{});
