@@ -38,6 +38,8 @@ class TemplateBased(object):
             macros_template_path = os.path.join(loader.searchpath[0], macros_template)
             if os.path.exists(macros_template_path):
                 self.macros_template = macros_template
+        print(self.macros_template)
+        print(self.template)
 
 class FormField(FormField_,TemplateBased):
     def process(self, formdata, data=unset_value):
