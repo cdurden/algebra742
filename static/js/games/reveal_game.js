@@ -41,12 +41,13 @@ function update_question_data(data) {
   container = $('div.question[source="digraph_question:'+data.graph+":"+data.node+'"]');
   console.log(data);
   $(container).find('span[class="question_view"]').html(data.html); 
-  $(container).append($(document.createElement('input')).attr('name','graph').attr('type','hidden').val(data.graph));
-  $(container).append($(document.createElement('input')).attr('name','node').attr('type','hidden').val(data.node));
+  form = $(container).find('form');
+  $(form).append($(document.createElement('input')).attr('name','graph').attr('type','hidden').val(data.graph));
+  $(form).append($(document.createElement('input')).attr('name','node').attr('type','hidden').val(data.node));
   //$(container).find('input[name="graph"]').val(data.graph);
   //$(container).find('input[name="node"]').val(data.node);
   $(container).find('input[type="text"]').after('<span class="answer_marker"></span>');
-  $(container).find('form').submit(function (e) {
+  $(form).submit(function (e) {
     socket.emit('form_submit', data=getFormData( $(this) ));
     e.preventDefault(); // block the traditional submission of the form.
   });
