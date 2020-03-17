@@ -2,12 +2,12 @@
 {% block head %}
 <script>
 function get_question_container() {
-    return($('#question_{{ id }}').get(0));
+    return($('#question_{{ question.id }}').get(0));
 }
 </script>
 {% endblock %}
 {% block content %}
-<div id="question_{{ id }}">
+<div id="question_{{ question.id }}">
 {{ params.Question }}
 {% from form.macros_template import content with context %}
 {{ content() }}

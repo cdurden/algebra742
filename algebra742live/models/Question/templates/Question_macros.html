@@ -1,5 +1,5 @@
 {% macro content() %}
-<div id="question_{{ id }}">
+<div id="question_{{ question.id }}">
 {{ Question }}
 {% from form.macros_template import content with context %}
 {{ content() }}

@@ -157,7 +157,7 @@ class Question(db.Model):
         print("Form template: {:s}".format(self.form.template))
         print("Form macros template: {:s}".format(self.form.macros_template))
         template = jinja_env.get_template(self.template)
-        html = template.render(params=self.params(), form=self.form, id=self.id, url_for=url_for, **kwargs)
+        html = template.render(params=self.params(), question=self, form=self.form, url_for=url_for, **kwargs)
         return html
 
     def to_json(self):
