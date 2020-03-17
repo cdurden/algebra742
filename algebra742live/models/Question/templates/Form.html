@@ -1,7 +1,7 @@
 {% block head %}
 {% endblock %}
 <form>
-{{ form.hidden_tag() }}
+{{ form.csrf_token }}
 {% block content %}
 {% endblock %}
 <input type="submit" value="Submit"/>
