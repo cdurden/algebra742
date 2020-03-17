@@ -404,6 +404,7 @@ class MultiPartQuestion(Question):
         print(self.form.data)
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
+            print(part.form)
         return(self.form)
 
     def render_html(self, **kwargs):
