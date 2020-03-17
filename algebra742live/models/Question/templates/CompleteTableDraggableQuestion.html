@@ -58,9 +58,11 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
 {% endblock %}
 {% block body %}
 {{ super() }}
+<center>
 <div class="container">
     {% for block in blocks %}
     <div class="dropzone draggable-dropzone--occupied"><div class="item" data-payload="{{ block }}">{{ block }}</div></div>
     {% endfor %}
 </div>
+</center>
 {% endblock %}
