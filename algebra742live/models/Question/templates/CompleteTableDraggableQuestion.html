@@ -21,8 +21,8 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
     droppable.on('droppable:dropped', function(e) {
         console.log('droppable:dropped');
         console.log(e);
-        console.log(e.originalSource);
-        //console.log(e.originalSource.getAttribute("data-payload"));
+        //console.log(e.dragEvent.originalSource);
+        console.log(e.dragEvent.originalSource.getAttribute("data-payload"));
         e.cancel();
     });
 droppable.on('droppable:returned', () => console.log('droppable:returned'));
