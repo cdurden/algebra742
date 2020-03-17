@@ -21,6 +21,21 @@ loader = jinja2.FileSystemLoader(os.path.join(os.path.dirname(os.path.abspath(__
 jinja_env = jinja2.Environment(loader=loader,extensions=['jinja2.ext.with_'])
 
 class FormField(FormField_):
+    def process(self, formdata, data=unset_value):
+        if data is unset_value:
+            try:
+                data = self.default()
+            except TypeError:
+                data = self.default
+            self._obj = data
+
+        self.object_data = data
+
+        prefix = self.name + self.separator
+        if isinstance(data, dict):
+            self.form = self.form_class(formdata=formdata, prefix=prefix, **data, csrf_enabled=False)
+        else:
+            self.form = self.form_class(formdata=formdata, obj=data, prefix=prefix, csrf_enabled=False)
     def traverse_templates(self):
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
