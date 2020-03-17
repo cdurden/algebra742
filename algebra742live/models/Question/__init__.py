@@ -33,7 +33,8 @@ class Form(FlaskForm):
                 return(self.template)
             else:
                 next
-        return(None)
+        self.template = None 
+        return(self.template)
     def traverse_macros_templates(self):
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
@@ -42,7 +43,8 @@ class Form(FlaskForm):
                 return(self.macros_template)
             else:
                 next
-        return(None)
+        self.macros_template = None 
+        return(self.macros_template)
 
 class AnswerForm(Form):
     answer = StringField('answer')
@@ -133,7 +135,8 @@ class Question(db.Model):
                 return(self.template)
             else:
                 next
-        return(None)
+        self.template = None 
+        return(self.template)
     def traverse_macros_templates(self):
         for base_class in inspect.getmro(self.__class__):
             path = os.path.join(loader.searchpath[0], "{:s}_macros.html".format(base_class.__name__))
@@ -142,7 +145,8 @@ class Question(db.Model):
                 return(self.macros_template)
             else:
                 next
-        return(None)
+        self.macros_template = None 
+        return(self.macros_template)
 
     def render_html(self, **kwargs):
         print("Rendering question html")
