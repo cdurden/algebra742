@@ -28,17 +28,18 @@
         "/albus/lib/angular-socket-io/socket.min.js",
         "/static/js/loadOnDemand.js",
     ];
-    injectLibFromStack();
-    var app = angular.module('app', ['loadOnDemand']);
-    app.config(['$loadOnDemandProvider', function ($loadOnDemandProvider) {
-        var modules = [
-            {
-                name: 'whiteboard',		// name of module
-                script: '/albus/dist/whiteboard.min.js' // path to javascript file
-            }
-        ];
-        $loadOnDemandProvider.config(modules);
-    }]);
+    injectLibFromStack(function() {
+        var app = angular.module('app', ['loadOnDemand']);
+        app.config(['$loadOnDemandProvider', function ($loadOnDemandProvider) {
+            var modules = [
+                {
+                    name: 'whiteboard',		// name of module
+                    script: '/albus/dist/whiteboard.min.js' // path to javascript file
+                }
+            ];
+            $loadOnDemandProvider.config(modules);
+        }]);
+    });
   </script>
   
   <!-- Leap Motion -->
