@@ -1,0 +1,41 @@
+{% extends "reveal_markdown_mathjax_chalkboard_broadcast.html" %}
+{% set include_chalkboard = false %}
+{% from "macros.html" import digraph_question %}.
+{% block title %}Finding Solutions to Inequalities in Context{% endblock %}
+{% block head %}
+  {{ super() }}
+<style>
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
+</style>
+{% endblock %}
+{% block slides %}
+<section data-markdown data-separator="^---$" class="medium-font do_not_print">
+    <script type="text/template">
+<div>Click <a href="#" onclick="RevealBroadcast.connect( durden_broadcastid ); return false;"><i class="fa fa-toggle-right"></i></a> to connect to the broadcast with id <span style="color:red" id="currentid">cn2cv9bgeji</span>.</div>
+    </script>
+</section>
+
+<section data-markdown data-separator="^---$" class="medium-font do_not_print">
+<script type="text/template">
+  <div ng-app="app" id="ng-app">
+<div load-on-demand="'whiteboard'"></div>
+</div>
+</script>
+</section>
+{% endblock %}
+{% block reveal_options %}
+  {{ super() }}
+	chalkboard: {
+		// optionally load pre-recorded chalkboard drawing from file
+		src: "/static/EfficientlySolvingInequalities/chalkboard.json",
+        readOnly: false,
+	},
+{% endblock %}
+{% block more %}
+  {{ super() }}
+{% endblock %}
