@@ -2,10 +2,10 @@
 {% macro content() %}
   <link rel="stylesheet" href="/albus/styles/style.css">
   <!-- <link rel="stylesheet" href="/dist/style.min.css"> -->
-  <div ng-controller="whiteboard" load-on-demand="'whiteboard'">
+  <div ng-app="app">
   <h1 class="title"></h1>
 
-  <div style="touch-action: none;" ng-view class="app-container"></div>
+  <div style="touch-action: none;" load-on-demand="'whiteboard'" ng-view class="app-container"></div>
   </div>
 
   <script>
