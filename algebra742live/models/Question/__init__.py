@@ -119,6 +119,8 @@ class WrittenResponseForm(Form):
 
 class DrawingForm(Form):
     pass
+class AlbusDrawingForm(Form):
+    pass
 #    background_image_url = None
 #    def render_html(self, **kwargs):
 #        return Form.render_html(self, background_image_url=self.background_image_url, **kwargs)
@@ -286,7 +288,7 @@ class CompleteTableDraggableQuestion(CompleteTableQuestion):
     pass
 
 class DrawingQuestion(Question):
-    form_class = DrawingForm
+    form_class = AlbusDrawingForm
     form = None
 #    def render_html(self, **kwargs):
 #        params = self.params()
