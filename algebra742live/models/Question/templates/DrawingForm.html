@@ -1,6 +1,13 @@
 {% from "macros.html" import question_container_selector without context%}
 <div class="literally"></div>
 <div class="tools">
+  <div class="colors">
+    <div class="color black"></div>
+    <div class="color red"></div>
+    <div class="color green"></div>
+    <div class="color blue"></div>
+    <div class="color yellow"></div>
+  </div>
   <a class="tool-pencil">pencil</a>
   |
   <a class="tool-eraser">eraser</a>
@@ -11,6 +18,19 @@
 <!-- replace window.LC with core build version -->
 <script src="{{ url_for('static',filename='js/literallycanvas-0.4.14/js/literallycanvas-core.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ResizeSensor.js') }}"></script>
+<style>
+.color {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+}
+
+.color.black { background-color: black; }
+.color.red { background-color: red; }
+.color.green { background-color: green; }
+.color.blue { background-color: blue; }
+.color.yellow { background-color: yellow; }
+</style>
 
 <script>
 function resizeCanvasToDisplaySize(canvas) {

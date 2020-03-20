@@ -1,3 +1,27 @@
+EdPuzzle
+Woot math
+Quizizz
+https://blog.quizizz.com/our-guide-to-remote-learning-dc6a922c5279
+# March 18, 2020 desired features
+1. Collaborative whiteboard
+see https://github.com/socketio/socket.io/blob/master/examples/whiteboard/public/main.js
+Idea: Allow admin to control which users are allowed to modify a particular canvas.
+Details:
+  a. Create a table of canvases. attributes: id, height, width, data
+  b. Set permissions via a many-to-many mapping between canvases and users. canvas_id, user_id, region, permission
+  c. Add canvases to the database on question submission. include canvas_id in answer field of question_response
+  d. Use socket.io to allow concurrent drawing to canvases.
+
+2. Ability to create a queue of student responses that require manual grading and/or feedback, to notify the teacher of these, and to enable an efficient method for providing feedback, and to notify the student when the feedback is ready to view, and enable the student to view it.
+3. Whiteboard zoom
+4. Streaming
+Overview of the networking issues involved with video conferencing:
+https://bloggeek.me/how-many-users-webrtc-call/
+Why a media server is necessary:
+https://bloggeek.me/media-server-for-webrtc-broadcast/
+
+https://jitsi.org/news/open-source-sfus/
+
 # Developing a live application
 Features
 1. Interface for an administrator to control the state of the game/session
