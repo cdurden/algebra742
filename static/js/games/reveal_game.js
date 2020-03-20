@@ -1,4 +1,4 @@
-  var injectLibFromStack = function(libs){
+  function injectLibFromStack(){
       if(libs.length > 0){
         
         //grab the next item on the stack
