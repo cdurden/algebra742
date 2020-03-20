@@ -29,6 +29,7 @@
         "/static/js/loadOnDemand.js",
     ];
     injectLibFromStack();
+    var app = angular.module('app', ['loadOnDemand']);
     app.config(['$loadOnDemandProvider', function ($loadOnDemandProvider) {
         var modules = [
             {
