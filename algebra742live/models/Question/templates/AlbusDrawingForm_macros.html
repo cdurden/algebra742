@@ -2,7 +2,7 @@
 {% macro content() %}
   <link rel="stylesheet" href="/albus/styles/style.css">
   <!-- <link rel="stylesheet" href="/dist/style.min.css"> -->
-  <div ng-app="whiteboard">
+  <div load-on-demand="'whiteboard'">
   <h1 class="title"></h1>
 
   <div style="touch-action: none;" ng-view class="app-container"></div>
@@ -20,6 +20,7 @@
   <!-- custom Raphael - do not switch to CDN -->
   <script src="/albus/js/raphael.js"></script>
   <script src="/albus/js/resize-handler.min.js"></script>
+  <script src="loadOnDemand.js"></script>
   <script>
     var libs = [
         "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js",
@@ -28,6 +29,15 @@
         "/albus/lib/angular-socket-io/socket.min.js",
     ];
     injectLibFromStack();
+    app.config(['$loadOnDemandProvider', function ($loadOnDemandProvider) {
+        var modules = [
+            {
+                name: 'whiteboard',		// name of module
+                script: '/albus/dist/whiteboard.min.js' // path to javascript file
+            }
+        ];
+        $loadOnDemandProvider.config(modules);
+    }]);
   </script>
   
   <!-- Leap Motion -->
