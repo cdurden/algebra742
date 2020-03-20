@@ -4,13 +4,9 @@
 {% block title %}Finding Solutions to Inequalities in Context{% endblock %}
 {% block head %}
   {{ super() }}
-  <script src="https://www.geogebra.org/apps/deployggb.js"></script>
-  <script>  
-    var ggbApp = new GGBApplet({"width": 900, "height": 600, "material_id": "U85HM3Dj"}, true);
-    window.addEventListener("load", function() { 
-//        ggbApp.inject('ggb-element');
-    });
-</script>
+    <script type="text/javascript" src="/albus/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/static/js/loadOnDemand.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
 <style>
 .container{
     display: flex;
@@ -23,82 +19,7 @@
 {% block slides %}
 <section data-markdown data-separator="^---$" class="medium-font do_not_print">
 <script type="text/template">
-<div>Click <a href="#" onclick="RevealBroadcast.connect( { id: document.getElementById('broadcastid').value } ); return false;"><i class="fa fa-toggle-right"></i></a> to connect to the broadcast with id <span style="color:red" id="currentid">cn2cv9bgeji</span>.</div>
-<div>Click <a href="#" onclick="RevealBroadcast.start( { id: document.getElementById('broadcastid').value, password: document.getElementById('password').value } ); return false;"><i class="fa fa-rss"></i></a> to start the broadcast with the given id.</div>
----
-<iframe style="width: 800px; height: 500px;" src="https://dev.algebra742.org:444/albus/"></iframe>
-
----
-Open **Schoology: Efficiently Solving Inequalities**.
-1. Select all values that are solutions to the inequality on slide 1.
-</script>
-</section>
-<section data-markdown data-separator="^---$" class="medium-font">
-<script type="text/template">
-Here is an inequality: $\text-x \geq \text-4$.
-
-Predict what you think the solutions on the number line will look like.
- 
-1. Select all the values that are solutions to $\text-x \geq \text-4$:
-{{ digraph_question('ch5', 'q19') }}
----
 2. {{ digraph_question('ch5', 'q17') }}
----
-Let's investigate the inequality $x-3>\text-2.$
-{{ digraph_question('ch5', 'q20') }}
-<!--
-<table border="1">
-    <tbody>
-      <tr>
-        <th scope="row">$x$</th>
-        <td>-4</td>
-        <td>-3</td>
-        <td>-2</td>
-        <td>-1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-      </tr>
-      <tr>
-        <th scope="row">$x-3$</th>
-        <td>-7</td>
-        <td></td>
-        <td>-5</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>-1</td>
-        <td></td>
-        <td>1</td>
-      </tr>
-    </tbody>
-</table>
--->
-<div class="lower_alpha"></div>
-
- 1. Complete the table.
- 2. For which values of $x$ is it true that $x - 3 = \text-2$?
- 3. For which values of $x$ is it true that $x - 3 > \text-2$?
- 4. Graph the solutions to $x - 3 > \text-2$ on the number line:
-![Blank number line](/static/images/NumberLineNoLabels.png)<!-- .element: class="noborder" -->
----
-<div class="top-right"><countdown time="300" autostart="yes" /></div>
-<countdown time="300" autostart="yes" style="display: none;"></countdown>
-<br/>
-Here is an inequality: $2x<6$.
-<div class="lower_alpha"></div>
-
- 1. Predict which values of $x$ will make the inequality $2x < 6$ true.
- 2. Complete the table. Does it match your prediction?
-{{ digraph_question('ch5', 'q21') }}
- 3. Graph the solutions to $2x < 6$ on the number line:
-![Blank number line](/static/images/NumberLineNoLabels.png)<!-- .element: class="noborder" -->
-
----
-
-{{ digraph_question('ch5', 'q13') }}
 </script>
 </section>
 {% endblock %}
