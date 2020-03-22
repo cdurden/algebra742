@@ -63,7 +63,6 @@ from flask_resty import GenericModelView, Api, Filtering, ColumnFilter
 from .models.authentication import HeaderAuthentication
 from . import models
 
-
 class MyHeaderAuthentication(HeaderAuthentication):
     def get_request_credentials(self):
         token = self.get_request_token()
