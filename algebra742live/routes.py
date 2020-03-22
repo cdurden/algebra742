@@ -80,7 +80,6 @@ class UserListView(UserViewBase):
     def post(self):
         return self.create()
 
-
 class UserView(UserViewBase):
     def get(self, id):
         return self.retrieve(id)
