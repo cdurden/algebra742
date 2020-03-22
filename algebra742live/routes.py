@@ -59,7 +59,7 @@ def algebra742live_lti(lti=lti):
         return render_template('GetUserInfo.html', lti=lti, form=form)
 
 from marshmallow import Schema, fields
-from flask_resty import GenericModelView, Api
+from flask_resty import GenericModelView, Api, NoOpAuthentication
 from . import models
 
 class UserSchema(Schema):
@@ -72,6 +72,7 @@ class UserSchema(Schema):
 class UserViewBase(GenericModelView):
     model = models.User
     schema = UserSchema()
+    authentication = NoOpAuthentication
 
 class UserListView(UserViewBase):
     def get(self):
@@ -91,7 +92,7 @@ class UserView(UserViewBase):
         return self.destroy(id)
 
 api = Api(app, prefix="/api")
-api.add_resource("/users", UserListView, UserView)
+api.add_resource("/users/", UserListView, UserView)
 
 @app.route('/slides/<template>')
 @lti(request='session', error=error)
