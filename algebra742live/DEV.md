@@ -1,3 +1,18 @@
+# Collaborative Whiteboard
+0. The routing system either generates a random id or looks up a room id given as part of the url. It emits a socket.io call to 'roomId'. When the server receives this call (in server/sockets.js), it adds that member to the room. The addMember method (in server/rooms.js) emits a showExisting call with payload rooms[roomId]. When the client receives this call (in client/services/receive.js), it uses the EventHandler to draw the data onto the board, by calling methods in the ShapeBuilder factory (drawing is done by calling methods on the board object in BoardData). The input handler calls methods from the Broadcast factory which emit socket.io messages to the server (received in server/sockets.js, and stored in redis via server/rooms.js which uses the redis client in server/db/config.js)
+1. Fix the UI issues
+2. Data for a single whiteboard is stored in a redis string associated with a room id. The string is a JSON encoded representation of the whiteboard data. This string could be saved to a database and reloaded later.
+  a0. How to serve the albus whiteboard client through algebra742/Flask and route socket.io data to the node server
+  a1. How to set up two separater sockets, one to handle whiteboard actions, and another to handle interaction with algebra742live
+  a2. How to process submissions to facilitate feedback. How to integrate Albus with the admin dashboard.
+  a. How to associate drawing data with algebra742live users.
+    i. send socketId from albus to algebra742live and set up a redis hash mapping socketId to user data. Deal with ensuring that the socketId is mapped before allowing user interaction. When data is swapped between the database and redis, swap the socketId and the user id.
+    ii. Have algebra742live act as a proxy to albus server. Set session cookie in request. When user sends data to albus, send the session id, ... 
+  b. How to associate drawing data with a DrawingQuestion. Use a room id to associate a DrawingForm with a whiteboard room. Multiple students can be assigned the same room id. When they submit their form, the room id can be submitted and a save operation can transfer the whiteboard into the database and the id field of this tuple can be recorded as part of their answer.
+     i. How is collaborative work submitted? Do all students have to agree to submit the work? How can a student save work if a partner does not do anything?
+  c. How to add a background image to a drawing? Use the Raphael image method: board.image(src, x, y, width, height)
+  d. Is there a way to use mathjax to process tex input and render it using Raphael?
+3. 
 EdPuzzle
 Woot math
 Quizizz

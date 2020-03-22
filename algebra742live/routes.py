@@ -1,7 +1,9 @@
 from flask import current_app as app
 from flask import render_template, request, redirect, url_for, send_file
+from flask import jsonify
 from flask_socketio import emit
 from pylti.flask import lti
+import models
 from .models import db, User, RequestDenied
 from .models.Question import get_question_from_digraph_node
 from .models.Game import GameClasses
@@ -55,6 +57,24 @@ def algebra742live_lti(lti=lti):
     else:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
+
+from marshmallow import Schema, fields
+from flask_resty import GenericModelView, Api
+from . import models
+
+class UserSchema(Schema):
+    id = fields.Int(dump_only=True)
+    username = fields.String(required=True)
+    firstname = fields.String(required=True)
+    lastname = fields.String(required=True)
+    lti_user_id = fields.String(required=False)
+
+class UserViewBase(GenericModelView):
+    model = models.User
+    schema = schemas.UserSchema()
+
+api = Api(app, prefix="/api")
+api.add_resource("/users", UserListView, UserView)
 
 @app.route('/slides/<template>')
 @lti(request='session', error=error)
