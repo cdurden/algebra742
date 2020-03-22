@@ -61,6 +61,7 @@ def algebra742live_lti(lti=lti):
 from marshmallow import Schema, fields
 import operator
 from flask_resty import GenericModelView, Api, Filtering, ColumnFilter
+from flask_resty.exceptions import ApiError
 from .models.authentication import HeaderAuthentication
 from . import models
 
@@ -68,7 +69,6 @@ class MyHeaderAuthentication(HeaderAuthentication):
     def get_request_credentials(self):
         token = self.get_request_token()
         if token != app.config['AUTH_TOKEN']:
-            print(token)
             raise ApiError(401, "Authentication failed")
         else:
             return self.get_credentials_from_token(token)
