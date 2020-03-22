@@ -66,6 +66,7 @@ from . import models
 
 class HeaderAuthentication(HeaderAuthenticationBase):
     def get_credentials_from_token(self, token):
+        raise ApiError(401, "Authentication failed")
         if token == app.config['AUTH_TOKEN']:
             return token
         else:
