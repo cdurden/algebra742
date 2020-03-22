@@ -60,8 +60,15 @@ def algebra742live_lti(lti=lti):
 
 from marshmallow import Schema, fields
 from flask_resty import GenericModelView, Api
-from .models.authentication import HeaderAuthentication
+from .models.authentication import HeaderAuthenticationBase
 from . import models
+
+class HeaderAuthentication(HeaderAuthenticationBase):
+    def get_credentials_from_token(self, token):
+        if token == app.config['AUTH_TOKEN']:
+            return token
+        else:
+            raise ApiError(401, "Authentication failed")
 
 class UserSchema(Schema):
     id = fields.Int(dump_only=True)
