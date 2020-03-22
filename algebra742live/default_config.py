@@ -8,7 +8,7 @@ WTF_CSRF_ENABLED = True
 
 # secret key for authentication
 SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "you-will-never-guess")
-AUTH_TOKEN = os.environ.get("FLASK_AUTH_TOKEN", "vhdkqywhvbjashfuhdvbsagsftvoqppafjhbv")
+AUTH_TOKEN = os.environ.get("FLASK_AUTH_TOKEN", "another-secret")
 
 # Sample client certificate example for 12 factor app
 # You would want to store your entire pem in an environment variable
