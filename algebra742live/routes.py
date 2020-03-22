@@ -60,7 +60,7 @@ def algebra742live_lti(lti=lti):
 
 from marshmallow import Schema, fields
 from flask_resty import GenericModelView, Api
-from flask_resty.authentication import HeaderAuthentication
+from .models.authentication import HeaderAuthentication
 from . import models
 
 class UserSchema(Schema):
