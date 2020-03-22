@@ -73,6 +73,24 @@ class UserViewBase(GenericModelView):
     model = models.User
     schema = schemas.UserSchema()
 
+class UserListView(UserViewBase):
+    def get(self):
+        return self.list()
+
+    def post(self):
+        return self.create()
+
+
+class UserView(UserViewBase):
+    def get(self, id):
+        return self.retrieve(id)
+
+    def patch(self, id):
+        return self.update(id, partial=True)
+
+    def delete(self, id):
+        return self.destroy(id)
+
 api = Api(app, prefix="/api")
 api.add_resource("/users", UserListView, UserView)
 
