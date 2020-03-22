@@ -66,6 +66,7 @@ from .models.authentication import HeaderAuthentication
 from . import models
 
 class MyHeaderAuthentication(HeaderAuthentication):
+    credentials_arg = auth_token
     def get_request_credentials(self):
         token = self.get_request_token()
         if token != app.config['AUTH_TOKEN']:
