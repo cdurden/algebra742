@@ -72,7 +72,7 @@ class UserSchema(Schema):
 class UserViewBase(GenericModelView):
     model = models.User
     schema = UserSchema()
-    authentication = HeaderAuthentication
+    authentication = HeaderAuthentication()
 
 class UserListView(UserViewBase):
     def get(self):
