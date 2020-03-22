@@ -59,6 +59,7 @@ def algebra742live_lti(lti=lti):
         return render_template('GetUserInfo.html', lti=lti, form=form)
 
 from marshmallow import Schema, fields
+import operator
 from flask_resty import GenericModelView, Api, Filtering, ColumnFilter
 from .models.authentication import HeaderAuthentication
 from . import models
