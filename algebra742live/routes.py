@@ -63,6 +63,7 @@ from flask_resty import GenericModelView, Api
 from .models.authentication import HeaderAuthenticationBase
 from . import models
 
+
 class HeaderAuthentication(HeaderAuthenticationBase):
     def get_credentials_from_token(self, token):
         if token == app.config['AUTH_TOKEN']:
