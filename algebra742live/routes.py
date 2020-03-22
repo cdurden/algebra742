@@ -59,7 +59,7 @@ def algebra742live_lti(lti=lti):
         return render_template('GetUserInfo.html', lti=lti, form=form)
 
 from marshmallow import Schema, fields
-from flask_resty import GenericModelView, Api, NoOpAuthentication
+from flask_resty import GenericModelView, Api, HeaderAuthentication
 from . import models
 
 class UserSchema(Schema):
@@ -72,7 +72,7 @@ class UserSchema(Schema):
 class UserViewBase(GenericModelView):
     model = models.User
     schema = UserSchema()
-    authentication = NoOpAuthentication
+    authentication = HeaderAuthentication
 
 class UserListView(UserViewBase):
     def get(self):
