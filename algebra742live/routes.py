@@ -71,7 +71,7 @@ class UserSchema(Schema):
 
 class UserViewBase(GenericModelView):
     model = models.User
-    schema = schemas.UserSchema()
+    schema = UserSchema()
 
 class UserListView(UserViewBase):
     def get(self):
