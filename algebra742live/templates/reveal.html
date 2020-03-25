@@ -77,7 +77,7 @@ socket.on('question_data', update_question_data);
                       initialize: (function(container, options){ 
                           // use setInterval to send the emit message, and then clearInterval once the response is received
                           console.log("getting snow-qm task");
-                          socket.emit('get_snow_qm_task', { graph: options.collection, node: options.task });
+                          socket.emit('get_snow_qm_task', { collection: options.collection, task: options.task });
                         }) 
                     },
                 ],
