@@ -4,7 +4,7 @@
 {% from "macros.html" import snow_qm_task %}.
     <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/algebra742live.css') }}">
-    <title>{% block title %}{% endblock %} - Algebra742Live</title>
+    <title>Algebra742Live</title>
     <script type="text/javascript" src="/static/js/algebra742live.js"></script>
     <script type="text/javascript" src="/static/js/socket.io.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--the following script uses jquery to set up form submission via socket-->
@@ -82,9 +82,7 @@ socket.on('snow_qm_task_data', update_snow_qm_task_data);
     <body>
 		<div class="reveal">
 			<div class="slides">
-                {% block slides %}
 				<section>{{ snow_qm_task('inequalities', 'q20') }}</section>
-                {% endblock %}
 			</div>
 		</div>
 
@@ -94,18 +92,14 @@ socket.on('snow_qm_task_data', update_snow_qm_task_data);
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
-            {% block reveal_init %}
 			Reveal.initialize({
 				dependencies: [
-                    {% block reveal_dependencies %}
                     { src: '/static/js/reveal.js-plugins/anything/anything.js' },
 					{ src: '/static/js/reveal.js/plugin/markdown/marked.js' },
 					{ src: '/static/js/reveal.js/plugin/markdown/markdown.js' },
 					{ src: '/static/js/reveal.js/plugin/highlight/highlight.js' },
 					{ src: '/static/js/reveal.js/plugin/notes/notes.js', async: true },
-                    {% endblock %}
 				],
-                {% block reveal_options %}
 				hash: true,
             	anything: [ 
                     {
@@ -125,15 +119,11 @@ socket.on('snow_qm_task_data', update_snow_qm_task_data);
                     },
                 ],
 
-                {% endblock %}
 			});
-            {% endblock %}
 		</script>
 <!--
     <div id="footer">
-      {% block footer %}
       &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
-      {% endblock %}
     </div>
 -->
   </body>
