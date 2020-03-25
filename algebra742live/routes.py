@@ -18,7 +18,7 @@ from .models.util import params_hash_lookup, graphics_path
 
 def lti(**kwargs):
     """Make sure user is logged in before proceeding"""
-    def func:
+    def func():
         pass
     @functools.wraps(func)
     def wrapper_lti_dummy(*args, **kwargs_):
