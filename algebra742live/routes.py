@@ -16,11 +16,13 @@ from wtforms import TextField, IntegerField, BooleanField, FieldList, StringFiel
 import json
 from .models.util import params_hash_lookup, graphics_path
 
-def lti(func, **kwargs):
+def lti(**kwargs):
     """Make sure user is logged in before proceeding"""
+    def func:
+        pass
     @functools.wraps(func)
     def wrapper_lti_dummy(*args, **kwargs_):
-        return func(*args, lti=None, **kwargs_)
+        pass
     return wrapper_lti_dummy
 
 def error(exception=None):
