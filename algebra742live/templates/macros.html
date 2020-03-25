@@ -6,9 +6,9 @@
 </div>
 {% endmacro %}
 {% macro snow_qm_task(collection, node) %}
-<div class="snow-qm-task" data-role="page" id="snow_qm_{{ collection }}_{{ node }}" source="snow-qm:{{ graph }}:{{ node }}">
+<div class="snow-qm-task" data-role="page" id="snow_qm_{{ collection }}_{{ task }}" source="snow-qm:{{ collection }}:{{ task }}">
     <!--<form><input type="hidden" name="graph"><input type="hidden" name="node">-->
-            <span class="question_view"><!-- { "graph": "{{ graph }}", "node": "{{ node }}" } --></span>
+            <span class="question_view"><!-- { "collection": "{{ collection }}", "task": "{{ task }}" } --></span>
     <!--<input type="submit" value="Submit"></form>-->
 </div>
 {% endmacro %}
