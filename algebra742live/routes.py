@@ -1,5 +1,5 @@
 from flask import current_app as app
-from flask import render_template, request, redirect, url_for, send_file
+from flask import render_template, request, redirect, url_for, send_file, make_response
 from flask import jsonify
 from flask_socketio import emit
 from pylti.flask import lti
@@ -40,8 +40,11 @@ class UserInfoForm(Form):
 @app.route('/api/snow-qm-task/')
 @app.route('/api/snow-qm-task/<collection_id>/<task_id>')
 def render_snow_qm_task(collection_id=None,task_id=None):
+
     question = get_snow_qm_task(collection_id, task_id)
-    return question.render_html()
+    response = make_response(question.render_html())
+    response.mimetype = 'text/html'
+    return response
 
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
