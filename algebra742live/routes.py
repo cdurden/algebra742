@@ -2,7 +2,7 @@ from flask import current_app as app
 from flask import render_template, request, redirect, url_for, send_file, make_response
 from flask import jsonify
 from flask_socketio import emit
-from pylti.flask import lti
+#from pylti.flask import lti
 import models
 from .models import db, User, RequestDenied
 from .models.Question import get_question_from_digraph_node, get_snow_qm_task
@@ -15,6 +15,13 @@ from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 import json
 from .models.util import params_hash_lookup, graphics_path
+
+def lti(func):
+    """Make sure user is logged in before proceeding"""
+    @functools.wraps(func)
+    def wrapper_lti_dummy(*args, **kwargs):
+        return func(*args, lti=None, **kwargs)
+    return wrapper_lti_dummy
 
 def error(exception=None):
     """ render error page
