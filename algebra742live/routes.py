@@ -1,4 +1,5 @@
 from flask import current_app as app
+import functools
 from flask import render_template, request, redirect, url_for, send_file, make_response
 from flask import jsonify
 from flask_socketio import emit
