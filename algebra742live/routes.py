@@ -94,7 +94,7 @@ def get_snow_qm_task_data(data, lti=lti):
     question = get_snow_qm_task(data['collection'], data['task'])
     data['html'] = question.render_html()
     data['question_id'] = question.id
-    emit('question_data', data, broadcast=True)
+    emit('snow_qm_task_data', data, broadcast=True)
 
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
