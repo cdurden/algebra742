@@ -1,10 +1,9 @@
+{% extends "layout.html" %}
 {% from "macros.html" import snow_qm_task %}.
-<html>
-    <head>
-        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js'></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-
+<!doctype html>
+        {% block head %}
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        {{ super() }}
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -37,7 +36,7 @@
 socket.on('question_data', update_question_data);
 socket.on('snow_qm_task_data', update_snow_qm_task_data);
   </script>
-    </head>
+        {% endblock %}
         {% block content %}
 		<div class="reveal">
 			<div class="slides">
