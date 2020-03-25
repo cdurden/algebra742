@@ -5,7 +5,7 @@ from flask_socketio import emit
 from pylti.flask import lti
 import models
 from .models import db, User, RequestDenied
-from .models.Question import get_question_from_digraph_node
+from .models.Question import get_question_from_digraph_node, get_snow_qm_task
 from .models.Game import GameClasses
 from .models.Work import Work
 from .models import get_or_create
@@ -37,6 +37,10 @@ class UserInfoForm(Form):
 #@app.route('/reveal/', methods=['GET', 'POST'])
 #def reveal():
 #    return render_template("reveal.html")
+@app.route('/api/snow-qm-task/<collection_id>/<task_id>')
+def render_snow_qm_task(collection_id=None,task_id=None):
+    question = get_snow_qm_task(collection_id, task_id)
+    return question.render_html()
 
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)

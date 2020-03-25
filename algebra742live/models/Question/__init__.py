@@ -129,15 +129,27 @@ class AlbusDrawingForm(Form):
 class MultiPartAnswerForm(Form):
     pass
 
+#def get_question_from_digraph_node(graph, node):
+#    questions_digraph = read_dot(os.path.join(app.config["QUESTION_DIGRAPHS_DIR"],graph+'.dot'))
+#    node_data = questions_digraph.nodes[node]
+#    for k,v in node_data.items():
+#        old_val = node_data.pop(k)
+#        new_val = process_quotes_for_json(old_val.strip("\"")).strip("\"")
+#        node_data[k.strip("\"")] = new_val
+#    question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'], source="question_digraph:{:s}:{:s}".format(graph,node))
+#    return(question)
 def get_question_from_digraph_node(graph, node):
     questions_digraph = read_dot(os.path.join(app.config["QUESTION_DIGRAPHS_DIR"],graph+'.dot'))
     node_data = questions_digraph.nodes[node]
-    for k,v in node_data.items():
-        old_val = node_data.pop(k)
-        new_val = process_quotes_for_json(old_val.strip("\"")).strip("\"")
-        node_data[k.strip("\"")] = new_val
-    question = get_or_create(db.session, QuestionClasses[node_data['class']], params_json=node_data['params'], source="question_digraph:{:s}:{:s}".format(graph,node))
-    return(question)
+    return get_snow_qm_task(node_data["collection"],node_data["task"])
+
+def get_snow_qm_task(collection_id, task_id):
+    with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection_id+'.json')) as f:
+        data = json.load(f)
+    task_data = data[task_id]
+    task_json = json.dumps(task_data)
+    task = get_or_create(db.session, QuestionClasses[task_data['class']], params_json=task_json, source="snow-qm:{:s}:{:s}".format(collection_id,task_id))
+    return(task)
 
 def questions_digraph_factory(graph):
     questions_digraph = read_dot(os.path.join(app.config["QUESTION_DIGRAPHS_DIR"],graph+'.dot'))
