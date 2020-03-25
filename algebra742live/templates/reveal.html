@@ -55,6 +55,7 @@ socket.on('question_data', update_question_data);
 			Reveal.initialize({
 				dependencies: [
                     {% block reveal_dependencies %}
+                    { src: '/static/js/reveal.js-plugins/anything/anything.js' },
 					{ src: '/static/js/reveal.js/plugin/markdown/marked.js' },
 					{ src: '/static/js/reveal.js/plugin/markdown/markdown.js' },
 					{ src: '/static/js/reveal.js/plugin/highlight/highlight.js' },
@@ -63,6 +64,23 @@ socket.on('question_data', update_question_data);
 				],
                 {% block reveal_options %}
 				hash: true,
+            	anything: [ 
+                    {
+                      className: "digraph_question", 
+                      initialize: (function(container, options){ 
+                          // use setInterval to send the emit message, and then clearInterval once the response is received
+                          socket.emit('get_question_data', { graph: options.graph, node: options.node });
+                        }) 
+                    },
+                    {
+                      className: "snow-qm-task", 
+                      initialize: (function(container, options){ 
+                          // use setInterval to send the emit message, and then clearInterval once the response is received
+                          socket.emit('get_snow_qm_task', { graph: options.graph, node: options.node });
+                        }) 
+                    },
+                ],
+
                 {% endblock %}
 			});
             {% endblock %}

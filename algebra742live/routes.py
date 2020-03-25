@@ -86,6 +86,15 @@ def render_snow_qm_task(collection_id=None,task_id=None):
     response.mimetype = 'text/html'
     return response
 
+@socketio.on('get_question_data')
+def get_snow_qm_task(data, lti=lti):
+    print('getting snow qm task data')
+    print(data)
+    question = get_snow_qm_task(data['collection'], data['task'])
+    data['html'] = question.render_html()
+    data['question_id'] = question.id
+    emit('question_data', data, broadcast=True)
+
 @app.route('/algebra742live_lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
 def algebra742live_lti(lti=lti):
