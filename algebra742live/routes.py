@@ -37,6 +37,7 @@ class UserInfoForm(Form):
 #@app.route('/reveal/', methods=['GET', 'POST'])
 #def reveal():
 #    return render_template("reveal.html")
+@app.route('/api/snow-qm-task/')
 @app.route('/api/snow-qm-task/<collection_id>/<task_id>')
 def render_snow_qm_task(collection_id=None,task_id=None):
     question = get_snow_qm_task(collection_id, task_id)

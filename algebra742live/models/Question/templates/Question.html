@@ -10,8 +10,8 @@ function get_question_container() {
 <div id="question_{{ question.id }}">
 {% block body %}
 {{ params.Question }}
-{% from form.macros_template import content with context %}
-{{ content() }}
+{% from form.macros_template import content without context %}
+{{ content(question, form, params) }}
 {% endblock %}
 </div>
 {% endblock %}
