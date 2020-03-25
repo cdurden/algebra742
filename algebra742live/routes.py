@@ -3,7 +3,7 @@ from functools import wraps
 from flask import render_template, request, redirect, url_for, send_file, make_response
 from flask import jsonify
 from flask_socketio import emit
-#from pylti.flask import lti
+from pylti.flask import lti
 import models
 from .models import db, User, RequestDenied
 from .models.Question import get_question_from_digraph_node, get_snow_qm_task
@@ -16,45 +16,45 @@ from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 import json
 from .models.util import params_hash_lookup, graphics_path
-def lti(app=None, request='any', error=None, role='any',
-        *lti_args, **lti_kwargs):
-    """
-    LTI decorator
-    :param: app - Flask App object (optional).
-        :py:attr:`flask.current_app` is used if no object is passed in.
-    :param: error - Callback if LTI throws exception (optional).
-        :py:attr:`pylti.flask.default_error` is the default.
-    :param: request - Request type from
-        :py:attr:`pylti.common.LTI_REQUEST_TYPE`. (default: any)
-    :param: roles - LTI Role (default: any)
-    :return: wrapper
-    """
-
-    def _lti(function):
-        """
-        Inner LTI decorator
-        :param: function:
-        :return:
-        """
-
-        @wraps(function)
-        def wrapper(*args, **kwargs):
-            kwargs['lti'] = None 
-            return function(*args, **kwargs)
-
-        return wrapper
-
-    lti_kwargs['request'] = request
-    lti_kwargs['error'] = error
-    lti_kwargs['role'] = role
-
-    if (not app) or isinstance(app, Flask):
-        lti_kwargs['app'] = app
-        return _lti
-    else:
-        # We are wrapping without arguments
-        lti_kwargs['app'] = None
-        return _lti(app)
+#def lti(app=None, request='any', error=None, role='any',
+#        *lti_args, **lti_kwargs):
+#    """
+#    LTI decorator
+#    :param: app - Flask App object (optional).
+#        :py:attr:`flask.current_app` is used if no object is passed in.
+#    :param: error - Callback if LTI throws exception (optional).
+#        :py:attr:`pylti.flask.default_error` is the default.
+#    :param: request - Request type from
+#        :py:attr:`pylti.common.LTI_REQUEST_TYPE`. (default: any)
+#    :param: roles - LTI Role (default: any)
+#    :return: wrapper
+#    """
+#
+#    def _lti(function):
+#        """
+#        Inner LTI decorator
+#        :param: function:
+#        :return:
+#        """
+#
+#        @wraps(function)
+#        def wrapper(*args, **kwargs):
+#            kwargs['lti'] = None 
+#            return function(*args, **kwargs)
+#
+#        return wrapper
+#
+#    lti_kwargs['request'] = request
+#    lti_kwargs['error'] = error
+#    lti_kwargs['role'] = role
+#
+#    if (not app) or isinstance(app, Flask):
+#        lti_kwargs['app'] = app
+#        return _lti
+#    else:
+#        # We are wrapping without arguments
+#        lti_kwargs['app'] = None
+#        return _lti(app)
 
 def error(exception=None):
     """ render error page
