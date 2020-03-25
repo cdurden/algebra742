@@ -1,6 +1,7 @@
-{% extends "layout.html" %}
+<!doctype html>
+<html>
+  <head>
 {% from "macros.html" import snow_qm_task %}.
-{% block head %}
     <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/algebra742live.css') }}">
     <title>{% block title %}{% endblock %} - Algebra742Live</title>
@@ -77,8 +78,8 @@
 socket.on('question_data', update_question_data);
 socket.on('snow_qm_task_data', update_snow_qm_task_data);
   </script>
-  {% endblock %}
-        {% block content %}
+  </head>
+    <body>
 		<div class="reveal">
 			<div class="slides">
                 {% block slides %}
@@ -128,5 +129,12 @@ socket.on('snow_qm_task_data', update_snow_qm_task_data);
 			});
             {% endblock %}
 		</script>
-        {% endblock %}
-  <script type="text/javascript" src="/static/js/games/reveal_game.js"></script>
+<!--
+    <div id="footer">
+      {% block footer %}
+      &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
+      {% endblock %}
+    </div>
+-->
+  </body>
+</html>
