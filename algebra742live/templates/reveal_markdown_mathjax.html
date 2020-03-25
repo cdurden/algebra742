@@ -34,17 +34,6 @@ Reveal.initialize({
 		//src: "chalkboard.json",
         readOnly: false,
 	},
-	anything: [ 
-        {
-          className: "question", 
-          initialize: (function(container, options){ 
-              // use setInterval to send the emit message, and then clearInterval once the response is received
-              socket.emit('get_question_data', { graph: options.graph, node: options.node });
-              //setting the id of the question div is now handled by the template macro
-              //container.id = "question_"+options.graph+"_"+options.node;
-            }) 
-        },
-    ],
   broadcast: {
     secret: '$2a$05$hhgakVn1DWBfgfSwMihABeYToIBEiQGJ.ONa.HWEiNGNI6mxFCy8S', 
     // Configure RTCMultiConnection
@@ -61,7 +50,6 @@ Reveal.initialize({
 		// ...
 		//{ src: '/static/js/reveal.js-plugins/chalkboard/chalkboard.js' },
 		//{ src: '/static/js/chalkboard/chalkboard.js' },
-        { src: '/static/js/reveal.js-plugins/anything/anything.js' },
         { src: '/static/js/reveal.js/plugin/math/math.js', async: true },
         { src: '/static/js/reveal_countdown/countdown.js' },
         { src: '/static/js/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
