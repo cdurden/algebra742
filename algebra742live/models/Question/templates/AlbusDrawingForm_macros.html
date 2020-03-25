@@ -1,5 +1,5 @@
 {% from "macros.html" import question_container_selector without context%}
-{% macro content() %}
+{% macro content(question, form, params) %}
   <link rel="stylesheet" href="/albus/styles/style.css">
   <!-- <link rel="stylesheet" href="/dist/style.min.css"> -->
   <div ng-app="app" id="ng-app">
