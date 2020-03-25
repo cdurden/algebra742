@@ -78,7 +78,7 @@ function update_question_data(data) {
 }
 function update_snow_qm_task_data(data) {
   //container = document.getElementById('snow-qm_'+data.graph+"_"+data.task);
-  container = $('div.question[source="snow-qm:'+data.collection+":"+data.task+'"]');
+  container = $('div.snow-qm-task[source="snow-qm:'+data.collection+":"+data.task+'"]');
   console.log(data);
   console.log(container);
   $(container).find('span[class="question_view"]').html(data.html); 
