@@ -159,12 +159,7 @@ api.add_resource("/users/", UserListView, UserView)
 @lti(request='session', error=error)
 def slides(template,lti=lti):
     """Serve the index HTML"""
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    if user:
-        return render_template(template)
-    else:
-        form = UserInfoForm()
-        return render_template('GetUserInfo.html', lti=lti, form=form)
+    return render_template(template)
 
 @app.route('/')
 @lti(request='session', error=error)
