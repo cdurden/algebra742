@@ -5,6 +5,36 @@
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js'></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        {{ super() }}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="/static/js/reveal.js/css/reset.css">
+		<link rel="stylesheet" href="/static/js/reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="/static/js/reveal.js/css/theme/white.css">
+        <link rel="stylesheet" href="/static/js/literallycanvas-0.4.14/css/literallycanvas.css">
+        <link rel="stylesheet" href="/static/css/algebra742live.css">
+        <script src="https://kit.fontawesome.com/4cc21f3326.js" crossorigin="anonymous"></script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '/static/js/reveal.js/css/print/pdf.css' : '/static/js/reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+            if (window.location.search.match( /print-pdf/gi )) {
+              $('.do_not_print').remove();
+            }
+		</script>
+  <script src="/static/js/games/reveal_game.js"></script>
+  <script>
+    var durden_broadcastid = "asdfjvahsduhqw68";
+    var ridpath_broadcastid = "asdfjvahsduhqw67";
+  </script>
   <script>
 socket.on('question_data', update_question_data);
 socket.on('snow_qm_task_data', update_snow_qm_task_data);
