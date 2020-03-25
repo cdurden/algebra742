@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+<!doctype html>
+        {% block head %}
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        {{ super() }}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="/static/js/reveal.js/css/reset.css">
+		<link rel="stylesheet" href="/static/js/reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="/static/js/reveal.js/css/theme/white.css">
+        <link rel="stylesheet" href="/static/js/literallycanvas-0.4.14/css/literallycanvas.css">
+        <link rel="stylesheet" href="/static/css/algebra742live.css">
+        <script src="https://kit.fontawesome.com/4cc21f3326.js" crossorigin="anonymous"></script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '/static/js/reveal.js/css/print/pdf.css' : '/static/js/reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+            if (window.location.search.match( /print-pdf/gi )) {
+              $('.do_not_print').remove();
+            }
+		</script>
+  <script src="/static/js/games/reveal_game.js"></script>
+  <script>
+    var durden_broadcastid = "asdfjvahsduhqw68";
+    var ridpath_broadcastid = "asdfjvahsduhqw67";
+  </script>
+  <script>
+socket.on('question_data', update_question_data);
+socket.on('snow_qm_task_data', update_snow_qm_task_data);
+  </script>
+        {% endblock %}
+        {% block content %}
+		<div class="reveal">
+			<div class="slides">
+                {% block slides %}
+				<section>{{ snow_qm_task('inequalities', 'q20') }}</section>
+                {% endblock %}
+			</div>
+		</div>
+
+		<script src="/static/js/reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+            {% block reveal_init %}
+			Reveal.initialize({
+				dependencies: [
+                    {% block reveal_dependencies %}
+                    { src: '/static/js/reveal.js-plugins/anything/anything.js' },
+					{ src: '/static/js/reveal.js/plugin/markdown/marked.js' },
+					{ src: '/static/js/reveal.js/plugin/markdown/markdown.js' },
+					{ src: '/static/js/reveal.js/plugin/highlight/highlight.js' },
+					{ src: '/static/js/reveal.js/plugin/notes/notes.js', async: true },
+                    {% endblock %}
+				],
+                {% block reveal_options %}
+				hash: true,
+            	anything: [ 
+                    {
+                      className: "digraph_question", 
+                      initialize: (function(container, options){ 
+                          // use setInterval to send the emit message, and then clearInterval once the response is received
+                          socket.emit('get_question_data', { graph: options.graph, node: options.node });
+                        }) 
+                    },
+                    {
+                      className: "snow-qm-task", 
+                      initialize: (function(container, options){ 
+                          // use setInterval to send the emit message, and then clearInterval once the response is received
+                          console.log("getting snow-qm task");
+                          socket.emit('get_snow_qm_task', { collection: options.collection, task: options.task });
+                        }) 
+                    },
+                ],
+
+                {% endblock %}
+			});
+            {% endblock %}
+		</script>
+        {% endblock %}
+  <script type="text/javascript" src="/static/js/games/reveal_game.js"></script>
