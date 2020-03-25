@@ -86,7 +86,7 @@ def render_snow_qm_task(collection_id=None,task_id=None):
     response.mimetype = 'text/html'
     return response
 
-@socketio.on('get-snow-qm-task')
+@socketio.on('get_snow_qm_task')
 @lti(request='session', error=error)
 def get_snow_qm_task(data, lti=lti):
     print('getting snow qm task data')
