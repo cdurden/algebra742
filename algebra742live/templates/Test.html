@@ -1,7 +1,50 @@
 {% extends "layout.html" %}
 {% from "macros.html" import snow_qm_task %}.
 <!doctype html>
-        {% block head %}
+  <head>
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/algebra742live.css') }}">
+    <title>{% block title %}{% endblock %} - Algebra742Live</title>
+    <script type="text/javascript" src="/static/js/algebra742live.js"></script>
+    <script type="text/javascript" src="/static/js/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--the following script uses jquery to set up form submission via socket-->
+    <script type="text/javascript" src="/static/js/socket.io.wtforms.js"></script>
+    <script>
+      var socket = io.connect('https://' + document.domain + ':' + location.port);
+      socket.on('connect', function() {
+          console.log('Websocket connected!');
+      });
+      socket.on('reset_game', function(data) {
+          console.log(data);
+          reset_game(data)
+      });
+      socket.on('output', function(data) {
+          console.log(data);
+          output(data)
+      });
+      socket.on('update_game', function(data) {
+          console.log(data);
+          update_game(data)
+      });
+/*
+      document.onreadystatechange = function() {
+          if (document.readyState == "complete") {
+              function showMessage(message) {
+                  var i = document.createElement('li');
+                  i.textContent = message;
+                  document.getElementById('messages').appendChild(i);
+              }
+              if (!window.WebSocket) {
+                  if (window.MozWebSocket) {
+                      window.WebSocket = window.MozWebSocket;
+                  } else {
+                      showMessage("Your browser doesn't support WebSockets") 
+                  }
+              }
+          }
+      }
+*/
+    </script>
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         {{ super() }}
 		<meta charset="utf-8">
@@ -36,7 +79,7 @@
 socket.on('question_data', update_question_data);
 socket.on('snow_qm_task_data', update_snow_qm_task_data);
   </script>
-        {% endblock %}
+  </head>
         {% block content %}
 		<div class="reveal">
 			<div class="slides">
