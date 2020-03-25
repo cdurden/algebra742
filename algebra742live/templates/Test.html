@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% from "macros.html" import snow_qm_task %}.
-  <head>
+{% block head %}
     <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/algebra742live.css') }}">
     <title>{% block title %}{% endblock %} - Algebra742Live</title>
@@ -78,7 +78,7 @@
 socket.on('question_data', update_question_data);
 socket.on('snow_qm_task_data', update_snow_qm_task_data);
   </script>
-  </head>
+  {% endblock %}
         {% block content %}
 		<div class="reveal">
 			<div class="slides">
