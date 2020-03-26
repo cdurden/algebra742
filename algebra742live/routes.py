@@ -97,7 +97,7 @@ def get_snow_qm_task_data(data, lti=lti):
     print('sending snow qm task data')
     emit('snow_qm_task_data', data, broadcast=True)
 
-@app.route('/algebra742live_lti/', methods=['GET', 'POST'])
+@app.route('/lti/', methods=['GET', 'POST'])
 @lti(request='initial', error=error)
 def algebra742live_lti(lti=lti):
     """ initial access page to the lti provider.
@@ -106,13 +106,13 @@ def algebra742live_lti(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
-    print("starting lti auth")
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
-        return(redirect(url_for('algebra742live')))
-        #return render_template(ROOMS[0].template)
-        #return render_template('index.html', user=user)
+        try:
+            return(redirect(request.args['redirect']))
+        except:
+            return(redirect(url_for('algebra742live')))
     else:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
