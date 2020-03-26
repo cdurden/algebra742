@@ -114,7 +114,7 @@ class AnswerForm(Form):
 class TableForm(Form):
     entries = FieldList(StringField('entry'))
 
-class WrittenResponseForm(Form):
+class WrittenResponseForm(AnswerForm):
     answer = TextAreaField('answer')
 
 class DrawingForm(Form):
