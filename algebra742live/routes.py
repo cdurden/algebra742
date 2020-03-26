@@ -112,7 +112,7 @@ def algebra742live_lti(lti=lti):
         try:
             return(redirect(request.args['redirect']))
         except:
-            return(redirect(url_for('algebra742live')))
+            return(redirect("/static/teaching_assets/md/md/#schedule"))
     else:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
