@@ -112,8 +112,8 @@ def algebra742live_lti(lti=lti):
         try:
             return(redirect(request.args['redirect']))
         except:
-            return make_response('<meta http-equiv="Refresh" content="5; url="/static/teaching_assets/md/#schedule" />')
-            #return(redirect("/static/teaching_assets/md/#schedule"))
+            #return make_response('<meta http-equiv="Refresh" content="5; url="/static/teaching_assets/md/#schedule" />')
+            return(redirect("/static/teaching_assets/md/#schedule"))
     else:
         form = UserInfoForm()
         return render_template('GetUserInfo.html', lti=lti, form=form)
