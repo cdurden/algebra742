@@ -5,7 +5,7 @@ import jinja2
 import json
 import os
 #from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, FieldList
+from wtforms import StringField, TextAreaField, FieldList, RadioField
 from wtforms import FormField as FormField_
 from wtforms import Form as Form_
 from wtforms.utils import unset_value
@@ -108,8 +108,10 @@ class Form(Form_,TemplateBased):
 
 class AnswerForm(Form):
     answer = StringField('answer')
-#    def __init__(self, **kwargs):
-#        super().__init__(self, **kwargs)
+
+class MultipleChoiceAnswerForm(Form):
+    answer = RadioField('answer')
+
 
 class TableForm(Form):
     entries = FieldList(StringField('entry'))
@@ -240,6 +242,28 @@ class Question(db.Model, TemplateBased):
         statement = question_scores.insert().values(user_id=user.id, question_id=self.id, answer=json.dumps(self.form.data), score=score)
         db.session.execute(statement)
         db.session.commit()
+
+class MultipleChoiceQuestion(Question):
+    form_class = MultipleChoiceAnswerForm
+    form = None
+    def build_form(self, formdata=None):
+        params = self.params()
+        form.options.choices = range(len(params['choices'])) 
+        Question.build_form(self, formdata)
+        while len(self.form.entries) < len(self.missing_entries):
+            self.form.entries.append_entry()
+        return(self.form)
+
+    def check_answer(self):
+        self.marked_correct = set()
+        self.marked_incorrect = set()
+        params = self.params()
+        if self.form.answer.data==params['answer']:
+            self.marked_correct.add('answer')
+            return True
+        else:
+            self.marked_incorrect.add('answer')
+            return False
 
 class CompleteTableQuestion(Question):
     form_class = TableForm
