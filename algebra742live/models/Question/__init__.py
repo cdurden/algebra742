@@ -1,4 +1,4 @@
-from flask import current_app as app
+
 from datetime import datetime
 from .. import db
 import jinja2
@@ -300,11 +300,15 @@ class CompleteTableDraggableQuestion(CompleteTableQuestion):
     pass
 
 class DrawingQuestion(Question):
+    form_class = DrawingForm
+    form = None
+    def build_form(self, formdata=None):
+        Question.build_form(self, formdata)
+        return(self.form)
+
+class AlbusDrawingQuestion(Question):
     form_class = AlbusDrawingForm
     form = None
-#    def render_html(self, **kwargs):
-#        params = self.params()
-#        return Question.render_html(self, background_image_url=params['background_image_url'], **kwargs)
     def build_form(self, formdata=None):
         Question.build_form(self, formdata)
         return(self.form)
