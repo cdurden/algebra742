@@ -11,40 +11,12 @@
 
 <!-- replace window.LC with core build version -->
 <script src="/static/js/literallycanvas-0.4.14/js/literallycanvas-core.js"></script>
+<!--
 <script src="/static/js/ResizeSensor.js"></script>
-<!--<link rel="stylesheet" href="/static/css/literallycanvas.css">-->
+<link rel="stylesheet" href="/static/css/literallycanvas.css">-->
 <link rel="stylesheet" href="/static/js/literallycanvas-0.4.14/css/literallycanvas.css">
 
 <script>
-LC.util.matchElementSize = function(elementToMatch, elementsToResize, scale, callback) {
-    var resize;
-    if (scale == null) {
-      scale = LC.util.getBackingScale();
-    }
-    if (callback == null) {
-      callback = function() {};
-    }
-    resize = (function(_this) {
-      return function() {
-        var el, i, len;
-        for (i = 0, len = elementsToResize.length; i < len; i++) {
-          el = elementsToResize[i];
-          el.style.width = elementToMatch.offsetWidth + "px";
-          el.style.height = elementToMatch.offsetHeight + "px";
-          if (el.width != null) {
-            el.setAttribute('width', el.getBoundingClientRect().width * scale);
-            el.setAttribute('height', el.getBoundingClientRect().height * scale);
-          }
-        }
-        return callback();
-      };
-    })(this);
-    elementToMatch.addEventListener('resize', resize);
-    window.addEventListener('resize', resize);
-    window.addEventListener('orientationchange', resize);
-    resize();
-    return resize;
-}
 $(document).ready(function(){
     let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
     $('{{- question_container_selector(question) -}}').find('.literally').each(function () {
