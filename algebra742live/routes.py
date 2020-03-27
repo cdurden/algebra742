@@ -287,6 +287,9 @@ def question_input(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
     print(data)
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if user is None:
+        raise RequestDenied
     question_id = data['question_id']
     question_class = data['question_class']
     question = get_question(question_class, question_id)
@@ -301,7 +304,7 @@ def question_input(data, lti=lti):
     else:
         print("answer is incorrect")
         output({'correct': False, 'message': None, 'question': question.to_json()})
-    question.record_answer(player.user, question.score_answer())
+    question.record_answer(user, question.score_answer())
 
 #@socketio.on('form_submit')
 #@lti(request='session', error=error)
