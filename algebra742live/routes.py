@@ -280,9 +280,9 @@ def update_game():
     print("updating game")
     emit('update_game', ROOMS[0].to_json(), broadcast=True)
 
-@socketio.on('input')
+@socketio.on('form_submit')
 @lti(request='session', error=error)
-def form_submit(data, lti=lti):
+def question_input(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
     print(data)
@@ -299,17 +299,17 @@ def form_submit(data, lti=lti):
         output({'correct': False, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
     question.record_answer(player.user, question.score_answer())
 
-@socketio.on('form_submit')
-@lti(request='session', error=error)
-def form_submit(data, lti=lti):
-    print("receiving input")
-    """submit response and rebroadcast game object"""
-    print(data)
-    player = ROOMS[0].get_player(request.sid)
-    try:
-        ROOMS[0].input(player, data, output)
-    except RequestDenied as err:
-        print(err.message) 
+#@socketio.on('form_submit')
+#@lti(request='session', error=error)
+#def form_submit(data, lti=lti):
+#    print("receiving input")
+#    """submit response and rebroadcast game object"""
+#    print(data)
+#    player = ROOMS[0].get_player(request.sid)
+#    try:
+#        ROOMS[0].input(player, data, output)
+#    except RequestDenied as err:
+#        print(err.message) 
 
 def reset_game():
     print("reseting game")
