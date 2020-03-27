@@ -243,6 +243,8 @@ class Question(db.Model, TemplateBased):
             'submitted': list(self.submitted),
             'marked_correct': list(self.marked_correct),
             'marked_incorrect': list(self.marked_incorrect),
+            'id': self.id,
+            'class': self.__class__.__name__
             })
 
     def score_answer(self):
