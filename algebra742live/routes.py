@@ -250,17 +250,17 @@ def disconnect(lti=lti):
         ROOMS[0].remove_player(player)
         reset_game()
 
-@socketio.on('input')
-@lti(request='session', error=error)
-def input(data, lti=lti):
-    print("receiving input")
-    """submit response and rebroadcast game object"""
-    response = data['response']
-    player = ROOMS[0].get_player(request.sid)
-    try:
-        ROOMS[0].input(player, response, update_game)
-    except RequestDenied as err:
-        print(err.message) 
+#@socketio.on('input')
+#@lti(request='session', error=error)
+#def input(data, lti=lti):
+#    print("receiving input")
+#    """submit response and rebroadcast game object"""
+#    response = data['response']
+#    player = ROOMS[0].get_player(request.sid)
+#    try:
+#        ROOMS[0].input(player, response, update_game)
+#    except RequestDenied as err:
+#        print(err.message) 
 
 @socketio.on('get_question_data')
 @lti(request='session', error=error)
@@ -279,6 +279,25 @@ def output(data):
 def update_game():
     print("updating game")
     emit('update_game', ROOMS[0].to_json(), broadcast=True)
+
+@socketio.on('input')
+@lti(request='session', error=error)
+def form_submit(data, lti=lti):
+    print("receiving input")
+    """submit response and rebroadcast game object"""
+    print(data)
+    question_id = data[question_id]
+    question_class = data[question_class]
+    question = get_or_create(db.session, QuestionClasses[question_class], id=question_id)
+    question.build_form(ImmutableMultiDict(data))
+    print(question.form)
+    if question.check_answer():
+        print("answer is correct")
+        output({'correct': True, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
+    else:
+        print("answer is incorrect")
+        output({'correct': False, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
+    question.record_answer(player.user, question.score_answer())
 
 @socketio.on('form_submit')
 @lti(request='session', error=error)

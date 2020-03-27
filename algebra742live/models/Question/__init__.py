@@ -5,7 +5,7 @@ import jinja2
 import json
 import os
 #from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, FieldList, RadioField
+from wtforms import StringField, TextAreaField, FieldList, RadioField, HiddenField
 from wtforms import FormField as FormField_
 from wtforms import Form as Form_
 from wtforms.utils import unset_value
@@ -79,6 +79,9 @@ class FormField(FormField_,TemplateBased):
 #        return(self.macros_template)
 
 class Form(Form_,TemplateBased):
+    question_id = HiddenField('question_id')
+    question_class = HiddenField('question_class')
+
     jinja_env = None
     def render_html(self, **kwargs):
         import inspect
@@ -178,6 +181,8 @@ class Question(db.Model, TemplateBased):
     def build_form(self, formdata=None):
         print(formdata)
         self.form = self.form_class(MultiDict(formdata))
+        self.form.question_id.data = self.id
+        self.form.question_class.data = self.__class__.__name__
         #self.form.traverse_templates()
         #self.form.traverse_macros_templates()
         self.form.traverse_templates()
