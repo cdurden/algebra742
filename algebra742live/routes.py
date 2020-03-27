@@ -286,8 +286,8 @@ def question_input(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
     print(data)
-    question_id = data[question_id]
-    question_class = data[question_class]
+    question_id = data['question_id']
+    question_class = data['question_class']
     question = get_or_create(db.session, QuestionClasses[question_class], id=question_id)
     question.build_form(ImmutableMultiDict(data))
     print(question.form)
