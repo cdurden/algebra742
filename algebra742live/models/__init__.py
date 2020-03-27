@@ -11,6 +11,14 @@ class RequestDenied(Exception):
     def __init__(self, message):
         self.message = message
 
+def get(session, model, defaults=None, **kwargs):
+    from sqlalchemy.sql.expression import ClauseElement
+    instance = session.query(model).filter_by(**kwargs).first()
+    if instance:
+        return instance
+    else:
+        return None 
+
 def get_or_create(session, model, defaults=None, **kwargs):
     from sqlalchemy.sql.expression import ClauseElement
     instance = session.query(model).filter_by(**kwargs).first()

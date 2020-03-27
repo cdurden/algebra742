@@ -12,7 +12,7 @@ from wtforms.utils import unset_value
 
 from flask import url_for
 from jinja2.exceptions import TemplateNotFound
-from .. import SinglyLinkedList, get_or_create
+from .. import SinglyLinkedList, get_or_create, get
 from werkzeug.datastructures import MultiDict, ImmutableMultiDict
 import inspect
 
@@ -134,6 +134,9 @@ class AlbusDrawingForm(Form):
 class MultiPartAnswerForm(Form):
     pass
 
+def get_question(question_class, question_id):
+    question = get(db.session, QuestionClasses[question_class], id=question_id)
+    return(question)
 #def get_question_from_digraph_node(graph, node):
 #    questions_digraph = read_dot(os.path.join(app.config["QUESTION_DIGRAPHS_DIR"],graph+'.dot'))
 #    node_data = questions_digraph.nodes[node]

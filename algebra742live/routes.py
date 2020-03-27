@@ -6,7 +6,7 @@ from flask_socketio import emit
 from pylti.flask import lti
 import models
 from .models import db, User, RequestDenied
-from .models.Question import get_question_from_digraph_node, get_snow_qm_task
+from .models.Question import get_question_from_digraph_node, get_snow_qm_task, get_question
 from .models.Game import GameClasses
 from .models.Work import Work
 from .models import get_or_create
@@ -288,7 +288,10 @@ def question_input(data, lti=lti):
     print(data)
     question_id = data['question_id']
     question_class = data['question_class']
-    question = get_or_create(db.session, QuestionClasses[question_class], id=question_id)
+    question = get_question(question_class, question_id)
+    if question is None:
+        raise RequestDenied
+    #question = get_or_create(db.session, QuestionClasses[question_class], id=question_id)
     question.build_form(ImmutableMultiDict(data))
     print(question.form)
     if question.check_answer():
