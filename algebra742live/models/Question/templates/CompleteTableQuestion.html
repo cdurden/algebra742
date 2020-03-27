@@ -1,5 +1,7 @@
 {% extends "Question.html" %}
 {% block body %}
+{% from form.macros_template import content with context %}
+{{ content(question, form, params) }}
 <table>
     <tbody>
 {% if params.transpose_display %}
