@@ -515,7 +515,7 @@ class OpenEndedQuestion(Question):
     form = None
 
     def check_answer(self):
-        self.marked_correct = set('answer')
+        self.submitted = set(['answer'])
         return(True)
 
 QuestionClasses = {
