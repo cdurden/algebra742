@@ -388,7 +388,7 @@ class MultiPartQuestion(Question):
             class_name = part['class']
             module = importlib.import_module('..Question', package=__name__)
             question_class = getattr(module, class_name)
-            part['params_json'] = json.dumps(part['params'])
+            part['params_json'] = json.dumps(part)
             question = get_or_create(db.session, question_class, params_json=part['params_json'])
             self.parts.append(question)
         for i,part in enumerate(self.parts):
