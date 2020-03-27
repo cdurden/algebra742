@@ -49,7 +49,7 @@ def create_app():
         db.create_all()
         global ROOMS
         #questions = SinglyLinkedList()
-        questions_digraph = questions_digraph_factory("ch5")
+        #questions_digraph = questions_digraph_factory("ch5")
 #        questions_digraph = read_dot(os.path.join(app.config["DOT_PATH"],'task1.dot'))
 #        print(questions_digraph.graph)
 #        for node,data in questions_digraph.nodes(data=True):
