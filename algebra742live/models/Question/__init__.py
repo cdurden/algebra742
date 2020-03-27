@@ -175,6 +175,7 @@ class Question(db.Model, TemplateBased):
     params_json = db.Column(db.Text)
     form_class = AnswerForm
     form = None
+    submitted = set() 
     marked_correct = set() 
     marked_incorrect = set() 
 
@@ -239,6 +240,7 @@ class Question(db.Model, TemplateBased):
 
     def to_json(self):
         return({
+            'submitted': list(self.submitted),
             'marked_correct': list(self.marked_correct),
             'marked_incorrect': list(self.marked_incorrect),
             })

@@ -5,7 +5,7 @@ $(document).ready(function(){
     socket.emit('form_submit', data=getFormData( $(this) ));   
     e.preventDefault(); // block the traditional submission of the form.
   });
-}
+});
 </script>
 {{ form.question_id }}
 {{ form.question_class }}
