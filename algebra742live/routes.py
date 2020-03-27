@@ -297,10 +297,10 @@ def question_input(data, lti=lti):
     print(question.form)
     if question.check_answer():
         print("answer is correct")
-        output({'correct': True, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
+        output({'correct': True, 'message': None, 'question': question.to_json()})
     else:
         print("answer is incorrect")
-        output({'correct': False, 'message': None, 'graph': graph, 'node': node, 'question': question.to_json()})
+        output({'correct': False, 'message': None, 'question': question.to_json()})
     question.record_answer(player.user, question.score_answer())
 
 #@socketio.on('form_submit')
