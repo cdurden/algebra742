@@ -4,6 +4,7 @@
 from flask import Flask
 from flask_socketio import SocketIO
 from flask_redis import FlaskRedis
+from flask_bootstrap import Bootstrap
 from . import default_config
 from . import config
 from models import db
@@ -33,6 +34,7 @@ def create_app():
     app.config.from_object(config)
     app.config.from_envvar('ALGEBRA742LIVE_SETTINGS')
     app.logger.error(app.config["SQLALCHEMY_DATABASE_URI"])
+    Bootstrap(app)
 
     # Initialize Plugins
     db.init_app(app)
