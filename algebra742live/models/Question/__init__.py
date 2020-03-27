@@ -517,17 +517,17 @@ class OpenEndedQuestion(Question):
         return(True)
 
 QuestionClasses = {
-    'Question.CompleteTableQuestion': CompleteTableQuestion,
-    'Question.CompleteTableDraggableQuestion': CompleteTableDraggableQuestion,
-    'Question.OpenEndedQuestion': OpenEndedQuestion,
-    'Question.SolutionQuestion': SolutionQuestion,
-    'Question.NonSolutionQuestion': NonSolutionQuestion,
-    'Question.MultiPartQuestion': MultiPartQuestion,
-    'Question.QuestionOnePlusOne': QuestionOnePlusOne,
-    'Question.DrawingQuestion': DrawingQuestion,
-    'Question.AsyGraphicsQuestion': AsyGraphicsQuestion,
-    'Question.DotGraphicsQuestion': DotGraphicsQuestion,
-    'Question.AsyGraphicsDrawingQuestion': AsyGraphicsDrawingQuestion,
+    'CompleteTableQuestion': CompleteTableQuestion,
+    'CompleteTableDraggableQuestion': CompleteTableDraggableQuestion,
+    'OpenEndedQuestion': OpenEndedQuestion,
+    'SolutionQuestion': SolutionQuestion,
+    'NonSolutionQuestion': NonSolutionQuestion,
+    'MultiPartQuestion': MultiPartQuestion,
+    'QuestionOnePlusOne': QuestionOnePlusOne,
+    'DrawingQuestion': DrawingQuestion,
+    'AsyGraphicsQuestion': AsyGraphicsQuestion,
+    'DotGraphicsQuestion': DotGraphicsQuestion,
+    'AsyGraphicsDrawingQuestion': AsyGraphicsDrawingQuestion,
 }
 
 question_scores = db.Table('question_scores',
