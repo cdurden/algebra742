@@ -11,6 +11,7 @@ from .models.Game import GameClasses
 from .models.Work import Work
 from .models import get_or_create
 from . import socketio, ROOMS
+from werkzeug.datastructures import MultiDict, ImmutableMultiDict
 
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
