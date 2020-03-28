@@ -128,13 +128,17 @@ def algebra742live_lti(lti=lti):
     print(user)
     if user:
         try:
-            return(redirect(request.args['redirect']))
+            resp = redirect(request.args['redirect'])
         except:
             #return make_response('<meta http-equiv="Refresh" content="5; url="/static/teaching_assets/md/#schedule" />')
-            return(redirect("/static/teaching_assets/md/#schedule"))
+            resp = redirect("/static/teaching_assets/md/#schedule")
     else:
         form = UserInfoForm()
-        return render_template('GetUserInfo.html', lti=lti, form=form)
+        resp = render_template('GetUserInfo.html', lti=lti, form=form)
+    resp.set_cookie('same-site-cookie', 'foo', samesite='Lax');
+    # Ensure you use "add" to not overwrite existing cookie headers
+    resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
+    return resp
 
 from marshmallow import Schema, fields
 import operator
