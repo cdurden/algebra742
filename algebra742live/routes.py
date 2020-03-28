@@ -98,6 +98,8 @@ def get_snow_qm_task_data(data, lti=lti):
         results = db.session.execute(statement).first()
         formdata = json.loads(results.answer)
         question.build_form(formdata=formdata)
+    except:
+        pass
     data['html'] = question.render_html()
     data['question_id'] = question.id
     print('sending snow qm task data')
