@@ -152,8 +152,7 @@ def algebra742live_lti(lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
-        try:
-            resp = redirect("/lti/")
+        resp = redirect("/lti/")
     else:
         form = UserInfoForm()
         resp = render_template('GetUserInfo.html', lti=lti, form=form)
