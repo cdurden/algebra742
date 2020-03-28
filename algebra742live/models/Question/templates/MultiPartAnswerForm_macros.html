@@ -9,7 +9,7 @@
 Loop through the parts and render them. The rendering of each part accomplished the rendering of their forms. With a multi-part question, there is no clear way to avoid rendering parts of the question within the form.
 -->
 {% for part in question.parts %}
-{% from part.macros_template import content without context %}
-{{ content(part, part.form, part.params()) }}
+{% from part.macros_template import body without context %}
+{{ body(part, part.form, part.params()) }}
 {% endfor %}
 {% endmacro %}

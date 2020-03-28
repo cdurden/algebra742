@@ -3,3 +3,16 @@
 {% from form.macros_template import content with context %}
 {{ content(question, form, params) }}
 {% endmacro %}
+
+
+{% macro _enclosure() %}
+    <div id="question_{{ question.id }}">
+        {{ caller() }}
+    </div> 
+{% endmacro %}
+
+{% macro body(question, form, params) %}
+    {% call _enclosure() %}
+        {{ content(question, form, params) }}
+    {% endcall %}
+{% endmacro %}
