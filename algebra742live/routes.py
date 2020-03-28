@@ -298,12 +298,12 @@ def question_input(data, lti=lti):
     #question = get_or_create(db.session, QuestionClasses[question_class], id=question_id)
     question.build_form(ImmutableMultiDict(data))
     print(question.form)
-    if question.check_answer():
+    correct = question.check_answer()
+    if correct:
         print("answer is correct")
-        output({'correct': True, 'message': None, 'question': question.to_json()})
     else:
         print("answer is incorrect")
-        output({'correct': False, 'message': None, 'question': question.to_json()})
+    output({'correct': True, 'message': None, 'question': question.to_json(), 'input_data': data})
     question.record_answer(user, question.score_answer())
 
 #@socketio.on('form_submit')
