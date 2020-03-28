@@ -124,6 +124,7 @@ def lti_get(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
+    print(request.headers.get('Authorization'))
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
@@ -149,6 +150,7 @@ def lti_post(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
+    print(request.headers.get('Authorization'))
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
