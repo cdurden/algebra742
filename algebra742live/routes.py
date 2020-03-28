@@ -140,7 +140,7 @@ def lti_post(lti=lti):
     return resp
 
 @app.route('/lti2/', methods=['GET'])
-#@lti(request='session', error=error)
+@lti(request='session', error=error)
 def lti_get(lti=lti):
     """ initial access page to the lti provider.
     This page provides authorization for the user.
