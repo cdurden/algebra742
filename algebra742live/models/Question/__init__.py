@@ -414,10 +414,9 @@ class MultiPartQuestion(Question):
         print(formdata)
         self.form = self.form_class(formdata=formdata)
         self.form.traverse_templates()
-        #self.form.traverse_macros_templates()
-        #traverse_templates(self.form)
         self.form.question = self
-        self.form.validate()
+        # FIXME: this throws an error when created before submission
+        #self.form.validate()
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
             part.form.traverse_templates()
