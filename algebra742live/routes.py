@@ -96,7 +96,7 @@ def get_snow_qm_task_data(data, lti=lti):
     question = get_snow_qm_task(data['collection'], data['task'])
     try:
         user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-        statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.id=question.id)).order_by(desc('datetime'))
+        statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.id==question.id)).order_by(desc('datetime'))
         results = db.session.execute(statement).first()
         formdata = json.loads(results.answer)
         print("got form data")
