@@ -115,7 +115,7 @@ def get_snow_qm_task_data(data, lti=lti):
     print('sending snow qm task data')
     emit('snow_qm_task_data', data, broadcast=True)
 
-@app.route('/lti/', methods=['POST'])
+@app.route('/lti/', methods=['GET','POST'])
 @lti(request='initial', error=error)
 def lti_post(lti=lti):
     """ initial access page to the lti provider.
