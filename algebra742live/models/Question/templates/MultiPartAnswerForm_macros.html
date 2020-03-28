@@ -1,7 +1,9 @@
 {% macro content(question, form, params) %}
 <!-- include question_id and class for main question-->
+<!--
 {{ form.question_id }}
 {{ form.question_class }}
+-->
 
 {% for part in question.parts %}
     {% with form=subform %}
@@ -9,3 +11,4 @@
     {% endwith %}
     <!--{{ subform.render_html() }}-->
 {% endfor %}
+{% endmacro %}
