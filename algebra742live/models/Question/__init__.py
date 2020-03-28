@@ -182,9 +182,9 @@ class Question(db.Model, TemplateBased):
 #    def __init__(self, **kwargs):
 #        self.params_json = json.dumps(kwargs['params'])
 #        super().__init__(self, **kwargs)
-    def build_form(self, formdata=None):
+    def build_form(self, formdata=None, prefix=''):
         print(formdata)
-        self.form = self.form_class(MultiDict(formdata))
+        self.form = self.form_class(MultiDict(formdata),prefix=prefix)
         self.form.question_id.data = self.id
         self.form.question_class.data = self.__class__.__name__
         #self.form.traverse_templates()
@@ -258,9 +258,9 @@ class Question(db.Model, TemplateBased):
 class MultipleChoiceQuestion(Question):
     form_class = MultipleChoiceAnswerForm
     form = None
-    def build_form(self, formdata=None):
+    def build_form(self, formdata=None, prefix=''):
         params = self.params()
-        Question.build_form(self, formdata)
+        Question.build_form(self, formdata, prefix)
         self.form.answer.choices = list(zip(range(len(params['choices'])),params['choices']))
         return(self.form)
 
@@ -416,11 +416,16 @@ class MultiPartQuestion(Question):
         # FIXME: this throws an error when created before submission
         #self.form.validate()
         for i,part in enumerate(self.parts):
-            part.form = getattr(self.form, 'part_{:d}'.format(i))
+            part.build_form(formdata=formdata,prefix='part_{:d}')
+            #part.form = getattr(self.form, 'part_{:d}'.format(i))
+            # thought about doing some updating of the big form based on subforms
+            #destination.__dict__.update(source.__dict__)
+            #for (attr in part.form.__dict__) {
+            #    if(isinstance(part.form.__dict__[attr],Field)) {
+            #        self.form.__dict__[attr] = 
+            #    }
+            #}
             #part.form.traverse_templates()
-            part.build_form()
-            #part.form.traverse_macros_templates()
-            #traverse_templates(part.form)
             print(part.form.data)
         return(self.form)
 
