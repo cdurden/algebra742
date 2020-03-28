@@ -125,6 +125,7 @@ def lti_post(lti=lti):
     :return: index page for lti provider
     """
     print(request.headers.get('Authorization'))
+    print(request.session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
@@ -147,6 +148,7 @@ def lti_get(lti=lti):
     :return: index page for lti provider
     """
     print(request.headers.get('Authorization'))
+    print(request.session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
