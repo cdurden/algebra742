@@ -16,6 +16,8 @@ import logging
 from logging.handlers import RotatingFileHandler
 from logging import Formatter
 from markdown_include.include import MarkdownInclude
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 from pylti.flask import lti
 from functools import wraps
@@ -1625,10 +1627,10 @@ def index(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
-    app.logger.error("accessing lti route")
-    app.logger.error(lti)
+    logger.error("accessing lti route")
+    logger.error(lti)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    app.logger.error(user.username)
+    logger.error(user.username)
     if user:
 #        try:
 #            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment=='SolvingEquationsTest', Question.__table__.c.number==11, Question.__table__.c.variant_index==0)).order_by(desc('datetime'))
@@ -1637,7 +1639,7 @@ def index(lti=lti):
 #        except:
 #            focus_areas = []
 #        return render_template('index.html', user=user, lti=lti, focus_areas=focus_areas)
-        app.logger.error("rendering index.html")
+        logger.error("rendering index.html")
         return render_template('index.html')
     else:
         form = UserInfoForm()
