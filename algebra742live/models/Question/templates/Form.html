@@ -2,6 +2,8 @@
 {% endblock %}
 <form>
 {{ form.csrf_token }}
+{{ form.question_id }}
+{{ form.question_class }}
 {% block content %}
 {% endblock %}
 <input type="submit" value="Submit"/>
