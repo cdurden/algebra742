@@ -1,4 +1,7 @@
 {% macro content(question, form, params) %}
+{% from "Form_macros.html" import content without context %}
+{{ content(part, part.form, part.params()) }}
+
 {% for part in question.parts %}
     {% with form=subform %}
         {% include subform.__class__.__name__ ~ '.html' %}
