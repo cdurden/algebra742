@@ -116,7 +116,7 @@ def get_snow_qm_task_data(data, lti=lti):
     emit('snow_qm_task_data', data, broadcast=True)
 
 @app.route('/lti/', methods=['GET'])
-@lti(request='initial', error=error)
+@lti(request='session', error=error)
 def lti_get(lti=lti):
     """ initial access page to the lti provider.
     This page provides authorization for the user.
