@@ -4,15 +4,8 @@
 {{ content(question, form, params) }}
 {% endmacro %}
 
-
-{% macro _enclosure() %}
-    <div id="question_{{ question.id }}">
-        {{ caller() }}
-    </div> 
-{% endmacro %}
-
 {% macro body(question, form, params) %}
-    {% call _enclosure() %}
+    <div id="question_{{ question.id }}">
         {{ content(question, form, params) }}
-    {% endcall %}
+    </div> 
 {% endmacro %}
