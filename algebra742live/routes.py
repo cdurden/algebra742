@@ -1,6 +1,6 @@
 from flask import current_app as app
 from functools import wraps
-from flask import render_template, request, redirect, url_for, send_file, make_response
+from flask import render_template, request, redirect, url_for, send_file, make_response, session
 from flask import jsonify
 from flask_socketio import emit
 from pylti.flask import lti
@@ -125,7 +125,7 @@ def lti_post(lti=lti):
     :return: index page for lti provider
     """
     print(request.headers.get('Authorization'))
-    print(request.session)
+    print(session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
@@ -148,7 +148,7 @@ def lti_get(lti=lti):
     :return: index page for lti provider
     """
     print(request.headers.get('Authorization'))
-    print(request.session)
+    print(session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
