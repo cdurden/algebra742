@@ -5,10 +5,13 @@
 {{ form.question_class }}
 -->
 
+<!--
+    This is not included because the MultiPartQuestionTemplate loops through the parts and renders them. The rendering of each part accomplished the rendering of their forms.
 {% for part in question.parts %}
     {% with form=subform %}
         {% include subform.__class__.__name__ ~ '.html' %}
     {% endwith %}
+-->
     <!--{{ subform.render_html() }}-->
 {% endfor %}
 {% endmacro %}
