@@ -115,7 +115,7 @@ def get_snow_qm_task_data(data, lti=lti):
     print('sending snow qm task data')
     emit('snow_qm_task_data', data, broadcast=True)
 
-@app.route('/lti/', methods=['GET', 'POST'])
+@app.route('/lti/', methods=['GET'])
 @lti(request='initial', error=error)
 def algebra742live_lti(lti=lti):
     """ initial access page to the lti provider.
@@ -132,6 +132,28 @@ def algebra742live_lti(lti=lti):
         except:
             #return make_response('<meta http-equiv="Refresh" content="5; url="/static/teaching_assets/md/#schedule" />')
             resp = redirect("/static/teaching_assets/md/#schedule")
+    else:
+        form = UserInfoForm()
+        resp = render_template('GetUserInfo.html', lti=lti, form=form)
+    resp.set_cookie('same-site-cookie', 'foo', samesite='Lax');
+    # Ensure you use "add" to not overwrite existing cookie headers
+    resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
+    return resp
+
+@app.route('/lti/', methods=['POST'])
+@lti(request='initial', error=error)
+def algebra742live_lti(lti=lti):
+    """ initial access page to the lti provider.
+    This page provides authorization for the user.
+
+    :param lti: the `lti` object from `pylti`
+    :return: index page for lti provider
+    """
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    print(user)
+    if user:
+        try:
+            resp = redirect("/lti/")
     else:
         form = UserInfoForm()
         resp = render_template('GetUserInfo.html', lti=lti, form=form)
