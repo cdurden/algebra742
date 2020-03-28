@@ -417,8 +417,8 @@ class MultiPartQuestion(Question):
         #self.form.validate()
         for i,part in enumerate(self.parts):
             part.form = getattr(self.form, 'part_{:d}'.format(i))
-            part.form.traverse_templates()
-            part.form.build_form()
+            #part.form.traverse_templates()
+            part.build_form()
             #part.form.traverse_macros_templates()
             #traverse_templates(part.form)
             print(part.form.data)
