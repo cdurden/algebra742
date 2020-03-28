@@ -6,12 +6,10 @@
 -->
 
 <!--
-    This is not included because the MultiPartQuestionTemplate loops through the parts and renders them. The rendering of each part accomplished the rendering of their forms.
-{% for part in question.parts %}
-    {% with form=subform %}
-        {% include subform.__class__.__name__ ~ '.html' %}
-    {% endwith %}
+Loop through the parts and render them. The rendering of each part accomplished the rendering of their forms. With a multi-part question, there is no clear way to avoid rendering parts of the question within the form.
 -->
-    <!--{{ subform.render_html() }}-->
+{% for part in question.parts %}
+{% from part.macros_template import content without context %}
+{{ content(part, part.form, part.params()) }}
 {% endfor %}
 {% endmacro %}

@@ -5,9 +5,5 @@
 {% from "Form_macros.html" import content without context %}
 {{ content(question, form, params) }}
 -->
-
-{% for part in parts %}
-{% from part.macros_template import content without context %}
-{{ content(part, part.form, part.params()) }}
-{% endfor %}
+<!-- Rendering the parts is handled by the content macro of the MultiPartAnswerForm -->
 {% endblock %}
