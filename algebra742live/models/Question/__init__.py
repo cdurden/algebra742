@@ -524,6 +524,7 @@ QuestionClasses = {
     'CompleteTableQuestion': CompleteTableQuestion,
     'CompleteTableDraggableQuestion': CompleteTableDraggableQuestion,
     'OpenEndedQuestion': OpenEndedQuestion,
+    'MultipleChoiceQuestion': MultipleChoiceQuestion,
     'SolutionQuestion': SolutionQuestion,
     'NonSolutionQuestion': NonSolutionQuestion,
     'MultiPartQuestion': MultiPartQuestion,
