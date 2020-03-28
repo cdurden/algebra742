@@ -4,7 +4,9 @@
 {{ form.csrf_token }}
 {{ form.question_id }}
 {{ form.question_class }}
+{% block body %}
 {% block content %}
+{% endblock %}
 {% endblock %}
 <input type="submit" value="Submit"/>
 </form>
