@@ -16,7 +16,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from logging import Formatter
 from markdown_include.include import MarkdownInclude
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(stream=sys.stderr,level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 from pylti.flask import lti
