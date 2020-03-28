@@ -140,7 +140,7 @@ def lti_post(lti=lti):
     return resp
 
 @app.route('/lti2/', methods=['GET'])
-#@lti(request='session', error=error)
+@lti(request='session', error=error)
 def lti_get(lti=lti):
     """ initial access page to the lti provider.
     This page provides authorization for the user.
@@ -155,18 +155,22 @@ def lti_get(lti=lti):
     print(session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
-    if user:
-        try:
-            resp = redirect(request.args['redirect'])
-        except:
-            #return make_response('<meta http-equiv="Refresh" content="5; url="/static/teaching_assets/md/#schedule" />')
-            resp = redirect("/static/teaching_assets/md/#schedule")
+    if request.cookies.get('session_is_set') == 'true':
+        if user:
+            try:
+                resp = redirect(request.args['redirect'])
+            except:
+                #return make_response('<meta http-equiv="Refresh" content="5; url="/static/teaching_assets/md/#schedule" />')
+                resp = redirect("/static/teaching_assets/md/#schedule")
+        else:
+            form = UserInfoForm()
+            resp = render_template('GetUserInfo.html', lti=lti, form=form)
     else:
-        form = UserInfoForm()
-        resp = render_template('GetUserInfo.html', lti=lti, form=form)
+        resp = redirect("/lti2/")
     #resp.set_cookie('same-site-cookie', 'foo', samesite='Lax');
     # Ensure you use "add" to not overwrite existing cookie headers
     #resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
+    resp.set_cookie('session_is_set', 'true');
     return resp
 
 
