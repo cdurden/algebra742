@@ -1,6 +1,7 @@
 {% macro content(question, form, params) %}
-{% from "Form_macros.html" import content without context %}
-{{ content(part, part.form, part.params()) }}
+{{ form.question_id }}
+{{ form.question_class }}
+{{ content(question, form, params) }}
 
 {% for part in question.parts %}
     {% with form=subform %}
