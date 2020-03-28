@@ -268,7 +268,7 @@ class MultipleChoiceQuestion(Question):
         self.marked_correct = set()
         self.marked_incorrect = set()
         params = self.params()
-        if self.form.answer.data==params['answer']:
+        if self.form.answer.data==int(params['answer']):
             self.marked_correct.add('answer')
             return True
         else:
