@@ -445,6 +445,7 @@ class MultiPartQuestion(Question):
             part.check_answer()
             self.marked_correct = self.marked_correct.union(set(["part_{:d}-{:s}".format(i,field) for field in part.marked_correct]))
             self.marked_incorrect = self.marked_incorrect.union(set(["part_{:d}-{:s}".format(i,field) for field in part.marked_incorrect]))
+            self.submitted = self.submitted.union(set(["part_{:d}-{:s}".format(i,field) for field in part.submitted]))
         return all([part.check_answer() for i,part in enumerate(self.parts)])
 
 
