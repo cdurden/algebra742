@@ -260,8 +260,8 @@ class MultipleChoiceQuestion(Question):
     form = None
     def build_form(self, formdata=None):
         params = self.params()
-        form.options.choices = range(len(params['choices'])) 
         Question.build_form(self, formdata)
+        self.form.options.choices = range(len(params['choices'])) 
         while len(self.form.entries) < len(self.missing_entries):
             self.form.entries.append_entry()
         return(self.form)
