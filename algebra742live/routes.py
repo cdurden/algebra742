@@ -117,7 +117,7 @@ def get_snow_qm_task_data(data, lti=lti):
 
 @app.route('/lti/', methods=['GET'])
 @lti(request='initial', error=error)
-def algebra742live_lti(lti=lti):
+def lti_get(lti=lti):
     """ initial access page to the lti provider.
     This page provides authorization for the user.
 
@@ -142,7 +142,7 @@ def algebra742live_lti(lti=lti):
 
 @app.route('/lti/', methods=['POST'])
 @lti(request='initial', error=error)
-def algebra742live_lti(lti=lti):
+def lti_post(lti=lti):
     """ initial access page to the lti provider.
     This page provides authorization for the user.
 
