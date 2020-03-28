@@ -134,6 +134,7 @@ def lti_post(lti=lti):
         form = UserInfoForm()
         resp = render_template('GetUserInfo.html', lti=lti, form=form)
     resp.set_cookie('same-site-cookie', 'foo', samesite='Lax');
+    resp.set_cookie('test', 'foo');
     # Ensure you use "add" to not overwrite existing cookie headers
     resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
     return resp
@@ -151,6 +152,7 @@ def lti_get(lti=lti):
     print(request.headers.get('same-site-cookie'))
     print(request.headers.get('Set-Cookie'))
     print(request.headers.get('session'))
+    print(request.headers.get('test'))
     print(session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
