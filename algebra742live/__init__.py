@@ -34,6 +34,11 @@ def create_app():
     app.config.from_object(config)
     app.config.from_envvar('ALGEBRA742LIVE_SETTINGS')
     app.logger.error(app.config["SQLALCHEMY_DATABASE_URI"])
+    app.config.update(
+            SESSION_COOKIE_SECURE=True,
+            SESSION_COOKIE_HTTPONLY=True,
+            SESSION_COOKIE_SAMESITE='Lax',
+    )
     Bootstrap(app)
 
     # Initialize Plugins
