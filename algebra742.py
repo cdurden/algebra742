@@ -1627,10 +1627,10 @@ def index(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
-    logger.error("accessing lti route")
-    logger.error(lti)
+    logger.info("accessing lti route")
+    logger.info(lti)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    logger.error(user.username)
+    logger.info(user.username)
     if user:
 #        try:
 #            statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.assignment=='SolvingEquationsTest', Question.__table__.c.number==11, Question.__table__.c.variant_index==0)).order_by(desc('datetime'))
@@ -1639,7 +1639,7 @@ def index(lti=lti):
 #        except:
 #            focus_areas = []
 #        return render_template('index.html', user=user, lti=lti, focus_areas=focus_areas)
-        logger.error("rendering index.html")
+        logger.info("rendering index.html")
         return render_template('index.html')
     else:
         form = UserInfoForm()
