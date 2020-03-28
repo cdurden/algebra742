@@ -416,7 +416,7 @@ class MultiPartQuestion(Question):
         # FIXME: this throws an error when created before submission
         #self.form.validate()
         for i,part in enumerate(self.parts):
-            part.build_form(formdata=formdata,prefix='part_{:d}')
+            part.build_form(formdata=formdata,prefix='part_{:d}'.format(i))
             #part.form = getattr(self.form, 'part_{:d}'.format(i))
             # thought about doing some updating of the big form based on subforms
             #destination.__dict__.update(source.__dict__)
