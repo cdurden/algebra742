@@ -112,7 +112,7 @@ class Form(Form_,TemplateBased):
 class AnswerForm(Form):
     answer = StringField('answer')
 
-class MultipleChoiceAnswerForm(Form):
+class MultipleChoiceAnswerForm(AnswerForm):
     answer = RadioField('answer')
 
 
