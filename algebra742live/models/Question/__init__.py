@@ -406,6 +406,7 @@ class MultiPartQuestion(Question):
         class DynamicMultiPartAnswerForm(MultiPartAnswerForm):
             pass
         self.form_class = DynamicMultiPartAnswerForm
+        Question.build_form(self, formdata=formdata)
         for i,part in enumerate(self.parts):
             setattr(self.form_class, 'part_{:d}'.format(i), FormField(part.form_class))
         print("build_form formdata checkpoint")
