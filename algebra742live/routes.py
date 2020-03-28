@@ -133,9 +133,9 @@ def lti_post(lti=lti):
     else:
         form = UserInfoForm()
         resp = render_template('GetUserInfo.html', lti=lti, form=form)
-    #resp.set_cookie('same-site-cookie', 'foo', samesite='Lax');
+    resp.set_cookie('same-site-cookie', 'foo', samesite='Lax');
     # Ensure you use "add" to not overwrite existing cookie headers
-    #resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
+    resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
     return resp
 
 @app.route('/lti2/', methods=['GET'])
