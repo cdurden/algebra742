@@ -1,5 +1,8 @@
 {% extends "Form.html" %}
 {% block content %}
+{% from "Form_macros.html" import content without context %}
+{{ content(question, form, params) }}
+
 {% for part in parts %}
 {% from part.macros_template import content without context %}
 {{ content(part, part.form, part.params()) }}

@@ -1,7 +1,7 @@
 {% macro content(question, form, params) %}
+<!-- include question_id and class for main question-->
 {{ form.question_id }}
 {{ form.question_class }}
-{{ content(question, form, params) }}
 
 {% for part in question.parts %}
     {% with form=subform %}
