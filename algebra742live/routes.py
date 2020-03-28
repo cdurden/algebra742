@@ -148,6 +148,8 @@ def lti_get(lti=lti):
     :return: index page for lti provider
     """
     print(request.headers.get('Authorization'))
+    print(request.headers.get('same-site-cookie'))
+    print(request.headers.get('Set-Cookie'))
     print(session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
