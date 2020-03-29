@@ -161,7 +161,7 @@ def lti_get(lti=lti):
                 resp = redirect(request.args['redirect'])
             except:
                 #return make_response('<meta http-equiv="Refresh" content="5; url="/static/teaching_assets/md/#schedule" />')
-                resp = redirect("/static/teaching_assets/md/?update#schedule")
+                resp = redirect("/static/teaching_assets/md/#schedule")
         else:
             form = UserInfoForm()
             resp = render_template('GetUserInfo.html', lti=lti, form=form)
