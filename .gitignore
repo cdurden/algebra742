@@ -1,6 +1,7 @@
 algebra742.db
 env
 config.py
+algebra742live.ini
 algebra742live/config.py
 .*.sw*
 *.pkl
