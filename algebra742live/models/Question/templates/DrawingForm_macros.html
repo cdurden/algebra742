@@ -26,47 +26,50 @@ $(document).ready(function(){
         var lc;
         container.setAttribute("data-prevent-swipe", "");
         backgroundImage.src = "{{ params.background_image_url }}";
+        var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
+        lc = LC.init(container, {backgroundShapes: [backgroundShape]});
+        var tools = [
+          {
+            name: 'pencil',
+            el: $(container).next().find('.tool-pencil').get(0),
+            tool: new LC.tools.Pencil(lc)
+          },
+          {
+            name: 'eraser',
+            el: $(container).next().find('.tool-eraser').get(0),
+            tool: new LC.tools.Eraser(lc)
+          },
+          {
+            name: 'text',
+            el: $(container).next().find('.tool-text').get(0),
+            tool: new LC.tools.Text(lc)
+          },
+        ];
+    
+        var activateTool = function(t) {
+            lc.setTool(t.tool);
+    
+            tools.forEach(function(t2) {
+              if (t == t2) {
+                t2.el.style.backgroundColor = 'yellow';
+              } else {
+                t2.el.style.backgroundColor = 'transparent';
+              }
+            });
+        }
+    
+        tools.forEach(function(t) {
+          t.el.style.cursor = "pointer";
+          t.el.onclick = function(e) {
+            e.preventDefault();
+            activateTool(t);
+          };
+        });
+        activateTool(tools[0]);
+        /*
         LC.util.addImageOnload(backgroundImage, function () {
             var backgroundShape = LC.createShape('Image', {x: 0, y: 0, image: backgroundImage});
             lc = LC.init(container, {backgroundShapes: [backgroundShape]});
-            var tools = [
-              {
-                name: 'pencil',
-                el: $(container).next().find('.tool-pencil').get(0),
-                tool: new LC.tools.Pencil(lc)
-              },
-              {
-                name: 'eraser',
-                el: $(container).next().find('.tool-eraser').get(0),
-                tool: new LC.tools.Eraser(lc)
-              },
-              {
-                name: 'text',
-                el: $(container).next().find('.tool-text').get(0),
-                tool: new LC.tools.Text(lc)
-              },
-            ];
-        
-            var activateTool = function(t) {
-                lc.setTool(t.tool);
-        
-                tools.forEach(function(t2) {
-                  if (t == t2) {
-                    t2.el.style.backgroundColor = 'yellow';
-                  } else {
-                    t2.el.style.backgroundColor = 'transparent';
-                  }
-                });
-            }
-        
-            tools.forEach(function(t) {
-              t.el.style.cursor = "pointer";
-              t.el.onclick = function(e) {
-                e.preventDefault();
-                activateTool(t);
-              };
-            });
-            activateTool(tools[0]);
         });
         <!-- custom UI example... -->
     });
