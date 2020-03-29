@@ -133,7 +133,6 @@ def lti_post(lti=lti):
     else:
         form = UserInfoForm()
         resp = render_template('GetUserInfo.html', lti=lti, form=form)
-    resp.set_cookie('same-site-cookie', 'foo', samesite='Lax');
     resp.set_cookie('test', 'foo');
     # Ensure you use "add" to not overwrite existing cookie headers
     resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
@@ -149,7 +148,6 @@ def lti_get(lti=lti):
     :return: index page for lti provider
     """
     print(request.headers.get('Authorization'))
-    print(request.cookies.get('same-site-cookie'))
     print(request.cookies.get('session'))
     print(request.cookies.get('test'))
     print(session)
