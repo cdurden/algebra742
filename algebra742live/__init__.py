@@ -31,7 +31,10 @@ def create_app():
     """Initialize the core application."""
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_object(default_config)
-    app.config.from_object(config)
+    try:
+        app.config.from_object(config)
+    except ImportError:
+        pass
     app.config.from_envvar('ALGEBRA742LIVE_SETTINGS')
     app.logger.error(app.config["SQLALCHEMY_DATABASE_URI"])
     app.config.update(
