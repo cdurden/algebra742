@@ -6,13 +6,17 @@ from flask_socketio import SocketIO
 from flask_redis import FlaskRedis
 from flask_bootstrap import Bootstrap
 from . import default_config
-from . import config
+try:
+    from . import config
+except ImportError:
+    pass
 from models import db
 from models.Question import questions_digraph_factory
 from models.Game import GameClasses
 import json
 from networkx.drawing.nx_pydot import read_dot
 import os
+import sys
 
 from sqlalchemy_utils import create_database, database_exists
 
@@ -31,10 +35,8 @@ def create_app():
     """Initialize the core application."""
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_object(default_config)
-    try:
+    if 'config' in sys.modules:
         app.config.from_object(config)
-    except ImportError:
-        pass
     app.config.from_envvar('ALGEBRA742LIVE_SETTINGS')
     app.logger.error(app.config["SQLALCHEMY_DATABASE_URI"])
     app.config.update(
