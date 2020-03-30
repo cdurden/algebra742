@@ -428,7 +428,7 @@ class MultiPartQuestion(Question):
     def render_html(self, **kwargs):
         if self.form is None:
             self.build_form()
-        for part in self.parts:
+        #for part in self.parts:
             #print(part.__class__.__name__)
         return Question.render_html(self, parts=self.parts, **kwargs)
     
