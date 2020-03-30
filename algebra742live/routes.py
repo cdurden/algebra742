@@ -91,20 +91,18 @@ def render_snow_qm_task(collection_id=None,task_id=None):
 @socketio.on('chat-message')
 @lti(request='session', error=error)
 def handle_chat_message(data, lti=lti):
-    print("got chat message")
-    print(data)
     try:
         user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     except:
         pass
     if user:
-        emit('chat-message', "{:s} {:s}: {:s}".format(user.firstname, user.lastname, data), broadcast=True)
+        output = "{:s} {:s}: {:s}".format(user.firstname, user.lastname, data)
+        app.logger.info(output)
+        emit('chat-message', output, broadcast=True)
 
 @socketio.on('get_snow_qm_task')
 @lti(request='session', error=error)
 def get_snow_qm_task_data(data, lti=lti):
-    print('getting snow qm task data')
-    print(data)
     question = get_snow_qm_task(data['collection'], data['task'])
     try:
         user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
@@ -124,7 +122,6 @@ def get_snow_qm_task_data(data, lti=lti):
         pass
     data['html'] = question.render_html()
     data['question_id'] = question.id
-    print('sending snow qm task data')
     emit('snow_qm_task_data', data, broadcast=True)
 
 @app.route('/lti/', methods=['GET','POST'])
@@ -136,8 +133,8 @@ def lti_post(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
-    print(request.headers.get('Authorization'))
-    print(session)
+    #print(request.headers.get('Authorization'))
+    #print(session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
@@ -159,10 +156,10 @@ def lti_get(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
-    print(request.headers.get('Authorization'))
-    print(request.cookies.get('session'))
-    print(request.cookies.get('test'))
-    print(session)
+    #print(request.headers.get('Authorization'))
+    #print(request.cookies.get('session'))
+    #print(request.cookies.get('test'))
+    #print(session)
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if request.cookies.get('session_is_set') == 'true':
@@ -278,13 +275,13 @@ def admin(lti=lti):
 @socketio.on('save_work')
 @lti(request='session', error=error)
 def save_work(data, lti=lti):
+    print("saving work")
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     game = app.extensions['redis'].get('game').decode('utf-8')
     params = json.loads(app.extensions['redis'].get('params').decode('utf-8'))
     work = get_or_create(db.session, Work, user_id=user.id, template=params['template'])
     #work.data = json.dumps(data)
     work.data = data
-    print(data)
     db.session.commit()
 
 @app.route('/load_work', methods=['GET','POST'])
@@ -339,8 +336,6 @@ def disconnect(lti=lti):
 @socketio.on('get_question_data')
 @lti(request='session', error=error)
 def get_question_data(data, lti=lti):
-    print('getting question data')
-    print(data)
     question = get_question_from_digraph_node(data['graph'],data['node'])
     data['html'] = question.render_html()
     data['question_id'] = question.id
@@ -351,7 +346,6 @@ def output(data):
     emit('output', data)
 
 def update_game():
-    print("updating game")
     emit('update_game', ROOMS[0].to_json(), broadcast=True)
 
 @socketio.on('form_submit')
@@ -370,7 +364,6 @@ def question_input(data, lti=lti):
         raise RequestDenied
     #question = get_or_create(db.session, QuestionClasses[question_class], id=question_id)
     question.build_form(ImmutableMultiDict(data))
-    print(question.form)
     correct = question.check_answer()
     if correct:
         print("answer is correct")
@@ -392,7 +385,6 @@ def question_input(data, lti=lti):
 #        print(err.message) 
 
 def reset_game():
-    print("reseting game")
     emit('reset_game', ROOMS[0].to_json(), broadcast=True)
 
 @app.route('/graphics/<engine>/<template>/<params_hash>', methods=['GET','POST'])

@@ -17,6 +17,10 @@ import json
 from networkx.drawing.nx_pydot import read_dot
 import os
 import sys
+#from flask.logging import default_handler
+#import logging
+#app.logger.addHandler(default_handler)
+#logging.getLogger("chat")
 
 from sqlalchemy_utils import create_database, database_exists
 

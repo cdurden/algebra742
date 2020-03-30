@@ -52,7 +52,6 @@ class FormField(FormField_,TemplateBased):
             self._obj = data
         self.object_data = data
         prefix = self.name + self.separator
-        print("prefix: {:s}".format(prefix))
         if isinstance(data, dict):
             self.form = self.form_class(formdata=formdata, prefix=prefix, csrf_enabled=False, **data)
         else:
@@ -183,7 +182,6 @@ class Question(db.Model, TemplateBased):
 #        self.params_json = json.dumps(kwargs['params'])
 #        super().__init__(self, **kwargs)
     def build_form(self, formdata=None, prefix=''):
-        print(formdata)
         self.form = self.form_class(MultiDict(formdata),prefix=prefix)
         self.form.question_id.data = self.id
         self.form.question_class.data = self.__class__.__name__
@@ -192,12 +190,9 @@ class Question(db.Model, TemplateBased):
         self.form.traverse_templates()
         #self.form.question = self
         #self.form.jinja_env = jinja2.Environment(loader=loader)
-        print('building Question form')
-        print(self.form.data)
         return(self.form)
 
     def params(self):
-        print(self.params_json)
         #return(json.loads(process_quotes_for_json(self.params_json)))
         return(json.loads(self.params_json))
 
@@ -226,14 +221,14 @@ class Question(db.Model, TemplateBased):
 #        return(self.macros_template)
 
     def render_html(self, **kwargs):
-        print("Rendering question html")
+        #print("Rendering question html")
         if self.form is None and self.form_class is not None:
             self.build_form()
         self.traverse_templates()
         #traverse_templates(self)
-        print("Question template: {:s}".format(self.template))
-        print("Form template: {:s}".format(self.form.template))
-        print("Form macros template: {:s}".format(self.form.macros_template))
+        #print("Question template: {:s}".format(self.template))
+        #print("Form template: {:s}".format(self.form.template))
+        #print("Form macros template: {:s}".format(self.form.macros_template))
         template = jinja_env.get_template(self.template)
         html = template.render(params=self.params(), question=self, form=self.form, url_for=url_for, **kwargs)
         return html
@@ -290,7 +285,7 @@ class CompleteTableQuestion(Question):
         for column in self.df.columns:
             for row,entry in enumerate(self.df[column]):
                 if re.match("^\[.+\]$",str(entry)):
-                    print(str(entry))
+                    #print(str(entry))
                     self.missing_entries.append((row,column))
 
     def render_html(self, **kwargs):
@@ -298,7 +293,7 @@ class CompleteTableQuestion(Question):
             self.load_csv()
         params = self.params()
         transpose_display = 'transpose_display' in params and params['transpose_display'] in ["true","True",True]
-        print(params['transpose_display'])
+        #print(params['transpose_display'])
         return Question.render_html(self, missing_entries=self.missing_entries, transpose_display=transpose_display, **kwargs)
     def build_form(self, formdata=None):
         if self.df is None:
@@ -315,8 +310,8 @@ class CompleteTableQuestion(Question):
             self.load_csv()
         self.marked_correct = set()
         self.marked_incorrect = set()
-        print("checking answers")
-        print(self.form.data)
+        #print("checking answers")
+        #print(self.form.data)
         for (row,column) in self.missing_entries:
             try:
                 answer = parse_expr(str(self.df.loc[row,column]).strip("[]"),transformations=transformations)
@@ -392,7 +387,7 @@ class MultiPartQuestion(Question):
         for i,part in enumerate(self.parts):
             part.traverse_templates()
             #part.macros_template = part.traverse_macros_templates()
-            print("Part macros template: {:s}".format(part.macros_template))
+            #print("Part macros template: {:s}".format(part.macros_template))
 
     def scripts(self):
         params = self.params()
@@ -408,8 +403,8 @@ class MultiPartQuestion(Question):
         self.form_class = DynamicMultiPartAnswerForm
         for i,part in enumerate(self.parts):
             setattr(self.form_class, 'part_{:d}'.format(i), FormField(part.form_class))
-        print("build_form formdata checkpoint")
-        print(formdata)
+        #print("build_form formdata checkpoint")
+        #print(formdata)
         Question.build_form(self, formdata=formdata)
         #self.form = self.form_class(formdata=formdata)
         self.form.traverse_templates()
@@ -427,18 +422,18 @@ class MultiPartQuestion(Question):
             #    }
             #}
             #part.form.traverse_templates()
-            print(part.form.data)
+            #print(part.form.data)
         return(self.form)
 
     def render_html(self, **kwargs):
         if self.form is None:
             self.build_form()
         for part in self.parts:
-            print(part.__class__.__name__)
+            #print(part.__class__.__name__)
         return Question.render_html(self, parts=self.parts, **kwargs)
     
     def check_answer(self):
-        print(self.form.data)
+        #print(self.form.data)
         self.marked_correct = set()
         self.marked_incorrect = set()
         for i,part in enumerate(self.parts):
@@ -455,12 +450,12 @@ class QuestionOnePlusOne(Question):
 
     def build_form(self, formdata=None):
         self.form = self.form_class(MultiDict(formdata))
-        print('building QuestionOnePlusOne form')
-        print(self.form.data)
+        #print('building QuestionOnePlusOne form')
+        #print(self.form.data)
         return(self.form)
 
     def check_answer(self):
-        print(self.form.answer.data)
+        #print(self.form.answer.data)
         self.marked_correct = set()
         self.marked_incorrect = set()
         if self.form.answer.data=='2':
@@ -481,9 +476,9 @@ class SolutionQuestion(Question):
         x = symbols("x")
         params = self.params()
         try:
-            print(self.form.data)
+            #print(self.form.data)
             expr = parse_expr(params['statement'],transformations=transformations).subs(x,parse_expr(self.form.answer.data))
-            print(expr)
+            #print(expr)
             correct = bool(expr)
         except SyntaxError:
             correct = False
