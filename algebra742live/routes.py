@@ -242,8 +242,8 @@ def slides(deck,lti=lti):
     slides = [] 
     for slide in data['slides']:
         with open(os.path.join(app.config["TEACHING_ASSETS_DIR"],'/slides/slides/{:s}/{:s}'.format(collection,slide[0]))) as f:
-        html = f.read()
-        slides.append(html)
+            html = f.read()
+            slides.append(html)
     """Serve the index HTML"""
     return render_template(reveal_template, slides)
 
