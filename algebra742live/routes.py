@@ -91,6 +91,8 @@ def render_snow_qm_task(collection_id=None,task_id=None):
 @socketio.on('chat-message')
 @lti(request='session', error=error)
 def handle_chat_message(data, lti=lti):
+    print("got chat message")
+    print(data)
     try:
         user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     except:
