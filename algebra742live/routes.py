@@ -88,6 +88,16 @@ def render_snow_qm_task(collection_id=None,task_id=None):
     response.mimetype = 'text/html'
     return response
 
+@socketio.on('chat-message')
+@lti(request='session', error=error)
+def handle_chat_message(data, lti=lti):
+    try:
+        user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    except:
+        pass
+    if user:
+        emit('chat-message', {"{:s} {:s}: {:s}".format(user.firstname, user.lastname, data)}, broadcast=True)
+
 @socketio.on('get_snow_qm_task')
 @lti(request='session', error=error)
 def get_snow_qm_task_data(data, lti=lti):
@@ -221,11 +231,19 @@ class UserView(UserViewBase):
 api = Api(app, prefix="/api")
 api.add_resource("/users/", UserListView, UserView)
 
-@app.route('/slides/<template>')
+@app.route('/slides/<deck>')
 @lti(request='session', error=error)
-def slides(template,lti=lti):
+def slides(deck,lti=lti):
+    with open(os.path.join(app.config["TEACHING_ASSETS_DIR"],'/slides/decks/{:s}.json'.format(deck))) as f:
+        data = json.load(f)
+    collection = data['collection']
+    slides = [] 
+    for slide in data['slides']:
+        with open(os.path.join(app.config["TEACHING_ASSETS_DIR"],'/slides/slides/{:s}/{:s}'.format(collection,slide[0]))) as f:
+        html = f.read()
+        slides.append(html)
     """Serve the index HTML"""
-    return render_template(template)
+    return render_template(reveal_template, slides)
 
 @app.route('/')
 @lti(request='session', error=error)
