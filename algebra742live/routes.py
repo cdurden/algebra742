@@ -94,7 +94,9 @@ def handle_chat_message(data, lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user is None:
         raise RequestDenied
+    print(user)
     output = "{:s} {:s}: {:s}".format(user.firstname, user.lastname, data)
+    print(output)
     app.logger.info(output)
     emit('chat-message', output, broadcast=True)
 
