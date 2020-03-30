@@ -91,15 +91,12 @@ def render_snow_qm_task(collection_id=None,task_id=None):
 @socketio.on('chat-message')
 @lti(request='session', error=error)
 def handle_chat_message(data, lti=lti):
-    print("got message")
-    try:
-        user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
-    except:
-        pass
-    if user:
-        output = "{:s} {:s}: {:s}".format(user.firstname, user.lastname, data)
-        app.logger.info(output)
-        emit('chat-message', output, broadcast=True)
+    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    if user is None:
+        raise RequestDenied
+    output = "{:s} {:s}: {:s}".format(user.firstname, user.lastname, data)
+    app.logger.info(output)
+    emit('chat-message', output, broadcast=True)
 
 @socketio.on('get_snow_qm_task')
 @lti(request='session', error=error)
@@ -358,6 +355,7 @@ def question_input(data, lti=lti):
     user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
     if user is None:
         raise RequestDenied
+    print(user)
     question_id = data['question_id']
     question_class = data['question_class']
     question = get_question(question_class, question_id)
