@@ -98,7 +98,7 @@ def handle_chat_message(data, lti=lti):
     except:
         pass
     if user:
-        emit('chat-message', {"{:s} {:s}: {:s}".format(user.firstname, user.lastname, data)}, broadcast=True)
+        emit('chat-message', "{:s} {:s}: {:s}".format(user.firstname, user.lastname, data), broadcast=True)
 
 @socketio.on('get_snow_qm_task')
 @lti(request='session', error=error)
