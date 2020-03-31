@@ -4,6 +4,7 @@ from .. import db
 import jinja2
 import json
 import os
+import sys
 #from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FieldList, RadioField, HiddenField
 from wtforms import FormField as FormField_
@@ -179,6 +180,7 @@ class Question(db.Model, TemplateBased):
     submitted = set() 
     marked_correct = set() 
     marked_incorrect = set() 
+    scripts = []
 
 #    def __init__(self, **kwargs):
 #        self.params_json = json.dumps(kwargs['params'])
@@ -200,9 +202,9 @@ class Question(db.Model, TemplateBased):
         #return(json.loads(process_quotes_for_json(self.params_json)))
         return(json.loads(self.params_json))
 
-    def scripts(self):
+    def get_scripts(self):
         #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
-        return(['/static/js/socket.io.wtforms.js'])
+        return(self.scripts)
 #    def traverse_templates(self):
 #        for base_class in inspect.getmro(self.__class__):
 #            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
@@ -239,6 +241,7 @@ class Question(db.Model, TemplateBased):
 
     def to_json(self):
         return({
+            'scripts': self.get_scripts(),
             'submitted': list(self.submitted),
             'marked_correct': list(self.marked_correct),
             'marked_incorrect': list(self.marked_incorrect),
@@ -333,7 +336,8 @@ class CompleteTableQuestion(Question):
         return len(self.marked_correct)==len(self.missing_entries)
 
 class CompleteTableDraggableQuestion(CompleteTableQuestion):
-    pass
+    scripts = ["/static/teaching_assets/slides/js/jquery-ui-1.12.1/jquery-ui.min.js"]
+    #scripts = ["https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"]
 
 class DrawingQuestion(Question):
     form_class = DrawingForm
@@ -396,11 +400,11 @@ class MultiPartQuestion(Question):
             #part.macros_template = part.traverse_macros_templates()
             #print("Part macros template: {:s}".format(part.macros_template))
 
-    def scripts(self):
+    def get_scripts(self):
         params = self.params()
         scripts = []
         for i,part in enumerate(params['parts']):
-            scripts += part['question'].scripts()
+            scripts += getattr(sys.modules[__name__], part['class']).scripts
         return(scripts)
 
     def build_form(self, formdata=None, data=None):

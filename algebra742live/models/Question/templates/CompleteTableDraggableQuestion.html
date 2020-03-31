@@ -7,37 +7,63 @@ var draggable;
 var droppable;
 var lastDropzoneTarget;
 var rect1;
+{% if params.library=='jquery-ui' %}
+    {% if 'block_container' in params %}
+    console.log("starting jquery-ui draggable");
+    $('#{{ params.block_container }}').find('.item').draggable({ revert: true, appendTo: ' });
+    {% else %}
+    $('{{- question_container_selector(question) }} .container').find('.item').draggable({ revert: true });
+    {% endif %}
+    var droppableConf =  {
+      classes: {
+        "ui-droppable-active": "ui-state-active",
+        "ui-droppable-hover": "ui-state-hover"
+      },
+      drop: function( event, ui ) {
+        this.originalSource.getAttribute("data-payload");
+      }
+    }
+    {% if 'dropzone' in params %}
+      {% for i in params.dropzone %}
+        $('{{- question_container_selector(question) -}}').find("input[name=entries-{{i}}]").droppable(droppableConf);
+      {% endfor %}
+    {% else %}
+    $('{{- question_container_selector(question) -}}').find('input').droppable(droppableConf);
+    {% endif %}
+{% else %}
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
+    console.log("setting up Draggable elements");
+    {% if 'block_container' in params %}
+    draggable = new Draggable.Draggable(document.querySelectorAll('#{{ params.block_container }}'), {
+    {% else %}
     draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector(question) }} .container'), {
+    {% endif %}
       delay: 5,
-      //sensors: [Draggable.Sensors.DragSensor],
       mirror: {
-        constrainDimensions: true,
-        cursorOffsetX: 0,
-        cursorOffsetY: 0,
+        //constrainDimensions: true,
+        //helper: 'clone',
+        //cursorOffsetX: 0,
+        //cursorOffsetY: 0,
+        //appendTo: '{{- question_container_selector(question) }}',
         appendTo: 'body',
       },
       draggable: '.item'
     })
+    /*
     .on('touchstart',  function(e) {
         console.log('touchstart');
         console.log(e);
     })
+    */
     .on('drag:start',  function(e) {
         console.log('drag:start');
         console.log(e);
         lastDropzoneTarget = null;
     })
     .on('mirror:move',  function(e) {
-        //console.log(e);
-        //console.log('mirror:move');
         rect1 = e.data.mirror.getBoundingClientRect();
     })
     .on('drag:move',  function(e) {
-        //console.log(e);
-        //console.log('drag:move');
-        //rect1 = e.originalSource.getBoundingClientRect();
-        //rect1 = e.sensorEvent.target.getBoundingClientRect();
         if (e.sensorEvent.target.classList.contains('dropzone')) {
             lastDropzoneTarget = e.sensorEvent.target;
         } else {
@@ -47,8 +73,6 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
     .on('drag:stop',  function(e) {
         var max_overlap_area = 0;
         var dropzoneTarget = null;
-        console.log(e);
-        console.log('drag:stop');
         if (lastDropzoneTarget != null) {
             payload = e.originalSource.getAttribute("data-payload");
             lastDropzoneTarget.value=payload;
@@ -64,43 +88,35 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
             if (dropzoneTarget != null) {
                 payload = e.originalSource.getAttribute("data-payload");
                 dropzoneTarget.value=payload;
+                //color = $(e.originalSource).css("background-color");
+                //$(dropzoneTarget).css("background-color",color);
             }
         }
         lastDropzoneTarget = null;
         dropzoneTarget = null;
         e.cancel();
     });
-    //sensor = new Draggable.Sensors.DragSensor(document.querySelectorAll('{{- question_container_selector(question) -}}'),{});
-  /*
-  .on('drag:start', () => console.log('drag:start'))
-  .on('drag:move',  () => console.log('drag:move'))
-  .on('drag:stop',  () => console.log('drag:stop'));
-    droppable = new Draggable.Droppable(document.querySelectorAll('{{- question_container_selector(question) -}}'), {
-  draggable: '.item',
-  dropzone: '.dropzone'
-});
-    droppable.on('droppable:dropped', function(e) {
-        console.log('droppable:dropped');
-        console.log(e);
-        //console.log(e.dragEvent.originalSource);
-        console.log(e.dragEvent.originalSource.getAttribute("data-payload"));
-        payload = e.dragEvent.originalSource.getAttribute("data-payload");
-        e.dropzone.setAttribute("value",payload);
-        e.cancel();
-    });
-    droppable.on('droppable:returned', () => console.log('droppable:returned'));
-*/
+    {% if 'dropzone' in params %}
+      {% for i in params.dropzone %}
+        $('{{- question_container_selector(question) -}}').find("input[name=entries-{{i}}]").addClass('dropzone');
+      {% endfor %}
+    {% else %}
     $('{{- question_container_selector(question) -}}').find('input').addClass('dropzone');
+    {% endif %}
 });
+{% endif %}
 </script>
 {% endblock %}
 {% block content %}
 {{ super() }}
 <center>
+    {% if params.render_blocks %}
 <div class="container" data-prevent-swipe="true">
     {% for block in params.blocks %}
     <div class="item" data-payload="{{ block }}">{{ block }}</div>
     {% endfor %}
+    {% endif %}
 </div>
 </center>
 {% endblock %}
+

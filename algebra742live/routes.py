@@ -120,9 +120,12 @@ def get_snow_qm_task_data(data, lti=lti):
         question.build_form(data=formdata)
     except RequestDenied:
         pass
+    print(question.form.data)
     data['html'] = question.render_html()
     data['question_id'] = question.id
-    emit('snow_qm_task_data', data, broadcast=True)
+    data['question'] = question.to_json()
+    print('emitting form data')
+    emit('snow_qm_task_data', data)
 
 @app.route('/lti/', methods=['GET','POST'])
 @lti(request='initial', error=error)
@@ -339,7 +342,7 @@ def get_question_data(data, lti=lti):
     question = get_question_from_digraph_node(data['graph'],data['node'])
     data['html'] = question.render_html()
     data['question_id'] = question.id
-    emit('question_data', data, broadcast=True)
+    emit('question_data', data)
 
 def output(data):
     print("emitting output")
@@ -365,6 +368,7 @@ def question_input(data, lti=lti):
         raise RequestDenied
     #question = get_or_create(db.session, QuestionClasses[question_class], id=question_id)
     question.build_form(ImmutableMultiDict(data))
+    print(question.form.data)
     correct = question.check_answer()
     if correct:
         print("answer is correct")
