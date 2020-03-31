@@ -10,9 +10,9 @@ var rect1;
 {% if params.library=='jquery-ui' %}
     {% if 'block_container' in params %}
     console.log("starting jquery-ui draggable");
-    $('#{{ params.block_container }}').find('.item').draggable({ revert: "valid" });
+    $('#{{ params.block_container }}').find('.item').draggable({ revert: true, appendTo: ' });
     {% else %}
-    $('{{- question_container_selector(question) }} .container').find('.item').draggable({ revert: "valid" });
+    $('{{- question_container_selector(question) }} .container').find('.item').draggable({ revert: true });
     {% endif %}
     var droppableConf =  {
       classes: {
@@ -41,10 +41,11 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
       delay: 5,
       mirror: {
         //constrainDimensions: true,
-        helper: 'clone',
+        //helper: 'clone',
         //cursorOffsetX: 0,
         //cursorOffsetY: 0,
-        appendTo: '{{- question_container_selector(question) }}',
+        //appendTo: '{{- question_container_selector(question) }}',
+        appendTo: 'body',
       },
       draggable: '.item'
     })
