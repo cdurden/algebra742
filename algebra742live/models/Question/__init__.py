@@ -263,7 +263,7 @@ class MultipleChoiceQuestion(Question):
     def build_form(self, formdata=None, data=None, prefix=''):
         params = self.params()
         Question.build_form(self, formdata=formdata, data=data, prefix=prefix)
-        #self.form.answer.choices = list(zip(range(len(params['choices'])),params['choices']))
+        self.form.answer.choices = list(zip(range(len(params['choices'])),params['choices']))
         #print(self.form.answer)
         for i in range(len(params['choices'])):
             self.form.answer.choices.append_entry(i,params['choices'][i])
