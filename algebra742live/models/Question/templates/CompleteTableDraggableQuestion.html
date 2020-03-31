@@ -16,9 +16,10 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
     {% endif %}
       delay: 5,
       mirror: {
-        constrainDimensions: true,
-        cursorOffsetX: 0,
-        cursorOffsetY: 0,
+        //constrainDimensions: true,
+        helper: 'clone',
+        //cursorOffsetX: 0,
+        //cursorOffsetY: 0,
         appendTo: '{{- question_container_selector(question) }}',
       },
       draggable: '.item'
