@@ -19,14 +19,16 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         constrainDimensions: true,
         cursorOffsetX: 0,
         cursorOffsetY: 0,
-        appendTo: 'body',
+        appendTo: '{{- question_container_selector(question) }}',
       },
       draggable: '.item'
     })
+    /*
     .on('touchstart',  function(e) {
         console.log('touchstart');
         console.log(e);
     })
+    */
     .on('drag:start',  function(e) {
         console.log('drag:start');
         console.log(e);
