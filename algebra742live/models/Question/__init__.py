@@ -397,7 +397,7 @@ class MultiPartQuestion(Question):
         params = self.params()
         scripts = []
         for i,part in enumerate(params['parts']):
-            scripts += part['question'].get_scripts()
+            scripts += part.question.get_scripts()
         return(scripts)
 
     def build_form(self, formdata=None):
