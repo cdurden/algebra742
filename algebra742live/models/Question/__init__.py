@@ -258,7 +258,9 @@ class MultipleChoiceQuestion(Question):
     def build_form(self, formdata=None, prefix=''):
         params = self.params()
         Question.build_form(self, formdata, prefix)
-        self.form.answer.choices = list(zip(range(len(params['choices'])),params['choices']))
+        #self.form.answer.choices = list(zip(range(len(params['choices'])),params['choices']))
+        for i in range(len(params['choices'])):
+            self.form.answer.choices.append_entry(i,params['choices'][i])
         return(self.form)
 
     def check_answer(self):

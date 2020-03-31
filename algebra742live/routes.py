@@ -117,7 +117,7 @@ def get_snow_qm_task_data(data, lti=lti):
     except AttributeError:
         formdata = None
     try:
-        question.build_form(formdata=formdata)
+        question.build_form(data=formdata)
     except RequestDenied:
         pass
     data['html'] = question.render_html()
