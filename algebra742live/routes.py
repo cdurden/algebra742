@@ -123,7 +123,7 @@ def get_snow_qm_task_data(data, lti=lti):
     data['html'] = question.render_html()
     data['question_id'] = question.id
     data['question'] = question.to_json()
-    emit('snow_qm_task_data', data, broadcast=True)
+    emit('snow_qm_task_data', data)
 
 @app.route('/lti/', methods=['GET','POST'])
 @lti(request='initial', error=error)
