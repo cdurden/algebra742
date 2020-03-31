@@ -368,6 +368,7 @@ def question_input(data, lti=lti):
         raise RequestDenied
     #question = get_or_create(db.session, QuestionClasses[question_class], id=question_id)
     question.build_form(ImmutableMultiDict(data))
+    print(question.form.data)
     correct = question.check_answer()
     if correct:
         print("answer is correct")
