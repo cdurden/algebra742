@@ -151,6 +151,8 @@ def get_question_from_digraph_node(graph, node):
     return get_snow_qm_task(node_data["collection"],node_data["task"])
 
 def get_snow_qm_task(collection_id, task_id):
+    print(collection_id)
+    print(task_id)
     with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection_id+'.json')) as f:
         data = json.load(f)
     task_data = data[task_id]
