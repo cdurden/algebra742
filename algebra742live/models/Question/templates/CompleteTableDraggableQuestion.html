@@ -8,9 +8,12 @@ var droppable;
 var lastDropzoneTarget;
 var rect1;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
+    {% if 'block_container' in params %}
+    draggable = new Draggable.Draggable(document.querySelectorAll('#{{block_container}}'), {
+    {% else %}
     draggable = new Draggable.Draggable(document.querySelectorAll('{{- question_container_selector(question) }} .container'), {
+    {% endif %}
       delay: 5,
-      //sensors: [Draggable.Sensors.DragSensor],
       mirror: {
         constrainDimensions: true,
         cursorOffsetX: 0,
@@ -29,15 +32,9 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         lastDropzoneTarget = null;
     })
     .on('mirror:move',  function(e) {
-        //console.log(e);
-        //console.log('mirror:move');
         rect1 = e.data.mirror.getBoundingClientRect();
     })
     .on('drag:move',  function(e) {
-        //console.log(e);
-        //console.log('drag:move');
-        //rect1 = e.originalSource.getBoundingClientRect();
-        //rect1 = e.sensorEvent.target.getBoundingClientRect();
         if (e.sensorEvent.target.classList.contains('dropzone')) {
             lastDropzoneTarget = e.sensorEvent.target;
         } else {
@@ -47,8 +44,6 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
     .on('drag:stop',  function(e) {
         var max_overlap_area = 0;
         var dropzoneTarget = null;
-        console.log(e);
-        console.log('drag:stop');
         if (lastDropzoneTarget != null) {
             payload = e.originalSource.getAttribute("data-payload");
             lastDropzoneTarget.value=payload;
@@ -70,27 +65,13 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
         dropzoneTarget = null;
         e.cancel();
     });
-    //sensor = new Draggable.Sensors.DragSensor(document.querySelectorAll('{{- question_container_selector(question) -}}'),{});
-  /*
-  .on('drag:start', () => console.log('drag:start'))
-  .on('drag:move',  () => console.log('drag:move'))
-  .on('drag:stop',  () => console.log('drag:stop'));
-    droppable = new Draggable.Droppable(document.querySelectorAll('{{- question_container_selector(question) -}}'), {
-  draggable: '.item',
-  dropzone: '.dropzone'
-});
-    droppable.on('droppable:dropped', function(e) {
-        console.log('droppable:dropped');
-        console.log(e);
-        //console.log(e.dragEvent.originalSource);
-        console.log(e.dragEvent.originalSource.getAttribute("data-payload"));
-        payload = e.dragEvent.originalSource.getAttribute("data-payload");
-        e.dropzone.setAttribute("value",payload);
-        e.cancel();
-    });
-    droppable.on('droppable:returned', () => console.log('droppable:returned'));
-*/
+    {% if 'dropzone' in params %}
+      {% for i in params.dropzone %}
+        $('{{- question_container_selector(question) -}}').find("input[name=entries-{{i}}]").addClass('dropzone');
+      {% endfor %}
+    {% else %}
     $('{{- question_container_selector(question) -}}').find('input').addClass('dropzone');
+    {% endif %}
 });
 </script>
 {% endblock %}
