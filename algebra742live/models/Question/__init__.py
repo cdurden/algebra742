@@ -183,8 +183,9 @@ class Question(db.Model, TemplateBased):
 #    def __init__(self, **kwargs):
 #        self.params_json = json.dumps(kwargs['params'])
 #        super().__init__(self, **kwargs)
-    def build_form(self, formdata=None, prefix=''):
-        self.form = self.form_class(MultiDict(formdata),prefix=prefix)
+    def build_form(self, formdata=None, data=None, prefix=''):
+        #self.form = self.form_class(MultiDict(formdata),prefix=prefix)
+        self.form = self.form_class(formdata=MultiDict(formdata),data=data,prefix=prefix)
         self.form.question_id.data = self.id
         self.form.question_class.data = self.__class__.__name__
         #self.form.traverse_templates()
@@ -302,7 +303,7 @@ class CompleteTableQuestion(Question):
     def build_form(self, formdata=None):
         if self.df is None:
             self.load_csv()
-        Question.build_form(self, formdata)
+        Question.build_form(self, data=formdata)
         while len(self.form.entries) < len(self.missing_entries):
             self.form.entries.append_entry()
         return(self.form)
