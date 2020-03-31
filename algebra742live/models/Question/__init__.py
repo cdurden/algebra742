@@ -179,6 +179,7 @@ class Question(db.Model, TemplateBased):
     submitted = set() 
     marked_correct = set() 
     marked_incorrect = set() 
+    scripts = []
 
 #    def __init__(self, **kwargs):
 #        self.params_json = json.dumps(kwargs['params'])
@@ -237,7 +238,7 @@ class Question(db.Model, TemplateBased):
 
     def to_json(self):
         return({
-            'scripts': self.scripts or [],
+            'scripts': self.scripts,
             'submitted': list(self.submitted),
             'marked_correct': list(self.marked_correct),
             'marked_incorrect': list(self.marked_incorrect),
