@@ -331,7 +331,8 @@ class CompleteTableQuestion(Question):
         return len(self.marked_correct)==len(self.missing_entries)
 
 class CompleteTableDraggableQuestion(CompleteTableQuestion):
-    scripts = ["https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"]
+    scripts = ["/static/teaching_assets/slides/js/jquery-ui-1.12.1/jquery-ui.min.js"]
+    #scripts = ["https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"]
 
 class DrawingQuestion(Question):
     form_class = DrawingForm
