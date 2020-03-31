@@ -120,6 +120,7 @@ def get_snow_qm_task_data(data, lti=lti):
         question.build_form(formdata=formdata)
     except RequestDenied:
         pass
+    print(question.form.data)
     data['html'] = question.render_html()
     data['question_id'] = question.id
     data['question'] = question.to_json()
