@@ -198,9 +198,9 @@ class Question(db.Model, TemplateBased):
         #return(json.loads(process_quotes_for_json(self.params_json)))
         return(json.loads(self.params_json))
 
-    def scripts(self):
-        #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
-        return(['/static/js/socket.io.wtforms.js'])
+#    def scripts(self):
+#        #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
+#        return(['/static/js/socket.io.wtforms.js'])
 #    def traverse_templates(self):
 #        for base_class in inspect.getmro(self.__class__):
 #            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
