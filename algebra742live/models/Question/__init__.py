@@ -256,9 +256,9 @@ class Question(db.Model, TemplateBased):
 class MultipleChoiceQuestion(Question):
     form_class = MultipleChoiceAnswerForm
     form = None
-    def build_form(self, formdata=None, prefix=''):
+    def build_form(self, formdata=None, data=None, prefix=''):
         params = self.params()
-        Question.build_form(self, formdata, prefix)
+        Question.build_form(self, formdata=formdata, data=data, prefix=prefix)
         #self.form.answer.choices = list(zip(range(len(params['choices'])),params['choices']))
         for i in range(len(params['choices'])):
             self.form.answer.choices.append_entry(i,params['choices'][i])
@@ -300,10 +300,10 @@ class CompleteTableQuestion(Question):
         transpose_display = 'transpose_display' in params and params['transpose_display'] in ["true","True",True]
         #print(params['transpose_display'])
         return Question.render_html(self, missing_entries=self.missing_entries, transpose_display=transpose_display, **kwargs)
-    def build_form(self, formdata=None):
+    def build_form(self, formdata=None, data=None):
         if self.df is None:
             self.load_csv()
-        Question.build_form(self, data=formdata)
+        Question.build_form(self, formdata=formdata, data=data)
         while len(self.form.entries) < len(self.missing_entries):
             self.form.entries.append_entry()
         return(self.form)
@@ -336,15 +336,15 @@ class CompleteTableDraggableQuestion(CompleteTableQuestion):
 class DrawingQuestion(Question):
     form_class = DrawingForm
     form = None
-    def build_form(self, formdata=None):
-        Question.build_form(self, formdata)
+    def build_form(self, formdata=None, data=None):
+        Question.build_form(self, formdata=formdata, data=data)
         return(self.form)
 
 class AlbusDrawingQuestion(Question):
     form_class = AlbusDrawingForm
     form = None
-    def build_form(self, formdata=None):
-        Question.build_form(self, formdata)
+    def build_form(self, formdata=None, data=None):
+        Question.build_form(self, formdata=formdata, data=data)
         return(self.form)
 
 class GraphicsQuestion(Question):
@@ -401,7 +401,7 @@ class MultiPartQuestion(Question):
             scripts += part['question'].scripts()
         return(scripts)
 
-    def build_form(self, formdata=None):
+    def build_form(self, formdata=None, data=None):
         self.build_parts()
         class DynamicMultiPartAnswerForm(MultiPartAnswerForm):
             pass
@@ -410,14 +410,14 @@ class MultiPartQuestion(Question):
             setattr(self.form_class, 'part_{:d}'.format(i), FormField(part.form_class))
         #print("build_form formdata checkpoint")
         #print(formdata)
-        Question.build_form(self, formdata=formdata)
+        Question.build_form(self, formdata=formdata, data=data)
         #self.form = self.form_class(formdata=formdata)
         self.form.traverse_templates()
         self.form.question = self
         # FIXME: this throws an error when created before submission
         #self.form.validate()
         for i,part in enumerate(self.parts):
-            part.build_form(formdata=formdata,prefix='part_{:d}'.format(i))
+            part.build_form(formdata=formdata, data=data, prefix='part_{:d}'.format(i))
             #part.form = getattr(self.form, 'part_{:d}'.format(i))
             # thought about doing some updating of the big form based on subforms
             #destination.__dict__.update(source.__dict__)
@@ -453,8 +453,8 @@ class QuestionOnePlusOne(Question):
     form_class = AnswerForm
     form = None
 
-    def build_form(self, formdata=None):
-        self.form = self.form_class(MultiDict(formdata))
+    def build_form(self, formdata=None, data=None):
+        self.form = self.form_class(formdata=MultiDict(formdata),data=data)
         #print('building QuestionOnePlusOne form')
         #print(self.form.data)
         return(self.form)
