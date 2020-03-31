@@ -123,6 +123,7 @@ def get_snow_qm_task_data(data, lti=lti):
     data['html'] = question.render_html()
     data['question_id'] = question.id
     data['question'] = question.to_json()
+    print('emitting form data')
     emit('snow_qm_task_data', data)
 
 @app.route('/lti/', methods=['GET','POST'])
@@ -340,7 +341,7 @@ def get_question_data(data, lti=lti):
     question = get_question_from_digraph_node(data['graph'],data['node'])
     data['html'] = question.render_html()
     data['question_id'] = question.id
-    emit('question_data', data, broadcast=True)
+    emit('question_data', data)
 
 def output(data):
     print("emitting output")
