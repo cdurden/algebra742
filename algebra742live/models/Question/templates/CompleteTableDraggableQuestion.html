@@ -9,7 +9,11 @@ var lastDropzoneTarget;
 var rect1;
 {% if params.library=='jquery-ui' %}
     {% if 'block_container' in params %}
-    $('#{{ params.block_container }}').draggable({
+    console.log("starting jquery-ui draggable");
+    $('#{{ params.block_container }}').find('.item').draggable({
+    {% else %}
+    $('{{- question_container_selector(question) }} .container').find('.item').draggable({
+    {% endif %}
       start: function() {
         lastDropzoneTarget = null;
       },
