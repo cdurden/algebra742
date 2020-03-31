@@ -7,6 +7,53 @@ var draggable;
 var droppable;
 var lastDropzoneTarget;
 var rect1;
+{% if params.library=='jquery-ui' %}
+    {% if 'block_container' in params %}
+    $('#{{ params.block_container }}').draggable({
+      start: function() {
+        lastDropzoneTarget = null;
+      },
+      drag: function(e) {
+        rect1 = e.target.getBoundingClientRect();
+        if (e.sensorEvent.target.classList.contains('dropzone')) {
+            lastDropzoneTarget = e.sensorEvent.target;
+        } else {
+            lastDropzoneTarget = null;
+        }
+      },
+      stop: function(e) {
+        var max_overlap_area = 0;
+        var dropzoneTarget = null;
+        if (lastDropzoneTarget != null) {
+            payload = e.originalSource.getAttribute("data-payload");
+            lastDropzoneTarget.value=payload;
+        } else {
+            $('{{- question_container_selector(question) -}}').find('.dropzone').each(function() {
+                rect2 = this.getBoundingClientRect();
+                var overlap_area = Math.max(Math.min(rect1.right,rect2.right)-Math.max(rect1.left,rect2.left),0)*Math.max(Math.min(rect1.bottom,rect2.bottom)-Math.max(rect1.top,rect2.top),0);
+                if (overlap_area > max_overlap_area) {
+                    max_overlap_area = overlap_area;
+                    dropzoneTarget = this;
+                }
+            });
+            if (dropzoneTarget != null) {
+                payload = e.originalSource.getAttribute("data-payload");
+                dropzoneTarget.value=payload;
+            }
+        }
+        lastDropzoneTarget = null;
+        dropzoneTarget = null;
+        e.cancel();
+      }
+    });
+    {% if 'dropzone' in params %}
+      {% for i in params.dropzone %}
+        $('{{- question_container_selector(question) -}}').find("input[name=entries-{{i}}]").addClass('dropzone');
+      {% endfor %}
+    {% else %}
+    $('{{- question_container_selector(question) -}}').find('input').addClass('dropzone');
+    {% endif %}
+{% else %}
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
     console.log("setting up Draggable elements");
     {% if 'block_container' in params %}
@@ -90,4 +137,6 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
     {% endif %}
 </div>
 </center>
+{% endif %}
 {% endblock %}
+
