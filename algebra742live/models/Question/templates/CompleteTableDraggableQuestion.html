@@ -88,8 +88,8 @@ loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/dra
             if (dropzoneTarget != null) {
                 payload = e.originalSource.getAttribute("data-payload");
                 dropzoneTarget.value=payload;
-                color = $(e.originalSource).css("background-color");
-                ($dropzoneTarget).css("background-color",color);
+                //color = $(e.originalSource).css("background-color");
+                //$(dropzoneTarget).css("background-color",color);
             }
         }
         lastDropzoneTarget = null;
