@@ -237,7 +237,7 @@ class Question(db.Model, TemplateBased):
 
     def to_json(self):
         return({
-            'scripts': self.scripts,
+            'scripts': self.scripts or [],
             'submitted': list(self.submitted),
             'marked_correct': list(self.marked_correct),
             'marked_incorrect': list(self.marked_incorrect),
