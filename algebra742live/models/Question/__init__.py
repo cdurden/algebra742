@@ -237,6 +237,7 @@ class Question(db.Model, TemplateBased):
 
     def to_json(self):
         return({
+            'scripts': self.scripts,
             'submitted': list(self.submitted),
             'marked_correct': list(self.marked_correct),
             'marked_incorrect': list(self.marked_incorrect),
@@ -328,7 +329,7 @@ class CompleteTableQuestion(Question):
         return len(self.marked_correct)==len(self.missing_entries)
 
 class CompleteTableDraggableQuestion(CompleteTableQuestion):
-    pass
+    scripts = ["https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"]
 
 class DrawingQuestion(Question):
     form_class = DrawingForm
