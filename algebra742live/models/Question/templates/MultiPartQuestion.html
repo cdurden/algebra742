@@ -2,7 +2,7 @@
 {% block content %}
 {{ super() }}
 <!--
-{% from "Form_macros.html" import content without context %}
+{% from question.macros_template import content without context %}
 {{ content(question, form, params) }}
 -->
 <!-- Rendering the parts is handled by the content macro of the MultiPartAnswerForm -->
