@@ -1,9 +1,7 @@
 {% extends "Question.html" %}
 {% block content %}
 {{ super() }}
-<!--
 {% from question.macros_template import content without context %}
 {{ content(question, form, params) }}
--->
 <!-- Rendering the parts is handled by the content macro of the MultiPartAnswerForm -->
 {% endblock %}

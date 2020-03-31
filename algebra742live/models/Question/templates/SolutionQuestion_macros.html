@@ -1,5 +1,9 @@
 {% macro content(question, form, params) %}
+{% if 'Question' not in params %}
 Give a solution to the following: {{ params.statement }}
+{% else %}
+{{ params['Question'] }}
+{% endif %}
 {% from form.macros_template import content without context %}
 {{ content(question, form, params) }}
 {% endmacro %}
