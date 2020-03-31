@@ -199,9 +199,9 @@ class Question(db.Model, TemplateBased):
         #return(json.loads(process_quotes_for_json(self.params_json)))
         return(json.loads(self.params_json))
 
-#    def scripts(self):
-#        #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
-#        return(['/static/js/socket.io.wtforms.js'])
+    def get_scripts(self):
+        #return({'socket.io.wtforms': '/static/js/socket.io.wtforms.js'})
+        return(self.scripts)
 #    def traverse_templates(self):
 #        for base_class in inspect.getmro(self.__class__):
 #            path = os.path.join(loader.searchpath[0], "{:s}.html".format(base_class.__name__))
@@ -238,7 +238,7 @@ class Question(db.Model, TemplateBased):
 
     def to_json(self):
         return({
-            'scripts': self.scripts,
+            'scripts': self.get_scripts(),
             'submitted': list(self.submitted),
             'marked_correct': list(self.marked_correct),
             'marked_incorrect': list(self.marked_incorrect),
@@ -393,11 +393,11 @@ class MultiPartQuestion(Question):
             #part.macros_template = part.traverse_macros_templates()
             #print("Part macros template: {:s}".format(part.macros_template))
 
-    def scripts(self):
+    def get_scripts(self):
         params = self.params()
         scripts = []
         for i,part in enumerate(params['parts']):
-            scripts += part['question'].scripts()
+            scripts += part['question'].get_scripts()
         return(scripts)
 
     def build_form(self, formdata=None):
