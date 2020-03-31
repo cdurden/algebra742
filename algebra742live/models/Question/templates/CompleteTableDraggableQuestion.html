@@ -8,6 +8,7 @@ var droppable;
 var lastDropzoneTarget;
 var rect1;
 loadScript("https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js", function() {
+    console.log("setting up Draggable elements");
     {% if 'block_container' in params %}
     draggable = new Draggable.Draggable(document.querySelectorAll('#{{ params.block_container }}'), {
     {% else %}
