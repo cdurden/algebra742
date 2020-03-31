@@ -185,6 +185,7 @@ class Question(db.Model, TemplateBased):
 #        super().__init__(self, **kwargs)
     def build_form(self, formdata=None, data=None, prefix=''):
         #self.form = self.form_class(MultiDict(formdata),prefix=prefix)
+        print(self.form_class)
         self.form = self.form_class(formdata=MultiDict(formdata),data=data,prefix=prefix)
         self.form.question_id.data = self.id
         self.form.question_class.data = self.__class__.__name__
