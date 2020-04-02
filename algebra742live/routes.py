@@ -142,12 +142,12 @@ def lti_post(lti=lti):
     print(user)
     if user:
         resp = redirect("/lti2/")
+        resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
     else:
         form = UserInfoForm()
         resp = render_template('GetUserInfo.html', lti=lti, form=form)
-    resp.set_cookie('test', 'foo');
+    #resp.set_cookie('test', 'foo');
     # Ensure you use "add" to not overwrite existing cookie headers
-    resp.headers.add('Set-Cookie','cross-site-cookie=bar; SameSite=None; Secure')
     return resp
 
 @app.route('/lti2/', methods=['GET'])
