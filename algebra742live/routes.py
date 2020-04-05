@@ -6,7 +6,7 @@ from flask import jsonify
 from flask_socketio import emit
 from pylti.flask import lti
 import models
-from .models import db, RequestDenied
+from .models import db, get_user_by_lti_user_id, RequestDenied
 from .models.Question import Question, question_scores, get_question_from_digraph_node, get_snow_qm_task, get_question
 from .models.Game import GameClasses
 from .models.Work import Work
@@ -232,7 +232,7 @@ from . import models
 
 class User(Resource):
     def get(self, lti_user_id):
-        user = db.User.get_by_lti_user_id(lti_user_id)
+        user = get_user_by_lti_user_id(lti_user_id)
         return user.to_json()
 
 api = Api(app)
