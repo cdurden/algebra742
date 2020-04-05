@@ -144,3 +144,5 @@ class SinglyLinkedList:
             prev_node = curr
             curr = next_node
         self.head = prev_node
+
+db.User = User

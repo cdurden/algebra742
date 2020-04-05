@@ -1,11 +1,12 @@
 from flask import current_app as app
+from flask_restful import reqparse, abort, Api, Resource
 from functools import wraps
 from flask import render_template, request, redirect, url_for, send_file, make_response, session
 from flask import jsonify
 from flask_socketio import emit
 from pylti.flask import lti
 import models
-from .models import db, User, RequestDenied
+from .models import db, RequestDenied
 from .models.Question import Question, question_scores, get_question_from_digraph_node, get_snow_qm_task, get_question
 from .models.Game import GameClasses
 from .models.Work import Work
@@ -91,7 +92,7 @@ def render_snow_qm_task(collection_id=None,task_id=None):
 @socketio.on('chat-message')
 @lti(request='session', error=error)
 def handle_chat_message(data, lti=lti):
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     if user is None:
         raise RequestDenied
     print(user)
@@ -105,7 +106,7 @@ def handle_chat_message(data, lti=lti):
 def get_snow_qm_task_data(data, lti=lti):
     question = get_snow_qm_task(data['collection'], data['task'])
     try:
-        user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+        user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
         statement = select([question_scores,Question.__table__]).where(and_(question_scores.c.user_id==user.id, question_scores.c.question_id==Question.__table__.c.id, Question.__table__.c.id==question.id)).order_by(desc('datetime'))
         results = db.session.execute(statement).first()
     except RequestDenied:
@@ -138,7 +139,7 @@ def lti_post(lti=lti):
     """
     #print(request.headers.get('Authorization'))
     #print(session)
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if user:
         resp = redirect("/lti2/")
@@ -163,7 +164,7 @@ def lti_get(lti=lti):
     #print(request.cookies.get('session'))
     #print(request.cookies.get('test'))
     #print(session)
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     print(user)
     if request.cookies.get('session_is_set') == 'true':
         if user:
@@ -200,38 +201,42 @@ class MyHeaderAuthentication(HeaderAuthentication):
         else:
             return self.get_credentials_from_token(token)
 
-class UserSchema(Schema):
-    id = fields.Int(dump_only=True)
-    username = fields.String(required=True)
-    firstname = fields.String(required=True)
-    lastname = fields.String(required=True)
-    lti_user_id = fields.String(required=False)
+#class UserSchema(Schema):
+#    id = fields.Int(dump_only=True)
+#    username = fields.String(required=True)
+#    firstname = fields.String(required=True)
+#    lastname = fields.String(required=True)
+#    lti_user_id = fields.String(required=False)
+#
+#class UserViewBase(GenericModelView):
+#    model = models.User
+#    schema = UserSchema()
+#    authentication = MyHeaderAuthentication()
+#    filtering = Filtering(lti_user_id=ColumnFilter(operator.eq, required=True))
+#
+#class UserListView(UserViewBase):
+#    def get(self):
+#        return self.list()
+#
+#    def post(self):
+#        return self.create()
+#
+#class UserView(UserViewBase):
+#    def get(self, id):
+#        return self.retrieve(id)
+#
+#    def patch(self, id):
+#        return self.update(id, partial=True)
+#
+#    def delete(self, id):
+#        return self.destroy(id)
+#
 
-class UserViewBase(GenericModelView):
-    model = models.User
-    schema = UserSchema()
-    authentication = MyHeaderAuthentication()
-    filtering = Filtering(lti_user_id=ColumnFilter(operator.eq, required=True))
+class User(Resource):
+    def get(self, user_id):
 
-class UserListView(UserViewBase):
-    def get(self):
-        return self.list()
-
-    def post(self):
-        return self.create()
-
-class UserView(UserViewBase):
-    def get(self, id):
-        return self.retrieve(id)
-
-    def patch(self, id):
-        return self.update(id, partial=True)
-
-    def delete(self, id):
-        return self.destroy(id)
-
-api = Api(app, prefix="/api")
-api.add_resource("/users/", UserListView, UserView)
+api = Api(app)
+api.add_resource("/api/users/", UserListView, UserView)
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
@@ -251,7 +256,7 @@ def slides(deck,lti=lti):
 @lti(request='session', error=error)
 def algebra742live(lti=lti):
     """Serve the index HTML"""
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     if user:
         return render_template(ROOMS[0].template)
     else:
@@ -267,7 +272,7 @@ def admin(lti=lti):
     :param lti: the `lti` object from `pylti`
     :return: index page for lti provider
     """
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     if user.id==86:
         game = app.extensions['redis'].get('game').decode('utf-8')
         params = app.extensions['redis'].get('params').decode('utf-8')
@@ -279,7 +284,7 @@ def admin(lti=lti):
 @lti(request='session', error=error)
 def save_work(data, lti=lti):
     print("saving work")
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     game = app.extensions['redis'].get('game').decode('utf-8')
     params = json.loads(app.extensions['redis'].get('params').decode('utf-8'))
     work = get_or_create(db.session, Work, user_id=user.id, template=params['template'])
@@ -290,7 +295,7 @@ def save_work(data, lti=lti):
 @app.route('/load_work', methods=['GET','POST'])
 @lti(request='session', error=error)
 def load_work(lti=lti):
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     game = app.extensions['redis'].get('game').decode('utf-8')
     params = json.loads(app.extensions['redis'].get('params').decode('utf-8'))
     work = get_or_create(db.session, Work, user_id=user.id, template=params['template'])
@@ -312,7 +317,7 @@ def set_game(data, lti=lti):
 @socketio.on('connect')
 @lti(request='session', error=error)
 def on_connect(lti=lti):
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     ROOMS[0].add_player(request.sid, user)
     emit('reset_game', ROOMS[0].to_json(), room=request.sid)
 
@@ -357,7 +362,7 @@ def question_input(data, lti=lti):
     print("receiving input")
     """submit response and rebroadcast game object"""
     print(data)
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     if user is None:
         raise RequestDenied
     print(user)
@@ -401,12 +406,12 @@ def graphics(template=None, engine=None, params_hash=None, lti=lti):
 @lti(request='session', error=error)
 def SetUserInfo(lti=lti):
     from sqlalchemy.sql.expression import ClauseElement
-    user = db.session.query(User).filter_by(lti_user_id=lti.name).first()
+    user = db.session.query(db.User).filter_by(lti_user_id=lti.name).first()
     if user:
         user.username = form.username.data
     else:
         form = UserInfoForm()
-        user = User(lti_user_id=lti.name, username=form.username.data, firstname=form.firstname.data, lastname=form.lastname.data)
+        user = db.User(lti_user_id=lti.name, username=form.username.data, firstname=form.firstname.data, lastname=form.lastname.data)
         db.session.add(user)
     db.session.commit()
     return render_template(ROOMS[0].template, user=user)
