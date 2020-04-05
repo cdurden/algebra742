@@ -232,7 +232,7 @@ from . import models
 
 class User(Resource):
     def get(self, lti_user_id):
-        user = get_user_by_lti_user_id(lti_user_id)
+        user = get_user_by_lti_user_id(db.session, lti_user_id)
         return user.to_json()
 
 api = Api(app)

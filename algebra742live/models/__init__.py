@@ -48,8 +48,8 @@ class User(db.Model):
                  'lastname': self.lastname,
                  'lti_user_id': self.lti_user_id })
 
-def get_user_by_lti_user_id(lti_user_id):
-    instance = session.query(User).filter_by(lti_user_id=lti_user_id).first() # TODO: ensure unique
+def get_user_by_lti_user_id(session, lti_user_id):
+    instance = db.session.query(User).filter_by(lti_user_id=lti_user_id).first() # TODO: ensure unique
     return instance
 
 class ListNode:
