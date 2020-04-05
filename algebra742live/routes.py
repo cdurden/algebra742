@@ -208,7 +208,7 @@ def api_authenticate(f):
     def wrapper(*args, **kwargs):
         if HeaderAuthentication().get_request_credentials():
             return f(*args, **kwargs)
-        else
+        else:
             raise ApiError(401, "Authentication failed")
     return wrapper
 
