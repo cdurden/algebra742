@@ -233,10 +233,12 @@ class MyHeaderAuthentication(HeaderAuthentication):
 #
 
 class User(Resource):
-    def get(self, user_id):
+    def get(self, lti_user_id):
+        user = db.User.get_by_lti_user_id(lti_user_id)
+        return user.to_json()
 
 api = Api(app)
-api.add_resource("/api/users/", UserListView, UserView)
+api.add_resource(User, "/api/user/<lti_user_id>")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)

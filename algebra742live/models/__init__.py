@@ -47,6 +47,9 @@ class User(db.Model):
                  'firstname': self.firstname,
                  'lastname': self.lastname,
                  'lti_user_id': self.lti_user_id })
+    def get_by_lti_user_id(lti_user_id):
+        instance = session.query(User).filter_by(lti_user_id=lti_user_id).first()
+
 
 class ListNode:
     """
