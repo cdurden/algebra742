@@ -187,19 +187,17 @@ def lti_get(lti=lti):
 
 from marshmallow import Schema, fields
 import operator
-from flask_resty import GenericModelView, Api, Filtering, ColumnFilter
-from flask_resty.exceptions import ApiError
 from .models.authentication import HeaderAuthentication
 from . import models
 
-class MyHeaderAuthentication(HeaderAuthentication):
-    credentials_arg = 'auth_token'
-    def get_request_credentials(self):
-        token = self.get_request_token()
-        if token != app.config['AUTH_TOKEN']:
-            raise ApiError(401, "Authentication failed")
-        else:
-            return self.get_credentials_from_token(token)
+#class MyHeaderAuthentication(HeaderAuthentication):
+#    credentials_arg = 'auth_token'
+#    def get_request_credentials(self):
+#        token = self.get_request_token()
+#        if token != app.config['AUTH_TOKEN']:
+#            raise ApiError(401, "Authentication failed")
+#        else:
+#            return self.get_credentials_from_token(token)
 
 #class UserSchema(Schema):
 #    id = fields.Int(dump_only=True)
