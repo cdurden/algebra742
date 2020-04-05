@@ -187,17 +187,30 @@ def lti_get(lti=lti):
 
 from marshmallow import Schema, fields
 import operator
-from .models.authentication import HeaderAuthentication
+from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
 
-#class MyHeaderAuthentication(HeaderAuthentication):
-#    credentials_arg = 'auth_token'
-#    def get_request_credentials(self):
-#        token = self.get_request_token()
-#        if token != app.config['AUTH_TOKEN']:
-#            raise ApiError(401, "Authentication failed")
-#        else:
-#            return self.get_credentials_from_token(token)
+class ApiError(Exception):
+    pass
+
+from functools import wraps
+class HeaderAuthentication(HeaderAuthentication_):
+    credentials_arg = 'auth_token'
+    def get_request_credentials(self):
+        token = self.get_request_token()
+        if token != app.config['AUTH_TOKEN']:
+            raise ApiError(401, "Authentication failed")
+        else:
+            return self.get_credentials_from_token(token)
+
+def api_authenticate(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if HeaderAuthentication().get_request_credentials():
+            return f(*args, **kwargs)
+        else
+            raise ApiError(401, "Authentication failed")
+    return wrapper
 
 #class UserSchema(Schema):
 #    id = fields.Int(dump_only=True)
@@ -231,6 +244,7 @@ from . import models
 #
 
 class User(Resource):
+    @api_authenticate
     def get(self, lti_user_id):
         user = get_user_by_lti_user_id(db.session, lti_user_id)
         return user.to_json()

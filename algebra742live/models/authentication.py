@@ -1,9 +1,5 @@
 import flask
 
-from flask_resty import context
-from flask_resty.exceptions import ApiError
-
-# -----------------------------------------------------------------------------
 
 
 def get_request_credentials():
