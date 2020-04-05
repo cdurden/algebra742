@@ -198,6 +198,8 @@ class HeaderAuthentication(HeaderAuthentication_):
     credentials_arg = 'auth_token'
     def get_request_credentials(self):
         token = self.get_request_token()
+        print(token)
+        print(self.get_request_token())
         if token != app.config['AUTH_TOKEN']:
             raise ApiError(401, "Authentication failed")
         else:
