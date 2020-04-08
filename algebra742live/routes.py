@@ -243,7 +243,7 @@ def api_authenticate(f):
             raise ApiError(401, "Authentication failed")
     return wrapper
 
-from models.Task import get_task_by_id
+from models.Task import get_task_by_id, get_task_data_by_source
 from models.Submission import get_submission_by_id, get_submissions
 
 class User(Resource):
