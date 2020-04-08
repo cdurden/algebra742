@@ -3,6 +3,7 @@ from datetime import datetime
 from .. import db
 import json
 import re
+from sqlalchemy.orm import relationship
 
 class Task(db.Model):
     __tablename__ = 'task'

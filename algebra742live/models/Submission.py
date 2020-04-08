@@ -2,6 +2,7 @@ from flask import current_app as app
 from datetime import datetime
 from .. import db
 import json
+from sqlalchemy.orm import relationship
 
 class Submission(db.Model):
     __tablename__ = 'submission'
