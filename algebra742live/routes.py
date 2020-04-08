@@ -286,7 +286,7 @@ class SubmissionList(Resource):
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(Task, "/api/task/<task_id>")
-api.add_resource(TasksList, "/api/tasks/<source>/")
+api.add_resource(TaskList, "/api/tasks/<source>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(SubmissionList, "/api/submissions/")
 
