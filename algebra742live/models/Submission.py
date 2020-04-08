@@ -37,5 +37,5 @@ def get_submission_by_id(submission_id):
     return(submission)
 
 def get_submissions():
-    submissions = db.session.query(Submissions).all()
+    submissions = db.session.query(Submission).all()
     return(submissions)
