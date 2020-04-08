@@ -32,9 +32,9 @@ class Submission(db.Model):
             'datetime': self.datetime,
             })
 
-def get_task_by_id(task_id):
-    task = db.session.query(Task).get(task_id)
-    return(task)
+def get_submission_by_id(submission_id):
+    submission = db.session.query(Submission).get(submission_id)
+    return(submission)
 
 def get_submissions():
     submissions = db.session.query(Submissions).all()
