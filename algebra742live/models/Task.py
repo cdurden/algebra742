@@ -9,7 +9,7 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     source = db.Column(db.Text)
     parameters = db.Column(db.Text)
-    submitted = db.Boolean, default=False)
+    submitted = db.Column(db.Boolean, default=False)
 
     submissions = relationship("Submission", back_populates="task")
 
