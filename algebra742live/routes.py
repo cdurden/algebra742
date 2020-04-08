@@ -261,8 +261,9 @@ class Task(Resource):
 class TaskList(Resource):
     #@api_authenticate
     def get(self, source):
-        tasks = get_task_data_by_source(source)
-        return [task.to_json() for task in tasks]
+        task_data = get_task_data_by_source(source)
+        return task_data
+        #return [task.to_json() for task in tasks]
 
 class Submission(Resource):
     #@api_authenticate
