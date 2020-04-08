@@ -2,7 +2,8 @@ from flask import current_app as app
 from datetime import datetime
 from .. import db
 import json
-import re
+import re # for matching source patterns to task collections and tasks
+import os # for reading task collection files
 from sqlalchemy.orm import relationship
 
 class Task(db.Model):
