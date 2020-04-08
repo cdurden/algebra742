@@ -187,30 +187,6 @@ def lti_get(lti=lti):
 
 from marshmallow import Schema, fields
 import operator
-from .models.authentication import HeaderAuthentication as HeaderAuthentication_
-from . import models
-
-class ApiError(Exception):
-    pass
-
-from functools import wraps
-class HeaderAuthentication(HeaderAuthentication_):
-    credentials_arg = 'auth_token'
-    def get_request_credentials(self):
-        token = self.get_request_token()
-        if token != app.config['AUTH_TOKEN']:
-            raise ApiError(401, "Authentication failed")
-        else:
-            return self.get_credentials_from_token(token)
-
-def api_authenticate(f):
-    @wraps(f)
-    def wrapper(*args, **kwargs):
-        if HeaderAuthentication().get_request_credentials():
-            return f(*args, **kwargs)
-        else:
-            raise ApiError(401, "Authentication failed")
-    return wrapper
 
 #class UserSchema(Schema):
 #    id = fields.Int(dump_only=True)
@@ -242,15 +218,77 @@ def api_authenticate(f):
 #    def delete(self, id):
 #        return self.destroy(id)
 #
+from .models.authentication import HeaderAuthentication as HeaderAuthentication_
+from . import models
+
+class ApiError(Exception):
+    pass
+
+from functools import wraps
+class HeaderAuthentication(HeaderAuthentication_):
+    credentials_arg = 'auth_token'
+    def get_request_credentials(self):
+        token = self.get_request_token()
+        if token != app.config['AUTH_TOKEN']:
+            raise ApiError(401, "Authentication failed")
+        else:
+            return self.get_credentials_from_token(token)
+
+def api_authenticate(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if HeaderAuthentication().get_request_credentials():
+            return f(*args, **kwargs)
+        else:
+            raise ApiError(401, "Authentication failed")
+    return wrapper
+
+from models.Task import get_task_by_id
+from models.Submission import get_submission_by_id, get_submissions
 
 class User(Resource):
-    @api_authenticate
+    #@api_authenticate
     def get(self, lti_user_id):
         user = get_user_by_lti_user_id(db.session, lti_user_id)
         return user.to_json()
 
+class Task(Resource):
+    #@api_authenticate
+    def get(self, task_id):
+        task = get_task_by_id(db.session, task_id)
+        return task.to_json()
+
+class TaskList(Resource):
+    #@api_authenticate
+    def get(self, source):
+        tasks = get_task_data_by_source(source)
+        return [task.to_json() for task in tasks]
+
+class Submission(Resource):
+    #@api_authenticate
+    def get(self, submission_id):
+        submission = get_submission_by_id(db.session, submission_id)
+        return submission.to_json()
+
+class SubmissionList(Resource):
+    #@api_authenticate
+    def get(self):
+        return(get_submissions())
+
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('task_id')
+        task = get_task_by_id(db.session, task_id)
+        for field in task.get_submission_fields():
+            parser.add_argument(field)
+
+
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
+api.add_resource(Task, "/api/task/<task_id>")
+api.add_resource(TasksList, "/api/tasks/<source>/")
+api.add_resource(Submission, "/api/submission/<submission_id>")
+api.add_resource(SubmissionList, "/api/submissions/")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
