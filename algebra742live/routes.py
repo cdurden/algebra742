@@ -243,7 +243,7 @@ def api_authenticate(f):
             raise ApiError(401, "Authentication failed")
     return wrapper
 
-from models.Task import get_task_by_id, get_task_data_by_source
+from models.Task import get_task_by_id, get_task_data_by_source, get_tasks_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 
 class User(Resource):
@@ -260,8 +260,8 @@ class Task(Resource):
 
 class TaskList(Resource):
     #@api_authenticate
-    def get(self, source):
-        tasks_data = get_tasks_data_by_source(source)
+    def get(self, source_pattern):
+        tasks_data = get_tasks_data_by_source_pattern(source_pattern)
         return tasks_data
         #return [task.to_json() for task in tasks]
 
@@ -295,7 +295,7 @@ class WorkList(Resource):
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(Task, "/api/task/<task_id>")
-api.add_resource(TaskList, "/api/tasks/<source>/")
+api.add_resource(TaskList, "/api/tasks/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(SubmissionList, "/api/submissions/")
 
