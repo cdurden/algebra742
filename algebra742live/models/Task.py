@@ -56,5 +56,5 @@ def get_tasks_data_by_source_pattern(source_pattern):
         collection = collection_pattern
         with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection+'.json')) as f:
             collection_data = json.load(f)
-        for task in filter(re.compile(task_pattern),collection_data.keys()):
+        for task in filter(re.compile(task_pattern).match,collection_data.keys()):
             yield data[task]
