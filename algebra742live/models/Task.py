@@ -40,7 +40,7 @@ def get_task_by_id(task_id):
     task = db.session.query(Task).get(task_id)
     return(task)
 
-def get_task_by_source(source):
+def get_task_from_source(source):
     repo, tags = source.split(":",1)
     if repo == 'snow-qm':
         collection, task = tags.split(":")

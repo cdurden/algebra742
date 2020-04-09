@@ -220,7 +220,7 @@ import operator
 #
 from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
-from models.Task import get_task_by_id, get_task_by_source, get_task_data_by_source_pattern
+from models.Task import get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.util import SerializableGenerator
 
@@ -262,7 +262,7 @@ class Task(Resource):
 class SourcedTask(Resource):
     #@api_authenticate
     def get(self, source):
-        task = get_task_by_source(db.session, source)
+        task = get_task_from_source(source)
         return task.to_json()
 
 class TaskDataList(Resource):
