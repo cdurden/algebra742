@@ -11,7 +11,7 @@ class Task(db.Model):
     __tablename__ = 'task'
     id = db.Column(db.Integer, primary_key=True)
     source = db.Column(db.Text)
-    parameters = db.Column(db.Text)
+    #parameters = db.Column(db.Text)
     submitted = db.Column(db.Boolean, default=False)
 
     submissions = relationship("Submission", back_populates="task")
@@ -24,7 +24,7 @@ class Task(db.Model):
             'id': self.id,
             'source': self.source,
             'data': self.data(),
-            'parameters': self.params(),
+            #'parameters': self.params(),
             'submitted': self.submitted,
             })
 
