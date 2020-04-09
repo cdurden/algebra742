@@ -2,6 +2,7 @@ import hashlib
 import json
 import shlex
 import os
+import itertools
 
 def graphics_path(app, engine, template, asy_params_hash):
     return(os.path.join(app.config['GRAPHICS_OUTPUT_DIR'],engine,'{:s}_{:s}.svg'.format(os.path.splitext(template)[0],asy_params_hash)))
