@@ -261,8 +261,8 @@ class Task(Resource):
 class TaskList(Resource):
     #@api_authenticate
     def get(self, source):
-        task_data = get_task_data_by_source(source)
-        return task_data
+        tasks_data = get_tasks_data_by_source(source)
+        return tasks_data
         #return [task.to_json() for task in tasks]
 
 class Submission(Resource):
@@ -283,6 +283,13 @@ class SubmissionList(Resource):
         for field in task.get_submission_fields():
             parser.add_argument(field)
 
+class Work(Resource):
+    def get(self, work_id):
+        work = get_work_by_id(db.session, work_id)
+        return work.to_json()
+
+class WorkList(Resource)
+    def post(self):
 
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
