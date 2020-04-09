@@ -25,7 +25,7 @@ class Task(db.Model):
             'source': self.source,
             'data': self.data(),
             'parameters': self.params(),
-            'submitted': list(self.submitted),
+            'submitted': self.submitted,
             })
 
     def data(self):
@@ -43,15 +43,15 @@ def get_task_by_id(task_id):
 
 def get_task_from_source(source):
     repo, tags = source.split(":",1)
+    task = get_or_create(db.session, Task, source=source)
     if repo == 'snow-qm':
         collection, task = tags.split(":")
         collection = collection
         with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection+'.json')) as f:
             collection_data = json.load(f)
         if task in collection_data:
-            parameters = collection_data[task]
-            task = get_or_create(db.session, Task, source=source)
-            task.parameters = json.dumps(parameters)
+            #parameters = collection_data[task]
+            #task.parameters = json.dumps(parameters)
             return(task)
 
 def get_task_data_by_source_pattern(source_pattern):
