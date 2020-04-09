@@ -4,6 +4,7 @@ import random
 import string
 from datetime import datetime
 import json
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
 db = SQLAlchemy()
 
@@ -21,10 +22,10 @@ def get(session, model, defaults=None, **kwargs):
 
 def get_or_create(session, model, defaults=None, **kwargs):
     from sqlalchemy.sql.expression import ClauseElement
-    instance = session.query(model).filter_by(**kwargs).first()
-    if instance:
+    try:
+        instance = session.query(model).filter_by(**kwargs).one()
         return instance
-    else:
+    except NoResultsFound:
         params = dict((k, v) for k, v in kwargs.items() if not isinstance(v, ClauseElement))
         params.update(defaults or {})
         instance = model(**params)

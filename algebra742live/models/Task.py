@@ -40,16 +40,19 @@ def get_task_by_id(task_id):
     task = db.session.query(Task).get(task_id)
     return(task)
 
-def get_task_data_by_source(source):
+def get_task_by_source(source):
     repo, tags = source.split(":",1)
     if repo == 'snow-qm':
         collection, task = tags.split(":")
+        collection = collection
         with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection+'.json')) as f:
             collection_data = json.load(f)
-        task_data = collection_data[task]
-        return(task_data)
+        if task in collection_data:
+            task = get_or_create(db.session, Task, source=source)
+            task.parameters = json.dumps(collection_data[task])
+            return(task)
 
-def get_tasks_data_by_source_pattern(source_pattern):
+def get_task_data_by_source_pattern(source_pattern):
     repo, tags = source_pattern.split(":",1)
     if repo == 'snow-qm':
         collection_pattern, task_pattern = tags.split(":")
@@ -57,4 +60,4 @@ def get_tasks_data_by_source_pattern(source_pattern):
         with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection+'.json')) as f:
             collection_data = json.load(f)
         for task in filter(re.compile(task_pattern).match,collection_data.keys()):
-            yield collection_data[task]
+            yield {'source': '{:s}:{:s}:{:s}'.format(repo,collection,task), 'data': collection_data[task]}

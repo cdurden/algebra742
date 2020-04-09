@@ -220,7 +220,7 @@ import operator
 #
 from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
-from models.Task import get_task_by_id, get_task_data_by_source, get_tasks_data_by_source_pattern
+from models.Task import get_task_by_id, get_task_by_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.util import SerializableGenerator
 
@@ -259,10 +259,16 @@ class Task(Resource):
         task = get_task_by_id(db.session, task_id)
         return task.to_json()
 
-class TaskList(Resource):
+class SourcedTask(Resource):
+    #@api_authenticate
+    def get(self, source):
+        task = get_task_by_source(db.session, source)
+        return task.to_json()
+
+class TaskDataList(Resource):
     #@api_authenticate
     def get(self, source_pattern):
-        tasks_data = get_tasks_data_by_source_pattern(source_pattern)
+        tasks_data = get_task_data_by_source_pattern(source_pattern)
         return SerializableGenerator(tasks_data)
         #return [task.to_json() for task in tasks]
 
@@ -296,7 +302,8 @@ class WorkList(Resource):
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(Task, "/api/task/<task_id>")
-api.add_resource(TaskList, "/api/tasks/<source_pattern>/")
+api.add_resource(SourcedTask, "/api/task/source/<source>/")
+api.add_resource(TaskDataList, "/api/tasks/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(SubmissionList, "/api/submissions/")
 
