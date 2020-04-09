@@ -288,8 +288,9 @@ class Work(Resource):
         work = get_work_by_id(db.session, work_id)
         return work.to_json()
 
-class WorkList(Resource)
+class WorkList(Resource):
     def post(self):
+        pass
 
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
