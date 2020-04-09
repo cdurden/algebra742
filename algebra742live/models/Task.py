@@ -49,8 +49,9 @@ def get_task_from_source(source):
         with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection+'.json')) as f:
             collection_data = json.load(f)
         if task in collection_data:
+            parameters = collection_data[task]
             task = get_or_create(db.session, Task, source=source)
-            task.parameters = json.dumps(collection_data[task])
+            task.parameters = json.dumps(parameters)
             return(task)
 
 def get_task_data_by_source_pattern(source_pattern):
