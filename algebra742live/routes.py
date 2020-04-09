@@ -220,6 +220,10 @@ import operator
 #
 from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
+from models.Task import get_task_by_id, get_task_data_by_source, get_tasks_data_by_source_pattern
+from models.Submission import get_submission_by_id, get_submissions
+from models.util import SerializableGenerator
+
 
 class ApiError(Exception):
     pass
@@ -243,9 +247,6 @@ def api_authenticate(f):
             raise ApiError(401, "Authentication failed")
     return wrapper
 
-from models.Task import get_task_by_id, get_task_data_by_source, get_tasks_data_by_source_pattern
-from models.Submission import get_submission_by_id, get_submissions
-
 class User(Resource):
     #@api_authenticate
     def get(self, lti_user_id):
@@ -262,7 +263,7 @@ class TaskList(Resource):
     #@api_authenticate
     def get(self, source_pattern):
         tasks_data = get_tasks_data_by_source_pattern(source_pattern)
-        return tasks_data
+        return SerializableGenerator(tasks_data)
         #return [task.to_json() for task in tasks]
 
 class Submission(Resource):
