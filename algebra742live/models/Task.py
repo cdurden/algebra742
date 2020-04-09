@@ -5,6 +5,7 @@ import json
 import re # for matching source patterns to task collections and tasks
 import os # for reading task collection files
 from sqlalchemy.orm import relationship
+from . import get_or_create
 
 class Task(db.Model):
     __tablename__ = 'task'
