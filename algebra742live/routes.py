@@ -284,7 +284,7 @@ class SubmissionList(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('data')
-        args = parser.parse_args()
+        args = parser.parse_args() || {}
         return(get_submissions(**args['data']))
 
 class TaskSubmissionList(Resource):
