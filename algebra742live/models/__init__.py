@@ -48,7 +48,7 @@ class User(db.Model):
                  'firstname': self.firstname,
                  'lastname': self.lastname,
                  'lti_user_id': self.lti_user_id })
-    def submit(task, data):
+    def submit(self, task, data):
         submission = Submission(user_id=self.id, task_id=task.id, data=json.dumps(data))
         db.session.add(submission)
         db.session.commit()
