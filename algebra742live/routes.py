@@ -284,8 +284,9 @@ class SubmissionList(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('data')
-        args = parser.parse_args() || {}
-        return(get_submissions(**args['data']))
+        args = parser.parse_args()
+        kwargs = args['data'] or {}
+        return(get_submissions(**kwargs))
 
 class TaskSubmissionList(Resource):
     #@api_authenticate
