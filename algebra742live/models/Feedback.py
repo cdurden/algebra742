@@ -2,6 +2,8 @@ from flask import current_app as app
 from datetime import datetime
 from .. import db
 import json
+from sqlalchemy.orm import relationship
+
 
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
