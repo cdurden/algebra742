@@ -6,6 +6,7 @@ from datetime import datetime
 import json
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
+
 db = SQLAlchemy()
 
 class RequestDenied(Exception):
@@ -129,5 +130,3 @@ class SinglyLinkedList:
             prev_node = curr
             curr = next_node
         self.head = prev_node
-
-db.User = User
