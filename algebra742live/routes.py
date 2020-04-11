@@ -278,17 +278,22 @@ class Submission(Resource):
         submission = get_submission_by_id(db.session, submission_id)
         return submission.to_json()
 
-class SubmissionList(Resource):
+class TaskSubmissionList(Resource):
     #@api_authenticate
-    def get(self):
+    def get(self, task_id):
         return(get_submissions())
 
-    def post(self):
+    def post(self, task_id):
         parser = reqparse.RequestParser()
-        parser.add_argument('task_id')
         task = get_task_by_id(db.session, task_id)
-        for field in task.get_submission_fields():
-            parser.add_argument(field)
+        parser.add_argument('lti_user_id')
+        parser.add_argument('data')
+        #for field in task.get_submission_fields():
+        #    parser.add_argument(field)
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(db.session, args['lti_user_id'])
+        submission = user.submit(task, args['data'])
+        return submission, 201
 
 class Work(Resource):
     def get(self, work_id):
@@ -305,7 +310,7 @@ api.add_resource(Task, "/api/task/<task_id>")
 api.add_resource(SourcedTask, "/api/task/source/<source>/")
 api.add_resource(TaskDataList, "/api/tasks/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
-api.add_resource(SubmissionList, "/api/submissions/")
+api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)

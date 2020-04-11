@@ -48,6 +48,12 @@ class User(db.Model):
                  'firstname': self.firstname,
                  'lastname': self.lastname,
                  'lti_user_id': self.lti_user_id })
+    def submit(task, data):
+        submission = Submission(user_id=self.id, task_id=task.id, data=json.dumps(data))
+        db.session.add(submission)
+        db.session.commit()
+        return(submission)
+
 
 def get_user_by_lti_user_id(session, lti_user_id):
     instance = db.session.query(User).filter_by(lti_user_id=lti_user_id).first() # TODO: ensure unique
