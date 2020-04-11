@@ -294,7 +294,7 @@ class TaskSubmissionList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         submission = user.submit(task, args['data'])
-        return submission, 201
+        return submission.to_json(), 201
 
 class Work(Resource):
     def get(self, work_id):
