@@ -250,7 +250,7 @@ def api_authenticate(f):
 class User(Resource):
     #@api_authenticate
     def get(self, lti_user_id):
-        user = get_user_by_lti_user_id(db.session, lti_user_id)
+        user = get_user_by_lti_user_id(lti_user_id)
         return user.to_json()
 
 class Task(Resource):
@@ -285,13 +285,13 @@ class TaskSubmissionList(Resource):
 
     def post(self, task_id):
         parser = reqparse.RequestParser()
-        task = get_task_by_id(db.session, task_id)
+        task = get_task_by_id(task_id)
         parser.add_argument('lti_user_id')
         parser.add_argument('data')
         #for field in task.get_submission_fields():
         #    parser.add_argument(field)
         args = parser.parse_args()
-        user = get_user_by_lti_user_id(db.session, args['lti_user_id'])
+        user = get_user_by_lti_user_id(args['lti_user_id'])
         submission = user.submit(task, args['data'])
         return submission, 201
 
