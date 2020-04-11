@@ -15,5 +15,5 @@ class Feedback(db.Model):
             'id': self.id,
             'submission_id': self.submission_id,
             'data': self.data,
-            'datetime': self.datetime,
+            'datetime': self.datetime.isoformat(),
             })

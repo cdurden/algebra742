@@ -26,7 +26,7 @@ class Work(db.Model):
             'task_id': self.task_id,
             'submission_id': self.submission_id,
             'data': self.data,
-            'datetime': self.datetime,
+            'datetime': self.datetime.isoformat(),
             })
 
 def get_work_by_id(work_id):

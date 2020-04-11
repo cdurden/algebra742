@@ -29,7 +29,7 @@ class Submission(db.Model):
             'user_id': self.user_id,
             'task_id': self.task_id,
             'data': self.data,
-            'datetime': self.datetime,
+            'datetime': self.datetime.isoformat(),
             })
 
 def get_submission_by_id(submission_id):
