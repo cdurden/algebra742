@@ -5,6 +5,7 @@ import string
 from datetime import datetime
 import json
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
+from . import Submission
 
 db = SQLAlchemy()
 
