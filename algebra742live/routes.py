@@ -282,6 +282,7 @@ class Submission(Resource):
 class SubmissionList(Resource):
     #@api_authenticate
     def get(self):
+        parser = reqparse.RequestParser()
         parser.add_argument('data')
         args = parser.parse_args()
         return(get_submissions(**args['data']))
