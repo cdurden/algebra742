@@ -12,6 +12,8 @@ class User(db.Model):
     lastname = db.Column(db.String(80), nullable=False)
     lti_user_id = db.Column(db.String(255), unique=True, nullable=False)
 
+    submissions = relationship("Submission", back_populates="user")
+
     def __repr__(self):
         return '<User %r>' % self.username
     def to_json(self):
