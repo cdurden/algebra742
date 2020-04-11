@@ -279,10 +279,17 @@ class Submission(Resource):
         submission = get_submission_by_id(db.session, submission_id)
         return submission.to_json()
 
+class SubmissionList(Resource):
+    #@api_authenticate
+    def get(self):
+        parser.add_argument('data')
+        args = parser.parse_args()
+        return(get_submissions(**args['data']))
+
 class TaskSubmissionList(Resource):
     #@api_authenticate
     def get(self, task_id):
-        return(get_submissions())
+        return(get_submissions(task_id=task_id))
 
     def post(self, task_id):
         parser = reqparse.RequestParser()
@@ -312,6 +319,7 @@ api.add_resource(SourcedTask, "/api/task/source/<source>/")
 api.add_resource(TaskDataList, "/api/tasks/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
+api.add_resource(SubmissionList, "/api/submissions/")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)

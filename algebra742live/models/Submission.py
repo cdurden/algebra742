@@ -45,6 +45,6 @@ def get_submission_by_id(submission_id):
     submission = db.session.query(Submission).get(submission_id)
     return(submission)
 
-def get_submissions():
-    submissions = db.session.query(Submission).all()
+def get_submissions(**kwargs):
+    submissions = db.session.query(Submission).filter_by(**kwargs).all()
     return(submissions)
