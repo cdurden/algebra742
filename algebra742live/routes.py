@@ -6,7 +6,7 @@ from flask import jsonify
 from flask_socketio import emit
 from pylti.flask import lti
 import models
-from .models import db, get_user_by_lti_user_id, RequestDenied
+from .models import db, RequestDenied
 from .models.Question import Question, question_scores, get_question_from_digraph_node, get_snow_qm_task, get_question
 from .models.Game import GameClasses
 from .models.Work import Work
@@ -220,6 +220,7 @@ import operator
 #
 from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
+from models.User import get_user_by_lti_user_id
 from models.Task import get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.util import SerializableGenerator
