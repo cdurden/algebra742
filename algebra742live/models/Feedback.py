@@ -10,6 +10,8 @@ class Feedback(db.Model):
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
 
+    submission = relationship("Submission", back_populates="feedback")
+
     def to_json(self):
         return({
             'id': self.id,

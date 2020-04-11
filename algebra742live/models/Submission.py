@@ -14,11 +14,12 @@ class Submission(db.Model):
                     default=datetime.utcnow)
     graded = db.Column(db.Boolean, default=False)
     score = db.Column(db.Float)
-    marked_correct = db.Column(db.Text)
-    marked_incorrect = db.Column(db.Text)
+    marked_correct = db.Column(db.Text, default="[]")
+    marked_incorrect = db.Column(db.Text, default="[]")
 
-    #user = relationship("User", back_populates="submissions")
+    user = relationship("User", back_populates="submissions")
     task = relationship("Task", back_populates="submissions")
+    feedback = relationship("Feedback", back_populates="submission")
 
     def check():
         pass
@@ -30,6 +31,13 @@ class Submission(db.Model):
             'task_id': self.task_id,
             'data': self.data,
             'datetime': self.datetime.isoformat(),
+            'graded': self.graded,
+            'score': self.score,
+            'marked_correct': json.loads(self.marked_correct),
+            'marked_incorrect': json.loads(self.marked_incorrect),
+            'user': self.user.to_json(),
+            'task': self.task.to_json(),
+            'feedback': [feedback.to_json() for feedback in self.feedback],
             })
 
 def get_submission_by_id(submission_id):
