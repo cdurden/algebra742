@@ -38,7 +38,7 @@ socketio = SocketIO()
 r = FlaskRedis()
 #db = SQLAlchemy(app)
 
-import flask.ext.restful.representations.json
+#import flask.ext.restful.representations.json
 
 def new_alchemy_encoder():
     _visited_objs = []
@@ -69,7 +69,7 @@ class AlchemyEncoderMiddleWare(object):
     def __init__(self, app):
         self.app = app
     def __call__(self, environ, start_response):
-        flask.ext.restful.representations.json.settings["cls"] = new_alchemy_encoder() 
+        flask.extensions['restful']representations.json.settings["cls"] = new_alchemy_encoder() 
         return self.app(environ, start_response)
 
 #def new_alchemy_encoder(revisit_self = False, fields_to_expand = []):
