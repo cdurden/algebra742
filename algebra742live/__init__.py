@@ -37,6 +37,9 @@ socketio = SocketIO()
 #db = SQLAlchemy()
 r = FlaskRedis()
 #db = SQLAlchemy(app)
+
+import flask.ext.restful.representations.json
+
 def new_alchemy_encoder():
     _visited_objs = []
 
@@ -60,6 +63,16 @@ def new_alchemy_encoder():
             return json.JSONEncoder.default(self, obj)
 
     return AlchemyEncoder
+
+class AlchemyEncoderMiddleWare(object):
+“””Simple WSGI middleware
+“””
+def __init__(self, app):
+    self.app = app
+def __call__(self, environ, start_response):
+    flask.ext.restful.representations.json.settings["cls"] = new_alchemy_encoder() 
+    return self.app(environ, start_response)
+
 #def new_alchemy_encoder(revisit_self = False, fields_to_expand = []):
 #    _visited_objs = []
 #
@@ -112,7 +125,7 @@ def create_app():
     db.init_app(app)
     r.init_app(app)
     socketio.init_app(app)
-    app.json_encoder = new_alchemy_encoder()
+    app.wsgi_app = AlchemyEncoderMiddleWare(app.wsgi_app)
 
     with app.app_context():
         # Include our Routes
@@ -165,4 +178,3 @@ def create_app():
 
 #if __name__ == '__main__':
 #    socketio.run(app, debug=True, host='0.0.0.0')
-
