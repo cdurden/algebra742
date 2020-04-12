@@ -4,6 +4,7 @@
 from flask import Flask
 from flask import json
 from flask_restful import Resource, Api
+import flask_restful
 from flask_socketio import SocketIO
 from flask_redis import FlaskRedis
 from flask_bootstrap import Bootstrap
@@ -69,7 +70,7 @@ class AlchemyEncoderMiddleWare(object):
     def __init__(self, app):
         self.app = app
     def __call__(self, environ, start_response):
-        self.app.extensions['restful'].representations.json.settings["cls"] = new_alchemy_encoder() 
+        flask_restful.representations.json.settings["cls"] = new_alchemy_encoder() 
         return self.app(environ, start_response)
 
 #def new_alchemy_encoder(revisit_self = False, fields_to_expand = []):
@@ -162,7 +163,7 @@ def create_app():
         #app.extensions['redis'].set('template',"reveal.html".encode('utf-8'))
         app.extensions['redis'].set('game',"RevealJSPresentationGame".encode('utf-8'))
         app.extensions['redis'].set('params','{"template": "sample.html"}'.encode('utf-8'))
-        #app.wsgi_app = AlchemyEncoderMiddleWare(app.wsgi_app)
+        app.wsgi_app = AlchemyEncoderMiddleWare(app.wsgi_app)
         #template = app.extensions['redis'].get('template').decode('utf-8')
         game = GameClasses[app.extensions['redis'].get('game').decode('utf-8')]
         params = app.extensions['redis'].get('params').decode('utf-8')
