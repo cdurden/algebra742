@@ -42,7 +42,8 @@ def new_alchemy_encoder():
 
     class AlchemyEncoder(json.JSONEncoder):
         def default(self, obj):
-            if isinstance(obj.__class__, DeclarativeMeta):
+            #if isinstance(obj.__class__, DeclarativeMeta):
+            if isinstance(obj.__class__, db.Model):
                 # don't re-visit self
                 if obj in _visited_objs:
                     return None
