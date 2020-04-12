@@ -224,31 +224,31 @@ from models.User import get_user_by_lti_user_id
 from models.Task import get_tasks, get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.util import SerializableGenerator
-#import flask.ext.restful.representations.json
-#
-#def new_alchemy_encoder():
-#    _visited_objs = []
-#
-#    class AlchemyEncoder(json.JSONEncoder):
-#        def default(self, obj):
-#            print("running AlchemyEncoder on object "+obj+" of class "+obj.__class__)
-#            #if isinstance(obj.__class__, DeclarativeMeta):
-#            if isinstance(obj.__class__, db.Model):
-#                # don't re-visit self
-#                if obj in _visited_objs:
-#                    return None
-#                _visited_objs.append(obj)
-#
-#                # an SQLAlchemy class
-#                fields = {}
-#                for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
-#                    fields[field] = obj.__getattribute__(field)
-#                # a json-encodable dict
-#                return fields
-#
-#            return json.JSONEncoder.default(self, obj)
-#
-#    return AlchemyEncoder
+import flask_restful.representations.json
+
+def new_alchemy_encoder():
+    _visited_objs = []
+
+    class AlchemyEncoder(json.JSONEncoder):
+        def default(self, obj):
+            print("running AlchemyEncoder on object "+obj+" of class "+obj.__class__)
+            #if isinstance(obj.__class__, DeclarativeMeta):
+            if isinstance(obj.__class__, db.Model):
+                # don't re-visit self
+                if obj in _visited_objs:
+                    return None
+                _visited_objs.append(obj)
+
+                # an SQLAlchemy class
+                fields = {}
+                for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
+                    fields[field] = obj.__getattribute__(field)
+                # a json-encodable dict
+                return fields
+
+            return json.JSONEncoder.default(self, obj)
+
+    return AlchemyEncoder
 
 
 class ApiError(Exception):
@@ -263,6 +263,13 @@ class HeaderAuthentication(HeaderAuthentication_):
             raise ApiError(401, "Authentication failed")
         else:
             return self.get_credentials_from_token(token)
+
+def alchemy_json_encoder(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        flask_restful.representations.json['class'] = new_alchemy_encoder()
+        return f(*args, **kwargs)
+    return wrapper
 
 def api_authenticate(f):
     @wraps(f)

@@ -124,7 +124,6 @@ def create_app():
     db.init_app(app)
     r.init_app(app)
     socketio.init_app(app)
-    app.wsgi_app = AlchemyEncoderMiddleWare(app.wsgi_app)
 
     with app.app_context():
         # Include our Routes
@@ -163,6 +162,7 @@ def create_app():
         #app.extensions['redis'].set('template',"reveal.html".encode('utf-8'))
         app.extensions['redis'].set('game',"RevealJSPresentationGame".encode('utf-8'))
         app.extensions['redis'].set('params','{"template": "sample.html"}'.encode('utf-8'))
+        #app.wsgi_app = AlchemyEncoderMiddleWare(app.wsgi_app)
         #template = app.extensions['redis'].get('template').decode('utf-8')
         game = GameClasses[app.extensions['redis'].get('game').decode('utf-8')]
         params = app.extensions['redis'].get('params').decode('utf-8')
