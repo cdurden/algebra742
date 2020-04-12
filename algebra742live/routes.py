@@ -260,11 +260,29 @@ class Task(Resource):
         task = get_task_by_id(db.session, task_id)
         return task.to_json()
 
+class TaskList(Resource):
+    #@api_authenticate
+    def get(self):
+        if 'task_id' in request.args:
+            task_ids = request.args['task_id']
+            tasks = [get_task_by_id(task_id) for task_id in task_ids]
+        else:
+            tasks = get_tasks()
+        return [task.to_json() for task in tasks]
+
+
 class SourcedTask(Resource):
     #@api_authenticate
     def get(self, source):
         task = get_task_from_source(source)
         return task.to_json()
+
+class SourcedTaskList(Resource):
+    #@api_authenticate
+    def get(self):
+        sources = request.args['source']
+        tasks = [get_task_from_source(source) for source in sources]
+        return [task.to_json() for task in tasks]
 
 class TaskDataList(Resource):
     #@api_authenticate
@@ -317,8 +335,10 @@ class WorkList(Resource):
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(Task, "/api/task/<task_id>")
+api.add_resource(TaskList, "/api/tasks/")
 api.add_resource(SourcedTask, "/api/task/source/<source>/")
-api.add_resource(TaskDataList, "/api/tasks/<source_pattern>/")
+api.add_resource(SourcedTaskList, "/api/tasks/source/")
+api.add_resource(TaskDataList, "/api/tasks/data/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
