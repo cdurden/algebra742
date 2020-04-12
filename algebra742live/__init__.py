@@ -65,7 +65,7 @@ def new_alchemy_encoder():
     return AlchemyEncoder
 
 class AlchemyEncoderMiddleWare(object):
-"""Simple WSGI middleware"""
+    """Simple WSGI middleware"""
     def __init__(self, app):
         self.app = app
     def __call__(self, environ, start_response):
