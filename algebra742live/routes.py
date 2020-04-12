@@ -221,7 +221,7 @@ import operator
 from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
 from models.User import get_user_by_lti_user_id
-from models.Task import get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
+from models.Task import get_tasks, get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.util import SerializableGenerator
 

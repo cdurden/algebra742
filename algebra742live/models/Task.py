@@ -37,7 +37,7 @@ class Task(db.Model):
             task_data = collection_data[task]
             return(task_data)
 
-def get_tasks(task_id):
+def get_tasks():
     tasks = db.session.query(Task).all()
     return(tasks)
 
