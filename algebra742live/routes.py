@@ -281,6 +281,7 @@ class SourcedTaskList(Resource):
     #@api_authenticate
     def get(self):
         sources = request.args['source']
+        print(sources)
         tasks = [get_task_from_source(source) for source in sources]
         return [task.to_json() for task in tasks]
 
