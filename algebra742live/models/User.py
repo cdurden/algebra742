@@ -13,6 +13,7 @@ class User(db.Model):
     lti_user_id = db.Column(db.String(255), unique=True, nullable=False)
 
     submissions = relationship("Submission", back_populates="user")
+    messages = relationship("Message", back_populates="user")
 
     def __repr__(self):
         return '<User %r>' % self.username
