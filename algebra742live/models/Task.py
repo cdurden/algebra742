@@ -22,7 +22,7 @@ class Task(db.Model):
         events = self.submissions+self.messages
         for submission in self.submissions:
             events += submission.feedback
-        events.sort(key='datetime')
+        events.sort(key=lambda event: event['datetime'])
         return(events)
 
     def params(self):
