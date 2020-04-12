@@ -289,6 +289,7 @@ class User(Resource):
 
 class Task(Resource):
     #@api_authenticate
+    @alchemy_json_encoder
     def get(self, task_id):
         task = get_task_by_id(db.session, task_id)
         #return task.to_json()
@@ -310,6 +311,7 @@ class TaskList(Resource):
 
 class SourcedTask(Resource):
     #@api_authenticate
+    @alchemy_json_encoder
     def get(self, source):
         task = get_task_from_source(source)
         #return task.to_json()
@@ -317,6 +319,7 @@ class SourcedTask(Resource):
 
 class SourcedTaskList(Resource):
     #@api_authenticate
+    @alchemy_json_encoder
     def get(self):
         sources = request.args.getlist('source')
         print(sources)
@@ -326,6 +329,7 @@ class SourcedTaskList(Resource):
 
 class TaskDataList(Resource):
     #@api_authenticate
+    @alchemy_json_encoder
     def get(self, source_pattern):
         tasks_data = get_task_data_by_source_pattern(source_pattern)
         return SerializableGenerator(tasks_data)
