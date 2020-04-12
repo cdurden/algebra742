@@ -286,7 +286,7 @@ class SubmissionList(Resource):
         parser.add_argument('data')
         args = parser.parse_args()
         kwargs = args['data'] or {}
-        return(get_submissions(**kwargs))
+        return([submission.to_json() for submission in get_submissions(**kwargs)])
 
 class TaskSubmissionList(Resource):
     #@api_authenticate
