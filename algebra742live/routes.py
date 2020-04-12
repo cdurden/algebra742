@@ -296,6 +296,7 @@ class Task(Resource):
 
 class TaskList(Resource):
     #@api_authenticate
+    @alchemy_json_encoder
     def get(self):
         if 'task_id' in request.args:
             task_ids = request.args['task_id']
