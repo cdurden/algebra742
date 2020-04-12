@@ -252,13 +252,15 @@ class User(Resource):
     #@api_authenticate
     def get(self, lti_user_id):
         user = get_user_by_lti_user_id(lti_user_id)
-        return user.to_json()
+        #return user.to_json()
+        return user
 
 class Task(Resource):
     #@api_authenticate
     def get(self, task_id):
         task = get_task_by_id(db.session, task_id)
-        return task.to_json()
+        #return task.to_json()
+        return task
 
 class TaskList(Resource):
     #@api_authenticate
@@ -268,14 +270,16 @@ class TaskList(Resource):
             tasks = [get_task_by_id(task_id) for task_id in task_ids]
         else:
             tasks = get_tasks()
-        return [task.to_json() for task in tasks]
+        #return [task.to_json() for task in tasks]
+        return tasks
 
 
 class SourcedTask(Resource):
     #@api_authenticate
     def get(self, source):
         task = get_task_from_source(source)
-        return task.to_json()
+        #return task.to_json()
+        return task
 
 class SourcedTaskList(Resource):
     #@api_authenticate
@@ -283,7 +287,8 @@ class SourcedTaskList(Resource):
         sources = request.args.getlist('source')
         print(sources)
         tasks = [get_task_from_source(source) for source in sources]
-        return [task.to_json() for task in tasks]
+        #return [task.to_json() for task in tasks]
+        return tasks
 
 class TaskDataList(Resource):
     #@api_authenticate
@@ -296,7 +301,8 @@ class Submission(Resource):
     #@api_authenticate
     def get(self, submission_id):
         submission = get_submission_by_id(db.session, submission_id)
-        return submission.to_json()
+        #return submission.to_json()
+        return submission
 
 class SubmissionList(Resource):
     #@api_authenticate
@@ -305,7 +311,9 @@ class SubmissionList(Resource):
         parser.add_argument('data')
         args = parser.parse_args()
         kwargs = args['data'] or {}
-        return([submission.to_json() for submission in get_submissions(**kwargs)])
+        submissions = get_submissions(**kwargs)
+        return submissions
+        #return([submission.to_json() for submission in get_submissions(**kwargs)])
 
 class TaskSubmissionList(Resource):
     #@api_authenticate
@@ -322,12 +330,14 @@ class TaskSubmissionList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         submission = user.submit(task, args['data'])
-        return submission.to_json(), 201
+        return submission
+        #return submission.to_json(), 201
 
 class Work(Resource):
     def get(self, work_id):
         work = get_work_by_id(db.session, work_id)
-        return work.to_json()
+        return work
+        #return work.to_json()
 
 class WorkList(Resource):
     def post(self):

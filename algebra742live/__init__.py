@@ -2,6 +2,7 @@
 #gevent.monkey.patch_all()
 #from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
+from flask import json
 from flask_restful import Resource, Api
 from flask_socketio import SocketIO
 from flask_redis import FlaskRedis
@@ -36,6 +37,60 @@ socketio = SocketIO()
 #db = SQLAlchemy()
 r = FlaskRedis()
 #db = SQLAlchemy(app)
+def new_alchemy_encoder():
+    _visited_objs = []
+
+    class AlchemyEncoder(json.JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj.__class__, DeclarativeMeta):
+                # don't re-visit self
+                if obj in _visited_objs:
+                    return None
+                _visited_objs.append(obj)
+
+                # an SQLAlchemy class
+                fields = {}
+                for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
+                    fields[field] = obj.__getattribute__(field)
+                # a json-encodable dict
+                return fields
+
+            return json.JSONEncoder.default(self, obj)
+
+    return AlchemyEncoder
+#def new_alchemy_encoder(revisit_self = False, fields_to_expand = []):
+#    _visited_objs = []
+#
+#    class AlchemyEncoder(json.JSONEncoder):
+#        def default(self, obj):
+#            if isinstance(obj.__class__, DeclarativeMeta):
+#                # don't re-visit self
+#                if revisit_self:
+#                    if obj in _visited_objs:
+#                        return None
+#                    _visited_objs.append(obj)
+#
+#                # go through each field in this SQLalchemy class
+#                fields = {}
+#                for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
+#                    val = obj.__getattribute__(field)
+#
+#                    # is this field another SQLalchemy object, or a list of SQLalchemy objects?
+#                    if isinstance(val.__class__, DeclarativeMeta) or (isinstance(val, list) and len(val) > 0 and isinstance(val[0].__class__, DeclarativeMeta)):
+#                        # unless we're expanding this field, stop here
+#                        if field not in fields_to_expand:
+#                            # not expanding this field: set it to None and continue
+#                            fields[field] = None
+#                            continue
+#
+#                    fields[field] = val
+#                # a json-encodable dict
+#                return fields
+#
+#            return json.JSONEncoder.default(self, obj)
+#
+#    return AlchemyEncoder
+
 def create_app():
     """Initialize the core application."""
     app = Flask(__name__, instance_relative_config=False)
@@ -55,6 +110,7 @@ def create_app():
     db.init_app(app)
     r.init_app(app)
     socketio.init_app(app)
+    app.json_encoder = new_alchemy_encoder()
 
     with app.app_context():
         # Include our Routes
