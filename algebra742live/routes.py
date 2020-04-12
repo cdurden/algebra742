@@ -249,15 +249,6 @@ from models.util import SerializableGenerator
 #            return json.JSONEncoder.default(self, obj)
 #
 #    return AlchemyEncoder
-#class AlchemyEncoderMiddleWare(object):
-#“””Simple WSGI middleware
-#“””
-#def __init__(self, app):
-#    self.app = app
-#def __call__(self, environ, start_response):
-#    flask.ext.restful.representations.json.settings["cls"] = new_alchemy_encoder() 
-#    return self.app(environ, start_response)
-#
 
 
 class ApiError(Exception):
