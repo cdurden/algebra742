@@ -12,9 +12,17 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     source = db.Column(db.Text)
     #parameters = db.Column(db.Text)
-    submitted = db.Column(db.Boolean, default=False)
+    #submitted = db.Column(db.Boolean, default=False)
 
     submissions = relationship("Submission", back_populates="task")
+    messages = relationship("Message", back_populates="task")
+
+    def events(self):
+        events = self.submissions+self.messages
+        for submission in self.submissions:
+            events += submission.feedback
+        events.sort(key='datetime')
+        return(events)
 
     def params(self):
         return(json.loads(self.parameters))
@@ -25,7 +33,8 @@ class Task(db.Model):
             'source': self.source,
             'data': self.data(),
             #'parameters': self.params(),
-            'submitted': self.submitted,
+            #'submitted': self.submitted,
+            'events': [event.to_json() for event in self.events()]
             })
 
     def data(self):
