@@ -267,7 +267,7 @@ class HeaderAuthentication(HeaderAuthentication_):
 def alchemy_json_encoder(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
-        flask_restful.representations.json['class'] = new_alchemy_encoder()
+        flask_restful.representations.json.settings['cls'] = new_alchemy_encoder()
         return f(*args, **kwargs)
     return wrapper
 
