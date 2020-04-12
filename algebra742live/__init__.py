@@ -69,7 +69,7 @@ class AlchemyEncoderMiddleWare(object):
     def __init__(self, app):
         self.app = app
     def __call__(self, environ, start_response):
-        flask.extensions['restful']representations.json.settings["cls"] = new_alchemy_encoder() 
+        app.extensions['restful'].representations.json.settings["cls"] = new_alchemy_encoder() 
         return self.app(environ, start_response)
 
 #def new_alchemy_encoder(revisit_self = False, fields_to_expand = []):
