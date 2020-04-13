@@ -77,3 +77,5 @@ def get_task_data_by_source_pattern(source_pattern):
             collection_data = json.load(f)
         for task in filter(re.compile(task_pattern).match,collection_data.keys()):
             yield {'source': '{:s}:{:s}:{:s}'.format(repo,collection,task), 'data': collection_data[task]}
+
+db.Task = Task
