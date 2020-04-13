@@ -293,12 +293,15 @@ class TaskSchema(ma.ModelSchema):
         model = db.Task
         include_fk = True
 
+task_schema = TaskSchema()
+tasks_schema = TaskSchema(many=True)
+
 class Task(Resource):
     #@api_authenticate
     def get(self, task_id):
         task = get_task_by_id(db.session, task_id)
         #return task.to_json()
-        return TaskSchema.dump(task)
+        return task_schema.dump(task)
 
 class TaskList(Resource):
     #@api_authenticate
@@ -310,7 +313,7 @@ class TaskList(Resource):
             tasks = get_tasks()
         #return [task.to_json() for task in tasks]
         flask.ext.restful.representations.json.settings["cls"] = new_alchemy_encoder() 
-        return tasks
+        return tasks_schema.dump(tasks)
 
 
 class SourcedTask(Resource):
@@ -318,7 +321,7 @@ class SourcedTask(Resource):
     def get(self, source):
         task = get_task_from_source(source)
         #return task.to_json()
-        return task
+        return task_schema.dump(task)
 
 class SourcedTaskList(Resource):
     #@api_authenticate
@@ -327,7 +330,7 @@ class SourcedTaskList(Resource):
         print(sources)
         tasks = [get_task_from_source(source) for source in sources]
         #return [task.to_json() for task in tasks]
-        return tasks
+        return tasks_schema.dump(tasks)
 
 class TaskDataList(Resource):
     #@api_authenticate
