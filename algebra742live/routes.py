@@ -288,6 +288,15 @@ class User(Resource):
         #return user.to_json()
         return user
 #class TaskSchema(ma.SQLAlchemySchema):
+
+class SubmissionSchema(ma.ModelSchema):
+    class Meta:
+        model = db.Submission
+        include_fk = True
+
+submission_schema = SubmissionSchema()
+submissions_schema = SubmissionSchema(many=True)
+
 class TaskSchema(ma.ModelSchema):
     submissions = ma.List(SubmissionSchema)
     data = fields.Function(lambda obj: obj.data())
@@ -340,14 +349,6 @@ class TaskDataList(Resource):
         tasks_data = get_task_data_by_source_pattern(source_pattern)
         return SerializableGenerator(tasks_data)
         #return [task.to_json() for task in tasks]
-
-class SubmissionSchema(ma.ModelSchema):
-    class Meta:
-        model = db.Submission
-        include_fk = True
-
-submission_schema = SubmissionSchema()
-submissions_schema = SubmissionSchema(many=True)
 
 class Submission(Resource):
     #@api_authenticate
