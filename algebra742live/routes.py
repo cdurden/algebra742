@@ -5,12 +5,13 @@ from flask import render_template, request, redirect, url_for, send_file, make_r
 from flask import jsonify
 from flask_socketio import emit
 from pylti.flask import lti
-import models
-from .models import db, ma, RequestDenied
+#import models
+#from .models import db, ma, RequestDenied
 from .models.Question import Question, question_scores, get_question_from_digraph_node, get_snow_qm_task, get_question
 from .models.Game import GameClasses
 from .models.Work import Work
-from .models import get_or_create
+#from .models import get_or_create
+from . import db, ma
 from . import socketio, ROOMS
 from werkzeug.datastructures import MultiDict, ImmutableMultiDict
 from sqlalchemy.sql import select, and_, desc
