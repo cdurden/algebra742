@@ -289,7 +289,7 @@ class User(Resource):
         return user
 #class TaskSchema(ma.SQLAlchemySchema):
 class TaskSchema(ma.ModelSchema):
-    data = ma.fields.Function(lambda obj: obj.data())
+    data = fields.Function(lambda obj: obj.data())
     class Meta:
         model = db.Task
         include_fk = True
