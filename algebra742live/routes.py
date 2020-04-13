@@ -289,6 +289,7 @@ class User(Resource):
         return user
 #class TaskSchema(ma.SQLAlchemySchema):
 class TaskSchema(ma.ModelSchema):
+    submissions = ma.List(SubmissionSchema)
     data = fields.Function(lambda obj: obj.data())
     class Meta:
         model = db.Task
