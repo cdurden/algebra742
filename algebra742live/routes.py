@@ -287,7 +287,8 @@ class User(Resource):
         user = get_user_by_lti_user_id(lti_user_id)
         #return user.to_json()
         return user
-class TaskSchema(ma.SQLAlchemySchema):
+#class TaskSchema(ma.SQLAlchemySchema):
+class TaskSchema(ma.ModelSchema):
     class Meta:
         model = db.Task
         include_fk = True
