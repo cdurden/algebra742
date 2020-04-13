@@ -1,4 +1,5 @@
 flask-marshmallow==0.11.0
+marshmallow-sqlalchemy==0.18.0
 flask-restful==0.3.8
 Flask==0.12.3
 Flask-WTF==0.10.2
