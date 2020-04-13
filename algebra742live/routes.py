@@ -341,12 +341,15 @@ class SubmissionSchema(ma.ModelSchema):
         model = db.Submission
         include_fk = True
 
+submission_schema = SubmissionSchema()
+submissions_schema = SubmissionSchema(many=True)
+
 class Submission(Resource):
     #@api_authenticate
     def get(self, submission_id):
         submission = get_submission_by_id(db.session, submission_id)
         #return submission.to_json()
-        return SubmissionSchema.dump(submission)
+        return submission_schema.dump(submission)
 
 class SubmissionList(Resource):
     #@api_authenticate
@@ -356,7 +359,7 @@ class SubmissionList(Resource):
         args = parser.parse_args()
         kwargs = args['data'] or {}
         submissions = get_submissions(**kwargs)
-        return SubmissionSchema.dump(submissions)
+        return submission_schema.dump(submissions)
         #return([submission.to_json() for submission in get_submissions(**kwargs)])
 
 class TaskSubmissionList(Resource):
