@@ -290,6 +290,7 @@ class User(Resource):
 class TaskSchema(ma.SQLAlchemySchema):
     class Meta:
         model = db.Task
+        include_fk = True
 
 class Task(Resource):
     #@api_authenticate
