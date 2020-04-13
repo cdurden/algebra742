@@ -336,12 +336,17 @@ class TaskDataList(Resource):
         return SerializableGenerator(tasks_data)
         #return [task.to_json() for task in tasks]
 
+class SubmissionSchema(ma.ModelSchema):
+    class Meta:
+        model = db.Submission
+        include_fk = True
+
 class Submission(Resource):
     #@api_authenticate
     def get(self, submission_id):
         submission = get_submission_by_id(db.session, submission_id)
         #return submission.to_json()
-        return submission
+        return SubmissionSchema.dump(submission)
 
 class SubmissionList(Resource):
     #@api_authenticate
