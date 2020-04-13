@@ -294,11 +294,13 @@ class SubmissionSchema(ma.ModelSchema):
         model = db.Submission
         include_fk = True
 
+    task = fields.Nested("TaskSchema", exclude=("submissions",))
+
 submission_schema = SubmissionSchema()
 submissions_schema = SubmissionSchema(many=True)
 
 class TaskSchema(ma.ModelSchema):
-    submissions = ma.List(SubmissionSchema)
+    submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
     data = fields.Function(lambda obj: obj.data())
     class Meta:
         model = db.Task
