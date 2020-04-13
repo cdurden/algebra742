@@ -281,13 +281,21 @@ def api_authenticate(f):
             raise ApiError(401, "Authentication failed")
     return wrapper
 
+#class TaskSchema(ma.SQLAlchemySchema):
+class UserSchema(ma.ModelSchema):
+    class Meta:
+        model = db.User
+        include_fk = True
+
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
+
 class User(Resource):
     #@api_authenticate
     def get(self, lti_user_id):
         user = get_user_by_lti_user_id(lti_user_id)
         #return user.to_json()
-        return user
-#class TaskSchema(ma.SQLAlchemySchema):
+        return user_schema.dump(user)
 
 class SubmissionSchema(ma.ModelSchema):
     class Meta:
@@ -373,7 +381,7 @@ class SubmissionList(Resource):
 class TaskSubmissionList(Resource):
     #@api_authenticate
     def get(self, task_id):
-        return(get_submissions(task_id=task_id))
+        return(submissions_schema.dump(get_submissions(task_id=task_id)))
 
     def post(self, task_id):
         parser = reqparse.RequestParser()
@@ -385,7 +393,7 @@ class TaskSubmissionList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         submission = user.submit(task, args['data'])
-        return submission
+        return submission_schema.dump(submission)
         #return submission.to_json(), 201
 
 class Work(Resource):
