@@ -14,7 +14,7 @@ try:
     from . import config
 except ImportError:
     pass
-from models import db
+#from models import db
 from models.Question import questions_digraph_factory
 from models.Game import GameClasses
 import json
