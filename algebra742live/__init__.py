@@ -15,8 +15,8 @@ try:
 except ImportError:
     pass
 #from models import db
-from models.Question import questions_digraph_factory
-from models.Game import GameClasses
+#from models.Question import questions_digraph_factory
+#from models.Game import GameClasses
 import json
 from networkx.drawing.nx_pydot import read_dot
 import os
@@ -132,8 +132,8 @@ def create_app():
     with app.app_context():
         # Include our Routes
         from . import routes
-        from .models.Game import QuestionDigraphGame, RevealJSPresentationGame
-        from .models.Question import QuestionClasses
+        #from .models.Game import QuestionDigraphGame, RevealJSPresentationGame
+        #from .models.Question import QuestionClasses
         if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             create_database(app.config["SQLALCHEMY_DATABASE_URI"])
         db.create_all()
@@ -166,12 +166,12 @@ def create_app():
         #app.extensions['redis'].set('template',"reveal.html".encode('utf-8'))
         app.extensions['redis'].set('game',"RevealJSPresentationGame".encode('utf-8'))
         app.extensions['redis'].set('params','{"template": "sample.html"}'.encode('utf-8'))
-        app.wsgi_app = AlchemyEncoderMiddleWare(app.wsgi_app)
+        #app.wsgi_app = AlchemyEncoderMiddleWare(app.wsgi_app)
         #template = app.extensions['redis'].get('template').decode('utf-8')
-        game = GameClasses[app.extensions['redis'].get('game').decode('utf-8')]
-        params = app.extensions['redis'].get('params').decode('utf-8')
-        print(params)
-        ROOMS += [game(**json.loads(params))]
+        #game = GameClasses[app.extensions['redis'].get('game').decode('utf-8')]
+        #params = app.extensions['redis'].get('params').decode('utf-8')
+        #print(params)
+        #ROOMS += [game(**json.loads(params))]
 
         # Register Blueprints
         #app.register_blueprint(auth.auth_bp)
