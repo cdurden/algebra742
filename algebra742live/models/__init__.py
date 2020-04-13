@@ -1,5 +1,5 @@
 from flask import current_app as app
-#from .. import db
+from .. import db
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import random
@@ -9,8 +9,8 @@ import json
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
 
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
+#db = SQLAlchemy(app)
+#ma = Marshmallow(app)
 
 class RequestDenied(Exception):
     def __init__(self, message):

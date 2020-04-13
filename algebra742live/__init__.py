@@ -1,6 +1,7 @@
 #import gevent.monkey
 #gevent.monkey.patch_all()
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 from flask import Flask
 from flask import json
 from flask_restful import Resource, Api
@@ -35,7 +36,8 @@ ROOMS = [] # dict to track active rooms
 #DATA = {}
 #ROOM = None
 socketio = SocketIO()
-#db = SQLAlchemy()
+db = SQLAlchemy()
+ma = Marshmallow()
 r = FlaskRedis()
 #db = SQLAlchemy(app)
 
@@ -125,6 +127,7 @@ def create_app():
     db.init_app(app)
     r.init_app(app)
     socketio.init_app(app)
+    ma.init_app(app)
 
     with app.app_context():
         # Include our Routes
