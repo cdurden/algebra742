@@ -6,7 +6,7 @@ from flask import jsonify
 from flask_socketio import emit
 from pylti.flask import lti
 import models
-from .models import db, RequestDenied
+from .models import db, ma, RequestDenied
 from .models.Question import Question, question_scores, get_question_from_digraph_node, get_snow_qm_task, get_question
 from .models.Game import GameClasses
 from .models.Work import Work
@@ -286,13 +286,16 @@ class User(Resource):
         user = get_user_by_lti_user_id(lti_user_id)
         #return user.to_json()
         return user
+class TaskSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model = db.Task
 
 class Task(Resource):
     #@api_authenticate
     def get(self, task_id):
         task = get_task_by_id(db.session, task_id)
         #return task.to_json()
-        return task
+        return TaskSchema.dump(task)
 
 class TaskList(Resource):
     #@api_authenticate
