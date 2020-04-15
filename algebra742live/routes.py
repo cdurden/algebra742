@@ -375,7 +375,7 @@ class SubmissionList(Resource):
         args = parser.parse_args()
         kwargs = args['data'] or {}
         submissions = get_submissions(**kwargs)
-        return submission_schema.dump(submissions)
+        return submissions_schema.dump(submissions)
         #return([submission.to_json() for submission in get_submissions(**kwargs)])
 
 class TaskSubmissionList(Resource):
