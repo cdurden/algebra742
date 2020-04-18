@@ -300,7 +300,7 @@ class User(Resource):
 
 class TaskSchema(ma.ModelSchema):
     submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
-    data = fields.Function(lambda obj: obj.data_json)
+    data = fields.Function(lambda obj: obj.data())
     class Meta:
         model = db.Task
         include_fk = True
@@ -333,7 +333,7 @@ class BoardSchema(ma.ModelSchema):
         model = db.Board
         include_fk = True
     #task = fields.Nested("TaskSchema", exclude=("boards",))
-    data = fields.Function(lambda obj: obj.data())
+    data = fields.Function(lambda obj: obj.data_json)
 
 
 board_schema = BoardSchema(exclude=("data_json",))
