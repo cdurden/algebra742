@@ -422,7 +422,7 @@ class Board(Resource):
         return board_schema.dump(board)
 
 class LatestBoard(Resource):
-    def get(self, board_id):
+    def get(self):
         parser.add_argument('task_id')
         parser.add_argument('submission_id')
         parser.add_argument('lti_user_id')
