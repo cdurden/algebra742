@@ -3,21 +3,23 @@ from datetime import datetime
 from .. import db
 import json
 from sqlalchemy.orm import relationship
+from sqlalchemy import desc
 
-class Work(db.Model):
-    __tablename__ = 'work'
+class Board(db.Model):
+    __tablename__ = 'board'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
+    title = db.Column(db.Text)
     data = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
     marked_correct = db.Column(db.Text)
     marked_incorrect = db.Column(db.Text)
 
-    #user = relationship("User", back_populates="works")
-    #task = relationship("Task", back_populates="works")
+    #user = relationship("User", back_populates="boards")
+    #task = relationship("Task", back_populates="boards")
 
     def to_json(self):
         return({
@@ -29,10 +31,18 @@ class Work(db.Model):
             'datetime': self.datetime.isoformat(),
             })
 
-def get_work_by_id(work_id):
-    work = db.session.query(Work).get(work_id)
-    return(work)
+def get_boards():
+    boards = db.session.query(Board).all()
+    return(boards)
 
-def get_works():
-    works = db.session.query(Work).all()
-    return(works)
+def get_boards_by_task_id(task_id):
+    boards = db.session.query(Board).filter_by(task_id=task_id).order_by(desc(Board.datetime)).all()
+    return(boards)
+
+def get_latest_board_by_task_id(task_id):
+    board = db.session.query(Board).filter_by(task_id=task_id).order_by(desc(Board.datetime)).first()
+    return(board)
+
+def get_board_by_id(board_id):
+    board = db.session.query(Board).get(board_id)
+    return(board)

@@ -28,6 +28,17 @@ class User(db.Model):
         db.session.add(submission)
         db.session.commit()
         return(submission)
+    def save_board(self, data, task_id=None):
+        if task_id is None:
+            board = Board(user_id=self.id, data=json.dumps(data))
+        else: 
+            board = Board(user_id=self.id, task_id=task_id, data=json.dumps(data))
+        db.session.add(board)
+        db.session.commit()
+        return(board)
+    def get_latest_board_by_task_id(self, task_id):
+        board = db.session.query(Board).filter_by(user_id=self.id, task_id=task_id).order_by(desc(Board.datetime)).first()
+        return(board)
 
 
 def get_user_by_lti_user_id(lti_user_id):

@@ -9,7 +9,7 @@ from pylti.flask import lti
 #from .models import db, ma, RequestDenied
 from .models.Question import Question, question_scores, get_question_from_digraph_node, get_snow_qm_task, get_question
 from .models.Game import GameClasses
-from .models.Work import Work
+from .models.Board import Board
 #from .models import get_or_create
 from . import db, ma
 from . import socketio, ROOMS
@@ -297,15 +297,15 @@ class User(Resource):
         #return user.to_json()
         return user_schema.dump(user)
 
-class SubmissionSchema(ma.ModelSchema):
+class TaskSchema(ma.ModelSchema):
+    submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
+    data = fields.Function(lambda obj: obj.data())
     class Meta:
-        model = db.Submission
+        model = db.Task
         include_fk = True
 
-    task = fields.Nested("TaskSchema", exclude=("submissions",))
-
-submission_schema = SubmissionSchema()
-submissions_schema = SubmissionSchema(many=True)
+task_schema = TaskSchema()
+tasks_schema = TaskSchema(many=True)
 
 class TaskSchema(ma.ModelSchema):
     submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
@@ -316,6 +316,26 @@ class TaskSchema(ma.ModelSchema):
 
 task_schema = TaskSchema()
 tasks_schema = TaskSchema(many=True)
+
+class SubmissionSchema(ma.ModelSchema):
+    class Meta:
+        model = db.Submission
+        include_fk = True
+
+    task = fields.Nested("TaskSchema", exclude=("submissions",))
+
+submission_schema = SubmissionSchema()
+submissions_schema = SubmissionSchema(many=True)
+
+class BoardSchema(ma.ModelSchema):
+    class Meta:
+        model = db.Board
+        include_fk = True
+
+    task = fields.Nested("TaskSchema", exclude=("boards",))
+
+board_schema = BoardSchema()
+boards_schema = BoardSchema(many=True)
 
 class Task(Resource):
     #@api_authenticate
@@ -396,15 +416,47 @@ class TaskSubmissionList(Resource):
         return submission_schema.dump(submission)
         #return submission.to_json(), 201
 
-class Work(Resource):
-    def get(self, work_id):
-        work = get_work_by_id(db.session, work_id)
-        return work
-        #return work.to_json()
+class Board(Resource):
+    def get(self, board_id):
+        board = get_board_by_id(db.session, board_id)
+        return board_schema.dump(board)
 
-class WorkList(Resource):
+class BoardList(Resource):
+    def get(self):
+        return(boards_schema.dump(get_boards()))
+
     def post(self):
-        pass
+        parser = reqparse.RequestParser()
+        parser.add_argument('lti_user_id')
+        parser.add_argument('data')
+        parser.add_argument('task_id')
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        board = user.save_board(args['data'], args['task_id'])
+        return board_schema.dump(board)
+
+class TaskBoard(Resource):
+    def get(self, task_id):
+        board = user.get_latest_board_by_task_id(db.session, task_id)
+        return board_schema.dump(board)
+
+class TaskBoardList(Resource):
+    #@api_authenticate
+    def get(self, task_id):
+        return(boards_schema.dump(get_boards(task_id=task_id)))
+
+    def post(self, task_id):
+        parser = reqparse.RequestParser()
+        task = get_task_by_id(task_id)
+        parser.add_argument('lti_user_id')
+        parser.add_argument('data')
+        #for field in task.get_board_fields():
+        #    parser.add_argument(field)
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        board = user.submit(task, args['data'])
+        return board_schema.dump(board)
+        #return board.to_json(), 201
 
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
@@ -416,6 +468,10 @@ api.add_resource(TaskDataList, "/api/tasks/data/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
+api.add_resource(Board, "/api/board/<board_id>")
+api.add_resource(BoardList, "/api/boards/")
+api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
+api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
