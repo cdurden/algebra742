@@ -421,7 +421,7 @@ class Board(Resource):
         board = get_board_by_id(db.session, board_id)
         return board_schema.dump(board)
 
-class LatestBoard(Resource)
+class LatestBoard(Resource):
     def get(self, board_id):
         parser.add_argument('task_id')
         parser.add_argument('submission_id')
