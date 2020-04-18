@@ -450,6 +450,7 @@ class BoardList(Resource):
         print(args['data'])
         print(request.json)
         print(request.get_json())
+        print(typeof(request.get_json()))
         board = user.save_board(args['data'], args['task_id'])
         return board_schema.dump(board)
 
