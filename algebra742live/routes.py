@@ -427,6 +427,7 @@ class LatestBoard(Resource):
         parser.add_argument('task_id')
         parser.add_argument('submission_id')
         parser.add_argument('lti_user_id')
+        args = parser.parse_args()
         lti_user_id = args.pop('lti_user_id')
         user = get_user_by_lti_user_id(lti_user_id)
         args['user_id'] = user.id
