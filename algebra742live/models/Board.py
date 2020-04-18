@@ -15,8 +15,6 @@ class Board(db.Model):
     data = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
-    marked_correct = db.Column(db.Text)
-    marked_incorrect = db.Column(db.Text)
 
     #user = relationship("User", back_populates="boards")
     #task = relationship("Task", back_populates="boards")
@@ -45,6 +43,10 @@ def get_latest_board_by_task_id(task_id):
 
 def get_board_by_id(board_id):
     board = db.session.query(Board).get(board_id)
+    return(board)
+
+def get_latest_board(**kwargs):
+    board = db.session.query(Board).filter(**kwargs).order_by(desc(Board.datetime)).first()
     return(board)
 
 db.Board = Board

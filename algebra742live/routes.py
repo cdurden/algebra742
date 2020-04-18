@@ -421,6 +421,18 @@ class Board(Resource):
         board = get_board_by_id(db.session, board_id)
         return board_schema.dump(board)
 
+class LatestBoard(Resource)
+    def get(self, board_id):
+        parser.add_argument('task_id')
+        parser.add_argument('submission_id')
+        parser.add_argument('lti_user_id')
+        lti_user_id = args.pop('lti_user_id')
+        user = get_user_by_lti_user_id(lti_user_id)
+        args['user_id'] = user.id
+        board = get_latest_board(**args)
+        return board_schema.dump(board)
+
+
 class BoardList(Resource):
     def get(self):
         return(boards_schema.dump(get_boards()))
@@ -469,6 +481,7 @@ api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
 api.add_resource(Board, "/api/board/<board_id>")
+api.add_resource(LatestBoard, "/api/board/")
 api.add_resource(BoardList, "/api/boards/")
 api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
 api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
