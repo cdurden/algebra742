@@ -12,7 +12,7 @@ class Board(db.Model):
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
     title = db.Column(db.Text)
-    data = db.Column(db.Text)
+    data_json = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
 
@@ -28,6 +28,8 @@ class Board(db.Model):
             'data': self.data,
             'datetime': self.datetime.isoformat(),
             })
+    def data(self):
+        return json.parse(self.data_json)
 
 def get_boards():
     boards = db.session.query(Board).all()
