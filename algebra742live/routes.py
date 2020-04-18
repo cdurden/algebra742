@@ -443,7 +443,7 @@ class BoardList(Resource):
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('lti_user_id')
-        parser.add_argument('data', type="list", location="json")
+        parser.add_argument('data', type=list, location="json")
         parser.add_argument('task_id')
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
