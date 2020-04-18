@@ -451,7 +451,8 @@ class BoardList(Resource):
         print(request.json)
         print(request.get_json())
         print(type(request.get_json()))
-        board = user.save_board(args['data'], args['task_id'])
+        data = request.get_json()['data']
+        board = user.save_board(data, args['task_id'])
         return board_schema.dump(board)
 
 class TaskBoard(Resource):
