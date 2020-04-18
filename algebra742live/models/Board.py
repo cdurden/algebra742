@@ -46,3 +46,5 @@ def get_latest_board_by_task_id(task_id):
 def get_board_by_id(board_id):
     board = db.session.query(Board).get(board_id)
     return(board)
+
+db.Board = Board
