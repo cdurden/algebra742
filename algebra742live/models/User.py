@@ -29,6 +29,8 @@ class User(db.Model):
         db.session.commit()
         return(submission)
     def save_board(self, data, task_id=None):
+        print(data)
+        print(json.dumps(data))
         if task_id is None:
             board = db.Board(user_id=self.id, data=json.dumps(data))
         else: 
