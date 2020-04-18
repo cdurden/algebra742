@@ -46,7 +46,7 @@ def get_board_by_id(board_id):
     return(board)
 
 def get_latest_board(**kwargs):
-    board = db.session.query(Board).filter(**kwargs).order_by(desc(Board.datetime)).first()
+    board = db.session.query(Board).filter_by(**kwargs).order_by(desc(Board.datetime)).first()
     return(board)
 
 db.Board = Board
