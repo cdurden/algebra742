@@ -329,11 +329,11 @@ submission_schema = SubmissionSchema()
 submissions_schema = SubmissionSchema(many=True)
 
 class BoardSchema(ma.ModelSchema):
-    task = fields.Nested("TaskSchema", exclude=("boards",))
-    data = fields.Function(lambda obj: obj.data())
     class Meta:
         model = db.Board
         include_fk = True
+    #task = fields.Nested("TaskSchema", exclude=("boards",))
+    data = fields.Function(lambda obj: obj.data())
 
 
 board_schema = BoardSchema(exclude=("data_json",))
