@@ -30,9 +30,9 @@ class User(db.Model):
         return(submission)
     def save_board(self, data, task_id=None):
         if task_id is None:
-            board = Board(user_id=self.id, data=json.dumps(data))
+            board = db.Board(user_id=self.id, data=json.dumps(data))
         else: 
-            board = Board(user_id=self.id, task_id=task_id, data=json.dumps(data))
+            board = db.Board(user_id=self.id, task_id=task_id, data=json.dumps(data))
         db.session.add(board)
         db.session.commit()
         return(board)
