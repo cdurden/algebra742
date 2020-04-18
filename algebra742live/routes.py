@@ -300,7 +300,7 @@ class User(Resource):
 
 class TaskSchema(ma.ModelSchema):
     submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
-    data = fields.Function(lambda obj: obj.data())
+    data = fields.Function(lambda obj: obj.data_json)
     class Meta:
         model = db.Task
         include_fk = True
