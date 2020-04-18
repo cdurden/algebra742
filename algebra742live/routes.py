@@ -447,11 +447,8 @@ class BoardList(Resource):
         parser.add_argument('task_id')
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
-        print(args['data'])
-        print(request.json)
-        print(request.get_json())
-        print(type(request.get_json()))
-        data = request.get_json()['data']
+        data = args['data']
+        #data = request.get_json()['data']
         board = user.save_board(data, args['task_id'])
         return board_schema.dump(board)
 
