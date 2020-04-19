@@ -30,7 +30,7 @@ class Board(db.Model):
             })
 
     def get_data(self):
-        return json.parse(self.data_json)
+        return json.loads(self.data_json)
 
 def get_boards():
     boards = db.session.query(Board).all()
