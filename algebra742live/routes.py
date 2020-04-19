@@ -221,7 +221,7 @@ import operator
 #
 from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
-from models.User import get_user_by_lti_user_id
+from models.User import get_users, get_user_by_lti_user_id
 from models.Task import get_tasks, get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.Board import get_boards, get_board_by_id, get_latest_board
@@ -297,6 +297,13 @@ class User(Resource):
         user = get_user_by_lti_user_id(lti_user_id)
         #return user.to_json()
         return user_schema.dump(user)
+
+class UserList(Resource):
+    #@api_authenticate
+    def get(self, lti_user_id):
+        users = get_users()
+        #return user.to_json()
+        return users_schema.dump(users)
 
 class TaskSchema(ma.ModelSchema):
     submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
@@ -482,6 +489,7 @@ class TaskBoardList(Resource):
 
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
+api.add_resource(UserList, "/api/users/")
 api.add_resource(Task, "/api/task/<task_id>")
 api.add_resource(TaskList, "/api/tasks/")
 api.add_resource(SourcedTask, "/api/task/source/<source>/")

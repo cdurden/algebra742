@@ -42,6 +42,10 @@ class User(db.Model):
         board = db.session.query(Board).filter_by(user_id=self.id, task_id=task_id).order_by(desc(Board.datetime)).first()
         return(board)
 
+def get_users():
+    users = db.session.query(User).all()
+    return users
+
 
 def get_user_by_lti_user_id(lti_user_id):
     instance = db.session.query(User).filter_by(lti_user_id=lti_user_id).first() # TODO: ensure unique
