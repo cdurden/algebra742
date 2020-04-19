@@ -300,7 +300,7 @@ class User(Resource):
 
 class UserList(Resource):
     #@api_authenticate
-    def get(self, lti_user_id):
+    def get(self):
         users = get_users()
         #return user.to_json()
         return users_schema.dump(users)
