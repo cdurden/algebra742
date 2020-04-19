@@ -25,11 +25,11 @@ class Board(db.Model):
             'user_id': self.user_id,
             'task_id': self.task_id,
             'submission_id': self.submission_id,
-            'data': self.data(),
+            'data': self.get_data(),
             'datetime': self.datetime.isoformat(),
             })
 
-    def data(self):
+    def get_data(self):
         return json.parse(self.data_json)
 
 def get_boards():

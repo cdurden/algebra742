@@ -186,7 +186,7 @@ def lti_get(lti=lti):
     return resp
 
 
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, pre_dump
 import operator
 
 #class UserSchema(Schema):
@@ -328,12 +328,18 @@ class SubmissionSchema(ma.ModelSchema):
 submission_schema = SubmissionSchema()
 submissions_schema = SubmissionSchema(many=True)
 
+class BoardDataSchema(ma.Schema):
+
 class BoardSchema(ma.ModelSchema):
     class Meta:
         model = db.Board
         include_fk = True
     #task = fields.Nested("TaskSchema", exclude=("boards",))
-    data = fields.Function(lambda obj: obj.data_json)
+    data = fields.Dict()
+    @pre_dump
+    def load_data(self, obj):
+        obj.data = obj.get_data()
+        return obj
 
 
 board_schema = BoardSchema(exclude=("data_json",))
