@@ -328,8 +328,6 @@ class SubmissionSchema(ma.ModelSchema):
 submission_schema = SubmissionSchema()
 submissions_schema = SubmissionSchema(many=True)
 
-class BoardDataSchema(ma.Schema):
-
 class BoardSchema(ma.ModelSchema):
     class Meta:
         model = db.Board
