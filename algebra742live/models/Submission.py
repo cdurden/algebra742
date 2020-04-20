@@ -20,7 +20,7 @@ class Submission(db.Model):
 
     user = relationship("User", back_populates="submissions")
     task = relationship("Task", back_populates="submissions")
-    feedback = relationship("Feedback", back_populates="submission")
+    #feedback = relationship("Feedback", back_populates="submission")
 
     def check():
         pass
