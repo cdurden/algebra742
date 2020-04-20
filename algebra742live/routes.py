@@ -500,6 +500,7 @@ class Assignments(Resource):
             user = get_user_by_id(user_id)
             user.assignment = assignment
             users.append(user)
+        db.session.commit()
         return users_schema.dump(users)
 
 api = Api(app)
