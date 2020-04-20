@@ -500,7 +500,7 @@ class Assignments(Resource):
             user = get_user_by_id(user_id)
             user.assignment = assignment
             users.append(user)
-        return users_schema(users)
+        return users_schema.dump(users)
 
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
