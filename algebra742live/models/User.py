@@ -47,6 +47,9 @@ def get_users():
     users = db.session.query(User).all()
     return users
 
+def get_user_by_id(user_id):
+    instance = db.session.query(User).get(user_id) # TODO: ensure unique
+    return instance
 
 def get_user_by_lti_user_id(lti_user_id):
     instance = db.session.query(User).filter_by(lti_user_id=lti_user_id).first() # TODO: ensure unique

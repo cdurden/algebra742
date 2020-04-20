@@ -221,7 +221,7 @@ import operator
 #
 from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
-from models.User import get_users, get_user_by_lti_user_id
+from models.User import get_users, get_user_by_id, get_user_by_lti_user_id
 from models.Task import get_tasks, get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.Board import get_boards, get_board_by_id, get_latest_board
@@ -497,7 +497,7 @@ class Assignments(Resource):
         assignments = args['assignments']
         users = []
         for (user_id, assignment) in assignments.items():
-            user = get_user_by_lti_user_id(user_id)
+            user = get_user_by_id(user_id)
             user.assignment = assignment
             users += user
         return users_schema(users)
