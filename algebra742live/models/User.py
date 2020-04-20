@@ -39,6 +39,16 @@ class User(db.Model):
         db.session.add(board)
         db.session.commit()
         return(board)
+    def create_feedback(self, users, tasks, submissions):
+        board = db.Board(user_id=self.id, data_json=json.dumps(data))
+        feedback = db.Feedback(board=board)
+        feedback.users = users
+        feedback.tasks = tasks
+        feedback.submissions = submissions
+        db.session.add(feedback)
+        db.session.add(board)
+        db.session.commit()
+        return(feedback)
     def get_latest_board_by_task_id(self, task_id):
         board = db.session.query(Board).filter_by(user_id=self.id, task_id=task_id).order_by(desc(Board.datetime)).first()
         return(board)

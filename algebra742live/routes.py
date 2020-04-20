@@ -291,30 +291,6 @@ class UserSchema(ma.ModelSchema):
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
-class User(Resource):
-    #@api_authenticate
-    def get(self, lti_user_id):
-        user = get_user_by_lti_user_id(lti_user_id)
-        #return user.to_json()
-        return user_schema.dump(user)
-
-class UserList(Resource):
-    #@api_authenticate
-    def get(self):
-        users = get_users()
-        #return user.to_json()
-        return users_schema.dump(users)
-
-class TaskSchema(ma.ModelSchema):
-    submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
-    data = fields.Function(lambda obj: obj.data())
-    class Meta:
-        model = db.Task
-        include_fk = True
-
-task_schema = TaskSchema()
-tasks_schema = TaskSchema(many=True)
-
 class TaskSchema(ma.ModelSchema):
     submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
     data = fields.Function(lambda obj: obj.data())
@@ -346,9 +322,34 @@ class BoardSchema(ma.ModelSchema):
         obj.data = obj.get_data()
         return obj
 
-
 board_schema = BoardSchema(exclude=("data_json",))
 boards_schema = BoardSchema(many=True)
+
+class FeedbackSchema(ma.ModelSchema):
+    class Meta:
+        model = db.Feedback
+        include_fk = True
+    data = fields.Dict()
+    @pre_dump
+    def load_data(self, obj):
+        obj.data = obj.get_data()
+        return obj
+
+feedback_schema = FeedbackSchema(exclude=("data_json",))
+
+class User(Resource):
+    #@api_authenticate
+    def get(self, lti_user_id):
+        user = get_user_by_lti_user_id(lti_user_id)
+        #return user.to_json()
+        return user_schema.dump(user)
+
+class UserList(Resource):
+    #@api_authenticate
+    def get(self):
+        users = get_users()
+        #return user.to_json()
+        return users_schema.dump(users)
 
 class Task(Resource):
     #@api_authenticate
@@ -368,7 +369,6 @@ class TaskList(Resource):
         #return [task.to_json() for task in tasks]
         flask.ext.restful.representations.json.settings["cls"] = new_alchemy_encoder() 
         return tasks_schema.dump(tasks)
-
 
 class SourcedTask(Resource):
     #@api_authenticate
@@ -447,7 +447,6 @@ class LatestBoard(Resource):
         board = get_latest_board(**args)
         return board_schema.dump(board)
 
-
 class BoardList(Resource):
     def get(self):
         return(boards_schema.dump(get_boards()))
@@ -457,11 +456,18 @@ class BoardList(Resource):
         parser.add_argument('lti_user_id')
         parser.add_argument('data', type=dict, location='json')
         parser.add_argument('task_id')
+        parser.add_argument('board_id')
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         data = args['data']
-        #data = request.get_json()['data']
-        board = user.save_board(data, args['task_id'])
+        if (args['board_id'] is not None) { # FIXME: maybe this should go in a put request instead
+            board = get_board_by_id(board_id)
+            if (board.user_id == user.id) {
+                board.save(data)
+            }
+        } else {
+            board = user.save_board(data, args['task_id']) # FIXME: allow client to set board_id
+        }
         return board_schema.dump(board)
 
 class TaskBoard(Resource):
@@ -503,6 +509,28 @@ class Assignments(Resource):
         db.session.commit()
         return users_schema.dump(users)
 
+class FeedbackList(Resource):
+    def get(self):
+        return(feedback_schema.dump(get_feedback()))
+
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('users', type=dict, location='json')
+        parser.add_argument('tasks', type=dict, location='json')
+        parser.add_argument('submissions', type=dict, location='json')
+        parser.add_argument('lti_user_id')
+        parser.add_argument('data', type=dict, location='json')
+        args = parser.parse_args()
+        data = args['data']
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        #data = request.get_json()['data']
+        users = data['users'].map(lambda user: get_user_by_id(user.id))
+        tasks = data['tasks'].map(lambda task: get_task_from_source(task))
+        submissions = data['submissions'].map(lambda submission: get_submission_by_id(submission.id))
+        feedback = user.create_feedback(users, tasks, submissions)
+        return feedback_schema.dump(board)
+
+
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(UserList, "/api/users/")
@@ -520,6 +548,7 @@ api.add_resource(BoardList, "/api/boards/")
 api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
 api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
 api.add_resource(Assignments, "/api/assignments/")
+api.add_resource(FeedbackList, "/api/feedback/")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
