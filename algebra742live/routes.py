@@ -487,6 +487,21 @@ class TaskBoardList(Resource):
         return board_schema.dump(board)
         #return board.to_json(), 201
 
+class Assignments(Resource):
+    #@api_authenticate
+
+    def post(self)
+        parser = reqparse.RequestParser()
+        parser.add_argument('assignments', type=dict, location='json')
+        args = parser.parse_args()
+        assignments = args['assignments']
+        users = []
+        for (user_id, assignment) in assignments.items():
+            user = get_user_by_lti_user_id(user_id)
+            user.assignment = assignment
+            users += user
+        return users_schema(users)
+
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(UserList, "/api/users/")
@@ -503,6 +518,7 @@ api.add_resource(LatestBoard, "/api/board/")
 api.add_resource(BoardList, "/api/boards/")
 api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
 api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
+api.add_resource(Assignments, "/api/assignments/")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
