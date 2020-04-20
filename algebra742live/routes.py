@@ -490,7 +490,7 @@ class TaskBoardList(Resource):
 class Assignments(Resource):
     #@api_authenticate
 
-    def post(self)
+    def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('assignments', type=dict, location='json')
         args = parser.parse_args()
