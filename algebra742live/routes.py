@@ -499,7 +499,7 @@ class Assignments(Resource):
         for (user_id, assignment) in assignments.items():
             user = get_user_by_id(user_id)
             user.assignment = assignment
-            users += user
+            users.append(user)
         return users_schema(users)
 
 api = Api(app)
