@@ -18,6 +18,8 @@ class Board(db.Model):
 
     #user = relationship("User", back_populates="boards")
     #task = relationship("Task", back_populates="boards")
+    feedback = relationship("Feedback", back_populates="board")
+
 
     def to_json(self):
         return({
