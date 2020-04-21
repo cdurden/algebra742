@@ -440,6 +440,7 @@ class LatestBoard(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('task_id')
+        parser.add_argument('board_id')
         parser.add_argument('submission_id')
         parser.add_argument('lti_user_id')
         args = parser.parse_args()
