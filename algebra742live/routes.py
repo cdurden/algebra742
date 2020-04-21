@@ -526,6 +526,7 @@ class FeedbackList(Resource):
         print("printing data")
         data = args['data']
         print(data)
+        print(args['users'])
         user = get_user_by_lti_user_id(args['lti_user_id'])
         print(user)
         #data = request.get_json()['data']
