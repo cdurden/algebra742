@@ -225,6 +225,7 @@ from models.User import get_users, get_user_by_id, get_user_by_lti_user_id
 from models.Task import get_tasks, get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.Board import get_boards, get_board_by_id, get_latest_board
+from models.Feedback import get_feedback
 from models.util import SerializableGenerator
 import flask_restful.representations.json
 
