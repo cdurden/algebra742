@@ -33,3 +33,4 @@ def create_feedback(**kwargs):
     db.session.commit()
     return(feedback)
 
+db.Feedback = Feedback

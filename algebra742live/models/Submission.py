@@ -3,7 +3,6 @@ from datetime import datetime
 from .. import db
 import json
 from sqlalchemy.orm import relationship
-from .Feedback import Feedback
 
 class Submission(db.Model):
     __tablename__ = 'submission'
