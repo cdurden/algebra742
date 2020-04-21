@@ -529,11 +529,11 @@ class FeedbackList(Resource):
         user = get_user_by_lti_user_id(args['lti_user_id'])
         print(user)
         #data = request.get_json()['data']
-        users = args['users'].map(lambda user: get_user_by_id(user.id))
+        users = [get_user_by_id(user.id) for user in args['users']]
         print(users)
-        tasks = args['tasks'].map(lambda task: get_task_from_source(task))
+        tasks = [get_task_from_source(task) for task in args['tasks']]
         print(tasks)
-        submissions = args['submissions'].map(lambda submission: get_submission_by_id(submission.id))
+        submissions = [get_submission_by_id(submission.id) for submission in args['submissions']]
         print(submissions)
         board = user.save_board(data={})
         print(board)
