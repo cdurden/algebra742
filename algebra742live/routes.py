@@ -516,13 +516,16 @@ class FeedbackList(Resource):
     def post(self):
         print("posting feedback")
         parser = reqparse.RequestParser()
-        parser.add_argument('users', type=dict, location='json')
-        parser.add_argument('tasks', type=dict, location='json')
-        parser.add_argument('submissions', type=dict, location='json')
+        parser.add_argument('users', type=list, location='json')
+        parser.add_argument('tasks', type=list, location='json')
+        parser.add_argument('submissions', type=list, location='json')
         parser.add_argument('lti_user_id')
         parser.add_argument('data', type=dict, location='json')
+        print("parsing arguments")
         args = parser.parse_args()
+        print("printing data")
         data = args['data']
+        print(data)
         user = get_user_by_lti_user_id(args['lti_user_id'])
         print(user)
         #data = request.get_json()['data']
