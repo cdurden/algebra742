@@ -12,7 +12,7 @@ class Feedback(db.Model):
     recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     board_id = db.Column(db.Integer, db.ForeignKey('board.id'))
     submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
-    task_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
+    task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     data = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
