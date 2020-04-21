@@ -521,26 +521,20 @@ class FeedbackList(Resource):
         parser.add_argument('submissions', type=list, location='json')
         parser.add_argument('lti_user_id')
         parser.add_argument('data', type=dict, location='json')
-        print("parsing arguments")
         args = parser.parse_args()
-        print("printing data")
         data = args['data']
-        print(data)
-        print(args['users'])
         user = get_user_by_lti_user_id(args['lti_user_id'])
-        print(user)
-        #data = request.get_json()['data']
-        users = [get_user_by_id(user_id) for user_id in args['users']]
-        print(users)
-        tasks = [get_task_from_source(task) for task in args['tasks']]
-        print(tasks)
-        submissions = [get_submission_by_id(submission.id) for submission in args['submissions']]
-        print(submissions)
         board = user.save_board(data={})
-        print(board)
-        for recipient in users:
-            for task in tasks:
-                feedback = user.create_feedback(board, recipient, task)
+        if args['submissions'] is not None:
+            submissions = [get_submission_by_id(submission.id) for submission in args['submissions']]
+            for submission in submissions:
+                feedback = user.create_feedback(board, submission=submission)
+        else:
+            users = [get_user_by_id(user_id) for user_id in args['users']]
+            tasks = [get_task_from_source(task) for task in args['tasks']]
+            for recipient in users:
+                for task in tasks:
+                    feedback = user.create_feedback(board, recipient, task)
         print(board)
         print(board_schema.dump(board))
         return board_schema.dump(board)
