@@ -15,8 +15,8 @@ class User(db.Model):
 
     submissions = relationship("Submission", back_populates="user")
     messages = relationship("Message", back_populates="user")
-    feedback = relationship("Feedback", foreign_keys=['creator_id'], secondary="creator")
-    feedback = relationship("Feedback", foreign_keys=['recipient_id'], secondary="recipient")
+    feedback = relationship("Feedback", foreign_keys=['creator_id'], back_populates="creator")
+    feedback = relationship("Feedback", foreign_keys=['recipient_id'], back_populates="recipient")
 
     def __repr__(self):
         return '<User %r>' % self.username
