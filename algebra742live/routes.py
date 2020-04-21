@@ -283,7 +283,6 @@ def api_authenticate(f):
             raise ApiError(401, "Authentication failed")
     return wrapper
 
-#class TaskSchema(ma.SQLAlchemySchema):
 class UserSchema(ma.ModelSchema):
     class Meta:
         model = db.User
@@ -294,6 +293,7 @@ users_schema = UserSchema(many=True)
 
 class TaskSchema(ma.ModelSchema):
     submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
+    boards = fields.List(fields.Nested("BoardSchema", exclude=("task",)))
     data = fields.Function(lambda obj: obj.data())
     class Meta:
         model = db.Task
