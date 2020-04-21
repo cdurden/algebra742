@@ -514,6 +514,7 @@ class FeedbackList(Resource):
         return(feedback_list_schema.dump(get_feedback()))
 
     def post(self):
+        print("posting feedback")
         parser = reqparse.RequestParser()
         parser.add_argument('users', type=dict, location='json')
         parser.add_argument('tasks', type=dict, location='json')
