@@ -7,6 +7,7 @@ import os # for reading task collection files
 from sqlalchemy.orm import relationship
 from . import get_or_create
 from .Message import Message
+from .Board import Board
 
 class Task(db.Model):
     __tablename__ = 'task'
@@ -18,7 +19,7 @@ class Task(db.Model):
     submissions = relationship("Submission", back_populates="task")
     messages = relationship("Message", back_populates="task")
     feedback = relationship("Feedback", back_populates="task")
-    boards = relationship("Board", back_populates="task")
+    boards = relationship("Board", order_by=Board.datetime, back_populates="task")
 
     def events(self):
         events = self.submissions+self.messages
