@@ -4,6 +4,7 @@ from .. import db
 import json
 from sqlalchemy.orm import relationship
 from .Submission import Submission
+from .Feedback import Feedback
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -15,8 +16,8 @@ class User(db.Model):
 
     submissions = relationship("Submission", back_populates="user")
     messages = relationship("Message", back_populates="user")
-    feedback_given = relationship("Feedback", foreign_keys=['Feedback.creator_id'], back_populates="creator")
-    feedback_received = relationship("Feedback", foreign_keys=['Feedback.recipient_id'], back_populates="recipient")
+    feedback_given = relationship("Feedback", foreign_keys=[Feedback.creator_id], back_populates="creator")
+    feedback_received = relationship("Feedback", foreign_keys=[Feedback.recipient_id], back_populates="recipient")
 
     def __repr__(self):
         return '<User %r>' % self.username
