@@ -433,7 +433,7 @@ class TaskSubmissionList(Resource):
 
 class Board(Resource):
     def get(self, board_id):
-        board = get_board_by_id(db.session, board_id)
+        board = get_board_by_id(board_id)
         return board_schema.dump(board)
 
 class LatestBoard(Resource): # FIXME: this is a mess; we should not be passing task_id along with board_id. Separate this into two separate resource handlers
