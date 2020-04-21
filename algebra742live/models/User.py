@@ -43,7 +43,6 @@ class User(db.Model):
         db.session.commit()
         return(board)
     def create_feedback(self, users, tasks, submissions):
-
         for user in users:
             for task in tasks:
                 board = db.Board(user_id=self.id, data_json=json.dumps(data))
