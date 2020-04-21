@@ -337,6 +337,7 @@ class FeedbackSchema(ma.ModelSchema):
         return obj
 
 feedback_schema = FeedbackSchema(exclude=("data_json",))
+feedback_list_schema = FeedbackSchema(many=True, exclude=("data_json",))
 
 class User(Resource):
     #@api_authenticate
@@ -510,7 +511,7 @@ class Assignments(Resource):
 
 class FeedbackList(Resource):
     def get(self):
-        return(feedback_schema.dump(get_feedback()))
+        return(feedback_list_schema.dump(get_feedback()))
 
     def post(self):
         parser = reqparse.RequestParser()
