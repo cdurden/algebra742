@@ -330,11 +330,11 @@ class FeedbackSchema(ma.ModelSchema):
     class Meta:
         model = db.Feedback
         include_fk = True
-#    data = fields.Dict()
-#    @pre_dump
-#    def load_data(self, obj):
-#        obj.data = obj.get_data()
-#        return obj
+    data = fields.Dict()
+    @pre_dump
+    def load_data(self, obj):
+        obj.data = obj.get_data()
+        return obj
 
 feedback_schema = FeedbackSchema(exclude=("data_json",))
 

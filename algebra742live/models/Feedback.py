@@ -13,7 +13,7 @@ class Feedback(db.Model):
     board_id = db.Column(db.Integer, db.ForeignKey('board.id'))
     submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
-    data = db.Column(db.Text)
+    data_json = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
 
@@ -22,6 +22,9 @@ class Feedback(db.Model):
     board = relationship("Board", foreign_keys=[board_id], back_populates="feedback")
     submission = relationship("Submission", foreign_keys=[submission_id], back_populates="feedback")
     task = relationship("Task", foreign_keys=[task_id], back_populates="feedback")
+
+    def get_data(self):
+        return json.loads(self.data_json)
 
 def get_feedback(**kwargs):
     feedback = db.session.query(Feedback).filter_by(**kwargs).all()
