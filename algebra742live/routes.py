@@ -436,11 +436,11 @@ class Board(Resource):
         board = get_board_by_id(db.session, board_id)
         return board_schema.dump(board)
 
-class LatestBoard(Resource):
+class LatestBoard(Resource): # FIXME: this is a mess; we should not be passing task_id along with board_id. Separate this into two separate resource handlers
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('task_id')
-        parser.add_argument('board_id')
+        parser.add_argument('id')
         parser.add_argument('submission_id')
         parser.add_argument('lti_user_id')
         args = parser.parse_args()
