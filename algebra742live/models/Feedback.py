@@ -17,8 +17,8 @@ class Feedback(db.Model):
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
 
-    creator = relationship("User", foreign_keys=[creator_id], back_populates="feedback")
-    recipient = relationship("User", foreign_keys=[recipient_id], back_populates="feedback")
+    creator = relationship("User", foreign_keys=[creator_id], back_populates="feedback_given")
+    recipient = relationship("User", foreign_keys=[recipient_id], back_populates="feedback_received")
     board = relationship("Board", foreign_keys=[board_id], back_populates="feedback")
     submission = relationship("Submission", foreign_keys=[submission_id], back_populates="feedback")
     task = relationship("Task", foreign_keys=[task_id], back_populates="feedback")
