@@ -447,7 +447,10 @@ class LatestBoard(Resource):
         lti_user_id = args.pop('lti_user_id')
         user = get_user_by_lti_user_id(lti_user_id)
         args['user_id'] = user.id
+        print("getting latest board with args:")
+        print(args)
         board = get_latest_board(**args)
+        print(board)
         return board_schema.dump(board)
 
 class BoardList(Resource):
