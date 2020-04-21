@@ -320,7 +320,8 @@ class BoardSchema(ma.ModelSchema):
     data = fields.Dict()
     @pre_dump
     def load_data(self, obj):
-        obj.data = obj.get_data()
+        if obj is not None:
+            obj.data = obj.get_data()
         return obj
 
 board_schema = BoardSchema(exclude=("data_json",))
