@@ -528,10 +528,13 @@ class FeedbackList(Resource):
         users = data['users'].map(lambda user: get_user_by_id(user.id))
         tasks = data['tasks'].map(lambda task: get_task_from_source(task))
         submissions = data['submissions'].map(lambda submission: get_submission_by_id(submission.id))
-        feedback = user.create_feedback(users, tasks, submissions)
-        print(feedback)
-        print(feedback_schema.dump(feedback))
-        return feedback_schema.dump(feedback)
+        board = user.save_board(data={})
+        for recipient in users:
+            for task in tasks:
+                feedback = user.create_feedback(board, recipient, task)
+        print(board)
+        print(board_schema.dump(board))
+        return board_schema.dump(board)
 
 
 api = Api(app)
