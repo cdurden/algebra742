@@ -17,6 +17,7 @@ class Task(db.Model):
 
     submissions = relationship("Submission", back_populates="task")
     messages = relationship("Message", back_populates="task")
+    feedback = relationship("Feedback", back_populates="task")
 
     def events(self):
         events = self.submissions+self.messages
