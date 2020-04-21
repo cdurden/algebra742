@@ -537,7 +537,7 @@ class FeedbackList(Resource):
                     feedback = user.create_feedback(board, recipient, task)
         print(board)
         print(board_schema.dump(board))
-        return board_schema.dump(board)
+        return board_schema.dump(board), 201
 
 
 api = Api(app)
