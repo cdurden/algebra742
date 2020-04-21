@@ -530,7 +530,7 @@ class FeedbackList(Resource):
         user = get_user_by_lti_user_id(args['lti_user_id'])
         print(user)
         #data = request.get_json()['data']
-        users = [get_user_by_id(user.id) for user in args['users']]
+        users = [get_user_by_id(user_id) for user_id in args['users']]
         print(users)
         tasks = [get_task_from_source(task) for task in args['tasks']]
         print(tasks)
