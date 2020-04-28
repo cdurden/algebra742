@@ -318,10 +318,12 @@ class BoardSchema(ma.ModelSchema):
         include_fk = True
     task = fields.Nested("TaskSchema")
     data = fields.Dict()
+    shapeStorage = fields.Dict()
     @pre_dump
     def load_data(self, obj):
         if obj is not None:
             obj.data = obj.get_data()
+            obj.shapeStorage = obj.data
         return obj
 
 board_schema = BoardSchema(exclude=("data_json",))
