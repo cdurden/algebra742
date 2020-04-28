@@ -466,13 +466,13 @@ class BoardList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         data = args['data']
-        if args['board_id'] is not None: # FIXME: maybe this should go in a put request instead
-            print("saving board with id "+board_id)
-            board = get_board_by_id(board_id)
-            if board.user_id == user.id:
-                board.save(data)
-        else:
-            board = user.save_board(data, args['boardId'], args['task_id']) # FIXME: allow client to set board_id
+        #if args['boardId'] is not None: # FIXME: maybe this should go in a put request instead
+        #    print("saving board with id "+boardId)
+        #    board = get_board_by_board_id(boardId)
+        #    if board.user_id == user.id:
+        #        board.save(data)
+        #else:
+        board = user.save_board(data, args['boardId'], args['task_id']) # FIXME: allow client to set board_id
         return board_schema.dump(board)
 
 class TaskBoard(Resource):
