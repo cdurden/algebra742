@@ -9,6 +9,7 @@ class Submission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
+    board_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     data = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
@@ -20,6 +21,7 @@ class Submission(db.Model):
     user = relationship("User", back_populates="submissions")
     task = relationship("Task", back_populates="submissions")
     feedback = relationship("Feedback", back_populates="submission")
+    board = relationship("Board", back_populates="submissions")
 
     def check():
         pass

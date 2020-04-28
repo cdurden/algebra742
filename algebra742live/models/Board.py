@@ -11,7 +11,7 @@ class Board(db.Model):
     boardId = db.Column(db.String(5))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
-    submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
+    #submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
     title = db.Column(db.Text)
     data_json = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
@@ -20,6 +20,7 @@ class Board(db.Model):
     #user = relationship("User", back_populates="boards")
     task = relationship("Task", back_populates="boards")
     feedback = relationship("Feedback", back_populates="board")
+    submissions = relationship("Feedback", back_populates="board")
 
 
     def to_json(self):

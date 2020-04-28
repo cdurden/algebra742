@@ -425,12 +425,13 @@ class TaskSubmissionList(Resource):
         parser = reqparse.RequestParser()
         task = get_task_by_id(task_id)
         parser.add_argument('lti_user_id')
+        parser.add_argument('board_id')
         parser.add_argument('data')
         #for field in task.get_submission_fields():
         #    parser.add_argument(field)
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
-        submission = user.submit(task, args['data'])
+        submission = user.submit(task, args['data'], args['board_id'])
         return submission_schema.dump(submission)
         #return submission.to_json(), 201
 
