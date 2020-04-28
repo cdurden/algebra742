@@ -316,7 +316,7 @@ class BoardSchema(ma.ModelSchema):
     class Meta:
         model = db.Board
         include_fk = True
-    task = fields.Nested("TaskSchema", exclude=("boards.task",))
+    task = fields.Nested("TaskSchema")
     data = fields.Dict()
     @pre_dump
     def load_data(self, obj):
