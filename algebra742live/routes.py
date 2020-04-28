@@ -476,7 +476,7 @@ class BoardList(Resource):
         #        board.save(data)
         #else:
         board = user.save_board(data, args['boardId'], args['task_id']) # FIXME: allow client to set board_id
-        return board_schema.dump(board)
+        return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
     def get(self, task_id):
