@@ -530,7 +530,7 @@ class FeedbackList(Resource):
         args = parser.parse_args()
         data = args['data']
         user = get_user_by_lti_user_id(args['lti_user_id'])
-        board = user.save_board(data={}, args['boardId'])
+        board = user.save_board({}, args['boardId'])
         if args['submissions'] is not None:
             submissions = [get_submission_by_id(submission.id) for submission in args['submissions']]
             for submission in submissions:
