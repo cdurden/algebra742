@@ -308,8 +308,8 @@ class SubmissionSchema(ma.ModelSchema):
         model = db.Submission
         include_fk = True
     user = fields.Nested("UserSchema")
-    board = fields.Nested("BoardSchema")
-    #task = fields.Nested("TaskSchema", exclude=("submissions",))
+    board = fields.Nested("BoardSchema", exclude=("task",))
+    task = fields.Nested("TaskSchema", exclude=("submissions",))
 
 submission_schema = SubmissionSchema()
 submissions_schema = SubmissionSchema(many=True)
