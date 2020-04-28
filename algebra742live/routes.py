@@ -462,7 +462,7 @@ class BoardList(Resource):
         parser.add_argument('lti_user_id')
         parser.add_argument('data', type=dict, location='json')
         parser.add_argument('task_id')
-        parser.add_argument('board_id')
+        parser.add_argument('boardId')
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         data = args['data']
@@ -472,7 +472,7 @@ class BoardList(Resource):
             if board.user_id == user.id:
                 board.save(data)
         else:
-            board = user.save_board(data, args['task_id']) # FIXME: allow client to set board_id
+            board = user.save_board(data, args['boardId'], args['task_id']) # FIXME: allow client to set board_id
         return board_schema.dump(board)
 
 class TaskBoard(Resource):
@@ -525,11 +525,12 @@ class FeedbackList(Resource):
         parser.add_argument('tasks', type=list, location='json')
         parser.add_argument('submissions', type=list, location='json')
         parser.add_argument('lti_user_id')
+        parser.add_argument('boardId')
         parser.add_argument('data', type=dict, location='json')
         args = parser.parse_args()
         data = args['data']
         user = get_user_by_lti_user_id(args['lti_user_id'])
-        board = user.save_board(data={})
+        board = user.save_board(data={}, args['boardId'])
         if args['submissions'] is not None:
             submissions = [get_submission_by_id(submission.id) for submission in args['submissions']]
             for submission in submissions:
