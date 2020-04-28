@@ -9,7 +9,7 @@ class Submission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
-    board_id = db.Column(db.Integer, db.ForeignKey('task.id'))
+    board_id = db.Column(db.Integer, db.ForeignKey('board.id'))
     data = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
