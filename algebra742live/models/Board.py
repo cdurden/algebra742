@@ -7,7 +7,7 @@ from sqlalchemy import desc
 
 class Board(db.Model):
     __tablename__ = 'board'
-    id = db.Column(db.Text, primary_key=True)
+    id = db.Column(db.String(5), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
