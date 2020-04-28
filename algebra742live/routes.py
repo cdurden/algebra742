@@ -432,7 +432,7 @@ class TaskSubmissionList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         submission = user.submit(task, args['data'], args['board_id'])
-        return submission_schema.dump(submission)
+        return submission_schema.dump(submission), 201
         #return submission.to_json(), 201
 
 class Board(Resource):
