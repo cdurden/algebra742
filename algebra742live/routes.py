@@ -345,28 +345,28 @@ feedback_schema = FeedbackSchema(exclude=("data_json",))
 feedback_list_schema = FeedbackSchema(many=True, exclude=("data_json",))
 
 class User(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self, lti_user_id):
         user = get_user_by_lti_user_id(lti_user_id)
         #return user.to_json()
         return user_schema.dump(user)
 
 class UserList(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self):
         users = get_users()
         #return user.to_json()
         return users_schema.dump(users)
 
 class Task(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self, task_id):
         task = get_task_by_id(db.session, task_id)
         #return task.to_json()
         return task_schema.dump(task)
 
 class TaskList(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self):
         if 'task_id' in request.args:
             task_ids = request.args['task_id']
@@ -378,14 +378,14 @@ class TaskList(Resource):
         return tasks_schema.dump(tasks)
 
 class SourcedTask(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self, source):
         task = get_task_from_source(source)
         #return task.to_json()
         return task_schema.dump(task)
 
 class SourcedTaskList(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self):
         sources = request.args.getlist('source')
         print(sources)
@@ -394,21 +394,21 @@ class SourcedTaskList(Resource):
         return tasks_schema.dump(tasks)
 
 class TaskDataList(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self, source_pattern):
         tasks_data = get_task_data_by_source_pattern(source_pattern)
         return SerializableGenerator(tasks_data)
         #return [task.to_json() for task in tasks]
 
 class Submission(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self, submission_id):
         submission = get_submission_by_id(db.session, submission_id)
         #return submission.to_json()
         return submission_schema.dump(submission)
 
 class SubmissionList(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('data')
@@ -419,10 +419,11 @@ class SubmissionList(Resource):
         #return([submission.to_json() for submission in get_submissions(**kwargs)])
 
 class TaskSubmissionList(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self, task_id):
         return(submissions_schema.dump(get_submissions(task_id=task_id)))
 
+    @api_authenticate
     def post(self, task_id):
         parser = reqparse.RequestParser()
         task = get_task_by_id(task_id)
@@ -438,11 +439,13 @@ class TaskSubmissionList(Resource):
         #return submission.to_json(), 201
 
 class Board(Resource):
+    @api_authenticate
     def get(self, board_id):
         board = get_board_by_id(board_id)
         return board_schema.dump(board)
 
 class LatestBoard(Resource): # FIXME: this is a mess; we should not be passing task_id along with board_id. Separate this into two separate resource handlers
+    @api_authenticate
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('task_id')
@@ -459,9 +462,11 @@ class LatestBoard(Resource): # FIXME: this is a mess; we should not be passing t
         return board_schema.dump(board)
 
 class BoardList(Resource):
+    @api_authenticate
     def get(self):
         return(boards_schema.dump(get_boards()))
 
+    @api_authenticate
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('lti_user_id')
@@ -481,15 +486,17 @@ class BoardList(Resource):
         return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
+    @api_authenticate
     def get(self, task_id):
         board = user.get_latest_board_by_task_id(db.session, task_id)
         return board_schema.dump(board)
 
 class TaskBoardList(Resource):
-    #@api_authenticate
+    @api_authenticate
     def get(self, task_id):
         return(boards_schema.dump(get_boards(task_id=task_id)))
 
+    @api_authenticate
     def post(self, task_id):
         parser = reqparse.RequestParser()
         task = get_task_by_id(task_id)
@@ -504,8 +511,7 @@ class TaskBoardList(Resource):
         #return board.to_json(), 201
 
 class Assignments(Resource):
-    #@api_authenticate
-
+    @api_authenticate
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('assignments', type=dict, location='json')
@@ -520,9 +526,11 @@ class Assignments(Resource):
         return users_schema.dump(users)
 
 class FeedbackList(Resource):
+    @api_authenticate
     def get(self):
         return(feedback_list_schema.dump(get_feedback()))
 
+    @api_authenticate
     def post(self):
         print("posting feedback")
         parser = reqparse.RequestParser()
