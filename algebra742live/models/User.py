@@ -13,6 +13,7 @@ class User(db.Model):
     lastname = db.Column(db.String(80), nullable=False)
     lti_user_id = db.Column(db.String(255), unique=True, nullable=False)
     assignment = db.Column(db.String(255))
+    section = db.Column(db.String(255))
 
     submissions = relationship("Submission", back_populates="user")
     messages = relationship("Message", back_populates="user")
