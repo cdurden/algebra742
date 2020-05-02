@@ -289,8 +289,8 @@ class UserSchema(ma.ModelSchema):
     class Meta:
         model = db.User
         include_fk = True
-    tasks = fields.List(fields.Nested("TaskSchema", exclude=("boards",)))
-    boards = fields.List(fields.Nested("BoardSchema", exclude=("task","user")))
+    #tasks = fields.List(fields.Nested("TaskSchema", exclude=("boards",)))
+    #boards = fields.List(fields.Nested("BoardSchema", exclude=("task","user")))
     #submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task","user",)))
 
 user_schema = UserSchema(exclude=("boards",))
