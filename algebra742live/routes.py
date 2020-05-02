@@ -354,7 +354,7 @@ class User(Resource):
     def get(self, lti_user_id):
         user = get_user_by_lti_user_id(lti_user_id)
         #return user.to_json()
-        return user_schema.dump(user)
+        return user_schema.dump(user, exclude=("boards",))
 
 class UserList(Resource):
     @api_authenticate
