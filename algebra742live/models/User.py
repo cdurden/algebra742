@@ -12,6 +12,7 @@ class User(db.Model):
     firstname = db.Column(db.String(80), nullable=False)
     lastname = db.Column(db.String(80), nullable=False)
     lti_user_id = db.Column(db.String(255), unique=True, nullable=False)
+    role = db.Column(db.String(255), default="student")
     assignment = db.Column(db.String(255))
     section = db.Column(db.String(255))
 
