@@ -18,7 +18,7 @@ class Board(db.Model):
                     default=datetime.utcnow)
 
     user = relationship("User", back_populates="boards")
-    task = relationship("Task", back_populates="boards")
+    task = relationship("Task")
     feedback = relationship("Feedback", back_populates="board")
     submissions = relationship("Submission", back_populates="board")
 

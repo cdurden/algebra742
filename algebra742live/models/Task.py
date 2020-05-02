@@ -19,8 +19,12 @@ class Task(db.Model):
     submissions = relationship("Submission", back_populates="task")
     messages = relationship("Message", back_populates="task")
     feedback = relationship("Feedback", back_populates="task")
-    boards = relationship("Board", order_by=Board.datetime, back_populates="task")
+    #boards = relationship("Board", order_by=Board.datetime, back_populates="task")
 
+    def get_user_boards(self, user):
+        boards = db.session.query(Board).filter(task_id=self.task.id, user_id=user.id)
+        return boards
+        
     def events(self):
         events = self.submissions+self.messages
         for submission in self.submissions:

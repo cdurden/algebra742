@@ -393,15 +393,24 @@ class SourcedTaskList(Resource):
     @api_authenticate
     def get(self):
         sources = request.args.getlist('source')
-        print(sources)
-        if 'lti_user_id' in request.args:
-            lti_user_id = request.args['lti_user_id']
-            user = get_user_by_lti_user_id(lti_user_id)
-            tasks = [get_task_from_source(source) for source in sources]
-        else:
-            tasks = [get_task_from_source(source) for source in sources]
+        tasks = [get_task_from_source(source) for source in sources]
         #return [task.to_json() for task in tasks]
         return tasks_schema.dump(tasks)
+
+class SourcedTaskBoardsList(Resource):
+    @api_authenticate
+    def get(self):
+        sources = request.args.getlist('source')
+        parser = reqparse.RequestParser()
+        parser.add_argument('lti_user_id')
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        tasks = [get_task_from_source(source) for source in sources]
+        for task in tasks:
+            task.boards = task.get_user_boards(user)
+        #return [task.to_json() for task in tasks]
+        return boards_schema.dump(tasks)
+
 
 class TaskDataList(Resource):
     @api_authenticate
@@ -576,6 +585,7 @@ api.add_resource(Task, "/api/task/<task_id>")
 api.add_resource(TaskList, "/api/tasks/")
 api.add_resource(SourcedTask, "/api/task/source/<source>/")
 api.add_resource(SourcedTaskList, "/api/tasks/source/")
+api.add_resource(SourcedTaskBoardList, "/api/tasks/source/boards/")
 api.add_resource(TaskDataList, "/api/tasks/data/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
