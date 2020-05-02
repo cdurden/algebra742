@@ -397,7 +397,7 @@ class SourcedTaskList(Resource):
         #return [task.to_json() for task in tasks]
         return tasks_schema.dump(tasks)
 
-class SourcedTaskBoardsList(Resource):
+class SourcedTaskBoardList(Resource):
     @api_authenticate
     def get(self):
         sources = request.args.getlist('source')
