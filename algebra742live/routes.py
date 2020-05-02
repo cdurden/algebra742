@@ -409,7 +409,7 @@ class SourcedTaskBoardList(Resource):
         for task in tasks:
             task.boards = task.get_user_boards(user)
         #return [task.to_json() for task in tasks]
-        return boards_schema.dump(tasks)
+        return tasks_schema.dump(tasks)
 
 
 class TaskDataList(Resource):
