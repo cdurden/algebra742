@@ -22,7 +22,7 @@ class Task(db.Model):
     #boards = relationship("Board", order_by=Board.datetime, back_populates="task")
 
     def get_user_boards(self, user):
-        boards = db.session.query(Board).filter(task_id=self.task.id, user_id=user.id)
+        boards = db.session.query(Board).filter(task_id=self.id, user_id=user.id)
         return boards
         
     def events(self):
