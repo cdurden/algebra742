@@ -293,8 +293,8 @@ class UserSchema(ma.ModelSchema):
     boards = fields.List(fields.Nested("BoardSchema", exclude=("task","user")))
     #submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task","user",)))
 
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
+user_schema = UserSchema(exclude=("boards",))
+users_schema = UserSchema(many=True, exclude=("boards",))
 
 class TaskSchema(ma.ModelSchema):
     submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
@@ -354,7 +354,7 @@ class User(Resource):
     def get(self, lti_user_id):
         user = get_user_by_lti_user_id(lti_user_id)
         #return user.to_json()
-        return user_schema.dump(user, exclude=("boards",))
+        return user_schema.dump(user)
 
 class UserList(Resource):
     @api_authenticate
