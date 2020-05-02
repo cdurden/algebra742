@@ -289,6 +289,9 @@ class UserSchema(ma.ModelSchema):
     class Meta:
         model = db.User
         include_fk = True
+    tasks = fields.List(fields.Nested("TaskSchema", exclude=("boards",)))
+    boards = fields.List(fields.Nested("BoardSchema", exclude=("tasks","user")))
+    submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task","user",)))
 
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
@@ -391,7 +394,12 @@ class SourcedTaskList(Resource):
     def get(self):
         sources = request.args.getlist('source')
         print(sources)
-        tasks = [get_task_from_source(source) for source in sources]
+        if 'lti_user_id' in request.args:
+            lti_user_id = request.args['lti_user_id']
+            user = get_user_by_lti_user_id(lti_user_id)
+            tasks = [get_task_from_source(source) for source in sources]
+        else:
+            tasks = [get_task_from_source(source) for source in sources]
         #return [task.to_json() for task in tasks]
         return tasks_schema.dump(tasks)
 

@@ -16,6 +16,7 @@ class User(db.Model):
     assignment = db.Column(db.String(255))
     section = db.Column(db.String(255))
 
+    boards = relationship("Board", back_populates="user")
     submissions = relationship("Submission", back_populates="user")
     messages = relationship("Message", back_populates="user")
     feedback_given = relationship("Feedback", foreign_keys=[Feedback.creator_id], back_populates="creator")
