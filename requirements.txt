@@ -1,3 +1,5 @@
+gevent
+sqlalchemy-utils
 networkx
 flask-socketio
 flask-redis
