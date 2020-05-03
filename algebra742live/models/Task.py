@@ -39,20 +39,20 @@ class Task(db.Model):
         return({
             'id': self.id,
             'source': self.source,
-            'data': self.data(),
+            #'data': self.data(),
             #'parameters': self.params(),
             #'submitted': self.submitted,
             'events': [event.to_json() for event in self.events()]
             })
 
-    def data(self):
-        repo, tags = self.source.split(":",1)
-        if repo == 'snow-qm':
-            collection, task = tags.split(":")
-            with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection+'.json')) as f:
-                collection_data = json.load(f)
-            task_data = collection_data[task]
-            return(task_data)
+#    def data(self):
+#        repo, tags = self.source.split(":",1)
+#        if repo == 'snow-qm':
+#            collection, task = tags.split(":")
+#            with open(os.path.join(app.config["SNOW_QM_COLLECTIONS_DIR"],collection+'.json')) as f:
+#                collection_data = json.load(f)
+#            task_data = collection_data[task]
+#            return(task_data)
 
 def get_tasks():
     tasks = db.session.query(Task).all()
