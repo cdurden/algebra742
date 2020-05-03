@@ -9,6 +9,7 @@ class Board(db.Model):
     __tablename__ = 'board'
     id = db.Column(db.Integer, primary_key=True)
     boardId = db.Column(db.String(5))
+    background_image = db.Column(db.String(80))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     #submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
