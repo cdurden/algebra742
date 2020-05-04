@@ -324,6 +324,7 @@ class BoardSchema(ma.ModelSchema):
         model = db.Board
         include_fk = True
     task = fields.Nested("TaskSchema")
+    user = fields.Nested("UserSchema", exclude=("boards","submissions",))
     data = fields.Dict()
     shapeStorage = fields.Dict()
     @pre_dump
@@ -515,7 +516,7 @@ class BoardList(Resource):
             filename = None
         board = user.save_board(data_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
-            file_upload.save(filename)
+            file_upload.save(os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],filename))
         return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
@@ -592,6 +593,7 @@ class FeedbackList(Resource):
         return board_schema.dump(board), 201
 
 class FileUpload(Resource):
+    @api_authenticate
     def post(self):
         print("Received FileUpload POST request")
         parse = reqparse.RequestParser()
@@ -606,11 +608,22 @@ class FileUpload(Resource):
         board = get_or_create_board_by_boardId(boardId)
         if board is not None:
             filename = "{:s}.png".format(boardId)
-            file_upload.save(filename)
+            file_upload.save(os.path.join(app.config["PRIVATE_DATA_PATH"],filename))
             board.background_image = filename
             db.session.commit()
         #chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         return board_schema.dump(board), 201
+
+class File(Resource):
+    #@api_authenticate
+    def get(self, filename):
+        parser = reqparse.RequestParser()
+        parser.add_argument('lti_user_id')
+        parser.add_argument('filename')
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        send_file(os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],args['filename']))
+
 
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
@@ -632,6 +645,7 @@ api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
 api.add_resource(Assignments, "/api/assignments/")
 api.add_resource(FeedbackList, "/api/feedback/")
 api.add_resource(FileUpload, "/api/upload")
+api.add_resource(File, "/api/file/<filename>")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
