@@ -20,7 +20,11 @@ from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 import json
 import os
-import pathlib
+import sys
+if sys.version_info[0] < 3:
+    import pathlib2 as pathlib
+else:
+    import pathlib
 from .models.util import params_hash_lookup, graphics_path
 #def lti(app=None, request='any', error=None, role='any',
 #        *lti_args, **lti_kwargs):
