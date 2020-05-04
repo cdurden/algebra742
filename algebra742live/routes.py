@@ -524,7 +524,7 @@ class BoardList(Resource):
         if board is not None and file_upload is not None:
             filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],filename)
             pathlib.Path(os.path.dirname(filepath)).mkdir(parents=True, exist_ok=True) #FIXME: handle exceptions, e.g. file exists in place of directory
-            file_upload.save() 
+            file_upload.save(filepath) 
         return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
