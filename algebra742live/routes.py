@@ -624,12 +624,12 @@ class FileUpload(Resource):
 
 class File(Resource):
     #@api_authenticate
-    def get(self, filename):
+    def get(self, lti_user_id, filename):
         parser = reqparse.RequestParser()
-        parser.add_argument('lti_user_id')
+        #parser.add_argument('lti_user_id')
         parser.add_argument('filename')
         args = parser.parse_args()
-        user = get_user_by_lti_user_id(args['lti_user_id'])
+        user = get_user_by_lti_user_id(lti_user_id)
         send_file(os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],args['filename']))
 
 
