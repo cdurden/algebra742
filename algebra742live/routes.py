@@ -19,6 +19,7 @@ from sqlalchemy.sql import select, and_, desc
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 import json
+import os
 from .models.util import params_hash_lookup, graphics_path
 #def lti(app=None, request='any', error=None, role='any',
 #        *lti_args, **lti_kwargs):
