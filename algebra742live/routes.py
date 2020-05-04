@@ -493,9 +493,7 @@ class BoardList(Resource):
         parser.add_argument('task_id')
         parser.add_argument('boardId')
         parser.add_argument('file', type=FileStorage, location='files')
-        file_upload = args['file']
         args = parser.parse_args()
-        user = get_user_by_lti_user_id(args['lti_user_id'])
         data = args['data']
         print(data)
         #if args['boardId'] is not None: # FIXME: maybe this should go in a put request instead
@@ -504,7 +502,9 @@ class BoardList(Resource):
         #    if board.user_id == user.id:
         #        board.save(data)
         #else:
-        if args['file'] is not None:
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        file_upload = args['file']
+        if file_upload is not None:
             filename = "{:s}.png".format(boardId)
         else:
             filename = None
