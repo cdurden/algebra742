@@ -505,10 +505,12 @@ class BoardList(Resource):
         #    if board.user_id == user.id:
         #        board.save(data)
         #else:
+        print(args)
+        print(args['lti_user_id'])
         user = get_user_by_lti_user_id(args['lti_user_id'])
         file_upload = args['file']
         if file_upload is not None:
-            filename = "{:s}.png".format(boardId)
+            filename = "{:s}.png".format(args['boardId'])
         else:
             filename = None
         board = user.save_board(data_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
