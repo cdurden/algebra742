@@ -607,7 +607,7 @@ api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
 api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
 api.add_resource(Assignments, "/api/assignments/")
 api.add_resource(FeedbackList, "/api/feedback/")
-api.add_resource(FileUpload, "/api/upload/")
+api.add_resource(FileUpload, "/api/upload")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
