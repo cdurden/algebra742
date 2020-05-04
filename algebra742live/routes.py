@@ -26,6 +26,7 @@ if sys.version_info[0] < 3:
     import pathlib2 as pathlib
 else:
     import pathlib
+import tempfile
 from .models.util import params_hash_lookup, graphics_path
 #def lti(app=None, request='any', error=None, role='any',
 #        *lti_args, **lti_kwargs):
@@ -524,7 +525,7 @@ class BoardList(Resource):
         board = user.save_board(data_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
             filedir = pathlib.Path(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0])
-            filepath = pathlib.Path(filedir,filename))
+            filepath = pathlib.Path(filedir,filename)
             filedir.mkdir(parents=True, exist_ok=True) #FIXME: handle exceptions, e.g. file exists in place of directory
             with tempfile.NamedTemporaryFile(delete=False) as fp:
                 file_upload.save(fp) 
