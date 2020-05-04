@@ -20,6 +20,7 @@ from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
 import json
 import os
+import pathlib
 from .models.util import params_hash_lookup, graphics_path
 #def lti(app=None, request='any', error=None, role='any',
 #        *lti_args, **lti_kwargs):
@@ -517,7 +518,9 @@ class BoardList(Resource):
             filename = None
         board = user.save_board(data_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
-            file_upload.save(os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],filename))
+            filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],filename)
+            pathlib.Path(os.dirname(filepath)).mkdir(parents=True, exist_ok=True) #FIXME: handle exceptions, e.g. file exists in place of directory
+            file_upload.save() 
         return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
