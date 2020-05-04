@@ -5,6 +5,7 @@ import json
 from sqlalchemy.orm import relationship
 from .Submission import Submission
 from .Feedback import Feedback
+from .Board import get_board_by_boardId
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,11 +39,17 @@ class User(db.Model):
     def save_board(self, data, boardId, task_id=None, background_image=None):
         print(type(data))
         print(data.keys())
-        if task_id is None:
-            board = db.Board(user_id=self.id, boardId=boardId, data_json=json.dumps(data), background_image=background_image)
-        else: 
-            board = db.Board(user_id=self.id, boardId=boardId, task_id=task_id, data_json=json.dumps(data), background_image=background_image)
-        db.session.add(board)
+        board = self.get_board_by_boardId(boardId)
+        if board is not None:
+            board.data_json = json.dumps(data)
+            board.task_id = task_id
+            board.background_image = background_image
+        else:
+            if task_id is None:
+                board = db.Board(user_id=self.id, boardId=boardId, data_json=json.dumps(data), background_image=background_image)
+            else: 
+                board = db.Board(user_id=self.id, boardId=boardId, task_id=task_id, data_json=json.dumps(data), background_image=background_image)
+            db.session.add(board)
         db.session.commit()
         return(board)
     def create_feedback(self, board, recipient, task):
@@ -52,6 +59,9 @@ class User(db.Model):
         db.session.add(feedback)
         db.session.commit()
         return(feedback)
+    def get_board_by_boardId(boardId):
+        board = db.session.query(Board).filter_by(user_id=self.id, boardId=boardId).first()
+        return(board)
 
     def get_latest_board_by_task_id(self, task_id):
         board = db.session.query(Board).filter_by(user_id=self.id, task_id=task_id).order_by(desc(Board.datetime)).first()

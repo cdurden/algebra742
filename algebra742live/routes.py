@@ -224,7 +224,7 @@ from . import models
 from models.User import get_users, get_user_by_id, get_user_by_lti_user_id
 from models.Task import get_tasks, get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
-from models.Board import get_boards, get_board_by_id, get_latest_board
+from models.Board import get_boards, get_board_by_boardId, get_board_by_id, get_latest_board
 from models.Feedback import get_feedback
 from models.util import SerializableGenerator
 import flask_restful.representations.json
@@ -491,8 +491,9 @@ class BoardList(Resource):
         parser.add_argument('lti_user_id')
         parser.add_argument('data', type=dict, location='json')
         parser.add_argument('task_id')
-        parser.add_argument('background_image')
         parser.add_argument('boardId')
+        parse.add_argument('file', type=FileStorage, location='files')
+        file_upload = args['file']
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         data = args['data']
@@ -502,7 +503,13 @@ class BoardList(Resource):
         #    if board.user_id == user.id:
         #        board.save(data)
         #else:
-        board = user.save_board(data, args['boardId'], args['task_id'], args['background_image']) # FIXME: allow client to set board_id
+        if args['file'] is not None:
+            filename = "{:s}.png".format(boardId)
+        else:
+            filename = None
+        board = user.save_board(data, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
+        if board is not None:
+            file_upload.save(filename)
         return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
@@ -590,7 +597,14 @@ class FileUpload(Resource):
         boardId = args['boardId']
         print(boardId)
         return '', 201
-        #file_upload.save("your_file_name.jpg")
+        board = get_or_create_board_by_boardId(boardId)
+        if board is not None:
+            filename = "{:s}.png".format(boardId)
+            file_upload.save(filename)
+            board.background_image = filename
+            db.session.commit()
+        #chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        return board_schema.dump(board), 201
 
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
