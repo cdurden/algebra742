@@ -509,7 +509,7 @@ class BoardList(Resource):
         else:
             filename = None
         board = user.save_board(data, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
-        if board is not None:
+        if board is not None and file_upload is not None:
             file_upload.save(filename)
         return board_schema.dump(board), 201
 
