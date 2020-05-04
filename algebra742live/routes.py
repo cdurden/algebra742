@@ -530,7 +530,7 @@ class BoardList(Resource):
             with tempfile.NamedTemporaryFile(delete=False) as fp:
                 file_upload.save(fp) 
             tempfilepath = pathlib.Path(fp.name)
-            tempfilepath.replace(filepath)
+            tempfilepath.rename(filepath)
         return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
