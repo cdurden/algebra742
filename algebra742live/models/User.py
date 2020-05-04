@@ -36,19 +36,20 @@ class User(db.Model):
         db.session.add(submission)
         db.session.commit()
         return(submission)
-    def save_board(self, data, boardId, task_id=None, background_image=None):
-        print(type(data))
-        print(data.keys())
+    def save_board(self, data_json, boardId, task_id=None, background_image=None):
         board = self.get_board_by_boardId(boardId)
         if board is not None:
-            board.data_json = json.dumps(data)
+            #board.data_json = json.dumps(data)
+            board.data_json = data_json
             board.task_id = task_id
             board.background_image = background_image
         else:
             if task_id is None:
-                board = db.Board(user_id=self.id, boardId=boardId, data_json=json.dumps(data), background_image=background_image)
+                board = db.Board(user_id=self.id, boardId=boardId, data_json=data_json, background_image=background_image)
+                #board = db.Board(user_id=self.id, boardId=boardId, data_json=json.dumps(data), background_image=background_image)
             else: 
-                board = db.Board(user_id=self.id, boardId=boardId, task_id=task_id, data_json=json.dumps(data), background_image=background_image)
+                board = db.Board(user_id=self.id, boardId=boardId, task_id=task_id, data_json=data_json, background_image=background_image)
+                #board = db.Board(user_id=self.id, boardId=boardId, task_id=task_id, data_json=json.dumps(data), background_image=background_image)
             db.session.add(board)
         db.session.commit()
         return(board)

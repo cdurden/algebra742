@@ -490,12 +490,16 @@ class BoardList(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('lti_user_id')
         parser.add_argument('data', type=dict, location='json')
+        parser.add_argument('data_json', type=str)
         parser.add_argument('task_id')
         parser.add_argument('boardId')
         parser.add_argument('file', type=FileStorage, location='files')
         args = parser.parse_args()
         data = args['data']
-        print(data)
+        if data is None:
+            data_json = args['data_json']
+        else:
+            data_json = json.dumps(data)
         #if args['boardId'] is not None: # FIXME: maybe this should go in a put request instead
         #    print("saving board with id "+boardId)
         #    board = get_board_by_board_id(boardId)
@@ -508,7 +512,7 @@ class BoardList(Resource):
             filename = "{:s}.png".format(boardId)
         else:
             filename = None
-        board = user.save_board(data, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
+        board = user.save_board(data_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
             file_upload.save(filename)
         return board_schema.dump(board), 201
