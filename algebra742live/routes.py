@@ -13,7 +13,7 @@ from .models.Board import Board
 #from .models import get_or_create
 from . import db, ma
 from . import socketio, ROOMS
-from werkzeug.datastructures import MultiDict, ImmutableMultiDict
+from werkzeug.datastructures import MultiDict, ImmutableMultiDict, FileStorage
 from sqlalchemy.sql import select, and_, desc
 
 from flask_wtf import Form
@@ -578,6 +578,15 @@ class FeedbackList(Resource):
         print(board_schema.dump(board))
         return board_schema.dump(board), 201
 
+class FileUpload(Resource):
+    def post(self):
+        print("Received FileUpload POST request")
+        parse = reqparse.RequestParser()
+        parse.add_argument('file', type=FileStorage, location='files')
+        args = parse.parse_args()
+        file_upload = args['file']
+        print(file_upload)
+        #file_upload.save("your_file_name.jpg")
 
 api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
@@ -598,6 +607,7 @@ api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
 api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
 api.add_resource(Assignments, "/api/assignments/")
 api.add_resource(FeedbackList, "/api/feedback/")
+api.add_resource(FileUpload, "/api/upload/")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
