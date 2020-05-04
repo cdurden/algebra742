@@ -630,7 +630,8 @@ class File(Resource):
         parser.add_argument('filename')
         args = parser.parse_args()
         user = get_user_by_lti_user_id(lti_user_id)
-        send_file(os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],args['filename']))
+        filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],args['filename'])
+        return send_file(filepath)
 
 
 api = Api(app)
