@@ -497,6 +497,7 @@ class BoardList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         data = args['data']
+        print(data)
         #if args['boardId'] is not None: # FIXME: maybe this should go in a put request instead
         #    print("saving board with id "+boardId)
         #    board = get_board_by_board_id(boardId)
