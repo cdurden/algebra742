@@ -59,7 +59,7 @@ class User(db.Model):
         db.session.add(feedback)
         db.session.commit()
         return(feedback)
-    def get_board_by_boardId(boardId):
+    def get_board_by_boardId(self, boardId):
         board = db.session.query(Board).filter_by(user_id=self.id, boardId=boardId).first()
         return(board)
 
