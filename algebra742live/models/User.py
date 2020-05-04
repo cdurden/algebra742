@@ -5,7 +5,7 @@ import json
 from sqlalchemy.orm import relationship
 from .Submission import Submission
 from .Feedback import Feedback
-#from .Board import get_board_by_boardId
+from .Board import Board
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
