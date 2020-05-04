@@ -519,7 +519,7 @@ class BoardList(Resource):
         board = user.save_board(data_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
             filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],filename)
-            pathlib.Path(os.dirname(filepath)).mkdir(parents=True, exist_ok=True) #FIXME: handle exceptions, e.g. file exists in place of directory
+            pathlib.Path(os.path.dirname(filepath)).mkdir(parents=True, exist_ok=True) #FIXME: handle exceptions, e.g. file exists in place of directory
             file_upload.save() 
         return board_schema.dump(board), 201
 
