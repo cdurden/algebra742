@@ -492,7 +492,7 @@ class BoardList(Resource):
         parser.add_argument('data', type=dict, location='json')
         parser.add_argument('task_id')
         parser.add_argument('boardId')
-        parse.add_argument('file', type=FileStorage, location='files')
+        parser.add_argument('file', type=FileStorage, location='files')
         file_upload = args['file']
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
