@@ -490,15 +490,14 @@ class BoardList(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('lti_user_id')
         parser.add_argument('data', type=dict, location='json')
-        parser.add_argument('data_json', type=str)
+        parser.add_argument('data_json')
         parser.add_argument('task_id')
         parser.add_argument('boardId')
         parser.add_argument('file', type=FileStorage, location='files')
         args = parser.parse_args()
-        data = args['data']
-        if data is None:
-            data_json = args['data_json']
-        else:
+        data_json = args['data_json']
+        if data_json is None:
+            data = args['data']
             data_json = json.dumps(data)
         #if args['boardId'] is not None: # FIXME: maybe this should go in a put request instead
         #    print("saving board with id "+boardId)
