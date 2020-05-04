@@ -529,6 +529,7 @@ class BoardList(Resource):
             filedir.mkdir(parents=True, exist_ok=True) #FIXME: handle exceptions, e.g. file exists in place of directory
             with tempfile.NamedTemporaryFile(delete=False) as fp:
                 file_upload.save(fp) 
+            print("Saved temporary file at: {:s}".format(fp.name))
             tempfilepath = pathlib.Path(fp.name)
             tempfilepath.rename(filepath)
         return board_schema.dump(board), 201
