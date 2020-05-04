@@ -586,6 +586,7 @@ class FileUpload(Resource):
         args = parse.parse_args()
         file_upload = args['file']
         print(file_upload)
+        return '', 201
         #file_upload.save("your_file_name.jpg")
 
 api = Api(app)
