@@ -583,7 +583,7 @@ class FileUpload(Resource):
         print("Received FileUpload POST request")
         parse = reqparse.RequestParser()
         parse.add_argument('file', type=FileStorage, location='files')
-        parser.add_argument('boardId', type=int, location='form')
+        parse.add_argument('boardId', type=str, location='form')
         args = parse.parse_args()
         file_upload = args['file']
         print(file_upload)
