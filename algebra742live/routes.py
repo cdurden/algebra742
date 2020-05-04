@@ -14,6 +14,7 @@ from .models.Board import Board
 from . import db, ma
 from . import socketio, ROOMS
 from werkzeug.datastructures import MultiDict, ImmutableMultiDict, FileStorage
+from werkzeug.utils import secure_filename
 from sqlalchemy.sql import select, and_, desc
 
 from flask_wtf import Form
@@ -517,14 +518,18 @@ class BoardList(Resource):
         user = get_user_by_lti_user_id(args['lti_user_id'])
         file_upload = args['file']
         if file_upload is not None:
-            filename = "{:s}.png".format(args['boardId'])
+            filename = secure_filename("{:s}.png".format(args['boardId']))
         else:
             filename = None
         board = user.save_board(data_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
-            filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0],filename)
-            pathlib.Path(os.path.dirname(filepath)).mkdir(parents=True, exist_ok=True) #FIXME: handle exceptions, e.g. file exists in place of directory
-            file_upload.save(filepath) 
+            filedir = pathlib.Path(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0])
+            filepath = pathlib.Path(filedir,filename))
+            filedir.mkdir(parents=True, exist_ok=True) #FIXME: handle exceptions, e.g. file exists in place of directory
+            with tempfile.NamedTemporaryFile(delete=False) as fp:
+                file_upload.save(fp) 
+            tempfilepath = pathlib.Path(fp.name)
+            tempfilepath.replace(filepath)
         return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
