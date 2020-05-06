@@ -468,8 +468,9 @@ class TaskSubmissionList(Resource):
 
 class Board(Resource):
     @api_authenticate
-    def get(self, board_id):
-        board = get_board_by_id(board_id)
+    def get(self, lti_user_id, board_id):
+        user = get_user_by_lti_user_id(lti_user_id)
+        board = user.get_board_by_boardId(board)
         return board_schema.dump(board)
 
 class LatestBoard(Resource): # FIXME: this is a mess; we should not be passing task_id along with board_id. Separate this into two separate resource handlers
@@ -653,7 +654,7 @@ api.add_resource(TaskDataList, "/api/tasks/data/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
-api.add_resource(Board, "/api/board/<board_id>")
+api.add_resource(Board, "/api/user/<lti_user_id>/board/<board_id>")
 api.add_resource(LatestBoard, "/api/board/")
 api.add_resource(BoardList, "/api/boards/")
 api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
