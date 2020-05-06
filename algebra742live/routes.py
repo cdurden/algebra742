@@ -470,7 +470,7 @@ class Board(Resource):
     @api_authenticate
     def get(self, lti_user_id, board_id):
         user = get_user_by_lti_user_id(lti_user_id)
-        board = user.get_board_by_boardId(board)
+        board = user.get_board_by_boardId(board_id)
         return board_schema.dump(board)
 
 class LatestBoard(Resource): # FIXME: this is a mess; we should not be passing task_id along with board_id. Separate this into two separate resource handlers
