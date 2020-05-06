@@ -42,7 +42,8 @@ class User(db.Model):
             #board.data_json = json.dumps(data)
             board.data_json = data_json
             board.task_id = task_id
-            board.background_image = background_image
+            if background_image is not None:
+                board.background_image = background_image
         else:
             if task_id is None:
                 board = db.Board(user_id=self.id, boardId=boardId, data_json=data_json, background_image=background_image)

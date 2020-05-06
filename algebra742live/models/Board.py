@@ -14,7 +14,7 @@ class Board(db.Model):
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     #submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
     title = db.Column(db.Text)
-    data_json = db.Column(db.Text)
+    data_json = db.Column(db.String(16777215))
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
 
