@@ -13,6 +13,7 @@ class Submission(db.Model):
     data = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
+    state = db.Column(db.Text, default="pending")
     graded = db.Column(db.Boolean, default=False)
     score = db.Column(db.Float)
     marked_correct = db.Column(db.Text, default="[]")
