@@ -621,10 +621,11 @@ class FeedbackList(Resource):
         parser.add_argument('data', type=dict, location='json')
         args = parser.parse_args()
         data = args['data']
+        data_json = json.dumps(data)
         user = get_user_by_lti_user_id(args['lti_user_id'])
         board = user.save_board({}, args['boardId'])
         submission = get_submission_by_id(args['submission_id'])
-        feedback = user.create_feedback(submission, board)
+        feedback = user.create_feedback(submission, board, data_json)
         return feedback_schema.dump(feedback), 201
 
 class FileUpload(Resource):

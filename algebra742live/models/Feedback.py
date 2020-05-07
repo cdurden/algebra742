@@ -24,7 +24,10 @@ class Feedback(db.Model):
     task = relationship("Task", foreign_keys=[task_id], back_populates="feedback")
 
     def get_data(self):
-        return json.loads(self.data_json)
+        if self.data_json is not None:
+            return json.loads(self.data_json)
+        else:
+            return {}
 
 def get_feedback(**kwargs):
     feedback = db.session.query(Feedback).filter_by(**kwargs).all()
