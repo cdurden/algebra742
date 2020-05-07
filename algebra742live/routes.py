@@ -623,7 +623,7 @@ class FeedbackList(Resource):
         data = args['data']
         user = get_user_by_lti_user_id(args['lti_user_id'])
         board = user.save_board({}, args['boardId'])
-        submission = get_submission_by_id(submission_id)
+        submission = get_submission_by_id(args['submission_id'])
         feedback = user.create_feedback(board, submission=submission)
         return feedback_schema.dump(feedback), 201
 
