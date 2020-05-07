@@ -615,7 +615,7 @@ class FeedbackList(Resource):
     def post(self):
         print("posting feedback")
         parser = reqparse.RequestParser()
-        parser.add_argument('submission_id', type=list, location='json')
+        parser.add_argument('submission_id', type=int, location='json')
         parser.add_argument('lti_user_id')
         parser.add_argument('boardId')
         parser.add_argument('data', type=dict, location='json')
