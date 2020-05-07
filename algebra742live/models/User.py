@@ -54,10 +54,10 @@ class User(db.Model):
             db.session.add(board)
         db.session.commit()
         return(board)
-    def create_feedback(self, board, recipient, task):
+    def create_feedback(self, submission, board):
         db.session.add(board)
         db.session.commit()
-        feedback = db.Feedback(board_id=board.id, recipient_id=recipient.id, creator_id=self.id, task_id=task.id)
+        feedback = db.Feedback(board_id=board.id, recipient_id=submission.user.id, creator_id=self.id)
         db.session.add(feedback)
         db.session.commit()
         return(feedback)

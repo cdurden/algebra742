@@ -624,7 +624,7 @@ class FeedbackList(Resource):
         user = get_user_by_lti_user_id(args['lti_user_id'])
         board = user.save_board({}, args['boardId'])
         submission = get_submission_by_id(args['submission_id'])
-        feedback = user.create_feedback(board, submission=submission)
+        feedback = user.create_feedback(submission, board)
         return feedback_schema.dump(feedback), 201
 
 class FileUpload(Resource):
