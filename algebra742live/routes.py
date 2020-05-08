@@ -338,8 +338,7 @@ class BoardSchema(ma.ModelSchema):
     @pre_dump
     def load_data(self, obj):
         if obj is not None:
-            obj.data = obj.get_data()
-            obj.shapeStorage = obj.data
+            obj.shapeStorage = obj.get_shapeStorage()
         return obj
 
 board_schema = BoardSchema(exclude=("shapeStorage_json",))
