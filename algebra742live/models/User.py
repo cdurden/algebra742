@@ -37,6 +37,8 @@ class User(db.Model):
         db.session.commit()
         return(submission)
     def save_board(self, shapeStorage_json, boardId, task_id=None, background_image=None):
+        print("Saving board {:s} with shapeStorage:".format(boardId));
+        print(shapeStorage_json)
         board = self.get_board_by_boardId(boardId)
         if board is not None:
             #board.shapeStorage_json = json.dumps(data)
