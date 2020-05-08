@@ -618,8 +618,8 @@ class FeedbackList(Resource):
         parser.add_argument('lti_user_id')
         parser.add_argument('boardId')
         parser.add_argument('data', type=dict, location='json')
-        print("submission_id: {:d}".format(args['submission_id']))
         args = parser.parse_args()
+        print("submission_id: {:d}".format(args['submission_id']))
         data = args['data']
         data_json = json.dumps(data)
         user = get_user_by_lti_user_id(args['lti_user_id'])
