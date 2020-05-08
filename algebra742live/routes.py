@@ -401,8 +401,11 @@ class SourcedTask(Resource):
 class SourcedTaskList(Resource):
     @api_authenticate
     def get(self):
-        sources = request.args.getlist('source')
-        print("Getting tasks form sources: {:s}".format(", ".join(sources)))
+        #sources = request.args.getlist('source')
+        parser = reqparse.RequestParser()
+        parser.add_argument('sources', type=list, location='json')
+        sources = args['sources']
+        print("Getting tasks from sources: {:s}".format(", ".join(sources)))
         tasks = [get_task_from_source(source) for source in sources]
         #return [task.to_json() for task in tasks]
         return tasks_schema.dump(tasks)
