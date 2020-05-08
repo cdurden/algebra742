@@ -305,7 +305,7 @@ user_schema = UserSchema(exclude=("boards",))
 users_schema = UserSchema(many=True, exclude=("boards",))
 
 class TaskSchema(ma.ModelSchema):
-    submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
+    #submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
     #boards = fields.List(fields.Nested("BoardSchema", exclude=("task",))) #FIXME: why is this needed?
     data = fields.Function(lambda obj: obj.data())
     class Meta:
@@ -410,7 +410,7 @@ class SourcedTaskList(Resource):
             print("Getting tasks from sources: {:s}".format(", ".join(sources)))
             tasks = [get_task_from_source(source) for source in sources]
         else:
-            tasks = None
+            tasks = [] 
         #return [task.to_json() for task in tasks]
         return tasks_schema.dump(tasks)
 
@@ -488,7 +488,7 @@ class LatestBoard(Resource): # FIXME: this is a mess; we should not be passing t
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('task_id')
-        parser.add_argument('submission_id')
+        #parser.add_argument('submission_id')
         parser.add_argument('lti_user_id')
         args = parser.parse_args()
         lti_user_id = args.pop('lti_user_id')
