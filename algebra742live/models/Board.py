@@ -8,13 +8,13 @@ from sqlalchemy import desc
 class Board(db.Model):
     __tablename__ = 'board'
     id = db.Column(db.Integer, primary_key=True)
-    boardId = db.Column(db.String(5))
+    boardId = db.Column(db.String(6))
     background_image = db.Column(db.String(80))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     #submission_id = db.Column(db.Integer, db.ForeignKey('submission.id'))
     title = db.Column(db.Text)
-    data_json = db.Column(db.String(16777215))
+    shapeStorage_json = db.Column(db.String(16777215))
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
 
@@ -23,19 +23,8 @@ class Board(db.Model):
     feedback = relationship("Feedback", back_populates="board")
     submissions = relationship("Submission", back_populates="board")
 
-
-    def to_json(self):
-        return({
-            'id': self.id,
-            'user_id': self.user_id,
-            'task_id': self.task_id,
-            'submission_id': self.submission_id,
-            'data': self.get_data(),
-            'datetime': self.datetime.isoformat(),
-            })
-
-    def get_data(self):
-        return json.loads(self.data_json)
+    def get_shapeStorage(self):
+        return json.loads(self.shapeStorage_json)
 
 def get_boards():
     boards = db.session.query(Board).all()

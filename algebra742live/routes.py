@@ -342,7 +342,7 @@ class BoardSchema(ma.ModelSchema):
             obj.shapeStorage = obj.data
         return obj
 
-board_schema = BoardSchema(exclude=("data_json",))
+board_schema = BoardSchema(exclude=("shapeStorage_json",))
 boards_schema = BoardSchema(many=True)
 
 class FeedbackSchema(ma.ModelSchema):
@@ -503,21 +503,21 @@ class BoardList(Resource):
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('lti_user_id')
-        parser.add_argument('data', type=dict, location='json')
-        parser.add_argument('data_json')
+        parser.add_argument('shapeStorage', type=dict, location='json')
+        parser.add_argument('shapeStorage_json')
         parser.add_argument('task_id')
         parser.add_argument('boardId')
         parser.add_argument('file', type=FileStorage, location='files')
         args = parser.parse_args()
-        data_json = args['data_json']
-        if data_json is None:
-            data = args['data']
-            data_json = json.dumps(data)
+        _json = args['shapeStorage_json']
+        if shapeStorage_json is None:
+            shapeStorage = args['shapeStorage']
+            shapeStorage_json = json.dumps(shapeStorage)
         #if args['boardId'] is not None: # FIXME: maybe this should go in a put request instead
         #    print("saving board with id "+boardId)
         #    board = get_board_by_board_id(boardId)
         #    if board.user_id == user.id:
-        #        board.save(data)
+        #        board.save(shapeStorage)
         #else:
         print(args)
         print(args['lti_user_id'])
@@ -527,7 +527,7 @@ class BoardList(Resource):
             filename = secure_filename("{:s}.png".format(args['boardId']))
         else:
             filename = None
-        board = user.save_board(data_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
+        board = user.save_board(shapeStorage_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
             filedir = pathlib.Path(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0])
             filepath = pathlib.Path(filedir,filename)
