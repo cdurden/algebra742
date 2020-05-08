@@ -406,6 +406,7 @@ class SourcedTaskList(Resource):
         parser.add_argument('sources', type=list, location='json')
         args = parser.parse_args()
         sources = args['sources']
+        print("Sources is: "+sources);
         print("Getting tasks from sources: {:s}".format(", ".join(sources)))
         tasks = [get_task_from_source(source) for source in sources]
         #return [task.to_json() for task in tasks]
