@@ -306,8 +306,7 @@ users_schema = UserSchema(many=True, exclude=("boards",))
 
 class TaskSchema(ma.ModelSchema):
     submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task",)))
-    #submissions = fields.List(fields.Nested("SubmissionSchema"))
-    boards = fields.List(fields.Nested("BoardSchema", exclude=("task",)))
+    #boards = fields.List(fields.Nested("BoardSchema", exclude=("task",))) #FIXME: why is this needed?
     data = fields.Function(lambda obj: obj.data())
     class Meta:
         model = db.Task
@@ -403,6 +402,7 @@ class SourcedTaskList(Resource):
     @api_authenticate
     def get(self):
         sources = request.args.getlist('source')
+        print(sources)
         tasks = [get_task_from_source(source) for source in sources]
         #return [task.to_json() for task in tasks]
         return tasks_schema.dump(tasks)
