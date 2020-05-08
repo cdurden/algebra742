@@ -508,7 +508,7 @@ class BoardList(Resource):
         parser.add_argument('boardId')
         parser.add_argument('file', type=FileStorage, location='files')
         args = parser.parse_args()
-        _json = args['shapeStorage_json']
+        shapeStorage_json = args['shapeStorage_json']
         if shapeStorage_json is None:
             shapeStorage = args['shapeStorage']
             shapeStorage_json = json.dumps(shapeStorage)
