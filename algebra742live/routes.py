@@ -469,10 +469,10 @@ class TaskSubmissionList(Resource):
 
 class Board(Resource):
     @api_authenticate
-    def get(self, lti_user_id, board_id):
+    def get(self, lti_user_id, boardId):
         user = get_user_by_lti_user_id(lti_user_id)
-        board = user.get_board_by_boardId(board_id)
-        print("Getting board {:s} for user {:s}".format(board_id, lti_user_id))
+        board = user.get_board_by_boardId(boardId)
+        print("Getting board {:s} for user {:s}".format(boardId, lti_user_id))
         print(board)
         return board_schema.dump(board)
 
@@ -622,7 +622,8 @@ class FeedbackList(Resource):
         data = args['data']
         data_json = json.dumps(data)
         user = get_user_by_lti_user_id(args['lti_user_id'])
-        board = user.save_board({}, args['boardId'])
+        #board = user.save_board({}, args['boardId'])
+        board = user.get_board_by_boardId(args['boardId'])
         submission = get_submission_by_id(args['submission_id'])
         feedback = user.create_feedback(submission, board, data_json)
         return feedback_schema.dump(feedback), 201
@@ -673,7 +674,7 @@ api.add_resource(TaskDataList, "/api/tasks/data/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
-api.add_resource(Board, "/api/user/<lti_user_id>/board/<board_id>")
+api.add_resource(Board, "/api/user/<lti_user_id>/board/<boardId>")
 api.add_resource(LatestBoard, "/api/board/")
 api.add_resource(BoardList, "/api/boards/")
 api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
