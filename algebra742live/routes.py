@@ -404,6 +404,7 @@ class SourcedTaskList(Resource):
         #sources = request.args.getlist('source')
         parser = reqparse.RequestParser()
         parser.add_argument('sources', type=list, location='json')
+        args = parser.parse_args()
         sources = args['sources']
         print("Getting tasks from sources: {:s}".format(", ".join(sources)))
         tasks = [get_task_from_source(source) for source in sources]
