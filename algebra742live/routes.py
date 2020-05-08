@@ -493,6 +493,7 @@ class LatestBoard(Resource): # FIXME: this is a mess; we should not be passing t
         args = parser.parse_args()
         lti_user_id = args.pop('lti_user_id')
         user = get_user_by_lti_user_id(lti_user_id)
+        print("Getting user with lti_user_id "+lti_user_id)
         args['user_id'] = user.id
         print("getting latest board with args:")
         print(args)
