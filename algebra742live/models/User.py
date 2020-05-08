@@ -59,7 +59,7 @@ class User(db.Model):
     def create_feedback(self, submission, board, data_json):
         db.session.add(board)
         db.session.commit()
-        feedback = db.Feedback(board_id=board.id, recipient_id=submission.user.id, creator_id=self.id, data_json=data_json)
+        feedback = db.Feedback(submission_id=submission.id, board_id=board.id, recipient_id=submission.user.id, creator_id=self.id, data_json=data_json)
         db.session.add(feedback)
         db.session.commit()
         return(feedback)
