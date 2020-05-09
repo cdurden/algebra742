@@ -359,6 +359,7 @@ class FeedbackSchema(ma.ModelSchema):
 feedback_schema = FeedbackSchema(exclude=("data_json",))
 feedback_list_schema = FeedbackSchema(many=True, exclude=("data_json",))
 
+api = Api(app)
 class File(Resource):
     #@api_authenticate
     def get(self, lti_user_id, filename):
@@ -369,6 +370,7 @@ class File(Resource):
         #user = get_user_by_lti_user_id(lti_user_id)
         filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],lti_user_id.split(":")[0],filename)
         return send_file(filepath)
+api.add_resource(File, "/api/file/<lti_user_id>/<filename>")
 
 class User(Resource):
     @api_authenticate
@@ -677,7 +679,6 @@ class FileUpload(Resource):
         return board_schema.dump(board), 201
 
 
-api = Api(app)
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(UserList, "/api/users/")
 api.add_resource(Task, "/api/task/<task_id>")
@@ -697,7 +698,6 @@ api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
 api.add_resource(Assignments, "/api/assignments/")
 api.add_resource(FeedbackList, "/api/feedback/")
 api.add_resource(FileUpload, "/api/upload")
-api.add_resource(File, "/api/file/<lti_user_id>/<filename>")
 
 @app.route('/slides/<deck>')
 @lti(request='session', error=error)
