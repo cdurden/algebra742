@@ -23,6 +23,10 @@ from wtforms import TextField, IntegerField, BooleanField, FieldList, StringFiel
 import json
 import os
 import sys
+try:
+    from urlparse import urljoin  # Python2
+except ImportError:
+    from urllib.parse import urljoin
 if sys.version_info[0] < 3:
     import pathlib2 as pathlib
 else:
@@ -547,13 +551,12 @@ class BoardList(Resource):
         file_upload = args['file']
         if file_upload is not None:
             filename = secure_filename("{:s}.png".format(args['boardId']))
+            fileurl = api_url_for('file', lti_user_id=user.lti_user_id, filename='index'), filename)
         else:
-            #filename = args['background_image']
-            filename = secure_filename(args['background_image'])
-        if filename is not None:
-            fileurl = api_url_for('file', lti_user_id=user.lti_user_id, filename=filename)
-        else:
-            fileurl = None
+            if args['background_image'] is not None:
+                fileurl = urljoin(api_url_for('file', lti_user_id=user.lti_user_id, filename='index'),args['background_image'])
+            else:
+                fileurl = None
         board = user.save_board(shapeStorage_json, args['boardId'], args['task_id'], fileurl) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
             filedir = pathlib.Path(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0])
