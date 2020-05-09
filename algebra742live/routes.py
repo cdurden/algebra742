@@ -1,5 +1,6 @@
 from flask import current_app as app
 from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import url_for as api_url_for
 from functools import wraps
 from flask import render_template, request, redirect, url_for, send_file, make_response, session
 from flask import jsonify
@@ -358,6 +359,17 @@ class FeedbackSchema(ma.ModelSchema):
 feedback_schema = FeedbackSchema(exclude=("data_json",))
 feedback_list_schema = FeedbackSchema(many=True, exclude=("data_json",))
 
+class File(Resource):
+    #@api_authenticate
+    def get(self, lti_user_id, filename):
+        #parser = reqparse.RequestParser()
+        #parser.add_argument('lti_user_id')
+        #parser.add_argument('filename')
+        #args = parser.parse_args()
+        #user = get_user_by_lti_user_id(lti_user_id)
+        filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],lti_user_id.split(":")[0],filename)
+        return send_file(filepath)
+
 class User(Resource):
     @api_authenticate
     def get(self, lti_user_id):
@@ -514,6 +526,7 @@ class BoardList(Resource):
         parser.add_argument('shapeStorage_json')
         parser.add_argument('task_id')
         parser.add_argument('boardId')
+        parser.add_argument('background_image')
         parser.add_argument('file', type=FileStorage, location='files')
         args = parser.parse_args()
         shapeStorage_json = args['shapeStorage_json']
@@ -533,8 +546,12 @@ class BoardList(Resource):
         if file_upload is not None:
             filename = secure_filename("{:s}.png".format(args['boardId']))
         else:
-            filename = None
-        board = user.save_board(shapeStorage_json, args['boardId'], args['task_id'], filename) # FIXME: allow client to set board_id
+            filename = args['background_image']
+        if filename is not None:
+            fileurl = api_url_for(File, lti_user_id=user.lti_user_id, filename=filename)
+        else:
+            fileurl = None
+        board = user.save_board(shapeStorage_json, args['boardId'], args['task_id'], fileurl) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
             filedir = pathlib.Path(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0])
             filepath = pathlib.Path(filedir,filename)
@@ -658,17 +675,6 @@ class FileUpload(Resource):
             db.session.commit()
         #chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         return board_schema.dump(board), 201
-
-class File(Resource):
-    #@api_authenticate
-    def get(self, lti_user_id, filename):
-        #parser = reqparse.RequestParser()
-        #parser.add_argument('lti_user_id')
-        #parser.add_argument('filename')
-        #args = parser.parse_args()
-        #user = get_user_by_lti_user_id(lti_user_id)
-        filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],lti_user_id.split(":")[0],filename)
-        return send_file(filepath)
 
 
 api = Api(app)
