@@ -550,7 +550,7 @@ class BoardList(Resource):
         else:
             filename = args['background_image']
         if filename is not None:
-            fileurl = api_url_for(File, lti_user_id=user.lti_user_id, filename=filename)
+            fileurl = api_url_for('file', lti_user_id=user.lti_user_id, filename=filename)
         else:
             fileurl = None
         board = user.save_board(shapeStorage_json, args['boardId'], args['task_id'], fileurl) # FIXME: allow client to set board_id
