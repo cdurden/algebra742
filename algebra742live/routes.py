@@ -548,7 +548,8 @@ class BoardList(Resource):
         if file_upload is not None:
             filename = secure_filename("{:s}.png".format(args['boardId']))
         else:
-            filename = args['background_image']
+            #filename = args['background_image']
+            filename = secure_filename(args['background_image'])
         if filename is not None:
             fileurl = api_url_for('file', lti_user_id=user.lti_user_id, filename=filename)
         else:
