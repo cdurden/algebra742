@@ -238,7 +238,7 @@ from models.User import get_users, get_user_by_id, get_user_by_lti_user_id
 from models.Task import get_tasks, get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.Board import get_boards, get_board_by_id, get_latest_board
-from models.Feedback import get_feedback
+from models.Feedback import get_feedback, get_feedback_by_id
 from models.util import SerializableGenerator
 import flask_restful.representations.json
 
@@ -611,6 +611,11 @@ class Assignments(Resource):
 
 class FeedbackList(Resource):
     @api_authenticate
+    def get(self, feedback_id):
+        return(feedback_schema.dump(get_feedback_by_id(feedback_id)))
+
+class FeedbackList(Resource):
+    @api_authenticate
     def get(self):
         return(feedback_list_schema.dump(get_feedback()))
 
@@ -701,6 +706,7 @@ api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
 api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
 api.add_resource(Assignments, "/api/assignments/")
 api.add_resource(FeedbackList, "/api/feedback/")
+api.add_resource(Feedback, "/api/feedback/<feedback_id>")
 api.add_resource(FileUpload, "/api/upload")
 
 @app.route('/slides/<deck>')

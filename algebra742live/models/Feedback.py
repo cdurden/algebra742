@@ -34,6 +34,10 @@ def get_feedback(**kwargs):
     feedback = db.session.query(Feedback).filter_by(**kwargs).all()
     return(feedback)
 
+def get_feedback_by_id(feedback_id):
+    feedback = db.session.query(Feedback).get(feedback_id)
+    return(feedback)
+
 def create_feedback(**kwargs):
     feedback = Feedback(**kwargs)
     db.session.add(feedback)
