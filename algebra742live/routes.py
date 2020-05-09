@@ -609,7 +609,7 @@ class Assignments(Resource):
         db.session.commit()
         return users_schema.dump(users)
 
-class FeedbackList(Resource):
+class Feedback(Resource):
     @api_authenticate
     def get(self, feedback_id):
         return(feedback_schema.dump(get_feedback_by_id(feedback_id)))
