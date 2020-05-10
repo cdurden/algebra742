@@ -541,6 +541,7 @@ class BoardList(Resource):
         parser.add_argument('shapeStorage', type=dict, location='json')
         parser.add_argument('shapeStorage_json')
         parser.add_argument('task_id')
+        parser.add_argument('taskSource')
         parser.add_argument('boardId')
         parser.add_argument('background_image')
         parser.add_argument('file', type=FileStorage, location='files')
@@ -549,6 +550,12 @@ class BoardList(Resource):
         if shapeStorage_json is None:
             shapeStorage = args['shapeStorage']
             shapeStorage_json = json.dumps(shapeStorage)
+        if args['task_id'] is not None:
+            task = get_task_by_id(args['task_id'])
+        elif args['taskSource'] is not None:
+            task = get_task_by_source(args['taskSource'])
+        else:
+            task = None
         #if args['boardId'] is not None: # FIXME: maybe this should go in a put request instead
         #    print("saving board with id "+boardId)
         #    board = get_board_by_board_id(boardId)
@@ -567,7 +574,7 @@ class BoardList(Resource):
                 fileurl = urljoin(api_url_for('file', lti_user_id=user.lti_user_id, filename='index'),args['background_image'])
             else:
                 fileurl = None
-        board = user.save_board(shapeStorage_json, args['boardId'], args['task_id'], fileurl) # FIXME: allow client to set board_id
+        board = user.save_board(shapeStorage_json, args['boardId'], task, fileurl) # FIXME: allow client to set board_id
         if board is not None and file_upload is not None:
             filedir = pathlib.Path(app.config["PRIVATE_DATA_PATH"],user.lti_user_id.split(":")[0])
             filepath = pathlib.Path(filedir,filename)
