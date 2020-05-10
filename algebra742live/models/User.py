@@ -71,7 +71,7 @@ class User(db.Model):
         return(board)
     def get_feedback_received(self, board_ids):
         if board_ids is not None:
-            feedback_list = db.session.query(Feedback).filter_by(user_id=self.id, Feedback.board_id.in_(board_ids)).all()
+            feedback_list = db.session.query(Feedback).filter(Feedback.board_id.in_(board_ids)).filter_by(user_id=self.id).all()
         else:
             feedback_list = db.session.query(Feedback).filter_by(user_id=self.id).all()
         return(feedback_list)

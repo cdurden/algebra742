@@ -34,7 +34,7 @@ def get_feedback(board_ids, **kwargs):
     if board_ids is not None:
         feedback = db.session.query(Feedback).filter_by(**kwargs).all()
     else:
-        feedback = db.session.query(Feedback).filter_by(Feedback.board_id.in_(board_ids), **kwargs).all()
+        feedback = db.session.query(Feedback).filter(Feedback.board_id.in_(board_ids)).filter_by(**kwargs).all()
     return(feedback)
 
 def get_feedback_by_id(feedback_id):
