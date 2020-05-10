@@ -69,6 +69,13 @@ class User(db.Model):
     def get_latest_board_by_task_id(self, task_id):
         board = db.session.query(Board).filter_by(user_id=self.id, task_id=task_id).order_by(desc(Board.datetime)).first()
         return(board)
+    def get_feedback_received(self, board_ids):
+        if board_ids is not None:
+            feedback_list = db.session.query(Feedback).filter_by(user_id=self.id, Feedback.board_id.in_(board_ids)).all()
+        else:
+            feedback_list = db.session.query(Feedback).filter_by(user_id=self.id).all()
+        return(feedback_list)
+
 
 def get_users():
     users = db.session.query(User).all()

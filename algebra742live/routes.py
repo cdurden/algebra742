@@ -635,10 +635,24 @@ class Feedback(Resource):
     def get(self, feedback_id):
         return(feedback_schema.dump(get_feedback_by_id(feedback_id)))
 
+class UserFeedbackList(Resource):
+    @api_authenticate
+    def get(self, lti_user_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument('board_ids', type=list, location='json')
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(lti_user_id)
+        board_ids = args['board_ids']
+        return(feedback_list_schema.dump(user.get_feedback_received(board_ids)))
+
 class FeedbackList(Resource):
     @api_authenticate
     def get(self):
-        return(feedback_list_schema.dump(get_feedback()))
+        parser = reqparse.RequestParser()
+        parser.add_argument('board_ids', type=list, location='json')
+        args = parser.parse_args()
+        board_ids = args['board_ids']
+        return(feedback_list_schema.dump(get_feedback(board_ids)))
 
 #    @api_authenticate
 #    def post(self):
@@ -727,6 +741,7 @@ api.add_resource(BoardList, "/api/boards/")
 api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
 api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
 api.add_resource(Assignments, "/api/assignments/")
+api.add_resource(UserFeedbackList, "/api/user/<lti_user_id>/feedback/")
 api.add_resource(FeedbackList, "/api/feedback/")
 api.add_resource(Feedback, "/api/feedback/<feedback_id>")
 api.add_resource(FileUpload, "/api/upload")
