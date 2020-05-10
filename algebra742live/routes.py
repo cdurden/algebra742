@@ -652,7 +652,9 @@ class FeedbackList(Resource):
         parser.add_argument('board_ids', type=list, location='json')
         args = parser.parse_args()
         board_ids = args['board_ids']
-        return(feedback_list_schema.dump(get_feedback(board_ids)))
+        feedback_list = get_feedback(board_ids)
+        print(feedback_list)
+        return(feedback_list_schema.dump(feedback_list))
 
 #    @api_authenticate
 #    def post(self):
