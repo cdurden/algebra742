@@ -553,7 +553,7 @@ class BoardList(Resource):
         if args['task_id'] is not None:
             task = get_task_by_id(args['task_id'])
         elif args['taskSource'] is not None:
-            task = get_task_by_source(args['taskSource'])
+            task = get_task_from_source(args['taskSource'])
         else:
             task = None
         #if args['boardId'] is not None: # FIXME: maybe this should go in a put request instead
