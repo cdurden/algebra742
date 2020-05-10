@@ -468,10 +468,18 @@ class SubmissionList(Resource):
         parser.add_argument('data')
         args = parser.parse_args()
         kwargs = args['data'] or {}
-        if state is None or state == '':
-            submissions = get_submissions(**kwargs)
-        else:
-            submissions = get_submissions(state=state, **kwargs)
+        submissions = get_submissions(**kwargs)
+        return submissions_schema.dump(submissions)
+
+class SubmissionListByState(Resource):
+    @api_authenticate
+    def get(self, state):
+        parser = reqparse.RequestParser()
+        parser.add_argument('data')
+        parser.add_argument('state')
+        args = parser.parse_args()
+        kwargs = args['data'] or {}
+        submissions = get_submissions(state=args['state'], **kwargs)
         return submissions_schema.dump(submissions)
         #return([submission.to_json() for submission in get_submissions(**kwargs)])
 
@@ -701,8 +709,8 @@ api.add_resource(SourcedTaskBoardList, "/api/tasks/source/boards/")
 api.add_resource(TaskDataList, "/api/tasks/data/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
-api.add_resource(SubmissionList, "/api/submissions/", state=None)
-api.add_resource(SubmissionList, "/api/submissions/<state>")
+api.add_resource(SubmissionList, "/api/submissions/")
+api.add_resource(SubmissionListByState, "/api/submissions/<state>")
 api.add_resource(Board, "/api/user/<lti_user_id>/board/<boardId>")
 api.add_resource(LatestBoard, "/api/board/")
 api.add_resource(BoardList, "/api/boards/")
