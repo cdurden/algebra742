@@ -490,6 +490,7 @@ class TaskSubmissionList(Resource):
     @api_authenticate
     def post(self, task_id):
         parser = reqparse.RequestParser()
+        print(task_id)
         task = get_task_by_id(task_id)
         parser.add_argument('lti_user_id')
         parser.add_argument('board_id')
