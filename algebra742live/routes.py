@@ -463,7 +463,7 @@ class Submission(Resource):
 
 class SubmissionList(Resource):
     @api_authenticate
-    def get(self, state):
+    def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('data')
         args = parser.parse_args()
@@ -476,10 +476,9 @@ class SubmissionListByState(Resource):
     def get(self, state):
         parser = reqparse.RequestParser()
         parser.add_argument('data')
-        parser.add_argument('state')
         args = parser.parse_args()
         kwargs = args['data'] or {}
-        submissions = get_submissions(state=args['state'], **kwargs)
+        submissions = get_submissions(state=state, **kwargs)
         return submissions_schema.dump(submissions)
         #return([submission.to_json() for submission in get_submissions(**kwargs)])
 
