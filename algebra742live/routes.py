@@ -498,8 +498,8 @@ class TaskSubmissionList(Resource):
         #    parser.add_argument(field)
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
-        console.log(user.id);
-        console.log(task_schema.dump(task));
+        print(user.id)
+        print(task_schema.dump(task))
         submission = user.submit(task, args['data'], args['board_id'])
         return submission_schema.dump(submission), 201
         #return submission.to_json(), 201
