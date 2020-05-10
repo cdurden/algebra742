@@ -587,6 +587,7 @@ class BoardList(Resource):
             print("Saved temporary file at: {:s}".format(fp.name))
             tempfilepath = pathlib.Path(fp.name)
             tempfilepath.rename(filepath)
+            print(board_schema.dump(board))
         return board_schema.dump(board), 201
 
 class TaskBoard(Resource):
