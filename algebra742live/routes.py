@@ -516,7 +516,9 @@ class TaskSubmissionList(Resource):
         print(user.id)
         print(task_schema.dump(task))
         submission = user.submit(task, args['data'], args['board_id'])
-        return submission_schema.dump(submission), 201
+        resp = make_response(submission_schema.dump(submission), 201)
+        return resp
+        #return submission_schema.dump(submission), 201
         #return submission.to_json(), 201
 
 class Board(Resource):
@@ -602,7 +604,8 @@ class BoardList(Resource):
             tempfilepath = pathlib.Path(fp.name)
             tempfilepath.rename(filepath)
             print(board_schema.dump(board))
-        return board_schema.dump(board), 201
+        resp = make_response(board_schema.dump(board), 201)
+        return resp 
 
 class TaskBoard(Resource):
     @api_authenticate
@@ -626,7 +629,8 @@ class TaskBoardList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         board = user.submit(task, args['data'])
-        return board_schema.dump(board)
+        resp = make_response(board_schema.dump(board), 201)
+        return resp 
         #return board.to_json(), 201
 
 class Assignments(Resource):
@@ -647,7 +651,9 @@ class Assignments(Resource):
 class Feedback(Resource):
     @api_authenticate
     def get(self, feedback_id):
-        return(feedback_schema.dump(get_feedback_by_id(feedback_id)))
+        print(feedback_id)
+        feedback = get_feedback_by_id(feedback_id)
+        return(feedback_schema.dump(feedback))
 
 class UserFeedbackList(Resource):
     @api_authenticate
@@ -717,7 +723,8 @@ class FeedbackList(Resource):
         board = get_board_by_id(args['board_id'])
         # FIXME: if we are creating boards using the API before creating feedback, we can probably pass the board_id instead
         feedback = user.create_feedback(submission, board, data_json)
-        return feedback_schema.dump(feedback), 201
+        resp = make_response(feedback_schema.dump(feedback), 201)
+        return resp
 
 class FileUpload(Resource):
     @api_authenticate
@@ -732,14 +739,14 @@ class FileUpload(Resource):
         boardId = args['boardId']
         print(boardId)
         return '', 201
-        board = get_or_create_board_by_boardId(boardId)
-        if board is not None:
-            filename = "{:s}.png".format(boardId)
-            file_upload.save(os.path.join(app.config["PRIVATE_DATA_PATH"],filename))
-            board.background_image = filename
-            db.session.commit()
-        #chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-        return board_schema.dump(board), 201
+#        board = get_or_create_board_by_boardId(boardId)
+#        if board is not None:
+#            filename = "{:s}.png".format(boardId)
+#            file_upload.save(os.path.join(app.config["PRIVATE_DATA_PATH"],filename))
+#            board.background_image = filename
+#            db.session.commit()
+#        #chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+#        return board_schema.dump(board), 201
 
 
 api.add_resource(User, "/api/user/<lti_user_id>")
