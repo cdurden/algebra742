@@ -689,7 +689,8 @@ class FeedbackList(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('submission_id', type=int, location='json')
         parser.add_argument('lti_user_id')
-        parser.add_argument('boardId')
+        #parser.add_argument('boardId')
+        parser.add_argument('board_id')
         parser.add_argument('data', type=dict, location='json')
         args = parser.parse_args()
         print("submission_id: {:d}".format(args['submission_id']))
@@ -697,8 +698,10 @@ class FeedbackList(Resource):
         data_json = json.dumps(data)
         user = get_user_by_lti_user_id(args['lti_user_id'])
         #board = user.save_board({}, args['boardId'])
-        board = user.get_board_by_boardId(args['boardId'])
         submission = get_submission_by_id(args['submission_id'])
+        #board = user.get_board_by_boardId(args['boardId'])
+        board = user.get_board_by_board_id(args['board_id'])
+        # FIXME: if we are creating boards using the API before creating feedback, we can probably pass the board_id instead
         feedback = user.create_feedback(submission, board, data_json)
         return feedback_schema.dump(feedback), 201
 
