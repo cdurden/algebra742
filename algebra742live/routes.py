@@ -700,7 +700,7 @@ class FeedbackList(Resource):
         #board = user.save_board({}, args['boardId'])
         submission = get_submission_by_id(args['submission_id'])
         #board = user.get_board_by_boardId(args['boardId'])
-        board = user.get_board_by_board_id(args['board_id'])
+        board = get_board_by_id(args['board_id'])
         # FIXME: if we are creating boards using the API before creating feedback, we can probably pass the board_id instead
         feedback = user.create_feedback(submission, board, data_json)
         return feedback_schema.dump(feedback), 201
