@@ -467,7 +467,7 @@ class SubmissionGrade(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('grade')
         args = parser.parse_args()
-        submission = get_submission_by_id(db.session, submission_id)
+        submission = get_submission_by_id(submission_id)
         original_grade = submission.grade
         submission.grade = args['grade']
         submission.graded = True
