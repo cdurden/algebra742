@@ -516,7 +516,7 @@ class TaskSubmissionList(Resource):
         print(user.id)
         print(task_schema.dump(task))
         submission = user.submit(task, args['data'], args['board_id'])
-        resp = make_response(jsonify(submission_schema.dump(submission)), 201)
+        resp = make_response(jsonify(submission_schema.dump(submission).data), 201)
         return resp
         #return submission_schema.dump(submission), 201
         #return submission.to_json(), 201
@@ -604,7 +604,7 @@ class BoardList(Resource):
             tempfilepath = pathlib.Path(fp.name)
             tempfilepath.rename(filepath)
             print(board_schema.dump(board))
-        resp = make_response(jsonify(board_schema.dump(board)), 201)
+        resp = make_response(jsonify(board_schema.dump(board).data), 201)
         return resp 
 
 class TaskBoard(Resource):
@@ -629,7 +629,7 @@ class TaskBoardList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         board = user.submit(task, args['data'])
-        resp = make_response(jsonify(board_schema.dump(board)), 201)
+        resp = make_response(jsonify(board_schema.dump(board).data), 201)
         return resp 
         #return board.to_json(), 201
 
@@ -723,7 +723,7 @@ class FeedbackList(Resource):
         board = get_board_by_id(args['board_id'])
         # FIXME: if we are creating boards using the API before creating feedback, we can probably pass the board_id instead
         feedback = user.create_feedback(submission, board, data_json)
-        resp = make_response(jsonify(feedback_schema.dump(feedback)), 201)
+        resp = make_response(jsonify(feedback_schema.dump(feedback).data), 201)
         return resp
 
 class FileUpload(Resource):
