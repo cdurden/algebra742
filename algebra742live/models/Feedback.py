@@ -22,7 +22,7 @@ class Feedback(db.Model):
     recipient = relationship("User", foreign_keys=[recipient_id], back_populates="feedback_received")
     board = relationship("Board", foreign_keys=[board_id], back_populates="feedback")
     submission = relationship("Submission", foreign_keys=[submission_id], back_populates="feedback")
-    task = relationship("Task", foreign_keys=[task_id], back_populates="feedback")
+    task = relationship("Task", foreign_keys=[task_id])
 
     def get_data(self):
         if self.data_json is not None:

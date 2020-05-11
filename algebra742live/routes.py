@@ -470,6 +470,7 @@ class SubmissionGrade(Resource):
         submission = get_submission_by_id(db.session, submission_id)
         original_grade = submission.grade
         submission.grade = args['grade']
+        submission.graded = True
         db.session.commit()
         return submission_schema.dump(submission), 200
         #return submission.to_json()
@@ -750,11 +751,12 @@ api.add_resource(SourcedTaskList, "/api/tasks/source/")
 api.add_resource(SourcedTaskBoardList, "/api/tasks/source/boards/")
 api.add_resource(TaskDataList, "/api/tasks/data/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
+api.add_resource(SubmissionGrade, "/api/submission/<submission_id>/grade")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
 api.add_resource(SubmissionListByState, "/api/submissions/<state>")
 api.add_resource(Board, "/api/user/<lti_user_id>/board/<boardId>")
-api.add_resource(LatestBoard, "/api/board/")
+api.add_resource(LatestBoard, "/api/board/") #FIXME: end urls for singular resources without /
 api.add_resource(BoardList, "/api/boards/")
 api.add_resource(TaskBoard, "/api/task/<task_id>/board/")
 api.add_resource(TaskBoardList, "/api/task/<task_id>/boards/")
