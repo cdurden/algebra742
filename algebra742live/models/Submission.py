@@ -15,7 +15,7 @@ class Submission(db.Model):
                     default=datetime.utcnow)
     state = db.Column(db.Text, default="pending")
     graded = db.Column(db.Boolean, default=False)
-    score = db.Column(db.Float)
+    grade = db.Column(db.Float)
     marked_correct = db.Column(db.Text, default="[]")
     marked_incorrect = db.Column(db.Text, default="[]")
 

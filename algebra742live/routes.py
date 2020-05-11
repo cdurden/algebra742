@@ -461,6 +461,19 @@ class Submission(Resource):
         #return submission.to_json()
         return submission_schema.dump(submission)
 
+class SubmissionGrade(Resource):
+    @api_authenticate
+    def put(self, submission_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument('grade')
+        args = parser.parse_args()
+        submission = get_submission_by_id(db.session, submission_id)
+        original_grade = submission.grade
+        submission.grade = args['grade']
+        db.session.commit()
+        return submission_schema.dump(submission), 200
+        #return submission.to_json()
+
 class SubmissionList(Resource):
     @api_authenticate
     def get(self):
