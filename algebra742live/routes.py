@@ -475,6 +475,19 @@ class SubmissionGrade(Resource):
         return submission_schema.dump(submission), 200
         #return submission.to_json()
 
+class SchoologyFeedbackMessage(Resource):
+    @api_authenticate
+    def put(self, feedback_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument('schoology_message_id')
+        args = parser.parse_args()
+        feedback = get_feedback_by_id(feedback_id)
+        feedback.schoology_message_id = args['schoology_message_id']
+        db.session.commit()
+        return feedback_schema.dump(feedback), 200
+        #return submission.to_json()
+
+
 class SubmissionList(Resource):
     @api_authenticate
     def get(self):
@@ -759,6 +772,7 @@ api.add_resource(SourcedTaskBoardList, "/api/tasks/source/boards/")
 api.add_resource(TaskDataList, "/api/tasks/data/<source_pattern>/")
 api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(SubmissionGrade, "/api/submission/<submission_id>/grade")
+api.add_resource(SchoologyFeedbackMessage, "/api/feedback/<feedback_id>/schoology_message")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
 api.add_resource(SubmissionListByState, "/api/submissions/<state>")
