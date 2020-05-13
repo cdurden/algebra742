@@ -17,6 +17,7 @@ from . import socketio, ROOMS
 from werkzeug.datastructures import MultiDict, ImmutableMultiDict, FileStorage
 from werkzeug.utils import secure_filename
 from sqlalchemy.sql import select, and_, desc
+from datetime import datetime
 
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, BooleanField, FieldList, StringField, RadioField, IntegerField, FormField, TextAreaField
@@ -352,6 +353,7 @@ class FeedbackSchema(ma.ModelSchema):
     class Meta:
         model = db.Feedback
         include_fk = True
+    schoology_message_datetime = fields.DateTime()
     data = fields.Dict()
     board = fields.Nested("BoardSchema", exclude=("submissions","feedback",))
     submission = fields.Nested("SubmissionSchema", exclude=("feedback",))
@@ -483,6 +485,7 @@ class SchoologyFeedbackMessage(Resource):
         args = parser.parse_args()
         feedback = get_feedback_by_id(feedback_id)
         feedback.schoology_message_id = args['schoology_message_id']
+        feedback.schoology_message_datetime = datetime.utcnow()
         db.session.commit()
         return feedback_schema.dump(feedback), 200
         #return submission.to_json()
