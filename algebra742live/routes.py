@@ -668,6 +668,27 @@ class Feedback(Resource):
         feedback = get_feedback_by_id(feedback_id)
         return(feedback_schema.dump(feedback))
 
+    @api_authenticate
+    def put(self, feedback_id):
+        print("editing feedback")
+        parser = reqparse.RequestParser()
+        parser.add_argument('submission_id', type=int, location='json')
+        parser.add_argument('lti_user_id')
+        #parser.add_argument('boardId')
+        parser.add_argument('board_id')
+        parser.add_argument('data', type=dict, location='json')
+        args = parser.parse_args()
+        print("submission_id: {:d}".format(args['submission_id']))
+        data = args['data']
+        data_json = json.dumps(data)
+        feedback = get_feedback_by_id(feedback_id)
+        feedback.board_id = args['board_id']
+        feedback.data_json = data_json
+        db.session.commit()
+        # FIXME: deal appropriately with all of the parameters that are not being set here
+        resp = make_response(jsonify(feedback_schema.dump(feedback).data), 201)
+        return resp
+
 class UserFeedbackList(Resource):
     @api_authenticate
     def get(self, lti_user_id):
@@ -689,33 +710,6 @@ class FeedbackList(Resource):
         print(feedback_list)
         return(feedback_list_schema.dump(feedback_list))
 
-#    @api_authenticate
-#    def post(self):
-#        print("posting feedback")
-#        parser = reqparse.RequestParser()
-#        parser.add_argument('users', type=list, location='json')
-#        parser.add_argument('tasks', type=list, location='json')
-#        parser.add_argument('submissions', type=list, location='json')
-#        parser.add_argument('lti_user_id')
-#        parser.add_argument('boardId')
-#        parser.add_argument('data', type=dict, location='json')
-#        args = parser.parse_args()
-#        data = args['data']
-#        user = get_user_by_lti_user_id(args['lti_user_id'])
-#        board = user.save_board({}, args['boardId'])
-#        if args['submissions'] is not None:
-#            submissions = [get_submission_by_id(submission.id) for submission in args['submissions']]
-#            for submission in submissions:
-#                feedback = user.create_feedback(board, submission=submission)
-#        else:
-#            users = [get_user_by_id(user_id) for user_id in args['users']]
-#            tasks = [get_task_from_source(task) for task in args['tasks']]
-#            for recipient in users:
-#                for task in tasks:
-#                    feedback = user.create_feedback(board, recipient, task)
-#        print(board)
-#        print(board_schema.dump(board))
-#        return board_schema.dump(board), 201
     @api_authenticate
     def post(self):
         print("posting feedback")
