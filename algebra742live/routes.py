@@ -581,6 +581,7 @@ class BoardList(Resource):
         parser.add_argument('background_image')
         parser.add_argument('file', type=FileStorage, location='files')
         args = parser.parse_args()
+        print("Saving board {:s}".format(args['boardId']))
         shapeStorage_json = args['shapeStorage_json']
         if shapeStorage_json is None:
             shapeStorage = args['shapeStorage']
