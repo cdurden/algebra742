@@ -236,6 +236,7 @@ import operator
 from .models.authentication import HeaderAuthentication as HeaderAuthentication_
 from . import models
 from models.User import get_users, get_user_by_id, get_user_by_lti_user_id
+from models.Section import get_sections
 from models.Task import get_tasks, get_task_by_id, get_task_from_source, get_task_data_by_source_pattern
 from models.Submission import get_submission_by_id, get_submissions
 from models.Board import get_boards, get_board_by_id, get_latest_board
@@ -298,6 +299,17 @@ def api_authenticate(f):
         else:
             raise ApiError(401, "Authentication failed")
     return wrapper
+
+class SectionSchema(ma.ModelSchema):
+    class Meta:
+        model = db.Section
+        include_fk = True
+    #tasks = fields.List(fields.Nested("TaskSchema", exclude=("boards",)))
+    #boards = fields.List(fields.Nested("BoardSchema", exclude=("task","user")))
+    #submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task","user",)))
+
+section_schema = SectionSchema(exclude=())
+sections_schema = SectionSchema(many=True, exclude=())
 
 class UserSchema(ma.ModelSchema):
     class Meta:
@@ -377,6 +389,13 @@ class File(Resource):
         filepath = os.path.join(app.config["PRIVATE_DATA_PATH"],lti_user_id.split(":")[0],filename)
         return send_file(filepath)
 api.add_resource(File, "/api/file/<lti_user_id>/<filename>")
+
+class SectionList(Resource):
+    @api_authenticate
+    def get(self):
+        sections = get_sections()
+        #return section.to_json()
+        return sections_schema.dump(sections)
 
 class User(Resource):
     @api_authenticate
@@ -762,6 +781,7 @@ class FileUpload(Resource):
 
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(UserList, "/api/users/")
+api.add_resource(SectionList, "/api/sections/")
 api.add_resource(Task, "/api/task/<task_id>")
 api.add_resource(TaskList, "/api/tasks/")
 api.add_resource(SourcedTask, "/api/task/source/<source>/")
