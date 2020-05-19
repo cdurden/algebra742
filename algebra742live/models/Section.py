@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 
 class Section(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    schoology_id = db.Column(db.Integer)
+    schoology_id = db.Column(db.BigInteger)
     description = db.Column(db.String(80))
 
     def __repr__(self):
