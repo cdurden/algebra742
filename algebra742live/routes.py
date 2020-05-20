@@ -531,6 +531,26 @@ class SubmissionListByState(Resource):
         return submissions_schema.dump(submissions)
         #return([submission.to_json() for submission in get_submissions(**kwargs)])
 
+class SourcedTaskSubmissionList(Resource):
+    @api_authenticate
+    def post(self, source):
+        parser = reqparse.RequestParser()
+        task = get_task_from_source(source)
+        parser.add_argument('lti_user_id')
+        parser.add_argument('board_id')
+        parser.add_argument('data')
+        #for field in task.get_submission_fields():
+        #    parser.add_argument(field)
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        print(user.id)
+        print(task_schema.dump(task))
+        submission = user.submit(task, args['data'], args['board_id'])
+        resp = make_response(jsonify(submission_schema.dump(submission).data), 201)
+        return resp
+        #return submission_schema.dump(submission), 201
+        #return submission.to_json(), 201
+
 class TaskSubmissionList(Resource):
     @api_authenticate
     def get(self, task_id):
@@ -594,6 +614,7 @@ class BoardList(Resource):
         parser.add_argument('lti_user_id')
         parser.add_argument('shapeStorage', type=dict, location='json')
         parser.add_argument('shapeStorage_json')
+        #parser.add_argument('task', type=dict, location='json')
         parser.add_argument('task_id')
         parser.add_argument('taskSource')
         parser.add_argument('boardId')
@@ -792,6 +813,7 @@ api.add_resource(Submission, "/api/submission/<submission_id>")
 api.add_resource(SubmissionGrade, "/api/submission/<submission_id>/grade")
 api.add_resource(SchoologyFeedbackMessage, "/api/feedback/<feedback_id>/schoology_message")
 api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
+api.add_resource(SourcedTaskSubmissionList, "/api/task/source/<source>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
 api.add_resource(SubmissionListByState, "/api/submissions/<state>")
 api.add_resource(Board, "/api/user/<lti_user_id>/board/<boardId>")
