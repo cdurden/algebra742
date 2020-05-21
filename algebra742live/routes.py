@@ -369,6 +369,7 @@ class FeedbackSchema(ma.ModelSchema):
     data = fields.Dict()
     board = fields.Nested("BoardSchema", exclude=("submissions","feedback",))
     submission = fields.Nested("SubmissionSchema", exclude=("feedback",))
+    recipient = fields.Nested("User", exclude=("feedback","submissions",))
     @pre_dump
     def load_data(self, obj):
         obj.data = obj.get_data()

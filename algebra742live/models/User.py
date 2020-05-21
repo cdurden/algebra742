@@ -13,6 +13,7 @@ class User(db.Model):
     firstname = db.Column(db.String(80), nullable=False)
     lastname = db.Column(db.String(80), nullable=False)
     lti_user_id = db.Column(db.String(80), unique=True, nullable=False)
+    schoology_message_thread_id = db.Column(db.BigInteger)
     role = db.Column(db.String(80), default="student")
     assignment = db.Column(db.String(80))
     section = db.Column(db.String(80))
