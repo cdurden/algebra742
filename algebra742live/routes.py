@@ -823,10 +823,6 @@ class SubmissionBox(Resource):
     @api_authenticate
     def get(self, box_id):
         lti_user_id = request.cookies.get('lti_user_id')
-        parser = reqparse.RequestParser()
-        parser.add_argument('box_id')
-        #parser.add_argument('lti_user_id')
-        args = parser.parse_args()
         user = get_user_by_lti_user_id(lti_user_id)
         submissionbox = user.get_submission_box(box_id)
         return submissionbox_schema.dump(submissionbox)
@@ -835,9 +831,6 @@ class SubmissionBoxList(Resource):
     @api_authenticate
     def get(self):
         lti_user_id = request.cookies.get('lti_user_id')
-        parser = reqparse.RequestParser()
-        parser.add_argument('lti_user_id')
-        args = parser.parse_args()
         print("lti_user_id cookie was: {:s}".format(lti_user_id))
         user = get_user_by_lti_user_id(lti_user_id)
         return submissionboxes_schema.dump(user.inboxes)
@@ -846,10 +839,8 @@ class SubmissionBoxList(Resource):
         lti_user_id = request.cookies.get('lti_user_id')
         parser = reqparse.RequestParser()
         parser.add_argument('label')
-        #parser.add_argument('recipient_id')
         args = parser.parse_args()
         user = get_user_by_lti_user_id(lti_user_id)
-        #kwargs = args['data'] or {}
         submissionbox = user.create_submission_box(recipient_id = user.id, **args)
         return submissionbox_schema.dump(submissionbox), 201
 
@@ -870,7 +861,7 @@ api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SourcedTaskSubmissionList, "/api/task/source/<source>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
 api.add_resource(SubmissionListByState, "/api/submissions/<state>")
-api.add_resource(SubmissionBox, "/api/submissions/box/")
+api.add_resource(SubmissionBox, "/api/submissions/box/<box_id>")
 api.add_resource(SubmissionBoxList, "/api/submissions/boxes/")
 api.add_resource(Board, "/api/user/<lti_user_id>/board/<boardId>")
 api.add_resource(LatestBoard, "/api/board/") #FIXME: end urls for singular resources without /
