@@ -849,7 +849,7 @@ class SubmissionBoxList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(lti_user_id)
         kwargs = args['data'] or {}
-        submissionbox = user.create_submissionbox(**kwargs)
+        submissionbox = user.create_submission_box(**kwargs)
         return submissionbox_schema.dump(submissionbox), 201
 
 
