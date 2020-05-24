@@ -6,8 +6,6 @@ import re # for matching source patterns to assignment collections and assignmen
 import os # for reading assignment collection files
 from sqlalchemy.orm import relationship
 from . import get_or_create
-from .Message import Message
-from .Board import Board
 
 class Assignment(db.Model):
     __tablename__ = 'assignment'
