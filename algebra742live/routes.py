@@ -822,29 +822,32 @@ class FileUpload(Resource):
 class SubmissionBox(Resource):
     @api_authenticate
     def get(self, box_id):
+        lti_user_id = request.cookies.get('lti_user_id')
         parser = reqparse.RequestParser()
         parser.add_argument('box_id')
-        parser.add_argument('lti_user_id')
+        #parser.add_argument('lti_user_id')
         args = parser.parse_args()
-        user = get_user_by_lti_user_id(args['lti_user_id'])
+        user = get_user_by_lti_user_id(lti_user_id)
         submissionbox = user.get_submission_box_by_label(label)
         return submissionbox_schema.dump(submissionbox)
 
 class SubmissionBoxList(Resource):
     @api_authenticate
     def get(self):
+        lti_user_id = request.cookies.get('lti_user_id')
         parser = reqparse.RequestParser()
         parser.add_argument('lti_user_id')
         args = parser.parse_args()
-        user = get_user_by_lti_user_id(args['lti_user_id'])
+        user = get_user_by_lti_user_id(lti_user_id)
         submissionbox = user.get_submission_boxes()
         return submissionboxes_schema.dump(submissionbox)
     @api_authenticate
     def post(self):
+        lti_user_id = request.cookies.get('lti_user_id')
         parser = reqparse.RequestParser()
         parser.add_argument('data')
         args = parser.parse_args()
-        user = get_user_by_lti_user_id(data['lti_user_id'])
+        user = get_user_by_lti_user_id(lti_user_id)
         kwargs = args['data'] or {}
         submissions = get_submissions(**kwargs)
         submissionbox = user.create_submissionbox(data)
