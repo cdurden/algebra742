@@ -11,6 +11,7 @@ class SubmissionBox(db.Model):
     recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     recipient = relationship("User", back_populates="inboxes")
+    submissions = relationship("Submission", back_populates="box")
 
 def get_submissionbox_by_id(submissionbox_id):
     submissionbox = db.session.query(SubmissionBox).get(submissionbox_id)
