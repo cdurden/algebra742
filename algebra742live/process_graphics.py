@@ -1,6 +1,7 @@
 import sys
 from flask import Flask
-import subprocess
+import subprocess32 as subprocess
+#from subprocess import subprocess
 import hashlib
 import os
 import io
@@ -9,7 +10,23 @@ import json
 import jinja2
 import pygraphviz
 from networkx.drawing import nx_agraph
-from models.util import params_hash_lookup, graphics_path, process_quotes_for_json
+import shlex
+#from models.util import params_hash_lookup, graphics_path, process_quotes_for_json
+
+def graphics_path(app, engine, template, asy_params_hash):
+    return(os.path.join(app.config['GRAPHICS_OUTPUT_DIR'],engine,'{:s}_{:s}.svg'.format(os.path.splitext(template)[0],asy_params_hash)))
+
+def params_hash_lookup(params_json):
+    print(params_json)
+    return(hashlib.sha224(params_json.encode('utf-8')).hexdigest())
+
+def process_quotes_for_json(s):
+    lexer = shlex.shlex(s)
+    out = ''
+    for token in lexer:
+        out += "{:s}".format(token.replace("'","\""))
+    print(out)
+    return(out)
 app = Flask(__name__)
 app.config.from_object('default_config')
 
@@ -71,10 +88,9 @@ for node,data in questions_digraph.nodes(data=True):
                 stdout=subprocess.PIPE,
                 timeout=10,
             )
-        except subprocess.TimeoutExpired:
-            pass
+        #except subprocess.TimeoutExpired:
+        #    pass
             # Handle exception
         except subprocess.CalledProcessError:
             pass
             # Handle exception
-

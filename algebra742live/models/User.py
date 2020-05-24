@@ -18,9 +18,12 @@ class User(db.Model):
     assignment = db.Column(db.String(80))
     section = db.Column(db.String(80))
 
+    inboxes = relationship("SubmissionBox", back_populates="recipient")
     boards = relationship("Board", back_populates="user")
     submissions = relationship("Submission", back_populates="user")
     messages = relationship("Message", back_populates="user")
+    assignments_given = relationship("Assignment", foreign_keys=[Assignment.director_id], back_populates="director")
+    assignments_received = relationship("Assignment", foreign_keys=[Assignment.student_id], back_populates="student")
     feedback_given = relationship("Feedback", foreign_keys=[Feedback.creator_id], back_populates="creator")
     feedback_received = relationship("Feedback", foreign_keys=[Feedback.recipient_id], back_populates="recipient")
 

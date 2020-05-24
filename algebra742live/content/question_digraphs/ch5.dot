@@ -22,4 +22,6 @@ digraph ch5 {
   q20 [class="Question.CompleteTableQuestion",params="{'csv': '$x$,$x-3$\n-4,-7\n-3,[-6]\n-2,-5\n-1,[-4]\n0,[-3]\n1,[-2]\n2,-1\n3,[0]\n4,1','Question': 'Complete the table','transpose_display': 'True'}"];
   q21 [class="Question.CompleteTableQuestion",params="{'csv': '$x$,$2x$\n-4,[-8]\n-3,[-6]\n-2,[-4]\n-1,[-2]\n0,[0]\n1,[2]\n2,[4]\n3,[6]\n4,[8]','Question': 'Complete the table','transpose_display': 'True'}"];
   q1 -> q2 -> q3;
+  q22 [class="Question.AsyGraphicsQuestion",params="{'template': 'CartesianPlane.asy', 'min_y':'-8', 'max_y':'8', 'step_y':'1', 'min_x':'-8', 'max_x':'8', 'step_x':'1', 'Question': 'Where are $-5$ and $2$ relative to each other?'}"];
+  q22 [class="Question.AsyGraphicsQuestion",params="{'template': 'CartesianPlane.asy', 'min_y':'-11', 'max_y':'11', 'step_y':'1', 'min_x':'-11', 'max_x':'11', 'step_x':'1', 'Question': 'Where are $-5$ and $2$ relative to each other?'}"];
 }
