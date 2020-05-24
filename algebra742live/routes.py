@@ -846,11 +846,11 @@ class SubmissionBoxList(Resource):
         lti_user_id = request.cookies.get('lti_user_id')
         parser = reqparse.RequestParser()
         parser.add_argument('label')
-        parser.add_argument('recipient_id')
+        #parser.add_argument('recipient_id')
         args = parser.parse_args()
         user = get_user_by_lti_user_id(lti_user_id)
         #kwargs = args['data'] or {}
-        submissionbox = user.create_submission_box(**args)
+        submissionbox = user.create_submission_box(recipient_id = user.id, **args)
         return submissionbox_schema.dump(submissionbox), 201
 
 
