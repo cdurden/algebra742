@@ -83,7 +83,7 @@ class User(db.Model):
         return(feedback_list)
     def get_submission_box(self, box_id):
         box = db.session.query(SubmissionBox).get(box_id)
-        if box.user_id == self.id:
+        if box.recipient_id == self.id:
             return box
         else:
             return None
