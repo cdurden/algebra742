@@ -838,6 +838,7 @@ class SubmissionBoxList(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('lti_user_id')
         args = parser.parse_args()
+        print("lti_user_id cookie was: {:s}".format(lti_user_id))
         user = get_user_by_lti_user_id(lti_user_id)
         submissionbox = user.get_submission_boxes()
         return submissionboxes_schema.dump(submissionbox)
