@@ -10,6 +10,7 @@ class Submission(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     board_id = db.Column(db.Integer, db.ForeignKey('board.id'))
+    box_id = db.Column(db.Integer, db.ForeignKey('submissionbox.id'))
     data = db.Column(db.Text)
     datetime = db.Column(db.DateTime, nullable=False,
                     default=datetime.utcnow)
@@ -19,6 +20,7 @@ class Submission(db.Model):
     marked_correct = db.Column(db.Text, default="[]")
     marked_incorrect = db.Column(db.Text, default="[]")
 
+    box = relationship("SubmissionBox", back_populates="submissions")
     user = relationship("User", back_populates="submissions")
     task = relationship("Task", back_populates="submissions")
     feedback = relationship("Feedback", back_populates="submission")
