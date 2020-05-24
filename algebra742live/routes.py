@@ -819,6 +819,37 @@ class FileUpload(Resource):
 #        #chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 #        return board_schema.dump(board), 201
 
+class SubmissionBox(Resource):
+    @api_authenticate
+    def get(self, box_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument('box_id')
+        parser.add_argument('lti_user_id')
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        submissionbox = user.get_submission_box_by_label(label)
+        return submissionbox_schema.dump(submissionbox)
+
+class SubmissionBoxList(Resource):
+    @api_authenticate
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('lti_user_id')
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(args['lti_user_id'])
+        submissionbox = user.get_submission_boxes()
+        return submissionboxes_schema.dump(submissionbox)
+    @api_authenticate
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('data')
+        args = parser.parse_args()
+        user = get_user_by_lti_user_id(data['lti_user_id'])
+        kwargs = args['data'] or {}
+        submissions = get_submissions(**kwargs)
+        submissionbox = user.create_submissionbox(data)
+        return submissionbox_schema.dump(submissionbox)
+
 
 api.add_resource(User, "/api/user/<lti_user_id>")
 api.add_resource(UserList, "/api/users/")
@@ -836,6 +867,8 @@ api.add_resource(TaskSubmissionList, "/api/task/<task_id>/submissions/")
 api.add_resource(SourcedTaskSubmissionList, "/api/task/source/<source>/submissions/")
 api.add_resource(SubmissionList, "/api/submissions/")
 api.add_resource(SubmissionListByState, "/api/submissions/<state>")
+api.add_resource(SubmissionBox, "/api/submissions/box/")
+api.add_resource(SubmissionBoxList, "/api/submissions/boxes/")
 api.add_resource(Board, "/api/user/<lti_user_id>/board/<boardId>")
 api.add_resource(LatestBoard, "/api/board/") #FIXME: end urls for singular resources without /
 api.add_resource(BoardList, "/api/boards/")
