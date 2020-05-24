@@ -315,6 +315,8 @@ class UserSchema(ma.ModelSchema):
     class Meta:
         model = db.User
         include_fk = True
+    inboxes = fields.List(fields.Nested("SubmissionBoxSchema"))
+    assignments_received = fields.List(fields.Nested("AssignmentSchema"))
     #tasks = fields.List(fields.Nested("TaskSchema", exclude=("boards",)))
     #boards = fields.List(fields.Nested("BoardSchema", exclude=("task","user")))
     #submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task","user",)))
@@ -377,6 +379,23 @@ class FeedbackSchema(ma.ModelSchema):
 
 feedback_schema = FeedbackSchema(exclude=("data_json",))
 feedback_list_schema = FeedbackSchema(many=True, exclude=("data_json",))
+
+class AssignmentSchema(ma.ModelSchema):
+    class Meta:
+        model = db.Assignment
+        include_fk = True
+
+assignment_schema = AssignmentSchema()
+assignments_schema = AssignmentSchema(many=True)
+
+class SubmissionBoxSchema(ma.ModelSchema):
+    class Meta:
+        model = db.SubmissionBox
+        include_fk = True
+
+submissionbox_schema = SubmissionBoxSchema()
+submissionboxes_schema = SubmissionBoxSchema(many=True)
+
 
 api = Api(app)
 class File(Resource):
