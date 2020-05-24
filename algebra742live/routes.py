@@ -823,6 +823,7 @@ class SubmissionBox(Resource):
     @api_authenticate
     def get(self, box_id):
         lti_user_id = request.cookies.get('lti_user_id')
+        print("lti_user_id cookie was: {:s}".format(lti_user_id))
         user = get_user_by_lti_user_id(lti_user_id)
         submissionbox = user.get_submission_box(box_id)
         return submissionbox_schema.dump(submissionbox)
