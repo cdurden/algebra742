@@ -828,7 +828,7 @@ class SubmissionBox(Resource):
         #parser.add_argument('lti_user_id')
         args = parser.parse_args()
         user = get_user_by_lti_user_id(lti_user_id)
-        submissionbox = user.get_submission_box_by_label(label)
+        submissionbox = user.get_submission_box(box_id)
         return submissionbox_schema.dump(submissionbox)
 
 class SubmissionBoxList(Resource):
@@ -840,8 +840,7 @@ class SubmissionBoxList(Resource):
         args = parser.parse_args()
         print("lti_user_id cookie was: {:s}".format(lti_user_id))
         user = get_user_by_lti_user_id(lti_user_id)
-        submissionbox = user.get_submission_boxes()
-        return submissionboxes_schema.dump(submissionbox)
+        return submissionboxes_schema.dump(user.inboxes)
     @api_authenticate
     def post(self):
         lti_user_id = request.cookies.get('lti_user_id')
@@ -850,9 +849,8 @@ class SubmissionBoxList(Resource):
         args = parser.parse_args()
         user = get_user_by_lti_user_id(lti_user_id)
         kwargs = args['data'] or {}
-        submissions = get_submissions(**kwargs)
-        submissionbox = user.create_submissionbox(data)
-        return submissionbox_schema.dump(submissionbox)
+        submissionbox = user.create_submissionbox(**kwargs)
+        return submissionbox_schema.dump(submissionbox), 201
 
 
 api.add_resource(User, "/api/user/<lti_user_id>")

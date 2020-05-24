@@ -81,6 +81,17 @@ class User(db.Model):
         else:
             feedback_list = db.session.query(Feedback).filter_by(user_id=self.id).all()
         return(feedback_list)
+    def get_submission_box(self, box_id):
+        box = db.session.query(SubmissionBox).get(box_id)
+        if box.user_id = self.id:
+            return box
+        else:
+            return None
+    def create_submission_box(self, **kwargs):
+        submission_box = SubmissionBox(**kwargs)
+        db.session.add(submission_box)
+        db.session.commit()
+        return submission_box
 
 
 def get_users():
