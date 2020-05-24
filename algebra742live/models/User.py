@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 from .Submission import Submission
 from .Feedback import Feedback
 from .Board import Board
+from .Assignment import Assignment
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
