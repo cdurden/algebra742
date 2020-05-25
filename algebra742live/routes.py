@@ -584,13 +584,14 @@ class TaskSubmissionList(Resource):
         parser.add_argument('lti_user_id')
         parser.add_argument('board_id')
         parser.add_argument('data')
+        parser.add_argument('box_id')
         #for field in task.get_submission_fields():
         #    parser.add_argument(field)
         args = parser.parse_args()
         user = get_user_by_lti_user_id(args['lti_user_id'])
         print(user.id)
         print(task_schema.dump(task))
-        submission = user.submit(task, args['data'], args['board_id'])
+        submission = user.submit(task, args['data'], args['board_id'], args['box_id'])
         resp = make_response(jsonify(submission_schema.dump(submission).data), 201)
         return resp
         #return submission_schema.dump(submission), 201
