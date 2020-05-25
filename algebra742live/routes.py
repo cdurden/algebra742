@@ -315,7 +315,7 @@ class UserSchema(ma.ModelSchema):
     class Meta:
         model = db.User
         include_fk = True
-    inboxes = fields.List(fields.Nested("SubmissionBoxSchema"))
+    inboxes = fields.List(fields.Nested("SubmissionBoxSchema"), exclude=("submissions",))
     assignments_received = fields.List(fields.Nested("AssignmentSchema"))
     #tasks = fields.List(fields.Nested("TaskSchema", exclude=("boards",)))
     #boards = fields.List(fields.Nested("BoardSchema", exclude=("task","user")))
