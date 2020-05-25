@@ -389,6 +389,7 @@ assignment_schema = AssignmentSchema()
 assignments_schema = AssignmentSchema(many=True)
 
 class SubmissionBoxSchema(ma.ModelSchema):
+    submissions = fields.List(fields.Nested("SubmissionSchema", exclude=()))
     class Meta:
         model = db.SubmissionBox
         include_fk = True
