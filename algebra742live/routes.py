@@ -351,7 +351,7 @@ class BoardSchema(ma.ModelSchema):
         model = db.Board
         include_fk = True
     task = fields.Nested("TaskSchema")
-    user = fields.Nested("UserSchema", exclude=("boards","submissions",))
+    user = fields.Nested("UserSchema", exclude=("boards","submissions","inboxes",))
     data = fields.Dict()
     shapeStorage = fields.Dict()
     @pre_dump
