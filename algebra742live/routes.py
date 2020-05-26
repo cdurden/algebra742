@@ -312,11 +312,11 @@ section_schema = SectionSchema(exclude=())
 sections_schema = SectionSchema(many=True, exclude=())
 
 class UserSchema(ma.ModelSchema):
+    inboxes = fields.List(fields.Nested("SubmissionBoxSchema", exclude=("submissions",)))
+    assignments_received = fields.List(fields.Nested("AssignmentSchema"))
     class Meta:
         model = db.User
         include_fk = True
-    inboxes = fields.List(fields.Nested("SubmissionBoxSchema"), exclude=("submissions",))
-    assignments_received = fields.List(fields.Nested("AssignmentSchema"))
     #tasks = fields.List(fields.Nested("TaskSchema", exclude=("boards",)))
     #boards = fields.List(fields.Nested("BoardSchema", exclude=("task","user")))
     #submissions = fields.List(fields.Nested("SubmissionSchema", exclude=("task","user",)))
